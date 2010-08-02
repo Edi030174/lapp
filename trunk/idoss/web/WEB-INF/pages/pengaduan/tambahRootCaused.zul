@@ -38,7 +38,7 @@
                         <textbox id="textbox_TambahRootCaused" width="99%"/>
                     </row>
                     <row>
-                        <checkbox id="checkbox_Aktif" label="Aktif"/>
+                        <checkbox id="checkbox_Aktif" label="Aktif" checked="true"/>
                         <checkbox id="checkbox_NonAktif" label="Non Aktif"/>
                     </row>
                 </rows>

@@ -30,6 +30,9 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
     protected Window window_TambahRootCaused;
     protected Textbox textbox_TambahRootCaused;
 
+    protected Checkbox checkbox_Aktif;
+    protected Checkbox checkbox_NonAktif;
+
     private transient PRootCaused pRootCaused;
     private transient RootCausedService rootCausedService;
 
@@ -47,15 +50,14 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
 
-        Map<String, Object> args = getCreationArgsMap(event);
-
-        if (args.containsKey("pRootCaused")) {
-			PRootCaused pRootCaused = (PRootCaused) args.get("pRootCaused");
-			setpRootCaused(pRootCaused);
-		} else {
-			setpRootCaused(null);
-		}
-
+//        Map<String, Object> args = getCreationArgsMap(event);
+//
+//        if (args.containsKey("pRootCaused")) {
+//			PRootCaused pRootCaused = (PRootCaused) args.get("pRootCaused");
+//			setpRootCaused(pRootCaused);
+//		} else {
+//			setpRootCaused(null);
+//		}
         doShowDialog(getpRootCaused());
     }
 
@@ -103,6 +105,11 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
     private void doWriteComponentsToBean(PRootCaused pRootCaused) {
 
         pRootCaused.setRoot_caused(textbox_TambahRootCaused.getValue());
+        if (checkbox_Aktif.isChecked()) {
+            pRootCaused.setActive("Y");
+        } else if (checkbox_NonAktif.isChecked()) {
+            pRootCaused.setActive("T");
+        }
     }
 
     public void onClick$btnBatal_RootCaused(Event event) throws Exception {
@@ -118,10 +125,6 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public PRootCaused getpRootCaused() {
-        return pRootCaused;
-    }
-
-    public void setpRootCaused(PRootCaused pRootCaused) {
-        this.pRootCaused = pRootCaused;
+        return new PRootCaused();
     }
 }
