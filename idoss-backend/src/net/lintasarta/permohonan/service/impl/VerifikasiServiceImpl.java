@@ -44,27 +44,26 @@ public class VerifikasiServiceImpl implements VerifikasiService {
         this.tPelaksanaanDAO = tPelaksanaanDAO;
     }
 
-    @Override
+    public TVerifikasi getNewVerifikasi() {
+        return new TVerifikasi();
+    }
+
     public int getCountAllTVerifikasi() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return gettVerifikasiDAO().getCountAllTVerifikasi();
     }
 
-    @Override
     public List<TVerifikasi> getAllTVerifikasi() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return gettVerifikasiDAO().getAllTVerifikasi();
     }
 
-    @Override
     public TVerifikasi getTVerifikasiByTIdossVerifikasiId(String t_idoss_verifikasi_id) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return getTVerifikasiByTIdossVerifikasiId(t_idoss_verifikasi_id);
     }
 
-    @Override
     public void createTVerifikasi(TPermohonan tPermohonan, TPelaksanaan tPelaksanaan, TVerifikasi tVerifikasi) {
         gettVerifikasiDAO().createTVerifikasi(tVerifikasi);
     }
 
-    @Override
     public void saveOrUpdateTVerifikasi(TVerifikasi tVerifikasi) {
         gettVerifikasiDAO().saveOrUpdateTVerifikasi(tVerifikasi);
     }

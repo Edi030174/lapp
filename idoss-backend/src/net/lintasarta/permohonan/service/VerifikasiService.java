@@ -12,7 +12,7 @@ import java.util.List;
  * Time: 11:00:18 AM
  */
 public interface VerifikasiService {
-
+    TVerifikasi getNewVerifikasi();
     int getCountAllTVerifikasi();
     List<TVerifikasi> getAllTVerifikasi();
     TVerifikasi getTVerifikasiByTIdossVerifikasiId(String t_idoss_verifikasi_id);

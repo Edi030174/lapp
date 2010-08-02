@@ -43,7 +43,6 @@ public class PelaksanaanServiceImpl implements PelaksanaanService{
     }
 
 
-    @Override
     public int getCountAllTPelaksanaan() {
         return gettPelaksanaanDAO().getCountAllTPelaksanaan();
     }

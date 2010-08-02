@@ -42,27 +42,22 @@ public class PermohonanServiceImpl implements PermohonanService{
         this.tPelaksanaanDAO = tPelaksanaanDAO;
     }
 
-    @Override
     public TPermohonan getNewPermohonan() {
         return new TPermohonan();
     }
 
-    @Override
     public TPermohonan getTPermohonanByNomorPermohonanId(String nomorPermohonanId) {
         return getTPermohonanByNomorPermohonanId(nomorPermohonanId);
     }
 
-    @Override
     public List<TPermohonan> getAllTPermohonan() {
         return gettPermohonanDAO().getAllTPermohonan();
     }
 
-    @Override
     public void createTPermohonan(TPermohonan tPermohonan) {
         gettPermohonanDAO().createTPermohonan(tPermohonan);
     }
 
-    @Override
     public void saveOrUpdateTPermohonan(TPermohonan tPermohonan) {
         gettPermohonanDAO().saveOrUpdateTPermohonan(tPermohonan);
     }
