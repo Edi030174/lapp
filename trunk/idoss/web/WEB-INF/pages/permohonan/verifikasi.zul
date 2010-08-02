@@ -1,0 +1,225 @@
+<?page title="verifikasi" contentType="text/html;charset=UTF-8"?>
+<zk>
+    <window id="verifikasiWindow" title="verifikasi" border="normal" apply="${VerifikasiCtrl}">
+        <toolbar>
+            <button id="btnRefreshVerifikasi"
+                    image="/images/icons/refresh2_yellow_16x16.gif"
+                    tooltiptext="${c:l('btnRefresh.tooltiptext')}"/>
+            <separator orient="vertical"/>
+            <button id="btnBuatVerifikasi"
+                    image="/images/icons/btn_new2_16x16.gif"
+                    tooltiptext="${c:l('button_CustomerList_NewCustomer.tooltiptext')}"/>
+            <button id="btnCariVerifikasi"
+                    image="/images/icons/btn_search2_16x16.gif"/>
+            <button id="btnSimpan_Verifikasi" label="Simpan"/>
+        </toolbar>
+        <space width="10px"></space>
+        <hbox>
+            <space width="20px"></space>
+            <hbox>
+                <vbox>
+                    <space height="7px"></space>
+                    <label value="Prioritas :"/>
+                </vbox>
+                <radiogroup id="radiogroupPrioritas">
+                    <vbox>
+                        <radio id="high" label="high"/>
+                        <radio id="normal" label="normal"/>
+                    </vbox>
+                </radiogroup>
+            </hbox>
+            <space width="20px"></space>
+            <hbox>
+                <vbox>
+                    <space height="7px"></space>
+                    <label value="Dampak :"/>
+                </vbox>
+                <radiogroup id="radiogroupDampak">
+                    <vbox>
+                        <radio id="major" label="major"/>
+                        <radio id="minor" label="minor"/>
+                    </vbox>
+                </radiogroup>
+            </hbox>
+        </hbox>
+        <space width="20px"></space>
+        <groupbox mold="3d">
+            <caption label="" style="font-weight:bold"/>
+            <borderlayout height="195px">
+                <north maxsize="300" border="0" size="100%">
+                    <borderlayout>
+                        <west size="33%" border="0" flex="true"
+                              maxsize="250">
+                            <borderlayout>
+                                <north border="0" size="15%">
+                                    <div>
+                                        <label
+                                                value="Status Permohonan : "/>
+                                    </div>
+                                </north>
+                                <center border="0">
+                                    <div>
+                                        <vbox>
+                                            <hbox>
+                                                <vbox>
+                                                    <space
+                                                            height="2px">
+                                                    </space>
+                                                    <label
+                                                            value="Tanggal : "/>
+                                                    <space
+                                                            height="2px">
+                                                    </space>
+                                                    <label
+                                                            value="Pelaksana : "/>
+                                                </vbox>
+                                                <vbox>
+                                                    <datebox
+                                                            id="dateboxTanggal1" format="dd MMMM yyyy"
+                                                            readonly="true"
+                                                            width="150px">
+                                                    </datebox>
+                                                    <combobox
+                                                            id="comboboxNik_pelaksana" readonly="true"
+                                                            width="150px">
+                                                    </combobox>
+                                                </vbox>
+                                            </hbox>
+                                            <space height="7px"></space>
+                                            <checkbox id="checkbox1"
+                                                      label="Disetujui oleh pimpinan bagian Dukophar"
+                                                      onCheck="doChecked()"/>
+                                        </vbox>
+                                    </div>
+                                </center>
+                                <south border="0">
+                                    <div></div>
+                                </south>
+                            </borderlayout>
+                        </west>
+                        <center border="none" flex="true">
+                            <borderlayout>
+                                <north border="0" size="15%">
+                                    <div style="">
+                                        <radiogroup
+                                                id="radiogroupStatus_permohonan_asman">
+                                            <radio id="radioDisetujui"
+                                                   label="disetujui">
+                                            </radio>
+                                            <radio id="radioDitolak"
+                                                   label="ditolak">
+                                            </radio>
+                                        </radiogroup>
+                                    </div>
+                                </north>
+                                <center border="0">
+                                    <borderlayout>
+                                        <west border="0" flex="true">
+                                            <div style="">
+                                                <label
+                                                        value="catatan : ">
+                                                </label>
+                                                <fckeditor
+                                                        id="fckCatatan_asman" height="99%" width="484px"
+                                                        customConfigurationsPath="/js/fckeditor.js"
+                                                        toolbarSet="Basic"/>
+                                            </div>
+                                        </west>
+                                        <center border="0"
+                                                flex="true">
+                                            <div style="">
+
+                                            </div>
+                                        </center>
+                                    </borderlayout>
+                                </center>
+                            </borderlayout>
+                        </center>
+                        <east border="none" flex="true"></east>
+                    </borderlayout>
+
+                </north>
+            </borderlayout>
+        </groupbox>
+        <groupbox mold="3d">
+            <caption label="" style="font-weight:bold"/>
+            <borderlayout height="195px">
+                <center border="0">
+                    <borderlayout>
+                        <west maxsize="600" size="33%" flex="true"
+                              border="0">
+                            <borderlayout>
+                                <north border="0" size="15%">
+                                    <div>
+                                        <label
+                                                value="Status Permohonan : "/>
+                                    </div>
+                                </north>
+                                <center border="0">
+                                    <div>
+                                        <vbox>
+                                            <hbox>
+                                                <label
+                                                        value="Tanggal : "/>
+                                                <datebox id="dateboxTanggal2" format="dd MMMM yyyy" readonly="true"
+                                                         width="150px">
+                                                </datebox>
+                                            </hbox>
+                                            <space height="7px"></space>
+                                            <checkbox id="checkbox2"
+                                                      label="Disetujui oleh pimpinan bagian Dukophar"
+                                                      onCheck="doChecked()"/>
+                                        </vbox>
+                                    </div>
+                                </center>
+                            </borderlayout>
+                        </west>
+                        <center border="0" flex="true">
+                            <borderlayout>
+                                <north border="0" size="15%">
+                                    <div style="">
+                                        <radiogroup
+                                                id="radiogroupStatus_permohonan_manager">
+                                            <radio id="radioDisetujui2"
+                                                   label="disetujui">
+                                            </radio>
+                                            <radio id="radioDitolak2"
+                                                   label="ditolak">
+                                            </radio>
+                                        </radiogroup>
+                                    </div>
+                                </north>
+                                <center border="0">
+                                    <borderlayout>
+                                        <west border="0" flex="true">
+                                            <div style="">
+                                                <label
+                                                        value="catatan : ">
+                                                </label>
+                                                <fckeditor
+                                                        id="fckCatatan_manager" height="99%" width="484px"
+                                                        customConfigurationsPath="/js/fckeditor.js"
+                                                        toolbarSet="Basic"/>
+                                            </div>
+                                        </west>
+                                        <center border="0"
+                                                flex="true">
+                                            <div style="">
+
+                                            </div>
+                                        </center>
+                                    </borderlayout>
+                                </center>
+                            </borderlayout>
+
+                        </center>
+                        <east border="0" flex="true">
+
+                        </east>
+                    </borderlayout>
+                </center>
+            </borderlayout>
+        </groupbox>
+
+    </window>
+</zk>

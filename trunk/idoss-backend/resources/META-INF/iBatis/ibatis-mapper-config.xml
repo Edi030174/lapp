@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"
+        "http://ibatis.apache.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="lazyLoadingEnabled" value="false"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <setting name="autoMappingBehavior" value="FULL"/>
+        <setting name="multipleResultSetsEnabled" value="true"/>
+        <setting name="useColumnLabel" value="true"/>
+        <setting name="useGeneratedKeys" value="false"/>
+    </settings>
+
+    <typeAliases>
+
+        <typeAlias type="net.lintasarta.security.model.VHrEmployee" alias="vHrEmployee"/>
+        <!--permohonan -->
+        <typeAlias type="net.lintasarta.permohonan.model.TPelaksanaan" alias="tpelaksanaan"/>
+        <typeAlias type="net.lintasarta.permohonan.model.TPermohonan" alias="tpermohonan"/>
+        <typeAlias type="net.lintasarta.permohonan.model.TVerifikasi" alias="tverifikasi"/>
+        <!--pengaduan -->
+        <typeAlias type="net.lintasarta.pengaduan.model.TPenangananGangguan" alias="tpenanganangangguan"/>
+        <typeAlias type="net.lintasarta.pengaduan.model.PRootCaused" alias="prootcaused"/>
+        <typeAlias type="net.lintasarta.pengaduan.model.PType" alias="ptype"/>
+        <typeAlias type="net.lintasarta.pengaduan.model.HPenangananGangguan" alias="hpenanganangangguan"/>
+    </typeAliases>
+
+    <typeHandlers>
+        <typeHandler javaType="java.sql.Blob" jdbcType="BLOB" handler="org.apache.ibatis.type.BlobTypeHandler"/>
+        <typeHandler javaType="java.lang.Byte" jdbcType="BLOB" handler="org.apache.ibatis.type.ByteArrayTypeHandler"/>
+    </typeHandlers>
+
+    <mappers>
+        <mapper resource="net/lintasarta/security/dao/impl/mybatis/VHrEmployee.xml"/>
+
+        <!--permohonan -->
+        <mapper resource="net/lintasarta/permohonan/dao/impl/mybatis/tpelaksanaan.xml"/>
+        <mapper resource="net/lintasarta/permohonan/dao/impl/mybatis/tpermohonan.xml"/>
+        <mapper resource="net/lintasarta/permohonan/dao/impl/mybatis/tverifikasi.xml"/>
+         <!--Pengaduan-->
+        <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/prootcaused.xml"/>
+        <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/ptype.xml"/>
+        <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/tpenanganangangguan.xml"/>
+        <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/hpenanganangangguan.xml"/>
+     </mappers>
+</configuration>

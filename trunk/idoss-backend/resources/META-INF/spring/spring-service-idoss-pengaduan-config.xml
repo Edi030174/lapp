@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="rootCausedService" class="net.lintasarta.pengaduan.service.impl.RootCausedServiceImpl">
+        <property name="pRootCausedDAO" ref="pRootCausedDAO"/>
+    </bean>
+    <bean id="typeService" class="net.lintasarta.pengaduan.service.impl.TypeServiceImpl">
+        <property name="pTypeDAO" ref="pTypeDAO"/>
+    </bean>
+    <bean id="penangananGangguanService" class="net.lintasarta.pengaduan.service.impl.PenangananGangguanServiceImpl">
+        <property name="tPenangananGangguanDAO" ref="tPenangananGangguanDAO"/>
+    </bean>
+    <bean id="pelaksaanaanGangguanService" class="net.lintasarta.pengaduan.service.impl.PelaksanaanGangguanServiceImpl">
+        <property name="pTypeDAO" ref="pTypeDAO"/>
+        <property name="pRootCausedDAO" ref="pRootCausedDAO"/>
+        <property name="tPenangananGangguanDAO" ref="tPenangananGangguanDAO"/>
+    </bean>
+    
+</beans>

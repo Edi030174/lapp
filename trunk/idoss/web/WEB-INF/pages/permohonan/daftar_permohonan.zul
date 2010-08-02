@@ -1,0 +1,55 @@
+<?page id="daftarZul" title="Form Daftar Permohonan" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <window id="window_DaftarPermohonan" title="Form Daftar Permohonan" border="normal"
+            width="100%" height="100%" sizable="true" apply="${daftarPermohonanCtrl}">
+        <style>
+
+            body { padding: 0 0; /* 0 padding on top and bottom and 0
+            padding on right and left */ }
+
+            .font{
+            font-size:10px
+            }
+        </style>
+
+        <panel id="panel_daftarPermohonan" title="" border="none"/>
+        <hbox>
+            <button id="btnRefresh"
+                    image="/images/icons/refresh2_yellow_16x16.gif"/>
+            <button id="btnBuatBaru_DaftarPermohonan"
+                    image="/images/icons/btn_new2_16x16.gif"/>
+            <button id="button_CustomerList_CustomerFindDialog"
+                    image="/images/icons/btn_search2_16x16.gif"/>
+
+        </hbox>
+        <separator bar="false"/>
+        <!--<groupbox id="groupbox_DaftarPermohonan" mold="3d" closable="true" open="true">-->
+        <caption label="Daftar Permohonan" style="font-weight:bold"/>
+
+        <paging id="paging_DaftarPermohonan"/>
+        <listbox id="listbox_DaftarPermohonan" vflex="true" width="99.9%" height="100%" multiple="false">
+            <listhead sizable="true">
+                <listheader id="listheader_Nomor" label="Nomor" sort="auto" style="font-size:11px"/>
+                <listheader id="listheader_Tanggal" label="Tanggal" sort="auto" style="font-size:11px"/>
+                <listheader id="listheader_Tipe" label="Tipe" sort="auto" style="font-size:11px"/>
+                <listheader id="listheader_StatusPersetujuan" label="Status Persetujuan" sort="auto" style="font-size:11px"/>
+                <listheader id="listheader_Pimbag" label="PimBag" sort="auto" style="font-size:11px"/>
+                <listheader id="listheader_Pimdiv" label="PimDiv" sort="auto" style="font-size:11px"/>
+                <listheader id="listheader_AssMgr" label="AssMgr" sort="auto" style="font-size:11px"/>
+                <listheader id="listheader_Mgr" label="Mgr" sort="auto" style="font-size:11px"/>
+                <listheader id="listheader_GM" label="GM" sort="auto" style="font-size:11px"/>
+            </listhead>
+            <!--<listitem self="@{each=persons}">
+                <listcell label="@{persons.fullName}"/>
+                <listcell label="@{persons.gender}"/>
+                <listcell label="@{persons.age}"/>
+            </listitem>-->
+        </listbox>
+        <space/>
+        <!--</groupbox>-->
+    </window>
+</zk>

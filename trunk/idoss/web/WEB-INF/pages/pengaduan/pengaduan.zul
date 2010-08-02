@@ -1,0 +1,91 @@
+<?page title="Form Pengaduan" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <window id="window_Pengaduan" position="center,top" width="600px" sizable="true"
+            title="Form Pengaduan" closable="true" apply="${pengaduanCtrl}">
+
+        <style>
+            body { padding: 0 0; /* 0 padding on top and bottom and 0
+            padding on right and left */ }
+
+            <!-- cut the vertical borders in the rows -->
+            tr.z-row td.z-row-inner { border-right: 0px #CCC; }
+
+            <!-- Make Plain Grid -->
+            .GridLayoutNoBorder tr.z-row td.z-row-inner, tr.z-row
+            .z-cell,div.z-grid { border: none; overflow: hidden; zoom:
+            1; background: white; border-top: none; border-left: none;
+            border-right: none; border-bottom: none; }
+
+            <!-- Title in bold letters -->
+            .z-groupbox-hl .z-groupbox-header { color: #000000;
+            font-weight: bold; }
+
+        </style>
+        <groupbox id="groupbox_Pengaduan" mold="3d" closable="true" open="true">
+            <caption label="Pengaduan" style="font-weight:bold"/>
+
+            <grid style="border:0px">
+                <columns sizable="true ">
+                    <column width="15%"/>
+                    <column/>
+                </columns>
+                <rows>
+                    <row style="border:0px">
+                        <label value="Nomor Tiket"/>
+                        <textbox id="textbox_NomorTiket"/>
+                    </row>
+                    <row style="border:0px">
+                        <label value="Nama Pelapor"/>
+                        <textbox id="textbox_NamaPelapor"/>
+                    </row>
+                    <row style="border:0px">
+                        <label value="NIK Pelapor"/>
+                        <hbox>
+                            <textbox id="textbox_NikPelapor"/>
+                            <space/>
+                            <label value="Bagian"/>
+                            <space width="0.5px"/>
+                            <textbox id="textbox_Bagian"/>
+                        </hbox>
+
+                    </row>
+                    <row style="border:0px">
+                        <label value="Nomor HP "/>
+                        <hbox>
+                            <textbox id="textbox_NomorHP"/>
+                            <space/>
+                            <label value="Ext"/>
+                            <space width="20.5px"/>
+                            <textbox id="textbox_Ext" maxlength="5"/>
+                        </hbox>
+                    </row>
+                    <row style="border:0px">
+                        <label value="Judul"/>
+                        <textbox id="textbox_Judul" width="99%"/>
+                    </row>
+                    <row style="border:0px">
+                        <label value="Deskripsi"/>
+                        <fckeditor id="fckeditor_Des" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic"
+                                   width="99%">
+
+                        </fckeditor>
+                    </row>
+                </rows>
+            </grid>
+            <div align="center">
+                <hbox>
+                    <button id="btnSimpan_pengaduan" label="Simpan" height="20"
+                            image="/images/icons/btn_save2_16x16.gif"
+                            tooltiptext="${c:l('btnSimpan_pengaduan.tooltiptext')}"/>
+                    <button id="btnBatal_pengaduan" label="Batal" height="20"
+                            image="/images/icons/btn_close_16x16.gif"
+                            tooltiptext="${c:l('btnBatal_pengaduan.tooltiptext')}"/>
+                </hbox>
+            </div>
+        </groupbox>
+    </window>
+</zk>

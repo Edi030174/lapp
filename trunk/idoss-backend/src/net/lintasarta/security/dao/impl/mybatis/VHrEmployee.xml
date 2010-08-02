@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.security.dao.VHrEmployeeDAO">
+    <resultMap id="employee" type="net.lintasarta.security.model.VHrEmployee">
+        <id property="employee_no"/>
+    </resultMap>
+    <select id="getVHrEmployeeByEmployeeNo" parameterType="string" resultMap="employee">
+        select  employee_no, employee_name, p_organization_id, inactive_date, organization_code, nama,
+                p_job_position_id, job_position_code, p_job_location_id, job_location, e_mail_addr, status
+        from sni.v_hr_employee
+        where employee_no = #{employeeNo}
+    </select>
+</mapper>

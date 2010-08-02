@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.state.dao.UiObjectDAO">
+
+
+    <select id="getCountAllUiObject" resultType="int">
+        select count(*) from E_IDOSS_UI_OBJECT
+    </select>
+
+    <select id="getAllUiObject" resultType="uiobject">
+        select * from E_IDOSS_UI_OBJECT
+    </select>
+</mapper>
