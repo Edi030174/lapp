@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/idoss/idoss.iml" filepath="$PROJECT_DIR$/idoss/idoss.iml" />
+      <module fileurl="file://$PROJECT_DIR$/idoss-backend/idoss-backend.iml" filepath="$PROJECT_DIR$/idoss-backend/idoss-backend.iml" />
+    </modules>
+  </component>
+</project>
+
