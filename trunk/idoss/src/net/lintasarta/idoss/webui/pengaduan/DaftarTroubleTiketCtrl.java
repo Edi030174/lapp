@@ -40,6 +40,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
     protected Listheader listheader_Judul;
     protected Listheader listheader_Status;
     protected Listheader listheader_Pelapor;
+
     protected Listheader listheader_PenanggungJawab;
     protected Listheader listheader_Durasi;
     protected Listheader listheader_MTTR;
