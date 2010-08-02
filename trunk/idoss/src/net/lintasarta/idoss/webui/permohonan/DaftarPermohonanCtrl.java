@@ -52,7 +52,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         super();
 
         if (logger.isDebugEnabled()) {
-            logger.debug("//--> super()");
+            logger.debug("--> super()");
         }
     }
 
