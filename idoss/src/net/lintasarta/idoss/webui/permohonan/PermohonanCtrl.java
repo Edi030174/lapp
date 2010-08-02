@@ -26,7 +26,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     private transient final static Logger logger = Logger.getLogger(PermohonanCtrl.class);
 
     protected Window window_Permohonan;
-//    tab permohonan
+
     protected Tab tab_Permohonan;
     protected Tabpanel tabpanel_Permohonan;
     protected Textbox textbox_TIdossPermohonanId;
@@ -84,7 +84,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         super();
 
         if (logger.isDebugEnabled()) {
-            logger.debug("/*--> super()*/");
+            logger.debug("--> super()");
         }
     }
 
@@ -311,5 +311,4 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     public void setPermohonanService(PermohonanService permohonanService) {
         this.permohonanService = permohonanService;
     }
-
 }
