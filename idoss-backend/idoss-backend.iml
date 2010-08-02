@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration>
+        <fileset id="fileset1" name="My Fileset" removed="false">
+          <file>file://$MODULE_DIR$/resources/META-INF/spring/spring-dao-idoss-pengaduan-config.xml</file>
+          <file>file://$MODULE_DIR$/resources/META-INF/spring/spring-dao-idoss-permohonan-config.xml</file>
+          <file>file://$MODULE_DIR$/resources/META-INF/spring/spring-idoss-security-config.xml</file>
+          <file>file://$MODULE_DIR$/resources/META-INF/spring/spring-service-idoss-pengaduan-config.xml</file>
+          <file>file://$MODULE_DIR$/resources/META-INF/spring/spring-service-idoss-permohonan-config.xml</file>
+          <file>jar://$MODULE_DIR$/../lib/xss3.jar!/META-INF/spring/datasource.xml</file>
+          <file>jar://$MODULE_DIR$/../lib/xss3.jar!/META-INF/spring/spring-config.xml</file>
+        </fileset>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/resources" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="1.6" jdkType="JavaSDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="lib" level="project" />
+  </component>
+</module>
+
