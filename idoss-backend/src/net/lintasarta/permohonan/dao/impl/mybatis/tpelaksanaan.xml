@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.permohonan.dao.TPelaksanaanDAO">
+    <select id="getCountAllTPelaksanaan" resultType="int">
+        select count(*) from T_IDOSS_PELAKSANAAN
+    </select>
+
+    <select id="getAllTPelaksanaan" resultType="tpelaksanaan">
+        select * from T_IDOSS_PELAKSANAAN
+    </select>
+
+    <select id="getTPelaksanaanByTIdossPelaksanaanId" parameterType="tpelaksanaan" resultType="tpelaksanaan">
+        select T_IDOSS_PELAKSANAAN_ID,
+        TGL_PERMOHONAN,
+        RFS,
+        RFS_DATE,
+        CATATAN_PELAKSANA,
+        ID_PELAKSANA,
+        NAMA_PELAKSANA,
+        STATUS_PERUBAHAN,
+        CREATED_DATE,
+        CREATED_USER,
+        UPDATED_DATE,
+        UPDATED_USER
+        from T_IDOSS_PELAKSANAAN
+        where T_IDOSS_PELAKSANAAN_ID=#{t_idoss_pelaksanaan_id}
+    </select>
+    <select id="getTPelaksananByIdPelaksana" parameterType="tpelaksanaan" resultType="tpelaksanaan">
+        select T_IDOSS_PELAKSANAAN_ID,
+        TGL_PERMOHONAN,
+        RFS,
+        RFS_DATE,
+        CATATAN_PELAKSANA,
+        ID_PELAKSANA,
+        NAMA_PELAKSANA,
+        STATUS_PERUBAHAN,
+        CREATED_DATE,
+        CREATED_USER,
+        UPDATED_DATE,
+        UPDATED_USER
+        from T_IDOSS_PELAKSANAAN
+        where ID_PELAKSANA=#{id_pelaksana}
+    </select>
+    <select id="getTPelaksananByStatusPerubahan" parameterType="tpelaksanaan" resultType="tpelaksanaan">
+        select T_IDOSS_PELAKSANAAN_ID,
+        TGL_PERMOHONAN,
+        RFS,
+        RFS_DATE,
+        CATATAN_PELAKSANA,
+        ID_PELAKSANA,
+        NAMA_PELAKSANA,
+        STATUS_PERUBAHAN,
+        CREATED_DATE,
+        CREATED_USER,
+        UPDATED_DATE,
+        UPDATED_USER
+        from T_IDOSS_PELAKSANAAN
+        where STATUS_PERUBAHAN=#{status_perubahan}
+    </select>
+    <select id="getTPelaksananByIdPelaksanaStatus" resultType="tpelaksanaan">
+        select T_IDOSS_PELAKSANAAN_ID,
+        TGL_PERMOHONAN,
+        RFS,
+        RFS_DATE,
+        CATATAN_PELAKSANA,
+        ID_PELAKSANA,
+        NAMA_PELAKSANA,
+        STATUS_PERUBAHAN,
+        CREATED_DATE,
+        CREATED_USER,
+        UPDATED_DATE,
+        UPDATED_USER
+        from T_IDOSS_PELAKSANAAN
+        where STATUS_PERUBAHAN=#{status_perubahan} and ID_PELAKSANA=#{id_pelaksana} 
+    </select>
+
+    <insert id="createTPelaksanaan" parameterType="tpelaksanaan">
+        insert into SNI.T_IDOSS_PELAKSANAAN(
+        T_IDOSS_PELAKSANAAN_ID,
+        TGL_PERMOHONAN,
+        RFS,
+        RFS_DATE,
+        CATATAN_PELAKSANA,
+        ID_PELAKSANA,
+        NAMA_PELAKSANA,
+        STATUS_PERUBAHAN,
+        CREATED_DATE,
+        CREATED_USER,
+        UPDATED_DATE,
+        UPDATED_USER
+        )
+        values(
+        #{t_idoss_pelaksanaan_id},
+        #{tgl_permohonan,jdbcType=TIMESTAMP},
+        #{rfs,jdbcType=VARCHAR},
+        #{rfs_date,jdbcType=TIMESTAMP},
+        #{catatan_pelaksana,jdbcType=VARCHAR},
+        #{id_pelaksana,jdbcType=VARCHAR},
+        #{nama_pelaksana,jdbcType=VARCHAR},
+        #{status_perubahan,jdbcType=VARCHAR},
+        #{created_date},
+        #{created_user},
+        #{updated_date},
+        #{updated_user}
+        )
+    </insert>
+
+    <update id="saveOrUpdateTPelaksanaan" parameterType="tpelaksanaan">
+        update SNI.T_IDOSS_PELAKSANAAN
+        set
+        TGL_PERMOHONAN=#{tgl_permohonan,jdbcType=TIMESTAMP},
+        RFS=#{rfs,jdbcType=VARCHAR},
+        RFS_DATE=#{rfs_date,jdbcType=TIMESTAMP},
+        CATATAN_PELAKSANA=#{catatan_pelaksana,jdbcType=VARCHAR},
+        ID_PELAKSANA=#{id_pelaksana,jdbcType=VARCHAR},
+        NAMA_PELAKSANA=#{nama_pelaksana,jdbcType=VARCHAR},
+        STATUS_PERUBAHAN=#{status_perubahan,jdbcType=VARCHAR},
+        CREATED_DATE=#{created_date,jdbcType=TIMESTAMP},
+        CREATED_USER=#{created_user,jdbcType=VARCHAR},
+        UPDATED_DATE=#{updated_date,jdbcType=TIMESTAMP},
+        UPDATED_USER=#{updated_user,jdbcType=VARCHAR}
+        where T_IDOSS_PELAKSANAAN_ID=#{t_idoss_pelaksanaan_id}
+    </update>
+</mapper>

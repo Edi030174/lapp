@@ -1,0 +1,76 @@
+<?page title="pelaksanaan" contentType="text/html;charset=UTF-8"?>
+<zk>
+    <window title="pelaksanaan" border="normal">
+        <groupbox id="groupboxPelaksanaan" mold="3d">
+            <caption label="Pelaksanaan Perubahan"
+                     style="font-weight:bold"/>
+            <borderlayout height="220px">
+                <west maxsize="600" size="33%" flex="true" border="0">
+                    <borderlayout>
+                        <north border="0" size="15%">
+                            <div>
+                                <label value="Status Perubahan : "/>
+                            </div>
+                        </north>
+                        <center border="0">
+                            <div>
+                                <vbox>
+                                    <hbox>
+                                        <label value="Tanggal : "/>
+                                        <datebox id="dateboxRfs_date"
+                                                 format="dd MMMM yyyy" readonly="true" width="150px">
+                                        </datebox>
+                                    </hbox>
+                                    <vbox>
+                                        <space height="7px"></space>
+                                        <checkbox id="checkbox3"
+                                                  label="Disetujui oleh Pelaksana" onCheck="doChecked()"/>
+                                    </vbox>
+                                </vbox>
+                            </div>
+                        </center>
+                    </borderlayout>
+                </west>
+                <center border="0" flex="true">
+                    <borderlayout>
+                        <north border="0" size="15%">
+                            <div style="">
+                                <radiogroup
+                                        id="radiogroupStatus_perubahan">
+                                    <radio id="selesai" label="Selesai"/>
+                                    <radio id="tunda" label="Tunda"/>
+                                    <radio id="mulai" label="Mulai"/>
+                                </radiogroup>
+                            </div>
+                        </north>
+                        <center border="0">
+                            <borderlayout>
+                                <west border="0" flex="true">
+                                    <div style="">
+                                        <label value="catatan : ">
+                                        </label>
+                                        <fckeditor
+                                                id="fckCatatan_pelaksana" height="99%" width="484px"
+                                                customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic"/>
+                                    </div>
+                                </west>
+                                <center border="0" flex="true">
+                                    <div style="">
+
+                                    </div>
+                                </center>
+                            </borderlayout>
+                        </center>
+                    </borderlayout>
+                </center>
+                <south border="0">
+                    <div align="center">
+                        <space height="10px"></space>
+                        <button label="simpan" id="btn_simpanPelaksanaan"></button>
+                    </div>
+
+                </south>
+            </borderlayout>
+        </groupbox>
+    </window>
+</zk>

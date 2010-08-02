@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.pengaduan.dao.HPenangananGangguanDAO">
+        <select id="getCountAllHPenangananGangguan" resultType="int">
+        select count(*) from H_IDOSS_PENANGANAN_GANGGUAN
+    </select>
+
+    <select id="getAllHPenangananGangguan" resultType="hpenanganangangguan">
+        select * from H_IDOSS_PENANGANAN_GANGGUAN
+    </select>
+    
+   <insert id="createHPenangananGanguan" parameterType="hpenanganangangguan">
+        insert into H_IDOSS_PENANGANAN_GANGGUAN (FILEDNAME, ACTION, NEWVALUE, OLDVALUE, CREATEDDUSER, CREATEDDATE, IDNO)
+        values (#{fieldName}, #{action},#{newValue},#{oldValue},#{createdUser},#{createdDate},#{idNo})
+    </insert>
+
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.pengaduan.dao.PRootCausedDAO">
+
+    <select id="getCountAllPRootCaused" resultType="int">
+        select count(*) from P_IDOSS_ROOT_CAUSED
+    </select>
+    
+    <select id="getGenerateId" resultType="int">
+       select generate_id('SNI','P_IDOSS_ROOT_CAUSED','P_IDOSS_ROOT_CAUSED_ID') from dual
+    </select>
+
+    <select id="getAllPRootCaused" resultType="prootcaused">
+        select * from P_IDOSS_ROOT_CAUSED
+    </select>
+
+    <select id="getPRootCausedByRootCausedId" resultType="prootcaused">
+         select * from P_IDOSS_ROOT_CAUSED
+           where P_IDOSS_ROOT_CAUSED_ID = #{p_idoss_root_caused_id}
+    </select>
+
+
+    <insert id="createPRootCaused" parameterType="prootcaused">
+
+        INSERT INTO P_IDOSS_ROOT_CAUSED (
+        P_IDOSS_ROOT_CAUSED_ID,
+        ROOT_CAUSED,
+        ACTIVE,
+        CREATED_DATE,
+        CREATED_USER,
+        UPDATED_DATE,
+        UPDATED_USER)
+        VALUES(
+        #{p_idoss_root_caused_id},
+        #{root_caused,jdbcType=VARCHAR},
+        #{active},
+        #{created_date},
+        #{created_user},
+        #{updated_date},
+        #{updated_user})
+
+    </insert>
+
+    <update id="saveOrUpdate" parameterType="prootcaused">
+        UPDATE SNI.P_IDOSS_ROOT_CAUSED
+        SET ROOT_CAUSED=#{root_caused,jdbcType=VARCHAR},
+        ACTIVE=#{active},
+        CREATED_DATE=#{created_date},
+        CREATED_USER=#{created_user},
+        UPDATED_DATE=#{updated_date},
+        UPDATED_USER=#{updated_user}
+        WHERE  P_IDOSS_ROOT_CAUSED_ID=#{p_idoss_root_caused_id}
+
+   </update>
+
+ </mapper>

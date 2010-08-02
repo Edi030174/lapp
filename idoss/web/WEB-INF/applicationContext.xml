@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+    <bean id="userWorkspace" class="net.lintasarta.UserWorkspace" scope="session" />
+
+    <bean name="pagedListWrapper" class="net.lintasarta.idoss.webui.util.pagging.PagedListWrapper" scope="prototype"/>
+
+    <bean id="basisCtrl" abstract="true" scope="prototype" class="net.lintasarta.idoss.webui.util.GFCBaseCtrl">
+        <property name="userWorkspace" ref="userWorkspace" />
+    </bean>
+
+    <bean id="basisListCtrl" abstract="true" scope="prototype" class="net.lintasarta.idoss.webui.util.GFCBaseListCtrl" parent="basisCtrl"
+        p:pagedListWrapper-ref="pagedListWrapper">
+    </bean>
+
+    <bean id="indexCtrl" class="net.lintasarta.idoss.webui.index.IndexCtrl" parent="basisCtrl" scope="prototype">
+        <property name="loginService" ref="loginService" />
+    </bean>
+
+    <bean id="chatWindow" class="net.lintasarta.idoss.chat.ChatWindow" parent="basisCtrl"
+        scope="prototype">
+    </bean>
+
+    <bean id="daftarTroubleTiketCtrl" class="net.lintasarta.idoss.webui.pengaduan.DaftarTroubleTiketCtrl" parent="basisListCtrl" scope="prototype">
+        <property name="penangananGangguanService" ref="penangananGangguanService"/>
+    </bean>
+
+    <bean id="daftarPermohonanCtrl" class="net.lintasarta.idoss.webui.permohonan.DaftarPermohonanCtrl" parent="basisListCtrl" scope="prototype">
+        <property name="permohonanService" ref="permohonanService"/>
+    </bean>
+
+    <bean id="permohonanCtrl" class="net.lintasarta.idoss.webui.permohonan.PermohonanCtrl" parent="basisCtrl" scope="prototype">
+        <property name="permohonanService" ref="permohonanService"/>
+    </bean>
+
+    <bean id="pengaduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PengaduanCtrl" parent="basisCtrl" scope="prototype">
+        <property name="penangananGangguanService" ref="penangananGangguanService"/>
+    </bean>
+
+    <bean id="pelaksanaanGangguanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PelaksanaanGangguanCtrl" parent="basisCtrl" scope="prototype">
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+    </bean>
+
+    <bean id="tambahRootCausedCtrl" class="net.lintasarta.idoss.webui.pengaduan.TambahRootCausedCtrl" parent="basisCtrl" scope="prototype">
+        <property name="rootCausedService" ref="rootCausedService"/>
+    </bean>
+</beans>

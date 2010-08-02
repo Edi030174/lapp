@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.permohonan.dao.TVerifikasiDAO">
+
+    <select id="getCountAllTVerifikasi" resultType="int">
+        select count(*) from T_IDOSS_VERIFIKASI
+    </select>
+
+    <select id="getAllTVerifikasi" resultType="tverifikasi">
+        select * from T_IDOSS_VERIFIKASI
+    </select>
+
+    <select id="getTVerifikasiByTIdossVerifikasiId" parameterType="tverifikasi" resultType="tverifikasi">
+        select T_IDOSS_VERIFIKASI_ID ,
+               TGL_PERMOHONAN,
+               URGENSI,
+               DAMPAK,
+               TYPE_PERMOHONAN,
+               NIK_PELAKSANA,
+               RFS,
+               CATATAN_PERTYPE,
+               STATUS_PERMOHONANASMAN,
+               UPDATED_ASMAN,
+               CATATAN_ASMAN,
+               STATUS_PERMOHONANMANAGER,
+               UPDATED_MANAGER,
+               CATATAN_MANAGER,
+               CREATED_DATE,
+               CREATED_USER,
+               UPDATED_DATE,
+               UPDATED_USER
+        from SNI.T_IDOSS_VERIFIKASI
+        where T_IDOSS_VERIFIKASI_ID =#{t_idoss_verifikasi_id}
+    </select>
+
+    <select id="getTVerifikasiByNikPelaksana" parameterType="tverifikasi" resultType="tverifikasi">
+        select T_IDOSS_VERIFIKASI_ID ,
+               TGL_PERMOHONAN,
+               URGENSI,
+               DAMPAK,
+               TYPE_PERMOHONAN,
+               NIK_PELAKSANA,
+               RFS,
+               CATATAN_PERTYPE,
+               STATUS_PERMOHONANASMAN,
+               UPDATED_ASMAN,
+               CATATAN_ASMAN,
+               STATUS_PERMOHONANMANAGER,
+               UPDATED_MANAGER,
+               CATATAN_MANAGER,
+               CREATED_DATE,
+               CREATED_USER,
+               UPDATED_DATE,
+               UPDATED_USER
+        from T_IDOSS_VERIFIKASI
+        where NIK_PELAKSANA =#{nik_pelaksana}
+    </select>
+
+    <select id="getTVerifikasiByStatusPermohonanAsman" parameterType="tverifikasi" resultType="tverifikasi">
+        select T_IDOSS_VERIFIKASI_ID ,
+               TGL_PERMOHONAN,
+               URGENSI,
+               DAMPAK,
+               TYPE_PERMOHONAN,
+               NIK_PELAKSANA,
+               RFS,
+               CATATAN_PERTYPE,
+               STATUS_PERMOHONANASMAN,
+               UPDATED_ASMAN,
+               CATATAN_ASMAN,
+               STATUS_PERMOHONANMANAGER,
+               UPDATED_MANAGER,
+               CATATAN_MANAGER,
+               CREATED_DATE,
+               CREATED_USER,
+               UPDATED_DATE,
+               UPDATED_USER
+        from T_IDOSS_VERIFIKASI
+        where STATUS_PERMOHONANASMAN =#{status_permohonan_asman}
+    </select>
+
+    <select id="getTVerifikasiByStatusPermohonanManager" parameterType="tverifikasi" resultType="tverifikasi">
+        select T_IDOSS_VERIFIKASI_ID ,
+               TGL_PERMOHONAN,
+               URGENSI,
+               DAMPAK,
+               TYPE_PERMOHONAN,
+               NIK_PELAKSANA,
+               RFS,
+               CATATAN_PERTYPE,
+               STATUS_PERMOHONANASMAN,
+               UPDATED_ASMAN,
+               CATATAN_ASMAN,
+               STATUS_PERMOHONANMANAGER,
+               UPDATED_MANAGER,
+               CATATAN_MANAGER,
+               CREATED_DATE,
+               CREATED_USER,
+               UPDATED_DATE,
+               UPDATED_USER
+        from T_IDOSS_VERIFIKASI
+        where STATUS_PERMOHONANMANAGER =#{status_permohonan_manager}
+    </select>
+
+    <select id="getTVerifikasiByNikPelaksanaStatusPA" resultType="tverifikasi">
+        select T_IDOSS_VERIFIKASI_ID ,
+               TGL_PERMOHONAN,
+               URGENSI,
+               DAMPAK,
+               TYPE_PERMOHONAN,
+               NIK_PELAKSANA,
+               RFS,
+               CATATAN_PERTYPE,
+               STATUS_PERMOHONANASMAN,
+               UPDATED_ASMAN,
+               CATATAN_ASMAN,
+               STATUS_PERMOHONANMANAGER,
+               UPDATED_MANAGER,
+               CATATAN_MANAGER,
+               CREATED_DATE,
+               CREATED_USER,
+               UPDATED_DATE,
+               UPDATED_USER
+        from T_IDOSS_VERIFIKASI
+        where NIK_PELAKSANA =#{nik_pelaksana} and STATUS_PERMOHONANASMAN =#{status_permohonan_asman}
+    </select>
+
+    <select id="getTVerifikasiByNikPelaksanaStatusPM" resultType="tverifikasi">
+        select T_IDOSS_VERIFIKASI_ID ,
+               TGL_PERMOHONAN,
+               URGENSI,
+               DAMPAK,
+               TYPE_PERMOHONAN,
+               NIK_PELAKSANA,
+               RFS,
+               CATATAN_PERTYPE,
+               STATUS_PERMOHONANASMAN,
+               UPDATED_ASMAN,
+               CATATAN_ASMAN,
+               STATUS_PERMOHONANMANAGER,
+               UPDATED_MANAGER,
+               CATATAN_MANAGER,
+               CREATED_DATE,
+               CREATED_USER,
+               UPDATED_DATE,
+               UPDATED_USER
+        from SNI.T_IDOSS_VERIFIKASI
+        where NIK_PELAKSANA =#{nik_pelaksana} and STATUS_PERMOHONANMANAGER =#{status_permohonan_manager}        
+    </select>
+
+    <insert id="createTVerifikasi" parameterType="tverifikasi">
+        INSERT INTO SNI.T_IDOSS_VERIFIKASI(
+        T_IDOSS_VERIFIKASI_ID,
+        TGL_PERMOHONAN,
+        URGENSI,DAMPAK,
+        TYPE_PERMOHONAN,
+        NIK_PELAKSANA,
+        RFS,
+        CATATAN_PERTYPE,
+        STATUS_PERMOHONANASMAN,
+        UPDATED_ASMAN,
+        CATATAN_ASMAN,
+        STATUS_PERMOHONANMANAGER,
+        UPDATED_MANAGER,
+        CATATAN_MANAGER,
+        CREATED_DATE,
+        CREATED_USER,
+        UPDATED_DATE,
+        UPDATED_USER)
+        VALUES (
+        #{t_idoss_verifikasi_id},
+        #{tgl_permohonan,jdbcType=TIMESTAMP},
+        #{urgensi,jdbcType=VARCHAR},
+        #{dampak,jdbcType=VARCHAR},
+        #{type_permohonan,jdbcType=VARCHAR},
+        #{nik_pelaksana,jdbcType=VARCHAR},
+        #{rfs,jdbcType=VARCHAR},
+        #{catatan_per_type,jdbcType=BLOB},
+        #{status_permohonan_asman,jdbcType=VARCHAR},
+        #{updated_asman,jdbcType=TIMESTAMP},
+        #{catatan_asman,jdbcType=BLOB},
+        #{status_permohonan_manager,jdbcType=VARCHAR},
+        #{updated_manager,jdbcType=TIMESTAMP},
+        #{catatan_manager,jdbcType=BLOB},
+        #{created_date,jdbcType=TIMESTAMP},
+        #{created_user,jdbcType=VARCHAR},
+        #{updated_date,jdbcType=TIMESTAMP},
+        #{updated_user,jdbcType=VARCHAR}
+        )
+    </insert>
+    
+    <update id="saveOrUpdateTVerifikasi" parameterType="tverifikasi">
+        update SNI.T_IDOSS_VERIFIKASI
+        set
+        TGL_PERMOHONAN = #{tgl_permohonan,jdbcType=TIMESTAMP},
+        URGENSI = #{urgensi,jdbcType=VARCHAR},
+        DAMPAK = #{dampak,jdbcType=VARCHAR},
+        TYPE_PERMOHONAN = #{type_permohonan,jdbcType=VARCHAR},
+        NIK_PELAKSANA = #{nik_pelaksana,jdbcType=VARCHAR},
+        RFS = #{rfs,jdbcType=VARCHAR},
+        CATATAN_PERTYPE = #{catatan_per_type,jdbcType=BLOB},
+        STATUS_PERMOHONANASMAN = #{status_permohonan_asman,jdbcType=VARCHAR},
+        UPDATED_ASMAN = #{updated_asman,jdbcType=TIMESTAMP},
+        CATATAN_ASMAN = #{catatan_asman,jdbcType=BLOB},
+        STATUS_PERMOHONANMANAGER = #{status_permohonan_manager,jdbcType=VARCHAR},
+        UPDATED_MANAGER = #{updated_manager,jdbcType=TIMESTAMP},
+        CATATAN_MANAGER = #{catatan_manager,jdbcType=BLOB},
+        CREATED_DATE = #{created_date,jdbcType=TIMESTAMP},
+        CREATED_USER = #{created_user,jdbcType=VARCHAR},
+        UPDATED_DATE = #{updated_date,jdbcType=TIMESTAMP},
+        UPDATED_USER = #{updated_user,jdbcType=VARCHAR}
+        where T_IDOSS_VERIFIKASI_ID = #{t_idoss_verifikasi_id}
+    </update>
+</mapper>

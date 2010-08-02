@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.pengaduan.dao.PTypeDAO">
+
+    <select id="getCountAllPType" resultType="int">
+        select count(*) from P_IDOSS_TYPE
+    </select>
+
+    <select id="getGenerateId" resultType="int">
+        select generate_id('SNI','P_IDOSS_TYPE','P_IDOSS_TYPE_ID') from dual
+    </select>
+
+    <select id="getAllPType" resultType="ptype">
+        select * from P_IDOSS_TYPE
+    </select>
+
+    <select id="getPTypeByTypeId" resultType="ptype">
+         SELECT 
+         P_IDOSS_TYPE_ID,
+         TYPE_DESC,
+         ACTIVE,
+         CREATED_DATE,
+         CREATED_USER,
+         UPDATED_DATE,
+         UPDATED_USER
+         FROM SNI.P_IDOSS_TYPE
+             WHERE  P_IDOSS_TYPE_ID=#{p_idoss_type_id}
+
+
+    </select>
+
+    <insert id="createPType" parameterType="ptype">
+        INSERT INTO SNI.P_IDOSS_TYPE (
+        P_IDOSS_TYPE_ID,
+        TYPE_DESC,
+        ACTIVE,
+        CREATED_DATE,
+        CREATED_USER,
+        UPDATED_DATE,
+        UPDATED_USER)
+	    VALUES(
+	    #{p_idoss_type_id},
+	    #{type_desc,jdbcType=VARCHAR},
+	    #{active},
+	    #{created_date},
+	    #{created_user},
+	    #{updated_date},
+	    #{updated_user})
+
+    </insert>
+
+    <update id="saveOrUpdate" parameterType="ptype">
+        UPDATE SNI.P_IDOSS_TYPE
+        SET
+        TYPE_DESC=#{type_desc,jdbcType=VARCHAR},
+        ACTIVE=#{active},
+        CREATED_DATE=#{created_date},
+        CREATED_USER=#{created_user},
+        UPDATED_DATE=#{updated_date},
+        UPDATED_USER=#{updated_user}
+        WHERE  P_IDOSS_TYPE_ID=#{p_idoss_type_id}
+
+    </update>
+
+ </mapper>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+
+	<window id="welcomeWindow" border="none" width="100%"
+		height="100%">
+
+
+		<zscript language="Java"><![CDATA[
+	{
+		lf = "\n";
+		s = "";
+		s = s + "- 06.06.2010 / Samsriyono Nugroho , TIK Harus Dorong Perekonomian " + lf;
+		s = s + "                      PT Aplikanusa Lintasarta (Lintasarta) selama ini bisa dikatakan sebagai salah satu " + lf;
+		s = s + "                      primadona dari PT Indosat Tbk (Indosat) dalam menjual layanan teknologi, " + lf;
+		s = s + "                      informasi, dan komunikasi (TIK) untuk segmen korporasi. " + lf;
+		s = s + "- 01.07.2010 / IT Training Mikrotik Lintasarta 2010 " + lf;
+		s = s + "                      PT Aplikanusa Lintasarta atau yang akrab kita kenal dengan Lintasarta, " + lf;
+		s = s + "                      pada tanggal 30 Juni 2010 mengadakan acara bertajuk IT Training yang diadakan untuk " + lf;
+		s = s + "                      memberikan pelatihan kepada para perusahaan mitra mereka, " + lf;
+		s = s + "                      bertempat di kantor utama Lintasarta Medan di Jl.Abdullah Lubis Medan. " + lf;
+		s = s + "- 22.06.2010 / Formasi baru direksi Lintasarta " + lf;
+		s = s + "                      JAKARTA, kabarbisnis.com: Formasi baru direksi PT Aplikanusa Lintasarta (Lintasarta), " + lf;
+		s = s + "                      pasca Rapat Umum Pemegang Saham (RUPS) tahunan yang digelar 27 Mei 2010 lalu, " + lf;
+		s = s + "                      mengangkat Samsriyono Nugroho menjadi Direktur Utama Lintasarta untuk periode 2010-2015. " + lf;
+		s = s + "- 21.06.2010 / Samsriyono Nugroho Dirut Lintasarta yang Baru " + lf;
+		s = s + "                      REPUBLIKA.CO.ID, JAKARTA--Samsriyono Nugroho ditetapkan sebagai Direktur Utama " + lf;
+		s = s + "                      PT Aplika Lintasarta yang baru. Ia menggantikan Direktur Utama sebelumnya Noor SDK Devi. " + lf;
+		s = s + "                      Samsriyono sebelumnya menjabat sebagai Direktur Usaha. " + lf;
+	}
+]]></zscript>
+
+		<style>
+			body { padding: 0 0; /* 0 padding on top and bottom and 0
+			padding on right and left */ }
+
+			<!-- Title in bold letters -->
+			.z-groupbox-hl, .z-groupbox-header { color: #000000;
+			font-weight: bold; }
+		</style>
+
+
+
+		<tablelayout columns="3" width="100%">
+			<tablechildren rowspan="1" width="35%">
+				<panel title="" border="none">
+					<panelchildren>
+						<groupbox mold="3d">
+							<caption
+								style="color: #000000; font-weight:bold;"
+								image="/images/zkpowered_16x16.png"
+								label="Welcome to IDOSS" />
+
+							<textbox rows="6" multiline="true"
+								width="98%" readonly="true"
+								style="font-family: verdana; border: none; background-color: white;"
+								value="IDOSS Modules:&#13;&#13;Gangguan&#13;Aduan&#13;">
+							</textbox>
+						</groupbox>
+					</panelchildren>
+				</panel>
+			</tablechildren>
+
+			<tablechildren rowspan="1" width="35%">
+				<panel border="none">
+					<panelchildren>
+						<groupbox mold="3d">
+							<caption
+								style="color: #000000; font-weight:bold;"
+								image="/images/icons/about1_16x16.gif"
+								label="Guide to the application" />
+
+							<textbox rows="6" multiline="true"
+								width="98%" readonly="true"
+								style="font-family: verdana; border: none; background-color: white;"
+								value="Sign in to enter application&#13;&#13;Click the PDF icon to read user guide">
+							</textbox>
+						</groupbox>
+					</panelchildren>
+				</panel>
+			</tablechildren>
+
+			<tablechildren rowspan="1" width="30%">
+				<panel border="none">
+					<panelchildren>
+						<groupbox mold="3d">
+							<caption
+								style="color: #000000; font-weight:bold;"
+								image="/images/icons/daysort16x16.gif"
+								label="Need help ?" />
+
+							<textbox rows="6" multiline="true"
+								width="98%" readonly="true"
+								style="font-family: verdana; border: none; background-color: white;"
+								value="You can contact us worldwide ! &#13;&#13;Please contact us under ants76@gmail.com ">
+							</textbox>
+						</groupbox>
+					</panelchildren>
+				</panel>
+			</tablechildren>
+		</tablelayout>
+
+        <tablelayout columns="2" width="100%">
+			<tablechildren rowspan="3" width="70%">
+				<panel border="none">
+					<panelchildren>
+
+						<groupbox mold="3d">
+							<caption
+								style="color: #000000; font-weight:bold;"
+								image="/images/icons/new_icons_10.gif"
+								label="NEW !!!  Lintasarta latest news !!!" />
+
+
+							<textbox height="100%" width="99.5%"
+								multiline="true" rows="17" readonly="true"
+								style="font-family: verdana; border: none; background-color: white;"
+								value="${s}" />
+						</groupbox>
+
+					</panelchildren>
+				</panel>
+			</tablechildren>
+        </tablelayout>
+
+		<tablelayout columns="2" width="100%">
+			<tablechildren rowspan="3" width="70%">
+				<panel border="none">
+					<panelchildren>
+						<groupbox mold="3d">
+							<caption
+								style="color: #000000; font-weight:bold;"
+								image="/images/icons/database_blue_16x16.gif"
+								label="What's in it and the data" />
+
+							<tabbox tabscroll="true">
+								<tabs>
+									<tab label="Base" />
+									<tab label="Chat" />
+									<tab label="Daftar Trouble Tiket" />
+									<tab label="Pengaduan" />
+									<tab label="Pelaksanaan Gangguan" />
+									<tab label="Audit Log" />
+								</tabs>
+								<tabpanels>
+
+									<!-- Tab base -->
+									<tabpanel>
+										<textbox height="100%"
+											width="98%" multiline="true" rows="12" readonly="true"
+											style="font-family: verdana; border: none; background-color: white;"
+											value="Modules&#13;- Gangguan.&#13;- Aduan.&#13;" />
+									</tabpanel>
+
+									<!-- Tab chat -->
+									<tabpanel>
+										<textbox height="100%"
+											width="98%" multiline="true" rows="10" readonly="true"
+											style="font-family: verdana; border: none; background-color: white;"
+											value="You can use chat to communicate with other IDOSS user" />
+									</tabpanel>
+
+									<!-- Tab Daftar Trouble Tiket -->
+									<tabpanel>
+										<textbox height="100%"
+											width="98%" multiline="true" rows="10" readonly="true"
+											style="font-family: verdana; border: none; background-color: white;"
+											value="Daftar Trouble Tiket Form" />
+									</tabpanel>
+
+									<!-- Tab Pengaduan -->
+									<tabpanel>
+										<textbox height="100%"
+											width="98%" multiline="true" rows="10" readonly="true"
+											style="font-family: verdana; border: none; background-color: white;"
+											value="Pengaduan Form, details of Pengaduan" />
+									</tabpanel>
+
+									<!-- Tab Pelaksanaan Gangguan -->
+									<tabpanel>
+										<textbox height="100%"
+											width="98%" multiline="true" rows="10" readonly="true"
+											style="font-family: verdana; border: none; background-color: white;"
+											value="Pelaksanaan Gangguan Form, choice of Pelaksana" />
+									</tabpanel>
+
+									<!-- Tab Audit Log -->
+									<tabpanel>
+										<textbox height="100%"
+											width="98%" multiline="true" rows="10" readonly="true"
+											style="font-family: verdana; border: none; background-color: white;"
+											value="Transaction History" />
+									</tabpanel>
+
+								</tabpanels>
+							</tabbox>
+						</groupbox>
+					</panelchildren>
+				</panel>
+			</tablechildren>
+		</tablelayout>
+	</window>
+</zk>

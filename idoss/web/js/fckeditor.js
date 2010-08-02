@@ -1,0 +1,1 @@
+FCKConfig.ToolbarSets["Basic"] = [ [ 'FontName','FontSize','Bold','Italic','Underline','TextColor','JustifyLeft','JustifyCenter','JustifyRight','JustifyFull','UnorderedList', '-' ] ];
