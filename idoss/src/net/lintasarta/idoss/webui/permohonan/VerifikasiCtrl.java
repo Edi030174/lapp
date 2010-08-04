@@ -82,7 +82,7 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    public void onCreate$verifikasiWindow(Event event) throws Exception {
+    public void onCreate$window_Verifikasi(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());

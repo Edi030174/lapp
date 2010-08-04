@@ -1,6 +1,6 @@
 <?page title="verifikasi" contentType="text/html;charset=UTF-8"?>
 <zk>
-    <window id="window_Verifikasi" border="normal" apply="${VerifikasiCtrl}">
+    <window id="window_Verifikasi" border="normal" apply="${verifikasiCtrl}">
         <hbox>
             <space width="20px"></space>
             <hbox>
