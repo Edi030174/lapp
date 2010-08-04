@@ -30,7 +30,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     private transient final static Logger logger = Logger.getLogger(PermohonanCtrl.class);
 
     protected Window window_Permohonan;
-
     protected Tab tab_Permohonan;
     protected Tabpanel tabpanel_Permohonan;
     protected Textbox textbox_TIdossPermohonanId;
@@ -40,7 +39,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_NamaManager;
     protected Textbox textbox_NamaGm;
 
-    protected Datebox tanggal;
+    protected Datebox datebox_Tanggal;
     protected Textbox textbox_NikPemohon;
     protected Textbox textbox_NikAsman;
     protected Textbox textbox_NikManager;
@@ -80,7 +79,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     private transient String oldVar_textboxNikAsman;
     private transient String oldVar_textboxNikManager;
     private transient String oldVar_textboxNikGm;
-
 
     private transient String oldVar_readonly;
     private transient String oldVar_readwrite;
@@ -125,24 +123,58 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             settPermohonan(null);
         }
 
+        if (args.containsKey("pelaksanaanGangguanCtrl")) {
+            permohonanCtrl = (PermohonanCtrl) args.get("pelaksanaanGangguanCtrl");
+        } else {
+            permohonanCtrl = null;
+        }
+
+        if (args.containsKey("listbox_DaftarPermohonan")) {
+            listbox_DaftarPermohonan = (Listbox) args.get("listbox_DaftarPermohonan");
+        } else {
+            listbox_DaftarPermohonan = null;
+        }
+
         doShowDialog(gettPermohonan());
-        textbox_NamaPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeName());
-        textbox_BagianPemohon.setValue(getUserWorkspace().getUserSession().getDepartment());
-        textbox_NikPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
+//        textbox_NamaPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeName());
+//        textbox_BagianPemohon.setValue(getUserWorkspace().getUserSession().getDepartment());
+//        textbox_NikPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
     }
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
 
         if (tPermohonan == null) {
-
             tPermohonan = getPermohonanService().getNewPermohonan();
+            settPermohonan(tPermohonan);
+
+        }else {
+            settPermohonan(tPermohonan);
         }
+
         try {
+            doWriteBeanToComponents(tPermohonan);
             window_Permohonan.doModal();
 
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
+    }
+
+    private void doWriteBeanToComponents(TPermohonan tPermohonan) {
+
+        textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
+        textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
+        textbox_BagianPemohon.setValue(tPermohonan.getBagian_pemohon());
+        textbox_NamaAsman.setValue(tPermohonan.getNama_asman());
+        textbox_NamaManager.setValue(tPermohonan.getNama_manager());
+        textbox_NamaGm.setValue(tPermohonan.getNama_gm());
+        textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
+        textbox_NikAsman.setValue(tPermohonan.getNik_asman());
+        textbox_NikManager.setValue(tPermohonan.getNik_manager());
+        textbox_NikGm.setValue(tPermohonan.getNik_gm());
+        datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
+        fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
+
     }
 
     public void onSelect$tab_Verifikasi(Event event) {
@@ -156,9 +188,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("tVerifikasi", tVerifikasi);
         map.put("permohonanCtrl", this);
-
-        map.put("rowSizeOrders", new Integer(10));
-		map.put("rowSizeOrderPositions", new Integer(10));
 
         Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_Verifikasi");
         orderTab.getChildren().clear();
@@ -276,7 +305,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             change = true;
         }
 
-        if (oldVar_tanggal != tanggal.getValue()) {
+        if (oldVar_tanggal != datebox_Tanggal.getValue()) {
             change = true;
         }
         if (oldVar_textboxNikPemohon != textbox_NikPemohon.getValue()) {
@@ -338,7 +367,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         oldVar_textboxNamaAsman = textbox_NamaAsman.getValue();
         oldVar_textboxNamaManager = textbox_NamaManager.getValue();
         oldVar_textboxNamaGm = textbox_NamaGm.getValue();
-        oldVar_tanggal = tanggal.getValue();
+        oldVar_tanggal = datebox_Tanggal.getValue();
         oldVar_textboxNikPemohon = textbox_NikPemohon.getValue();
         oldVar_textboxNikAsman = textbox_NikAsman.getValue();
         oldVar_textboxNikManager = textbox_NikManager.getValue();
@@ -385,7 +414,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public TPermohonan gettPermohonan() {
-        return new TPermohonan();
+        return tPermohonan;
     }
 
     public void settPermohonan(TPermohonan tPermohonan) {

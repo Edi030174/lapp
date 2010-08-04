@@ -295,41 +295,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         return change;
     }
 
-    /*public void onClick$btnSimpan_RootCaused(Event event) throws Exception {
-
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-
-        doSimpanRootCaused();
-        popup_TambahRootCaused.close();
-
-    }
-
-    private void doSimpanRootCaused() throws Exception {
-
-        PRootCaused pRootCaused = getpRootCaused();
-
-        pRootCaused.setRoot_caused(textbox_TambahRootCaused.getValue());
-
-        try {
-            getPelaksanaanGangguanService().createRootCaused(pRootCaused);
-        } catch (DataAccessException e) {
-            String message = e.getMessage();
-            String title = Labels.getLabel("message_Error");
-            MultiLineMessageBox.doSetTemplate();
-            MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
-        }
-    }
-
-    public void onClick$btnBatal_RootCaused(Event event) throws Exception {
-
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        popup_TambahRootCaused.close();
-    }*/
-
     public void onClick$btn_TambahRootCaused(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
