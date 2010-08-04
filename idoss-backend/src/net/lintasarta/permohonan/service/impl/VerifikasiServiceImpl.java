@@ -55,7 +55,7 @@ public class VerifikasiServiceImpl implements VerifikasiService {
     }
 
     public TVerifikasi getTVerifikasiByTIdossVerifikasiId(String t_idoss_verifikasi_id) {
-        return getTVerifikasiByTIdossVerifikasiId(t_idoss_verifikasi_id);
+        return gettVerifikasiDAO().getTVerifikasiByTIdossVerifikasiId(t_idoss_verifikasi_id);
     }
 
     public void createTVerifikasi(TVerifikasi tVerifikasi) {

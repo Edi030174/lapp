@@ -4,6 +4,7 @@ import net.lintasarta.permohonan.dao.TPelaksanaanDAO;
 import net.lintasarta.permohonan.dao.TPermohonanDAO;
 import net.lintasarta.permohonan.dao.TVerifikasiDAO;
 import net.lintasarta.permohonan.model.TPermohonan;
+import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
 
 import java.sql.Timestamp;
@@ -67,5 +68,9 @@ public class PermohonanServiceImpl implements PermohonanService{
 
     public void saveOrUpdateTPermohonan(TPermohonan tPermohonan) {
         gettPermohonanDAO().saveOrUpdateTPermohonan(tPermohonan);
+    }
+
+    public TVerifikasi getTVerifikasiByTIdossVerifikasiId(String t_idoss_verifikasi_id) {
+        return gettVerifikasiDAO().getTVerifikasiByTIdossVerifikasiId(t_idoss_verifikasi_id);
     }
 }
