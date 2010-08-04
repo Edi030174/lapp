@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
@@ -51,18 +50,18 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
         Map<String, Object> args = getCreationArgsMap(event);
 
         if (args.containsKey("pRootCaused")) {
-			PRootCaused pRootCaused = (PRootCaused) args.get("pRootCaused");
-			setpRootCaused(pRootCaused);
-		} else {
-			setpRootCaused(null);
-		}
+            PRootCaused pRootCaused = (PRootCaused) args.get("pRootCaused");
+            setpRootCaused(pRootCaused);
+        } else {
+            setpRootCaused(null);
+        }
 
         doShowDialog(getpRootCaused());
     }
 
-    private void doShowDialog(PRootCaused pRootCaused) throws  InterruptedException{
+    private void doShowDialog(PRootCaused pRootCaused) throws InterruptedException {
 
-        if(pRootCaused == null){
+        if (pRootCaused == null) {
             pRootCaused = getRootCausedService().getNewRootCaused();
         }
 
@@ -70,8 +69,8 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
             window_TambahRootCaused.doModal();
 
         } catch (Exception e) {
-			Messagebox.show(e.toString());
-		}
+            Messagebox.show(e.toString());
+        }
 
     }
 
