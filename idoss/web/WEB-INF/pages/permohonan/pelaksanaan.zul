@@ -1,6 +1,6 @@
 <?page title="pelaksanaan" contentType="text/html;charset=UTF-8"?>
 <zk>
-    <window id="window_Pelaksanaan" title="pelaksanaan" border="none" apply="${pelaksanaanCtrl}">
+    <window id="window_Pelaksanaan" border="none" apply="${pelaksanaanCtrl}">
         <groupbox id="groupboxPelaksanaan" mold="3d">
             <caption label="Pelaksanaan Perubahan"
                      style="font-weight:bold"/>

@@ -2,7 +2,6 @@ package net.lintasarta.idoss.webui.permohonan;
 
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
-import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.VerifikasiService;
 import org.apache.log4j.Logger;
@@ -93,7 +92,9 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
         if (args.containsKey("tVerifikasi")) {
             TVerifikasi tVerifikasi = (TVerifikasi) args.get("tVerifikasi");
             settVerifikasi(tVerifikasi);
-
+//            if (tVerifikasi.getT_idoss_verifikasi_id() != null){
+//                settVerifikasi(tVerifikasi.getT_idoss_verifikasi_id());
+//            }
         } else {
             settVerifikasi(null);
         }

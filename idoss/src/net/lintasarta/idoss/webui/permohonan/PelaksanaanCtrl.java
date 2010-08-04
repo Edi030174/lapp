@@ -2,6 +2,8 @@ package net.lintasarta.idoss.webui.permohonan;
 
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.permohonan.model.TPelaksanaan;
+import net.lintasarta.permohonan.model.TPermohonan;
+import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PelaksanaanService;
 import org.apache.log4j.Logger;
 import org.zkforge.fckez.FCKeditor;
@@ -30,6 +32,8 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
     protected PelaksanaanCtrl pelaksanaanCtrl;
 
+    private transient TPermohonan tPermohonan;
+    private transient TVerifikasi tVerifikasi;
     private transient TPelaksanaan tPelaksanaan;
     private transient PelaksanaanService pelaksanaanService;
 
@@ -48,12 +52,12 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         }
         Map<String, Object> args = getCreationArgsMap(event);
 
-        if (args.containsKey("tPelaksanaan")) {
-            TPelaksanaan tPelaksanaan = (TPelaksanaan) args.get("tPelaksanaan");
-            settPelaksanaan(tPelaksanaan);
-        } else {
-            settPelaksanaan(null);
-        }
+//        if (args.containsKey("tPelaksanaan")) {
+//            TPelaksanaan tPelaksanaan = (TPelaksanaan) args.get("tPelaksanaan");
+//            settPelaksanaan(tPelaksanaan);
+//        } else {
+//            settPelaksanaan(null);
+//        }
         if (args.containsKey("pelaksanaanCtrl")) {
             pelaksanaanCtrl = (PelaksanaanCtrl) args.get("pelaksanaanCtrl");
         } else {
@@ -68,9 +72,16 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doShowDialog(TPelaksanaan tPelaksanaan) throws InterruptedException {
-        try {
+        if (tPelaksanaan == null) {
+            tPelaksanaan = getPelaksanaanService().getNewPelaksanaan();
+            settPelaksanaan(tPelaksanaan);
 
-            doWriteBeanToComponent(tPelaksanaan);
+        }else {
+            settPelaksanaan(tPelaksanaan);
+        }
+        try {
+            doWriteBeanToComponents(tPelaksanaan);
+//            window_Pelaksanaan.doModal();
 
         } catch (Exception e) {
             Messagebox.show(e.toString());
@@ -78,10 +89,28 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
-    private void doWriteBeanToComponent(TPelaksanaan tPelaksanaan) throws Exception{
+    private void doWriteBeanToComponents(TPelaksanaan tPelaksanaan) throws Exception{
         dateboxRfs_date.setValue(tPelaksanaan.getRfs_date());
         fckCatatan_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
         
+    }
+    
+
+
+    public TPermohonan gettPermohonan() {
+        return tPermohonan;
+    }
+
+    public void settPermohonan(TPermohonan tPermohonan) {
+        this.tPermohonan = tPermohonan;
+    }
+
+    public TVerifikasi gettVerifikasi() {
+        return tVerifikasi;
+    }
+
+    public void settVerifikasi(TVerifikasi tVerifikasi) {
+        this.tVerifikasi = tVerifikasi;
     }
 
     public TPelaksanaan gettPelaksanaan() {
