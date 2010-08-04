@@ -6,6 +6,7 @@ import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
+import net.lintasarta.permohonan.service.VerifikasiService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
@@ -183,7 +184,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
 
-        TVerifikasi tVerifikasi = gettVerifikasi();
+        TVerifikasi tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
 
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("tVerifikasi", tVerifikasi);
