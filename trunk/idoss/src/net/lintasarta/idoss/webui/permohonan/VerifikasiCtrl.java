@@ -92,24 +92,21 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
         if (args.containsKey("tVerifikasi")) {
             TVerifikasi tVerifikasi = (TVerifikasi) args.get("tVerifikasi");
             settVerifikasi(tVerifikasi);
-//            if (tVerifikasi.getT_idoss_verifikasi_id() != null){
-//                settVerifikasi(tVerifikasi.getT_idoss_verifikasi_id());
-//            }
         } else {
             settVerifikasi(null);
         }
+
         if (args.containsKey("verifikasiCtrl")) {
             verifikasiCtrl = (VerifikasiCtrl) args.get("verifikasiCtrl");
         } else {
             verifikasiCtrl = null;
         }
+
         if (args.containsKey("listbox_DaftarPermohonan")) {
             listbox_DaftarPermohonan = (Listbox) args.get("listbox_DaftarPermohonan");
         } else {
             listbox_DaftarPermohonan = null;
         }
-
-        
 
         doShowDialog(gettVerifikasi());
     }
