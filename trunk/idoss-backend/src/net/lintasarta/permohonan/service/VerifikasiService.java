@@ -16,6 +16,6 @@ public interface VerifikasiService {
     int getCountAllTVerifikasi();
     List<TVerifikasi> getAllTVerifikasi();
     TVerifikasi getTVerifikasiByTIdossVerifikasiId(String t_idoss_verifikasi_id);
-    void createTVerifikasi (TPermohonan tPermohonan, TPelaksanaan tPelaksanaan, TVerifikasi tVerifikasi);
+    void createTVerifikasi(TVerifikasi tVerifikasi);
     void saveOrUpdateTVerifikasi (TVerifikasi tVerifikasi);
 }

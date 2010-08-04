@@ -1,6 +1,6 @@
 <?page title="verifikasi" contentType="text/html;charset=UTF-8"?>
 <zk>
-    <window id="verifikasiWindow" title="verifikasi" border="normal" apply="${VerifikasiCtrl}">
+    <window id="window_Verifikasi" title="verifikasi" border="normal" apply="${VerifikasiCtrl}">
         <toolbar>
             <button id="btnRefreshVerifikasi"
                     image="/images/icons/refresh2_yellow_16x16.gif"
@@ -79,10 +79,7 @@
                                                             readonly="true"
                                                             width="150px">
                                                     </datebox>
-                                                    <combobox
-                                                            id="comboboxNik_pelaksana" readonly="true"
-                                                            width="150px">
-                                                    </combobox>
+                                                    <textbox id="textbox_NikPelaksana"/>
                                                 </vbox>
                                             </hbox>
                                             <space height="7px"></space>
