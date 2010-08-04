@@ -111,6 +111,11 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
 
+        tab_Verifikasi.setVisible(true);
+        tabPanel_Verifikasi.setVisible(true);
+        tab_Pelaksanaan.setVisible(true);
+        tabPanel_Pelaksanaan.setVisible(true);
+
         Map<String, Object> args = getCreationArgsMap(event);
 
         if (args.containsKey("tPermohonan")) {
@@ -151,6 +156,9 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("tVerifikasi", tVerifikasi);
         map.put("permohonanCtrl", this);
+
+        map.put("rowSizeOrders", new Integer(10));
+		map.put("rowSizeOrderPositions", new Integer(10));
 
         Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_Verifikasi");
         orderTab.getChildren().clear();
