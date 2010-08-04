@@ -3,7 +3,6 @@ package net.lintasarta.idoss.webui.permohonan.model;
 import net.lintasarta.permohonan.model.TPermohonan;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.sys.ComponentsCtrl;
-import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.ListitemRenderer;
@@ -60,6 +59,6 @@ public class DaftarPermohonanModelItemRenderer implements ListitemRenderer, Seri
 		lc.setParent(item);*/
 
 		item.setAttribute("data", data);
-		ComponentsCtrl.applyForward(item, "onDoubleClick=onCustomerItemDoubleClicked");
+		ComponentsCtrl.applyForward(item, "onDoubleClick=onPermohonanItemDoubleClicked");
 	}
 }

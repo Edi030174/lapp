@@ -2,15 +2,11 @@ package net.lintasarta.idoss.webui.permohonan;
 
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.permohonan.model.TPelaksanaan;
-import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.service.PelaksanaanService;
 import org.apache.log4j.Logger;
 import org.zkforge.fckez.FCKeditor;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zul.Datebox;
-import org.zkoss.zul.Messagebox;
-import org.zkoss.zul.Radiogroup;
-import org.zkoss.zul.Window;
+import org.zkoss.zul.*;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -30,6 +26,8 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     protected Datebox dateboxRfs_date;
     protected FCKeditor fckCatatan_pelaksana;
 
+    protected Listbox listbox_DaftarPermohonan;
+
     protected PelaksanaanCtrl pelaksanaanCtrl;
 
     private transient TPelaksanaan tPelaksanaan;
@@ -43,20 +41,48 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-     public void onCreate$window_Pelaksanaan(Event event) throws Exception {
+    public void onCreate$window_Pelaksanaan(Event event) throws Exception {
 
-         if (logger.isDebugEnabled()) {
-             logger.debug("--> " + event.toString());
-         }
-         Map<String, Object> args = getCreationArgsMap(event);
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        Map<String, Object> args = getCreationArgsMap(event);
 
-         if (args.containsKey("tPelaksanaan")) {
-             TPelaksanaan tPelaksanaan = (TPelaksanaan) args.get("tPelaksanaan");
-             settPelaksanaan(tPelaksanaan);
-         } else {
-             settPelaksanaan(null);
-         }
-     }
+        if (args.containsKey("tPelaksanaan")) {
+            TPelaksanaan tPelaksanaan = (TPelaksanaan) args.get("tPelaksanaan");
+            settPelaksanaan(tPelaksanaan);
+        } else {
+            settPelaksanaan(null);
+        }
+        if (args.containsKey("pelaksanaanCtrl")) {
+            pelaksanaanCtrl = (PelaksanaanCtrl) args.get("pelaksanaanCtrl");
+        } else {
+            pelaksanaanCtrl = null;
+        }
+        if (args.containsKey("listbox_DaftarPermohonan")) {
+            listbox_DaftarPermohonan = (Listbox) args.get("listbox_DaftarPermohonan");
+        } else {
+            listbox_DaftarPermohonan = null;
+        }
+        doShowDialog(gettPelaksanaan());
+    }
+
+    private void doShowDialog(TPelaksanaan tPelaksanaan) throws InterruptedException {
+        try {
+
+            doWriteBeanToComponent(tPelaksanaan);
+
+        } catch (Exception e) {
+            Messagebox.show(e.toString());
+        }
+
+    }
+
+    private void doWriteBeanToComponent(TPelaksanaan tPelaksanaan) throws Exception{
+        dateboxRfs_date.setValue(tPelaksanaan.getRfs_date());
+        fckCatatan_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
+        
+    }
 
     public TPelaksanaan gettPelaksanaan() {
         return tPelaksanaan;
