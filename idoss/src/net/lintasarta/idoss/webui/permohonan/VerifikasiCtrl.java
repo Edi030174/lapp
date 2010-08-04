@@ -108,6 +108,8 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
             listbox_DaftarPermohonan = null;
         }
 
+        
+
         doShowDialog(gettVerifikasi());
     }
 
@@ -123,6 +125,7 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteBeanToComponent(TVerifikasi tVerifikasi) throws Exception{
+
         dateboxTanggal1.setValue(tVerifikasi.getTgl_permohonan());
 
         if(tVerifikasi.getNik_pelaksana() == null){

@@ -109,9 +109,6 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
     }
 
     public void onPermohonanItemDoubleClicked(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
 
         Listitem item = listbox_DaftarPermohonan.getSelectedItem();
 
