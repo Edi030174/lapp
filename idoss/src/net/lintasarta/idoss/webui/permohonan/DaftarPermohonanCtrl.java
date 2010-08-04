@@ -108,7 +108,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         listbox_DaftarPermohonan.setItemRenderer(new DaftarPermohonanModelItemRenderer());
     }
 
-    public void onDoubleClicked(Event event) throws Exception {
+    public void onPermohonanItemDoubleClicked(Event event) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
@@ -151,7 +151,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 
         map.put("tPermohonan", tPermohonan);
 
-        map.put("listbox_DaftarPermohonan", listbox_DaftarPermohonan);
+        map.put("DaftarPermohonanCtrl", this);
 
         try {
             Executions.createComponents("/WEB-INF/pages/permohonan/permohonan.zul", null, map);

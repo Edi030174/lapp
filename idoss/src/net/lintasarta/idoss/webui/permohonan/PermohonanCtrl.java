@@ -183,7 +183,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         map.put("tPelaksanaan", tPelaksanaan);
         map.put("permohonanCtrl", this);
 
-        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tab_Pelaksanaan");
+        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_Pelaksanaan");
         orderTab.getChildren().clear();
 
         Panel panel = new Panel();

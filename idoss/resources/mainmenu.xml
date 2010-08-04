@@ -5,18 +5,12 @@
 		iconName="/images/icons/console_view.gif" />
 	<menuItem id="menu_Item_Chat" zulNavigation="/WEB-INF/pages/chat/chat.zul" />
 
-    <menu id="menu_Category_Pengaduan">
-        <menuItem id="menu_Item_Daftar_Trouble_Tiket" zulNavigation="/WEB-INF/pages/pengaduan/daftarTroubleTiket.zul"/>
-        <!--<menuItem id="menu_Item_Pelaksanaan_Gangguan" zulNavigation="/WEB-INF/pages/pengaduan/pelaksanaanGangguan.zul"/>-->
-        <!--<menuItem id="menu_Item_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/pengaduan.zul"/>-->
-        <!--<menuItem id="mane_Item_Tambah_Root_Caused" zulNavigation="/WEB-INF/pages/pengaduan/tambahRootCaused.zul"/>-->
-    </menu>
-    <menu id="menu_Category_Permohonan">
-        <menuItem id ="menu_Item_Daftar_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftar_permohonan.zul"/>
-        <menuItem id="menu_Item_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/permohonan.zul"/>
-        <menuItem id="menu_Item_Verifikasi" zulNavigation="/WEB-INF/pages/permohonan/verifikasi.zul"/>
-        <menuItem id="menu_Item_Pelaksanaan" zulNavigation="/WEB-INF/pages/permohonan/pelaksanaan.zul"/>
+    <!--<menu id="menu_Category_Ophar">-->
+        <menuItem id="menu_Item_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarTroubleTiket.zul"/>
+        <menuItem id ="menu_Item_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftar_permohonan.zul"/>
+    <!--</menu>-->
 
-    </menu>
-    
+    <!--<menu id="menu_Category_USO">-->
+
+    <!--</menu>-->
 </ns2:XMLRootMenu>
