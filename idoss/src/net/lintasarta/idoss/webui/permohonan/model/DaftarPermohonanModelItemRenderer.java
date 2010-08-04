@@ -35,7 +35,7 @@ public class DaftarPermohonanModelItemRenderer implements ListitemRenderer, Seri
 		lc.setParent(item);
 
         Timestamp ts = tPermohonan.getTgl_permohonan();
-        String tgl = new SimpleDateFormat("dd-mm-yyyy").format(ts);
+        String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
         lc = new Listcell(tgl);
 		lc.setParent(item);
 
