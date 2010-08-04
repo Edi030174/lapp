@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface PermohonanService {
     TPermohonan getNewPermohonan();
-    TPermohonan getTPermohonanByNomorPermohonanId(String nomorPermohonanId);
+    TPermohonan getTPermohonanByTIdossPermohonanId(String t_idoss_permohonan_id);
     List<TPermohonan> getAllTPermohonan();
     void createTPermohonan (TPermohonan tPermohonan);
     void saveOrUpdateTPermohonan (TPermohonan tPermohonan);

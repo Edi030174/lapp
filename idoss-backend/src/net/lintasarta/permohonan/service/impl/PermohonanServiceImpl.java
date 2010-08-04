@@ -50,8 +50,8 @@ public class PermohonanServiceImpl implements PermohonanService{
         return new TPermohonan();
     }
 
-    public TPermohonan getTPermohonanByNomorPermohonanId(String nomorPermohonanId) {
-        return getTPermohonanByNomorPermohonanId(nomorPermohonanId);
+    public TPermohonan getTPermohonanByTIdossPermohonanId(String t_idoss_permohonan_id) {
+        return gettPermohonanDAO().getTPermohonanByTIdossPermohonanId(t_idoss_permohonan_id);
     }
 
     public List<TPermohonan> getAllTPermohonan() {
