@@ -6,6 +6,8 @@ import net.lintasarta.permohonan.dao.TVerifikasiDAO;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.service.PermohonanService;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -55,7 +57,12 @@ public class PermohonanServiceImpl implements PermohonanService{
     }
 
     public void createTPermohonan(TPermohonan tPermohonan) {
+
+        Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
+        tPermohonan.setCreated_date(ts);
+        tPermohonan.setCreated_user("Anton");
         gettPermohonanDAO().createTPermohonan(tPermohonan);
+
     }
 
     public void saveOrUpdateTPermohonan(TPermohonan tPermohonan) {

@@ -4,11 +4,12 @@
 
 <?page title="permohonan" contentType="text/html;charset=UTF-8"?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
-	xmlns:h="http://www.w3.org/1999/xhtml"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-    <window id="window_Permohonan" title="permohonan" border="normal" apply="${permohonanCtrl}"
-            sizable="true" width="600px" closable="true">
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+    <window id="window_Permohonan" title="permohonan" border="none" apply="${permohonanCtrl}"
+            sizable="true" width="800px"  height="600px" closable="true">
+
         <style>
             body { padding: 0 0; /* 0 padding on top and bottom and 0
             padding on right and left */ }
@@ -25,143 +26,180 @@
             <!-- Title in bold letters -->
             .z-groupbox-hl .z-groupbox-header { color: #000000;
             font-weight: bold; }
-
         </style>
-        <toolbar>
-            <button id="btnSimpan_Permohonan" label="Simpan"/>
-            <button id="btnBatal" label="Batal"/>
-		</toolbar>
-        <groupbox id="groupboxPemohon" mold="3d">
-            <caption label="Pemohon"
-                     style="font-weight:bold"/>
-            <vbox>
-                <hbox>
-                    <label
-                            value="(diisi oleh minimal Pimpinan bagian)"/>
-                    <space width="350px"></space>
-                    <label
-                            style="font-size:12pt;font-weight:bold" value="PENTING"/>
-                </hbox>
-            </vbox>
-            <hbox>
-                <vbox>
-                    <label width="100px"
-                           value="Nomor Permohonan"/>
-                    <space height="1px"></space>
-                    <label width="100px" value="Nama Pemohon"/>
-                    <space height="1px"></space>
-                    <label width="130px" value="Bagian Pemohon"/>
-                    <space height="1px"></space>
-                    <label width="100px"
-                           value="Nama Asisten Manager"/>
-                    <space height="1px"></space>
-                    <label width="100px"
-                           value="Nama Manager"/>
-                    <space height="1px"></space>
-                    <label width="100px"
-                           value="Nama General Manager"/>
-                    <space height="1px"></space>
-                    <space height="1px"></space>
-                    <space height="1px"></space>
-                </vbox>
-                <vbox>
-                    <label width="10px" value=":"/>
-                    <space height="1px"></space>
-                    <label width="10px" value=":"/>
-                    <space height="1px"></space>
-                    <label width="10px" value=":"/>
-                    <space height="1px"></space>
-                    <label width="10px" value=":"/>
-                    <space height="1px"></space>
-                    <label width="10px" value=":"/>
-                    <space height="1px"></space>
-                    <label width="10px" value=":"/>
-                </vbox>
-                <vbox>
-                    <hbox>
-                        <textbox
-                                id="textbox_TIdossPermohonanId" width="120px"/>
-                        <vbox>
-                            <space height="1px"></space>
-                            <label width="10px"
-                                   value="//FSHOPAR2010"/>
-                        </vbox>
-                    </hbox>
-                    <textbox id="textbox_NamaPemohon"
-                             width="200px"/>
-                    <textbox id="textbox_BagianPemohon"
-                             width="120px"/>
-                    <textbox id="textbox_NamaAsman"
-                             width="120px"/>
-                    <textbox id="textbox_NamaManager"
-                             width="120px"/>
-                    <textbox id="textbox_Gm"
-                             width="120px"/>
-                </vbox>
-                <vbox>
-                    <space height="1px"></space>
-                    <label value="Tanggal:"/>
-                    <label width="10px" value="NIK :"/>
-                    <space height="26px"></space>
-                    <label width="10px" value="NIK :"/>
-                    <space height="5px"></space>
-                    <label width="10px" value="NIK :"/>
-                    <space height="5px"></space>
-                    <label width="10px" value="NIK :"/>
-                </vbox>
-                <vbox>
-                    <datebox id="tanggal" cols="12"/>
-                    <textbox id="textbox_NikPemohon"
-                             width="50px"/>
-                    <space height="22px"></space>
-                    <textbox id="textbox_NikDivisi"
-                             width="50px"/>
-                    <textbox id="textbox_NikAsman"
-                             width="50px"/>
-                    <textbox id="textbox_NikManager"
-                             width="50px"/>
-                </vbox>
-            </hbox>
-        </groupbox>
-        <groupbox mold="3d">
-            <caption label="Detil Permohonan"
-                     style="font-weight:bold"/>
-            <vbox>
-                <label
-                        value="(Diisi oleh pemohon minimal pimpinan bagian)"/>
-                <hbox>
-                    <vbox></vbox>
-                    Type :
-                    <radiogroup
-                            id="radiogroupType_permohonan">
-                        <radio id="readonly"
-                               label="User Read Only" onCheck="doChecked()"/>
-                        <radio id="readwrite"
-                               label="User Read write" onCheck="doChecked()"/>
-                        <radio id="aplikasi"
-                               label="Aplikasi" onCheck="doChecked()"/>
-                        <radio id="lainlain"
-                               label="Lain-lain..." onCheck="doChecked()"/>
-                        <textbox id="textbox_Lainlain"
-                                 width="100px"/>
-                    </radiogroup>
-                </hbox>
-            </vbox>
-            <hbox>
-                <checkbox id="cepat"
-                          label="Perlu Penanganan Cepat  " onCheck="doChecked()"/>
-                <vbox>
-                    <space height="2px"></space>
-                    <label
-                            style="font-size:8pt;font-weight:italic"
-                            value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
-                </vbox>
-                <button id="button_Lampiran" upload="true,maxsize=-1" label="lampiran"></button>
-            </hbox>
-            <vbox></vbox>
-            <fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
-                       forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
-                       toolbarSet="Basic"/>           
-        </groupbox>
+        <borderlayout id="borderlayoutCustomer">
+            <north border="none" margins="0,0,0,0">
+                <toolbar>
+                    <button id="btnSimpan_Permohonan" label="Simpan"/>
+                    <button id="btnBatal" label="Batal"/>
+                </toolbar>
+            </north>
+            <center border="none">
+                <div id="divPermohonan">
+                    <tabbox id="tabBox_Permohonan" width="100%">
+                        <tabs>
+                            <tab id="tab_Permohonan"
+                                 label="Permohonan"/>
+                            <tab id="tab_Verifikasi"
+                                 label="Verifikasi"/>
+                            <tab id="tab_Pelaksanaan"
+                                 label="Pelaksanaan"/>
+                        </tabs>
+                        <tabpanels>
+                            <!--tap permohonan-->
+                            <tabpanel id="tabPanel_Permohonan"
+                                      height="100%" style="border: 0px; padding: 0px">
+
+                                <groupbox id="groupboxPemohon" mold="3d">
+                                    <caption label="Pemohon"
+                                             style="font-weight:bold"/>
+                                    <vbox>
+                                        <hbox>
+                                            <label
+                                                    value="(diisi oleh minimal Pimpinan bagian)"/>
+                                            <space width="350px"></space>
+                                            <label
+                                                    style="font-size:12pt;font-weight:bold" value="PENTING"/>
+                                        </hbox>
+                                    </vbox>
+                                    <hbox>
+                                        <vbox>
+                                            <label width="100px"
+                                                   value="Nomor Permohonan"/>
+                                            <space height="1px"></space>
+                                            <label width="100px" value="Nama Pemohon"/>
+                                            <space height="1px"></space>
+                                            <label width="130px" value="Bagian Pemohon"/>
+                                            <space height="1px"></space>
+                                            <label width="100px"
+                                                   value="Nama Asisten Manager"/>
+                                            <space height="1px"></space>
+                                            <label width="100px"
+                                                   value="Nama Manager"/>
+                                            <space height="1px"></space>
+                                            <label width="100px"
+                                                   value="Nama General Manager"/>
+                                            <space height="1px"></space>
+                                            <space height="1px"></space>
+                                            <space height="1px"></space>
+                                        </vbox>
+                                        <vbox>
+                                            <label width="10px" value=":"/>
+                                            <space height="1px"></space>
+                                            <label width="10px" value=":"/>
+                                            <space height="1px"></space>
+                                            <label width="10px" value=":"/>
+                                            <space height="1px"></space>
+                                            <label width="10px" value=":"/>
+                                            <space height="1px"></space>
+                                            <label width="10px" value=":"/>
+                                            <space height="1px"></space>
+                                            <label width="10px" value=":"/>
+                                        </vbox>
+                                        <vbox>
+                                            <hbox>
+                                                <textbox
+                                                        id="textbox_TIdossPermohonanId" width="120px"/>
+                                                <vbox>
+                                                    <space height="1px"></space>
+                                                    <label width="10px"
+                                                           value="//FSHOPAR2010"/>
+                                                </vbox>
+                                            </hbox>
+                                            <textbox id="textbox_NamaPemohon"
+                                                     width="200px"/>
+                                            <textbox id="textbox_BagianPemohon"
+                                                     width="120px"/>
+                                            <textbox id="textbox_NamaAsman"
+                                                     width="120px"/>
+                                            <textbox id="textbox_NamaManager"
+                                                     width="120px"/>
+                                            <textbox id="textbox_NamaGm"
+                                                     width="120px"/>
+                                        </vbox>
+                                        <vbox>
+                                            <space height="1px"></space>
+                                            <label value="Tanggal:"/>
+                                            <label width="10px" value="NIK :"/>
+                                            <space height="26px"></space>
+                                            <label width="10px" value="NIK :"/>
+                                            <space height="5px"></space>
+                                            <label width="10px" value="NIK :"/>
+                                            <space height="5px"></space>
+                                            <label width="10px" value="NIK :"/>
+                                        </vbox>
+                                        <vbox>
+                                            <datebox id="tanggal" cols="12"/>
+                                            <textbox id="textbox_NikPemohon"
+                                                     width="50px"/>
+                                            <space height="22px"></space>
+                                            <textbox id="textbox_NikAsman"
+                                                     width="50px"/>
+                                            <textbox id="textbox_NikManager"
+                                                     width="50px"/>
+                                            <textbox id="textbox_NikGm"
+                                                     width="50px"/>
+
+                                        </vbox>
+                                    </hbox>
+                                </groupbox>
+                                <groupbox mold="3d">
+                                    <caption label="Detil Permohonan"
+                                             style="font-weight:bold"/>
+                                    <vbox>
+                                        <label
+                                                value="(Diisi oleh pemohon minimal pimpinan bagian)"/>
+                                        <hbox>
+                                            <vbox></vbox>
+                                            Type :
+                                            <radiogroup
+                                                    id="radiogroupType_permohonan">
+                                                <radio id="readonly"
+                                                       label="User Read Only" onCheck="doChecked()"/>
+                                                <radio id="readwrite"
+                                                       label="User Read write" onCheck="doChecked()"/>
+                                                <radio id="aplikasi"
+                                                       label="Aplikasi" onCheck="doChecked()"/>
+                                                <radio id="lainlain"
+                                                       label="Lain-lain..." onCheck="doChecked()"/>
+                                                <textbox id="textbox_Lainlain"
+                                                         width="100px"/>
+                                            </radiogroup>
+                                        </hbox>
+                                    </vbox>
+                                    <hbox>
+                                        <checkbox id="cepat"
+                                                  label="Perlu Penanganan Cepat  " onCheck="doChecked()"/>
+                                        <vbox>
+                                            <space height="2px"></space>
+                                            <label
+                                                    style="font-size:8pt;font-weight:italic"
+                                                    value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
+                                        </vbox>
+                                        <button id="button_Lampiran" upload="true,maxsize=-1" label="lampiran"></button>
+                                    </hbox>
+                                    <vbox></vbox>
+                                    <fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
+                                               forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
+                                               toolbarSet="Basic"/>
+                                </groupbox>
+                            </tabpanel>
+
+                            <tabpanel id="tabPanel_Verifikasi"
+								height="100%" style="border: 0px; padding: 0px">
+							</tabpanel>
+
+                            <tabpanel id="tabPanel_Pelaksanaan"
+								height="100%" style="border: 0px; padding: 0px">
+							</tabpanel>
+                        </tabpanels>
+                    </tabbox>
+                </div>
+              </center>
+
+            <east border="none" />
+			<west border="none" />
+			<south border="none" />
+        </borderlayout>
     </window>
 </zk>

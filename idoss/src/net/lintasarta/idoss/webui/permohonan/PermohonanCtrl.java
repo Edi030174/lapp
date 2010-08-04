@@ -2,19 +2,23 @@ package net.lintasarta.idoss.webui.permohonan;
 
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
+import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
+import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.resource.Labels;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.util.*;
 
 /**
  * Created by Joshua
@@ -32,14 +36,16 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_TIdossPermohonanId;
     protected Textbox textbox_NamaPemohon;
     protected Textbox textbox_BagianPemohon;
-    protected Textbox textbox_NamaDivisi;
     protected Textbox textbox_NamaAsman;
     protected Textbox textbox_NamaManager;
+    protected Textbox textbox_NamaGm;
+
     protected Datebox tanggal;
     protected Textbox textbox_NikPemohon;
-    protected Textbox textbox_NikDivisi;
     protected Textbox textbox_NikAsman;
     protected Textbox textbox_NikManager;
+    protected Textbox textbox_NikGm;
+
     protected Radio readonly;
     protected Radio readwrite;
     protected Radio aplikasi;
@@ -48,6 +54,13 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     protected Checkbox cepat;
     protected Button button_Lampiran;
     protected FCKeditor fck_DetailPermohonan;
+
+    protected Tab tab_Verifikasi;
+    protected Tabpanel tabPanel_Verifikasi;
+
+    protected Tab tab_Pelaksanaan;
+    protected Tabpanel tabPanel_Pelaksanaan;
+
 
     private transient boolean validationOn;
     private transient Listbox listbox_DaftarPermohonan;
@@ -59,14 +72,15 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     private transient String oldVar_textboxTIdossPermohonanId;
     private transient String oldVar_textboxNamaPemohon;
     private transient String oldVar_textboxBagianPemohon;
-    private transient String oldVar_textboxNamaDivisi;
     private transient String oldVar_textboxNamaAsman;
     private transient String oldVar_textboxNamaManager;
+    private transient String oldVar_textboxNamaGm;
     private transient Date oldVar_tanggal;
     private transient String oldVar_textboxNikPemohon;
-    private transient String oldVar_textboxNikDivisi;
     private transient String oldVar_textboxNikAsman;
     private transient String oldVar_textboxNikManager;
+    private transient String oldVar_textboxNikGm;
+
 
     private transient String oldVar_readonly;
     private transient String oldVar_readwrite;
@@ -78,9 +92,11 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     private transient String oldVar_fckDetailPermohonan;
 
     private transient TPermohonan tPermohonan;
+    private transient TVerifikasi tVerifikasi;
+    private transient TPelaksanaan tPelaksanaan;
     private transient PermohonanService permohonanService;
 
-    
+
     public PermohonanCtrl() {
         super();
 
@@ -112,7 +128,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
 
-        if(tPermohonan == null) {
+        if (tPermohonan == null) {
 
             tPermohonan = getPermohonanService().getNewPermohonan();
         }
@@ -122,6 +138,54 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
+    }
+
+    public void onSelect$tab_Verifikasi(Event event) {
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+
+        TVerifikasi tVerifikasi = gettVerifikasi();
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("tVerifikasi", tVerifikasi);
+        map.put("permohonanCtrl", this);
+
+        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_Verifikasi");
+        orderTab.getChildren().clear();
+
+        Panel panel = new Panel();
+        Panelchildren pChildren = new Panelchildren();
+
+        panel.appendChild(pChildren);
+        orderTab.appendChild(panel);
+
+        Executions.createComponents("/WEB-INF/pages/permohonan/verifikasi.zul", pChildren, map);
+    }
+
+    public void onSelect$tab_Pelaksanaan(Event event) {
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        TPermohonan tPelaksanaan = gettPermohonan();
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("tPelaksanaan", tPelaksanaan);
+        map.put("permohonanCtrl", this);
+
+        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tab_Pelaksanaan");
+        orderTab.getChildren().clear();
+
+        Panel panel = new Panel();
+        Panelchildren pChildren = new Panelchildren();
+
+        panel.appendChild(pChildren);
+        orderTab.appendChild(panel);
+
+        Executions.createComponents("/WEB-INF/pages/permohonan/pelaksanaan.zul", pChildren, map);
+
     }
 
     public void onClose$window_Permohonan(Event event) throws Exception {
@@ -141,99 +205,100 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         doSimpan();
 
     }
-    
+
     public void onClick$btnBatal(Event event) throws Exception {
-       if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
 
         window_Permohonan.onClose();
     }
 
-    private void doClose() throws Exception{
-         if (logger.isDebugEnabled()) {
-			logger.debug("--> DataIsChanged :" + isDataChanged());
-		}
+    private void doClose() throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> DataIsChanged :" + isDataChanged());
+        }
         if (isDataChanged()) {
 
-			// Show a confirm box
-			String message = Labels.getLabel("message_Data_Modified_Save_Data_YesNo");
-			String title = Labels.getLabel("message_Information");
+            // Show a confirm box
+            String message = Labels.getLabel("message_Data_Modified_Save_Data_YesNo");
+            String title = Labels.getLabel("message_Information");
 
-			MultiLineMessageBox.doSetTemplate();
-			if (MultiLineMessageBox.show(message, title, MultiLineMessageBox.YES | MultiLineMessageBox.NO, MultiLineMessageBox.QUESTION, true, new EventListener() {
-				public void onEvent(Event evt) {
-					switch (((Integer) evt.getData()).intValue()) {
-					case MultiLineMessageBox.YES:
-						try {
-							doSimpan();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					case MultiLineMessageBox.NO:
-						break; //
-					}
-				}
-			}
+            MultiLineMessageBox.doSetTemplate();
+            if (MultiLineMessageBox.show(message, title, MultiLineMessageBox.YES | MultiLineMessageBox.NO, MultiLineMessageBox.QUESTION, true, new EventListener() {
+                public void onEvent(Event evt) {
+                    switch (((Integer) evt.getData()).intValue()) {
+                        case MultiLineMessageBox.YES:
+                            try {
+                                doSimpan();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        case MultiLineMessageBox.NO:
+                            break; //
+                    }
+                }
+            }
 
-			) == MultiLineMessageBox.YES) {
-			}
-		}
-       window_Permohonan.onClose();
+            ) == MultiLineMessageBox.YES) {
+            }
+        }
+        window_Permohonan.onClose();
     }
 
-    private boolean isDataChanged() throws Exception{
+    private boolean isDataChanged() throws Exception {
         boolean change = false;
 
-        if(oldVar_textboxTIdossPermohonanId != textbox_TIdossPermohonanId.getValue() ){
+        if (oldVar_textboxTIdossPermohonanId != textbox_TIdossPermohonanId.getValue()) {
             change = true;
         }
-        if(oldVar_textboxNamaPemohon != textbox_NamaPemohon.getValue()){
+        if (oldVar_textboxNamaPemohon != textbox_NamaPemohon.getValue()) {
             change = true;
         }
-        if(oldVar_textboxBagianPemohon != textbox_BagianPemohon.getValue()){
+        if (oldVar_textboxBagianPemohon != textbox_BagianPemohon.getValue()) {
             change = true;
         }
-        if(oldVar_textboxNamaDivisi != textbox_NamaDivisi.getValue()){
+        if (oldVar_textboxNamaAsman != textbox_NamaAsman.getValue()) {
             change = true;
         }
-        if(oldVar_textboxNamaAsman != textbox_NamaAsman.getValue()){
+        if (oldVar_textboxNamaManager != textbox_NamaManager.getValue()) {
             change = true;
         }
-        if(oldVar_textboxNamaManager != textbox_NamaManager.getValue()){
+        if (oldVar_textboxNamaGm != textbox_NamaGm.getValue()) {
             change = true;
         }
-        if(oldVar_tanggal != tanggal.getValue()) {
+
+        if (oldVar_tanggal != tanggal.getValue()) {
             change = true;
         }
-        if(oldVar_textboxNikPemohon != textbox_NikPemohon.getValue()) {
+        if (oldVar_textboxNikPemohon != textbox_NikPemohon.getValue()) {
             change = true;
         }
-        if(oldVar_textboxNikDivisi != textbox_NikDivisi.getValue()) {
+        if (oldVar_textboxNikAsman != textbox_NikAsman.getValue()) {
             change = true;
         }
-        if(oldVar_textboxNikAsman != textbox_NikAsman.getValue()) {
+        if (oldVar_textboxNikManager != textbox_NikManager.getValue()) {
             change = true;
         }
-        if(oldVar_textboxNikManager != textbox_NikManager.getValue()) {
+        if (oldVar_textboxNikGm != textbox_NikGm.getValue()) {
             change = true;
         }
-        if(oldVar_readonly != readonly.getValue()) {
+        if (oldVar_readonly != readonly.getValue()) {
             change = true;
         }
-        if(oldVar_readwrite != readwrite.getValue()) {
+        if (oldVar_readwrite != readwrite.getValue()) {
             change = true;
         }
-        if(oldVar_aplikasi != aplikasi.getValue()) {
+        if (oldVar_aplikasi != aplikasi.getValue()) {
             change = true;
         }
-        if(oldVar_lainlain != lainlain.getValue()) {
+        if (oldVar_lainlain != lainlain.getValue()) {
             change = true;
         }
-        if(oldVar_textboxLainlain != textbox_Lainlain.getValue()) {
+        if (oldVar_textboxLainlain != textbox_Lainlain.getValue()) {
             change = true;
         }
-        if(oldVar_fckDetailPermohonan != fck_DetailPermohonan.getValue()) {
+        if (oldVar_fckDetailPermohonan != fck_DetailPermohonan.getValue()) {
             change = true;
         }
 
@@ -262,14 +327,14 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         oldVar_textboxTIdossPermohonanId = textbox_TIdossPermohonanId.getValue();
         oldVar_textboxNamaPemohon = textbox_NamaPemohon.getValue();
         oldVar_textboxBagianPemohon = textbox_BagianPemohon.getValue();
-        oldVar_textboxNamaDivisi = textbox_NamaDivisi.getValue();
         oldVar_textboxNamaAsman = textbox_NamaAsman.getValue();
         oldVar_textboxNamaManager = textbox_NamaManager.getValue();
+        oldVar_textboxNamaGm = textbox_NamaGm.getValue();
         oldVar_tanggal = tanggal.getValue();
         oldVar_textboxNikPemohon = textbox_NikPemohon.getValue();
-        oldVar_textboxNikDivisi = textbox_NikDivisi.getValue();
         oldVar_textboxNikAsman = textbox_NikAsman.getValue();
         oldVar_textboxNikManager = textbox_NikManager.getValue();
+        oldVar_textboxNikGm = textbox_NikGm.getValue();
 
         oldVar_readonly = readonly.getValue();
         oldVar_readwrite = readwrite.getValue();
@@ -277,8 +342,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         oldVar_lainlain = lainlain.getValue();
         oldVar_textboxLainlain = textbox_Lainlain.getValue();
 //        oldVar_cepat = cepat.getValue();
-        oldVar_fckDetailPermohonan= fck_DetailPermohonan.getValue();
-
+        oldVar_fckDetailPermohonan = fck_DetailPermohonan.getValue();
 
 
     }
@@ -293,16 +357,47 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         permohonan.setNik_asman(textbox_NikAsman.getValue());
         permohonan.setNama_manager(textbox_NamaManager.getValue());
         permohonan.setNik_manager(textbox_NikManager.getValue());
-        permohonan.setNama_gm(textbox_NamaDivisi.getValue());
+        permohonan.setNama_gm(textbox_NamaGm.getValue());
+        permohonan.setNik_gm(textbox_NikGm.getValue());
         permohonan.setDetail_permohonan(fck_DetailPermohonan.getValue());
+        permohonan.setDampak("m");
+        permohonan.setLain_lain("lain");
+        permohonan.setStatus_track_permohonan("ga jelas");
+
+        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
+        permohonan.setTarget_mulai_digunakan(ts);
+        permohonan.setType_permohonan("ga jelas");
+        permohonan.setUpdated_asman(ts);
+        permohonan.setUpdated_divisi(ts);
+        permohonan.setUpdated_gm(ts);
+        permohonan.setUpdated_manager(ts);
+        permohonan.setUpdated_pemohon(ts);
+        permohonan.setUrgensi("darurat");
+
     }
 
     public TPermohonan gettPermohonan() {
-        return tPermohonan;
+        return new TPermohonan();
     }
 
     public void settPermohonan(TPermohonan tPermohonan) {
         this.tPermohonan = tPermohonan;
+    }
+
+    public TVerifikasi gettVerifikasi() {
+        return tVerifikasi;
+    }
+
+    public void settVerifikasi(TVerifikasi tVerifikasi) {
+        this.tVerifikasi = tVerifikasi;
+    }
+
+    public TPelaksanaan gettPelaksanaan() {
+        return tPelaksanaan;
+    }
+
+    public void settPelaksanaan(TPelaksanaan tPelaksanaan) {
+        this.tPelaksanaan = tPelaksanaan;
     }
 
     public PermohonanService getPermohonanService() {

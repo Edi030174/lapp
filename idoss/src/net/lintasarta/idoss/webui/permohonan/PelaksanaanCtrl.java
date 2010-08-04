@@ -1,0 +1,76 @@
+package net.lintasarta.idoss.webui.permohonan;
+
+import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
+import net.lintasarta.permohonan.model.TPelaksanaan;
+import net.lintasarta.permohonan.model.TPermohonan;
+import net.lintasarta.permohonan.service.PelaksanaanService;
+import org.apache.log4j.Logger;
+import org.zkforge.fckez.FCKeditor;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zul.Datebox;
+import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Radiogroup;
+import org.zkoss.zul.Window;
+
+import java.io.Serializable;
+import java.util.Map;
+
+/**
+ * Created by IntelliJ IDEA.
+ * User: Xsis
+ * Date: Aug 3, 2010
+ * Time: 11:49:01 AM
+ * To change this template use File | Settings | File Templates.
+ */
+public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
+
+    private transient final static Logger logger = Logger.getLogger(PermohonanCtrl.class);
+    protected Window window_Pelaksanaan;
+    protected Radiogroup radiogroupStatus_perubahan;
+    protected Datebox dateboxRfs_date;
+    protected FCKeditor fckCatatan_pelaksana;
+
+    protected PelaksanaanCtrl pelaksanaanCtrl;
+
+    private transient TPelaksanaan tPelaksanaan;
+    private transient PelaksanaanService pelaksanaanService;
+
+    public PelaksanaanCtrl() {
+        super();
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> super()");
+        }
+    }
+
+     public void onCreate$window_Pelaksanaan(Event event) throws Exception {
+
+         if (logger.isDebugEnabled()) {
+             logger.debug("--> " + event.toString());
+         }
+         Map<String, Object> args = getCreationArgsMap(event);
+
+         if (args.containsKey("tPelaksanaan")) {
+             TPelaksanaan tPelaksanaan = (TPelaksanaan) args.get("tPelaksanaan");
+             settPelaksanaan(tPelaksanaan);
+         } else {
+             settPelaksanaan(null);
+         }
+     }
+
+    public TPelaksanaan gettPelaksanaan() {
+        return tPelaksanaan;
+    }
+
+    public void settPelaksanaan(TPelaksanaan tPelaksanaan) {
+        this.tPelaksanaan = tPelaksanaan;
+    }
+
+    public PelaksanaanService getPelaksanaanService() {
+        return pelaksanaanService;
+    }
+
+    public void setPelaksanaanService(PelaksanaanService pelaksanaanService) {
+        this.pelaksanaanService = pelaksanaanService;
+    }
+}
