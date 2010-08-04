@@ -37,10 +37,10 @@
                 <listheader id="listheader_Tanggal" label="Tanggal" sort="auto" style="font-size:11px"/>
                 <listheader id="listheader_Tipe" label="Tipe" sort="auto" style="font-size:11px"/>
                 <listheader id="listheader_StatusPersetujuan" label="Status Persetujuan" sort="auto" style="font-size:11px"/>
-                <listheader id="listheader_Pimbag" label="PimBag" sort="auto" style="font-size:11px"/>
-                <listheader id="listheader_Pimdiv" label="PimDiv" sort="auto" style="font-size:11px"/>
-                <listheader id="listheader_AssMgr" label="AssMgr" sort="auto" style="font-size:11px"/>
-                <listheader id="listheader_Mgr" label="Mgr" sort="auto" style="font-size:11px"/>
+                <!--<listheader id="listheader_Pimbag" label="PimBag" sort="auto" style="font-size:11px"/>-->
+                <!--<listheader id="listheader_Pimdiv" label="PimDiv" sort="auto" style="font-size:11px"/>-->
+                <listheader id="listheader_AssMgr" label="AssManager" sort="auto" style="font-size:11px"/>
+                <listheader id="listheader_Mgr" label="Manager" sort="auto" style="font-size:11px"/>
                 <listheader id="listheader_GM" label="GM" sort="auto" style="font-size:11px"/>
             </listhead>
             <!--<listitem self="@{each=persons}">

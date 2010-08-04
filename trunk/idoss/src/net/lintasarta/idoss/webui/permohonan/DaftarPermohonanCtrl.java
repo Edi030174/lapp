@@ -4,9 +4,7 @@ import net.lintasarta.idoss.webui.permohonan.model.DaftarPermohonanModelItemRend
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPermohonan;
-import net.lintasarta.permohonan.service.PelaksanaanService;
 import net.lintasarta.permohonan.service.PermohonanService;
-import net.lintasarta.permohonan.service.VerifikasiService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.support.PagedListHolder;
 import org.zkoss.util.resource.Labels;
@@ -36,8 +34,8 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
     protected Listheader listheader_Tanggal;
     protected Listheader listheader_Tipe;
     protected Listheader listheader_StatusPersetujuan;
-    protected Listheader listheader_Pimbag;
-    protected Listheader listheader_Pimdiv;
+//    protected Listheader listheader_Pimbag;
+//    protected Listheader listheader_Pimdiv;
     protected Listheader listheader_AssMgr;
     protected Listheader listheader_Mgr;
     protected Listheader listheader_GM;
@@ -90,8 +88,8 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         listheader_StatusPersetujuan.setSortDescending(new FieldComparator("status_track_permohonan", true));
 //        listheader_Pimbag.setSortAscending(new FieldComparator("", true));
 //        listheader_Pimbag.setSortDescending(new FieldComparator("", true));
-        listheader_Pimdiv.setSortAscending(new FieldComparator("nama_divisi", true));
-        listheader_Pimdiv.setSortDescending(new FieldComparator("nama_divisi", true));
+//        listheader_Pimdiv.setSortAscending(new FieldComparator("nama_divisi", true));
+//        listheader_Pimdiv.setSortDescending(new FieldComparator("nama_divisi", true));
         listheader_AssMgr.setSortAscending(new FieldComparator("nama_asman", true));
         listheader_AssMgr.setSortDescending(new FieldComparator("nama_asman", true));
         listheader_Mgr.setSortAscending(new FieldComparator("nama_manager", true));

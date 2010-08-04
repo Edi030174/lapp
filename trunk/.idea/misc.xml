@@ -326,33 +326,7 @@
         <entry key="$PROJECT_DIR$">
           <value>
             <SvnBranchConfiguration>
-              <option name="branchMap">
-                <map>
-                  <entry key="https://lapp.googlecode.com/svn/branches">
-                    <value>
-                      <list />
-                    </value>
-                  </entry>
-                  <entry key="https://lapp.googlecode.com/svn/tags">
-                    <value>
-                      <list />
-                    </value>
-                  </entry>
-                  <entry key="https://lapp.googlecode.com/svn/wiki">
-                    <value>
-                      <list />
-                    </value>
-                  </entry>
-                </map>
-              </option>
-              <option name="branchUrls">
-                <list>
-                  <option value="https://lapp.googlecode.com/svn/branches" />
-                  <option value="https://lapp.googlecode.com/svn/tags" />
-                  <option value="https://lapp.googlecode.com/svn/wiki" />
-                </list>
-              </option>
-              <option name="trunkUrl" value="https://lapp.googlecode.com/svn/trunk" />
+              <option name="trunkUrl" value="" />
             </SvnBranchConfiguration>
           </value>
         </entry>
