@@ -123,8 +123,8 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             settPermohonan(null);
         }
 
-        if (args.containsKey("pelaksanaanGangguanCtrl")) {
-            permohonanCtrl = (PermohonanCtrl) args.get("pelaksanaanGangguanCtrl");
+        if (args.containsKey("permohonanCtrl")) {
+            permohonanCtrl = (PermohonanCtrl) args.get("permohonanCtrl");
         } else {
             permohonanCtrl = null;
         }

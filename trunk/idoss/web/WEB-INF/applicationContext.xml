@@ -44,6 +44,13 @@
     <bean id="permohonanCtrl" class="net.lintasarta.idoss.webui.permohonan.PermohonanCtrl" parent="basisCtrl" scope="prototype">
         <property name="permohonanService" ref="permohonanService"/>
     </bean>
+    <bean id="pelaksanaanCtrl" class="net.lintasarta.idoss.webui.permohonan.PelaksanaanCtrl" parent="basisCtrl" scope="prototype">
+        <property name="pelaksanaanService" ref="pelaksanaanService"/>
+    </bean>
+    <bean id="verifikasiCtrl" class="net.lintasarta.idoss.webui.permohonan.VerifikasiCtrl" parent="basisCtrl" scope="prototype">
+        <property name="verifikasiService" ref="verifikasiService"/>
+    </bean>
+
 
     <bean id="pengaduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PengaduanCtrl" parent="basisCtrl" scope="prototype">
         <property name="penangananGangguanService" ref="penangananGangguanService"/>

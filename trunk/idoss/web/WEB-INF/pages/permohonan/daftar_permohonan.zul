@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
-    <window id="window_DaftarPermohonan" title="Form Daftar Permohonan" border="normal"
+    <window id="window_DaftarPermohonan" border="normal"
             width="100%" height="100%" sizable="true" apply="${daftarPermohonanCtrl}">
         <style>
 
@@ -28,7 +28,7 @@
         </hbox>
         <separator bar="false"/>
         <!--<groupbox id="groupbox_DaftarPermohonan" mold="3d" closable="true" open="true">-->
-        <caption label="Daftar Permohonan" style="font-weight:bold"/>
+        <!--<caption label="Daftar Permohonan" style="font-weight:bold"/>-->
 
         <paging id="paging_DaftarPermohonan"/>
         <listbox id="listbox_DaftarPermohonan" vflex="true" width="99.9%" height="100%" multiple="false">

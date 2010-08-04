@@ -43,27 +43,27 @@ public class PelaksanaanServiceImpl implements PelaksanaanService{
     }
 
 
+    public TPelaksanaan getNewPelaksanaan() {
+        return new TPelaksanaan();
+    }
+
     public int getCountAllTPelaksanaan() {
         return gettPelaksanaanDAO().getCountAllTPelaksanaan();
     }
 
-    @Override
-    public List<TPelaksanaan> getAllTPelaksanaan() {        
+    public List<TPelaksanaan> getAllTPelaksanaan() {
         return gettPelaksanaanDAO().getAllTPelaksanaan();
     }
 
-    @Override
     public TPelaksanaan getTPelaksanaanByTIdossPelaksanaanId(String t_idoss_pelaksanaan_id) {
         TPelaksanaan tPelaksanaan = tPelaksanaanDAO.getTPelaksanaanByTIdossPelaksanaanId(t_idoss_pelaksanaan_id);
         return tPelaksanaan;
     }
 
-    @Override
     public void createTPelaksanaan(TPelaksanaan tPelaksanaan) {
         gettPelaksanaanDAO().createTPelaksanaan(tPelaksanaan);
     }
 
-    @Override
     public void saveOrUpdateTPelaksanaan(TPelaksanaan tPelaksanaan) {
         gettPelaksanaanDAO().saveOrUpdateTPelaksanaan(tPelaksanaan);
     }
