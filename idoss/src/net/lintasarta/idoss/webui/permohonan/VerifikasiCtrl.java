@@ -115,7 +115,6 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
         try {
             
             doWriteBeanToComponent(tVerifikasi);
-//            window_Verifikasi.doModal();
 
         } catch (Exception e) {
             Messagebox.show(e.toString());

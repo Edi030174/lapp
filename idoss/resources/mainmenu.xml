@@ -9,7 +9,7 @@
         <menuItem id="menu_Item_Daftar_Trouble_Tiket" zulNavigation="/WEB-INF/pages/pengaduan/daftarTroubleTiket.zul"/>
         <!--<menuItem id="menu_Item_Pelaksanaan_Gangguan" zulNavigation="/WEB-INF/pages/pengaduan/pelaksanaanGangguan.zul"/>-->
         <!--<menuItem id="menu_Item_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/pengaduan.zul"/>-->
-        <menuItem id="mane_Item_Tambah_Root_Caused" zulNavigation="/WEB-INF/pages/pengaduan/tambahRootCaused.zul"/>
+        <!--<menuItem id="mane_Item_Tambah_Root_Caused" zulNavigation="/WEB-INF/pages/pengaduan/tambahRootCaused.zul"/>-->
     </menu>
     <menu id="menu_Category_Permohonan">
         <menuItem id ="menu_Item_Daftar_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftar_permohonan.zul"/>
