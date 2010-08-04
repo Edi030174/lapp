@@ -1,19 +1,6 @@
 <?page title="verifikasi" contentType="text/html;charset=UTF-8"?>
 <zk>
     <window id="window_Verifikasi" title="verifikasi" border="normal" apply="${VerifikasiCtrl}">
-        <toolbar>
-            <button id="btnRefreshVerifikasi"
-                    image="/images/icons/refresh2_yellow_16x16.gif"
-                    tooltiptext="${c:l('btnRefresh.tooltiptext')}"/>
-            <separator orient="vertical"/>
-            <button id="btnBuatVerifikasi"
-                    image="/images/icons/btn_new2_16x16.gif"
-                    tooltiptext="${c:l('button_CustomerList_NewCustomer.tooltiptext')}"/>
-            <button id="btnCariVerifikasi"
-                    image="/images/icons/btn_search2_16x16.gif"/>
-            <button id="btnSimpan_Verifikasi" label="Simpan"/>
-        </toolbar>
-        <space width="10px"></space>
         <hbox>
             <space width="20px"></space>
             <hbox>
