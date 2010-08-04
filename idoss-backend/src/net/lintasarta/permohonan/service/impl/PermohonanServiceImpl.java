@@ -3,6 +3,7 @@ package net.lintasarta.permohonan.service.impl;
 import net.lintasarta.permohonan.dao.TPelaksanaanDAO;
 import net.lintasarta.permohonan.dao.TPermohonanDAO;
 import net.lintasarta.permohonan.dao.TVerifikasiDAO;
+import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
@@ -72,5 +73,9 @@ public class PermohonanServiceImpl implements PermohonanService{
 
     public TVerifikasi getTVerifikasiByTIdossVerifikasiId(String t_idoss_verifikasi_id) {
         return gettVerifikasiDAO().getTVerifikasiByTIdossVerifikasiId(t_idoss_verifikasi_id);
+    }
+
+    public TPelaksanaan getTPelaksanaanByTIdossPelaksanaanId(String t_idoss_pelaksanaan_id) {
+        return gettPelaksanaanDAO().getTPelaksanaanByTIdossPelaksanaanId(t_idoss_pelaksanaan_id);
     }
 }
