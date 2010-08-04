@@ -6,7 +6,6 @@ import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
-import net.lintasarta.permohonan.service.VerifikasiService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
@@ -19,7 +18,9 @@ import org.zkoss.zul.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Joshua
@@ -207,7 +208,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        TPermohonan tPelaksanaan = gettPermohonan();
+        TPelaksanaan tPelaksanaan = getPermohonanService().getTPelaksanaanByTIdossPelaksanaanId(gettPermohonan().getT_idoss_permohonan_id());
 
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("tPelaksanaan", tPelaksanaan);

@@ -56,8 +56,8 @@ public class PelaksanaanServiceImpl implements PelaksanaanService{
     }
 
     public TPelaksanaan getTPelaksanaanByTIdossPelaksanaanId(String t_idoss_pelaksanaan_id) {
-        TPelaksanaan tPelaksanaan = tPelaksanaanDAO.getTPelaksanaanByTIdossPelaksanaanId(t_idoss_pelaksanaan_id);
-        return tPelaksanaan;
+        return gettPelaksanaanDAO().getTPelaksanaanByTIdossPelaksanaanId(t_idoss_pelaksanaan_id);
+
     }
 
     public void createTPelaksanaan(TPelaksanaan tPelaksanaan) {

@@ -52,12 +52,13 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         }
         Map<String, Object> args = getCreationArgsMap(event);
 
-//        if (args.containsKey("tPelaksanaan")) {
-//            TPelaksanaan tPelaksanaan = (TPelaksanaan) args.get("tPelaksanaan");
-//            settPelaksanaan(tPelaksanaan);
-//        } else {
-//            settPelaksanaan(null);
-//        }
+        if (args.containsKey("tPelaksanaan")) {
+            TPelaksanaan tPelaksanaan = (TPelaksanaan) args.get("tPelaksanaan");
+            settPelaksanaan(tPelaksanaan);
+        } else {
+            settPelaksanaan(null);
+        }
+
         if (args.containsKey("pelaksanaanCtrl")) {
             pelaksanaanCtrl = (PelaksanaanCtrl) args.get("pelaksanaanCtrl");
         } else {
@@ -72,16 +73,9 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doShowDialog(TPelaksanaan tPelaksanaan) throws InterruptedException {
-        if (tPelaksanaan == null) {
-            tPelaksanaan = getPelaksanaanService().getNewPelaksanaan();
-            settPelaksanaan(tPelaksanaan);
 
-        }else {
-            settPelaksanaan(tPelaksanaan);
-        }
         try {
             doWriteBeanToComponents(tPelaksanaan);
-//            window_Pelaksanaan.doModal();
 
         } catch (Exception e) {
             Messagebox.show(e.toString());
