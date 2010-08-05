@@ -18,7 +18,8 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zul.*;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
@@ -30,8 +31,7 @@ import java.util.Map;
  * Time: 2:36:13 PM
  */
 public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
-    private static final String SAVE_PATH = "c:\\myfile\\media\\";
-    private Media media;
+    private Media uploadMedia;
 
     private transient final static Logger logger = Logger.getLogger(PermohonanCtrl.class);
 
@@ -357,51 +357,9 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         return change;
     }
 
-    private void saveFile(Media media) {
-        BufferedInputStream in = null;
-        BufferedOutputStream out = null;
-        try {
-            InputStream fin = media.getStreamData();
-            in = new BufferedInputStream(fin);
-
-            File baseDir = new File(SAVE_PATH);
-
-            if (!baseDir.exists()) {
-                baseDir.mkdirs();
-            }
-
-            File file = new File(SAVE_PATH + media.getName());
-
-            OutputStream fout = new FileOutputStream(file);
-            out = new BufferedOutputStream(fout);
-            byte buffer[] = new byte[1024];
-            int ch = in.read(buffer);
-            while (ch != -1) {
-                out.write(buffer, 0, ch);
-                ch = in.read(buffer);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                if (out != null)
-                    out.close();
-
-                if (in != null)
-                    in.close();
-
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-    }
-
     public void onUpload$button_Lampiran(UploadEvent event) throws IOException {
         Media media = event.getMedia();
-        setMedia(media);
+        setUploadMedia(media);
     }
 
     private void doSimpan() throws InterruptedException {
@@ -411,10 +369,12 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         doWriteComponentsToBean(tPermohonan);
 
         try {
-            saveFile(getMedia());
-            File file = new File(SAVE_PATH + getMedia().getName());
-            tPermohonan.setLampiran(file.getPath());
-            getPermohonanService().createTPermohonan(tPermohonan);
+            String uploadeFileName = null;
+            if (getUploadMedia() != null) {
+                uploadeFileName = getUploadMedia().getName();
+            }
+            getPermohonanService().createTPermohonan(uploadeFileName, tPermohonan);
+
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -463,6 +423,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         permohonan.setNama_gm(textbox_NamaGm.getValue());
         permohonan.setNik_gm(textbox_NikGm.getValue());
         permohonan.setDetail_permohonan(fck_DetailPermohonan.getValue());
+        permohonan.setUploadStream(getUploadMedia().getStreamData());
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         permohonan.setTarget_mulai_digunakan(ts);
         Radio type = radiogroupType_permohonan.getSelectedItem();
@@ -515,11 +476,11 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         this.permohonanService = permohonanService;
     }
 
-    public Media getMedia() {
-        return media;
+    public Media getUploadMedia() {
+        return uploadMedia;
     }
 
-    public void setMedia(Media media) {
-        this.media = media;
+    public void setUploadMedia(Media uploadMedia) {
+        this.uploadMedia = uploadMedia;
     }
 }

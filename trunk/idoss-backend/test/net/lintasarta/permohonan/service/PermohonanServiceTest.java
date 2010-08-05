@@ -88,7 +88,7 @@ public class PermohonanServiceTest {
 
         int i = permohonanService.getAllTPermohonan().size();
 
-        permohonanService.createTPermohonan(tPermohonan);
+        permohonanService.createTPermohonan("ttk", tPermohonan);
         assertEquals(i+1, permohonanService.getAllTPermohonan().size());
 
 //        assertEquals(r + 1, tPermohonanDAO.getCountAllTPermohonan());
