@@ -6,7 +6,6 @@ import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
-import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
@@ -19,9 +18,7 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zul.*;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,6 +30,8 @@ import java.util.Map;
  * Time: 2:36:13 PM
  */
 public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
+    private static final String SAVE_PATH = "c:\\myfile\\media\\";
+    private Media media;
 
     private transient final static Logger logger = Logger.getLogger(PermohonanCtrl.class);
 
@@ -155,7 +154,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             tPermohonan = getPermohonanService().getNewPermohonan();
             settPermohonan(tPermohonan);
 
-        }else {
+        } else {
             settPermohonan(tPermohonan);
         }
 
@@ -221,7 +220,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         TPelaksanaan tPelaksanaan = getPermohonanService().getTPelaksanaanByTIdossPelaksanaanId(gettPermohonan().getT_idoss_permohonan_id());
 
         HashMap<String, Object> map = new HashMap<String, Object>();
-        if(tPelaksanaan != null) {
+        if (tPelaksanaan != null) {
             map.put("tPelaksanaan", tPelaksanaan);
         } else {
             map.put("tPelaksanaan", getPermohonanService().getNewPelaksanaan());
@@ -358,12 +357,51 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         return change;
     }
 
+    private void saveFile(Media media) {
+        BufferedInputStream in = null;
+        BufferedOutputStream out = null;
+        try {
+            InputStream fin = media.getStreamData();
+            in = new BufferedInputStream(fin);
+
+            File baseDir = new File(SAVE_PATH);
+
+            if (!baseDir.exists()) {
+                baseDir.mkdirs();
+            }
+
+            File file = new File(SAVE_PATH + media.getName());
+
+            OutputStream fout = new FileOutputStream(file);
+            out = new BufferedOutputStream(fout);
+            byte buffer[] = new byte[1024];
+            int ch = in.read(buffer);
+            while (ch != -1) {
+                out.write(buffer, 0, ch);
+                ch = in.read(buffer);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (out != null)
+                    out.close();
+
+                if (in != null)
+                    in.close();
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+
     public void onUpload$button_Lampiran(UploadEvent event) throws IOException {
         Media media = event.getMedia();
-        InputStream stream= media.getStreamData();
-        String bytes = IOUtils.toByteArray(stream);
-        gettPermohonan().setLampiran(bytes);
-        System.out.println("PermohonanCtrl.onUpload$button_Lampiran");
+        setMedia(media);
     }
 
     private void doSimpan() throws InterruptedException {
@@ -373,6 +411,9 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         doWriteComponentsToBean(tPermohonan);
 
         try {
+            saveFile(getMedia());
+            File file = new File(SAVE_PATH + getMedia().getName());
+            tPermohonan.setLampiran(file.getPath());
             getPermohonanService().createTPermohonan(tPermohonan);
         } catch (DataAccessException e) {
             String message = e.getMessage();
@@ -432,9 +473,9 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         permohonan.setUpdated_gm(ts);
         permohonan.setUpdated_manager(ts);
         permohonan.setUpdated_pemohon(ts);
-        if(checkbox_Cepat.isChecked()){
+        if (checkbox_Cepat.isChecked()) {
             permohonan.setUrgensi("H");
-        }else if (checkbox_Cepat.isDisabled()){
+        } else if (checkbox_Cepat.isDisabled()) {
             permohonan.setUrgensi("L");
         }
         permohonan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
@@ -443,7 +484,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public TPermohonan gettPermohonan() {
-        return tPermohonan;  
+        return tPermohonan;
     }
 
     public void settPermohonan(TPermohonan tPermohonan) {
@@ -472,5 +513,13 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setPermohonanService(PermohonanService permohonanService) {
         this.permohonanService = permohonanService;
+    }
+
+    public Media getMedia() {
+        return media;
+    }
+
+    public void setMedia(Media media) {
+        this.media = media;
     }
 }
