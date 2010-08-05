@@ -6,16 +6,21 @@ import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
+import org.zkoss.util.media.Media;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zul.*;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -47,10 +52,13 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_NikManager;
     protected Textbox textbox_NikGm;
 
-    protected Radio readonly;
-    protected Radio readwrite;
-    protected Radio aplikasi;
-    protected Radio lainlain;
+    protected Radiogroup radiogroupType_permohonan;
+    protected Radio radio_readonly;
+    protected Radio radio_readwrite;
+    protected Radio radio_aplikasi;
+    protected Radio radio_lainlain;
+
+
     protected Textbox textbox_Lainlain;
     protected Checkbox checkbox_Cepat;
     protected Button button_Lampiran;
@@ -61,8 +69,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     protected Tab tab_Pelaksanaan;
     protected Tabpanel tabPanel_Pelaksanaan;
-
-
     private transient boolean validationOn;
     private transient Listbox listbox_DaftarPermohonan;
 
@@ -330,16 +336,16 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         if (oldVar_textboxNikGm != textbox_NikGm.getValue()) {
             change = true;
         }
-        if (oldVar_readonly != readonly.getValue()) {
+        if (oldVar_readonly != radio_readonly.getValue()) {
             change = true;
         }
-        if (oldVar_readwrite != readwrite.getValue()) {
+        if (oldVar_readwrite != radio_readwrite.getValue()) {
             change = true;
         }
-        if (oldVar_aplikasi != aplikasi.getValue()) {
+        if (oldVar_aplikasi != radio_aplikasi.getValue()) {
             change = true;
         }
-        if (oldVar_lainlain != lainlain.getValue()) {
+        if (oldVar_lainlain != radio_lainlain.getValue()) {
             change = true;
         }
         if (oldVar_textboxLainlain != textbox_Lainlain.getValue()) {
@@ -350,6 +356,14 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         }
 
         return change;
+    }
+
+    public void onUpload$button_Lampiran(UploadEvent event) throws IOException {
+        Media media = event.getMedia();
+        InputStream stream= media.getStreamData();
+        byte[] bytes = IOUtils.toByteArray(stream);
+        gettPermohonan().setLampiran(bytes);
+        System.out.println("PermohonanCtrl.onUpload$button_Lampiran");
     }
 
     private void doSimpan() throws InterruptedException {
@@ -383,10 +397,10 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         oldVar_textboxNikManager = textbox_NikManager.getValue();
         oldVar_textboxNikGm = textbox_NikGm.getValue();
 
-        oldVar_readonly = readonly.getValue();
-        oldVar_readwrite = readwrite.getValue();
-        oldVar_aplikasi = aplikasi.getValue();
-        oldVar_lainlain = lainlain.getValue();
+        oldVar_readonly = radio_readonly.getValue();
+        oldVar_readwrite = radio_readwrite.getValue();
+        oldVar_aplikasi = radio_aplikasi.getValue();
+        oldVar_lainlain = radio_lainlain.getValue();
         oldVar_textboxLainlain = textbox_Lainlain.getValue();
 //        oldVar_cepat = cepat.getValue();
         oldVar_fckDetailPermohonan = fck_DetailPermohonan.getValue();
@@ -408,21 +422,20 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         permohonan.setNama_gm(textbox_NamaGm.getValue());
         permohonan.setNik_gm(textbox_NikGm.getValue());
         permohonan.setDetail_permohonan(fck_DetailPermohonan.getValue());
-        permohonan.setDampak("m");
-        permohonan.setLain_lain("lain");
-        permohonan.setStatus_track_permohonan("ga jelas");
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         permohonan.setTarget_mulai_digunakan(ts);
-        permohonan.setType_permohonan("ga jelas");
+        Radio type = radiogroupType_permohonan.getSelectedItem();
+        permohonan.setType_permohonan(type.getValue());
+        permohonan.setLain_lain(textbox_Lainlain.getValue());
         permohonan.setUpdated_asman(ts);
         permohonan.setUpdated_divisi(ts);
         permohonan.setUpdated_gm(ts);
         permohonan.setUpdated_manager(ts);
         permohonan.setUpdated_pemohon(ts);
         if(checkbox_Cepat.isChecked()){
-            permohonan.setUrgensi("Darurat");
+            permohonan.setUrgensi("H");
         }else if (checkbox_Cepat.isDisabled()){
-            permohonan.setUrgensi("Biasa");
+            permohonan.setUrgensi("L");
         }
         permohonan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         permohonan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());

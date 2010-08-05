@@ -3,6 +3,7 @@ package net.lintasarta.permohonan.service.impl;
 import net.lintasarta.permohonan.dao.TPelaksanaanDAO;
 import net.lintasarta.permohonan.dao.TPermohonanDAO;
 import net.lintasarta.permohonan.dao.TVerifikasiDAO;
+import net.lintasarta.permohonan.model.Status;
 import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
@@ -63,6 +64,7 @@ public class PermohonanServiceImpl implements PermohonanService{
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         tPermohonan.setCreated_date(ts);
         tPermohonan.setUpdated_date(ts);
+        tPermohonan.setStatus_track_permohonan(Status.PERMOHONAN.toString());
         gettPermohonanDAO().createTPermohonan(tPermohonan);
 
     }

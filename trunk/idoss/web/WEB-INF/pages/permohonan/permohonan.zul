@@ -152,18 +152,12 @@
                                         <hbox>
                                             <vbox></vbox>
                                             Type :
-                                            <radiogroup
-                                                    id="radiogroupType_permohonan">
-                                                <radio id="readonly"
-                                                       label="User Read Only" onCheck="doChecked()"/>
-                                                <radio id="readwrite"
-                                                       label="User Read write" onCheck="doChecked()"/>
-                                                <radio id="aplikasi"
-                                                       label="Aplikasi" onCheck="doChecked()"/>
-                                                <radio id="lainlain"
-                                                       label="Lain-lain..." onCheck="doChecked()"/>
-                                                <textbox id="textbox_Lainlain"
-                                                         width="100px"/>
+                                            <radiogroup id="radiogroupType_permohonan">
+                                                <radio id="radio_readonly" label="User Read Only" value="User RO"/>
+                                                <radio id="radio_readwrite" label="User Read Write" value="User RW"/>
+                                                <radio id="radio_aplikasi" label="Aplikasi" value="Aplikasi"/>
+                                                <radio id="radio_lainlain" label="Lain-lain" value="Lain-lain"/>
+                                                <textbox id="textbox_Lainlain" width="100px"/>
                                             </radiogroup>
                                         </hbox>
                                     </vbox>
@@ -176,7 +170,8 @@
                                                     style="font-size:8pt;font-weight:italic"
                                                     value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
                                         </vbox>
-                                        <button id="button_Lampiran" upload="true,maxsize=-1" label="lampiran"></button>
+                                        <button label="Lampiran" upload="true,maxsize=-1" id="button_Lampiran" />
+                                        <!--<button label="Upload" upload="true,maxsize=-1" onUpload="dosomething"/>-->
                                     </hbox>
                                     <vbox></vbox>
                                     <fckeditor id="fck_DetailPermohonan" height="90%" width="484px"

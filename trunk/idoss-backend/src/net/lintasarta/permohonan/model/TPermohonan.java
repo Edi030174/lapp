@@ -1,6 +1,5 @@
 package net.lintasarta.permohonan.model;
 
-import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -16,7 +15,7 @@ public class TPermohonan implements Serializable {
     private String urgensi;
     private Timestamp target_mulai_digunakan;
     private String detail_permohonan;
-    private InputStream lampiran;
+    private byte[] lampiran;
     private String status_track_permohonan;
     private String nik_pemohon;
     private String nama_pemohon;
@@ -90,11 +89,11 @@ public class TPermohonan implements Serializable {
         this.detail_permohonan = detail_permohonan;
     }
 
-    public InputStream getLampiran() {
+    public byte[] getLampiran() {
         return lampiran;
     }
 
-    public void setLampiran(InputStream lampiran) {
+    public void setLampiran(byte[] lampiran) {
         this.lampiran = lampiran;
     }
 
