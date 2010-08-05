@@ -20,7 +20,5 @@ public interface PelaksanaanGangguanService {
 
     List<PRootCaused> getRootCaused();
 
-    void createRootCaused(PRootCaused pRootCaused);
-
     void saveOrUpdate(TPenangananGangguan tPenangananGangguan);
 }

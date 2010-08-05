@@ -70,19 +70,6 @@ public class PelaksanaanGangguanServiceTest {
     }
 
     @Test
-    public void testCreateRootCaused() throws Exception {
-        PRootCaused pRootCaused = new PRootCaused();
-        Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
-        pRootCaused.setRoot_caused("haelo");
-        pRootCaused.setActive("T");
-        pRootCaused.setCreated_date(ts);
-        pRootCaused.setCreated_user("2472898");
-        pRootCaused.setUpdated_date(ts);
-        pRootCaused.setUpdated_user("2472897");
-        pelaksanaanGangguanService.createRootCaused(pRootCaused);
-
-    }
-    @Test
     public void testSaveOrUpdate() throws Exception {
         String tiketId = "BBBB579285                      ";
 

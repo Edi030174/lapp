@@ -63,19 +63,6 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
     }
 
     @Override
-    public void createRootCaused(PRootCaused pRootCaused) {
-        int i = pRootCausedDAO.getGenerateId();
-        pRootCaused.setP_idoss_root_caused_id(i);
-        Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
-        pRootCaused.setActive("T");
-        pRootCaused.setCreated_date(ts);
-        pRootCaused.setCreated_user("2472898");
-        pRootCaused.setUpdated_date(ts);
-        pRootCaused.setUpdated_user("2472897");
-        getpRootCausedDAO().createPRootCaused(pRootCaused);
-    }
-
-    @Override
     public void saveOrUpdate(TPenangananGangguan tPenangananGangguan) {
         gettPenangananGangguanDAO().saveOrUpdate(tPenangananGangguan);
     }

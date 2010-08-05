@@ -168,8 +168,8 @@
                                         </hbox>
                                     </vbox>
                                     <hbox>
-                                        <checkbox id="cepat"
-                                                  label="Perlu Penanganan Cepat  " onCheck="doChecked()"/>
+                                        <checkbox id="checkbox_Cepat"
+                                                  label="Perlu Penanganan Cepat  "/>
                                         <vbox>
                                             <space height="2px"></space>
                                             <label

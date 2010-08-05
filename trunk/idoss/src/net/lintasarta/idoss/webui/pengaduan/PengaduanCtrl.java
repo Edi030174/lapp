@@ -14,7 +14,8 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -230,6 +231,11 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         tPenangananGangguan.setExt(textbox_Ext.getValue());
         tPenangananGangguan.setJudul(textbox_Judul.getValue());
         tPenangananGangguan.setDeskripsi(fckeditor_Des.getValue());
+        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
+        tPenangananGangguan.setCreated_date(ts);
+        tPenangananGangguan.setUpdated_date(ts);
+        tPenangananGangguan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
+        tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
     }
 

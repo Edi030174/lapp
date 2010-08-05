@@ -37,8 +37,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     protected Textbox texbox_Judul;
     protected Textbox textbox_Pelaksana;
     protected Textbox textbox_NikPelaksana;
-    protected Textbox textbox_TambahRootCaused;
-    protected Popup popup_TambahRootCaused;
     protected FCKeditor fckeditor_Deskripsi;
     protected FCKeditor fckeditor_Solusi;
     protected Radiogroup radiogroup_Dampak;
@@ -62,6 +60,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     private transient Listbox listbox_DaftarTiket;
 
     private transient String oldVar_textbox_Pelaksana;
+    private transient String oldVar_textbox_NikPelaksana;
     private transient String oldVar_fckeditor_Solusi;
     private transient String oldVar_radiogroup_Dampak;
     private transient String oldVar_combobox_Type;
@@ -272,25 +271,18 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     private boolean isDataChanged() throws Exception {
         boolean change = false;
 
-        if (!oldVar_textbox_Pelaksana.equals(textbox_Pelaksana.getValue())) {
+        if (oldVar_textbox_Pelaksana !=(textbox_Pelaksana.getValue())) {
             change = true;
         }
-//        if (!oldVar_combobox_RootCaused.equals(combobox_RootCaused.getValue())) {
+        if (oldVar_textbox_NikPelaksana !=(textbox_NikPelaksana.getValue())) {
+            change = true;
+        }
+//        if (combobox_Status !=(combobox_Status.getValue())) {
 //            change = true;
 //        }
-//        if (!oldVar_combobox_Type.equals(combobox_Type.getVflex())) {
-//            change = true;
-//        }
-//           if(oldVar_radiogroup_Dampak != radiogroup_Dampak.getSelectedItem()){
-//               change = true;
-//           }
-        if (!combobox_Status.equals(combobox_Status.getValue())) {
+        if (oldVar_fckeditor_Solusi != (fckeditor_Solusi.getValue())) {
             change = true;
         }
-        if (!oldVar_fckeditor_Solusi.equals(fckeditor_Solusi.getValue())) {
-            change = true;
-        }
-
 
         return change;
     }
