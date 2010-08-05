@@ -28,12 +28,7 @@
             font-weight: bold; }
         </style>
         <borderlayout id="borderlayoutCustomer">
-            <north border="none" margins="0,0,0,0">
-                <toolbar>
-                    <button id="btnSimpan_Permohonan" label="Simpan"/>
-                    <button id="btnBatal" label="Batal"/>
-                </toolbar>
-            </north>
+            <north border="none" margins="0,0,0,0"/>
             <center border="none">
                 <div id="divPermohonan">
                     <tabbox id="tabBox_Permohonan" width="100%">
@@ -49,7 +44,10 @@
                             <!--tap permohonan-->
                             <tabpanel id="tabPanel_Permohonan"
                                       height="100%" style="border: 0px; padding: 0px">
-
+                                <toolbar>
+                                    <button id="btnSimpan_Permohonan" label="Simpan"/>
+                                    <button id="btnBatal" label="Batal"/>
+                                </toolbar>
                                 <groupbox id="groupboxPemohon" mold="3d">
                                     <caption label="Pemohon"
                                              style="font-weight:bold"/>
