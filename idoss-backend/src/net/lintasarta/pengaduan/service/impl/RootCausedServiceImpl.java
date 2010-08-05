@@ -45,14 +45,12 @@ public class RootCausedServiceImpl implements RootCausedService {
         pRootCaused.setP_idoss_root_caused_id(i);
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         pRootCaused.setCreated_date(ts);
-        pRootCaused.setCreated_user("testCreate");
         pRootCaused.setUpdated_date(ts);
-        pRootCaused.setUpdated_user("testUpdate");
         getpRootCausedDAO().createPRootCaused(pRootCaused);
     }
 
     public void saveOrUpdate(PRootCaused pRootCaused) {
-         getpRootCausedDAO().saveOrUpdate(pRootCaused);
+        getpRootCausedDAO().saveOrUpdate(pRootCaused);
 
     }
 }

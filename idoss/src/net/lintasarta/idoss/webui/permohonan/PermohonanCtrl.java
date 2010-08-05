@@ -52,7 +52,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     protected Radio aplikasi;
     protected Radio lainlain;
     protected Textbox textbox_Lainlain;
-    protected Checkbox cepat;
+    protected Checkbox checkbox_Cepat;
     protected Button button_Lampiran;
     protected FCKeditor fck_DetailPermohonan;
 
@@ -391,6 +391,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         permohonan.setT_idoss_permohonan_id(textbox_TIdossPermohonanId.getValue());
         permohonan.setNama_pemohon(textbox_NamaPemohon.getValue());
         permohonan.setBagian_pemohon(textbox_BagianPemohon.getValue());
+        permohonan.setTgl_permohonan(new Timestamp(datebox_Tanggal.getValue().getTime()));
         permohonan.setNik_pemohon(textbox_NikPemohon.getValue());
         permohonan.setNama_asman(textbox_NamaAsman.getValue());
         permohonan.setNik_asman(textbox_NikAsman.getValue());
@@ -402,7 +403,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         permohonan.setDampak("m");
         permohonan.setLain_lain("lain");
         permohonan.setStatus_track_permohonan("ga jelas");
-
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         permohonan.setTarget_mulai_digunakan(ts);
         permohonan.setType_permohonan("ga jelas");
@@ -411,12 +411,18 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         permohonan.setUpdated_gm(ts);
         permohonan.setUpdated_manager(ts);
         permohonan.setUpdated_pemohon(ts);
-        permohonan.setUrgensi("darurat");
+        if(checkbox_Cepat.isChecked()){
+            permohonan.setUrgensi("Darurat");
+        }else if (checkbox_Cepat.isDisabled()){
+            permohonan.setUrgensi("Biasa");
+        }
+        permohonan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
+        permohonan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
     }
 
     public TPermohonan gettPermohonan() {
-        return tPermohonan;
+        return tPermohonan;  
     }
 
     public void settPermohonan(TPermohonan tPermohonan) {

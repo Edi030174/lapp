@@ -78,22 +78,14 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
 
     public void createPenangananGangguan(TPenangananGangguan tPenangananGangguan) {
 
-//        int i = tPenangananGangguanDAO.getSeqTiketId();
-//        String seq = String.valueOf(i);
-//        TicketIdGenerator tid = new TicketIdGenerator(seq);
-//        String ticketIdResult = tid.getTicketId();
-//        tPenangananGangguan.setT_idoss_penanganan_gangguan_id(ticketIdResult);
-// test
+        int i = tPenangananGangguanDAO.getSeqTiketId();
+        tPenangananGangguan.setGen_id_col(i);
         tPenangananGangguan.setDurasi(1);
         tPenangananGangguan.setNama_pelaksana(Constants.EMPTY_STRING);
         tPenangananGangguan.setMttr(Constants.EMPTY_STRING);
-        Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
-        tPenangananGangguan.setCreated_date(ts);
-        tPenangananGangguan.setUpdated_date(ts);
-        tPenangananGangguan.setCreated_user("8888888");
-        tPenangananGangguan.setUpdated_user("53463636");
-        int i = tPenangananGangguanDAO.getSeqTiketId();
-        tPenangananGangguan.setGen_id_col(i);
+//        Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
+//        tPenangananGangguan.setCreated_date(ts);
+//        tPenangananGangguan.setUpdated_date(ts);
         gettPenangananGangguanDAO().createTPenangananGangguan(tPenangananGangguan);
     }
 

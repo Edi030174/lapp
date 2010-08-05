@@ -62,7 +62,7 @@ public class PermohonanServiceImpl implements PermohonanService{
 
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         tPermohonan.setCreated_date(ts);
-        tPermohonan.setCreated_user("Anton");
+        tPermohonan.setUpdated_date(ts);
         gettPermohonanDAO().createTPermohonan(tPermohonan);
 
     }

@@ -12,6 +12,7 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Map;
 
 /**
@@ -164,7 +165,8 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
         tVerifikasi.setNik_pelaksana(textbox_NikPelaksana.getValue());
         tVerifikasi.setCatatan_asman(fckCatatan_asman.getValue());
         tVerifikasi.setCatatan_manager(fckCatatan_manager.getValue());
-//        tVerifikasi.setTgl_permohonan(dateboxTanggal1.getValue());
+        tVerifikasi.setTgl_permohonan(new Timestamp(dateboxTanggal1.getValue().getTime()));
+        tVerifikasi.setUpdated_asman(new Timestamp(dateboxTanggal2.getValue().getTime()));
     }
 
     public TVerifikasi gettVerifikasi() {
