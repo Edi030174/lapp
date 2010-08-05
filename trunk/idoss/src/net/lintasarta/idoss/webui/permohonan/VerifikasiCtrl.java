@@ -167,6 +167,7 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
         tVerifikasi.setCatatan_manager(fckCatatan_manager.getValue());
         tVerifikasi.setTgl_permohonan(new Timestamp(dateboxTanggal1.getValue().getTime()));
         tVerifikasi.setUpdated_asman(new Timestamp(dateboxTanggal2.getValue().getTime()));
+        tVerifikasi.setT_idoss_verifikasi_id("12");
     }
 
     public TVerifikasi gettVerifikasi() {

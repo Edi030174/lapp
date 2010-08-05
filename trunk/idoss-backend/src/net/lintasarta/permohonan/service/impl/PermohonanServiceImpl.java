@@ -82,4 +82,9 @@ public class PermohonanServiceImpl implements PermohonanService{
     public TPelaksanaan getTPelaksanaanByTIdossPelaksanaanId(String t_idoss_pelaksanaan_id) {
         return gettPelaksanaanDAO().getTPelaksanaanByTIdossPelaksanaanId(t_idoss_pelaksanaan_id);
     }
+
+    @Override
+    public TPelaksanaan getNewPelaksanaan() {
+        return new TPelaksanaan();
+    }
 }

@@ -20,5 +20,6 @@ public interface PermohonanService {
     TVerifikasi getTVerifikasiByTIdossVerifikasiId(String t_idoss_verifikasi_id);
     TVerifikasi getNewVerifikasi();
     TPelaksanaan getTPelaksanaanByTIdossPelaksanaanId(String t_idoss_pelaksanaan_id);
+    TPelaksanaan getNewPelaksanaan();
 
 }
