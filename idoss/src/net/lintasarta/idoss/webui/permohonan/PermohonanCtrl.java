@@ -215,7 +215,11 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         TPelaksanaan tPelaksanaan = getPermohonanService().getTPelaksanaanByTIdossPelaksanaanId(gettPermohonan().getT_idoss_permohonan_id());
 
         HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("tPelaksanaan", tPelaksanaan);
+        if(tPelaksanaan != null) {
+            map.put("tPelaksanaan", tPelaksanaan);
+        } else {
+            map.put("tPelaksanaan", getPermohonanService().getNewPelaksanaan());
+        }
         map.put("permohonanCtrl", this);
 
         Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_Pelaksanaan");
