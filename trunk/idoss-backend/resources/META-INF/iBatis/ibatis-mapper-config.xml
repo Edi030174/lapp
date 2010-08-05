@@ -28,8 +28,7 @@
     </typeAliases>
 
     <typeHandlers>
-        <typeHandler javaType="java.sql.Blob" jdbcType="BLOB" handler="org.apache.ibatis.type.BlobTypeHandler"/>
-        <typeHandler javaType="java.lang.Byte" jdbcType="BLOB" handler="org.apache.ibatis.type.ByteArrayTypeHandler"/>
+        <typeHandler javaType="byte[]" jdbcType="BLOB" handler="org.apache.ibatis.type.BlobTypeHandler"/>
     </typeHandlers>
 
     <mappers>
