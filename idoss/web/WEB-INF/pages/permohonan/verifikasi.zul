@@ -1,6 +1,30 @@
 <?page title="verifikasi" contentType="text/html;charset=UTF-8"?>
 <zk>
-    <window id="window_Verifikasi" title="verifikasi" border="normal" apply="${verifikasiCtrl}">
+    <style>
+        body { padding: 0 0; /* 0 padding on top and bottom and 0
+        padding on right and left */ }
+
+        <!-- cut the vertical borders in the rows -->
+        tr.z-row td.z-row-inner { border-right: 0px #CCC; }
+
+        <!-- Make Plain Grid -->
+        .GridLayoutNoBorder tr.z-row td.z-row-inner, tr.z-row
+        .z-cell,div.z-grid { border: none; overflow: hidden; zoom:
+        1; background: white; border-top: none; border-left: none;
+        border-right: none; border-bottom: none; }
+
+        <!-- Title in bold letters -->
+        .z-groupbox-hl .z-groupbox-header { color: #000000;
+        font-weight: bold; }
+    </style>
+    <window id="window_Verifikasi" border="normal"
+            apply="${verifikasiCtrl}">
+
+        <toolbar>
+            <button id="btnSimpan_Verifikasi" label="Simpan"/>
+            <button id="btnBatal" label="Batal"/>
+        </toolbar>
+
         <hbox>
             <space width="20px"></space>
             <hbox>
@@ -8,10 +32,10 @@
                     <space height="7px"></space>
                     <label value="Prioritas :"/>
                 </vbox>
-                <radiogroup id="radiogroupPrioritas">
+                <radiogroup id="radiogroup_Prioritas">
                     <vbox>
-                        <radio id="high" label="high"/>
-                        <radio id="normal" label="normal"/>
+                        <radio id="high" label="high" value="H"/>
+                        <radio id="normal" label="normal" value="N"/>
                     </vbox>
                 </radiogroup>
             </hbox>
@@ -21,10 +45,10 @@
                     <space height="7px"></space>
                     <label value="Dampak :"/>
                 </vbox>
-                <radiogroup id="radiogroupDampak">
+                <radiogroup id="radiogroup_Dampak">
                     <vbox>
-                        <radio id="major" label="major"/>
-                        <radio id="minor" label="minor"/>
+                        <radio id="major" label="major" value="MAJOR"/>
+                        <radio id="minor" label="minor" value="MINOR"/>
                     </vbox>
                 </radiogroup>
             </hbox>
@@ -86,7 +110,7 @@
                                 <north border="0" size="15%">
                                     <div style="">
                                         <radiogroup
-                                                id="radiogroupStatus_permohonan_asman">
+                                                id="radiogroup_Statuspermohonanasman">
                                             <radio id="radioDisetujui"
                                                    label="disetujui">
                                             </radio>
@@ -163,7 +187,7 @@
                                 <north border="0" size="15%">
                                     <div style="">
                                         <radiogroup
-                                                id="radiogroupStatus_permohonan_manager">
+                                                id="radiogroup_Statuspermohonanmanager">
                                             <radio id="radioDisetujui2"
                                                    label="disetujui">
                                             </radio>

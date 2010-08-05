@@ -28,20 +28,24 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
 
     protected Window window_Verifikasi;
 
+    protected Radiogroup radiogroup_Prioritas;
     protected Radio high;
     protected Radio normal;
+    protected Radiogroup radiogroup_Dampak;
     protected Radio major;
     protected Radio minor;
 
     protected Datebox dateboxTanggal1;
     protected Textbox textbox_NikPelaksana;
     protected Checkbox checkbox1;
+    protected Radiogroup radiogroup_Statuspermohonanasman;
     protected Radio radioDisetujui;
     protected Radio radioDitolak;
     protected FCKeditor fckCatatan_asman;
 
     protected Datebox dateboxTanggal2;
     protected Checkbox checkbox2;
+    protected Radiogroup radiogroup_Statuspermohonanmanager;
     protected Radio radioDisetujui2;
     protected Radio radioDitolak2;
     protected FCKeditor fckCatatan_manager;
@@ -64,12 +68,8 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
     private transient boolean oldVar_radioDitolak2;
     private transient String oldVar_fckCatatanManager;
 
-    /*protected Button btnRefreshVerifikasi;
-    protected Button btnBuatVerifikasi;
-    protected Button btnCariVerifikasi;
-    protected Button btnSimpan_Verifikasi;*/
     protected Listbox listbox_DaftarPermohonan;
-    protected Button btnSimpan_Permohonan;
+    protected Button btnSimpan_Verifikasi;
     protected VerifikasiCtrl verifikasiCtrl;
 
     private transient TVerifikasi tVerifikasi;
@@ -138,7 +138,7 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
         fckCatatan_manager.setValue(tVerifikasi.getCatatan_manager());
     }
 
-    public void onClick$btnSimpan_Permohonan(Event event) throws Exception{
+    public void onClick$btnSimpan_Verifikasi(Event event) throws Exception{
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
@@ -162,12 +162,31 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteComponentsToBean(TVerifikasi tVerifikasi) {
+
+        tVerifikasi.setT_idoss_verifikasi_id("josh");
+
+        Radio prioritas = radiogroup_Prioritas.getSelectedItem();
+        tVerifikasi.setUrgensi(prioritas.getValue());
+        Radio dampak = radiogroup_Dampak.getSelectedItem();
+        tVerifikasi.setDampak(dampak.getValue());
+        Radio status = radiogroup_Statuspermohonanasman.getSelectedItem();
+        tVerifikasi.setStatus_permohonan_asman(status.getValue());
+        tVerifikasi.setTgl_permohonan(new Timestamp(dateboxTanggal1.getValue().getTime()));
         tVerifikasi.setNik_pelaksana(textbox_NikPelaksana.getValue());
         tVerifikasi.setCatatan_asman(fckCatatan_asman.getValue());
-        tVerifikasi.setCatatan_manager(fckCatatan_manager.getValue());
-        tVerifikasi.setTgl_permohonan(new Timestamp(dateboxTanggal1.getValue().getTime()));
+        Radio statusMan = radiogroup_Statuspermohonanmanager.getSelectedItem();
+        tVerifikasi.setStatus_permohonan_manager(statusMan.getValue());
         tVerifikasi.setUpdated_asman(new Timestamp(dateboxTanggal2.getValue().getTime()));
-        tVerifikasi.setT_idoss_verifikasi_id("12");
+        tVerifikasi.setCatatan_manager(fckCatatan_manager.getValue());
+        tVerifikasi.setRfs("rfs");
+        tVerifikasi.setType_permohonan("T");
+        tVerifikasi.setCatatan_per_type("n");
+        tVerifikasi.setUpdated_manager(new Timestamp(dateboxTanggal2.getValue().getTime()));
+        tVerifikasi.setCreated_user(getUserWorkspace().getUserSession().getUserName());
+        tVerifikasi.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
+        tVerifikasi.setCreated_date(new Timestamp(dateboxTanggal2.getValue().getTime()));
+        tVerifikasi.setUpdated_date(new Timestamp(dateboxTanggal2.getValue().getTime()));
+
     }
 
     public TVerifikasi gettVerifikasi() {
