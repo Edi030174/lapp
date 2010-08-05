@@ -188,7 +188,11 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         TVerifikasi tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
 
         HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("tVerifikasi", tVerifikasi);
+        if (tVerifikasi != null) {
+            map.put("tVerifikasi", tVerifikasi);
+        } else {
+            map.put("tVerifikasi", getPermohonanService().getNewVerifikasi());
+        }
         map.put("permohonanCtrl", this);
 
         Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_Verifikasi");

@@ -75,6 +75,10 @@ public class PermohonanServiceImpl implements PermohonanService{
         return gettVerifikasiDAO().getTVerifikasiByTIdossVerifikasiId(t_idoss_verifikasi_id);
     }
 
+    public TVerifikasi getNewVerifikasi() {
+        return new TVerifikasi();
+    }
+
     public TPelaksanaan getTPelaksanaanByTIdossPelaksanaanId(String t_idoss_pelaksanaan_id) {
         return gettPelaksanaanDAO().getTPelaksanaanByTIdossPelaksanaanId(t_idoss_pelaksanaan_id);
     }
