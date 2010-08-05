@@ -1,7 +1,7 @@
 package net.lintasarta.permohonan.model;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
+import java.io.*;
 
 /**
  * Created by Joshua
@@ -37,6 +37,7 @@ public class TPermohonan implements Serializable {
     private String created_user;
     private Timestamp updated_date;
     private String updated_user;
+    private InputStream uploadStream;
 
     public TPermohonan() {
     }
@@ -263,5 +264,13 @@ public class TPermohonan implements Serializable {
 
     public void setUpdated_user(String updated_user) {
         this.updated_user = updated_user;
+    }
+
+    public InputStream getUploadStream() {
+        return uploadStream;
+    }
+
+    public void setUploadStream(InputStream uploadStream) {
+        this.uploadStream = uploadStream;
     }
 }

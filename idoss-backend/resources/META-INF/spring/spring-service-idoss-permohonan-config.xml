@@ -8,6 +8,7 @@
         <property name="tVerifikasiDAO" ref="tVerifikasiDAO"/>
     </bean>
     <bean id="permohonanService" class="net.lintasarta.permohonan.service.impl.PermohonanServiceImpl">
+        <property name="filePath" value="${file.path}"/>
         <property name="tPelaksanaanDAO" ref="tPelaksanaanDAO"/>
         <property name="tPermohonanDAO" ref="tPermohonanDAO"/>
         <property name="tVerifikasiDAO" ref="tVerifikasiDAO"/>

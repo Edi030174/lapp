@@ -9,6 +9,7 @@ import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
 
+import java.io.*;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
@@ -18,10 +19,20 @@ import java.util.List;
  * Date: Jun 28, 2010
  * Time: 7:37:19 PM
  */
-public class PermohonanServiceImpl implements PermohonanService{
+public class PermohonanServiceImpl implements PermohonanService {
+
+    private String filePath;
     private TPermohonanDAO tPermohonanDAO;
     private TVerifikasiDAO tVerifikasiDAO;
     private TPelaksanaanDAO tPelaksanaanDAO;
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 
     public TPermohonanDAO gettPermohonanDAO() {
         return tPermohonanDAO;
@@ -59,12 +70,59 @@ public class PermohonanServiceImpl implements PermohonanService{
         return gettPermohonanDAO().getAllTPermohonan();
     }
 
-    public void createTPermohonan(TPermohonan tPermohonan) {
+    private void saveFile(String fileName, InputStream fin) {
+        BufferedInputStream in = null;
+        BufferedOutputStream out = null;
+        try {
+            in = new BufferedInputStream(fin);
+
+            File baseDir = new File(filePath);
+
+            if (!baseDir.exists()) {
+                baseDir.mkdirs();
+            }
+
+            File file = new File(filePath + fileName);
+
+            OutputStream fout = new FileOutputStream(file);
+            out = new BufferedOutputStream(fout);
+            byte buffer[] = new byte[1024];
+            int ch = in.read(buffer);
+            while (ch != -1) {
+                out.write(buffer, 0, ch);
+                ch = in.read(buffer);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (out != null)
+                    out.close();
+
+                if (in != null)
+                    in.close();
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+
+    public void createTPermohonan(String uploadedFileName, TPermohonan tPermohonan) {
+        if (uploadedFileName != null) {
+            saveFile(uploadedFileName, tPermohonan.getUploadStream());
+            File file = new File(filePath + uploadedFileName);
+            tPermohonan.setLampiran(file.getPath());
+        }
 
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         tPermohonan.setCreated_date(ts);
         tPermohonan.setUpdated_date(ts);
         tPermohonan.setStatus_track_permohonan(Status.PERMOHONAN.toString());
+
         gettPermohonanDAO().createTPermohonan(tPermohonan);
 
     }
