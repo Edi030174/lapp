@@ -15,7 +15,7 @@ public class TPermohonan implements Serializable {
     private String urgensi;
     private Timestamp target_mulai_digunakan;
     private String detail_permohonan;
-    private byte[] lampiran;
+    private String lampiran;
     private String status_track_permohonan;
     private String nik_pemohon;
     private String nama_pemohon;
@@ -89,11 +89,11 @@ public class TPermohonan implements Serializable {
         this.detail_permohonan = detail_permohonan;
     }
 
-    public byte[] getLampiran() {
+    public String getLampiran() {
         return lampiran;
     }
 
-    public void setLampiran(byte[] lampiran) {
+    public void setLampiran(String lampiran) {
         this.lampiran = lampiran;
     }
 

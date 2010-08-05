@@ -361,7 +361,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     public void onUpload$button_Lampiran(UploadEvent event) throws IOException {
         Media media = event.getMedia();
         InputStream stream= media.getStreamData();
-        byte[] bytes = IOUtils.toByteArray(stream);
+        String bytes = IOUtils.toByteArray(stream);
         gettPermohonan().setLampiran(bytes);
         System.out.println("PermohonanCtrl.onUpload$button_Lampiran");
     }
