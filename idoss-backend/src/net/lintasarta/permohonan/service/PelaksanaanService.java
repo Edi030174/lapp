@@ -10,6 +10,7 @@ import java.util.List;
  * Time: 10:54:50 AM
  */
 public interface PelaksanaanService {
+    
     TPelaksanaan getNewPelaksanaan();
     int getCountAllTPelaksanaan();
     List<TPelaksanaan> getAllTPelaksanaan();
