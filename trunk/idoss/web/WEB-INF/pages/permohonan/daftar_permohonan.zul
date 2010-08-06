@@ -22,16 +22,16 @@
                     image="/images/icons/refresh2_yellow_16x16.gif"/>
             <button id="btnBuatBaru_DaftarPermohonan"
                     image="/images/icons/btn_new2_16x16.gif"/>
-            <label value="Permohonan ID"/>
+            <label value="Nomor"/>
             <textbox id="textbox_cariPermohonanId"/>
             <button id="btnCari" label="cari"
                     image="/images/icons/btn_search2_16x16.gif"/>
             <separator/>
-            <label value="tipe permohonan:"/>
+            <!--<label value="tipe permohonan:"/>-->
             <checkbox id="checkbox_all" label="tampilkan semua"/>
-            <checkbox id="checkbox_readonly" label="read-only"/>
-            <checkbox id="checkbox_readwrite" label="read-write"/>
-            <checkbox id="checkbox_aplikasi" label="aplikasi"/>
+            <!--<checkbox id="checkbox_readonly" label="User RO"/>-->
+            <!--<checkbox id="checkbox_readwrite" label="User RW"/>-->
+            <!--<checkbox id="checkbox_aplikasi" label="Aplikasi"/>-->
 
         </hbox>
         <separator bar="false"/>

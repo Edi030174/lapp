@@ -142,20 +142,31 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
 
         if (!textbox_Cari.getValue().isEmpty()) {
 
-            // ++ create the searchObject and init sorting ++//
-
             ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
-            List searchResult = new ArrayList(lml);
 
+            List searchResult = new ArrayList(lml);
             CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
 
             PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             pagedListHolder.setPageSize(getCountRows());
-            
-            // Set the ListModel.
+
             getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftaTiket);
         }
 
+    }
+
+    public void onCheck$checkbox_all(Event event) {
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        textbox_Cari.setValue("");
+
+        List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
+        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
+        pagedListHolder.setPageSize(getCountRows());
+
+        getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftaTiket);
     }
 
     public void onClick$btnRefresh_DaftarTiket(Event event) throws Exception {
