@@ -64,6 +64,10 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
 
     @Override
     public void saveOrUpdate(TPenangananGangguan tPenangananGangguan) {
+
+        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
+        tPenangananGangguan.setUpdated_date(ts);
+
         gettPenangananGangguanDAO().saveOrUpdate(tPenangananGangguan);
     }
 }

@@ -39,6 +39,7 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         TicketIdGenerator tid = new TicketIdGenerator(seq);
         String ticketIdResult = tid.getTicketId();
 
+
         return ticketIdResult;
     }
 
@@ -83,9 +84,9 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         tPenangananGangguan.setDurasi(1);
         tPenangananGangguan.setNama_pelaksana(Constants.EMPTY_STRING);
         tPenangananGangguan.setMttr(Constants.EMPTY_STRING);
-//        Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
-//        tPenangananGangguan.setCreated_date(ts);
-//        tPenangananGangguan.setUpdated_date(ts);
+        Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
+        tPenangananGangguan.setCreated_date(ts);
+        tPenangananGangguan.setUpdated_date(ts);
         gettPenangananGangguanDAO().createTPenangananGangguan(tPenangananGangguan);
     }
 

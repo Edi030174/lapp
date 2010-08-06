@@ -15,7 +15,7 @@ public class TPenangananGangguan implements Serializable {
     private String bagian_pelapor;
     private String judul;
     private String deskripsi;
-    private Integer dampak;
+    private String dampak;
     private Integer type_id;
     private String nik_pelaksana;
     private String nama_pelaksana;
@@ -85,11 +85,11 @@ public class TPenangananGangguan implements Serializable {
         this.deskripsi = deskripsi;
     }
 
-    public Integer getDampak() {
+    public String getDampak() {
         return dampak;
     }
 
-    public void setDampak(Integer dampak) {
+    public void setDampak(String dampak) {
         this.dampak = dampak;
     }
 
