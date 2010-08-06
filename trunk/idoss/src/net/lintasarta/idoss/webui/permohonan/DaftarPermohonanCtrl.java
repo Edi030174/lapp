@@ -84,6 +84,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         paging_DaftarPermohonan.setPageSize(getCountRows());
         paging_DaftarPermohonan.setDetailed(true);
 
+        checkbox_all.setChecked(true);
         listheader_Nomor.setSortAscending(new FieldComparator("t_idoss_permohonan_id", true));
         listheader_Nomor.setSortDescending(new FieldComparator("t_idoss_permohonan_id", true));
         listheader_Tanggal.setSortAscending(new FieldComparator("tgl_permohonan", true));
