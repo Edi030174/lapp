@@ -1,17 +1,20 @@
 package net.lintasarta.idoss.webui.permohonan;
 
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
+import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPelaksanaan;
-import net.lintasarta.permohonan.model.TPermohonan;
-import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PelaksanaanService;
 import org.apache.log4j.Logger;
+import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
+import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.util.*;
+import java.util.Calendar;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,16 +27,25 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
     private transient final static Logger logger = Logger.getLogger(PermohonanCtrl.class);
     protected Window window_Pelaksanaan;
-    protected Radiogroup radiogroupStatus_perubahan;
-    protected Datebox dateboxRfs_date;
+
+    protected Radiogroup radiogroup_StatusPerubahan;
+    protected Radio selesai;
+    protected Radio tunda;
+    protected Radio mulai;
+    protected Datebox datebox_TglPermohonan;
     protected FCKeditor fckCatatan_pelaksana;
+    protected Checkbox checkbox_Rfs;
+
+    private transient String oldVar_selesai;
+    private transient String oldVar_tunda;
+    private transient String oldVar_mulai;
+    private transient String oldVar_dateboxTglPermohonan;
+    private transient boolean oldVar_checkboxRfs;
 
     protected Listbox listbox_DaftarPermohonan;
-
+    protected Button btnSimpan_Pelaksanaan;
     protected PelaksanaanCtrl pelaksanaanCtrl;
 
-    private transient TPermohonan tPermohonan;
-    private transient TVerifikasi tVerifikasi;
     private transient TPelaksanaan tPelaksanaan;
     private transient PelaksanaanService pelaksanaanService;
 
@@ -50,8 +62,8 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        Map<String, Object> args = getCreationArgsMap(event);
 
+        Map<String, Object> args = getCreationArgsMap(event);
         if (args.containsKey("tPelaksanaan")) {
             TPelaksanaan tPelaksanaan = (TPelaksanaan) args.get("tPelaksanaan");
             settPelaksanaan(tPelaksanaan);
@@ -64,16 +76,17 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             pelaksanaanCtrl = null;
         }
+
         if (args.containsKey("listbox_DaftarPermohonan")) {
             listbox_DaftarPermohonan = (Listbox) args.get("listbox_DaftarPermohonan");
         } else {
             listbox_DaftarPermohonan = null;
         }
+
         doShowDialog(gettPelaksanaan());
     }
 
     private void doShowDialog(TPelaksanaan tPelaksanaan) throws InterruptedException {
-
         try {
             doWriteBeanToComponents(tPelaksanaan);
 
@@ -83,28 +96,53 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
-    private void doWriteBeanToComponents(TPelaksanaan tPelaksanaan) throws Exception{
-        dateboxRfs_date.setValue(tPelaksanaan.getRfs_date());
+    private void doWriteBeanToComponents(TPelaksanaan tPelaksanaan) throws Exception {
+        datebox_TglPermohonan.setValue(tPelaksanaan.getRfs_date());
         fckCatatan_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
-        
-    }
-    
 
 
-    public TPermohonan gettPermohonan() {
-        return tPermohonan;
+
     }
 
-    public void settPermohonan(TPermohonan tPermohonan) {
-        this.tPermohonan = tPermohonan;
+    public void onClick$btnSimpan_Pelaksanaan(Event event) throws Exception {
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        doSimpan();
+
     }
 
-    public TVerifikasi gettVerifikasi() {
-        return tVerifikasi;
+    private void doSimpan() throws Exception{
+        TPelaksanaan tPelaksanaan = gettPelaksanaan();
+
+        doWriteComponentsToBean(tPelaksanaan);
+        try {
+            getPelaksanaanService().createTPelaksanaan(tPelaksanaan);
+        } catch (DataAccessException e) {
+            String message = e.getMessage();
+            String title = Labels.getLabel("message_Error");
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
+        }
+
     }
 
-    public void settVerifikasi(TVerifikasi tVerifikasi) {
-        this.tVerifikasi = tVerifikasi;
+    private void doWriteComponentsToBean(TPelaksanaan tPelaksanaan) {
+        tPelaksanaan.setT_idoss_pelaksanaan_id("bobo");
+        tPelaksanaan.setTgl_permohonan(new Timestamp(datebox_TglPermohonan.getValue().getTime()));
+        Radio status = radiogroup_StatusPerubahan.getSelectedItem();
+        tPelaksanaan.setCatatan_pelaksana(fckCatatan_pelaksana.getValue());
+        if (checkbox_Rfs.isChecked()) {
+            tPelaksanaan.setRfs("1");
+        } else if (checkbox_Rfs.isDisabled()) {
+            tPelaksanaan.setRfs("0");
+        }
+        tPelaksanaan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
+        tPelaksanaan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
+        Timestamp now = new Timestamp(Calendar.getInstance().getTimeInMillis());
+        tPelaksanaan.setUpdated_date(now);
+        tPelaksanaan.setCreated_date(now);
     }
 
     public TPelaksanaan gettPelaksanaan() {
