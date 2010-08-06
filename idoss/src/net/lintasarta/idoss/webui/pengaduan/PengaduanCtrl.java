@@ -80,6 +80,12 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 			settPenangananGangguan(null);
 		}
 
+        if (args.containsKey("listbox_DaftarTiket")) {
+            listbox_DaftarTiket = (Listbox) args.get("listbox_DaftarTiket");
+        } else {
+            listbox_DaftarTiket = null;
+        }
+
         doShowDialog(gettPenangananGangguan());
         textbox_NomorTiket.setValue(getPenangananGangguanService().getTiketId());
         textbox_NamaPelapor.setValue(getUserWorkspace().getUserSession().getEmployeeName());
@@ -205,7 +211,18 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 			MultiLineMessageBox.doSetTemplate();
 			MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
-        
+
+        // now synchronize the listBox
+        ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
+
+        // Check if the object is new or updated
+        // -1 means that the obj is not in the list, so it's new.
+        if (lml.indexOf(tPenangananGangguan) == -1) {
+            lml.add(tPenangananGangguan);
+        } else {
+            lml.set(lml.indexOf(tPenangananGangguan), tPenangananGangguan);
+        }
+
         doStoreInitValues();
     }
 

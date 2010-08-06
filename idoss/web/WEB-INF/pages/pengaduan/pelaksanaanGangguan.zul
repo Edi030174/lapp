@@ -65,7 +65,7 @@
                         <vbox>
                             <hbox>
                                 <radiogroup id="radiogroup_Dampak" orient="horizontal">
-                                    <radio id="radio_minor" label="Minor" value="Minor"/>
+                                    <radio id="radio_minor" label="Minor" value="Minor" selected="true"/>
                                     <radio id="radio_mayor" label="Mayor" value="Mayor"/>
                                 </radiogroup>
                                 <space width="110px"/>
