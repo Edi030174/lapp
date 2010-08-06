@@ -221,7 +221,10 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        TPelaksanaan tPelaksanaan = getPermohonanService().getTPelaksanaanByTIdossPelaksanaanId(gettPermohonan().getT_idoss_permohonan_id());
+        TPelaksanaan tPelaksanaan = null;
+        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
+            tPelaksanaan = getPermohonanService().getTPelaksanaanByTIdossPelaksanaanId(gettPermohonan().getT_idoss_permohonan_id());
+        }
 
         HashMap<String, Object> map = new HashMap<String, Object>();
         if (tPelaksanaan != null) {
