@@ -26,6 +26,7 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
 
     private transient static final Logger logger = Logger.getLogger(VerifikasiCtrl.class);
 
+    protected Window window_Permohonan;
     protected Window window_Verifikasi;
 
     protected Radiogroup radiogroup_Prioritas;
@@ -70,6 +71,7 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
 
     protected Listbox listbox_DaftarPermohonan;
     protected Button btnSimpan_Verifikasi;
+    protected Button btnBatal;
     protected VerifikasiCtrl verifikasiCtrl;
 
     private transient TVerifikasi tVerifikasi;
@@ -146,6 +148,14 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
         doSimpan();
     }
 
+    public void onClick$btnBatal(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+
+        window_Permohonan.onClose();
+    }
+
     private void doSimpan() throws Exception {
 
         TVerifikasi tVerifikasi = gettVerifikasi();
@@ -159,6 +169,11 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
+        doStoreInitValues();
+    }
+
+    private void doStoreInitValues() {
+        
     }
 
     private void doWriteComponentsToBean(TVerifikasi tVerifikasi) {

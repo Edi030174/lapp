@@ -94,9 +94,9 @@
                                                 </vbox>
                                             </hbox>
                                             <space height="7px"></space>
-                                            <checkbox id="checkbox1"
-                                                      label="Disetujui oleh pimpinan bagian Dukophar"
-                                                      onCheck="doChecked()"/>
+                                            <!--<checkbox id="checkbox1"-->
+                                                      <!--label="Disetujui oleh pimpinan bagian Dukophar"-->
+                                                      <!--onCheck="doChecked()"/>-->
                                         </vbox>
                                     </div>
                                 </center>
@@ -174,9 +174,9 @@
                                                 </datebox>
                                             </hbox>
                                             <space height="7px"></space>
-                                            <checkbox id="checkbox2"
-                                                      label="Disetujui oleh pimpinan bagian Dukophar"
-                                                      onCheck="doChecked()"/>
+                                            <!--<checkbox id="checkbox2"-->
+                                                      <!--label="Disetujui oleh pimpinan bagian Dukophar"-->
+                                                      <!--onCheck="doChecked()"/>-->
                                         </vbox>
                                     </div>
                                 </center>

@@ -34,6 +34,12 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
     protected Listheader listheader_Tanggal;
     protected Listheader listheader_Tipe;
     protected Listheader listheader_StatusPersetujuan;
+
+    protected Checkbox checkbox_all;
+    protected Checkbox checkbox_readonly;
+    protected Checkbox checkbox_readwrite;
+    protected Checkbox checkbox_aplikasi;
+
 //    protected Listheader listheader_Pimbag;
 //    protected Listheader listheader_Pimdiv;
     protected Listheader listheader_AssMgr;
@@ -141,6 +147,37 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         Events.postEvent("onCreate", window_DaftarPermohonan, event);
         window_DaftarPermohonan.invalidate();
     }
+
+    public void onCheck$checkbox_all(Event event) {
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("--> " + event.toString());
+		}
+		checkbox_readonly.setChecked(false);
+		checkbox_readwrite.setChecked(false);
+		checkbox_aplikasi.setChecked(false);
+
+	}
+    
+    public void onCheck$checkbox_readonly(Event event) {
+
+		checkbox_all.setChecked(false);
+
+	}
+
+    public void onCheck$checkbox_readwrite(Event event) {
+
+		checkbox_all.setChecked(false);
+
+
+	}    public void onCheck$checkbox_aplikasi(Event event) {
+
+		checkbox_all.setChecked(false);
+
+
+	}
+
+
 
     public void showDetailView(TPermohonan tPermohonan) throws Exception {
 

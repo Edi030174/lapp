@@ -26,6 +26,7 @@ import java.util.Calendar;
 public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
     private transient final static Logger logger = Logger.getLogger(PermohonanCtrl.class);
+    protected Window window_Permohonan;
     protected Window window_Pelaksanaan;
 
     protected Radiogroup radiogroup_StatusPerubahan;
@@ -113,6 +114,14 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
+    public void onClick$btnBatal(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+
+        window_Permohonan.onClose();
+    }
+
     private void doSimpan() throws Exception{
         TPelaksanaan tPelaksanaan = gettPelaksanaan();
 
@@ -125,6 +134,11 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
+        doStoreInitValues();
+
+    }
+
+    private void doStoreInitValues() {
 
     }
 
