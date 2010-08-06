@@ -228,8 +228,10 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         tPenangananGangguan.setRoot_cause_id(listbox_RootCaused.getSelectedIndex());
         tPenangananGangguan.setType_id(listbox_Type.getSelectedIndex());
         tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
-        tPenangananGangguan.setDampak(radiogroup_Dampak.getSelectedIndex());
+        Radio dampak = radiogroup_Dampak.getSelectedItem();
+        tPenangananGangguan.setDampak(dampak.getValue());
         tPenangananGangguan.setStatus(combobox_Status.getValue());
+        tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
     }
 
