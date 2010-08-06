@@ -4,7 +4,9 @@ import net.lintasarta.idoss.webui.permohonan.model.DaftarPermohonanModelItemRend
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPermohonan;
+import net.lintasarta.permohonan.model.predicate.IdTPermohonan;
 import net.lintasarta.permohonan.service.PermohonanService;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.support.PagedListHolder;
 import org.zkoss.util.resource.Labels;
@@ -15,6 +17,7 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -45,6 +48,8 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
     protected Listheader listheader_AssMgr;
     protected Listheader listheader_Mgr;
     protected Listheader listheader_GM;
+
+    protected Textbox textbox_cariPermohonanId;
 
     protected Panel panel_daftarPermohonan;
 
@@ -149,36 +154,38 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         window_DaftarPermohonan.invalidate();
     }
 
+    public void onClick$btnCari(Event event) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        if (!textbox_cariPermohonanId.getValue().isEmpty()) {
+            checkbox_all.setChecked(false);
+
+            ListModelList lml = (ListModelList) listbox_DaftarPermohonan.getListModel();
+
+            List searchResult = new ArrayList(lml);
+            CollectionUtils.filter(searchResult, new IdTPermohonan(textbox_cariPermohonanId.getValue()));
+
+            PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>(searchResult);
+            pagedListHolder.setPageSize(getCountRows());
+
+            getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonan, paging_DaftarPermohonan);
+        }
+    }
+
     public void onCheck$checkbox_all(Event event) {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("--> " + event.toString());
-		}
-		checkbox_readonly.setChecked(false);
-		checkbox_readwrite.setChecked(false);
-		checkbox_aplikasi.setChecked(false);
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        textbox_cariPermohonanId.setValue("");
 
-	}
-    
-    public void onCheck$checkbox_readonly(Event event) {
+        List<TPermohonan> tPermohonans = getPermohonanService().getAllTPermohonan();
+        PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>(tPermohonans);
+        pagedListHolder.setPageSize(getCountRows());
 
-		checkbox_all.setChecked(false);
-
-	}
-
-    public void onCheck$checkbox_readwrite(Event event) {
-
-		checkbox_all.setChecked(false);
-
-
-	}    public void onCheck$checkbox_aplikasi(Event event) {
-
-		checkbox_all.setChecked(false);
-
-
-	}
-
-
+        getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonan, paging_DaftarPermohonan);
+    }
 
     public void showDetailView(TPermohonan tPermohonan) throws Exception {
 
