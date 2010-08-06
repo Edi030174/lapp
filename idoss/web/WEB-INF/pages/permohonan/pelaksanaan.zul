@@ -28,7 +28,7 @@
                                     <vbox>
                                         <space height="7px"></space>
                                         <checkbox id="checkbox_Rfs"
-                                                  label="Disetujui oleh Pelaksana" onCheck="doChecked()"/>
+                                                  label="Disetujui oleh Pelaksana"/>
                                     </vbox>
                                 </vbox>
                             </div>
