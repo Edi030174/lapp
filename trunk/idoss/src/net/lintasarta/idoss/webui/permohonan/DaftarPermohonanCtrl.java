@@ -150,6 +150,8 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 
         map.put("DaftarPermohonanCtrl", this);
 
+        map.put("listbox_DaftarPermohonan", listbox_DaftarPermohonan);
+
         try {
             Executions.createComponents("/WEB-INF/pages/permohonan/permohonan.zul", null, map);
         } catch (Exception e) {

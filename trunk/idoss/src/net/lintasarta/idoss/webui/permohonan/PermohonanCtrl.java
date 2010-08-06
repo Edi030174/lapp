@@ -388,6 +388,17 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
+
+        ListModelList lml = (ListModelList) listbox_DaftarPermohonan.getListModel();
+
+        // Check if the object is new or updated
+        // -1 means that the obj is not in the list, so it's new.
+        if (lml.indexOf(tPermohonan) == -1) {
+            lml.add(tPermohonan);
+        } else {
+            lml.set(lml.indexOf(tPermohonan), tPermohonan);
+        }
+
         doStoreInitValues();
     }
 
