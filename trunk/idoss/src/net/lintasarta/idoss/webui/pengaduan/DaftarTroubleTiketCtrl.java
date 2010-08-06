@@ -5,7 +5,9 @@ import net.lintasarta.idoss.webui.pengaduan.model.DaftarTiketModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
+import net.lintasarta.pengaduan.model.predicate.JudulTPenangananGangguan;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.support.PagedListHolder;
 import org.zkoss.util.resource.Labels;
@@ -16,6 +18,7 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -88,7 +91,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         setCountRows(Math.round(maxListBoxHeight / 17));
 
         borderlayout_daftarTroubleTiket.setHeight(String.valueOf(maxListBoxHeight) + "px");
-        
+
         paging_DaftaTiket.setPageSize(getCountRows());
         paging_DaftaTiket.setDetailed(true);
 
@@ -138,19 +141,30 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         }
 
         if (!textbox_Cari.getValue().isEmpty()) {
-            textbox_Cari.setValue("");
 
+            // ++ create the searchObject and init sorting ++//
+
+            ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
+            List searchResult = new ArrayList(lml);
+
+            CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
+
+            PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
+            pagedListHolder.setPageSize(getCountRows());
+            
+            // Set the ListModel.
+            getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftaTiket);
         }
 
     }
 
     public void onClick$btnRefresh_DaftarTiket(Event event) throws Exception {
         if (logger.isDebugEnabled()) {
-			logger.debug("--> " + event.toString());
-		}
+            logger.debug("--> " + event.toString());
+        }
 
-		Events.postEvent("onCreate", window_DaftarTroubleTiket, event);
-		window_DaftarTroubleTiket.invalidate();
+        Events.postEvent("onCreate", window_DaftarTroubleTiket, event);
+        window_DaftarTroubleTiket.invalidate();
     }
 
     public void onClick$btnBuatBaru_DaftarTiket(Event event) throws Exception {
