@@ -201,15 +201,15 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         texbox_Pelapor.setValue(tPenangananGangguan.getNama_pelapor());
         texbox_Bagian.setValue(tPenangananGangguan.getBagian_pelapor());
         texbox_Judul.setValue(tPenangananGangguan.getJudul());
-        if(tPenangananGangguan.getNama_pelaksana() == null){
-            textbox_Pelaksana.setValue(getUserWorkspace().getUserSession().getEmployeeName());
-        }else {
+        if(tPenangananGangguan.getNama_pelaksana() != null){
             textbox_Pelaksana.setValue(tPenangananGangguan.getNama_pelaksana());
-        }
-        if(tPenangananGangguan.getNik_pelaksana() == null){
-            textbox_NikPelaksana.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
         }else {
+            textbox_Pelaksana.setValue(getUserWorkspace().getUserSession().getEmployeeName());
+        }
+        if(tPenangananGangguan.getNik_pelaksana() != null){
             textbox_NikPelaksana.setValue(tPenangananGangguan.getNik_pelaksana());
+        }else {
+            textbox_NikPelaksana.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
         }
         fckeditor_Deskripsi.setValue(tPenangananGangguan.getDeskripsi());
         fckeditor_Solusi.setValue(tPenangananGangguan.getSolusi());
@@ -227,8 +227,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         tPenangananGangguan.setDeskripsi(fckeditor_Deskripsi.getValue());
         tPenangananGangguan.setRoot_cause_id(listbox_RootCaused.getSelectedIndex());
         tPenangananGangguan.setType_id(listbox_Type.getSelectedIndex());
-//        tPenangananGangguan.setType_desc(String.valueOf(listbox_Type.getSelectedIndex()));
-//        tPenangananGangguan.setRoot_caused(String.valueOf(listbox_RootCaused.getSelectedIndex()));
         tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
         tPenangananGangguan.setDampak(radiogroup_Dampak.getSelectedIndex());
         tPenangananGangguan.setStatus(combobox_Status.getValue());
