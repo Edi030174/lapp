@@ -44,10 +44,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 //    protected Radio radio_mayor;
     protected Listbox listbox_Type;
     protected Listbox listbox_RootCaused;
-//    protected Combobox combobox_Type;
-//    protected Combobox combobox_RootCaused;
     protected Combobox combobox_Status;
-//    protected Checkbox checkbox_Aktif;
     protected Button btn_TambahRootCaused;
 //    protected Button btnSimpan_RootCaused;
 //    protected Button btnBatal_RootCaused;
