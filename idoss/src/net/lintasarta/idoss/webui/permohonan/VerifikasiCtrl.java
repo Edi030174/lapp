@@ -2,6 +2,7 @@ package net.lintasarta.idoss.webui.permohonan;
 
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
+import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.VerifikasiService;
 import org.apache.log4j.Logger;
@@ -76,6 +77,7 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
 
     private transient TVerifikasi tVerifikasi;
     private transient VerifikasiService verifikasiService;
+    private transient TPermohonan tPermohonan;
 
     public VerifikasiCtrl() {
         super();
@@ -178,7 +180,7 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doWriteComponentsToBean(TVerifikasi tVerifikasi) {
 
-        tVerifikasi.setT_idoss_verifikasi_id("josh");
+        tVerifikasi.setT_idoss_verifikasi_id(gettPermohonan().getT_idoss_permohonan_id());
 
         Radio prioritas = radiogroup_Prioritas.getSelectedItem();
         tVerifikasi.setUrgensi(prioritas.getValue());
@@ -218,5 +220,13 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setVerifikasiService(VerifikasiService verifikasiService) {
         this.verifikasiService = verifikasiService;
+    }
+
+    public TPermohonan gettPermohonan() {
+        return tPermohonan;
+    }
+
+    public void settPermohonan(TPermohonan tPermohonan) {
+        this.tPermohonan = tPermohonan;
     }
 }

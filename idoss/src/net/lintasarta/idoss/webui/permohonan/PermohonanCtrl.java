@@ -170,12 +170,24 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     private void doWriteBeanToComponents(TPermohonan tPermohonan) {
 
         textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
-        textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
-        textbox_BagianPemohon.setValue(tPermohonan.getBagian_pemohon());
+        if(tPermohonan.getNama_pemohon() != null){
+            textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
+        }else {
+            textbox_NamaPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeName());
+        }
+        if(tPermohonan.getBagian_pemohon() != null){
+            textbox_BagianPemohon.setValue(tPermohonan.getBagian_pemohon());
+        }else {
+            textbox_BagianPemohon.setValue(getUserWorkspace().getUserSession().getDepartment());
+        }
         textbox_NamaAsman.setValue(tPermohonan.getNama_asman());
         textbox_NamaManager.setValue(tPermohonan.getNama_manager());
         textbox_NamaGm.setValue(tPermohonan.getNama_gm());
-        textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
+        if(tPermohonan.getNik_pemohon() != null){
+            textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
+        }else {
+            textbox_NikPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
+        }
         textbox_NikAsman.setValue(tPermohonan.getNik_asman());
         textbox_NikManager.setValue(tPermohonan.getNik_manager());
         textbox_NikGm.setValue(tPermohonan.getNik_gm());
@@ -194,7 +206,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         if (gettPermohonan().getT_idoss_permohonan_id() != null) {
             tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
         }
-
 
         HashMap<String, Object> map = new HashMap<String, Object>();
         if (tVerifikasi != null) {

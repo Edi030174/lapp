@@ -49,6 +49,12 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
     protected Listheader listheader_MTTR;
     protected Listheader listheader_TglUpdate;
 
+    protected Checkbox checkbox_All;
+    protected Checkbox checkbox_Open;
+    protected Checkbox checkbox_InProgress;
+    protected Checkbox checkbox_Pending;
+    protected Checkbox checkbox_Selesai;
+
 //    protected Button btnCari_DaftarTiket;
 //    protected Button btnBuatBaru_DaftarTiket;
 //    protected Button btnKeluar_DaftarTiket;
@@ -64,7 +70,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         super();
 
         if (logger.isDebugEnabled()) {
-//            logger.debug("--> super()");
+            logger.debug("--> super()");
         }
     }
 
@@ -96,13 +102,21 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         paging_DaftaTiket.setDetailed(true);
 
         listheader_NomorTiket.setSortAscending(new FieldComparator("t_idoss_penanganan_gangguan_id", true));
+        listheader_NomorTiket.setSortDescending(new FieldComparator("t_idoss_penanganan_gangguan_id", false));
         listheader_Judul.setSortAscending(new FieldComparator("judul", true));
+        listheader_Judul.setSortDescending(new FieldComparator("judul", false));
         listheader_Status.setSortAscending(new FieldComparator("status", true));
+        listheader_Status.setSortDescending(new FieldComparator("status", false));
         listheader_Pelapor.setSortAscending(new FieldComparator("nama_pelapor", true));
+        listheader_Pelapor.setSortDescending(new FieldComparator("nama_pelapor", false));
         listheader_PenanggungJawab.setSortAscending(new FieldComparator("nama_pelaksana", true));
+        listheader_PenanggungJawab.setSortDescending(new FieldComparator("nama_pelaksana", false));
         listheader_Durasi.setSortAscending(new FieldComparator("durasi", true));
+        listheader_Durasi.setSortDescending(new FieldComparator("durasi", false));
         listheader_MTTR.setSortAscending(new FieldComparator("mttr", true));
+        listheader_MTTR.setSortDescending(new FieldComparator("mttr", false));
         listheader_TglUpdate.setSortAscending(new FieldComparator("updated_date", true));
+        listheader_TglUpdate.setSortDescending(new FieldComparator("updated_date", false));
 
         List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
         PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
@@ -187,6 +201,52 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         TPenangananGangguan tPenangananGangguan = getPenangananGangguanService().getNewPenangananGangguan();
 
         showDetailViewPengaduan(tPenangananGangguan);
+
+    }
+
+    public void onCheck$checkbox_All(Event event) throws Exception{
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+
+//        checkbox_InProgress.setChecked(false);
+//        checkbox_Open.setChecked(false);
+//        checkbox_Pending.setChecked(false);
+//        checkbox_Selesai.setChecked(false);
+        
+    }
+
+    public void onCheck$checkbox_Open(Event event) throws Exception {
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        checkbox_All.setChecked(false);
+    }
+
+    public void onCheck$checkbox_InProgress(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        checkbox_All.setChecked(false);
+    }
+
+    public void onCheck$checkbox_Pending(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        checkbox_All.setChecked(false);
+
+    }
+
+    public void onCheck$checkbox_Selesai(Event event) throws Exception {
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        checkbox_All.setChecked(false);
+
 
     }
 
