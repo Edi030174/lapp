@@ -383,7 +383,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     private void doSimpan() throws InterruptedException {
 
         TPermohonan tPermohonan = gettPermohonan();
-
         doWriteComponentsToBean(tPermohonan);
 
         try {
