@@ -386,12 +386,15 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         doWriteComponentsToBean(tPermohonan);
 
         try {
-        String uploadeFileName = null;
-        if (getUploadMedia() != null) {
-            uploadeFileName = getUploadMedia().getName();
-        }
-        getPermohonanService().simpanAllTPermohonan(uploadeFileName, tPermohonan);
-         } catch (DataAccessException e) {
+            String uploadeFileName = null;
+            if (getUploadMedia() != null) {
+                uploadeFileName = getUploadMedia().getName();
+            } else if (getUploadMedia() == null) {
+                uploadeFileName = "";
+            }
+            getPermohonanService().simpanAllTPermohonan(uploadeFileName, tPermohonan);
+
+        } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
             MultiLineMessageBox.doSetTemplate();
