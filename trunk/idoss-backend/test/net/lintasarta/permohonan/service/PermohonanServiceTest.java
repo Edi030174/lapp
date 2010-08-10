@@ -94,4 +94,50 @@ public class PermohonanServiceTest {
 //        assertEquals(r + 1, tPermohonanDAO.getCountAllTPermohonan());
     }
 
+    @Test
+    public void testSimpanAllTPermohonan() throws Exception{
+        TPermohonan tPermohonan = new TPermohonan();
+
+        tPermohonan.setT_idoss_permohonan_id("RR151");
+
+        Timestamp now = new Timestamp(Calendar.getInstance().getTimeInMillis());
+        tPermohonan.setTgl_permohonan(now);
+        tPermohonan.setDampak("1");
+        tPermohonan.setUrgensi("1");
+
+        String tglIsian = "1987-01-07 08:20:10";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        java.util.Date tglDate = sdf.parse(tglIsian);
+        Timestamp dt = new Timestamp(tglDate.getTime());
+        tPermohonan.setTarget_mulai_digunakan(dt);
+
+        tPermohonan.setStatus_track_permohonan("PERMOHONAN_BARU");
+        tPermohonan.setNik_pemohon("894928423");
+        tPermohonan.setNama_pemohon("JOHN");
+        tPermohonan.setBagian_pemohon("DIREKSI");
+        tPermohonan.setNik_asman("9999999");
+        tPermohonan.setNama_asman("VVV");
+        tPermohonan.setNik_manager("6666666");
+        tPermohonan.setNama_manager("EG");
+        tPermohonan.setNik_gm("3333333");
+        tPermohonan.setNama_gm("CCC");
+
+        tPermohonan.setType_permohonan("READ_ONLY");
+
+        tPermohonan.setCreated_date(now);
+
+        tPermohonan.setCreated_user("39393939");
+
+        Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
+        tPermohonan.setUpdated_date(ts);
+
+        tPermohonan.setUpdated_user("39393939");
+
+        int i = permohonanService.getAllTPermohonan().size();
+
+        permohonanService.simpanAllTPermohonan("okok", tPermohonan);
+        assertEquals(i+1, permohonanService.getAllTPermohonan().size());
+
+    }
+
 }

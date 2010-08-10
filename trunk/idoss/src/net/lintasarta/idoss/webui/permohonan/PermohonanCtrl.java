@@ -7,7 +7,6 @@ import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
 import org.apache.log4j.Logger;
-import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.media.Media;
 import org.zkoss.util.resource.Labels;
@@ -170,22 +169,22 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     private void doWriteBeanToComponents(TPermohonan tPermohonan) {
 
         textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
-        if(tPermohonan.getNama_pemohon() != null){
+        if (tPermohonan.getNama_pemohon() != null) {
             textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
-        }else {
+        } else {
             textbox_NamaPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeName());
         }
-        if(tPermohonan.getBagian_pemohon() != null){
+        if (tPermohonan.getBagian_pemohon() != null) {
             textbox_BagianPemohon.setValue(tPermohonan.getBagian_pemohon());
-        }else {
+        } else {
             textbox_BagianPemohon.setValue(getUserWorkspace().getUserSession().getDepartment());
         }
         textbox_NamaAsman.setValue(tPermohonan.getNama_asman());
         textbox_NamaManager.setValue(tPermohonan.getNama_manager());
         textbox_NamaGm.setValue(tPermohonan.getNama_gm());
-        if(tPermohonan.getNik_pemohon() != null){
+        if (tPermohonan.getNik_pemohon() != null) {
             textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
-        }else {
+        } else {
             textbox_NikPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
         }
         textbox_NikAsman.setValue(tPermohonan.getNik_asman());
@@ -385,19 +384,19 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         TPermohonan tPermohonan = gettPermohonan();
         doWriteComponentsToBean(tPermohonan);
 
-        try {
-            String uploadeFileName = null;
-            if (getUploadMedia() != null) {
-                uploadeFileName = getUploadMedia().getName();
-            }
-            getPermohonanService().createTPermohonan(uploadeFileName, tPermohonan);
-
-        } catch (DataAccessException e) {
-            String message = e.getMessage();
-            String title = Labels.getLabel("message_Error");
-            MultiLineMessageBox.doSetTemplate();
-            MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
+//        try {
+        String uploadeFileName = null;
+        if (getUploadMedia() != null) {
+            uploadeFileName = getUploadMedia().getName();
+        } else {
         }
+        getPermohonanService().simpanAllTPermohonan(uploadeFileName, tPermohonan);
+//         } catch (DataAccessException e) {
+//            String message = e.getMessage();
+//            String title = Labels.getLabel("message_Error");
+//            MultiLineMessageBox.doSetTemplate();
+//            MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
+//        }
 
         ListModelList lml = (ListModelList) listbox_DaftarPermohonan.getListModel();
 

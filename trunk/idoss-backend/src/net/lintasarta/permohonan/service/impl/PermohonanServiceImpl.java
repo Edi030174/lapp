@@ -124,7 +124,35 @@ public class PermohonanServiceImpl implements PermohonanService {
         tPermohonan.setStatus_track_permohonan(Status.PERMOHONAN.toString());
 
         gettPermohonanDAO().createTPermohonan(tPermohonan);
-        
+
+
+    }
+
+    public void simpanAllTPermohonan(String uploadedFileName, TPermohonan tPermohonan) {
+        createTPermohonan(uploadedFileName, tPermohonan);
+
+        TVerifikasi tVerifikasi = new TVerifikasi();
+        tVerifikasi.setT_idoss_verifikasi_id(tPermohonan.getT_idoss_permohonan_id());
+        tVerifikasi.setTgl_permohonan(tPermohonan.getTgl_permohonan());
+        tVerifikasi.setUrgensi("1");
+        tVerifikasi.setDampak("1");
+        tVerifikasi.setStatus_permohonan_asman("NEW");
+        tVerifikasi.setStatus_permohonan_manager("NEW");
+        tVerifikasi.setCreated_date(tPermohonan.getCreated_date());
+        tVerifikasi.setCreated_user(tPermohonan.getCreated_user());
+        tVerifikasi.setUpdated_date(tPermohonan.getUpdated_date());
+        tVerifikasi.setUpdated_user(tPermohonan.getUpdated_user());
+        gettVerifikasiDAO().createTVerifikasi(tVerifikasi);
+
+        TPelaksanaan tPelaksanaan = new TPelaksanaan();
+        tPelaksanaan.setT_idoss_pelaksanaan_id(tPermohonan.getT_idoss_permohonan_id());
+        tPelaksanaan.setTgl_permohonan(tPermohonan.getTgl_permohonan());
+        tPelaksanaan.setStatus_perubahan("OPEN");
+        tPelaksanaan.setCreated_date(tPermohonan.getCreated_date());
+        tPelaksanaan.setCreated_user(tPermohonan.getCreated_user());
+        tPelaksanaan.setUpdated_date(tPermohonan.getUpdated_date());
+        tPelaksanaan.setUpdated_user(tPermohonan.getUpdated_user());
+        gettPelaksanaanDAO().createTPelaksanaan(tPelaksanaan);
 
     }
 

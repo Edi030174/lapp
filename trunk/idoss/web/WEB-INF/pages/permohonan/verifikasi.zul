@@ -112,10 +112,10 @@
                                         <radiogroup
                                                 id="radiogroup_Statuspermohonanasman">
                                             <radio id="radioDisetujui"
-                                                   label="disetujui">
+                                                   label="disetujui" value="DISETUJUI">
                                             </radio>
                                             <radio id="radioDitolak"
-                                                   label="ditolak">
+                                                   label="ditolak" value="DITOLAK">
                                             </radio>
                                         </radiogroup>
                                     </div>
