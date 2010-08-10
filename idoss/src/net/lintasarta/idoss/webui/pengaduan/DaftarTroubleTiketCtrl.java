@@ -50,10 +50,6 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
     protected Listheader listheader_TglUpdate;
 
     protected Checkbox checkbox_All;
-    protected Checkbox checkbox_Open;
-    protected Checkbox checkbox_InProgress;
-    protected Checkbox checkbox_Pending;
-    protected Checkbox checkbox_Selesai;
 
 //    protected Button btnCari_DaftarTiket;
 //    protected Button btnBuatBaru_DaftarTiket;
@@ -166,7 +162,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
 
             getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftaTiket);
         }
-
+        checkbox_All.setChecked(false);
     }
 
     public void onOK$textbox_Cari(Event event) throws Exception {
@@ -188,9 +184,12 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
             getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftaTiket);
         }
 
+        checkbox_All.setChecked(false);
+
     }
 
     public void onClick$btnRefresh_DaftarTiket(Event event) throws Exception {
+
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
