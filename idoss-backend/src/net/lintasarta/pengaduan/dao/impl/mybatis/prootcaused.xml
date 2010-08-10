@@ -6,13 +6,17 @@
     <select id="getCountAllPRootCaused" resultType="int">
         select count(*) from P_IDOSS_ROOT_CAUSED
     </select>
-    
+
     <select id="getGenerateId" resultType="int">
        select generate_id('SNI','P_IDOSS_ROOT_CAUSED','P_IDOSS_ROOT_CAUSED_ID') from dual
     </select>
 
     <select id="getAllPRootCaused" resultType="prootcaused">
-        select * from P_IDOSS_ROOT_CAUSED
+--         select * from P_IDOSS_ROOT_CAUSED
+      select M.P_IDOSS_ROOT_CAUSED_ID, M.root_caused, M.parent_id,(select root_caused from P_IDOSS_ROOT_CAUSED where P_IDOSS_ROOT_CAUSED_ID=M.parent_id) as PARENT_NAME
+      from   P_IDOSS_ROOT_CAUSED M
+      start  with M.parent_id = -1
+      connect by prior M.P_IDOSS_ROOT_CAUSED_ID = M.parent_id
     </select>
 
     <select id="getPRootCausedByRootCausedId" resultType="prootcaused">
@@ -54,4 +58,4 @@
 
    </update>
 
- </mapper>
+</mapper>
