@@ -181,7 +181,8 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
     private void doWriteComponentsToBean(TVerifikasi tVerifikasi) {
 
         tVerifikasi.setT_idoss_verifikasi_id(gettPermohonan().getT_idoss_permohonan_id());
-
+//        Permohonan permohonan = getCreationArgsMap().get(permohonanCtrl);
+//        tVerifikasi.setT_idoss_verifikasi_id(
         Radio prioritas = radiogroup_Prioritas.getSelectedItem();
         tVerifikasi.setUrgensi(prioritas.getValue());
         Radio dampak = radiogroup_Dampak.getSelectedItem();
