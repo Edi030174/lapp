@@ -389,8 +389,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             String uploadeFileName = null;
             if (getUploadMedia() != null) {
                 uploadeFileName = getUploadMedia().getName();
-            } else if (getUploadMedia() == null) {
-                uploadeFileName = "";
             }
             getPermohonanService().simpanAllTPermohonan(uploadeFileName, tPermohonan);
 
@@ -453,7 +451,11 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         permohonan.setNama_gm(textbox_NamaGm.getValue());
         permohonan.setNik_gm(textbox_NikGm.getValue());
         permohonan.setDetail_permohonan(fck_DetailPermohonan.getValue());
-        permohonan.setUploadStream(getUploadMedia().getStreamData());
+        if (permohonan.getUploadStream() != null) {
+            permohonan.setUploadStream(getUploadMedia().getStreamData());
+        } else {
+            permohonan.setUploadStream(null);
+        }
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         permohonan.setTarget_mulai_digunakan(ts);
         Radio type = radiogroupType_permohonan.getSelectedItem();

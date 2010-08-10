@@ -116,10 +116,7 @@ public class PermohonanServiceImpl implements PermohonanService {
             saveFile(uploadedFileName, tPermohonan.getUploadStream());
             File file = new File(filePath + uploadedFileName);
             tPermohonan.setLampiran(file.getPath());
-        }else {
-            tPermohonan.setLampiran("kosong");
         }
-
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         tPermohonan.setCreated_date(ts);
         tPermohonan.setUpdated_date(ts);
