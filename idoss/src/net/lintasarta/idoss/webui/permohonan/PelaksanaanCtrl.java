@@ -126,7 +126,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
         doWriteComponentsToBean(tPelaksanaan);
         try {
-            getPelaksanaanService().createTPelaksanaan(tPelaksanaan);
+            getPelaksanaanService().saveOrUpdateTPelaksanaan(tPelaksanaan);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");

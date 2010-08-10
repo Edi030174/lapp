@@ -16,6 +16,7 @@ public interface PermohonanService {
     TPermohonan getTPermohonanByTIdossPermohonanId(String t_idoss_permohonan_id);
     List<TPermohonan> getAllTPermohonan();
     void createTPermohonan (String uploadedFileName, TPermohonan tPermohonan);
+    void simpanAllTPermohonan(String uploadedFileName, TPermohonan tPermohonan);
     void saveOrUpdateTPermohonan (TPermohonan tPermohonan);
     TVerifikasi getTVerifikasiByTIdossVerifikasiId(String t_idoss_verifikasi_id);
     TVerifikasi getNewVerifikasi();

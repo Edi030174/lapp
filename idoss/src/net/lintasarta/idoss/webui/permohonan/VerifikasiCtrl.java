@@ -164,7 +164,7 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
         doWriteComponentsToBean(tVerifikasi);
 
         try {
-            getVerifikasiService().createTVerifikasi(tVerifikasi);
+            getVerifikasiService().saveOrUpdateTVerifikasi(tVerifikasi);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -180,7 +180,6 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doWriteComponentsToBean(TVerifikasi tVerifikasi) {
 
-        tVerifikasi.setT_idoss_verifikasi_id(gettPermohonan().getT_idoss_permohonan_id());
 //        Permohonan permohonan = getCreationArgsMap().get(permohonanCtrl);
 //        tVerifikasi.setT_idoss_verifikasi_id(
         Radio prioritas = radiogroup_Prioritas.getSelectedItem();
