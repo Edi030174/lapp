@@ -3,7 +3,6 @@ package net.lintasarta.idoss.webui.pengaduan;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.idoss.webui.util.NoEmptyStringsConstraint;
-import net.lintasarta.idoss.webui.util.RemoveStringsConstraint;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
 import org.apache.log4j.Logger;
