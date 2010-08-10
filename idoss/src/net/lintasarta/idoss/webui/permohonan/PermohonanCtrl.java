@@ -7,6 +7,7 @@ import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
 import org.apache.log4j.Logger;
+import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.media.Media;
 import org.zkoss.util.resource.Labels;
@@ -384,19 +385,18 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         TPermohonan tPermohonan = gettPermohonan();
         doWriteComponentsToBean(tPermohonan);
 
-//        try {
+        try {
         String uploadeFileName = null;
         if (getUploadMedia() != null) {
             uploadeFileName = getUploadMedia().getName();
-        } else {
         }
         getPermohonanService().simpanAllTPermohonan(uploadeFileName, tPermohonan);
-//         } catch (DataAccessException e) {
-//            String message = e.getMessage();
-//            String title = Labels.getLabel("message_Error");
-//            MultiLineMessageBox.doSetTemplate();
-//            MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
-//        }
+         } catch (DataAccessException e) {
+            String message = e.getMessage();
+            String title = Labels.getLabel("message_Error");
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
+        }
 
         ListModelList lml = (ListModelList) listbox_DaftarPermohonan.getListModel();
 
