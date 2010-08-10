@@ -451,10 +451,8 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         permohonan.setNama_gm(textbox_NamaGm.getValue());
         permohonan.setNik_gm(textbox_NikGm.getValue());
         permohonan.setDetail_permohonan(fck_DetailPermohonan.getValue());
-        if (permohonan.getUploadStream() != null) {
+        if (getUploadMedia() != null) {
             permohonan.setUploadStream(getUploadMedia().getStreamData());
-        } else {
-            permohonan.setUploadStream(null);
         }
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         permohonan.setTarget_mulai_digunakan(ts);

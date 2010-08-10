@@ -2,20 +2,20 @@ package net.lintasarta.idoss.webui.pengaduan;
 
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
-
+import net.lintasarta.idoss.webui.util.NoEmptyStringsConstraint;
+import net.lintasarta.idoss.webui.util.RemoveStringsConstraint;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
+import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.event.Event;
-import org.zkforge.fckez.FCKeditor;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.*;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -36,7 +36,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_NomorHP;
     protected Textbox textbox_Ext;
     protected Textbox textbox_Judul;
-    protected Listbox listbox_DaftarTiket; 
+    protected Listbox listbox_DaftarTiket;
 
     protected FCKeditor fckeditor_Des;
 
@@ -61,24 +61,24 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         super();
 
         if (logger.isDebugEnabled()) {
-			logger.debug("--> super()*/");
-		}
+            logger.debug("--> super()*/");
+        }
     }
 
     public void onCreate$window_Pengaduan(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
-			logger.debug("--> " + event.toString());
-		}
+            logger.debug("--> " + event.toString());
+        }
 
         Map<String, Object> args = getCreationArgsMap(event);
 
         if (args.containsKey("tPenangananGangguan")) {
-			TPenangananGangguan tPenangananGangguan = (TPenangananGangguan) args.get("tPenangananGangguan");
-			settPenangananGangguan(tPenangananGangguan);
-		} else {
-			settPenangananGangguan(null);
-		}
+            TPenangananGangguan tPenangananGangguan = (TPenangananGangguan) args.get("tPenangananGangguan");
+            settPenangananGangguan(tPenangananGangguan);
+        } else {
+            settPenangananGangguan(null);
+        }
 
         if (args.containsKey("listbox_DaftarTiket")) {
             listbox_DaftarTiket = (Listbox) args.get("listbox_DaftarTiket");
@@ -95,7 +95,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doShowDialog(TPenangananGangguan tPenangananGangguan) throws InterruptedException {
 
-       if(tPenangananGangguan == null) {
+        if (tPenangananGangguan == null) {
 
             tPenangananGangguan = getPenangananGangguanService().getNewPenangananGangguan();
         }
@@ -103,23 +103,23 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
             window_Pengaduan.doModal();
 
         } catch (Exception e) {
-			Messagebox.show(e.toString());
-		}
+            Messagebox.show(e.toString());
+        }
     }
 
     public void onClose$window_Pengaduan(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
-			logger.debug("--> " + event.toString());
-		}
+            logger.debug("--> " + event.toString());
+        }
 
         doClose();
     }
 
     public void onClick$btnSimpan_pengaduan(Event event) throws InterruptedException {
         if (logger.isDebugEnabled()) {
-			logger.debug("--> " + event.toString());
-		}
+            logger.debug("--> " + event.toString());
+        }
         doSimpan();
         window_Pengaduan.onClose();
 
@@ -127,67 +127,69 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onClick$btnBatal_pengaduan(Event event) throws InterruptedException {
         if (logger.isDebugEnabled()) {
-			logger.debug("--> " + event.toString());
-		}
+            logger.debug("--> " + event.toString());
+        }
 
         doBatal();
     }
 
     private void doClose() throws Exception {
+        if (textbox_Judul.getConstraint() != null) {
+            textbox_Judul = new Textbox();
+        }
         if (logger.isDebugEnabled()) {
-			logger.debug("--> DataIsChanged :" + isDataChanged());
-		}
+            logger.debug("--> DataIsChanged :" + isDataChanged());
+        }
         if (isDataChanged()) {
 
-			// Show a confirm box
-			String message = Labels.getLabel("message_Data_Modified_Save_Data_YesNo");
-			String title = Labels.getLabel("message_Information");
+            // Show a confirm box
+            String message = Labels.getLabel("message_Data_Modified_Save_Data_YesNo");
+            String title = Labels.getLabel("message_Information");
 
-			MultiLineMessageBox.doSetTemplate();
-			if (MultiLineMessageBox.show(message, title, MultiLineMessageBox.YES | MultiLineMessageBox.NO, MultiLineMessageBox.QUESTION, true, new EventListener() {
-				public void onEvent(Event evt) {
-					switch (((Integer) evt.getData()).intValue()) {
-					case MultiLineMessageBox.YES:
-						try {
-							doSimpan();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					case MultiLineMessageBox.NO:
-						break; //
-					}
-				}
-			}
+            MultiLineMessageBox.doSetTemplate();
+            if (MultiLineMessageBox.show(message, title, MultiLineMessageBox.YES | MultiLineMessageBox.NO, MultiLineMessageBox.QUESTION, true, new EventListener() {
+                public void onEvent(Event evt) {
+                    switch (((Integer) evt.getData()).intValue()) {
+                        case MultiLineMessageBox.YES:
+                            try {
+                                doSimpan();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        case MultiLineMessageBox.NO:
+                            break; //
+                    }
+                }
+            }
 
-			) == MultiLineMessageBox.YES) {
-			}
-		}
-       window_Pengaduan.onClose();
-
+            ) == MultiLineMessageBox.YES) {
+            }
+        }
+        window_Pengaduan.onClose();
     }
 
     private boolean isDataChanged() throws Exception {
         boolean change = false;
 
-        if(oldVar_textboxNomorTiket != textbox_NomorTiket.getValue() ){
+        if (oldVar_textboxNomorTiket != textbox_NomorTiket.getValue()) {
             change = true;
         }
-        if(oldVar_textboxNamaPelapor != textbox_NamaPelapor.getValue()){
+        if (oldVar_textboxNamaPelapor != textbox_NamaPelapor.getValue()) {
             change = true;
         }
-        if(oldVar_textboxNikPelapor != textbox_NikPelapor.getValue()){
+        if (oldVar_textboxNikPelapor != textbox_NikPelapor.getValue()) {
             change = true;
         }
-        if(oldVar_textboxNomorHP != textbox_NomorHP.getValue()){
+        if (oldVar_textboxNomorHP != textbox_NomorHP.getValue()) {
             change = true;
         }
-        if(oldVar_textboxExt != textbox_Ext.getValue()){
+        if (oldVar_textboxExt != textbox_Ext.getValue()) {
             change = true;
         }
-        if(oldVar_textboxJudul != textbox_Judul.getValue()){
+        if (oldVar_textboxJudul != textbox_Judul.getValue()) {
             change = true;
         }
-        if(oldVar_fckeditorDes != fckeditor_Des.getValue()) {
+        if (oldVar_fckeditorDes != fckeditor_Des.getValue()) {
             change = true;
         }
         return change;
@@ -198,18 +200,18 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
 
         if (!isValidationOn()) {
-			doSetValidation();
-		}
+            doSetValidation();
+        }
 
         doWriteComponentsToBean(tPenangananGangguan);
 
         try {
             getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan);
-        } catch (DataAccessException e){
+        } catch (DataAccessException e) {
             String message = e.getMessage();
-			String title = Labels.getLabel("message_Error");
-			MultiLineMessageBox.doSetTemplate();
-			MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
+            String title = Labels.getLabel("message_Error");
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
 
         // now synchronize the listBox
@@ -228,13 +230,13 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doStoreInitValues() {
 
-      oldVar_textboxNomorTiket = textbox_NomorTiket.getValue();
-      oldVar_textboxNamaPelapor = textbox_NamaPelapor.getValue();
-      oldVar_textboxNikPelapor = textbox_NikPelapor.getValue();
-      oldVar_textboxNomorHP = textbox_NomorHP.getValue();
-      oldVar_textboxExt = textbox_Ext.getValue();
-      oldVar_textboxJudul = textbox_Judul.getValue();
-      oldVar_fckeditorDes = fckeditor_Des.getValue();
+        oldVar_textboxNomorTiket = textbox_NomorTiket.getValue();
+        oldVar_textboxNamaPelapor = textbox_NamaPelapor.getValue();
+        oldVar_textboxNikPelapor = textbox_NikPelapor.getValue();
+        oldVar_textboxNomorHP = textbox_NomorHP.getValue();
+        oldVar_textboxExt = textbox_Ext.getValue();
+        oldVar_textboxJudul = textbox_Judul.getValue();
+        oldVar_fckeditorDes = fckeditor_Des.getValue();
 
     }
 
@@ -253,16 +255,16 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
-    private void doBatal() throws InterruptedException{
+    private void doBatal() throws InterruptedException {
 
-         window_Pengaduan.onClose();
+        window_Pengaduan.onClose();
     }
 
     private void doSetValidation() {
 
         setValidationOn(true);
 
-        textbox_Judul.setConstraint(new SimpleConstraint("NO EMPTY"));
+        textbox_Judul.setConstraint(new NoEmptyStringsConstraint());
     }
 
     public boolean isValidationOn() {
