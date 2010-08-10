@@ -63,4 +63,9 @@
     <bean id="tambahRootCausedCtrl" class="net.lintasarta.idoss.webui.pengaduan.TambahRootCausedCtrl" parent="basisCtrl" scope="prototype">
         <property name="rootCausedService" ref="rootCausedService"/>
     </bean>
+
+    <bean id="rootCausedCtrl" class="net.lintasarta.idoss.webui.pengaduan.RootCausedCtrl" parent="basisCtrl" scope="prototype">
+        <property name="rootCausedService" ref="rootCausedService"/>
+    </bean>
+
 </beans>

@@ -50,7 +50,7 @@ public class PRootCausedDAOTest {
         for(PRootCaused pRootCaused :pRootCauseds){
             rootCausedActual = pRootCaused.getRoot_caused();
         }
-        String rootCausedExpected = "MANTAP";
+        String rootCausedExpected = "test";
 
         assertEquals(rootCausedExpected, rootCausedActual);
     }

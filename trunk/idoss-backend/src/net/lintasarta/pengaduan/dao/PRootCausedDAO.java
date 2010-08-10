@@ -25,5 +25,4 @@ public interface PRootCausedDAO {
 
     void saveOrUpdate(PRootCaused pRootCaused);
 
-
 }

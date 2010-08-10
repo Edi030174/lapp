@@ -50,15 +50,22 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
 
-//        Map<String, Object> args = getCreationArgsMap(event);
-//
-//        if (args.containsKey("pRootCaused")) {
-//			PRootCaused pRootCaused = (PRootCaused) args.get("pRootCaused");
-//			setpRootCaused(pRootCaused);
-//		} else {
-//			setpRootCaused(null);
-//		}
         doShowDialog(getpRootCaused());
+    }
+
+    public void onCheck$checkbox_Aktif(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        checkbox_NonAktif.setChecked(false);
+
+    }
+
+    public void onCheck$checkbox_NonAktif(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        checkbox_Aktif.setChecked(false);
     }
 
     private void doShowDialog(PRootCaused pRootCaused) throws InterruptedException {
@@ -100,6 +107,7 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
+
     }
 
     private void doWriteComponentsToBean(PRootCaused pRootCaused) {

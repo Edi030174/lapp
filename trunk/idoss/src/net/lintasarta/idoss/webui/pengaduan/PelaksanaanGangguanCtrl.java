@@ -110,8 +110,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         listbox_Type.setModel(new ListModelList(getPelaksanaanGangguanService().getType()));
         listbox_Type.setItemRenderer(new TypeListModelItemRenderer());
 
-//        ListModelList lml = (ListModelList)listbox_Type.getModel();
-//        PType pType = getPelaksanaanGangguanService().getType(pType.getType_desc().substring());
 
         listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCaused()));
         listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
@@ -211,8 +209,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         fckeditor_Deskripsi.setValue(tPenangananGangguan.getDeskripsi());
         fckeditor_Solusi.setValue(tPenangananGangguan.getSolusi());
 
-//        combobox_RootCaused.setValue(tPenangananGangguan.getRoot_caused());
-//        combobox_Type.setValue(tPenangananGangguan.getType_desc());
         combobox_Status.setValue(tPenangananGangguan.getStatus());
 
     }
@@ -297,7 +293,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         map.put("btn_TambahRootCaused", btn_TambahRootCaused);
 
         try {
-            Executions.createComponents("/WEB-INF/pages/pengaduan/tambahRootCaused.zul", null, map);
+            Executions.createComponents("/WEB-INF/pages/pengaduan/rootCaused.zul", null, map);
         } catch (Exception e) {
             logger.error("onOpenWindow:: error opening window / " + e.getMessage());
 

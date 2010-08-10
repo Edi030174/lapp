@@ -169,18 +169,25 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
 
     }
 
-    public void onCheck$checkbox_all(Event event) {
+    public void onOK$textbox_Cari(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        textbox_Cari.setValue("");
 
-        List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
-        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
-        pagedListHolder.setPageSize(getCountRows());
+        if (!textbox_Cari.getValue().isEmpty()) {
 
-        getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftaTiket);
+            ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
+
+            List searchResult = new ArrayList(lml);
+            CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
+
+            PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
+            pagedListHolder.setPageSize(getCountRows());
+
+            getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftaTiket);
+        }
+
     }
 
     public void onClick$btnRefresh_DaftarTiket(Event event) throws Exception {
@@ -204,49 +211,19 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
 
     }
 
-    public void onCheck$checkbox_All(Event event) throws Exception{
+    public void onCheck$checkbox_All(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
 
-//        checkbox_InProgress.setChecked(false);
-//        checkbox_Open.setChecked(false);
-//        checkbox_Pending.setChecked(false);
-//        checkbox_Selesai.setChecked(false);
-        
-    }
+        textbox_Cari.setValue("");
 
-    public void onCheck$checkbox_Open(Event event) throws Exception {
+        List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
+        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
+        pagedListHolder.setPageSize(getCountRows());
 
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        checkbox_All.setChecked(false);
-    }
-
-    public void onCheck$checkbox_InProgress(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        checkbox_All.setChecked(false);
-    }
-
-    public void onCheck$checkbox_Pending(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        checkbox_All.setChecked(false);
-
-    }
-
-    public void onCheck$checkbox_Selesai(Event event) throws Exception {
-
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        checkbox_All.setChecked(false);
-
+        getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftaTiket);
 
     }
 
