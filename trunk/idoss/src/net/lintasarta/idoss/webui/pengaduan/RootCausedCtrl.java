@@ -60,6 +60,7 @@ public class RootCausedCtrl extends GFCBaseCtrl implements Serializable {
             setpRootCaused(pRootCaused);
         }
 
+
         tree_RootCaused.setModel(new SimpleTreeModel((SimpleTreeNode) getRootCausedService().getAllRootCaused()) );
         tree_RootCaused.setTreeitemRenderer(new RootCausedTreeItemRenderer());
         doShowDialog(getpRootCaused());
