@@ -152,7 +152,6 @@ public class PermohonanServiceImpl implements PermohonanService {
         tPelaksanaan.setUpdated_date(tPermohonan.getUpdated_date());
         tPelaksanaan.setUpdated_user(tPermohonan.getUpdated_user());
         gettPelaksanaanDAO().createTPelaksanaan(tPelaksanaan);
-
     }
 
     public void saveOrUpdateTPermohonan(TPermohonan tPermohonan) {

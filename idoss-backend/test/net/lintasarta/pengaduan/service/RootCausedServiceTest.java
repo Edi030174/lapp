@@ -28,7 +28,6 @@ import static org.junit.Assert.assertEquals;
 				"classpath:META-INF/spring/spring-dao-idoss-pengaduan-config.xml",
 				"classpath:META-INF/spring/spring-dao-idoss-permohonan-config.xml",
                 "classpath:META-INF/spring/spring-service-idoss-pengaduan-config.xml"
-
 		}
 )
 public class RootCausedServiceTest {
@@ -43,7 +42,7 @@ public class RootCausedServiceTest {
         for(PRootCaused pRootCaused :pRootCauseds){
             rootCausedActual = pRootCaused.getRoot_caused();
         }
-        String rootCausedExpected = "MANTAP";
+        String rootCausedExpected = "test";
         assertEquals(rootCausedExpected, rootCausedActual);
     }
 
