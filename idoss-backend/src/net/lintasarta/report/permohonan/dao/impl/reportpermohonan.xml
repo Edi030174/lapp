@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.report.permohonan.dao.ReportPermohonanDAO">
+    <select id="getReportBelumSelesai" parameterType="reportpermohonan" resultType="reportpermohonan">
+        SELECT  A.T_IDOSS_PERMOHONAN_ID,
+                A.CREATED_DATE,
+                A.NAMA_PEMOHON,
+                A.TYPE_PERMOHONAN,
+                DECODE(A.URGENSI,'H','HIGH','NORMAL') as URGENSI,
+                A.TGL_PERMOHONAN,
+                A.NAMA_ASMAN,
+                DECODE(b.URGENSI,'H','HIGH','NORMAL') as PRIORITAS,
+                b.DAMPAK,
+                b.STATUS_PERMOHONANASMAN,
+                b.UPDATED_ASMAN,
+                c.NAMA_PELAKSANA,
+                c.STATUS_PERUBAHAN,
+                c.UPDATED_DATE
+        FROM T_IDOSS_PERMOHONAN A,
+             T_IDOSS_VERIFIKASI B,
+             T_IDOSS_PELAKSANAAN C
+        WHERE A.T_IDOSS_PERMOHONAN_ID=B.T_IDOSS_VERIFIKASI_ID
+              AND A.T_IDOSS_PERMOHONAN_ID=C.T_IDOSS_PELAKSANAAN_ID
+              AND NOT C.STATUS_PERUBAHAN='CLOSED'
+              AND a.TYPE_PERMOHONAN=#{type_permohonan, jdbcType=VARCHAR}
+              AND c.NAMA_PELAKSANA=#{nama_pelaksana, jdbcType=VARCHAR}
+              AND a.NAMA_ASMAN=#{nama_asman, jdbcType=VARCHAR}
+              AND a.TGL_PERMOHONAN &lt;= #{tgl_permohonan, jdbcType=TIMESTAMP}
+              AND a.TGL_PERMOHONAN >= #{tgl_permohonan, jdbcType=TIMESTAMP}
+    </select>
+
+</mapper>
