@@ -35,7 +35,7 @@
                 <radiogroup id="radiogroup_Prioritas">
                     <vbox>
                         <radio id="high" label="high" value="H"/>
-                        <radio id="normal" label="normal" value="N"/>
+                        <radio id="normal" label="normal" value="N" selected="true"/>
                     </vbox>
                 </radiogroup>
             </hbox>
@@ -48,7 +48,7 @@
                 <radiogroup id="radiogroup_Dampak">
                     <vbox>
                         <radio id="major" label="major" value="MAJOR"/>
-                        <radio id="minor" label="minor" value="MINOR"/>
+                        <radio id="minor" label="minor" value="MINOR" selected="true"/>
                     </vbox>
                 </radiogroup>
             </hbox>
@@ -112,7 +112,7 @@
                                         <radiogroup
                                                 id="radiogroup_Statuspermohonanasman">
                                             <radio id="radioDisetujui"
-                                                   label="disetujui" value="DISETUJUI">
+                                                   label="disetujui" value="DISETUJUI" selected="true">
                                             </radio>
                                             <radio id="radioDitolak"
                                                    label="ditolak" value="DITOLAK">
@@ -189,7 +189,7 @@
                                         <radiogroup
                                                 id="radiogroup_Statuspermohonanmanager">
                                             <radio id="radioDisetujui2"
-                                                   label="disetujui">
+                                                   label="disetujui" selected="true">
                                             </radio>
                                             <radio id="radioDitolak2"
                                                    label="ditolak">
