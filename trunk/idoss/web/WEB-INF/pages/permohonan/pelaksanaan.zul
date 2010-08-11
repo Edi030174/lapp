@@ -43,7 +43,7 @@
                                         id="radiogroup_StatusPerubahan">
                                     <radio id="selesai" label="Selesai" value="SELESAI"/>
                                     <radio id="tunda" label="Tunda" value="TUNDA"/>
-                                    <radio id="mulai" label="Mulai" value="MULAI"/>
+                                    <radio id="mulai" label="Mulai" value="MULAI" selected="true"/>
                                 </radiogroup>
                             </div>
                         </north>
