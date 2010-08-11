@@ -30,8 +30,6 @@ public class TPenangananGangguan implements Serializable {
     private String updated_user;
     private String no_hp;
     private String ext;
-    private String root_caused;
-    private String type_desc;
     private int gen_id_col;
 
     public TPenangananGangguan() {
@@ -203,22 +201,6 @@ public class TPenangananGangguan implements Serializable {
 
     public void setExt(String ext) {
         this.ext = ext;
-    }
-
-    public String getRoot_caused() {
-        return root_caused;
-    }
-
-    public void setRoot_caused(String root_caused) {
-        this.root_caused = root_caused;
-    }
-
-    public String getType_desc() {
-        return type_desc;
-    }
-
-    public void setType_desc(String type_desc) {
-        this.type_desc = type_desc;
     }
 
     public int getGen_id_col() {

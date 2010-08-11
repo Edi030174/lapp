@@ -5,6 +5,7 @@ import net.lintasarta.idoss.webui.pengaduan.model.TypeListModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.PRootCaused;
+import net.lintasarta.pengaduan.model.PType;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import org.apache.log4j.Logger;
@@ -66,6 +67,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 
     private transient TPenangananGangguan tPenangananGangguan;
     private transient PRootCaused pRootCaused;
+    private transient PType pType;
     private transient PelaksanaanGangguanService pelaksanaanGangguanService;
 
 
@@ -148,6 +150,34 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 
         doWriteComponentsToBean(tPenangananGangguan);
 
+        Listitem item = listbox_RootCaused.getSelectedItem();
+
+        if (item == null) {
+            try {
+                Messagebox.show("Silakan pilih !");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+        ListModelList lml1 = (ListModelList)listbox_RootCaused.getListModel();
+        PRootCaused rootCaused = (PRootCaused)lml1.get(item.getIndex());
+        tPenangananGangguan.setRoot_cause_id(rootCaused.getP_idoss_root_caused_id());
+
+        Listitem item1 = listbox_Type.getSelectedItem();
+        if (item == null) {
+            try {
+                Messagebox.show("Silakan pilih !");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+        ListModelList lml2 = (ListModelList)listbox_Type.getListModel();
+        PType type = (PType)lml2.get(item1.getIndex());
+        tPenangananGangguan.setType_id(type.getP_idoss_type_id());
+
+
         try {
             getPelaksanaanGangguanService().saveOrUpdate(tPenangananGangguan);
         } catch (DataAccessException e) {
@@ -156,6 +186,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
+
 
         ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
 
@@ -214,10 +245,11 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         tPenangananGangguan.setNama_pelaksana(textbox_Pelaksana.getValue());
         tPenangananGangguan.setNik_pelaksana(textbox_NikPelaksana.getValue());
         tPenangananGangguan.setDeskripsi(fckeditor_Deskripsi.getValue());
-        tPenangananGangguan.setRoot_caused(listbox_RootCaused.getName());
-        tPenangananGangguan.setRoot_cause_id(listbox_RootCaused.getSelectedIndex());
-        tPenangananGangguan.setType_desc(listbox_Type.getName());
-        tPenangananGangguan.setType_id(listbox_Type.getSelectedIndex());
+        
+//        tPenangananGangguan.setRoot_caused(listbox_RootCaused.getName());
+//        tPenangananGangguan.setRoot_cause_id(listbox_RootCaused.getSelectedIndex());
+//        tPenangananGangguan.setType_desc(listbox_Type.getName());
+//        tPenangananGangguan.setType_id(listbox_Type.getSelectedIndex());
         tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tPenangananGangguan.setDampak(dampak.getValue());
