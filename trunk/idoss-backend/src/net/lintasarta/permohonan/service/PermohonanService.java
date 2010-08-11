@@ -13,6 +13,7 @@ import java.util.List;
  */
 public interface PermohonanService {
     TPermohonan getNewPermohonan();
+    String getPermohonanID();
     TPermohonan getTPermohonanByTIdossPermohonanId(String t_idoss_permohonan_id);
     List<TPermohonan> getAllTPermohonan();
     void createTPermohonan (String uploadedFileName, TPermohonan tPermohonan);

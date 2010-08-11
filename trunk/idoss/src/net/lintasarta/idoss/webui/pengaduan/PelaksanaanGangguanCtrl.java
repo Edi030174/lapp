@@ -104,18 +104,12 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         } else {
             listbox_DaftarTiket = null;
         }
-//        combobox_Type.setModel(new ListModelList(getPelaksanaanGangguanService().getType()));
-//        combobox_Type.setItemRenderer(new TypeListModelItemRenderer());
 
         listbox_Type.setModel(new ListModelList(getPelaksanaanGangguanService().getType()));
         listbox_Type.setItemRenderer(new TypeListModelItemRenderer());
 
-
         listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCaused()));
         listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
-
-//        combobox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCaused()));
-//        combobox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
 
         doShowDialog(gettPenangananGangguan());
         
@@ -187,6 +181,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         texbox_Bagian.setReadonly(true);
         texbox_Judul.setReadonly(true);
         fckeditor_Deskripsi.disableClientUpdate(false);
+        textbox_Pelaksana.setReadonly(true);
+        textbox_NikPelaksana.setReadonly(true);
 
     }
 
@@ -218,7 +214,9 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         tPenangananGangguan.setNama_pelaksana(textbox_Pelaksana.getValue());
         tPenangananGangguan.setNik_pelaksana(textbox_NikPelaksana.getValue());
         tPenangananGangguan.setDeskripsi(fckeditor_Deskripsi.getValue());
+        tPenangananGangguan.setRoot_caused(listbox_RootCaused.getName());
         tPenangananGangguan.setRoot_cause_id(listbox_RootCaused.getSelectedIndex());
+        tPenangananGangguan.setType_desc(listbox_Type.getName());
         tPenangananGangguan.setType_id(listbox_Type.getSelectedIndex());
         tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
         Radio dampak = radiogroup_Dampak.getSelectedItem();
@@ -293,7 +291,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         map.put("btn_TambahRootCaused", btn_TambahRootCaused);
 
         try {
-            Executions.createComponents("/WEB-INF/pages/pengaduan/rootCaused.zul", null, map);
+            Executions.createComponents("/WEB-INF/pages/pengaduan/tambahRootCaused.zul", null, map);
         } catch (Exception e) {
             logger.error("onOpenWindow:: error opening window / " + e.getMessage());
 

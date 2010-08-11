@@ -8,6 +8,7 @@ import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
+import net.lintasarta.util.TicketIdGenerator;
 
 import java.io.*;
 import java.sql.Timestamp;
@@ -60,6 +61,15 @@ public class PermohonanServiceImpl implements PermohonanService {
 
     public TPermohonan getNewPermohonan() {
         return new TPermohonan();
+    }
+
+    public String getPermohonanID() {
+        int i = tPermohonanDAO.getGenerateID();
+        String seq = String.valueOf(i);
+        TicketIdGenerator tid = new TicketIdGenerator(seq);
+        String ticketIdResult = tid.getTicketId();
+
+        return ticketIdResult;
     }
 
     public TPermohonan getTPermohonanByTIdossPermohonanId(String t_idoss_permohonan_id) {

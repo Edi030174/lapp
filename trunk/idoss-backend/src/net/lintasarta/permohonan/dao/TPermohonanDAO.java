@@ -11,6 +11,7 @@ import java.util.List;
  */
 public interface TPermohonanDAO {
     int getCountAllTPermohonan();
+    int getGenerateID();
     List<TPermohonan> getAllTPermohonan();
     TPermohonan getTPermohonanByTIdossPermohonanId(String t_idoss_permohonan_id);
     List<TPermohonan> getTPermohonanByNikPemohon(TPermohonan tPermohonan);

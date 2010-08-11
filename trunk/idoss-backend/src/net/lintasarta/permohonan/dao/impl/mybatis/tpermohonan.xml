@@ -6,6 +6,10 @@
         select count(*) from T_IDOSS_PERMOHONAN
     </select>
 
+    <select id="getGenerateID" resultType="int">
+        select generate_id('SNI','T_IDOSS_PERMOHONAN','GEN_ID_COL') from dual
+    </select>
+
     <select id="getAllTPermohonan" resultType="tpermohonan">
         select * from T_IDOSS_PERMOHONAN
     </select>

@@ -39,7 +39,6 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         TicketIdGenerator tid = new TicketIdGenerator(seq);
         String ticketIdResult = tid.getTicketId();
 
-
         return ticketIdResult;
     }
 

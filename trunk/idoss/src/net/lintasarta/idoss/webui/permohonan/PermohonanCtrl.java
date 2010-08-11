@@ -168,8 +168,12 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteBeanToComponents(TPermohonan tPermohonan) {
+        if(tPermohonan.getT_idoss_permohonan_id() != null){
+            textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
+        } else {
+            textbox_TIdossPermohonanId.setValue(getPermohonanService().getPermohonanID());
+        }
 
-        textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
         if (tPermohonan.getNama_pemohon() != null) {
             textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
         } else {

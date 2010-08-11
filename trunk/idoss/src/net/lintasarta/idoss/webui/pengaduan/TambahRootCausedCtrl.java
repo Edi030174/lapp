@@ -8,10 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zul.Checkbox;
-import org.zkoss.zul.Messagebox;
-import org.zkoss.zul.Textbox;
-import org.zkoss.zul.Window;
+import org.zkoss.zul.*;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -29,7 +26,7 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
 
     protected Window window_TambahRootCaused;
     protected Textbox textbox_TambahRootCaused;
-
+    protected Listbox listbox_RootCaused;
     protected Checkbox checkbox_Aktif;
     protected Checkbox checkbox_NonAktif;
 
@@ -49,6 +46,20 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
+
+//        Map<String, Object> args = getCreationArgsMap(event);
+//        if (args.containsKey("pRootCaused")) {
+//            PRootCaused pRootCaused = (PRootCaused) args.get("pRootCaused");
+//            setpRootCaused(pRootCaused);
+//        } else {
+//            setpRootCaused(null);
+//        }
+//
+//        if (args.containsKey("listbox_RootCaused")) {
+//            listbox_RootCaused = (Listbox) args.get("listbox_RootCaused");
+//        } else {
+//            listbox_RootCaused = null;
+//        }
 
         doShowDialog(getpRootCaused());
     }
@@ -108,6 +119,15 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
 
+
+//        ListModelList lml = (ListModelList) listbox_RootCaused.getListModel();
+//
+//        if (lml.indexOf(pRootCaused) == -1) {
+//            lml.add(pRootCaused);
+//        } else {
+//            lml.set(lml.indexOf(pRootCaused), pRootCaused);
+//        }
+
     }
 
     private void doWriteComponentsToBean(PRootCaused pRootCaused) {
@@ -136,5 +156,9 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
 
     public PRootCaused getpRootCaused() {
         return new PRootCaused();
+    }
+
+    public void setpRootCaused(PRootCaused pRootCaused) {
+        this.pRootCaused = pRootCaused;
     }
 }

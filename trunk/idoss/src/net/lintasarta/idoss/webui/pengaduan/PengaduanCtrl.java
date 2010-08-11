@@ -104,6 +104,10 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
+        textbox_NomorTiket.setReadonly(true);
+        textbox_NikPelapor.setReadonly(true);
+        textbox_NamaPelapor.setReadonly(true);
+        textbox_Bagian.setReadonly(true);
     }
 
     public void onClose$window_Pengaduan(Event event) throws Exception {
@@ -267,6 +271,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         setValidationOn(true);
 
         textbox_NomorHP.setConstraint(new SimpleConstraint("[0-9-/() ]*", Labels.getLabel("message.error.PhoneNumber")));
+        textbox_Ext.setConstraint(new SimpleConstraint("[0-9-/() ]*", Labels.getLabel("message.error.PhoneNumber")));
         textbox_Judul.setConstraint(new NoEmptyStringsConstraint());
     }
 
