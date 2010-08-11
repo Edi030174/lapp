@@ -151,7 +151,7 @@
                                             <vbox></vbox>
                                             Type :
                                             <radiogroup id="radiogroupType_permohonan">
-                                                <radio id="radio_readonly" label="User Read Only" value="User RO"/>
+                                                <radio id="radio_readonly" label="User Read Only" value="User RO" selected="true"/>
                                                 <radio id="radio_readwrite" label="User Read Write" value="User RW"/>
                                                 <radio id="radio_aplikasi" label="Aplikasi" value="Aplikasi"/>
                                                 <radio id="radio_lainlain" label="Lain-lain" value="Lain-lain"/>
