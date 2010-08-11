@@ -136,6 +136,9 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         if (textbox_Judul.getConstraint() != null) {
             textbox_Judul = new Textbox();
         }
+        if (textbox_NomorHP.getConstraint() != null) {
+            textbox_NomorHP = new Textbox();
+        }
         if (logger.isDebugEnabled()) {
             logger.debug("--> DataIsChanged :" + isDataChanged());
         }
@@ -263,6 +266,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 
         setValidationOn(true);
 
+        textbox_NomorHP.setConstraint(new SimpleConstraint("[0-9-/() ]*", Labels.getLabel("message.error.PhoneNumber")));
         textbox_Judul.setConstraint(new NoEmptyStringsConstraint());
     }
 
