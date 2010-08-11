@@ -68,7 +68,7 @@
                                     <radio id="radio_minor" label="Minor" value="Minor" selected="true"/>
                                     <radio id="radio_mayor" label="Mayor" value="Mayor"/>
                                 </radiogroup>
-                                <space width="110px"/>
+                                <space width="145px"/>
                                 <vbox>
                                     <space height="0.5px"/>
                                     <label value="Type "/>
@@ -83,7 +83,7 @@
                         <label value="Pelaksana "/>
                         <hbox>
                             <textbox id="textbox_Pelaksana"/>
-                            <space width="80px"/>
+                            <space width="112px"/>
                             <vbox>
                                 <space height="0.5px"/>
                                 <label value="NIK Pelaksana"/>
@@ -100,27 +100,13 @@
                             <!--<combobox id="combobox_RootCaused" width="90%"/>-->
                             <listbox id="listbox_RootCaused" width="100%" mold="select" rows="1"/>
                             <button label=" + " id="btn_TambahRootCaused"/>
-                            <!--<button label=" + " popup="popup_TambahRootCaused"/>-->
-                            <!--<popup id="popup_TambahRootCaused" width="18%">
-                                <div align="center">
-                                    <vbox>
-                                        <label value="Tambah Root Caused"/>
-                                        <textbox id="textbox_TambahRootCaused"/>
-                                        <checkbox id="checkbox_Aktif" label="Aktif"/>
-                                    </vbox>
-                                    <hbox>
-                                        <button id="btnSimpan_RootCaused" label="Simpan"/>
-                                        <button id="btnBatal_RootCaused" label="Batal"/>
-                                    </hbox>
-                                </div>
-                            </popup>-->
                             <space/>
                             <vbox>
                                 <space height="0.5px"/>
                                 <label value="status"/>
                             </vbox>
                             <space width="50px"/>
-                            <combobox id="combobox_Status" width="140px">
+                            <combobox id="combobox_Status" width="140px" >
                                 <comboitem label="Open"/>
                                 <comboitem label="In Progres"/>
                                 <comboitem label="Pending"/>

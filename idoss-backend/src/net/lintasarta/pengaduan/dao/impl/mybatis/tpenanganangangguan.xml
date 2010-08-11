@@ -26,7 +26,7 @@
         WHERE T_IDOSS_PENANGANAN_GANGGUAN_ID=#{t_idoss_penanganan_gangguan_id}
     </select>
 
-    <!--<select id="getAllTPenangananGangguanByNikPelapor" resultType="tpenanganangangguan">
+    <select id="getAllTPenangananGangguanByNikPelapor" resultType="tpenanganangangguan">
         SELECT T_IDOSS_PENANGANAN_GANGGUAN_ID, NIK_PELAPOR, NAMA_PELAPOR, BAGIAN_PELAPOR, JUDUL, DESKRIPSI, DAMPAK, P_IDOSS_TYPE_ID, NIK_PELAKSANA, NAMA_PELAKSANA, P_IDOSS_ROOT_CAUSED_ID, STATUS, SOLUSI, MTTR, DURASI, NO_HP, EXT, CREATED_DATE, CREATED_USER, UPDATED_DATE, UPDATED_USER
         FROM SNI.T_IDOSS_PENANGANAN_GANGGUAN
         WHERE NIK_PELAPOR=#{nik_pelapor, jdbcType=VARCHAR}
@@ -54,7 +54,7 @@
         SELECT T_IDOSS_PENANGANAN_GANGGUAN_ID, NIK_PELAPOR, NAMA_PELAPOR, BAGIAN_PELAPOR, JUDUL, DESKRIPSI, DAMPAK, P_IDOSS_TYPE_ID, NIK_PELAKSANA, NAMA_PELAKSANA, P_IDOSS_ROOT_CAUSED_ID, STATUS, SOLUSI, MTTR, DURASI, NO_HP, EXT, CREATED_DATE, CREATED_USER, UPDATED_DATE, UPDATED_USER
         FROM SNI.T_IDOSS_PENANGANAN_GANGGUAN
         WHERE  NIK_PELAKSANA=#{nik_pelaksana, jdbcType=VARCHAR} AND STATUS=#{status, jdbcType=VARCHAR}
-    </select>-->
+    </select>
 
     <insert id="createTPenangananGangguan" parameterType="tpenanganangangguan">
         INSERT INTO SNI.T_IDOSS_PENANGANAN_GANGGUAN (
