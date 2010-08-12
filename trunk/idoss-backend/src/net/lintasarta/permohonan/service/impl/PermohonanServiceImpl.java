@@ -8,7 +8,7 @@ import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
-import net.lintasarta.util.TicketIdGenerator;
+import net.lintasarta.util.PermohonanIdGenerator;
 
 import java.io.*;
 import java.sql.Timestamp;
@@ -64,12 +64,12 @@ public class PermohonanServiceImpl implements PermohonanService {
     }
 
     public String getPermohonanID() {
-        int i = tPermohonanDAO.getGenerateID();
+        int i = tPermohonanDAO.getGeneratedID();
         String seq = String.valueOf(i);
-        TicketIdGenerator tid = new TicketIdGenerator(seq);
-        String ticketIdResult = tid.getTicketId();
+        PermohonanIdGenerator pid = new PermohonanIdGenerator(seq);
+        String permohonanIdResult = pid.getPermohonanId();
 
-        return ticketIdResult;
+        return permohonanIdResult;
     }
 
     public TPermohonan getTPermohonanByTIdossPermohonanId(String t_idoss_permohonan_id) {
@@ -122,6 +122,8 @@ public class PermohonanServiceImpl implements PermohonanService {
     }
 
     public void createTPermohonan(String uploadedFileName, TPermohonan tPermohonan) {
+        int i = tPermohonanDAO.getGeneratedID();
+        tPermohonan.setGen_id_col(i);
         if (uploadedFileName != null) {
             saveFile(uploadedFileName, tPermohonan.getUploadStream());
             File file = new File(filePath + uploadedFileName);

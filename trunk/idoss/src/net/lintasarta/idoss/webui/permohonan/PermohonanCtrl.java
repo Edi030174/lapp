@@ -72,6 +72,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     private transient Listbox listbox_DaftarPermohonan;
 
     protected Button btnSimpan_Permohonan;
+    protected Button btnBatal;
 
     protected PermohonanCtrl permohonanCtrl;
 
@@ -142,19 +143,19 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             listbox_DaftarPermohonan = null;
         }
 
+
         doShowDialog(gettPermohonan());
-//        textbox_NamaPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeName());
-//        textbox_BagianPemohon.setValue(getUserWorkspace().getUserSession().getDepartment());
-//        textbox_NikPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
+
+
+
     }
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
-
         if (tPermohonan == null) {
             tPermohonan = getPermohonanService().getNewPermohonan();
             settPermohonan(tPermohonan);
 
-        } else {
+        } else{
             settPermohonan(tPermohonan);
         }
 
@@ -165,6 +166,13 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
+        textbox_TIdossPermohonanId.setReadonly(true);
+
+        textbox_NamaPemohon.setReadonly(true);
+        textbox_BagianPemohon.setReadonly(true);
+        textbox_NikPemohon.setReadonly(true);
+        datebox_Tanggal.setReadonly(true);
+        textbox_Lainlain.setReadonly(true);
     }
 
     private void doWriteBeanToComponents(TPermohonan tPermohonan) {
@@ -441,6 +449,10 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
+    private void onCheck$radio_lainlain(TPermohonan tPermohonan){
+        textbox_Lainlain.setReadonly(false);
+    }
+
     private void doWriteComponentsToBean(TPermohonan permohonan) {
 
         permohonan.setT_idoss_permohonan_id(textbox_TIdossPermohonanId.getValue());
@@ -473,6 +485,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         } else if (checkbox_Cepat.isDisabled()) {
             permohonan.setUrgensi("L");
         }
+
         permohonan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         permohonan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 

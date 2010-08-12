@@ -142,7 +142,6 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
             logger.debug("--> " + event.toString());
         }
         TPermohonan tPermohonan = getPermohonanService().getNewPermohonan();
-
         showDetailView(tPermohonan);
     }
 

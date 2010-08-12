@@ -38,6 +38,7 @@ public class TPermohonan implements Serializable {
     private Timestamp updated_date;
     private String updated_user;
     private InputStream uploadStream;
+    private int gen_id_col;
 
     public TPermohonan() {
     }
@@ -272,5 +273,13 @@ public class TPermohonan implements Serializable {
 
     public void setUploadStream(InputStream uploadStream) {
         this.uploadStream = uploadStream;
+    }
+
+    public int getGen_id_col() {
+        return gen_id_col;
+    }
+
+    public void setGen_id_col(int gen_id_col) {
+        this.gen_id_col = gen_id_col;
     }
 }

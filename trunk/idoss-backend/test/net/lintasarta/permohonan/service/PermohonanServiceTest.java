@@ -98,7 +98,7 @@ public class PermohonanServiceTest {
     public void testSimpanAllTPermohonan() throws Exception{
         TPermohonan tPermohonan = new TPermohonan();
 
-        tPermohonan.setT_idoss_permohonan_id("RR151");
+        tPermohonan.setT_idoss_permohonan_id("RR155");
 
         Timestamp now = new Timestamp(Calendar.getInstance().getTimeInMillis());
         tPermohonan.setTgl_permohonan(now);
@@ -135,7 +135,7 @@ public class PermohonanServiceTest {
 
         int i = permohonanService.getAllTPermohonan().size();
 
-        permohonanService.simpanAllTPermohonan("okok", tPermohonan);
+        permohonanService.simpanAllTPermohonan(null,tPermohonan);
         assertEquals(i+1, permohonanService.getAllTPermohonan().size());
 
     }
