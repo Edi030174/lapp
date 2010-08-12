@@ -1,23 +1,25 @@
-package net.lintasarta.permohonan.model;
+package net.lintasarta.auditlog.model;
 
-import java.sql.Blob;
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
- * Created by Joshua
- * Date: Jun 21, 2010
- * Time: 8:56:36 AM
+ * Created by IntelliJ IDEA.
+ * User: Xsis
+ * Date: Aug 12, 2010
+ * Time: 4:28:05 PM
+ * To change this template use File | Settings | File Templates.
  */
-public class HVerifikasi {
+public class AuditLog implements Serializable {
     private String field_name;
-    private String action;
-    private Blob new_value;
-    private Blob old_value;
+    private String action_field;
+    private String new_value;
+    private String old_value;
     private String created_user;
     private Date created_date;
-    private String h_idoss_verifikasi_id;
+    private String id_no;
 
-    public HVerifikasi() {
+    public AuditLog() {
     }
 
     public String getField_name() {
@@ -28,27 +30,27 @@ public class HVerifikasi {
         this.field_name = field_name;
     }
 
-    public String getAction() {
-        return action;
+    public String getAction_field() {
+        return action_field;
     }
 
-    public void setAction(String action) {
-        this.action = action;
+    public void setAction_field(String action_field) {
+        this.action_field = action_field;
     }
 
-    public Blob getNew_value() {
+    public String getNew_value() {
         return new_value;
     }
 
-    public void setNew_value(Blob new_value) {
+    public void setNew_value(String new_value) {
         this.new_value = new_value;
     }
 
-    public Blob getOld_value() {
+    public String getOld_value() {
         return old_value;
     }
 
-    public void setOld_value(Blob old_value) {
+    public void setOld_value(String old_value) {
         this.old_value = old_value;
     }
 
@@ -68,11 +70,11 @@ public class HVerifikasi {
         this.created_date = created_date;
     }
 
-    public String getH_idoss_verifikasi_id() {
-        return h_idoss_verifikasi_id;
+    public String getId_no() {
+        return id_no;
     }
 
-    public void setH_idoss_verifikasi_id(String h_idoss_verifikasi_id) {
-        this.h_idoss_verifikasi_id = h_idoss_verifikasi_id;
+    public void setId_no(String id_no) {
+        this.id_no = id_no;
     }
 }
