@@ -6,16 +6,13 @@ import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
-import net.sf.jasperreports.engine.JRDataSource;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.media.Media;
 import org.zkoss.util.resource.Labels;
-import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Path;
-import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.UploadEvent;
@@ -288,6 +285,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
         doSimpan();
+        window_Permohonan.onClose();
 
     }
 

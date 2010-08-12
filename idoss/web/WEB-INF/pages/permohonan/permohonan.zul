@@ -127,12 +127,12 @@
                                             <label width="10px" value="NIK :"/>
                                         </vbox>
                                         <vbox>
-                                            <datebox id="datebox_Tanggal" cols="12"/>
+                                            <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" readonly="true" width="150px"/>
                                             <textbox id="textbox_NikPemohon"
-                                                     width="50px"/>
+                                                     width="60px"/>
                                             <space height="22px"></space>
                                             <textbox id="textbox_NikAsman"
-                                                     width="50px"/>
+                                                     width="60px"/>
                                             <textbox id="textbox_NikManager"
                                                      width="50px"/>
                                             <textbox id="textbox_NikGm"
