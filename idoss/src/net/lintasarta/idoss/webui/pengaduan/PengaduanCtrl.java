@@ -14,6 +14,7 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.Map;
 
 /**
@@ -104,10 +105,6 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
-        textbox_NomorTiket.setReadonly(true);
-        textbox_NikPelapor.setReadonly(true);
-        textbox_NamaPelapor.setReadonly(true);
-        textbox_Bagian.setReadonly(true);
     }
 
     public void onClose$window_Pengaduan(Event event) throws Exception {
@@ -203,6 +200,18 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doSimpan() throws InterruptedException {
 
+//        Field[] fields = new Field[0];
+//        try {
+//            fields = Class.forName("net.lintasarta.pengaduan.model.TPenangananGangguan").getDeclaredFields();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+//        }
+//        for (Field field : fields) {
+//            String fieldStr = field.toString();
+//            int i = fieldStr.lastIndexOf(".");
+//            fieldStr = fieldStr.substring(i+1, fieldStr.length());
+//            System.out.println("fieldStr = " + fieldStr);
+//        }
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
 
         if (!isValidationOn()) {
@@ -271,7 +280,6 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         setValidationOn(true);
 
         textbox_NomorHP.setConstraint(new SimpleConstraint("[0-9-/() ]*", Labels.getLabel("message.error.PhoneNumber")));
-        textbox_Ext.setConstraint(new SimpleConstraint("[0-9-/() ]*", Labels.getLabel("message.error.PhoneNumber")));
         textbox_Judul.setConstraint(new NoEmptyStringsConstraint());
     }
 

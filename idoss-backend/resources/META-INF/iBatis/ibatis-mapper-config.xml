@@ -45,7 +45,6 @@
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/prootcaused.xml"/>
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/ptype.xml"/>
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/tpenanganangangguan.xml"/>
-        <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/hpenanganangangguan.xml"/>
         <!--report permohonan-->
         <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportpermohonan.xml"/>
         <!--auditlog-->
