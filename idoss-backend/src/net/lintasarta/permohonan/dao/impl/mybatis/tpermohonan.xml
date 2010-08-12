@@ -6,7 +6,7 @@
         select count(*) from T_IDOSS_PERMOHONAN
     </select>
 
-    <select id="getGenerateID" resultType="int">
+    <select id="getGeneratedID" resultType="int">
         select generate_id('SNI','T_IDOSS_PERMOHONAN','GEN_ID_COL') from dual
     </select>
 
@@ -428,7 +428,9 @@
         CREATED_DATE,
         CREATED_USER,
         UPDATED_DATE,
-        UPDATED_USER)
+        UPDATED_USER,
+        GEN_ID_COL
+        )
         values(
         #{t_idoss_permohonan_id},
         #{tgl_permohonan,jdbcType=TIMESTAMP},
@@ -456,7 +458,8 @@
         #{created_date},
         #{created_user},
         #{updated_date},
-        #{updated_user}
+        #{updated_user},
+        #{gen_id_col}
         )
     </insert>
 

@@ -41,9 +41,10 @@
                             <div style="">
                                 <radiogroup
                                         id="radiogroup_StatusPerubahan">
-                                    <radio id="selesai" label="Selesai" value="SELESAI"/>
-                                    <radio id="tunda" label="Tunda" value="TUNDA"/>
-                                    <radio id="mulai" label="Mulai" value="MULAI" selected="true"/>
+                                    <radio id="closed" label="Closed" value="CLOSED"/>
+                                    <radio id="pending" label="Pending" value="PENDING"/>
+                                    <radio id="inprogress" label="In Progress" value="INPROGRESS"/>
+                                    <radio id="open" label="Open" value="OPEN" selected="true"/>
                                 </radiogroup>
                             </div>
                         </north>

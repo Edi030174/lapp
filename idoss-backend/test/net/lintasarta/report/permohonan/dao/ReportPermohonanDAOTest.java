@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -34,12 +35,39 @@ public class ReportPermohonanDAOTest {
 
     @Test
     public void testGetReportBelumSelesai() throws Exception {
-        List<ReportPermohonan> reportPermohonans = reportPermohonanDAO.getReportBelumSelesai();
-        String updateduserActual = null;
-        for (ReportPermohonan reportPermohonan : reportPermohonans) {
-            updateduserActual = reportPermohonan.getT_idoss_permohonan_id();
+        ReportPermohonan reportPermohonan = new ReportPermohonan();
+
+        String tglPermohonan = "2010-08-19 00:00:00";
+        reportPermohonan.setTgl_permohonan(Timestamp.valueOf(tglPermohonan));
+        reportPermohonan.setType_permohonan("User RO");
+        reportPermohonan.setNama_asman("i");
+
+        String actualId = null;
+        List<ReportPermohonan> reportPermohonans = reportPermohonanDAO.getReportBelumSelesai(reportPermohonan);
+        for (ReportPermohonan permohonan : reportPermohonans) {
+            actualId = permohonan.getT_idoss_permohonan_id();
         }
-        String updateduserExpected = "000000001";
-        assertEquals(updateduserExpected, updateduserActual);
+        String expectedId = "000000001";
+
+        assertEquals(expectedId, actualId);
+    }
+
+    @Test
+    public void testGetReportSudahSelesai() throws Exception {
+        ReportPermohonan reportPermohonan = new ReportPermohonan();
+
+        String tglPermohonan = "2010-08-27 00:00:00";
+        reportPermohonan.setTgl_permohonan(Timestamp.valueOf(tglPermohonan));
+        reportPermohonan.setType_permohonan("User RO");
+        reportPermohonan.setNama_asman("f");
+
+        String actualId = null;
+        List<ReportPermohonan> reportPermohonans = reportPermohonanDAO.getReportSudahSelesai(reportPermohonan);
+        for (ReportPermohonan permohonan : reportPermohonans) {
+            actualId = permohonan.getT_idoss_permohonan_id();
+        }
+        String expectedId = "000000002";
+
+        assertEquals(expectedId, actualId);
     }
 }

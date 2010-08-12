@@ -144,7 +144,6 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteComponentsToBean(TPelaksanaan tPelaksanaan) {
-        tPelaksanaan.setT_idoss_pelaksanaan_id("bobo");
         tPelaksanaan.setTgl_permohonan(new Timestamp(datebox_TglPermohonan.getValue().getTime()));
         Radio status = radiogroup_StatusPerubahan.getSelectedItem();
         tPelaksanaan.setStatus_perubahan(status.getValue());
