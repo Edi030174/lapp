@@ -2,7 +2,7 @@ package net.lintasarta.report.permohonan.service;
 
 import net.lintasarta.report.permohonan.model.ReportPermohonan;
 
-import java.util.List;
+import java.util.HashMap;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,6 +12,6 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface ReportPermohonanService {
-    List<ReportPermohonan> getReportBelumSelesai(ReportPermohonan reportPermohonan);
-    List<ReportPermohonan> getReportSudahSelesai(ReportPermohonan reportPermohonan);
+    void printReport(ReportPermohonan reportPermohonan, HashMap repParams);
+    public void compileReport(String aReportPathName);
 }

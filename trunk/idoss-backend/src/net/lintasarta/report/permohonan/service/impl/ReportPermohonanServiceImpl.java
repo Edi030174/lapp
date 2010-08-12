@@ -3,6 +3,7 @@ package net.lintasarta.report.permohonan.service.impl;
 import net.lintasarta.report.permohonan.model.ReportPermohonan;
 import net.lintasarta.report.permohonan.service.ReportPermohonanService;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -20,5 +21,13 @@ public class ReportPermohonanServiceImpl implements ReportPermohonanService {
 
     public List<ReportPermohonan> getReportSudahSelesai(ReportPermohonan reportPermohonan) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public void printReport(ReportPermohonan reportPermohonan, HashMap repParams) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public void compileReport(String aReportPathName) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }
