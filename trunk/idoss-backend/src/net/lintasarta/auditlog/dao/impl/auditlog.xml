@@ -4,20 +4,84 @@
 <mapper namespace="net.lintasarta.auditlog.dao.AuditLogDAO">
 
     <insert id="createHPenangananGangguan" parameterType="auditlog" >
-        INSERT INTO SNI.H_IDOSS_PENANGANAN_GANGGUAN (FIELD_NAME, ACTION_FIELD, CREATED_USER, CREATED_DATE, ID_NO, NEW_VALUE, OLD_VALUE)
-	    VALUES( #{field_name}, #{action_field}, #{created_user}, #{created_date}, #{id_no}, #{new_value}, #{old_value})
-
+        INSERT INTO SNI.H_IDOSS_PENANGANAN_GANGGUAN(
+        FIELD_NAME,
+        ACTION_FIELD,
+        CREATED_USER,
+        CREATED_DATE,
+        ID_NO,
+        NEW_VALUE,
+        OLD_VALUE
+        )
+	    VALUES(
+	    #{field_name},
+	    #{action_field},
+	    #{created_user},
+	    #{created_date},
+	    #{id_no},
+	    #{new_value},
+	    #{old_value,jdbcType=VARCHAR}
+	    )
     </insert>
+    
     <insert id="createHPermohonan" parameterType="auditlog">
-        INSERT INTO SNI.H_IDOSS_PERMOHONAN (FIELD_NAME, ACTION_FIELD, NEW_VALUE, OLD_VALUE, CREATED_USER, CREATED_DATE, ID_NO)
-	    VALUES( #{field_name}, #{action_field}, #{new_value}, #{old_value}, #{created_user}, #{created_date}, #{id_no})
+        INSERT INTO SNI.H_IDOSS_PERMOHONAN(
+        FIELD_NAME,
+        ACTION_FIELD,
+        NEW_VALUE,
+        OLD_VALUE,
+        CREATED_USER,
+        CREATED_DATE,
+        ID_NO)
+	    VALUES(
+	    #{field_name},
+	    #{action_field},
+	    #{new_value},
+	    #{old_value,jdbcType=VARCHAR},
+	    #{created_user},
+	    #{created_date},
+	    #{id_no}
+	    )
     </insert>
+
     <insert id="createHVerifikasi" parameterType="auditlog">
-        INSERT INTO SNI.H_IDOSS_VERIFIKASI (FIELD_NAME, ACTION_FIELD, CREATED_USER, CREATED_DATE, ID_NO, NEW_VALUE, OLD_VALUE)
-	    VALUES( #{field_name}, #{action_field}, #{created_user}, #{created_date}, #{id_no}, #{new_value}, #{old_value})
+        INSERT INTO SNI.H_IDOSS_VERIFIKASI(
+        FIELD_NAME,
+        ACTION_FIELD,
+        CREATED_USER,
+        CREATED_DATE,
+        ID_NO,
+        NEW_VALUE,
+        OLD_VALUE)
+	    VALUES(
+	    #{field_name},
+	    #{action_field},
+	    #{created_user},
+	    #{created_date},
+	    #{id_no},
+	    #{new_value},
+	    #{old_value,jdbcType=VARCHAR}
+	    )
     </insert>
+
     <insert id="createHPelaksanaan" parameterType="auditlog">
-        INSERT INTO SNI.H_IDOSS_PELAKSANAAN (FIELD_NAME, ACTION_FIELD, CREATED_USER, CREATED_DATE, ID_NO, NEW_VALUE, OLD_VALUE)
-	    VALUES( #{field_name}, #{action_field}, #{created_user}, #{created_date}, #{id_no}, #{new_value}, #{old_value})
+        INSERT INTO SNI.H_IDOSS_PELAKSANAAN(
+        FIELD_NAME,
+        ACTION_FIELD,
+        CREATED_USER,
+        CREATED_DATE,
+        ID_NO,
+        NEW_VALUE,
+        OLD_VALUE)
+	    VALUES(
+	    #{field_name},
+	    #{action_field},
+	    #{created_user},
+	    #{created_date},
+	    #{id_no},
+	    #{new_value},
+	    #{old_value,jdbcType=VARCHAR}
+	    )
     </insert>
-</mapper> 
+
+</mapper>
