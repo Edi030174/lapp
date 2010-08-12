@@ -449,6 +449,10 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
+    private void onCheck$radiogroupType_permohonan(TPermohonan tPermohonan){
+        textbox_Lainlain.setReadonly(false);
+    }
+
     private void onCheck$radio_lainlain(TPermohonan tPermohonan){
         textbox_Lainlain.setReadonly(false);
     }
