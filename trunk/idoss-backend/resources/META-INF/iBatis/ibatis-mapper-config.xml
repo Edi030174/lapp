@@ -27,7 +27,7 @@
         <!--reportpermohonan-->
         <typeAlias type="net.lintasarta.report.permohonan.model.ReportPermohonan" alias="reportpermohonan"/>
         <!--auditlog-->
-
+        <typeAlias type="net.lintasarta.auditlog.model.AuditLog" alias="auditlog"/>
     </typeAliases>
 
     <typeHandlers>
@@ -49,6 +49,6 @@
         <!--report permohonan-->
         <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportpermohonan.xml"/>
         <!--auditlog-->
-
+        <mapper resource="net/lintasarta/auditlog/dao/impl/auditlog.xml"/>
      </mappers>
 </configuration>

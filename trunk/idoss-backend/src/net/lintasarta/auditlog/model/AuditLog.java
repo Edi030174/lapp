@@ -1,7 +1,7 @@
 package net.lintasarta.auditlog.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,7 +16,7 @@ public class AuditLog implements Serializable {
     private String new_value;
     private String old_value;
     private String created_user;
-    private Date created_date;
+    private Timestamp created_date;
     private String id_no;
 
     public AuditLog() {
@@ -62,11 +62,11 @@ public class AuditLog implements Serializable {
         this.created_user = created_user;
     }
 
-    public Date getCreated_date() {
+    public Timestamp getCreated_date() {
         return created_date;
     }
 
-    public void setCreated_date(Date created_date) {
+    public void setCreated_date(Timestamp created_date) {
         this.created_date = created_date;
     }
 
