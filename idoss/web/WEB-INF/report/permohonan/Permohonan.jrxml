@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Permohonan" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="T_IDOSS_PERMOHONAN_ID" class="java.lang.String"/>
+	<field name="CREATED_DATE" class="java.sql.Timestamp"/>
+	<field name="NAMA_PEMOHON" class="java.lang.String"/>
+	<field name="TYPE_PERMOHONAN" class="java.lang.String"/>
+	<field name="URGENSI" class="java.lang.String"/>
+	<field name="TGL_PERMOHONAN" class="java.sql.Timestamp"/>
+	<field name="NAMA_ASMAN" class="java.lang.String"/>
+	<field name="PRIORITAS" class="java.lang.String"/>
+	<field name="DAMPAK" class="java.lang.String"/>
+	<field name="STATUS_PERMOHONANASMAN" class="java.lang.String"/>
+	<field name="UPDATED_ASMAN" class="java.sql.Timestamp"/>
+	<field name="NAMA_PELAKSANA" class="java.lang.String"/>
+	<field name="STATUS_PERUBAHAN" class="java.lang.String"/>
+	<field name="UPDATED_DATE" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="377" y="30" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Permohonan Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="36" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="50" y="0" width="42" height="61"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="92" y="25" width="60" height="36"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="152" y="25" width="52" height="36"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Tipe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="25" width="54" height="36"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Urgensi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="92" y="0" width="227" height="25"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Pemohonan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="25" width="61" height="36"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="25" width="52" height="36"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="431" y="25" width="64" height="36"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Dampak]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="25" width="60" height="36"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Prioritas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="495" y="25" width="52" height="36"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="547" y="25" width="60" height="36"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="0" width="288" height="25"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Persetujuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="607" y="25" width="65" height="36"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="672" y="25" width="71" height="36"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="743" y="25" width="59" height="36"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="61"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nomor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="607" y="0" width="195" height="25"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Pelaksanaan]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="50" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{T_IDOSS_PERMOHONAN_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="0" width="60" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NAMA_PEMOHON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="152" y="0" width="52" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TYPE_PERMOHONAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="204" y="0" width="54" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{URGENSI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="52" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{CREATED_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="258" y="0" width="61" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{TGL_PERMOHONAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="0" width="52" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NAMA_ASMAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="371" y="0" width="60" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PRIORITAS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="0" width="64" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DAMPAK}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="495" y="0" width="52" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{STATUS_PERMOHONANASMAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="547" y="0" width="60" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{UPDATED_ASMAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="607" y="0" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NAMA_PELAKSANA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="672" y="0" width="71" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{STATUS_PERUBAHAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="743" y="0" width="59" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{UPDATED_DATE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

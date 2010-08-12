@@ -47,19 +47,20 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
 
-//        Map<String, Object> args = getCreationArgsMap(event);
-//        if (args.containsKey("pRootCaused")) {
-//            PRootCaused pRootCaused = (PRootCaused) args.get("pRootCaused");
-//            setpRootCaused(pRootCaused);
-//        } else {
-//            setpRootCaused(null);
-//        }
-//
-//        if (args.containsKey("listbox_RootCaused")) {
-//            listbox_RootCaused = (Listbox) args.get("listbox_RootCaused");
-//        } else {
-//            listbox_RootCaused = null;
-//        }
+        Map<String, Object> args = getCreationArgsMap(event);
+
+        if (args.containsKey("pRootCaused")) {
+            PRootCaused pRootCaused = (PRootCaused) args.get("pRootCaused");
+            setpRootCaused(pRootCaused);
+        } else {
+            setpRootCaused(null);
+        }
+
+        if (args.containsKey("listbox_RootCaused")) {
+            listbox_RootCaused = (Listbox) args.get("listbox_RootCaused");
+        } else {
+            listbox_RootCaused = null;
+        }
 
         doShowDialog(getpRootCaused());
     }
@@ -120,13 +121,13 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
         }
 
 
-//        ListModelList lml = (ListModelList) listbox_RootCaused.getListModel();
-//
-//        if (lml.indexOf(pRootCaused) == -1) {
-//            lml.add(pRootCaused);
-//        } else {
-//            lml.set(lml.indexOf(pRootCaused), pRootCaused);
-//        }
+        ListModelList lml = (ListModelList) listbox_RootCaused.getListModel();
+
+        if (lml.indexOf(pRootCaused) == -1) {
+            lml.add(pRootCaused);
+        } else {
+            lml.set(lml.indexOf(pRootCaused), pRootCaused);
+        }
 
     }
 

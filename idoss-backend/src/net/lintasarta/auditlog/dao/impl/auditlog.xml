@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.auditlog.dao.AuditLogDAO">
+
+    <insert id="createHPenangananGangguan">
+        INSERT INTO SNI.H_IDOSS_PENANGANAN_GANGGUAN (FIELD_NAME, ACTION_FIELD, CREATED_USER, CREATED_DATE, ID_NO, NEW_VALUE, OLD_VALUE)
+	    VALUES( #{field_name}, #{action_field}, #{field_name}, #{field_name}, #{field_name}, #{field_name}, #{field_name})
+
+    </insert>
+    <insert id="createHPermohonan">
+        INSERT INTO SNI.H_IDOSS_PERMOHONAN (FIELD_NAME, ACTION_FIELD, NEW_VALUE, OLD_VALUE, CREATED_USER, CREATED_DATE, ID_NO)
+	    VALUES( 'FIELD_NAME', 'ACTION_FIELD', 'NEW_VALUE', 'OLD_VALUE', 'CREATED_USER', 'CREATED_DATE', 'ID_NO')
+    </insert>
+    <insert id="createHVerifikasi">
+        INSERT INTO SNI.H_IDOSS_VERIFIKASI (FIELD_NAME, ACTION_FIELD, CREATED_USER, CREATED_DATE, ID_NO, NEW_VALUE, OLD_VALUE)
+	    VALUES( 'FIELD_NAME', 'ACTION_FIELD', 'CREATED_USER', 'CREATED_DATE', 'ID_NO', 'NEW_VALUE', 'OLD_VALUE')
+    </insert>
+    <insert id="createHPelaksanaan">
+        INSERT INTO SNI.H_IDOSS_PELAKSANAAN (FIELD_NAME, ACTION_FIELD, CREATED_USER, CREATED_DATE, ID_NO, NEW_VALUE, OLD_VALUE)
+	    VALUES( 'FIELD_NAME', 'ACTION_FIELD', 'CREATED_USER', 'CREATED_DATE', 'ID_NO', 'NEW_VALUE', 'OLD_VALUE')
+    </insert>
+</mapper> 

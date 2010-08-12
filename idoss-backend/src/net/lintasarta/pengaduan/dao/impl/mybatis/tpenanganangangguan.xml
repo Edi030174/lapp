@@ -7,10 +7,6 @@
         select count(*) from T_IDOSS_PENANGANAN_GANGGUAN
     </select>
 
-    <!--<select id="getSeqTiketId" resultType="int">-->
-       <!--select SEQ_T_IDOSS_ADUAN.nextval from dual-->
-    <!--</select>-->
-
     <select id="getSeqTiketId" resultType="int">
        select generate_id('SNI','T_IDOSS_PENANGANAN_GANGGUAN','GEN_ID_COL') from dual
     </select>
