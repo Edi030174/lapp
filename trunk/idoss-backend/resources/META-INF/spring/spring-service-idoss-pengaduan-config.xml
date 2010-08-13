@@ -15,6 +15,7 @@
         <property name="pTypeDAO" ref="pTypeDAO"/>
         <property name="pRootCausedDAO" ref="pRootCausedDAO"/>
         <property name="tPenangananGangguanDAO" ref="tPenangananGangguanDAO"/>
+        <property name="vHrEmployeePelaksanaDAO" ref="vHrEmployeePelaksanaDAO"/>
     </bean>
     
 </beans>

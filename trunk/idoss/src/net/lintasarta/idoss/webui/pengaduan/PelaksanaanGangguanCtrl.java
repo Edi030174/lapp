@@ -1,5 +1,6 @@
 package net.lintasarta.idoss.webui.pengaduan;
 
+import net.lintasarta.idoss.webui.pengaduan.model.PelaksanaListModelItemRenderer;
 import net.lintasarta.idoss.webui.pengaduan.model.RootCausedListModelItemRenderer;
 import net.lintasarta.idoss.webui.pengaduan.model.TypeListModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
@@ -45,6 +46,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 //    protected Radio radio_mayor;
     protected Listbox listbox_Type;
     protected Listbox listbox_RootCaused;
+    protected Listbox listbox_NamaPelaksana;
     protected Combobox combobox_Status;
     protected Button btn_TambahRootCaused;
 //    protected Button btnSimpan_RootCaused;
@@ -112,6 +114,9 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 
         listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCaused()));
         listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
+
+        listbox_NamaPelaksana.setModel(new ListModelList(getPelaksanaanGangguanService().getEmployeeName()));
+        listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
 
         doShowDialog(gettPenangananGangguan());
         
@@ -209,7 +214,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         texbox_Bagian.setReadonly(true);
         texbox_Judul.setReadonly(true);
         fckeditor_Deskripsi.disableClientUpdate(false);
-        textbox_Pelaksana.setReadonly(true);
+//        textbox_Pelaksana.setReadonly(true);
         textbox_NikPelaksana.setReadonly(true);
 
     }
@@ -220,11 +225,12 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         texbox_Pelapor.setValue(tPenangananGangguan.getNama_pelapor());
         texbox_Bagian.setValue(tPenangananGangguan.getBagian_pelapor());
         texbox_Judul.setValue(tPenangananGangguan.getJudul());
-        if(tPenangananGangguan.getNama_pelaksana() != null){
-            textbox_Pelaksana.setValue(tPenangananGangguan.getNama_pelaksana());
-        }else {
-            textbox_Pelaksana.setValue(getUserWorkspace().getUserSession().getEmployeeName());
-        }
+
+//        if(tPenangananGangguan.getNama_pelaksana() != null){
+//            textbox_Pelaksana.setValue(tPenangananGangguan.getNama_pelaksana());
+//        }else {
+//            textbox_Pelaksana.setValue(getUserWorkspace().getUserSession().getEmployeeName());
+//        }
         if(tPenangananGangguan.getNik_pelaksana() != null){
             textbox_NikPelaksana.setValue(tPenangananGangguan.getNik_pelaksana());
         }else {

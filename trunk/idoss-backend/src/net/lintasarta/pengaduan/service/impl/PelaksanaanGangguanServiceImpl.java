@@ -1,7 +1,9 @@
 package net.lintasarta.pengaduan.service.impl;
 
+import net.lintasarta.pengaduan.dao.VHrEmployeePelaksanaDAO;
 import net.lintasarta.pengaduan.model.PRootCaused;
 import net.lintasarta.pengaduan.model.PType;
+import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
 import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.pengaduan.dao.PRootCausedDAO;
 import net.lintasarta.pengaduan.dao.PTypeDAO;
@@ -22,6 +24,7 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
     private TPenangananGangguanDAO tPenangananGangguanDAO;
     private PRootCausedDAO pRootCausedDAO;
     private PTypeDAO pTypeDAO;
+    private VHrEmployeePelaksanaDAO vHrEmployeePelaksanaDAO;
 
     public TPenangananGangguanDAO gettPenangananGangguanDAO() {
         return tPenangananGangguanDAO;
@@ -47,6 +50,14 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
         this.pTypeDAO = pTypeDAO;
     }
 
+    public VHrEmployeePelaksanaDAO getvHrEmployeePelaksanaDAO() {
+        return vHrEmployeePelaksanaDAO;
+    }
+
+    public void setvHrEmployeePelaksanaDAO(VHrEmployeePelaksanaDAO vHrEmployeePelaksanaDAO) {
+        this.vHrEmployeePelaksanaDAO = vHrEmployeePelaksanaDAO;
+    }
+
     @Override
     public TPenangananGangguan getDetail(String tiketId) {
         return gettPenangananGangguanDAO().getTPenangananGangguanByTiketId(tiketId);
@@ -60,6 +71,11 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
     @Override
     public List<PRootCaused> getRootCaused() {
         return getpRootCausedDAO().getAllPRootCaused();
+    }
+
+    @Override
+    public List<VHrEmployeePelaksana> getEmployeeName() {
+        return getvHrEmployeePelaksanaDAO().getAllVHrEmployeePelaksana();
     }
 
     @Override

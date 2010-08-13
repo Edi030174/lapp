@@ -3,6 +3,7 @@ package net.lintasarta.pengaduan.service;
 import net.lintasarta.pengaduan.model.PRootCaused;
 import net.lintasarta.pengaduan.model.PType;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
+import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,19 @@ public class PelaksanaanGangguanServiceTest {
         String rootCausedExpected = "fhahf";
         assertEquals(rootCausedExpected, rootCausedActual);
     }
+    @Test
+    public void testGetEmployeeName() throws Exception {
+        List<VHrEmployeePelaksana> vHrEmployeePelaksanas = pelaksanaanGangguanService.getEmployeeName();
+        String employeeNameActual = null;
+        for (VHrEmployeePelaksana vHrEmployeePelaksana : vHrEmployeePelaksanas) {
+            employeeNameActual= vHrEmployeePelaksana.getEmployee_name();
+        }
+        String rootCausedExpected = "AKHMAD FAUZAN SYAFIQ";
+
+        assertEquals(rootCausedExpected, employeeNameActual);
+    }
+
+
 
     @Test
     public void testSaveOrUpdate() throws Exception {

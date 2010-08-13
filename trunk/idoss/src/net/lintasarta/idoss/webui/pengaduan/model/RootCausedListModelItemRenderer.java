@@ -28,14 +28,4 @@ public class RootCausedListModelItemRenderer implements ListitemRenderer, Serial
         item.setAttribute("data", data);
     }
 
-    /*@Override
-    public void render(Comboitem comboitem, Object data) throws Exception {
-
-        PRootCaused pRootCaused =(PRootCaused) data;
-
-        Label lb = new Label();
-        lb.setValue(pRootCaused.getRoot_caused());
-
-        comboitem.setAttribute("data", data);
-    }*/
 }

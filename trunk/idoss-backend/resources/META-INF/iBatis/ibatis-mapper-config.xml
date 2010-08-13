@@ -24,6 +24,7 @@
         <typeAlias type="net.lintasarta.pengaduan.model.TPenangananGangguan" alias="tpenanganangangguan"/>
         <typeAlias type="net.lintasarta.pengaduan.model.PRootCaused" alias="prootcaused"/>
         <typeAlias type="net.lintasarta.pengaduan.model.PType" alias="ptype"/>
+        <typeAlias type="net.lintasarta.pengaduan.model.VHrEmployeePelaksana" alias="vhremployeepelaksana"/>
         <!--reportpermohonan-->
         <typeAlias type="net.lintasarta.report.permohonan.model.ReportPermohonan" alias="reportpermohonan"/>
         <!--auditlog-->
@@ -45,6 +46,7 @@
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/prootcaused.xml"/>
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/ptype.xml"/>
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/tpenanganangangguan.xml"/>
+        <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/vhremployeepelaksana.xml"/>
         <!--report permohonan-->
         <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportpermohonan.xml"/>
         <!--auditlog-->

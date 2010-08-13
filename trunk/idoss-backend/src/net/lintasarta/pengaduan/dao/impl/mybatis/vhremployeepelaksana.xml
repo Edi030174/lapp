@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.pengaduan.dao.VHrEmployeePelaksanaDAO">
+
+    <select id="getAllVHrEmployeePelaksana" resultType="vhremployeepelaksana">
+        select * from sni.v_hr_employee_pelaksana
+    </select>
+
+</mapper>

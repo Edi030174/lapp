@@ -3,6 +3,7 @@ package net.lintasarta.pengaduan.service;
 import net.lintasarta.pengaduan.model.PRootCaused;
 import net.lintasarta.pengaduan.model.PType;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
+import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public interface PelaksanaanGangguanService {
     List<PType> getType();
 
     List<PRootCaused> getRootCaused();
+
+    List<VHrEmployeePelaksana> getEmployeeName();
 
     void saveOrUpdate(TPenangananGangguan tPenangananGangguan);
 }
