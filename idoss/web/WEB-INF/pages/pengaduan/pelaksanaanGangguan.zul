@@ -75,14 +75,14 @@
                                 </vbox>
                                 <space width="50px"/>
                                 <listbox id="listbox_Type" width="140px" mold="select" rows="1"/>
-                                <!--<combobox id="combobox_Type"/>-->
                             </hbox>
                         </vbox>
                     </row>
                     <row style="border:0px">
                         <label value="Pelaksana "/>
                         <hbox>
-                            <textbox id="textbox_Pelaksana"/>
+                            <listbox id="listbox_NamaPelaksana" width="100%" mold="select" rows="1"/>
+                            <!--<textbox id="textbox_Pelaksana"/>-->
                             <space width="112px"/>
                             <vbox>
                                 <space height="0.5px"/>
