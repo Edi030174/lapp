@@ -36,23 +36,23 @@
                 <rows>
                     <row style="border:0px">
                         <label value="Nomor Tiket"/>
-                        <textbox id="textbox_NomorTiket"/>
+                        <textbox id="textbox_NomorTiket" readonly="true"/>
                     </row>
                     <row style="border:0px">
                         <label value="Pelapor"/>
                         <hbox>
-                            <textbox id="texbox_Pelapor"/>
+                            <textbox id="texbox_Pelapor" readonly="true"/>
                             <space/>
                             <vbox>
                                 <space height="0.5px"/>
                                 <label value="Bagian"/>
                             </vbox>
-                            <textbox id="texbox_Bagian"/>
+                            <textbox id="texbox_Bagian" readonly="true"/>
                         </hbox>
                     </row>
                     <row style="border:0px">
                         <label value="Judul"/>
-                        <textbox id="texbox_Judul" width="99%"/>
+                        <textbox id="texbox_Judul" width="99%" readonly="true"/>
                     </row>
                     <row style="border:0px">
                         <label value="Deskripsi"/>
@@ -83,12 +83,12 @@
                         <hbox>
                             <listbox id="listbox_NamaPelaksana" width="100%" mold="select" rows="1"/>
                             <!--<textbox id="textbox_Pelaksana"/>-->
-                            <space width="112px"/>
-                            <vbox>
-                                <space height="0.5px"/>
-                                <label value="NIK Pelaksana"/>
-                            </vbox>
-                            <textbox id="textbox_NikPelaksana"/>
+                            <!--<space width="112px"/>-->
+                            <!--<vbox>-->
+                                <!--<space height="0.5px"/>-->
+                                <!--<label value="NIK Pelaksana"/>-->
+                            <!--</vbox>-->
+                            <!--<textbox id="textbox_NikPelaksana"/>-->
                         </hbox>
 
                     </row>
@@ -106,7 +106,7 @@
                                 <label value="status"/>
                             </vbox>
                             <space width="50px"/>
-                            <combobox id="combobox_Status" width="140px" >
+                            <combobox id="combobox_Status" width="140px" readonly="true" >
                                 <comboitem label="Open"/>
                                 <comboitem label="In Progres"/>
                                 <comboitem label="Pending"/>

@@ -1,3 +1,4 @@
+
 package net.lintasarta.idoss.webui.pengaduan;
 
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
@@ -87,13 +88,9 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         }
 
         doShowDialog(gettPenangananGangguan());
-        textbox_NomorTiket.setReadonly(true);
         textbox_NomorTiket.setValue(getPenangananGangguanService().getTiketId());
-        textbox_NamaPelapor.setReadonly(true);
         textbox_NamaPelapor.setValue(getUserWorkspace().getUserSession().getEmployeeName());
-        textbox_NikPelapor.setReadonly(true);
         textbox_NikPelapor.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
-        textbox_Bagian.setReadonly(true);
         textbox_Bagian.setValue(getUserWorkspace().getUserSession().getDepartment());
     }
 
@@ -143,6 +140,9 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         }
         if (textbox_NomorHP.getConstraint() != null) {
             textbox_NomorHP = new Textbox();
+        }
+        if (textbox_Ext.getConstraint() != null) {
+            textbox_Ext = new Textbox();
         }
 
         if (logger.isDebugEnabled()) {

@@ -8,6 +8,7 @@ import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.PRootCaused;
 import net.lintasarta.pengaduan.model.PType;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
+import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
 import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
@@ -129,7 +130,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         }
 
         doClose();
-    }
+    }                                 
 
     public void onClick$btnSimpan_PelaksanaanGangguan(Event event) throws Exception {
 
@@ -154,33 +155,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
 
         doWriteComponentsToBean(tPenangananGangguan);
-
-        Listitem item = listbox_RootCaused.getSelectedItem();
-
-        if (item == null) {
-            try {
-                Messagebox.show("Silakan pilih Root Caused!");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return ;
-        }
-        ListModelList lml1 = (ListModelList)listbox_RootCaused.getListModel();
-        PRootCaused rootCaused = (PRootCaused)lml1.get(item.getIndex());
-        tPenangananGangguan.setRoot_cause_id(rootCaused.getP_idoss_root_caused_id());
-
-        Listitem item1 = listbox_Type.getSelectedItem();
-        if (item == null) {
-            try {
-                Messagebox.show("Silakan pilih Type!");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return ;
-        }
-        ListModelList lml2 = (ListModelList)listbox_Type.getListModel();
-        PType type = (PType)lml2.get(item1.getIndex());
-        tPenangananGangguan.setType_id(type.getP_idoss_type_id());
 
         try {
             getPelaksanaanGangguanService().saveOrUpdate(tPenangananGangguan);
@@ -209,13 +183,13 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             Messagebox.show(e.toString());
         }
 
-        textbox_NomorTiket.setReadonly(true);
-        texbox_Pelapor.setReadonly(true);
-        texbox_Bagian.setReadonly(true);
-        texbox_Judul.setReadonly(true);
-        fckeditor_Deskripsi.disableClientUpdate(false);
+//        textbox_NomorTiket.setReadonly(true);
+//        texbox_Pelapor.setReadonly(true);
+//        texbox_Bagian.setReadonly(true);
+//        texbox_Judul.setReadonly(true);
+//        fckeditor_Deskripsi.disableClientUpdate(false);
 //        textbox_Pelaksana.setReadonly(true);
-        textbox_NikPelaksana.setReadonly(true);
+//        textbox_NikPelaksana.setReadonly(true);
 
     }
 
@@ -231,11 +205,11 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 //        }else {
 //            textbox_Pelaksana.setValue(getUserWorkspace().getUserSession().getEmployeeName());
 //        }
-        if(tPenangananGangguan.getNik_pelaksana() != null){
-            textbox_NikPelaksana.setValue(tPenangananGangguan.getNik_pelaksana());
-        }else {
-            textbox_NikPelaksana.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
-        }
+//        if(tPenangananGangguan.getNik_pelaksana() != null){
+//            textbox_NikPelaksana.setValue(tPenangananGangguan.getNik_pelaksana());
+//        }else {
+//            textbox_NikPelaksana.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
+//        }
         fckeditor_Deskripsi.setValue(tPenangananGangguan.getDeskripsi());
         fckeditor_Solusi.setValue(tPenangananGangguan.getSolusi());
         combobox_Status.setValue(tPenangananGangguan.getStatus());
@@ -244,12 +218,54 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 
     private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
 
-        tPenangananGangguan.setNama_pelaksana(textbox_Pelaksana.getValue());
-        tPenangananGangguan.setNik_pelaksana(textbox_NikPelaksana.getValue());
+//        tPenangananGangguan.setNama_pelaksana(textbox_Pelaksana.getValue());
+//        tPenangananGangguan.setNik_pelaksana(textbox_NikPelaksana.getValue());
         tPenangananGangguan.setDeskripsi(fckeditor_Deskripsi.getValue());
         tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tPenangananGangguan.setDampak(dampak.getValue());
+
+        Listitem item = listbox_RootCaused.getSelectedItem();
+        if (item == null) {
+            try {
+                Messagebox.show("Silakan pilih Root Caused!");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return ;
+        }
+        ListModelList lml1 = (ListModelList)listbox_RootCaused.getListModel();
+        PRootCaused rootCaused = (PRootCaused)lml1.get(item.getIndex());
+        tPenangananGangguan.setRoot_cause_id(rootCaused.getP_idoss_root_caused_id());
+
+        Listitem item1 = listbox_Type.getSelectedItem();
+        if (item == null) {
+            try {
+                Messagebox.show("Silakan pilih Type!");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return ;
+        }
+        ListModelList lml2 = (ListModelList)listbox_Type.getListModel();
+        PType type = (PType)lml2.get(item1.getIndex());
+        tPenangananGangguan.setType_id(type.getP_idoss_type_id());
+
+        Listitem itempelaksana = listbox_NamaPelaksana.getSelectedItem();
+        if (itempelaksana == null) {
+            try {
+                Messagebox.show("Silakan pilih Pelaksana!");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return ;
+        }
+        ListModelList lml3 = (ListModelList)listbox_NamaPelaksana.getListModel();
+        VHrEmployeePelaksana vHrEmployeePelaksana = (VHrEmployeePelaksana)lml3.get(itempelaksana.getIndex());
+        tPenangananGangguan.setNama_pelaksana(vHrEmployeePelaksana.getEmployee_name());
+//        textbox_NikPelaksana.setValue(vHrEmployeePelaksana.getEmployee_no());
+        tPenangananGangguan.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
+
         tPenangananGangguan.setStatus(combobox_Status.getValue());
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
