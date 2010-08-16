@@ -142,7 +142,31 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
             logger.debug("--> " + event.toString());
         }
         TPermohonan tPermohonan = getPermohonanService().getNewPermohonan();
-        showDetailView(tPermohonan);
+        showDetailViewPermohonanBaru(tPermohonan);
+    }
+
+    private void showDetailViewPermohonanBaru(TPermohonan tPermohonan) throws InterruptedException {
+         HashMap<String, Object> map = new HashMap<String, Object>();
+
+        map.put("tPermohonan", tPermohonan);
+
+//        map.put("DaftarPermohonanCtrl", this);
+
+        map.put("listbox_DaftarPermohonan", listbox_DaftarPermohonan);
+
+        try {
+            Executions.createComponents("/WEB-INF/pages/permohonan/formpermohonanbaru.zul", null, map);
+        } catch (Exception e) {
+            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
+
+            // Show a error box
+            String msg = e.getMessage();
+            String title = Labels.getLabel("message_Error");
+
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
+
+        }
     }
 
     public void onClick$btnRefresh(Event event) throws InterruptedException {
@@ -204,6 +228,15 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
             getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonan, paging_DaftarPermohonan);
         }
         
+    }
+
+    public void onTimer$timer(Event event) throws Exception{
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+
+        Events.postEvent("onCreate", window_DaftarPermohonan, event);
+        window_DaftarPermohonan.invalidate();
     }
 
     public void onCheck$checkbox_all(Event event) {

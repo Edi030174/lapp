@@ -34,6 +34,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     protected Radio tunda;
     protected Radio mulai;
     protected Datebox datebox_TglPermohonan;
+    protected Datebox datebox_Pending;
     protected FCKeditor fckCatatan_pelaksana;
     protected Checkbox checkbox_Rfs;
 
@@ -41,6 +42,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     private transient String oldVar_tunda;
     private transient String oldVar_mulai;
     private transient String oldVar_dateboxTglPermohonan;
+    private transient String oldVar_dateboxPending;
     private transient boolean oldVar_checkboxRfs;
 
     protected Listbox listbox_DaftarPermohonan;

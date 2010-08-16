@@ -36,7 +36,7 @@
                             <tab id="tab_Permohonan"
                                  label="Permohonan"/>
                             <tab id="tab_Verifikasi"
-                                 label="Verifikasi"/>
+                                 label="Persetujuan Dukophar"/>
                             <tab id="tab_Pelaksanaan"
                                  label="Pelaksanaan"/>
                         </tabs>
@@ -44,18 +44,17 @@
                             <!--tap permohonan-->
                             <tabpanel id="tabPanel_Permohonan"
                                       height="100%" style="border: 0px; padding: 0px">
-                                <toolbar>
-                                    <button id="btnSimpan_Permohonan" label="Simpan"/>
-                                    <button id="btnBatal" label="Batal"/>
-                                </toolbar>
+                                <!--<toolbar>-->
+                                    <!--<button id="btnSimpan_Permohonan" label="Simpan"/>-->
+                                    <!--<button id="btnBatal" label="Batal"/>-->
+                                <!--</toolbar>-->
                                 <groupbox id="groupboxPemohon" mold="3d">
                                     <caption label="Pemohon"
                                              style="font-weight:bold"/>
                                     <vbox>
                                         <hbox>
-                                            <label
-                                                    value="(diisi oleh minimal Pimpinan bagian)"/>
-                                            <space width="350px"></space>
+
+                                            <space width="650px"></space>
                                             <label
                                                     style="font-size:12pt;font-weight:bold" value="PENTING"/>
                                         </hbox>
@@ -134,9 +133,9 @@
                                             <textbox id="textbox_NikAsman"
                                                      width="60px"/>
                                             <textbox id="textbox_NikManager"
-                                                     width="50px"/>
+                                                     width="60px"/>
                                             <textbox id="textbox_NikGm"
-                                                     width="50px"/>
+                                                     width="60px"/>
 
                                         </vbox>
                                     </hbox>
@@ -145,8 +144,7 @@
                                     <caption label="Detil Permohonan"
                                              style="font-weight:bold"/>
                                     <vbox>
-                                        <label
-                                                value="(Diisi oleh pemohon minimal pimpinan bagian)"/>
+
                                         <hbox>
                                             <vbox></vbox>
                                             Type :

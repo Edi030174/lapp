@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns2:XMLRootMenu xmlns:ns2="http://www.daibutsu.de/zk/menu">
 
-	<menuItem id="menu_Item_Home" zulNavigation="/WEB-INF/pages/welcome.zul"
-		iconName="/images/icons/console_view.gif" />
-	<menuItem id="menu_Item_Chat" zulNavigation="/WEB-INF/pages/chat/chat.zul" />
+    <menuItem id="menu_Item_Home" zulNavigation="/WEB-INF/pages/welcome.zul"
+              iconName="/images/icons/console_view.gif"/>
+    <menuItem id="menu_Item_Chat" zulNavigation="/WEB-INF/pages/chat/chat.zul"/>
 
     <!--<menu id="menu_Category_Ophar">-->
-        <menuItem id="menu_Item_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarTroubleTiket.zul"/>
-        <menuItem id ="menu_Item_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftar_permohonan.zul"/>
-    <!--</menu>-->
+    <menuItem id="menu_Item_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarTroubleTiket.zul"/>
 
-    <!--<menu id="menu_Category_USO">-->
 
     <!--</menu>-->
+
+    <menu id="menu_Category_Permohonan">
+        <menuItem id="menu_Item_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftar_permohonan.zul"/>
+        <menuItem id="menu_Item_PersetujuanPermohonan" zulNavigation="/WEB-INF/pages/permohonan/persetujuandivisipemohon.zul"/>
+        <menuItem id="menu_Item_PersetujuanDukophar" zulNavigation="/WEB-INF/pages/permohonan/verifikasi.zul"/>
+
+    </menu>
 </ns2:XMLRootMenu>

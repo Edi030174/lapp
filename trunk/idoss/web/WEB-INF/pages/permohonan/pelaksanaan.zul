@@ -41,11 +41,12 @@
                             <div style="">
                                 <radiogroup
                                         id="radiogroup_StatusPerubahan">
+                                    <radio id="open" label="Open" value="OPEN" selected="true"/>
+                                    <radio id="inprogress" label="In Progress" value="INPROGRESS"/>
                                     <radio id="closed" label="Closed" value="CLOSED"/>
                                     <radio id="pending" label="Pending" value="PENDING"/>
-                                    <radio id="inprogress" label="In Progress" value="INPROGRESS"/>
-                                    <radio id="open" label="Open" value="OPEN" selected="true"/>
                                 </radiogroup>
+                                <datebox id="datebox_Pending" format="dd MMMM yyyy" readonly="true" width="150px" constraint="no past, no today"></datebox>
                             </div>
                         </north>
                         <center border="0">
