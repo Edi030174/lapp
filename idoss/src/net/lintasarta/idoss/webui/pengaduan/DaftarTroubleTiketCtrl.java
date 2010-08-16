@@ -256,6 +256,17 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         window_DaftarTroubleTiket.onClose();
     }
 
+    public void onTimer$timer(Event event){
+        
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+
+        Events.postEvent("onCreate", window_DaftarTroubleTiket, event);
+        window_DaftarTroubleTiket.invalidate();
+
+    }
+
     public void showDetailView(TPenangananGangguan tPenangananGangguan) throws Exception {
 
         HashMap<String, Object> map = new HashMap<String, Object>();

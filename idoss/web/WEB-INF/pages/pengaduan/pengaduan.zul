@@ -36,20 +36,20 @@
                 <rows>
                     <row style="border:0px">
                         <label value="Nomor Tiket"/>
-                        <textbox id="textbox_NomorTiket"/>
+                        <textbox id="textbox_NomorTiket" readonly="true"/>
                     </row>
                     <row style="border:0px">
                         <label value="Nama Pelapor"/>
-                        <textbox id="textbox_NamaPelapor"/>
+                        <textbox id="textbox_NamaPelapor" readonly="true"/>
                     </row>
                     <row style="border:0px">
                         <label value="NIK Pelapor"/>
                         <hbox>
-                            <textbox id="textbox_NikPelapor"/>
+                            <textbox id="textbox_NikPelapor" readonly="true"/>
                             <space/>
                             <label value="Bagian"/>
                             <space width="0.5px"/>
-                            <textbox id="textbox_Bagian"/>
+                            <textbox id="textbox_Bagian" readonly="true"/>
                         </hbox>
 
                     </row>

@@ -12,6 +12,7 @@
             }
 
         </style>
+        <timer id="timer" delay="60000" repeats="true"/>
 
         <panel id="panel_daftarTroubleTiket" title="" border="none" />
 
@@ -23,7 +24,13 @@
                     image="/images/icons/btn_new2_16x16.gif"
                     tooltiptext="${c:l('btnBuatBaru_DaftarTiket.tooltiptext')}"/>
             <space />
-            <label value="Tiket Status :" />
+            <label value="Cari berdasarkan :" />
+            <combobox id="combobox" readonly="true">
+                <comboitem label="Nomor Tiket"/>
+                <comboitem label="Judul"/>
+                <comboitem label="Status"/>
+                <comboitem label="Pelapor"/>
+            </combobox>
             <textbox id="textbox_Cari" value=""/>
             <button id="btnCari_DaftarTiket" label="Cari"
                     image="/images/icons/btn_search2_16x16.gif"
