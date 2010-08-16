@@ -3,28 +3,23 @@
     <style>
         body { padding: 0 0; /* 0 padding on top and bottom and 0
         padding on right and left */ }
-
         <!-- cut the vertical borders in the rows -->
         tr.z-row td.z-row-inner { border-right: 0px #CCC; }
-
         <!-- Make Plain Grid -->
         .GridLayoutNoBorder tr.z-row td.z-row-inner, tr.z-row
         .z-cell,div.z-grid { border: none; overflow: hidden; zoom:
         1; background: white; border-top: none; border-left: none;
         border-right: none; border-bottom: none; }
-
         <!-- Title in bold letters -->
         .z-groupbox-hl .z-groupbox-header { color: #000000;
         font-weight: bold; }
     </style>
     <window id="window_Verifikasi" border="normal"
             apply="${verifikasiCtrl}">
-
         <toolbar>
             <button id="btnSimpan_Verifikasi" label="Simpan"/>
             <button id="btnBatal" label="Batal"/>
         </toolbar>
-
         <hbox>
             <space width="20px"></space>
             <hbox>
@@ -136,7 +131,6 @@
                                         <center border="0"
                                                 flex="true">
                                             <div style="">
-
                                             </div>
                                         </center>
                                     </borderlayout>
@@ -145,7 +139,6 @@
                         </center>
                         <east border="none" flex="true"></east>
                     </borderlayout>
-
                 </north>
             </borderlayout>
         </groupbox>
@@ -213,21 +206,17 @@
                                         <center border="0"
                                                 flex="true">
                                             <div style="">
-
                                             </div>
                                         </center>
                                     </borderlayout>
                                 </center>
                             </borderlayout>
-
                         </center>
                         <east border="0" flex="true">
-
                         </east>
                     </borderlayout>
                 </center>
             </borderlayout>
         </groupbox>
-
     </window>
 </zk>

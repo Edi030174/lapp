@@ -11,8 +11,6 @@ import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.media.Media;
 import org.zkoss.util.resource.Labels;
-import org.zkoss.zk.ui.Executions;
-import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.UploadEvent;
@@ -21,19 +19,17 @@ import org.zkoss.zul.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Joshua
  * Date: Jul 8, 2010
  * Time: 2:36:13 PM
  */
-public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
+public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     private Media uploadMedia;
 
-    private transient final static Logger logger = Logger.getLogger(PermohonanCtrl.class);
+    private transient final static Logger logger = Logger.getLogger(PermohonanBaruCtrl.class);
 
     protected Window window_Permohonan;
     protected Tab tab_Permohonan;
@@ -68,14 +64,13 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     protected Tab tab_Pelaksanaan;
     protected Tabpanel tabPanel_Pelaksanaan;
-    
     private transient boolean validationOn;
     private transient Listbox listbox_DaftarPermohonan;
 
     protected Button btnSimpan_Permohonan;
     protected Button btnBatal;
 
-    protected PermohonanCtrl permohonanCtrl;
+    protected PermohonanBaruCtrl permohonanBaruCtrl;
 
     private transient String oldVar_textboxTIdossPermohonanId;
     private transient String oldVar_textboxNamaPemohon;
@@ -104,7 +99,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     private transient PermohonanService permohonanService;
 
 
-    public PermohonanCtrl() {
+    public PermohonanBaruCtrl() {
         super();
 
         if (logger.isDebugEnabled()) {
@@ -117,11 +112,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        tab_Permohonan.setClosable(false);
-        tab_Verifikasi.setVisible(true);
-        tabPanel_Verifikasi.setVisible(true);
-        tab_Pelaksanaan.setVisible(true);
-        tabPanel_Pelaksanaan.setVisible(true);
 
         Map<String, Object> args = getCreationArgsMap(event);
 
@@ -132,10 +122,10 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             settPermohonan(null);
         }
 
-        if (args.containsKey("permohonanCtrl")) {
-            permohonanCtrl = (PermohonanCtrl) args.get("permohonanCtrl");
+        if (args.containsKey("permohonanBaruCtrl")) {
+            permohonanBaruCtrl = (PermohonanBaruCtrl) args.get("permohonanBaruCtrl");
         } else {
-            permohonanCtrl = null;
+            permohonanBaruCtrl = null;
         }
 
         if (args.containsKey("listbox_DaftarPermohonan")) {
@@ -143,7 +133,9 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             listbox_DaftarPermohonan = null;
         }
+
         doShowDialog(gettPermohonan());
+
     }
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
@@ -151,8 +143,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             tPermohonan = getPermohonanService().getNewPermohonan();
             settPermohonan(tPermohonan);
 
-        } else{
-            settPermohonan(tPermohonan);
         }
 
         try {
@@ -163,11 +153,11 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             Messagebox.show(e.toString());
         }
         textbox_TIdossPermohonanId.setReadonly(true);
-
         textbox_NamaPemohon.setReadonly(true);
         textbox_BagianPemohon.setReadonly(true);
         textbox_NikPemohon.setReadonly(true);
         datebox_Tanggal.setReadonly(true);
+        
         textbox_Lainlain.setReadonly(true);
         textbox_NamaAsman.setReadonly(true);
         textbox_NamaManager.setReadonly(true);
@@ -175,106 +165,21 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         textbox_NikAsman.setReadonly(true);
         textbox_NikManager.setReadonly(true);
         textbox_NikGm.setReadonly(true);
-        radio_aplikasi.setDisabled(true);
-        radio_lainlain.setDisabled(true);
-        radio_readonly.setDisabled(true);
-        radio_readwrite.setDisabled(true);
-        checkbox_Cepat.setDisabled(true);
-
     }
 
     private void doWriteBeanToComponents(TPermohonan tPermohonan) {
-        if(tPermohonan.getT_idoss_permohonan_id() != null){
-            textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
-        } else {
-            textbox_TIdossPermohonanId.setValue(getPermohonanService().getPermohonanID());
-        }
-
-        if (tPermohonan.getNama_pemohon() != null) {
-            textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
-        } else {
-            textbox_NamaPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeName());
-        }
-        if (tPermohonan.getBagian_pemohon() != null) {
-            textbox_BagianPemohon.setValue(tPermohonan.getBagian_pemohon());
-        } else {
-            textbox_BagianPemohon.setValue(getUserWorkspace().getUserSession().getDepartment());
-        }
-        textbox_NamaAsman.setValue(tPermohonan.getNama_asman());
-        textbox_NamaManager.setValue(tPermohonan.getNama_manager());
-        textbox_NamaGm.setValue(tPermohonan.getNama_gm());
-        if (tPermohonan.getNik_pemohon() != null) {
-            textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
-        } else {
-            textbox_NikPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
-        }
-        textbox_NikAsman.setValue(tPermohonan.getNik_asman());
-        textbox_NikManager.setValue(tPermohonan.getNik_manager());
-        textbox_NikGm.setValue(tPermohonan.getNik_gm());
-        datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
-        fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
-
-    }
-
-    public void onSelect$tab_Verifikasi(Event event) {
-
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-
-        TVerifikasi tVerifikasi = null;
-        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
-            tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
-        }
-
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        if (tVerifikasi != null) {
-            map.put("tVerifikasi", tVerifikasi);
-        } else {
-            map.put("tVerifikasi", getPermohonanService().getNewVerifikasi());
-        }
-        map.put("permohonanCtrl", this);
-
-        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_Verifikasi");
-        orderTab.getChildren().clear();
-
-        Panel panel = new Panel();
-        Panelchildren pChildren = new Panelchildren();
-
-        panel.appendChild(pChildren);
-        orderTab.appendChild(panel);
-
-        Executions.createComponents("/WEB-INF/pages/permohonan/verifikasi.zul", pChildren, map);
-    }
-
-    public void onSelect$tab_Pelaksanaan(Event event) {
-
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        TPelaksanaan tPelaksanaan = null;
-        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
-            tPelaksanaan = getPermohonanService().getTPelaksanaanByTIdossPelaksanaanId(gettPermohonan().getT_idoss_permohonan_id());
-        }
-
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        if (tPelaksanaan != null) {
-            map.put("tPelaksanaan", tPelaksanaan);
-        } else {
-            map.put("tPelaksanaan", getPermohonanService().getNewPelaksanaan());
-        }
-        map.put("permohonanCtrl", this);
-
-        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_Pelaksanaan");
-        orderTab.getChildren().clear();
-
-        Panel panel = new Panel();
-        Panelchildren pChildren = new Panelchildren();
-
-        panel.appendChild(pChildren);
-        orderTab.appendChild(panel);
-
-        Executions.createComponents("/WEB-INF/pages/permohonan/pelaksanaan.zul", pChildren, map);
+        textbox_TIdossPermohonanId.setValue(getPermohonanService().getPermohonanID());
+        textbox_NamaPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeName());
+        textbox_BagianPemohon.setValue(getUserWorkspace().getUserSession().getDepartment());
+//        textbox_NamaAsman.setValue(tPermohonan.getNama_asman());
+//        textbox_NamaManager.setValue(tPermohonan.getNama_manager());
+//        textbox_NamaGm.setValue(tPermohonan.getNama_gm());
+        textbox_NikPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
+//        textbox_NikAsman.setValue(tPermohonan.getNik_asman());
+//        textbox_NikManager.setValue(tPermohonan.getNik_manager());
+//        textbox_NikGm.setValue(tPermohonan.getNik_gm());
+        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
+        datebox_Tanggal.setValue(ts);
 
     }
 
@@ -458,11 +363,11 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
-    private void onCheck$radiogroupType_permohonan(TPermohonan tPermohonan){
+    private void onCheck$radiogroupType_permohonan(TPermohonan tPermohonan) {
         textbox_Lainlain.setReadonly(false);
     }
 
-    private void onCheck$radio_lainlain(TPermohonan tPermohonan){
+    private void onCheck$radio_lainlain(TPermohonan tPermohonan) {
         textbox_Lainlain.setReadonly(false);
     }
 
