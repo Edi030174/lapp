@@ -69,9 +69,6 @@
                                             <label width="130px" value="Bagian Pemohon"/>
                                             <space height="1px"></space>
                                             <label width="100px"
-                                                   value="Nama Asisten Manager"/>
-                                            <space height="1px"></space>
-                                            <label width="100px"
                                                    value="Nama Manager"/>
                                             <space height="1px"></space>
                                             <label width="100px"
@@ -90,13 +87,11 @@
                                             <label width="10px" value=":"/>
                                             <space height="1px"></space>
                                             <label width="10px" value=":"/>
-                                            <space height="1px"></space>
-                                            <label width="10px" value=":"/>
                                         </vbox>
                                         <vbox>
                                             <hbox>
                                                 <textbox
-                                                        id="textbox_TIdossPermohonanId" width="120px"/>
+                                                        id="textbox_TIdossPermohonanId" width="120px" disabled="true" style="color: #000000 !important;"/>
                                                 <vbox>
                                                     <space height="1px"></space>
                                                     <label width="10px"
@@ -104,15 +99,13 @@
                                                 </vbox>
                                             </hbox>
                                             <textbox id="textbox_NamaPemohon"
-                                                     width="200px"/>
+                                                     width="200px" disabled="true" style="color: black !important;"/>
                                             <textbox id="textbox_BagianPemohon"
-                                                     width="120px"/>
-                                            <textbox id="textbox_NamaAsman"
-                                                     width="120px"/>
+                                                     width="120px" disabled="true" style="color: black !important;"/>
                                             <textbox id="textbox_NamaManager"
-                                                     width="120px"/>
+                                                     width="120px" disabled="true" style="color: black !important;"/>
                                             <textbox id="textbox_NamaGm"
-                                                     width="120px"/>
+                                                     width="120px" disabled="true" style="color: black !important;"/>
                                         </vbox>
                                         <vbox>
                                             <space height="1px"></space>
@@ -122,20 +115,16 @@
                                             <label width="10px" value="NIK :"/>
                                             <space height="5px"></space>
                                             <label width="10px" value="NIK :"/>
-                                            <space height="5px"></space>
-                                            <label width="10px" value="NIK :"/>
                                         </vbox>
                                         <vbox>
-                                            <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" readonly="true" width="150px"/>
+                                            <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" disabled="true" readonly="true" width="150px" style="color: #000000 !important;"/>
                                             <textbox id="textbox_NikPemohon"
-                                                     width="60px"/>
+                                                     width="60px" disabled="true" style="color: black !important;"/>
                                             <space height="22px"></space>
-                                            <textbox id="textbox_NikAsman"
-                                                     width="60px"/>
                                             <textbox id="textbox_NikManager"
-                                                     width="60px"/>
+                                                     width="60px" disabled="true" style="color: black !important;"/>
                                             <textbox id="textbox_NikGm"
-                                                     width="60px"/>
+                                                     width="60px" disabled="true" style="color: black !important;"/>
 
                                         </vbox>
                                     </hbox>
@@ -166,7 +155,7 @@
                                                     style="font-size:8pt;font-weight:italic"
                                                     value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
                                         </vbox>
-                                        <button label="Lampiran" upload="true,maxsize=-1" id="button_Lampiran" />
+                                        <button label="Lampiran" upload="true,maxsize=-1" id="button_Lampiran"/>
                                         <!--<button label="Upload" upload="true,maxsize=-1" onUpload="dosomething"/>-->
                                     </hbox>
                                     <vbox></vbox>

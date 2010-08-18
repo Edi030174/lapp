@@ -7,8 +7,9 @@
     xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-    <window id="window_Permohonan" title="permohonan" border="none" apply="${permohonanBaruCtrl}"
-            sizable="true" width="800px"  height="480px" closable="true">
+    <window id="window_Permohonan" title="permohonan" border="none" apply="${permohonanCtrl}"
+            sizable="true" width="800px"  height="600px" closable="true">
+
         <style>
             body { padding: 0 0; /* 0 padding on top and bottom and 0
             padding on right and left */ }
@@ -30,38 +31,53 @@
             <north border="none" margins="0,0,0,0"/>
             <center border="none">
                 <div id="divPermohonan">
-                                <toolbar>
-                                    <button id="btnSimpan_Permohonan" label="Simpan"/>
-                                    <button id="btnBatal" label="Batal"/>
-                                </toolbar>
+                    <tabbox id="tabBox_Permohonan" width="100%">
+                        <tabs>
+                            <tab id="tab_Permohonan"
+                                 label="Permohonan"/>
+                            <tab id="tab_Verifikasi"
+                                 label="Persetujuan Dukophar"/>
+                            <tab id="tab_Pelaksanaan"
+                                 label="Pelaksanaan"/>
+                        </tabs>
+                        <tabpanels>
+                            <!--tap permohonan-->
+                            <tabpanel id="tabPanel_Permohonan"
+                                      height="100%" style="border: 0px; padding: 0px">
+                                <!--<toolbar>-->
+                                    <!--<button id="btnSimpan_Permohonan" label="Simpan"/>-->
+                                    <!--<button id="btnBatal" label="Batal"/>-->
+                                <!--</toolbar>-->
                                 <groupbox id="groupboxPemohon" mold="3d">
-                                    <caption label="Pemohon" style="font-weight:bold"/>
+                                    <caption label="Pemohon"
+                                             style="font-weight:bold"/>
                                     <vbox>
                                         <hbox>
+
                                             <space width="650px"></space>
-                                            <label style="font-size:12pt;font-weight:bold" value="PENTING"/>
+                                            <label
+                                                    style="font-size:12pt;font-weight:bold" value="PENTING"/>
                                         </hbox>
                                     </vbox>
                                     <hbox>
                                         <vbox>
-                                            <label width="100px" value="Nomor Permohonan"/>
+                                            <label width="100px"
+                                                   value="Nomor Permohonan"/>
                                             <space height="1px"></space>
                                             <label width="100px" value="Nama Pemohon"/>
                                             <space height="1px"></space>
                                             <label width="130px" value="Bagian Pemohon"/>
                                             <space height="1px"></space>
-                                            <label width="100px" value="Nama Asisten Manager"/>
+                                            <label width="100px"
+                                                   value="Nama Manager"/>
                                             <space height="1px"></space>
-                                            <label width="100px" value="Nama Manager"/>
-                                            <space height="1px"></space>
-                                            <label width="100px" value="Nama General Manager"/>
+                                            <label width="100px"
+                                                   value="Nama General Manager"/>
                                             <space height="1px"></space>
                                             <space height="1px"></space>
                                             <space height="1px"></space>
                                         </vbox>
                                         <vbox>
-                                            <label width="10px" value=":"/>
-                                            <space height="1px"></space>
                                             <label width="10px" value=":"/>
                                             <space height="1px"></space>
                                             <label width="10px" value=":"/>
@@ -74,17 +90,22 @@
                                         </vbox>
                                         <vbox>
                                             <hbox>
-                                                <textbox id="textbox_TIdossPermohonanId" width="120px"/>
+                                                <textbox
+                                                        id="textbox_TIdossPermohonanId" width="120px" disabled="true" style="color: #000000 !important;"/>
                                                 <vbox>
                                                     <space height="1px"></space>
-                                                    <label width="10px" value="//FSHOPAR2010"/>
+                                                    <label width="10px"
+                                                           value="//FSHOPAR2010"/>
                                                 </vbox>
                                             </hbox>
-                                            <textbox id="textbox_NamaPemohon" width="200px"/>
-                                            <textbox id="textbox_BagianPemohon" width="120px"/>
-                                            <textbox id="textbox_NamaAsman" width="120px"/>
-                                            <textbox id="textbox_NamaManager" width="120px"/>
-                                            <textbox id="textbox_NamaGm" width="120px"/>
+                                            <textbox id="textbox_NamaPemohon"
+                                                     width="200px" disabled="true" style="color: black !important;"/>
+                                            <textbox id="textbox_BagianPemohon"
+                                                     width="120px" disabled="true" style="color: black !important;"/>
+                                            <textbox id="textbox_NamaManager"
+                                                     width="120px" disabled="true" style="color: black !important;"/>
+                                            <textbox id="textbox_NamaGm"
+                                                     width="120px" disabled="true" style="color: black !important;"/>
                                         </vbox>
                                         <vbox>
                                             <space height="1px"></space>
@@ -94,52 +115,48 @@
                                             <label width="10px" value="NIK :"/>
                                             <space height="5px"></space>
                                             <label width="10px" value="NIK :"/>
-                                            <space height="5px"></space>
-                                            <label width="10px" value="NIK :"/>
                                         </vbox>
                                         <vbox>
-                                            <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" readonly="true" width="150px"/>
-                                            <textbox id="textbox_NikPemohon" width="60px"/>
+                                            <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" disabled="true" readonly="true" width="150px" style="color: #000000 !important;"/>
+                                            <textbox id="textbox_NikPemohon"
+                                                     width="60px" disabled="true" style="color: black !important;"/>
                                             <space height="22px"></space>
-                                            <textbox id="textbox_NikAsman" width="60px"/>
-                                            <textbox id="textbox_NikManager" width="60px"/>
-                                            <textbox id="textbox_NikGm" width="60px"/>
+                                            <textbox id="textbox_NikManager"
+                                                     width="60px" disabled="true" style="color: black !important;"/>
+                                            <textbox id="textbox_NikGm"
+                                                     width="60px" disabled="true" style="color: black !important;"/>
+
                                         </vbox>
                                     </hbox>
                                 </groupbox>
                                 <groupbox mold="3d">
-                                    <caption label="Detil Permohonan" style="font-weight:bold"/>
+                                    <caption label="Detil Permohonan"
+                                             style="font-weight:bold"/>
                                     <vbox>
 
                                         <hbox>
                                             <vbox></vbox>
-                                            Type :
-                                            <radiogroup id="radiogroupType_permohonan">
-                                                <radio id="radio_readonly" label="User Read Only" value="User RO" selected="true"/>
-                                                <radio id="radio_readwrite" label="User Read Write" value="User RW"/>
-                                                <radio id="radio_aplikasi" label="Aplikasi" value="Aplikasi"/>
-                                                <radio id="radio_lainlain" label="Lain-lain" value="Lain-lain"/>
-                                                <textbox id="textbox_Lainlain" width="100px"/>
-                                            </radiogroup>
                                         </hbox>
                                     </vbox>
                                     <hbox>
-                                        <checkbox id="checkbox_Cepat"
-                                                  label="Perlu Penanganan Cepat  "/>
                                         <vbox>
-                                            <space height="2px"></space>
-                                            <label
-                                                    style="font-size:8pt;font-weight:italic"
-                                                    value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
                                         </vbox>
-                                        <button label="Lampiran" upload="true,maxsize=-1" id="button_Lampiran" />
                                         <!--<button label="Upload" upload="true,maxsize=-1" onUpload="dosomething"/>-->
                                     </hbox>
                                     <vbox></vbox>
-                                    <fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
-                                               forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
-                                               toolbarSet="Basic"/>
+                                    <textbox id="textbox_DetailPermohonan" multiline="true" disabled="true" style="color: black !important;"/>
                                 </groupbox>
+                            </tabpanel>
+
+                            <tabpanel id="tabPanel_Verifikasi"
+								height="100%" style="border: 0px; padding: 0px">
+							</tabpanel>
+
+                            <tabpanel id="tabPanel_Pelaksanaan"
+								height="100%" style="border: 0px; padding: 0px">
+							</tabpanel>
+                        </tabpanels>
+                    </tabbox>
                 </div>
               </center>
 

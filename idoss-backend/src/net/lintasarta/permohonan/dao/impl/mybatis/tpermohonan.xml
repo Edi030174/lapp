@@ -11,7 +11,7 @@
     </select>
 
     <select id="getAllTPermohonan" resultType="tpermohonan">
-        select * from T_IDOSS_PERMOHONAN
+        select * from T_IDOSS_PERMOHONAN order by CREATED_DATE desc   
     </select>
 
     <select id="getTPermohonanByTIdossPermohonanId" parameterType="tpermohonan" resultType="tpermohonan">
