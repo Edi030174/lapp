@@ -73,8 +73,9 @@
                                     <space height="0.5px"/>
                                     <label value="Type "/>
                                 </vbox>
-                                <space width="50px"/>
+                                <!--<space width="50px"/>-->
                                 <listbox id="listbox_Type" width="140px" mold="select" rows="1"/>
+                                <button id="btn_Type" label="Pilih"/>
                             </hbox>
                         </vbox>
                     </row>
@@ -105,7 +106,7 @@
                                 <space height="0.5px"/>
                                 <label value="status"/>
                             </vbox>
-                            <space width="50px"/>
+                            <!--<space width="50px"/>-->
                             <combobox id="combobox_Status" width="140px" readonly="true" >
                                 <comboitem label="Open"/>
                                 <comboitem label="In Progres"/>

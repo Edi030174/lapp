@@ -71,4 +71,8 @@
         <property name="rootCausedService" ref="rootCausedService"/>
     </bean>
 
+    <bean id="typeCtrl" class="net.lintasarta.idoss.webui.pengaduan.TypeCtrl" parent="basisCtrl" scope="prototype">
+        <property name="typeService" ref="typeService"/>
+    </bean>
+
 </beans>
