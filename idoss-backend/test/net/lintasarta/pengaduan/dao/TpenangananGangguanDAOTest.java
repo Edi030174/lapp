@@ -52,7 +52,7 @@ public class TpenangananGangguanDAOTest {
         for(TPenangananGangguan tPenangananGangguan:tPenangananGangguans){
             bagianPelaporActual = tPenangananGangguan.getBagian_pelapor();
         }
-        String bagianPelaporExpected=null;
+        String bagianPelaporExpected="MANAJEMEN PRODUKSI.";
         assertEquals(bagianPelaporExpected, bagianPelaporActual);
     }
 

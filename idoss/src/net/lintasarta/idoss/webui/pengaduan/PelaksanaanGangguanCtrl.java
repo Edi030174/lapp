@@ -25,7 +25,7 @@ import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
- * User: Xsis
+ * User: Asri
  * Date: Jul 9, 2010
  * Time: 9:32:52 AM
  */
@@ -183,14 +183,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             Messagebox.show(e.toString());
         }
 
-//        textbox_NomorTiket.setReadonly(true);
-//        texbox_Pelapor.setReadonly(true);
-//        texbox_Bagian.setReadonly(true);
-//        texbox_Judul.setReadonly(true);
-//        fckeditor_Deskripsi.disableClientUpdate(false);
-//        textbox_Pelaksana.setReadonly(true);
-//        textbox_NikPelaksana.setReadonly(true);
-
     }
 
     private void doWriteBeanToComponent(TPenangananGangguan tPenangananGangguan) throws Exception {
@@ -307,12 +299,12 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     private boolean isDataChanged() throws Exception {
         boolean change = false;
 
-        if (oldVar_textbox_Pelaksana !=(textbox_Pelaksana.getValue())) {
-            change = true;
-        }
-        if (oldVar_textbox_NikPelaksana !=(textbox_NikPelaksana.getValue())) {
-            change = true;
-        }
+//        if (oldVar_textbox_Pelaksana !=(textbox_Pelaksana.getValue())) {
+//            change = true;
+//        }
+//        if (oldVar_textbox_NikPelaksana !=(textbox_NikPelaksana.getValue())) {
+//            change = true;
+//        }
         if (oldVar_fckeditor_Solusi != (fckeditor_Solusi.getValue())) {
             change = true;
         }
@@ -344,6 +336,29 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
         }
+    }
+
+    public void onClick$btn_Type(Event event)throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+
+        try {
+            Executions.createComponents("/WEB-INF/pages/pengaduan/type.zul", null, map);
+        } catch (Exception e) {
+            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
+
+            // Show a error box
+            String msg = e.getMessage();
+            String title = Labels.getLabel("message_Error");
+
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
+        }
+
+
     }
 
     public TPenangananGangguan gettPenangananGangguan() {
