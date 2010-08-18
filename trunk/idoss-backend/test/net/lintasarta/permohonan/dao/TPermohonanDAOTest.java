@@ -48,7 +48,7 @@ public class TPermohonanDAOTest {
         for (TPermohonan tPermohonan : tPermohonans){
             updateuserActual = tPermohonan.getUpdated_user();
         }
-        String updateuserExpected = "31242342";
+        String updateuserExpected = "77960587-FAJAR BAYU KURNIADHI";
         assertEquals(updateuserExpected, updateuserActual);
     }
 

@@ -19,7 +19,8 @@ import org.zkoss.zul.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by Joshua
@@ -152,7 +153,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
-        textbox_TIdossPermohonanId.setReadonly(true);
+        textbox_TIdossPermohonanId.setDisabled(true);
         textbox_NamaPemohon.setReadonly(true);
         textbox_BagianPemohon.setReadonly(true);
         textbox_NikPemohon.setReadonly(true);

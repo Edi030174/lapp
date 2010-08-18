@@ -15,6 +15,7 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zul.*;
 
@@ -41,13 +42,11 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_TIdossPermohonanId;
     protected Textbox textbox_NamaPemohon;
     protected Textbox textbox_BagianPemohon;
-    protected Textbox textbox_NamaAsman;
     protected Textbox textbox_NamaManager;
     protected Textbox textbox_NamaGm;
 
     protected Datebox datebox_Tanggal;
     protected Textbox textbox_NikPemohon;
-    protected Textbox textbox_NikAsman;
     protected Textbox textbox_NikManager;
     protected Textbox textbox_NikGm;
 
@@ -80,12 +79,10 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     private transient String oldVar_textboxTIdossPermohonanId;
     private transient String oldVar_textboxNamaPemohon;
     private transient String oldVar_textboxBagianPemohon;
-    private transient String oldVar_textboxNamaAsman;
     private transient String oldVar_textboxNamaManager;
     private transient String oldVar_textboxNamaGm;
     private transient Date oldVar_tanggal;
     private transient String oldVar_textboxNikPemohon;
-    private transient String oldVar_textboxNikAsman;
     private transient String oldVar_textboxNikManager;
     private transient String oldVar_textboxNikGm;
 
@@ -168,11 +165,9 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         textbox_BagianPemohon.setReadonly(true);
         textbox_NikPemohon.setReadonly(true);
         datebox_Tanggal.setReadonly(true);
-        textbox_Lainlain.setReadonly(true);
-        textbox_NamaAsman.setReadonly(true);
+        textbox_Lainlain.setDisabled(true);
         textbox_NamaManager.setReadonly(true);
         textbox_NamaGm.setReadonly(true);
-        textbox_NikAsman.setReadonly(true);
         textbox_NikManager.setReadonly(true);
         textbox_NikGm.setReadonly(true);
         radio_aplikasi.setDisabled(true);
@@ -180,6 +175,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         radio_readonly.setDisabled(true);
         radio_readwrite.setDisabled(true);
         checkbox_Cepat.setDisabled(true);
+        button_Lampiran.setDisabled(true);
 
     }
 
@@ -200,7 +196,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             textbox_BagianPemohon.setValue(getUserWorkspace().getUserSession().getDepartment());
         }
-        textbox_NamaAsman.setValue(tPermohonan.getNama_asman());
         textbox_NamaManager.setValue(tPermohonan.getNama_manager());
         textbox_NamaGm.setValue(tPermohonan.getNama_gm());
         if (tPermohonan.getNik_pemohon() != null) {
@@ -208,7 +203,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             textbox_NikPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
         }
-        textbox_NikAsman.setValue(tPermohonan.getNik_asman());
         textbox_NikManager.setValue(tPermohonan.getNik_manager());
         textbox_NikGm.setValue(tPermohonan.getNik_gm());
         datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
@@ -349,9 +343,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         if (oldVar_textboxBagianPemohon != textbox_BagianPemohon.getValue()) {
             change = true;
         }
-        if (oldVar_textboxNamaAsman != textbox_NamaAsman.getValue()) {
-            change = true;
-        }
         if (oldVar_textboxNamaManager != textbox_NamaManager.getValue()) {
             change = true;
         }
@@ -363,9 +354,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             change = true;
         }
         if (oldVar_textboxNikPemohon != textbox_NikPemohon.getValue()) {
-            change = true;
-        }
-        if (oldVar_textboxNikAsman != textbox_NikAsman.getValue()) {
             change = true;
         }
         if (oldVar_textboxNikManager != textbox_NikManager.getValue()) {
@@ -438,12 +426,10 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         oldVar_textboxTIdossPermohonanId = textbox_TIdossPermohonanId.getValue();
         oldVar_textboxNamaPemohon = textbox_NamaPemohon.getValue();
         oldVar_textboxBagianPemohon = textbox_BagianPemohon.getValue();
-        oldVar_textboxNamaAsman = textbox_NamaAsman.getValue();
         oldVar_textboxNamaManager = textbox_NamaManager.getValue();
         oldVar_textboxNamaGm = textbox_NamaGm.getValue();
         oldVar_tanggal = datebox_Tanggal.getValue();
         oldVar_textboxNikPemohon = textbox_NikPemohon.getValue();
-        oldVar_textboxNikAsman = textbox_NikAsman.getValue();
         oldVar_textboxNikManager = textbox_NikManager.getValue();
         oldVar_textboxNikGm = textbox_NikGm.getValue();
 
@@ -458,12 +444,8 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
-    private void onCheck$radiogroupType_permohonan(TPermohonan tPermohonan){
-        textbox_Lainlain.setReadonly(false);
-    }
-
     private void onCheck$radio_lainlain(TPermohonan tPermohonan){
-        textbox_Lainlain.setReadonly(false);
+        textbox_Lainlain.setDisabled(false);
     }
 
     private void doWriteComponentsToBean(TPermohonan permohonan) {
@@ -473,8 +455,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         permohonan.setBagian_pemohon(textbox_BagianPemohon.getValue());
         permohonan.setTgl_permohonan(new Timestamp(datebox_Tanggal.getValue().getTime()));
         permohonan.setNik_pemohon(textbox_NikPemohon.getValue());
-        permohonan.setNama_asman(textbox_NamaAsman.getValue());
-        permohonan.setNik_asman(textbox_NikAsman.getValue());
         permohonan.setNama_manager(textbox_NamaManager.getValue());
         permohonan.setNik_manager(textbox_NikManager.getValue());
         permohonan.setNama_gm(textbox_NamaGm.getValue());

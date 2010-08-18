@@ -92,24 +92,24 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         paging_DaftarPermohonan.setDetailed(true);
 
         checkbox_all.setChecked(true);
-        listheader_Nomor.setSortAscending(new FieldComparator("t_idoss_permohonan_id", true));
         listheader_Nomor.setSortDescending(new FieldComparator("t_idoss_permohonan_id", true));
-        listheader_Tanggal.setSortAscending(new FieldComparator("tgl_permohonan", true));
+        listheader_Nomor.setSortAscending(new FieldComparator("t_idoss_permohonan_id", true));
         listheader_Tanggal.setSortDescending(new FieldComparator("tgl_permohonan", true));
-        listheader_Tipe.setSortAscending(new FieldComparator("type_permohonan", true));
+        listheader_Tanggal.setSortAscending(new FieldComparator("tgl_permohonan", true));
         listheader_Tipe.setSortDescending(new FieldComparator("type_permohonan", true));
-        listheader_StatusPersetujuan.setSortAscending(new FieldComparator("status_track_permohonan", true));
+        listheader_Tipe.setSortAscending(new FieldComparator("type_permohonan", true));
         listheader_StatusPersetujuan.setSortDescending(new FieldComparator("status_track_permohonan", true));
+        listheader_StatusPersetujuan.setSortAscending(new FieldComparator("status_track_permohonan", true));
 //        listheader_Pimbag.setSortAscending(new FieldComparator("", true));
 //        listheader_Pimbag.setSortDescending(new FieldComparator("", true));
 //        listheader_Pimdiv.setSortAscending(new FieldComparator("nama_divisi", true));
 //        listheader_Pimdiv.setSortDescending(new FieldComparator("nama_divisi", true));
-        listheader_AssMgr.setSortAscending(new FieldComparator("nama_asman", true));
         listheader_AssMgr.setSortDescending(new FieldComparator("nama_asman", true));
-        listheader_Mgr.setSortAscending(new FieldComparator("nama_manager", true));
+        listheader_AssMgr.setSortAscending(new FieldComparator("nama_asman", true));
         listheader_Mgr.setSortDescending(new FieldComparator("nama_manager", true));
-        listheader_GM.setSortAscending(new FieldComparator("nama_gm", true));
+        listheader_Mgr.setSortAscending(new FieldComparator("nama_manager", true));
         listheader_GM.setSortDescending(new FieldComparator("nama_gm", true));
+        listheader_GM.setSortAscending(new FieldComparator("nama_gm", true));
 
         List<TPermohonan> tPermohonans = getPermohonanService().getAllTPermohonan();
         PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>(tPermohonans);
@@ -264,7 +264,10 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 
         map.put("listbox_DaftarPermohonan", listbox_DaftarPermohonan);
 
+        map.put("window_DaftarPermohonan", window_DaftarPermohonan);
+
         try {
+
             Executions.createComponents("/WEB-INF/pages/permohonan/permohonan.zul", null, map);
         } catch (Exception e) {
             logger.error("onOpenWindow:: error opening window / " + e.getMessage());
