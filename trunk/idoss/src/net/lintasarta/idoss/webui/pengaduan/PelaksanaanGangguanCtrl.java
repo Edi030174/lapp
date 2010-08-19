@@ -119,6 +119,10 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         listbox_NamaPelaksana.setModel(new ListModelList(getPelaksanaanGangguanService().getEmployeeName()));
         listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
 
+        ListModelList lml = (ListModelList)listbox_NamaPelaksana.getModel();
+        String vHrEmployeePelaksana = tPenangananGangguan.getNama_pelaksana();
+        listbox_NamaPelaksana.setSelectedIndex(lml.indexOf(vHrEmployeePelaksana));
+
         doShowDialog(gettPenangananGangguan());
         
     }
