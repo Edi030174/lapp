@@ -7,6 +7,7 @@ import net.lintasarta.permohonan.model.Status;
 import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
+import net.lintasarta.permohonan.model.comparator.TPermohonanComparator;
 import net.lintasarta.permohonan.service.PermohonanService;
 import net.lintasarta.util.PermohonanIdGenerator;
 
@@ -77,7 +78,12 @@ public class PermohonanServiceImpl implements PermohonanService {
     }
 
     public List<TPermohonan> getAllTPermohonan() {
-        return gettPermohonanDAO().getAllTPermohonan();
+        List<TPermohonan> tPermohonans = gettPermohonanDAO().getAllTPermohonan();
+        java.util.Collections.sort(tPermohonans,new TPermohonanComparator());
+
+        return tPermohonans;
+
+//        return gettPermohonanDAO().getAllTPermohonan();
     }
 
     private void saveFile(String fileName, InputStream fin) {

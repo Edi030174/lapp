@@ -8,7 +8,7 @@ import java.io.*;
  * Date: Jun 21, 2010
  * Time: 2:11:18 PM
  */
-public class TPermohonan implements Serializable {
+public class TPermohonan implements Serializable{
     private String t_idoss_permohonan_id;
     private Timestamp tgl_permohonan;
     private String dampak;

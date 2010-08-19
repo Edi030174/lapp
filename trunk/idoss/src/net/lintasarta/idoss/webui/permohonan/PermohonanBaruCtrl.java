@@ -5,6 +5,7 @@ import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
+import net.lintasarta.permohonan.model.comparator.TPermohonanComparator;
 import net.lintasarta.permohonan.service.PermohonanService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
@@ -335,7 +336,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             lml.set(lml.indexOf(tPermohonan), tPermohonan);
         }
-
+        lml.sort(new TPermohonanComparator(), true);
         doStoreInitValues();
     }
 

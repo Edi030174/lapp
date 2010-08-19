@@ -7,14 +7,11 @@
 
     <!--<menu id="menu_Category_Ophar">-->
     <menuItem id="menu_Item_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarTroubleTiket.zul"/>
-
-
+    <menuItem id="menu_Item_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/listPermohonan.zul"/>
     <!--</menu>-->
 
-    <menu id="menu_Category_Permohonan">
-        <menuItem id="menu_Item_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftar_permohonan.zul"/>
+    <!--<menu id="menu_Category_Permohonan">
         <menuItem id="menu_Item_PersetujuanPermohonan" zulNavigation="/WEB-INF/pages/permohonan/persetujuandivisipemohon.zul"/>
         <menuItem id="menu_Item_PersetujuanDukophar" zulNavigation="/WEB-INF/pages/permohonan/verifikasi.zul"/>
-
-    </menu>
+    </menu>-->
 </ns2:XMLRootMenu>

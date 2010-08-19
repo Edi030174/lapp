@@ -33,12 +33,13 @@
                 <div id="divPermohonan">
                     <tabbox id="tabBox_Permohonan" width="100%">
                         <tabs>
-                            <tab id="tab_Permohonan"
-                                 label="Permohonan"/>
-                            <tab id="tab_Verifikasi"
-                                 label="Persetujuan Dukophar"/>
-                            <tab id="tab_Pelaksanaan"
-                                 label="Pelaksanaan"/>
+                            <tab id="tab_Permohonan" label="Permohonan"/>
+                            <tab id="tab_PersetujuanManagerPemohon" label="Persetujuan Manager Pemohon"/>
+                            <tab id="tab_PersetujuanGmPemohon" label="Persetujuan GM Pemohon"/>
+                            <tab id="tab_PersetujuanAsmanDukophar" label="Persetujuan Asman Dukophar"/>
+                            <tab id="tab_PersetujuanManagerDukophar" label="Persetujuan Manager Dukophar"/>
+                            <tab id="tab_PersetujuanGmDukophar" label="Persetujuan GM Dukophar"/>
+                            <tab id="tab_Pelaksanaan" label="Pelaksanaan"/>
                         </tabs>
                         <tabpanels>
                             <!--tap permohonan-->
@@ -165,7 +166,19 @@
                                 </groupbox>
                             </tabpanel>
 
-                            <tabpanel id="tabPanel_Verifikasi"
+                            <tabpanel id="tabPanel_PersetujuanManagerPemohon"
+								height="100%" style="border: 0px; padding: 0px">
+							</tabpanel>
+                            <tabpanel id="tabPanel_PersetujuanGmPemohon"
+								height="100%" style="border: 0px; padding: 0px">
+							</tabpanel>
+                            <tabpanel id="tabPanel_PersetujuanAsmanDukophar"
+								height="100%" style="border: 0px; padding: 0px">
+							</tabpanel>
+                            <tabpanel id="tabPanel_PersetujuanManagerDukophar"
+								height="100%" style="border: 0px; padding: 0px">
+							</tabpanel>
+                            <tabpanel id="tabPanel_PersetujuanGmDukophar"
 								height="100%" style="border: 0px; padding: 0px">
 							</tabpanel>
 
@@ -176,7 +189,6 @@
                     </tabbox>
                 </div>
               </center>
-
             <east border="none" />
 			<west border="none" />
 			<south border="none" />
