@@ -3,7 +3,6 @@ package net.lintasarta.idoss.webui.pengaduan.model;
 import net.lintasarta.pengaduan.model.PType;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,11 +13,11 @@ import java.util.List;
  */
 public abstract class TypeTreeNode {
 
-    List<PType> children = null;
+    ArrayList<PType> children = null;
 
     public abstract void readChildren();
 
-    public List<PType> getChildren() {
+    public ArrayList<PType> getChildren() {
         return children;
     }
 

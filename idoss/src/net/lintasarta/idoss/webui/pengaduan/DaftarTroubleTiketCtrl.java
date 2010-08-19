@@ -6,6 +6,8 @@ import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.pengaduan.model.predicate.JudulTPenangananGangguan;
+import net.lintasarta.pengaduan.model.predicate.NomorTiketTPenangananGangguan;
+import net.lintasarta.pengaduan.model.predicate.StatusTPenangananGangguan;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
@@ -35,22 +37,22 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
 
     protected Window window_DaftarTroubleTiket;
     protected Textbox textbox_Cari;
-
     protected Paging paging_DaftaTiket;
     protected Listbox listbox_DaftarTiket;
-
     protected Listheader listheader_NomorTiket;
     protected Listheader listheader_Judul;
     protected Listheader listheader_Status;
     protected Listheader listheader_Pelapor;
-
     protected Listheader listheader_PenanggungJawab;
     protected Listheader listheader_Durasi;
     protected Listheader listheader_MTTR;
     protected Listheader listheader_TglUpdate;
-
     protected Checkbox checkbox_All;
-
+    protected Combobox combobox_cari;
+    protected Comboitem comboitem_Judul;
+    protected Comboitem comboitem_NomorTiket;
+    protected Comboitem comboitem_Status;
+    protected Comboitem comboitem_Pelapor;
 //    protected Button btnCari_DaftarTiket;
 //    protected Button btnBuatBaru_DaftarTiket;
 //    protected Button btnKeluar_DaftarTiket;
@@ -153,10 +155,19 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         if (!textbox_Cari.getValue().isEmpty()) {
 
             ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
-
             List searchResult = new ArrayList(lml);
-            CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
 
+//            CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
+            if (combobox_cari.getSelectedItem() == comboitem_Judul){
+                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
+            } else if (combobox_cari.getSelectedItem() == comboitem_NomorTiket){
+                CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
+            } else if (combobox_cari.getSelectedItem() == comboitem_Status){
+                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
+            } else if (combobox_cari.getSelectedItem() == comboitem_Pelapor){
+                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
+
+            }
             PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             pagedListHolder.setPageSize(getCountRows());
 
