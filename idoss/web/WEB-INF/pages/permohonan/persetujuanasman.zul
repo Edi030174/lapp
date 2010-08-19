@@ -2,7 +2,7 @@
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 
-<?page title="persetujuanmanagerpemohon" contentType="text/html;charset=UTF-8"?>
+<?page title="persetujuanasman" contentType="text/html;charset=UTF-8"?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
     xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -24,10 +24,10 @@
         .z-groupbox-hl .z-groupbox-header { color: #000000;
         font-weight: bold; }
     </style>
-    <window id="window_PersetujuanManagerPemohon" border="normal" title="persetujuan manager pemohon"
-            apply="${persetujuanmanagerpemohonCtrl}">
+    <window id="window_PersetujuanAsman" border="normal" title="persetujuan asman"
+            apply="${persetujuanasmanCtrl}">
         <toolbar>
-            <button id="btn_SimpanPersetujuanManagerPemohon" label="Simpan"/>
+            <button id="btn_SimpanPersetujuanAsman" label="Simpan"/>
             <button id="btn_Batal" label="Batal"/>
         </toolbar>
         <hbox>
@@ -133,11 +133,11 @@
                                 <north border="0" size="15%">
                                     <div style="">
                                         <radiogroup
-                                                id="radiogroup_StatusPermohonanManagerPemohon">
-                                            <radio id="radio_DisetujuiManagerPemohon"
+                                                id="radiogroup_StatusPermohonanAsman">
+                                            <radio id="radio_DisetujuiAsman"
                                                    label="disetujui" value="DISETUJUI" selected="true">
                                             </radio>
-                                            <radio id="radio_DitolakManagerPemohon"
+                                            <radio id="radio_DitolakAsman"
                                                    label="ditolak" value="DITOLAK">
                                             </radio>
                                         </radiogroup>
@@ -151,7 +151,7 @@
                                                         value="catatan : ">
                                                 </label>
                                                 <fckeditor
-                                                        id="fck_CatatanManagerPemohon" height="99%" width="484px"
+                                                        id="fck_CatatanAsman" height="99%" width="484px"
                                                         customConfigurationsPath="/js/fckeditor.js"
                                                         toolbarSet="Basic"/>
                                             </div>
@@ -170,5 +170,81 @@
                 </north>
             </borderlayout>
         </groupbox>
+        <!--<groupbox mold="3d">-->
+        <!--<caption label="" style="font-weight:bold"/>-->
+        <!--<borderlayout height="195px">-->
+        <!--<center border="0">-->
+        <!--<borderlayout>-->
+        <!--<west maxsize="600" size="33%" flex="true"-->
+        <!--border="0">-->
+        <!--<borderlayout>-->
+        <!--<north border="0" size="15%">-->
+        <!--<div>-->
+        <!--<label-->
+        <!--value="Status Permohonan : "/>-->
+        <!--</div>-->
+        <!--</north>-->
+        <!--<center border="0">-->
+        <!--<div>-->
+        <!--<vbox>-->
+        <!--<hbox>-->
+        <!--<label-->
+        <!--value="Tanggal : "/>-->
+        <!--<datebox id="dateboxTanggal2" format="dd MMMM yyyy" readonly="true"-->
+        <!--width="150px">-->
+        <!--</datebox>-->
+        <!--</hbox>-->
+        <!--<space height="7px"></space>-->
+        <!--&lt;!&ndash;<checkbox id="checkbox2"&ndash;&gt;-->
+        <!--&lt;!&ndash;label="Disetujui oleh pimpinan bagian Dukophar"&ndash;&gt;-->
+        <!--&lt;!&ndash;onCheck="doChecked()"/>&ndash;&gt;-->
+        <!--</vbox>-->
+        <!--</div>-->
+        <!--</center>-->
+        <!--</borderlayout>-->
+        <!--</west>-->
+        <!--<center border="0" flex="true">-->
+        <!--<borderlayout>-->
+        <!--<north border="0" size="15%">-->
+        <!--<div style="">-->
+        <!--<radiogroup-->
+        <!--id="radiogroup_Statuspermohonanmanager">-->
+        <!--<radio id="radioDisetujui2"-->
+        <!--label="disetujui" selected="true">-->
+        <!--</radio>-->
+        <!--<radio id="radioDitolak2"-->
+        <!--label="ditolak">-->
+        <!--</radio>-->
+        <!--</radiogroup>-->
+        <!--</div>-->
+        <!--</north>-->
+        <!--<center border="0">-->
+        <!--<borderlayout>-->
+        <!--<west border="0" flex="true">-->
+        <!--<div style="">-->
+        <!--<label-->
+        <!--value="catatan : ">-->
+        <!--</label>-->
+        <!--<fckeditor-->
+        <!--id="fckCatatan_manager" height="99%" width="484px"-->
+        <!--customConfigurationsPath="/js/fckeditor.js"-->
+        <!--toolbarSet="Basic"/>-->
+        <!--</div>-->
+        <!--</west>-->
+        <!--<center border="0"-->
+        <!--flex="true">-->
+        <!--<div style="">-->
+        <!--</div>-->
+        <!--</center>-->
+        <!--</borderlayout>-->
+        <!--</center>-->
+        <!--</borderlayout>-->
+        <!--</center>-->
+        <!--<east border="0" flex="true">-->
+        <!--</east>-->
+        <!--</borderlayout>-->
+        <!--</center>-->
+        <!--</borderlayout>-->
+        <!--</groupbox>-->
     </window>
 </zk>

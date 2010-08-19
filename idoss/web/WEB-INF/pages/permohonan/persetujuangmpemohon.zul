@@ -2,7 +2,7 @@
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 
-<?page title="persetujuanmanagerpemohon" contentType="text/html;charset=UTF-8"?>
+<?page title="persetujuangmpemohon" contentType="text/html;charset=UTF-8"?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
     xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -24,10 +24,10 @@
         .z-groupbox-hl .z-groupbox-header { color: #000000;
         font-weight: bold; }
     </style>
-    <window id="window_PersetujuanManagerPemohon" border="normal" title="persetujuan manager pemohon"
-            apply="${persetujuanmanagerpemohonCtrl}">
+    <window id="window_PersetujuanGmPemohon" border="normal" title="persetujuan GM pemohon"
+            apply="${persetujuangmpemohonCtrl}">
         <toolbar>
-            <button id="btn_SimpanPersetujuanManagerPemohon" label="Simpan"/>
+            <button id="btn_SimpanPersetujuanGmPemohon" label="Simpan"/>
             <button id="btn_Batal" label="Batal"/>
         </toolbar>
         <hbox>
@@ -39,6 +39,10 @@
                 <space height="1px"></space>
                 <label width="100px" value="detail :"/>
                 <textbox id="textbox_DetailPermohonan" width="400px" disabled="true" multiline="true"
+                         style="color: black !important;"/>
+                <space height="1px"></space>
+                <label width="100px" value="catatan manager"/>
+                <textbox id="textbox_CatatanManager" width="400px" disabled="true" multiline="true"
                          style="color: black !important;"/>
             </vbox>
             <vbox>
@@ -75,15 +79,14 @@
                          width="60px" disabled="true" style="color: black !important;"/>
             </vbox>
         </hbox>
-
         <space width="20px"></space>
         <groupbox mold="3d">
             <caption label="" style="font-weight:bold"/>
             <borderlayout height="195px">
-                <north maxsize="300" border="0" size="100%">
+                <center border="0">
                     <borderlayout>
-                        <west size="33%" border="0" flex="true"
-                              maxsize="250">
+                        <west maxsize="600" size="33%" flex="true"
+                              border="0">
                             <borderlayout>
                                 <north border="0" size="15%">
                                     <div>
@@ -95,50 +98,32 @@
                                     <div>
                                         <vbox>
                                             <hbox>
-                                                <vbox>
-                                                    <space
-                                                            height="2px">
-                                                    </space>
-                                                    <label
-                                                            value="Tanggal : "/>
-                                                    <space
-                                                            height="2px">
-                                                    </space>
-                                                    <label
-                                                            value="Pelaksana : "/>
-                                                </vbox>
-                                                <vbox>
-                                                    <datebox
-                                                            id="datebox_Tanggal2" format="dd MMMM yyyy"
-                                                            readonly="true"
-                                                            width="150px">
-                                                    </datebox>
-                                                    <textbox id="textbox_NikPelaksana"/>
-                                                </vbox>
+                                                <label
+                                                        value="Tanggal : "/>
+                                                <datebox id="datebox_Tanggal2" format="dd MMMM yyyy" readonly="true"
+                                                         width="150px">
+                                                </datebox>
                                             </hbox>
                                             <space height="7px"></space>
-                                            <!--<checkbox id="checkbox1"-->
+                                            <!--<checkbox id="checkbox2"-->
                                             <!--label="Disetujui oleh pimpinan bagian Dukophar"-->
                                             <!--onCheck="doChecked()"/>-->
                                         </vbox>
                                     </div>
                                 </center>
-                                <south border="0">
-                                    <div></div>
-                                </south>
                             </borderlayout>
                         </west>
-                        <center border="none" flex="true">
+                        <center border="0" flex="true">
                             <borderlayout>
                                 <north border="0" size="15%">
                                     <div style="">
                                         <radiogroup
-                                                id="radiogroup_StatusPermohonanManagerPemohon">
-                                            <radio id="radio_DisetujuiManagerPemohon"
-                                                   label="disetujui" value="DISETUJUI" selected="true">
+                                                id="radiogroup_StatusPermohonanGmPemohon">
+                                            <radio id="radio_DisetujuiGmPemohon"
+                                                   label="disetujui" selected="true">
                                             </radio>
-                                            <radio id="radio_DitolakManagerPemohon"
-                                                   label="ditolak" value="DITOLAK">
+                                            <radio id="radio_DitolakGmPemohon"
+                                                   label="ditolak">
                                             </radio>
                                         </radiogroup>
                                     </div>
@@ -151,7 +136,7 @@
                                                         value="catatan : ">
                                                 </label>
                                                 <fckeditor
-                                                        id="fck_CatatanManagerPemohon" height="99%" width="484px"
+                                                        id="fck_CatatanGmPemohon" height="99%" width="484px"
                                                         customConfigurationsPath="/js/fckeditor.js"
                                                         toolbarSet="Basic"/>
                                             </div>
@@ -165,9 +150,10 @@
                                 </center>
                             </borderlayout>
                         </center>
-                        <east border="none" flex="true"></east>
+                        <east border="0" flex="true">
+                        </east>
                     </borderlayout>
-                </north>
+                </center>
             </borderlayout>
         </groupbox>
     </window>
