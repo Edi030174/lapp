@@ -37,14 +37,7 @@
                 <space height="1px"></space>
                 <label width="100px" value="Nama Pemohon"/>
                 <space height="1px"></space>
-                <label width="100px" value="detail :"/>
-                <textbox id="textbox_DetailPermohonan" width="400px" disabled="true" multiline="true" style="color: black !important;"/>
-                <space height="1px"></space>
-                <label width="100px" value="catatan asman"/>
-                <textbox id="textbox_CatatanAsman" width="400px" disabled="true" multiline="true" style="color: black !important;"/>
-                <space height="1px"></space>
-                <label width="100px" value="catatan manager"/>
-                <textbox id="textbox_CatatanManager" width="400px" disabled="true" multiline="true" style="color: black !important;"/>
+
             </vbox>
             <vbox>
                 <label width="10px" value=":"/>
@@ -65,8 +58,6 @@
                 </hbox>
                 <textbox id="textbox_NamaPemohon"
                          width="200px" disabled="true" style="color: black !important;"/>
-                <textbox id="textbox_BagianPemohon"
-                         width="120px" disabled="true" style="color: black !important;"/>
             </vbox>
             <vbox>
                 <space height="1px"></space>
@@ -80,101 +71,114 @@
                          width="60px" disabled="true" style="color: black !important;"/>
             </vbox>
         </hbox>
-        <space width="20px"></space>
 
         <!--<groupbox mold="3d">-->
-            <!--<caption label="" style="font-weight:bold"/>-->
-            <!--<borderlayout height="195px">-->
-                <!--<north maxsize="300" border="0" size="100%">-->
-                    <!--<borderlayout>-->
-                        <!--<west size="33%" border="0" flex="true"-->
-                              <!--maxsize="250">-->
-                            <!--<borderlayout>-->
-                                <!--<north border="0" size="15%">-->
-                                    <!--<div>-->
-                                        <!--<label-->
-                                                <!--value="Status Permohonan : "/>-->
-                                    <!--</div>-->
-                                <!--</north>-->
-                                <!--<center border="0">-->
-                                    <!--<div>-->
-                                        <!--<vbox>-->
-                                            <!--<hbox>-->
-                                                <!--<vbox>-->
-                                                    <!--<space-->
-                                                            <!--height="2px">-->
-                                                    <!--</space>-->
-                                                    <!--<label-->
-                                                            <!--value="Tanggal : "/>-->
-                                                    <!--<space-->
-                                                            <!--height="2px">-->
-                                                    <!--</space>-->
-                                                    <!--<label-->
-                                                            <!--value="Pelaksana : "/>-->
-                                                <!--</vbox>-->
-                                                <!--<vbox>-->
-                                                    <!--<datebox-->
-                                                            <!--id="dateboxTanggal1" format="dd MMMM yyyy"-->
-                                                            <!--readonly="true"-->
-                                                            <!--width="150px">-->
-                                                    <!--</datebox>-->
-                                                    <!--<textbox id="textbox_NikPelaksana"/>-->
-                                                <!--</vbox>-->
-                                            <!--</hbox>-->
-                                            <!--<space height="7px"></space>-->
-                                            <!--&lt;!&ndash;<checkbox id="checkbox1"&ndash;&gt;-->
-                                            <!--&lt;!&ndash;label="Disetujui oleh pimpinan bagian Dukophar"&ndash;&gt;-->
-                                            <!--&lt;!&ndash;onCheck="doChecked()"/>&ndash;&gt;-->
-                                        <!--</vbox>-->
-                                    <!--</div>-->
-                                <!--</center>-->
-                                <!--<south border="0">-->
-                                    <!--<div></div>-->
-                                <!--</south>-->
-                            <!--</borderlayout>-->
-                        <!--</west>-->
-                        <!--<center border="none" flex="true">-->
-                            <!--<borderlayout>-->
-                                <!--<north border="0" size="15%">-->
-                                    <!--<div style="">-->
-                                        <!--<radiogroup-->
-                                                <!--id="radiogroup_Statuspermohonanasman">-->
-                                            <!--<radio id="radioDisetujui"-->
-                                                   <!--label="disetujui" value="DISETUJUI" selected="true">-->
-                                            <!--</radio>-->
-                                            <!--<radio id="radioDitolak"-->
-                                                   <!--label="ditolak" value="DITOLAK">-->
-                                            <!--</radio>-->
-                                        <!--</radiogroup>-->
-                                    <!--</div>-->
-                                <!--</north>-->
-                                <!--<center border="0">-->
-                                    <!--<borderlayout>-->
-                                        <!--<west border="0" flex="true">-->
-                                            <!--<div style="">-->
-                                                <!--<label-->
-                                                        <!--value="catatan : ">-->
-                                                <!--</label>-->
-                                                <!--<fckeditor-->
-                                                        <!--id="fckCatatan_asman" height="99%" width="484px"-->
-                                                        <!--customConfigurationsPath="/js/fckeditor.js"-->
-                                                        <!--toolbarSet="Basic"/>-->
-                                            <!--</div>-->
-                                        <!--</west>-->
-                                        <!--<center border="0"-->
-                                                <!--flex="true">-->
-                                            <!--<div style="">-->
-                                            <!--</div>-->
-                                        <!--</center>-->
-                                    <!--</borderlayout>-->
-                                <!--</center>-->
-                            <!--</borderlayout>-->
-                        <!--</center>-->
-                        <!--<east border="none" flex="true"></east>-->
-                    <!--</borderlayout>-->
-                <!--</north>-->
-            <!--</borderlayout>-->
+        <!--<caption label="" style="font-weight:bold"/>-->
+        <!--<borderlayout height="195px">-->
+        <!--<north maxsize="300" border="0" size="100%">-->
+        <!--<borderlayout>-->
+        <!--<west size="33%" border="0" flex="true"-->
+        <!--maxsize="250">-->
+        <!--<borderlayout>-->
+        <!--<north border="0" size="15%">-->
+        <!--<div>-->
+        <!--<label-->
+        <!--value="Status Permohonan : "/>-->
+        <!--</div>-->
+        <!--</north>-->
+        <!--<center border="0">-->
+        <!--<div>-->
+        <!--<vbox>-->
+        <!--<hbox>-->
+        <!--<vbox>-->
+        <!--<space-->
+        <!--height="2px">-->
+        <!--</space>-->
+        <!--<label-->
+        <!--value="Tanggal : "/>-->
+        <!--<space-->
+        <!--height="2px">-->
+        <!--</space>-->
+        <!--<label-->
+        <!--value="Pelaksana : "/>-->
+        <!--</vbox>-->
+        <!--<vbox>-->
+        <!--<datebox-->
+        <!--id="dateboxTanggal1" format="dd MMMM yyyy"-->
+        <!--readonly="true"-->
+        <!--width="150px">-->
+        <!--</datebox>-->
+        <!--<textbox id="textbox_NikPelaksana"/>-->
+        <!--</vbox>-->
+        <!--</hbox>-->
+        <!--<space height="7px"></space>-->
+        <!--&lt;!&ndash;<checkbox id="checkbox1"&ndash;&gt;-->
+        <!--&lt;!&ndash;label="Disetujui oleh pimpinan bagian Dukophar"&ndash;&gt;-->
+        <!--&lt;!&ndash;onCheck="doChecked()"/>&ndash;&gt;-->
+        <!--</vbox>-->
+        <!--</div>-->
+        <!--</center>-->
+        <!--<south border="0">-->
+        <!--<div></div>-->
+        <!--</south>-->
+        <!--</borderlayout>-->
+        <!--</west>-->
+        <!--<center border="none" flex="true">-->
+        <!--<borderlayout>-->
+        <!--<north border="0" size="15%">-->
+        <!--<div style="">-->
+        <!--<radiogroup-->
+        <!--id="radiogroup_Statuspermohonanasman">-->
+        <!--<radio id="radioDisetujui"-->
+        <!--label="disetujui" value="DISETUJUI" selected="true">-->
+        <!--</radio>-->
+        <!--<radio id="radioDitolak"-->
+        <!--label="ditolak" value="DITOLAK">-->
+        <!--</radio>-->
+        <!--</radiogroup>-->
+        <!--</div>-->
+        <!--</north>-->
+        <!--<center border="0">-->
+        <!--<borderlayout>-->
+        <!--<west border="0" flex="true">-->
+        <!--<div style="">-->
+        <!--<label-->
+        <!--value="catatan : ">-->
+        <!--</label>-->
+        <!--<fckeditor-->
+        <!--id="fckCatatan_asman" height="99%" width="484px"-->
+        <!--customConfigurationsPath="/js/fckeditor.js"-->
+        <!--toolbarSet="Basic"/>-->
+        <!--</div>-->
+        <!--</west>-->
+        <!--<center border="0"-->
+        <!--flex="true">-->
+        <!--<div style="">-->
+        <!--</div>-->
+        <!--</center>-->
+        <!--</borderlayout>-->
+        <!--</center>-->
+        <!--</borderlayout>-->
+        <!--</center>-->
+        <!--<east border="none" flex="true"></east>-->
+        <!--</borderlayout>-->
+        <!--</north>-->
+        <!--</borderlayout>-->
         <!--</groupbox>-->
+        <vbox>
+            <label width="100px" value="detail :"/>
+            <textbox id="textbox_DetailPermohonan" width="400px" disabled="true" multiline="true"
+                     style="color: black !important;"/>
+            <space height="1px"></space>
+            <label width="100px" value="catatan Asman :"/>
+            <textbox id="textbox_CatatanAsman" width="400px" disabled="true" multiline="true"
+                     style="color: black !important;"/>
+            <space height="1px"></space>
+            <label width="100px" value="catatan Manager :"/>
+            <textbox id="textbox_CatatanManager" width="400px" disabled="true" multiline="true"
+                     style="color: black !important;"/>
+        </vbox>
+        <space width="20px"></space>
         <groupbox mold="3d">
             <caption label="" style="font-weight:bold"/>
             <borderlayout height="195px">

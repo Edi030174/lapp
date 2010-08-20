@@ -37,9 +37,7 @@
                 <space height="1px"></space>
                 <label width="100px" value="Nama Pemohon"/>
                 <space height="1px"></space>
-                <label width="100px" value="detail :"/>
-                <textbox id="textbox_DetailPermohonan" width="400px" disabled="true" multiline="true"
-                         style="color: black !important;"/>
+
             </vbox>
             <vbox>
                 <label width="10px" value=":"/>
@@ -60,8 +58,6 @@
                 </hbox>
                 <textbox id="textbox_NamaPemohon"
                          width="200px" disabled="true" style="color: black !important;"/>
-                <textbox id="textbox_BagianPemohon"
-                         width="120px" disabled="true" style="color: black !important;"/>
             </vbox>
             <vbox>
                 <space height="1px"></space>
@@ -75,100 +71,96 @@
                          width="60px" disabled="true" style="color: black !important;"/>
             </vbox>
         </hbox>
+        <vbox>
+            <label width="100px" value="detail :"/>
+            <textbox id="textbox_DetailPermohonan" width="400px" disabled="true" multiline="true"
+                     style="color: black !important;"/>
+        </vbox>
+        <!--<space width="1px"></space>-->
+        <separator bar="true" orient="horizontal"/>
+        <hbox>
+            <vbox>
+                <label value="Prioritas :"/>
+                <radiogroup id="radiogroup_Prioritas">
+                    <hbox>
+                        <radio id="high" label="high" value="H"/>
+                        <radio id="normal" label="normal" value="N" selected="true"/>
+                    </hbox>
+                </radiogroup>
+            </vbox>
+            <space width="20px"/>
+            <vbox>
+                <label value="Dampak :"/>
+                <radiogroup id="radiogroup_Dampak">
+                    <hbox>
+                        <radio id="major" label="major" value="MAJOR"/>
+                        <radio id="minor" label="minor" value="MINOR" selected="true"/>
+                    </hbox>
+                </radiogroup>
+            </vbox>
+        </hbox>
+
+
+        <!--<hbox>-->
+        <!--<hbox>-->
+        <!--<vbox>-->
+        <!--<space height="7px"></space>-->
+        <!--<label value="Prioritas :"/>-->
+        <!--</vbox>-->
+        <!--<radiogroup id="radiogroup_Prioritas">-->
+        <!--<vbox>-->
+        <!--<radio id="high" label="high" value="H"/>-->
+        <!--<radio id="normal" label="normal" value="N" selected="true"/>-->
+        <!--</vbox>-->
+        <!--</radiogroup>-->
+        <!--</hbox>-->
+        <!--<space width="20px"></space>-->
+        <!--<hbox>-->
+        <!--<vbox>-->
+        <!--<space height="7px"></space>-->
+        <!--<label value="Dampak :"/>-->
+        <!--</vbox>-->
+        <!--<radiogroup id="radiogroup_Dampak">-->
+        <!--<vbox>-->
+        <!--<radio id="major" label="major" value="MAJOR"/>-->
+        <!--<radio id="minor" label="minor" value="MINOR" selected="true"/>-->
+        <!--</vbox>-->
+        <!--</radiogroup>-->
+        <!--</hbox>-->
+        <!--</hbox>-->
 
         <space width="20px"></space>
         <groupbox mold="3d">
             <caption label="" style="font-weight:bold"/>
-            <borderlayout height="195px">
-                <north maxsize="300" border="0" size="100%">
-                    <borderlayout>
-                        <west size="33%" border="0" flex="true"
-                              maxsize="250">
-                            <borderlayout>
-                                <north border="0" size="15%">
-                                    <div>
-                                        <label
-                                                value="Status Permohonan : "/>
-                                    </div>
-                                </north>
-                                <center border="0">
-                                    <div>
-                                        <vbox>
-                                            <hbox>
-                                                <vbox>
-                                                    <space
-                                                            height="2px">
-                                                    </space>
-                                                    <label
-                                                            value="Tanggal : "/>
-                                                    <space
-                                                            height="2px">
-                                                    </space>
-                                                    <label
-                                                            value="Pelaksana : "/>
-                                                </vbox>
-                                                <vbox>
-                                                    <datebox
-                                                            id="datebox_Tanggal2" format="dd MMMM yyyy"
-                                                            readonly="true"
-                                                            width="150px">
-                                                    </datebox>
-                                                    <textbox id="textbox_NikPelaksana"/>
-                                                </vbox>
-                                            </hbox>
-                                            <space height="7px"></space>
-                                            <!--<checkbox id="checkbox1"-->
-                                            <!--label="Disetujui oleh pimpinan bagian Dukophar"-->
-                                            <!--onCheck="doChecked()"/>-->
-                                        </vbox>
-                                    </div>
-                                </center>
-                                <south border="0">
-                                    <div></div>
-                                </south>
-                            </borderlayout>
-                        </west>
-                        <center border="none" flex="true">
-                            <borderlayout>
-                                <north border="0" size="15%">
-                                    <div style="">
-                                        <radiogroup
-                                                id="radiogroup_StatusPermohonanManagerPemohon">
-                                            <radio id="radio_DisetujuiManagerPemohon"
-                                                   label="disetujui" value="DISETUJUI" selected="true">
-                                            </radio>
-                                            <radio id="radio_DitolakManagerPemohon"
-                                                   label="ditolak" value="DITOLAK">
-                                            </radio>
-                                        </radiogroup>
-                                    </div>
-                                </north>
-                                <center border="0">
-                                    <borderlayout>
-                                        <west border="0" flex="true">
-                                            <div style="">
-                                                <label
-                                                        value="catatan : ">
-                                                </label>
-                                                <fckeditor
-                                                        id="fck_CatatanManagerPemohon" height="99%" width="484px"
-                                                        customConfigurationsPath="/js/fckeditor.js"
-                                                        toolbarSet="Basic"/>
-                                            </div>
-                                        </west>
-                                        <center border="0"
-                                                flex="true">
-                                            <div style="">
-                                            </div>
-                                        </center>
-                                    </borderlayout>
-                                </center>
-                            </borderlayout>
-                        </center>
-                        <east border="none" flex="true"></east>
-                    </borderlayout>
-                </north>
-            </borderlayout>
+            <hbox>
+            <vbox>
+                <hbox>
+                <label value="Status Permohonan : "/>
+                </hbox>
+                <radiogroup id="radiogroup_StatusPermohonanManagerPemohon">
+                    <hbox>
+                        <radio id="radio_DisetujuiManagerPemohon" label="disetujui" value="DISETUJUI" selected="true"></radio>
+                        <radio id="radio_DitolakManagerPemohon" label="ditolak" value="DITOLAK"></radio>
+                    </hbox>
+                </radiogroup>
+                <space height="2px"></space>
+                <hbox>
+                    <label value="Tanggal : "/>
+                    <datebox id="datebox_Tanggal2" format="dd MMMM yyyy" readonly="true" width="150px"/>
+                </hbox>
+                <hbox>
+                    <label value="Pelaksana : "/>
+                    <textbox id="textbox_NikPelaksana"/>
+                </hbox>
+                <space height="2px"></space>
+            </vbox>
+            <vbox>
+                <label value="catatan : "/>
+                <fckeditor id="fck_CatatanManagerPemohon" height="99%" width="484px"
+                       customConfigurationsPath="/js/fckeditor.js"
+                       toolbarSet="Basic"/>
+            </vbox>
+            </hbox>
         </groupbox>
     </window>
 </zk>

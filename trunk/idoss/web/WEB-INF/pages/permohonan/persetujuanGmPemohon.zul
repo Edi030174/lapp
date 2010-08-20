@@ -37,13 +37,7 @@
                 <space height="1px"></space>
                 <label width="100px" value="Nama Pemohon"/>
                 <space height="1px"></space>
-                <label width="100px" value="detail :"/>
-                <textbox id="textbox_DetailPermohonan" width="400px" disabled="true" multiline="true"
-                         style="color: black !important;"/>
-                <space height="1px"></space>
-                <label width="100px" value="catatan manager"/>
-                <textbox id="textbox_CatatanManager" width="400px" disabled="true" multiline="true"
-                         style="color: black !important;"/>
+
             </vbox>
             <vbox>
                 <label width="10px" value=":"/>
@@ -64,8 +58,6 @@
                 </hbox>
                 <textbox id="textbox_NamaPemohon"
                          width="200px" disabled="true" style="color: black !important;"/>
-                <textbox id="textbox_BagianPemohon"
-                         width="120px" disabled="true" style="color: black !important;"/>
             </vbox>
             <vbox>
                 <space height="1px"></space>
@@ -79,82 +71,40 @@
                          width="60px" disabled="true" style="color: black !important;"/>
             </vbox>
         </hbox>
+        <vbox>
+            <label width="100px" value="detail :"/>
+            <textbox id="textbox_DetailPermohonan" width="400px" disabled="true" multiline="true"
+                     style="color: black !important;"/>
+            <space height="1px"></space>
+            <label width="100px" value="catatan Manager :"/>
+            <textbox id="textbox_CatatanManager" width="400px" disabled="true" multiline="true"
+                     style="color: black !important;"/>
+        </vbox>
         <space width="20px"></space>
         <groupbox mold="3d">
             <caption label="" style="font-weight:bold"/>
-            <borderlayout height="195px">
-                <center border="0">
-                    <borderlayout>
-                        <west maxsize="600" size="33%" flex="true"
-                              border="0">
-                            <borderlayout>
-                                <north border="0" size="15%">
-                                    <div>
-                                        <label
-                                                value="Status Permohonan : "/>
-                                    </div>
-                                </north>
-                                <center border="0">
-                                    <div>
-                                        <vbox>
-                                            <hbox>
-                                                <label
-                                                        value="Tanggal : "/>
-                                                <datebox id="datebox_Tanggal2" format="dd MMMM yyyy" readonly="true"
-                                                         width="150px">
-                                                </datebox>
-                                            </hbox>
-                                            <space height="7px"></space>
-                                            <!--<checkbox id="checkbox2"-->
-                                            <!--label="Disetujui oleh pimpinan bagian Dukophar"-->
-                                            <!--onCheck="doChecked()"/>-->
-                                        </vbox>
-                                    </div>
-                                </center>
-                            </borderlayout>
-                        </west>
-                        <center border="0" flex="true">
-                            <borderlayout>
-                                <north border="0" size="15%">
-                                    <div style="">
-                                        <radiogroup
-                                                id="radiogroup_StatusPermohonanGmPemohon">
-                                            <radio id="radio_DisetujuiGmPemohon"
-                                                   label="disetujui" selected="true">
-                                            </radio>
-                                            <radio id="radio_DitolakGmPemohon"
-                                                   label="ditolak">
-                                            </radio>
-                                        </radiogroup>
-                                    </div>
-                                </north>
-                                <center border="0">
-                                    <borderlayout>
-                                        <west border="0" flex="true">
-                                            <div style="">
-                                                <label
-                                                        value="catatan : ">
-                                                </label>
-                                                <fckeditor
-                                                        id="fck_CatatanGmPemohon" height="99%" width="484px"
-                                                        customConfigurationsPath="/js/fckeditor.js"
-                                                        toolbarSet="Basic"/>
-                                            </div>
-                                        </west>
-                                        <center border="0"
-                                                flex="true">
-                                            <div style="">
-                                            </div>
-                                        </center>
-                                    </borderlayout>
-                                </center>
-                            </borderlayout>
-                        </center>
-                        <east border="0" flex="true">
-                        </east>
-                    </borderlayout>
-                </center>
-            </borderlayout>
+            <hbox>
+                <vbox>
+                    <hbox>
+                        <label value="Status Permohonan : "/>
+                    </hbox>
+                    <radiogroup id="radiogroup_StatusPermohonanGmPemohon">
+                        <hbox>
+                            <radio id="radio_DisetujuiGmPemohon" label="disetujui" selected="true"/>
+                            <radio id="radio_DitolakGmPemohon" label="ditolak"/>
+                        </hbox>
+                    </radiogroup>
+                    <hbox>
+                        <label value="Tanggal : "/>
+                        <datebox id="datebox_Tanggal2" format="dd MMMM yyyy" readonly="true" width="150px"/>
+                    </hbox>
+                    <space height="7px"></space>
+                </vbox>
+                <vbox>
+                    <label value="catatan : "/>
+                    <fckeditor id="fck_CatatanGmPemohon" height="99%" width="484px" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic"/>
+                </vbox>
+            </hbox>
         </groupbox>
     </window>
 </zk>
