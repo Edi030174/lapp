@@ -5,7 +5,6 @@ import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
-import net.lintasarta.permohonan.model.comparator.TPermohonanComparator;
 import net.lintasarta.permohonan.service.PermohonanService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
@@ -83,7 +82,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     protected Tab tab_Pelaksanaan;
     protected Tabpanel tabPanel_Pelaksanaan;
-    
+
     private transient boolean validationOn;
     private transient Listbox listbox_DaftarPermohonan;
 
@@ -296,6 +295,117 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         Executions.createComponents("/WEB-INF/pages/permohonan/persetujuanManagerPemohon.zul", pChildren, map);
     }
 
+    public void onSelect$tab_PersetujuanGmPemohon(Event event){
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        TVerifikasi tVerifikasi = null;
+        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
+            tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
+        }
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        if (tVerifikasi != null) {
+            map.put("tVerifikasi", tVerifikasi);
+        } else {
+            map.put("tVerifikasi", getPermohonanService().getNewVerifikasi());
+        }
+        map.put("permohonanCtrl", this);
+
+        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanGmPemohon");
+        orderTab.getChildren().clear();
+
+        Panel panel = new Panel();
+        Panelchildren pChildren = new Panelchildren();
+
+        panel.appendChild(pChildren);
+        orderTab.appendChild(panel);
+
+        Executions.createComponents("/WEB-INF/pages/permohonan/persetujuanGmPemohon.zul", pChildren, map);
+    }
+
+    public void onSelect$tab_PersetujuanAsmanDukophar(Event event){
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        TVerifikasi tVerifikasi = null;
+        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
+            tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
+        }
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        if (tVerifikasi != null) {
+            map.put("tVerifikasi", tVerifikasi);
+        } else {
+            map.put("tVerifikasi", getPermohonanService().getNewVerifikasi());
+        }
+        map.put("permohonanCtrl", this);
+
+        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanAsmanDukophar");
+        orderTab.getChildren().clear();
+
+        Panel panel = new Panel();
+        Panelchildren pChildren = new Panelchildren();
+
+        panel.appendChild(pChildren);
+        orderTab.appendChild(panel);
+
+        Executions.createComponents("/WEB-INF/pages/permohonan/persetujuanAsman.zul", pChildren, map);
+    }
+
+    public void onSelect$tab_PersetujuanManagerDukophar(Event event){
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        TVerifikasi tVerifikasi = null;
+        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
+            tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
+        }
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        if (tVerifikasi != null) {
+            map.put("tVerifikasi", tVerifikasi);
+        } else {
+            map.put("tVerifikasi", getPermohonanService().getNewVerifikasi());
+        }
+        map.put("permohonanCtrl", this);
+
+        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanManagerDukophar");
+        orderTab.getChildren().clear();
+
+        Panel panel = new Panel();
+        Panelchildren pChildren = new Panelchildren();
+
+        panel.appendChild(pChildren);
+        orderTab.appendChild(panel);
+
+        Executions.createComponents("/WEB-INF/pages/permohonan/persetujuanManager.zul", pChildren, map);
+    }
+
+    public void onSelect$tab_PersetujuanGmDukophar(Event event){
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        TVerifikasi tVerifikasi = null;
+        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
+            tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
+        }
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        if (tVerifikasi != null) {
+            map.put("tVerifikasi", tVerifikasi);
+        } else {
+            map.put("tVerifikasi", getPermohonanService().getNewVerifikasi());
+        }
+        map.put("permohonanCtrl", this);
+
+        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanGmDukophar");
+        orderTab.getChildren().clear();
+
+        Panel panel = new Panel();
+        Panelchildren pChildren = new Panelchildren();
+
+        panel.appendChild(pChildren);
+        orderTab.appendChild(panel);
+
+        Executions.createComponents("/WEB-INF/pages/permohonan/persetujuanGm.zul", pChildren, map);
+    }
 
     public void onSelect$tab_Pelaksanaan(Event event) {
 

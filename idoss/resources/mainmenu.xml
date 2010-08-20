@@ -7,7 +7,7 @@
 
     <!--<menu id="menu_Category_Ophar">-->
     <menuItem id="menu_Item_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarTroubleTiket.zul"/>
-    <menuItem id="menu_Item_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/listPermohonan.zul"/>
+    <menuItem id="menu_Item_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftarPermohonan.zul"/>
     <!--</menu>-->
 
     <!--<menu id="menu_Category_Permohonan">

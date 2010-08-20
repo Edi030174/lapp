@@ -34,6 +34,7 @@
                     <tabbox id="tabBox_Permohonan" width="100%">
                         <tabs>
                             <tab id="tab_Permohonan" label="Permohonan"/>
+                            <tab id="tab_Verifikasi" label="Verifikasi"/>
                             <tab id="tab_PersetujuanManagerPemohon" label="Persetujuan Manager Pemohon"/>
                             <tab id="tab_PersetujuanGmPemohon" label="Persetujuan GM Pemohon"/>
                             <tab id="tab_PersetujuanAsmanDukophar" label="Persetujuan Asman Dukophar"/>
@@ -165,7 +166,9 @@
                                                toolbarSet="Basic"/>
                                 </groupbox>
                             </tabpanel>
-
+                            <tabpanel id="tabPanel_Verifikasi"
+								height="100%" style="border: 0px; padding: 0px">
+							</tabpanel>
                             <tabpanel id="tabPanel_PersetujuanManagerPemohon"
 								height="100%" style="border: 0px; padding: 0px">
 							</tabpanel>
