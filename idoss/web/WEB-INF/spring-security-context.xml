@@ -97,4 +97,10 @@
 	<!-- ====================================================== -->
 	<beans:bean id="passwordEncoder" class="com.xsis.security.spring.policy.PasswordEncoderImpl">
 	</beans:bean>
+
+    <!--<beans:bean id="authenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">-->
+        <!--<beans:property name="authenticationManager" ref="authenticationManager"/>-->
+        <!--<beans:property name="filterProcessesUrl" value="http://portal/sso2/SignIn.aspx"/>-->
+        <!--<beans:property name="usernameParameter" value="LassoTicketId"/>-->
+    <!--</beans:bean>-->
 </beans:beans>
