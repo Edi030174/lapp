@@ -48,7 +48,8 @@
 		<device-type>ajax</device-type>
 		<server-push-class>org.zkoss.zkmax.ui.comet.CometServerPush
 		</server-push-class>
-		<timeout-uri>/timeout.zul</timeout-uri>
+		<!--<timeout-uri>/timeout.zul</timeout-uri>-->
+		<timeout-uri>/pages/indexLogin.zul</timeout-uri>
 	</device-config>
 
 	<!-- ====================================================== -->
