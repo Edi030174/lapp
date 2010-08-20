@@ -12,6 +12,7 @@ import org.zkoss.zk.ui.event.ClientInfoEvent;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -59,7 +60,7 @@ public class IndexCtrl extends GFCBaseCtrl implements Serializable {
 
         createMainTreeMenu();
 
-        doDemoMode();
+        setUserSession();
 
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
@@ -100,21 +101,9 @@ public class IndexCtrl extends GFCBaseCtrl implements Serializable {
         getUserWorkspace().doLogout();
     }
 
-    private void doDemoMode() {
+    private void setUserSession() {
 
-//        String userUrl = "";
-//        String ticketId = "";
-//        UserSession userSession = getLoginService().getUserSession(userUrl, ticketId);
-
-        UserSession userSession = new UserSession();
-        userSession.setEmployeeNo("77960587");
-        userSession.setEmployeeName("FAJAR BAYU KURNIADHI");
-        userSession.setOrganizationid(1164);
-        userSession.setUserName("77960587-FAJAR BAYU KURNIADHI");
-        userSession.setDepartment("MANAJEMEN PRODUKSI.");
-        userSession.setJobLocation("TB. SIMATUPANG");
-
-        getUserWorkspace().setUserSession(userSession);
+        getUserWorkspace().setUserSession((UserSession) Executions.getCurrent().getSession().getAttribute("userSession"));
     }
 
     private void createMainTreeMenu() {
