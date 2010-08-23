@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
-
 <?page title="persetujuangmpemohon" contentType="text/html;charset=UTF-8"?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
     xmlns:h="http://www.w3.org/1999/xhtml"
@@ -100,9 +99,11 @@
                     </hbox>
                     <space height="7px"></space>
                 </vbox>
+                <space width="40px"/>
                 <vbox>
                     <label value="catatan : "/>
-                    <fckeditor id="fck_CatatanGmPemohon" height="99%" width="484px" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic"/>
+                    <fckeditor id="fck_CatatanGmPemohon" height="99%" width="484px"
+                               customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic"/>
                 </vbox>
             </hbox>
         </groupbox>

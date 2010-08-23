@@ -12,7 +12,6 @@ import org.zkoss.zk.ui.event.ClientInfoEvent;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Calendar;

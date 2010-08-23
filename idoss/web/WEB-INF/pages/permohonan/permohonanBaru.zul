@@ -50,8 +50,6 @@
                                             <space height="1px"></space>
                                             <label width="130px" value="Bagian Pemohon"/>
                                             <space height="1px"></space>
-                                            <label width="100px" value="Nama Asisten Manager"/>
-                                            <space height="1px"></space>
                                             <label width="100px" value="Nama Manager"/>
                                             <space height="1px"></space>
                                             <label width="100px" value="Nama General Manager"/>
@@ -60,8 +58,6 @@
                                             <space height="1px"></space>
                                         </vbox>
                                         <vbox>
-                                            <label width="10px" value=":"/>
-                                            <space height="1px"></space>
                                             <label width="10px" value=":"/>
                                             <space height="1px"></space>
                                             <label width="10px" value=":"/>
@@ -82,7 +78,6 @@
                                             </hbox>
                                             <textbox id="textbox_NamaPemohon" width="200px"/>
                                             <textbox id="textbox_BagianPemohon" width="120px"/>
-                                            <textbox id="textbox_NamaAsman" width="120px"/>
                                             <textbox id="textbox_NamaManager" width="120px"/>
                                             <textbox id="textbox_NamaGm" width="120px"/>
                                         </vbox>
@@ -94,14 +89,11 @@
                                             <label width="10px" value="NIK :"/>
                                             <space height="5px"></space>
                                             <label width="10px" value="NIK :"/>
-                                            <space height="5px"></space>
-                                            <label width="10px" value="NIK :"/>
                                         </vbox>
                                         <vbox>
                                             <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" readonly="true" width="150px"/>
                                             <textbox id="textbox_NikPemohon" width="60px"/>
                                             <space height="22px"></space>
-                                            <textbox id="textbox_NikAsman" width="60px"/>
                                             <textbox id="textbox_NikManager" width="60px"/>
                                             <textbox id="textbox_NikGm" width="60px"/>
                                         </vbox>
