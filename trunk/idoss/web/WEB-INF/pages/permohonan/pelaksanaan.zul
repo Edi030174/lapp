@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="pelaksanaan" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+    <style>
+        body { padding: 0 0; /* 0 padding on top and bottom and 0
+        padding on right and left */ }
+
+        <!-- cut the vertical borders in the rows -->
+        tr.z-row td.z-row-inner { border-right: 0px #CCC; }
+
+        <!-- Make Plain Grid -->
+        .GridLayoutNoBorder tr.z-row td.z-row-inner, tr.z-row
+        .z-cell,div.z-grid { border: none; overflow: hidden; zoom:
+        1; background: white; border-top: none; border-left: none;
+        border-right: none; border-bottom: none; }
+
+        <!-- Title in bold letters -->
+        .z-groupbox-hl .z-groupbox-header { color: #000000;
+        font-weight: bold; }
+    </style>
+    <window id="window_Pelaksanaan" border="none" apply="${pelaksanaanCtrl}">
+        <toolbar>
+            <button id="btnSimpan_Pelaksanaan" label="Simpan"/>
+            <button id="btnBatal" label="Batal"/>
+        </toolbar>
+        <groupbox id="groupboxPelaksanaan" mold="3d">
+            <caption label="Pelaksanaan Perubahan" style="font-weight:bold"/>
+            <vbox>
+                <hbox>
+                    <label value="Status Perubahan : "/>
+                    <radiogroup id="radiogroup_StatusPerubahan">
+                        <radio id="open" label="Open" value="OPEN" selected="true"/>
+                        <radio id="inprogress" label="In Progress" value="INPROGRESS"/>
+                        <radio id="closed" label="Closed" value="CLOSED"/>
+                        <radio id="pending" label="Pending" value="PENDING"/>
+                        <datebox id="datebox_Pending" format="dd MMMM yyyy" readonly="true" width="150px"
+                                 constraint="no past, no today"/>
+                    </radiogroup>
+                </hbox>
+                <space height="10px"/>
+                <hbox>
+                    <vbox>
+                        <hbox>
+                            <label value="Tanggal :"/>
+                            <datebox id="datebox_TglPermohonan" format="dd MMMM yyyy" readonly="true" width="150px"/>
+                        </hbox>
+                        <checkbox id="checkbox_Rfs" label="Disetujui oleh Pelaksana"/>
+                    </vbox>
+                    <space width="40px"/>
+                    <vbox>
+                        <label value="catatan : "/>
+                        <fckeditor id="fckCatatan_pelaksana" height="99%" width="484px"
+                                   customConfigurationsPath="/js/fckeditor.js"
+                                   toolbarSet="Basic"/>
+                    </vbox>
+                </hbox>
+            </vbox>
+        </groupbox>
+    </window>
+</zk>
