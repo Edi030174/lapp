@@ -32,12 +32,7 @@
                     <tabbox id="tabBox_Permohonan" width="100%">
                         <tabs>
                             <tab id="tab_Permohonan" label="Permohonan"/>
-                            <tab id="tab_Verifikasi" label="Verifikasi"/>
-                            <tab id="tab_PersetujuanManagerPemohon" label="Persetujuan Manager Pemohon"/>
-                            <tab id="tab_PersetujuanGmPemohon" label="Persetujuan GM Pemohon"/>
-                            <tab id="tab_PersetujuanAsmanDukophar" label="Persetujuan Asman Dukophar"/>
-                            <tab id="tab_PersetujuanManagerDukophar" label="Persetujuan Manager Dukophar"/>
-                            <tab id="tab_PersetujuanGmDukophar" label="Persetujuan GM Dukophar"/>
+                            <tab id="tab_PersetujuanGmDukophar" label="Persetujuan"/>
                             <tab id="tab_Pelaksanaan" label="Pelaksanaan"/>
                         </tabs>
                         <tabpanels>
@@ -128,7 +123,6 @@
                                                      width="60px" disabled="true" style="color: black !important;"/>
                                             <textbox id="textbox_NikGm"
                                                      width="60px" disabled="true" style="color: black !important;"/>
-
                                         </vbox>
                                     </hbox>
                                 </groupbox>
@@ -136,7 +130,6 @@
                                     <caption label="Detil Permohonan"
                                              style="font-weight:bold"/>
                                     <vbox>
-
                                         <hbox>
                                             <vbox></vbox>
                                             Type :
@@ -168,25 +161,9 @@
                                                toolbarSet="Basic"/>
                                 </groupbox>
                             </tabpanel>
-                            <tabpanel id="tabPanel_Verifikasi"
-                                      height="100%" style="border: 0px; padding: 0px">
-                            </tabpanel>
-                            <tabpanel id="tabPanel_PersetujuanManagerPemohon"
-                                      height="100%" style="border: 0px; padding: 0px">
-                            </tabpanel>
-                            <tabpanel id="tabPanel_PersetujuanGmPemohon"
-                                      height="100%" style="border: 0px; padding: 0px">
-                            </tabpanel>
-                            <tabpanel id="tabPanel_PersetujuanAsmanDukophar"
-                                      height="100%" style="border: 0px; padding: 0px">
-                            </tabpanel>
-                            <tabpanel id="tabPanel_PersetujuanManagerDukophar"
-                                      height="100%" style="border: 0px; padding: 0px">
-                            </tabpanel>
                             <tabpanel id="tabPanel_PersetujuanGmDukophar"
                                       height="100%" style="border: 0px; padding: 0px">
                             </tabpanel>
-
                             <tabpanel id="tabPanel_Pelaksanaan"
                                       height="100%" style="border: 0px; padding: 0px">
                             </tabpanel>

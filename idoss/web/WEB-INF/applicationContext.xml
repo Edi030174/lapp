@@ -73,7 +73,6 @@
         <property name="verifikasiService" ref="verifikasiService"/>
     </bean>
 
-
     <bean id="pengaduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PengaduanCtrl" parent="basisCtrl"
           scope="prototype">
         <property name="penangananGangguanService" ref="penangananGangguanService"/>
