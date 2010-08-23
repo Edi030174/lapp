@@ -12,7 +12,7 @@
             }
 
         </style>
-        <timer id="timer" delay="60000" repeats="true"/>
+        <timer id="timer" delay="300000" repeats="true"/>
 
         <panel id="panel_daftarTroubleTiket" title="" border="none" />
 
@@ -30,6 +30,7 @@
                 <comboitem id="comboitem_Judul" label="Judul"/>
                 <comboitem id="comboitem_Status" label="Status"/>
                 <comboitem id="comboitem_Pelapor" label="Pelapor"/>
+                <!--<comboitem id="comboitem_PenanggungJawab" label="Penanggung Jawab"/>-->
             </combobox>
             <textbox id="textbox_Cari" value=""/>
             <button id="btnCari_DaftarTiket" label="Cari"
