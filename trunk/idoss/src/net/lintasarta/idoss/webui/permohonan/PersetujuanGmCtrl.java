@@ -74,7 +74,7 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    public void onCreate$window_Verifikasi(Event event) throws Exception {
+    public void onCreate$window_PersetujuanGm(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
@@ -105,13 +105,13 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doShowDialog(TVerifikasi tVerifikasi) throws InterruptedException {
         try {
-            doWriteBeanToComponents(tVerifikasi);
+            doWriteBeanToComponent(tVerifikasi);
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
     }
 
-    private void doWriteBeanToComponents(TVerifikasi tVerifikasi) throws Exception{
+    private void doWriteBeanToComponent(TVerifikasi tVerifikasi) throws Exception{
         textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
         textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
         datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());

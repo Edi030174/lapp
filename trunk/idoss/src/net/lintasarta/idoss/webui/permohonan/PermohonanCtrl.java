@@ -65,8 +65,8 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     protected Tab tab_Verifikasi;
     protected Tabpanel tabPanel_Verifikasi;
 
-    protected Tab tab_PersetujuanGmDukophar;
-    protected Tabpanel tabPanel_PersetujuanGmDukophar;
+    protected Tab tab_Persetujuan;
+    protected Tabpanel tabPanel_Persetujuan;
 
     protected Tab tab_Pelaksanaan;
     protected Tabpanel tabPanel_Pelaksanaan;
@@ -117,8 +117,8 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
         tab_Permohonan.setClosable(false);
-        tab_PersetujuanGmDukophar.setVisible(true);
-        tabPanel_PersetujuanGmDukophar.setVisible(true);
+        tab_Persetujuan.setVisible(true);
+        tabPanel_Persetujuan.setVisible(true);
 
         tab_Pelaksanaan.setVisible(true);
         tabPanel_Pelaksanaan.setVisible(true);
@@ -151,7 +151,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             tPermohonan = getPermohonanService().getNewPermohonan();
             settPermohonan(tPermohonan);
 
-        } else{
+        } else {
             settPermohonan(tPermohonan);
         }
 
@@ -183,7 +183,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteBeanToComponents(TPermohonan tPermohonan) {
-        if(tPermohonan.getT_idoss_permohonan_id() != null){
+        if (tPermohonan.getT_idoss_permohonan_id() != null) {
             textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
         } else {
             textbox_TIdossPermohonanId.setValue(getPermohonanService().getPermohonanID());
@@ -213,7 +213,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
-    public void onSelect$tab_PersetujuanGmDukophar(Event event){
+    public void onSelect$tab_Persetujuan(Event event) {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
@@ -229,7 +229,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         }
         map.put("permohonanCtrl", this);
 
-        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanGmDukophar");
+        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_Persetujuan");
         orderTab.getChildren().clear();
 
         Panel panel = new Panel();
@@ -238,7 +238,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         panel.appendChild(pChildren);
         orderTab.appendChild(panel);
 
-        Executions.createComponents("/WEB-INF/pages/permohonan/persetujuanGm.zul", pChildren, map);
+        Executions.createComponents("/WEB-INF/pages/permohonan/persetujuan.zul", pChildren, map);
     }
 
     public void onSelect$tab_Pelaksanaan(Event event) {
@@ -434,7 +434,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
-    private void onCheck$radio_lainlain(TPermohonan tPermohonan){
+    private void onCheck$radio_lainlain(TPermohonan tPermohonan) {
         textbox_Lainlain.setDisabled(false);
     }
 
