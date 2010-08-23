@@ -44,7 +44,7 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     protected Radiogroup radiogroup_StatusPermohonanGm;
     protected Radio radio_DisetujuiGM;
     protected Radio radio_DitolakGM;
-    protected Datebox dateboxTanggal2;
+    protected Datebox datebox_Tanggal2;
     protected FCKeditor fck_CatatanGm;
 
     private transient String oldVar_textbox_TIdossPermohonanId;
@@ -56,7 +56,7 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     private transient String oldVar_textbox_CatatanManager;
     private transient boolean oldVar_radio_DisetujuiGM;
     private transient boolean oldVar_radio_DitolakGM;
-    private transient String oldVar_dateboxTanggal2;
+    private transient String oldVar_datebox_Tanggal2;
     private transient String oldVar_fck_CatatanGm;
 
     protected Listbox listbox_DaftarPermohonan;
@@ -113,10 +113,10 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doWriteBeanToComponents(TVerifikasi tVerifikasi) throws Exception{
         textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
-        textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
+//        textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
         datebox_Tanggal.setValue(tVerifikasi.getTgl_permohonan());
-        textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
-        textbox_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
+//        textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
+//        textbox_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
         textbox_CatatanAsman.setValue(tVerifikasi.getCatatan_asman());
         textbox_CatatanManager.setValue(tVerifikasi.getCatatan_manager());
     }
@@ -154,7 +154,7 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     private void doWriteComponentsToBean(TVerifikasi tVerifikasi) {
         Radio status = radiogroup_StatusPermohonanGm.getSelectedItem();
         tVerifikasi.setStatus_permohonan_manager(status.getValue());
-        tVerifikasi.setUpdated_manager(new Timestamp(dateboxTanggal2.getValue().getTime()));
+        tVerifikasi.setUpdated_manager(new Timestamp(datebox_Tanggal2.getValue().getTime()));
         tVerifikasi.setCatatan_manager(fck_CatatanGm.getValue());
     }
 

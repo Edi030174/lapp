@@ -23,7 +23,7 @@
         .z-groupbox-hl .z-groupbox-header { color: #000000;
         font-weight: bold; }
     </style>
-    <window id="window_PersetujuanGmPemohon" border="normal" title="persetujuan GM pemohon"
+    <window id="window_PersetujuanGmPemohon" border="normal"
             apply="${persetujuangmpemohonCtrl}">
         <toolbar>
             <button id="btn_SimpanPersetujuanGmPemohon" label="Simpan"/>
