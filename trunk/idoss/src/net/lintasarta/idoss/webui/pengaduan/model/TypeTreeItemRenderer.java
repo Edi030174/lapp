@@ -8,10 +8,9 @@ import java.io.Serializable;
 
 /**
  * Created by IntelliJ IDEA.
- * User: Xsis
+ * User: Asri
  * Date: Aug 16, 2010
  * Time: 2:20:10 PM
- * To change this template use File | Settings | File Templates.
  */
 public class TypeTreeItemRenderer implements TreeitemRenderer, Serializable {
 
@@ -20,7 +19,8 @@ public class TypeTreeItemRenderer implements TreeitemRenderer, Serializable {
     @Override
     public void render(Treeitem treeitem, Object data) throws Exception {
         SimpleTreeNode stn = (SimpleTreeNode) data;
-        PType pType = (PType)stn.getData();
+//        TypeTreeNode ttn = (TypeTreeNode) data;
+         PType pType = (PType) stn.getChildren();
 
         Treecell tc = new Treecell(pType.getType_desc());
         Treerow tr = null;

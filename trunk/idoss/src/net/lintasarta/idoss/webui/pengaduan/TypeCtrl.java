@@ -11,6 +11,8 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,7 +20,6 @@ import java.util.Map;
  * User: Xsis
  * Date: Aug 18, 2010
  * Time: 9:55:18 AM
- * To change this template use File | Settings | File Templates.
  */
 public class TypeCtrl extends GFCBaseCtrl implements Serializable {
     private transient static final Logger logger = Logger.getLogger(RootCausedCtrl.class);
@@ -49,8 +50,18 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
             setpType(pType);
         }
 
-//        tree_Type.setModel(new SimpleTreeModel((SimpleTreeNode) getTypeService().getAllType()) );
-        tree_Type.setModel(new TypeTreeModel((TypeTreeNode)getTypeService().getAllType()));
+        List<PType> pTypes = getTypeService().getAllType();
+        SimpleTreeNode stn = new SimpleTreeNode(getpType(),pTypes);
+        ArrayList al = new ArrayList();
+        al.add(stn);
+
+        SimpleTreeNode root = new SimpleTreeNode("ROOT",al);
+        SimpleTreeModel stm = new SimpleTreeModel(root);
+        tree_Type.setModel(stm);
+
+//        tree_Type.setModel(new SimpleTreeModel(new SimpleTreeNode(getpType(), pTypes)) );
+//        tree_Type.setModel(new TypeTreeModel(( TypeTreeNode)getTypeService().getAllType()));
+        
         tree_Type.setTreeitemRenderer(new TypeTreeItemRenderer());
         doShowDialog(getpType());
     }
