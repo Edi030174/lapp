@@ -161,11 +161,9 @@
                                                toolbarSet="Basic"/>
                                 </groupbox>
                             </tabpanel>
-                            <tabpanel id="tabPanel_PersetujuanGmDukophar"
-                                      height="100%" style="border: 0px; padding: 0px">
+                            <tabpanel id="tabPanel_PersetujuanGmDukophar" height="100%" style="border: 0px; padding: 0px">
                             </tabpanel>
-                            <tabpanel id="tabPanel_Pelaksanaan"
-                                      height="100%" style="border: 0px; padding: 0px">
+                            <tabpanel id="tabPanel_Pelaksanaan" height="100%" style="border: 0px; padding: 0px">
                             </tabpanel>
                         </tabpanels>
                     </tabbox>
