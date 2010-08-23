@@ -238,7 +238,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         panel.appendChild(pChildren);
         orderTab.appendChild(panel);
 
-        Executions.createComponents("/WEB-INF/pages/permohonan/persetujuan.zul", pChildren, map);
+        Executions.createComponents("/WEB-INF/pages/permohonan/persetujuangm.zul", pChildren, map);
     }
 
     public void onSelect$tab_Pelaksanaan(Event event) {

@@ -105,16 +105,16 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doShowDialog(TVerifikasi tVerifikasi) throws InterruptedException {
         try {
-            doWriteBeanToComponent(tVerifikasi);
+            doWriteBeanToComponents(tVerifikasi);
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
     }
 
-    private void doWriteBeanToComponent(TVerifikasi tVerifikasi) throws Exception{
+    private void doWriteBeanToComponents(TVerifikasi tVerifikasi) throws Exception{
         textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
         textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
-        datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
+        datebox_Tanggal.setValue(tVerifikasi.getTgl_permohonan());
         textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
         textbox_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
         textbox_CatatanAsman.setValue(tVerifikasi.getCatatan_asman());

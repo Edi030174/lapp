@@ -24,7 +24,7 @@
         font-weight: bold; }
     </style>
     <window id="window_PersetujuanGm" border="normal" title="persetujuan GM"
-            apply="${persetujuangmCtrl}">
+            apply="${persetujuanGmCtrl}">
         <toolbar>
             <button id="btn_SimpanPersetujuanGm" label="Simpan"/>
             <button id="btn_Batal" label="Batal"/>
