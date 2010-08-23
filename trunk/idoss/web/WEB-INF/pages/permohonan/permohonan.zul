@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
-
 <?page title="permohonan" contentType="text/html;charset=UTF-8"?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
     xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+    <style>
+        body { padding: 0 0; /* 0 padding on top and bottom and 0
+        padding on right and left */ }
+
+        <!-- cut the vertical borders in the rows -->
+        tr.z-row td.z-row-inner { border-right: 0px #CCC; }
+
+        <!-- Make Plain Grid -->
+        .GridLayoutNoBorder tr.z-row td.z-row-inner, tr.z-row
+        .z-cell,div.z-grid { border: none; overflow: hidden; zoom:
+        1; background: white; border-top: none; border-left: none;
+        border-right: none; border-bottom: none; }
+
+        <!-- Title in bold letters -->
+        .z-groupbox-hl .z-groupbox-header { color: #000000;
+        font-weight: bold; }
+    </style>
     <window id="window_Permohonan" title="permohonan" border="none" apply="${permohonanCtrl}"
-            sizable="true" width="800px"  height="600px" closable="true">
-
-        <style>
-            body { padding: 0 0; /* 0 padding on top and bottom and 0
-            padding on right and left */ }
-
-            <!-- cut the vertical borders in the rows -->
-            tr.z-row td.z-row-inner { border-right: 0px #CCC; }
-
-            <!-- Make Plain Grid -->
-            .GridLayoutNoBorder tr.z-row td.z-row-inner, tr.z-row
-            .z-cell,div.z-grid { border: none; overflow: hidden; zoom:
-            1; background: white; border-top: none; border-left: none;
-            border-right: none; border-bottom: none; }
-
-            <!-- Title in bold letters -->
-            .z-groupbox-hl .z-groupbox-header { color: #000000;
-            font-weight: bold; }
-        </style>
+            sizable="true" width="800px" height="600px" closable="true">
         <borderlayout id="borderlayoutCustomer">
             <north border="none" margins="0,0,0,0"/>
             <center border="none">
@@ -47,8 +45,8 @@
                             <tabpanel id="tabPanel_Permohonan"
                                       height="100%" style="border: 0px; padding: 0px">
                                 <!--<toolbar>-->
-                                    <!--<button id="btnSimpan_Permohonan" label="Simpan"/>-->
-                                    <!--<button id="btnBatal" label="Batal"/>-->
+                                <!--<button id="btnSimpan_Permohonan" label="Simpan"/>-->
+                                <!--<button id="btnBatal" label="Batal"/>-->
                                 <!--</toolbar>-->
                                 <groupbox id="groupboxPemohon" mold="3d">
                                     <caption label="Pemohon"
@@ -93,7 +91,8 @@
                                         <vbox>
                                             <hbox>
                                                 <textbox
-                                                        id="textbox_TIdossPermohonanId" width="120px" disabled="true" style="color: #000000 !important;"/>
+                                                        id="textbox_TIdossPermohonanId" width="120px" disabled="true"
+                                                        style="color: #000000 !important;"/>
                                                 <vbox>
                                                     <space height="1px"></space>
                                                     <label width="10px"
@@ -119,7 +118,9 @@
                                             <label width="10px" value="NIK :"/>
                                         </vbox>
                                         <vbox>
-                                            <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" disabled="true" readonly="true" width="150px" style="color: #000000 !important;"/>
+                                            <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy"
+                                                     disabled="true" readonly="true" width="150px"
+                                                     style="color: #000000 !important;"/>
                                             <textbox id="textbox_NikPemohon"
                                                      width="60px" disabled="true" style="color: black !important;"/>
                                             <space height="22px"></space>
@@ -140,7 +141,8 @@
                                             <vbox></vbox>
                                             Type :
                                             <radiogroup id="radiogroupType_permohonan">
-                                                <radio id="radio_readonly" label="User Read Only" value="User RO" selected="true"/>
+                                                <radio id="radio_readonly" label="User Read Only" value="User RO"
+                                                       selected="true"/>
                                                 <radio id="radio_readwrite" label="User Read Write" value="User RW"/>
                                                 <radio id="radio_aplikasi" label="Aplikasi" value="Aplikasi"/>
                                                 <radio id="radio_lainlain" label="Lain-lain" value="Lain-lain"/>
@@ -167,34 +169,34 @@
                                 </groupbox>
                             </tabpanel>
                             <tabpanel id="tabPanel_Verifikasi"
-								height="100%" style="border: 0px; padding: 0px">
-							</tabpanel>
+                                      height="100%" style="border: 0px; padding: 0px">
+                            </tabpanel>
                             <tabpanel id="tabPanel_PersetujuanManagerPemohon"
-								height="100%" style="border: 0px; padding: 0px">
-							</tabpanel>
+                                      height="100%" style="border: 0px; padding: 0px">
+                            </tabpanel>
                             <tabpanel id="tabPanel_PersetujuanGmPemohon"
-								height="100%" style="border: 0px; padding: 0px">
-							</tabpanel>
+                                      height="100%" style="border: 0px; padding: 0px">
+                            </tabpanel>
                             <tabpanel id="tabPanel_PersetujuanAsmanDukophar"
-								height="100%" style="border: 0px; padding: 0px">
-							</tabpanel>
+                                      height="100%" style="border: 0px; padding: 0px">
+                            </tabpanel>
                             <tabpanel id="tabPanel_PersetujuanManagerDukophar"
-								height="100%" style="border: 0px; padding: 0px">
-							</tabpanel>
+                                      height="100%" style="border: 0px; padding: 0px">
+                            </tabpanel>
                             <tabpanel id="tabPanel_PersetujuanGmDukophar"
-								height="100%" style="border: 0px; padding: 0px">
-							</tabpanel>
+                                      height="100%" style="border: 0px; padding: 0px">
+                            </tabpanel>
 
                             <tabpanel id="tabPanel_Pelaksanaan"
-								height="100%" style="border: 0px; padding: 0px">
-							</tabpanel>
+                                      height="100%" style="border: 0px; padding: 0px">
+                            </tabpanel>
                         </tabpanels>
                     </tabbox>
                 </div>
-              </center>
-            <east border="none" />
-			<west border="none" />
-			<south border="none" />
+            </center>
+            <east border="none"/>
+            <west border="none"/>
+            <south border="none"/>
         </borderlayout>
     </window>
 </zk>

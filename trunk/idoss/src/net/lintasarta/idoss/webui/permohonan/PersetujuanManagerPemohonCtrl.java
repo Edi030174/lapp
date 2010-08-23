@@ -13,22 +13,20 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
- * User: JosH
- * Date: Jul 23, 2010
- * Time: 12:48:56 PM
+ * User: Administrator
+ * Date: Aug 20, 2010
+ * Time: 1:16:11 PM
  * To change this template use File | Settings | File Templates.
  */
-public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
-
-    private transient static final Logger logger = Logger.getLogger(VerifikasiCtrl.class);
+public class PersetujuanManagerPemohonCtrl extends GFCBaseCtrl implements Serializable {
+    private transient static final Logger logger = Logger.getLogger(PersetujuanManagerPemohonCtrl.class);
 
     protected Window window_Permohonan;
-    protected Window window_Verifikasi;
+    protected Window window_PersetujuanManagerPemohon;
 
     protected Radiogroup radiogroup_Prioritas;
     protected Radio high;
@@ -36,50 +34,43 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
     protected Radiogroup radiogroup_Dampak;
     protected Radio major;
     protected Radio minor;
-
-    protected Datebox dateboxTanggal1;
+    protected Radiogroup radiogroup_StatusPermohonanManagerPemohon;
+    protected Radio radio_DisetujuiManagerPemohon;
+    protected Radio radio_DitolakManagerPemohon;
+    protected Textbox textbox_TIdossPermohonanId;
+    protected Textbox textbox_NamaPemohon;
     protected Textbox textbox_NikPelaksana;
-    protected Checkbox checkbox1;
-    protected Radiogroup radiogroup_Statuspermohonanasman;
-    protected Radio radioDisetujui;
-    protected Radio radioDitolak;
-    protected FCKeditor fckCatatan_asman;
-
-    protected Datebox dateboxTanggal2;
-    protected Checkbox checkbox2;
-    protected Radiogroup radiogroup_Statuspermohonanmanager;
-    protected Radio radioDisetujui2;
-    protected Radio radioDitolak2;
-    protected FCKeditor fckCatatan_manager;
+    protected Datebox datebox_Tanggal;
+    protected Datebox datebox_Tanggal2;
+    protected Textbox textbox_NikPemohon;
+    protected Textbox textbox_DetailPermohonan;
+    protected FCKeditor fck_CatatanManagerPemohon;
 
     private transient String oldVar_high;
     private transient String oldVar_normal;
     private transient String oldVar_major;
     private transient String oldVar_minor;
-
-    private transient String oldVar_dateboxTanggal1;
-    private transient String oldVar_comboboxNikPelaksana;
-    private transient boolean oldVar_checkbox1;
-    private transient boolean oldVar_radioDisetujui;
-    private transient boolean oldVar_radioDitolak;
-    private transient String oldVar_fckCatatanAsman;
-
-    private transient String oldVar_dateboxTanggal2;
-    private transient String oldVar_checkbox2;
-    private transient boolean oldVar_radioDisetujui2;
-    private transient boolean oldVar_radioDitolak2;
-    private transient String oldVar_fckCatatanManager;
+    private boolean oldVar_radio_DisetujuiManagerPemohon;
+    private boolean oldVar_radio_DitolakManagerPemohon;
+    private transient String oldVar_datebox_Tanggal;
+    private transient String oldVar_datebox_Tanggal2;
+    private transient String oldVar_textbox_TIdossPermohonanId;
+    private transient String oldVar_textbox_NamaPemohon;
+    private transient String oldVar_textbox_NikPelaksana;
+    private transient String oldVar_textbox_NikPemohon;
+    private transient String oldVar_textbox_DetailPermohonan;
+    private transient String oldVar_fck_CatatanManagerPemohon;
 
     protected Listbox listbox_DaftarPermohonan;
-    protected Button btnSimpan_Verifikasi;
-    protected Button btnBatal;
-    protected VerifikasiCtrl verifikasiCtrl;
+    protected Button btn_SimpanPersetujuanManagerPemohon;
+    protected Button btn_Batal;
+    protected PersetujuanManagerPemohonCtrl persetujuanManagerPemohonCtrl;
 
     private transient TVerifikasi tVerifikasi;
     private transient VerifikasiService verifikasiService;
     private transient TPermohonan tPermohonan;
 
-    public VerifikasiCtrl() {
+    public PersetujuanManagerPemohonCtrl(){
         super();
 
         if (logger.isDebugEnabled()) {
@@ -87,12 +78,10 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    public void onCreate$window_Verifikasi(Event event) throws Exception {
-
+    public void onCreate$window_PersetujuanManagerPemohon(Event event) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-
         Map<String, Object> args = getCreationArgsMap(event);
         if (args.containsKey("tVerifikasi")) {
             TVerifikasi tVerifikasi = (TVerifikasi) args.get("tVerifikasi");
@@ -100,63 +89,54 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             settVerifikasi(null);
         }
-
-        if (args.containsKey("verifikasiCtrl")) {
-            verifikasiCtrl = (VerifikasiCtrl) args.get("verifikasiCtrl");
+        if (args.containsKey("PersetujuanManagerPemohonCtrl")) {
+            persetujuanManagerPemohonCtrl = (PersetujuanManagerPemohonCtrl) args.get("persetujuanManagerPemohonCtrl");
         } else {
-            verifikasiCtrl = null;
+            persetujuanManagerPemohonCtrl = null;
         }
-
         if (args.containsKey("listbox_DaftarPermohonan")) {
             listbox_DaftarPermohonan = (Listbox) args.get("listbox_DaftarPermohonan");
         } else {
             listbox_DaftarPermohonan = null;
         }
-
         doShowDialog(gettVerifikasi());
     }
 
     private void doShowDialog(TVerifikasi tVerifikasi) throws InterruptedException {
         try {
-            doWriteBeanToComponent(tVerifikasi);
+            doWriteBeanToComponents(tVerifikasi);
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
     }
 
-    private void doWriteBeanToComponent(TVerifikasi tVerifikasi) throws Exception{
-
-        dateboxTanggal1.setValue(tVerifikasi.getTgl_permohonan());
-
-        if(tVerifikasi.getNik_pelaksana() == null){
-           textbox_NikPelaksana.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
-        }else {
-            textbox_NikPelaksana.setValue(tVerifikasi.getNik_pelaksana());
-        }
-
-        fckCatatan_asman.setValue(tVerifikasi.getCatatan_asman());
-        dateboxTanggal2.setValue(tVerifikasi.getTgl_permohonan());
-        fckCatatan_manager.setValue(tVerifikasi.getCatatan_manager());
+    private void doWriteBeanToComponents(TVerifikasi tVerifikasi) throws Exception{
+        textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
+        textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
+        datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
+        textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
+        textbox_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
     }
 
-    public void onClick$btnSimpan_Verifikasi(Event event) throws Exception{
-
+    public void onClick$btn_SimpanPersetujuanManagerPemohon(Event event) throws Exception{
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
         doSimpan();
     }
 
-    public void onClick$btnBatal(Event event) throws Exception {
+    public void onClick$btn_Batal(Event event) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
+
         window_Permohonan.onClose();
     }
 
     private void doSimpan() throws Exception {
         TVerifikasi tVerifikasi = gettVerifikasi();
         doWriteComponentsToBean(tVerifikasi);
+
         try {
             getVerifikasiService().saveOrUpdateTVerifikasi(tVerifikasi);
         } catch (DataAccessException e) {
@@ -169,35 +149,21 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doStoreInitValues() {
+        oldVar_textbox_TIdossPermohonanId = textbox_TIdossPermohonanId.getValue();
+        oldVar_textbox_NamaPemohon = textbox_NamaPemohon.getValue();
+        oldVar_textbox_NikPemohon = textbox_NikPemohon.getValue();
+        oldVar_textbox_DetailPermohonan = textbox_DetailPermohonan.getValue();
         
     }
 
     private void doWriteComponentsToBean(TVerifikasi tVerifikasi) {
-
-//        Permohonan permohonan = getCreationArgsMap().get(permohonanCtrl);
-//        tVerifikasi.setT_idoss_verifikasi_id(
         Radio prioritas = radiogroup_Prioritas.getSelectedItem();
         tVerifikasi.setUrgensi(prioritas.getValue());
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tVerifikasi.setDampak(dampak.getValue());
-        Radio status = radiogroup_Statuspermohonanasman.getSelectedItem();
+        Radio status = radiogroup_StatusPermohonanManagerPemohon.getSelectedItem();
         tVerifikasi.setStatus_permohonan_asman(status.getValue());
-        tVerifikasi.setTgl_permohonan(new Timestamp(dateboxTanggal1.getValue().getTime()));
-        tVerifikasi.setNik_pelaksana(textbox_NikPelaksana.getValue());
-        tVerifikasi.setCatatan_asman(fckCatatan_asman.getValue());
-        Radio statusMan = radiogroup_Statuspermohonanmanager.getSelectedItem();
-        tVerifikasi.setStatus_permohonan_manager(statusMan.getValue());
-        tVerifikasi.setUpdated_asman(new Timestamp(dateboxTanggal2.getValue().getTime()));
-        tVerifikasi.setCatatan_manager(fckCatatan_manager.getValue());
-        tVerifikasi.setRfs("rfs");
-        tVerifikasi.setType_permohonan("T");
-        tVerifikasi.setCatatan_per_type("n");
-        tVerifikasi.setUpdated_manager(new Timestamp(dateboxTanggal2.getValue().getTime()));
-        tVerifikasi.setCreated_user(getUserWorkspace().getUserSession().getUserName());
-        tVerifikasi.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
-        tVerifikasi.setCreated_date(new Timestamp(dateboxTanggal2.getValue().getTime()));
-        tVerifikasi.setUpdated_date(new Timestamp(dateboxTanggal2.getValue().getTime()));
-
+        tVerifikasi.setCatatan_asman(fck_CatatanManagerPemohon.getValue());
     }
 
     public TVerifikasi gettVerifikasi() {
