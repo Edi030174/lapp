@@ -24,11 +24,13 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializable{
-
     private transient final static Logger logger = Logger.getLogger(PersetujuanGmPemohonCtrl.class);
 
     protected Window window_Permohonan;
     protected Window window_PersetujuanGmPemohon;
+
+    protected Button btn_SimpanPersetujuanGmPemohon;
+    protected Button btn_Batal;
 
     protected Textbox textbox_TIdossPermohonanId;
     protected Textbox textbox_NamaPemohon;
@@ -38,18 +40,9 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     protected Datebox datebox_Tanggal;
     protected Datebox datebox_Tanggal2;
     protected FCKeditor fck_CatatanGmPemohon;
-    protected Button btn_SimpanPersetujuanGmPemohon;
-    protected Button btn_Batal;
     protected Radiogroup radiogroup_StatusPermohonanGmPemohon;
     protected Radio radio_DisetujuiGmPemohon;
     protected Radio radio_DitolakGmPemohon;
-
-    protected Listbox listbox_DaftarPermohonan;
-
-    protected PersetujuanGmPemohonCtrl persetujuanGmPemohonCtrl;
-    private transient TVerifikasi tVerifikasi;
-    private transient VerifikasiService verifikasiService;
-    private transient TPermohonan tPermohonan;
 
     private transient String oldVar_textbox_TIdossPermohonanId;
     private transient String oldVar_textbox_NamaPemohon;
@@ -63,6 +56,13 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     private transient boolean oldVar_radio_DitolakGmPemohon;
 //    private transient String oldVar_
 
+    protected Listbox listbox_DaftarPermohonan;
+    protected PersetujuanGmPemohonCtrl persetujuanGmPemohonCtrl;
+
+    private transient TVerifikasi tVerifikasi;
+    private transient VerifikasiService verifikasiService;
+    private transient TPermohonan tPermohonan;
+
     public PersetujuanGmPemohonCtrl(){
         super();
 
@@ -71,7 +71,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         }
     }
 
-    public void onCreate$window_Verifikasi(Event event) throws Exception {
+    public void onCreate$window_PersetujuanGmPemohon(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
@@ -102,18 +102,18 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
 
     private void doShowDialog(TVerifikasi tVerifikasi) throws InterruptedException {
         try {
-            doWriteBeanToComponent(tVerifikasi);
+            doWriteBeanToComponents(tVerifikasi);
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
     }
 
-    private void doWriteBeanToComponent(TVerifikasi tVerifikasi) {
+    private void doWriteBeanToComponents(TVerifikasi tVerifikasi) throws Exception{
         textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
-        textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
+//        textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
         datebox_Tanggal.setValue(tVerifikasi.getTgl_permohonan());
-        textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
-        textbox_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
+//        textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
+//        textbox_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
         textbox_CatatanManager.setValue(tVerifikasi.getCatatan_asman());
     }
 
@@ -123,6 +123,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
             logger.debug("--> " + event.toString());
         }
         doSimpan();
+        window_Permohonan.onClose();
     }
 
     public void onClick$btnBatal(Event event) throws Exception {
@@ -135,6 +136,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     private void doSimpan() throws Exception{
         TVerifikasi tVerifikasi = gettVerifikasi();
         doWriteComponentsToBean(tVerifikasi);
+
         try {
             getVerifikasiService().saveOrUpdateTVerifikasi(tVerifikasi);
         } catch (DataAccessException e) {

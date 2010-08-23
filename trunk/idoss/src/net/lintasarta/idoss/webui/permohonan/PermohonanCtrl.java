@@ -65,8 +65,11 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     protected Tab tab_Verifikasi;
     protected Tabpanel tabPanel_Verifikasi;
 
-    protected Tab tab_Persetujuan;
-    protected Tabpanel tabPanel_Persetujuan;
+    protected Tab tab_PersetujuanPemohon;
+    protected Tabpanel tabPanel_PersetujuanPemohon;
+
+    protected Tab tab_PersetujuanDukophar;
+    protected Tabpanel tabPanel_PersetujuanDukophar;
 
     protected Tab tab_Pelaksanaan;
     protected Tabpanel tabPanel_Pelaksanaan;
@@ -117,8 +120,12 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
         tab_Permohonan.setClosable(false);
-        tab_Persetujuan.setVisible(true);
-        tabPanel_Persetujuan.setVisible(true);
+
+        tab_PersetujuanPemohon.setVisible(true);
+        tabPanel_PersetujuanPemohon.setVisible(true);
+
+        tab_PersetujuanDukophar.setVisible(true);
+        tabPanel_PersetujuanDukophar.setVisible(true);
 
         tab_Pelaksanaan.setVisible(true);
         tabPanel_Pelaksanaan.setVisible(true);
@@ -213,7 +220,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
-    public void onSelect$tab_Persetujuan(Event event) {
+    public void onSelect$tab_PersetujuanPemohon(Event event) {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
@@ -229,7 +236,35 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         }
         map.put("permohonanCtrl", this);
 
-        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_Persetujuan");
+        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanPemohon");
+        orderTab.getChildren().clear();
+
+        Panel panel = new Panel();
+        Panelchildren pChildren = new Panelchildren();
+
+        panel.appendChild(pChildren);
+        orderTab.appendChild(panel);
+
+        Executions.createComponents("/WEB-INF/pages/permohonan/persetujuangmpemohon.zul", pChildren, map);
+    }
+
+    public void onSelect$tab_PersetujuanDukophar(Event event) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        TVerifikasi tVerifikasi = null;
+        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
+            tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
+        }
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        if (tVerifikasi != null) {
+            map.put("tVerifikasi", tVerifikasi);
+        } else {
+            map.put("tVerifikasi", getPermohonanService().getNewVerifikasi());
+        }
+        map.put("permohonanCtrl", this);
+
+        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanDukophar");
         orderTab.getChildren().clear();
 
         Panel panel = new Panel();
