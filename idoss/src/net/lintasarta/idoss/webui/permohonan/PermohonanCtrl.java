@@ -103,7 +103,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     private transient TPelaksanaan tPelaksanaan;
     private transient PermohonanService permohonanService;
 
-
     public PermohonanCtrl() {
         super();
 
