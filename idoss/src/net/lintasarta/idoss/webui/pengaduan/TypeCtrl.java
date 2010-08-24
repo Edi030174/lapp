@@ -51,7 +51,8 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
         }
 
         List<PType> pTypes = getTypeService().getAllType();
-        SimpleTreeNode stn = new SimpleTreeNode("ROOT",pTypes);
+        PType pType = new PType();
+        SimpleTreeNode stn = new SimpleTreeNode(pType,pTypes);
         ArrayList al = new ArrayList();
         al.add(stn);
 

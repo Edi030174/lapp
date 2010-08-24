@@ -26,7 +26,7 @@ public class TypeServiceImpl implements TypeService {
         this.pTypeDAO = pTypeDAO;
     }
 
-    public List <PType> getAllType() {
+    public List<PType> getAllType() {
         return getpTypeDAO().getAllPType();
     }
 
@@ -38,10 +38,11 @@ public class TypeServiceImpl implements TypeService {
     public void createType(PType pType) {
         int i = pTypeDAO.getGenerateId();
         pType.setP_idoss_type_id(i);
-       getpTypeDAO().createPType(pType);
+        getpTypeDAO().createPType(pType);
     }
 
     public void saveOrUpdate(PType pType) {
         getpTypeDAO().saveOrUpdate(pType);
     }
+
 }

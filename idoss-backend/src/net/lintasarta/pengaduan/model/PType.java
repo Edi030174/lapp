@@ -19,6 +19,7 @@ public class PType implements Serializable {
     private String created_user;
     private Timestamp updated_date;
     private String updated_user;
+    private int parent_id;
 
     public PType() {
     }
@@ -77,5 +78,13 @@ public class PType implements Serializable {
 
     public void setUpdated_user(String updated_user) {
         this.updated_user = updated_user;
+    }
+
+    public int getParent_id() {
+        return parent_id;
+    }
+
+    public void setParent_id(int parent_id) {
+        this.parent_id = parent_id;
     }
 }
