@@ -1,5 +1,6 @@
 package net.lintasarta.idoss.webui.permohonan;
 
+import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPermohonan;
@@ -80,6 +81,8 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
 
+        doCheckRights();
+
         Map<String, Object> args = getCreationArgsMap(event);
         if (args.containsKey("tVerifikasi")) {
             TVerifikasi tVerifikasi = (TVerifikasi) args.get("tVerifikasi");
@@ -101,6 +104,17 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         }
 
         doShowDialog(gettVerifikasi());
+    }
+
+    private void doCheckRights() {
+        UserWorkspace workspace = getUserWorkspace();
+
+        window_PersetujuanGm.setVisible(workspace.isAllowed("window_PersetujuanGm"));
+
+        textbox_CatatanManager.setVisible(workspace.isAllowed(""));
+
+
+
     }
 
     private void doShowDialog(TVerifikasi tVerifikasi) throws InterruptedException {
