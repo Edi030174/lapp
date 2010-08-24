@@ -19,7 +19,7 @@ public class PType implements Serializable {
     private String created_user;
     private Timestamp updated_date;
     private String updated_user;
-    private int parent_id;
+    private Integer parent_id;
 
     public PType() {
     }
