@@ -69,23 +69,37 @@
                          width="60px" disabled="true" style="color: black !important;"/>
             </vbox>
         </hbox>
-        <vbox>
+        <!--<vbox>-->
             <!--<label width="100px" value="detail :"/>-->
             <!--<textbox id="textbox_DetailPermohonan" width="400px" disabled="true" multiline="true"-->
                      <!--style="color: black !important;"/>-->
-            <space height="1px"></space>
-            <label width="100px" value="catatan Asman :"/>
-            <textbox id="textbox_CatatanAsman" width="400px" disabled="true" multiline="true"
-                     style="color: black !important;"/>
-            <space height="1px"></space>
-            <label width="100px" value="catatan Manager :"/>
-            <textbox id="textbox_CatatanManager" width="400px" disabled="true" multiline="true"
-                     style="color: black !important;"/>
-        </vbox>
+            <!--<space height="1px"></space>-->
+            <!--<label width="100px" value="catatan Asman :"/>-->
+            <!--<textbox id="textbox_CatatanAsman" width="400px" disabled="true" multiline="true"-->
+                     <!--style="color: black !important;"/>-->
+            <!--<space height="1px"></space>-->
+            <!--<label width="100px" value="catatan Manager :"/>-->
+            <!--<textbox id="textbox_CatatanManager" width="400px" disabled="true" multiline="true"-->
+                     <!--style="color: black !important;"/>-->
+        <!--</vbox>-->
         <groupbox mold="3d">
             <caption label="detail permohonan" style="font-weight:bold"/>
             <hbox>
-            <textbox id="textbox_DetailPermohonan" width="400px" disabled="true" multiline="true"
+            <textbox id="textbox_DetailPermohonan" height="100px" width="400px" disabled="true" multiline="true"
+                     style="color: black !important;"/>
+            </hbox>
+        </groupbox>
+        <groupbox mold="3d">
+            <caption label="catatan AsMan" style="font-weight:bold"/>
+            <hbox>
+            <textbox id="textbox_CatatanAsman" height="100px" width="400px" disabled="true" multiline="true"
+                     style="color: black !important;"/>
+            </hbox>
+        </groupbox>
+        <groupbox mold="3d">
+            <caption label="catatan Manager" style="font-weight:bold"/>
+            <hbox>
+            <textbox id="textbox_CatatanManager" height="100px" width="400px" disabled="true" multiline="true"
                      style="color: black !important;"/>
             </hbox>
         </groupbox>
