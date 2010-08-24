@@ -1,6 +1,8 @@
 package net.lintasarta.pengaduan.service;
 
 import net.lintasarta.pengaduan.model.PType;
+import net.lintasarta.pengaduan.model.predicate.ParentIdPType;
+import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -83,5 +84,57 @@ public class TypeServiceTest {
         String typeDescExpected ="COBA";
         assertEquals(typeDescActual,typeDescExpected);
 
+    }
+
+    @Test
+    public void testGetTreeModel() throws Exception {
+        List<PType> pTypes = typeService.getAllType();
+
+        java.util.Collections.sort(pTypes, new Comparator<PType>() {
+            @Override
+            public int compare(PType o1, PType o2) {
+                if (o1.getParent_id() != null) {
+                    if (o2.getParent_id() != null) {
+                        return o1.getParent_id().compareTo(o2.getParent_id());
+                    }
+                    return -1;
+                } else if (o2.getParent_id() != null) {
+                    return 1;
+                }
+                return 0;
+            }
+        });
+        List<PType> notRootPTypes = new ArrayList<PType>(pTypes);
+        CollectionUtils.filter(notRootPTypes, new ParentIdPType());
+
+        List<PType> child = new ArrayList<PType>();
+        Iterator<PType> iterator = notRootPTypes.iterator();
+        PType pType = null;
+        Integer parentId = null;
+        if (iterator.hasNext()) {
+            pType = iterator.next();
+            child.add(pType);
+            parentId = pType.getParent_id();
+        }
+        List<List<PType>> root = new ArrayList<List<PType>>();
+        while (iterator.hasNext()) {
+            pType = iterator.next();
+            if (pType.getParent_id().compareTo(parentId) > 0) {
+                root.add(child);
+                child = new ArrayList<PType>();
+            } else {
+                child.add(pType);
+            }
+            parentId = pType.getParent_id();
+        }
+        if (root.size() > 0) {
+            List<PType> lastChild = root.get(root.size() - 1);
+            PType lastPType = lastChild.get(lastChild.size() - 1);
+            if (lastPType.getParent_id().compareTo(parentId) < 0) {
+                child.add(pType);
+                root.add(child);
+            }
+        }
+        assertEquals(3, root.size());
     }
 }
