@@ -3,9 +3,7 @@ package net.lintasarta.idoss.webui.permohonan;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPermohonan;
-import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
-import net.lintasarta.permohonan.service.VerifikasiService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
@@ -36,7 +34,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     protected Textbox textbox_TIdossPermohonanId;
     protected Textbox textbox_NamaPemohon;
     protected Textbox textbox_NikPemohon;
-    protected Textbox textbox_DetailPermohonan;
+    protected FCKeditor fck_DetailPermohonan;
     protected Textbox textbox_CatatanManager;
     protected Datebox datebox_Tanggal;
     protected Datebox datebox_Tanggal2;
@@ -48,7 +46,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     private transient String oldVar_textbox_TIdossPermohonanId;
     private transient String oldVar_textbox_NamaPemohon;
     private transient String oldVar_textbox_NikPemohon;
-    private transient String oldVar_textbox_DetailPermohonan;
+    private transient String oldVar_fck_DetailPermohonan;
     private transient String oldVar_textbox_CatatanManager;
     private transient String oldVar_datebox_Tanggal;
     private transient String oldVar_datebox_Tanggal2;
@@ -116,7 +114,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
         datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
         textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
-        textbox_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
+        fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
 //        textbox_CatatanManager.setValue(tVerifikasi.getCatatan_asman());
     }
 

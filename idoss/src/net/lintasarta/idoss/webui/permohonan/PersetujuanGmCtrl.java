@@ -38,7 +38,7 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_NamaPemohon;
     protected Datebox datebox_Tanggal;
     protected Textbox textbox_NikPemohon;
-    protected Textbox textbox_DetailPermohonan;
+    protected FCKeditor fck_DetailPermohonan;
     protected Textbox textbox_CatatanAsman;
     protected Textbox textbox_CatatanManager;
     protected Radiogroup radiogroup_StatusPermohonanGm;
@@ -51,7 +51,7 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     private transient String oldVar_textbox_NamaPemohon;
     private transient String oldVar_datebox_Tanggal;
     private transient String oldVar_textbox_NikPemohon;
-    private transient String oldVar_textbox_DetailPermohonan;
+    private transient String oldVar_fck_DetailPermohonan;
     private transient String oldVar_textbox_CatatanAsman;
     private transient String oldVar_textbox_CatatanManager;
     private transient boolean oldVar_radio_DisetujuiGM;
@@ -122,9 +122,9 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
 //
 //    }
 
-    private void doShowDialog(TVerifikasi tVerifikasi, TPermohonan tPermohonan) throws InterruptedException {
+    private void doShowDialog(TVerifikasi tVerifikasi,TPermohonan tPermohonan) throws InterruptedException {
         try {
-            doWriteBeanToComponents(tVerifikasi, tPermohonan);
+            doWriteBeanToComponents(tVerifikasi,tPermohonan);
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
@@ -134,8 +134,8 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
         textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
         datebox_Tanggal.setValue(tVerifikasi.getTgl_permohonan());
-//        textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
-//        textbox_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
+        textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
+        fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
         textbox_CatatanAsman.setValue(tVerifikasi.getCatatan_asman());
         textbox_CatatanManager.setValue(tVerifikasi.getCatatan_manager());
     }

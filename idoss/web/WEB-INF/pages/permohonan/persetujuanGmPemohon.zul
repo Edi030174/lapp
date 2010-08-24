@@ -23,7 +23,7 @@
         .z-groupbox-hl .z-groupbox-header { color: #000000;
         font-weight: bold; }
     </style>
-    <window id="window_PersetujuanGmPemohon" border="normal" apply="${persetujuangmpemohonCtrl}">
+    <window id="window_PersetujuanGmPemohon" border="normal" apply="${persetujuanGmPemohonCtrl}">
         <toolbar>
             <button id="btn_SimpanPersetujuanGmPemohon" label="Simpan"/>
             <button id="btn_Batal" label="Batal"/>
@@ -81,10 +81,11 @@
         <space width="20px"></space>
         <groupbox mold="3d">
             <caption label="detail permohonan" style="font-weight:bold"/>
-            <hbox>
-            <textbox id="textbox_DetailPermohonan" height="100px" width="400px" disabled="true" multiline="true"
-                     style="color: black !important;"/>
-            </hbox>
+            <vbox>
+                <fckeditor id="fck_DetailPermohonan" height="90%" width="484px" 
+                           forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
+                           toolbarSet="Basic"/>
+            </vbox>
         </groupbox>
         <groupbox mold="3d">
             <caption label="catatan Manager" style="font-weight:bold"/>
@@ -116,7 +117,7 @@
                 <space width="40px"/>
                 <vbox>
                     <label value="catatan : "/>
-                    <fckeditor id="fck_CatatanGmPemohon" height="99%" width="484px"
+                    <fckeditor id="fck_CatatanGmPemohon" height="99%" width="484px" 
                                customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic"/>
                 </vbox>
             </hbox>
