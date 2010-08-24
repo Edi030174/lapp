@@ -23,7 +23,8 @@
          CREATED_DATE,
          CREATED_USER,
          UPDATED_DATE,
-         UPDATED_USER
+         UPDATED_USER,
+         PARENT_ID
          FROM SNI.P_IDOSS_TYPE
          WHERE  P_IDOSS_TYPE_ID=#{p_idoss_type_id}
 
@@ -38,7 +39,8 @@
         CREATED_DATE,
         CREATED_USER,
         UPDATED_DATE,
-        UPDATED_USER)
+        UPDATED_USER,
+        PARENT_ID)
 	    VALUES(
 	    #{p_idoss_type_id},
 	    #{type_desc,jdbcType=VARCHAR},
@@ -46,7 +48,8 @@
 	    #{created_date},
 	    #{created_user},
 	    #{updated_date},
-	    #{updated_user})
+	    #{updated_user},
+	    #{parent_id})
 
     </insert>
 
@@ -58,7 +61,8 @@
         CREATED_DATE=#{created_date},
         CREATED_USER=#{created_user},
         UPDATED_DATE=#{updated_date},
-        UPDATED_USER=#{updated_user}
+        UPDATED_USER=#{updated_user},
+        PARENT_ID=#{parent_id}
         WHERE  P_IDOSS_TYPE_ID=#{p_idoss_type_id}
 
     </update>

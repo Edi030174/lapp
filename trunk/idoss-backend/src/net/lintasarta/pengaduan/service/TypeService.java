@@ -20,5 +20,4 @@ public interface TypeService {
     void createType(PType pType);
 
     void saveOrUpdate(PType pType);
-
 }

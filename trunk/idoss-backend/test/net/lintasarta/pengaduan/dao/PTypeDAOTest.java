@@ -50,7 +50,7 @@ public class PTypeDAOTest {
         for (PType pType : pTypes) {
             descActual = pType.getType_desc();
         }
-        String descExpected = "KEREN";
+        String descExpected = "MONEY";
         assertEquals(descExpected, descActual);
   }
 
