@@ -20,7 +20,6 @@ import static org.junit.Assert.assertNotNull;
  * User: Xsis
  * Date: Jun 23, 2010
  * Time: 6:42:30 PM
- * To change this template use File | Settings | File Templates.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(

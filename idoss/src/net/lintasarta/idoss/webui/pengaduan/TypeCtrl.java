@@ -84,16 +84,16 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
             }
             parentId = pType.getParent_id();
         }
-        if (root.size() > 0) {
-            List<PType> lastChild = (List<PType>) root.get(root.size() - 1);
-            PType lastPType = lastChild.get(lastChild.size() - 1);
-            if (lastPType.getParent_id().compareTo(parentId) < 0) {
-                SimpleTreeNode stnPType = new SimpleTreeNode(pType, new ArrayList());
-                child.add(stnPType);
-                SimpleTreeNode stnChild = new SimpleTreeNode(typeService.getTypeByTypeID(pType.getParent_id()), child);
-                root.add(stnChild);
-            }
-        }
+//        if (root.size() > 0) {
+//            List<PType> lastChild = (List<PType>) root.get(root.size() - 1);
+//            PType lastPType = lastChild.get(lastChild.size() - 1);
+//            if (lastPType.getParent_id().compareTo(parentId) < 0) {
+//                SimpleTreeNode stnPType = new SimpleTreeNode(pType, new ArrayList());
+//                child.add(stnPType);
+//                SimpleTreeNode stnChild = new SimpleTreeNode(typeService.getTypeByTypeID(pType.getParent_id()), child);
+//                root.add(stnChild);
+//            }
+//        }
 
         SimpleTreeNode rootNode = new SimpleTreeNode("ROOT", root);
         stm = new SimpleTreeModel(rootNode);
