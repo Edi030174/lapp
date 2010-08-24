@@ -112,7 +112,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
         doSimpan();
-
+        window_Permohonan.onClose();
     }
 
     public void onClick$btnBatal(Event event) throws Exception {

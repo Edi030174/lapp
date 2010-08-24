@@ -21,6 +21,7 @@ public class TPelaksanaan implements Serializable {
     private String created_user;
     private Timestamp updated_date;
     private String updated_user;
+    private Timestamp tgl_pending;
 
     public TPelaksanaan() {
     }
@@ -119,5 +120,13 @@ public class TPelaksanaan implements Serializable {
 
     public void setUpdated_user(String updated_user) {
         this.updated_user = updated_user;
+    }
+
+    public Timestamp getTgl_pending() {
+        return tgl_pending;
+    }
+
+    public void setTgl_pending(Timestamp tgl_pending) {
+        this.tgl_pending = tgl_pending;
     }
 }

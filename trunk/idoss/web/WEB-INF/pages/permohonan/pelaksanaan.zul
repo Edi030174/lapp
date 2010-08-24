@@ -29,7 +29,7 @@
             <button id="btnBatal" label="Batal"/>
         </toolbar>
         <groupbox id="groupboxPelaksanaan" mold="3d">
-            <caption label="Pelaksanaan Perubahan" style="font-weight:bold"/>
+            <caption label="Pelaksanaan Perubahan" style="font-weight:normal"/>
             <vbox>
                 <hbox>
                     <label value="Status Perubahan : "/>

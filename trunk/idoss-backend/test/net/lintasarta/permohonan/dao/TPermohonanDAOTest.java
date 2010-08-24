@@ -259,6 +259,8 @@ public class TPermohonanDAOTest {
 
         tPermohonan.setCreated_user("39393939");
 
+
+
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         tPermohonan.setUpdated_date(ts);
 

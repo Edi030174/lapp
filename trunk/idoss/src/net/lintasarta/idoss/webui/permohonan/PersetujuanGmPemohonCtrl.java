@@ -35,7 +35,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     protected Textbox textbox_NamaPemohon;
     protected Textbox textbox_NikPemohon;
     protected FCKeditor fck_DetailPermohonan;
-    protected Textbox textbox_CatatanManager;
+    protected FCKeditor fck_CatatanManager;
     protected Datebox datebox_Tanggal;
     protected Datebox datebox_Tanggal2;
     protected FCKeditor fck_CatatanGmPemohon;
@@ -47,7 +47,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     private transient String oldVar_textbox_NamaPemohon;
     private transient String oldVar_textbox_NikPemohon;
     private transient String oldVar_fck_DetailPermohonan;
-    private transient String oldVar_textbox_CatatanManager;
+    private transient String oldVar_fck_CatatanManager;
     private transient String oldVar_datebox_Tanggal;
     private transient String oldVar_datebox_Tanggal2;
     private transient String oldVar_fck_CatatanGmPemohon;
@@ -115,7 +115,9 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
         textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
         fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
-//        textbox_CatatanManager.setValue(tVerifikasi.getCatatan_asman());
+        fck_CatatanManager.setValue(tPermohonan.getCatatan_manager());
+        datebox_Tanggal2.setValue(tPermohonan.getUpdated_gm());
+        fck_CatatanGmPemohon.setValue(tPermohonan.getCatatan_gm());
     }
 
     public void onClick$btn_SimpanPersetujuanGmPemohon(Event event) throws Exception{
@@ -127,7 +129,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         window_Permohonan.onClose();
     }
 
-    public void onClick$btnBatal(Event event) throws Exception {
+    public void onClick$btn_Batal(Event event) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
@@ -151,9 +153,10 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
 
     private void doWriteComponentsToBean(TPermohonan tPermohonan) {
         Radio status = radiogroup_StatusPermohonanGmPemohon.getSelectedItem();
-//        tPermohonan.setStatus_permohonan_manager(status.getValue());
-        tPermohonan.setUpdated_manager(new Timestamp(datebox_Tanggal2.getValue().getTime()));
-//        tPermohonan.setCatatan_manager(fck_CatatanGmPemohon.getValue());
+//        tPermohonan.set(status.getValue());
+        tPermohonan.setUpdated_gm(new Timestamp(datebox_Tanggal2.getValue().getTime()));
+        tPermohonan.setCatatan_gm(fck_CatatanGmPemohon.getValue());
+        tPermohonan.setUpdated_gm(new Timestamp(datebox_Tanggal.getValue().getTime()));
     }
 
     private void doStoreInitValues() {

@@ -42,7 +42,9 @@
                 CREATED_DATE,
                 CREATED_USER,
                 UPDATED_DATE,
-                UPDATED_USER
+                UPDATED_USER,
+                CATATAN_MANAGER,
+                CATATAN_GM
         from T_IDOSS_PERMOHONAN
         where T_IDOSS_PERMOHONAN_ID = #{t_idoss_permohonan_id}
     </select>
@@ -74,7 +76,9 @@
                 CREATED_DATE,
                 CREATED_USER,
                 UPDATED_DATE,
-                UPDATED_USER
+                UPDATED_USER,
+                CATATAN_MANAGER,
+                CATATAN_GM
         from T_IDOSS_PERMOHONAN
         where NIK_PEMOHON = #{nik_pemohon}
     </select>
@@ -106,7 +110,9 @@
                 CREATED_DATE,
                 CREATED_USER,
                 UPDATED_DATE,
-                UPDATED_USER
+                UPDATED_USER,
+                CATATAN_MANAGER,
+                CATATAN_GM
         from T_IDOSS_PERMOHONAN
         where NIK_DIVISI = #{nik_divisi}
     </select>
@@ -138,7 +144,9 @@
                 CREATED_DATE,
                 CREATED_USER,
                 UPDATED_DATE,
-                UPDATED_USER
+                UPDATED_USER,
+                CATATAN_MANAGER,
+                CATATAN_GM
         from T_IDOSS_PERMOHONAN
         where NIK_ASMAN = #{nik_asman}
     </select>
@@ -170,7 +178,9 @@
                 CREATED_DATE,
                 CREATED_USER,
                 UPDATED_DATE,
-                UPDATED_USER
+                UPDATED_USER,
+                CATATAN_MANAGER,
+                CATATAN_GM
         from T_IDOSS_PERMOHONAN
         where NIK_MANAGER = #{nik_manager}
     </select>
@@ -202,7 +212,9 @@
                 CREATED_DATE,
                 CREATED_USER,
                 UPDATED_DATE,
-                UPDATED_USER
+                UPDATED_USER,
+                CATATAN_MANAGER,
+                CATATAN_GM
         from T_IDOSS_PERMOHONAN
         where NIK_GM = #{nik_gm}
     </select>
@@ -234,7 +246,9 @@
                 CREATED_DATE,
                 CREATED_USER,
                 UPDATED_DATE,
-                UPDATED_USER
+                UPDATED_USER,
+                CATATAN_MANAGER,
+                CATATAN_GM
         from T_IDOSS_PERMOHONAN
         where STATUS_TRACK_PERMOHONAN = #{status_track_permohonan}
     </select>
@@ -267,7 +281,9 @@
                 CREATED_DATE,
                 CREATED_USER,
                 UPDATED_DATE,
-                UPDATED_USER
+                UPDATED_USER,
+                CATATAN_MANAGER,
+                CATATAN_GM
         from T_IDOSS_PERMOHONAN
         where NIK_PEMOHON = #{nik_pemohon} and STATUS_TRACK_PERMOHONAN = #{status_track_permohonan}
     </select>
@@ -299,7 +315,9 @@
                 CREATED_DATE,
                 CREATED_USER,
                 UPDATED_DATE,
-                UPDATED_USER
+                UPDATED_USER,
+                CATATAN_MANAGER,
+                CATATAN_GM
         from T_IDOSS_PERMOHONAN
         where NIK_DIVISI = #{nik_divisi} and STATUS_TRACK_PERMOHONAN = #{status_track_permohonan}
     </select>
@@ -331,7 +349,9 @@
                 CREATED_DATE,
                 CREATED_USER,
                 UPDATED_DATE,
-                UPDATED_USER
+                UPDATED_USER,
+                CATATAN_MANAGER,
+                CATATAN_GM
         from T_IDOSS_PERMOHONAN
         where NIK_ASMAN = #{nik_asman} and STATUS_TRACK_PERMOHONAN = #{status_track_permohonan}
     </select>
@@ -363,7 +383,9 @@
                 CREATED_DATE,
                 CREATED_USER,
                 UPDATED_DATE,
-                UPDATED_USER
+                UPDATED_USER,
+                CATATAN_MANAGER,
+                CATATAN_GM
         from T_IDOSS_PERMOHONAN
         where NIK_MANAGER = #{nik_manager} and STATUS_TRACK_PERMOHONAN = #{status_track_permohonan}
     </select>
@@ -395,7 +417,9 @@
                 CREATED_DATE,
                 CREATED_USER,
                 UPDATED_DATE,
-                UPDATED_USER
+                UPDATED_USER,
+                CATATAN_MANAGER,
+                CATATAN_GM
         from T_IDOSS_PERMOHONAN
         where NIK_GM = #{nik_gm} and STATUS_TRACK_PERMOHONAN = #{status_track_permohonan}
     </select>
@@ -429,6 +453,8 @@
         CREATED_USER,
         UPDATED_DATE,
         UPDATED_USER,
+        CATATAN_MANAGER,
+        CATATAN_GM,
         GEN_ID_COL
         )
         values(
@@ -459,6 +485,8 @@
         #{created_user},
         #{updated_date},
         #{updated_user},
+        #{catatan_manager,jdbcType=VARCHAR},
+        #{catatan_gm,jdbcType=VARCHAR},
         #{gen_id_col}
         )
     </insert>
@@ -478,7 +506,6 @@
         BAGIAN_PEMOHON=#{bagian_pemohon,jdbcType=VARCHAR},
         NIK_ASMAN=#{nik_asman,jdbcType=VARCHAR},
         NAMA_ASMAN=#{nama_asman,jdbcType=VARCHAR},
-        ASMAN=#{asman,jdbcType=VARCHAR},
         NIK_MANAGER=#{nik_manager,jdbcType=VARCHAR},
         NAMA_MANAGER=#{nama_manager,jdbcType=VARCHAR},
         NIK_GM=#{nik_gm,jdbcType=VARCHAR},
@@ -492,7 +519,9 @@
         CREATED_DATE=#{created_date,jdbcType=TIMESTAMP},
         CREATED_USER=#{created_user,jdbcType=VARCHAR},
         UPDATED_DATE=#{updated_date,jdbcType=TIMESTAMP},
-        UPDATED_USER=#{updated_user,jdbcType=VARCHAR}
+        UPDATED_USER=#{updated_user,jdbcType=VARCHAR},
+        CATATAN_MANAGER=#{catatan_manager,jdbcType=VARCHAR},
+        CATATAN_GM=#{catatan_gm,jdbcType=VARCHAR}
         where T_IDOSS_PERMOHONAN_ID=#{t_idoss_permohonan_id}
     </update>
 </mapper>

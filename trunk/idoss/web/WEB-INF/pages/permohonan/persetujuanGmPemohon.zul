@@ -80,19 +80,16 @@
         <!--</vbox>-->
         <space width="20px"></space>
         <groupbox mold="3d">
-            <caption label="detail permohonan" style="font-weight:bold"/>
-            <vbox>
-                <fckeditor id="fck_DetailPermohonan" height="90%" width="484px" 
+            <caption label="detail permohonan" style="font-weight:normal"/>
+                <fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
                            forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
                            toolbarSet="Basic"/>
-            </vbox>
         </groupbox>
         <groupbox mold="3d">
-            <caption label="catatan Manager" style="font-weight:bold"/>
-            <hbox>
-            <textbox id="textbox_CatatanManager" height="100px" width="400px" disabled="true" multiline="true"
-                     style="color: black !important;"/>
-            </hbox>
+            <caption label="catatan Manager" style="font-weight:normal"/>
+            <fckeditor id="fck_CatatanManager" height="90%" width="484px"
+                           forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
+                           toolbarSet="Basic"/>
         </groupbox>
 
         <groupbox mold="3d">
@@ -104,8 +101,8 @@
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanGmPemohon">
                         <hbox>
-                            <radio id="radio_DisetujuiGmPemohon" label="disetujui" selected="true"/>
-                            <radio id="radio_DitolakGmPemohon" label="ditolak"/>
+                            <radio id="radio_DisetujuiGmPemohon" label="disetujui" value="disetujui" selected="true"/>
+                            <radio id="radio_DitolakGmPemohon" label="ditolak" value="ditolak"/>
                         </hbox>
                     </radiogroup>
                     <hbox>
