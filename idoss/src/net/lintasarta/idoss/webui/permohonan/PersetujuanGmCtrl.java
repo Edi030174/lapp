@@ -89,6 +89,12 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             settVerifikasi(null);
         }
+        if (args.containsKey("tPermohonan")) {
+            TPermohonan tPermohonan = (TPermohonan) args.get("tPermohonan");
+            settPermohonan(tPermohonan);
+        } else {
+            settPermohonan(null);
+        }
 
         if (args.containsKey("persetujuanGmCtrl")) {
             persetujuanGmCtrl = (PersetujuanGmCtrl) args.get("persetujuanGmCtrl");
@@ -102,7 +108,7 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
             listbox_DaftarPermohonan = null;
         }
 
-        doShowDialog(gettVerifikasi());
+        doShowDialog(gettVerifikasi(),gettPermohonan());
     }
 
 //    private void doCheckRights() {
@@ -116,17 +122,17 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
 //
 //    }
 
-    private void doShowDialog(TVerifikasi tVerifikasi) throws InterruptedException {
+    private void doShowDialog(TVerifikasi tVerifikasi, TPermohonan tPermohonan) throws InterruptedException {
         try {
-            doWriteBeanToComponents(tVerifikasi);
+            doWriteBeanToComponents(tVerifikasi, tPermohonan);
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
     }
 
-    private void doWriteBeanToComponents(TVerifikasi tVerifikasi) throws Exception{
+    private void doWriteBeanToComponents(TVerifikasi tVerifikasi,TPermohonan tPermohonan) throws Exception{
         textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
-//        textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
+        textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
         datebox_Tanggal.setValue(tVerifikasi.getTgl_permohonan());
 //        textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
 //        textbox_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
