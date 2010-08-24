@@ -224,16 +224,18 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        TVerifikasi tVerifikasi = null;
-        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
-            tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
-        }
+//        TPermohonan tPermohonan = null;
+//        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
+//            tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
+//        }
         HashMap<String, Object> map = new HashMap<String, Object>();
-        if (tVerifikasi != null) {
-            map.put("tVerifikasi", tVerifikasi);
-        } else {
-            map.put("tVerifikasi", getPermohonanService().getNewVerifikasi());
-        }
+//        if (tPermohonan != null) {
+//            map.put("tPermohonan", tPermohonan);
+//        } else {
+//            map.put("tVerifikasi", getPermohonanService().getNewVerifikasi());
+//        }
+        map.put("tPermohonan", tPermohonan);
+
         map.put("permohonanCtrl", this);
 
         Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanPemohon");
@@ -263,6 +265,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             map.put("tVerifikasi", getPermohonanService().getNewVerifikasi());
         }
         map.put("permohonanCtrl", this);
+        
 
         Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanDukophar");
         orderTab.getChildren().clear();

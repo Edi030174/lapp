@@ -4,6 +4,7 @@ import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
+import net.lintasarta.permohonan.service.PermohonanService;
 import net.lintasarta.permohonan.service.VerifikasiService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
@@ -59,8 +60,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     protected Listbox listbox_DaftarPermohonan;
     protected PersetujuanGmPemohonCtrl persetujuanGmPemohonCtrl;
 
-    private transient TVerifikasi tVerifikasi;
-    private transient VerifikasiService verifikasiService;
+    private transient PermohonanService permohonanService;
     private transient TPermohonan tPermohonan;
 
     public PersetujuanGmPemohonCtrl(){
@@ -78,15 +78,16 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         }
 
         Map<String, Object> args = getCreationArgsMap(event);
-        if (args.containsKey("tVerifikasi")) {
-            TVerifikasi tVerifikasi = (TVerifikasi) args.get("tVerifikasi");
-            settVerifikasi(tVerifikasi);
+
+        if (args.containsKey("tPermohonan")) {
+            TPermohonan tPermohonan = (TPermohonan) args.get("tPermohonan");
+            settPermohonan(tPermohonan);
         } else {
-            settVerifikasi(null);
+            settPermohonan(null);
         }
 
-        if (args.containsKey("persetujuanGmPemohonCtrl")) {
-            persetujuanGmPemohonCtrl = (PersetujuanGmPemohonCtrl) args.get("persetujuanGmPemohonCtrl");
+        if (args.containsKey("PersetujuanGmPemohonCtrl")) {
+            persetujuanGmPemohonCtrl = (PersetujuanGmPemohonCtrl) args.get("PersetujuanGmPemohonCtrl");
         } else {
             persetujuanGmPemohonCtrl = null;
         }
@@ -97,24 +98,26 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
             listbox_DaftarPermohonan = null;
         }
 
-        doShowDialog(gettVerifikasi());
+        doShowDialog(gettPermohonan());
     }
 
-    private void doShowDialog(TVerifikasi tVerifikasi) throws InterruptedException {
+    private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
+
+        settPermohonan(tPermohonan);
         try {
-            doWriteBeanToComponents(tVerifikasi);
+            doWriteBeanToComponents(tPermohonan);
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
     }
 
-    private void doWriteBeanToComponents(TVerifikasi tVerifikasi) throws Exception{
-        textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
-//        textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
-        datebox_Tanggal.setValue(tVerifikasi.getTgl_permohonan());
-//        textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
-//        textbox_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
-        textbox_CatatanManager.setValue(tVerifikasi.getCatatan_asman());
+    private void doWriteBeanToComponents(TPermohonan tPermohonan) throws Exception{
+        textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
+        textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
+        datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
+        textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
+        textbox_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
+//        textbox_CatatanManager.setValue(tVerifikasi.getCatatan_asman());
     }
 
     public void onClick$btn_SimpanPersetujuanGmPemohon(Event event) throws Exception{
@@ -134,11 +137,11 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     }
 
     private void doSimpan() throws Exception{
-        TVerifikasi tVerifikasi = gettVerifikasi();
-        doWriteComponentsToBean(tVerifikasi);
+        TPermohonan tPermohonan = gettPermohonan();
+        doWriteComponentsToBean(tPermohonan);
 
         try {
-            getVerifikasiService().saveOrUpdateTVerifikasi(tVerifikasi);
+            getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -148,11 +151,11 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         doStoreInitValues();
     }
 
-    private void doWriteComponentsToBean(TVerifikasi tVerifikasi) {
+    private void doWriteComponentsToBean(TPermohonan tPermohonan) {
         Radio status = radiogroup_StatusPermohonanGmPemohon.getSelectedItem();
-        tVerifikasi.setStatus_permohonan_manager(status.getValue());
-        tVerifikasi.setUpdated_manager(new Timestamp(datebox_Tanggal2.getValue().getTime()));
-        tVerifikasi.setCatatan_manager(fck_CatatanGmPemohon.getValue());
+//        tPermohonan.setStatus_permohonan_manager(status.getValue());
+        tPermohonan.setUpdated_manager(new Timestamp(datebox_Tanggal2.getValue().getTime()));
+//        tPermohonan.setCatatan_manager(fck_CatatanGmPemohon.getValue());
     }
 
     private void doStoreInitValues() {
@@ -167,19 +170,11 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         this.tPermohonan = tPermohonan;
     }
 
-    public VerifikasiService getVerifikasiService() {
-        return verifikasiService;
+    public PermohonanService getPermohonanService() {
+        return permohonanService;
     }
 
-    public void setVerifikasiService(VerifikasiService verifikasiService) {
-        this.verifikasiService = verifikasiService;
-    }
-
-    public TVerifikasi gettVerifikasi() {
-        return tVerifikasi;
-    }
-
-    public void settVerifikasi(TVerifikasi tVerifikasi) {
-        this.tVerifikasi = tVerifikasi;
+    public void setPermohonanService(PermohonanService permohonanService) {
+        this.permohonanService = permohonanService;
     }
 }

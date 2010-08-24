@@ -64,9 +64,9 @@
           parent="basisCtrl" scope="prototype">
         <property name="verifikasiService" ref="verifikasiService"/>
     </bean>
-    <bean id="persetujuanGmPemohonCtrl" class="net.lintasarta.idoss.webui.permohonan.PersetujuanGmPemohonCtrl"
+    <bean id="persetujuangmpemohonCtrl" class="net.lintasarta.idoss.webui.permohonan.PersetujuanGmPemohonCtrl"
           parent="basisCtrl" scope="prototype">
-        <property name="verifikasiService" ref="verifikasiService"/>
+        <property name="permohonanService" ref="permohonanService"/>
     </bean>
     <bean id="persetujuanGmCtrl" class="net.lintasarta.idoss.webui.permohonan.PersetujuanGmCtrl"
           parent="basisCtrl" scope="prototype">

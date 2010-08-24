@@ -36,8 +36,9 @@ public class TypeTreeItemRenderer implements TreeitemRenderer, Serializable {
             tc.setParent(tr);
             treeitem.setValue(tc);
         }
-//        treeitem.setValue(data);
         treeitem.setOpen(false);
-        
+
+//        treeitem.setValue(data);
+
     }
 }

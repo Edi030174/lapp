@@ -31,6 +31,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
     private transient static final Logger logger = Logger.getLogger(DaftarPermohonanCtrl.class);
 
     protected Window window_DaftarPermohonan;
+    protected Window window_PersetujuanGmPemohon;
     protected Paging paging_DaftarPermohonan;
     protected Listbox listbox_DaftarPermohonan;
     protected Listheader listheader_Nomor;
@@ -265,6 +266,8 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         map.put("listbox_DaftarPermohonan", listbox_DaftarPermohonan);
 
         map.put("window_DaftarPermohonan", window_DaftarPermohonan);
+
+        map.put("window_PersetujuanGmPemohon", window_PersetujuanGmPemohon);
 
         try {
 
