@@ -82,6 +82,7 @@
             <!--<textbox id="textbox_CatatanManager" width="400px" disabled="true" multiline="true"-->
                      <!--style="color: black !important;"/>-->
         <!--</vbox>-->
+        <space width="20px"></space>
         <groupbox mold="3d">
             <caption label="detail permohonan" style="font-weight:bold"/>
             <hbox>
@@ -103,7 +104,7 @@
                      style="color: black !important;"/>
             </hbox>
         </groupbox>
-        <space width="20px"></space>
+
         <groupbox mold="3d">
             <caption label="" style="font-weight:bold"/>
             <hbox>
