@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,20 +21,22 @@ public class TypeTreeItemRenderer implements TreeitemRenderer, Serializable {
     public void render(Treeitem treeitem, Object data) throws Exception {
         SimpleTreeNode stn = (SimpleTreeNode) data;
 //        TypeTreeNode ttn = (TypeTreeNode) data;
-         PType pType = (PType) stn.getChildren();
+        List<PType> pTypes = stn.getChildren();
+        for (PType pType : pTypes) {
+            Treecell tc = new Treecell(pType.getType_desc());
+            Treerow tr;
 
-        Treecell tc = new Treecell(pType.getType_desc());
-        Treerow tr = null;
-
-        if(treeitem.getTreerow() == null){
-            tr = new Treerow();
-            tr.setParent(treeitem);
-        }else {
-            tr = treeitem.getTreerow();
-            tr.getChildren().clear();
+            if(treeitem.getTreerow() == null){
+                tr = new Treerow();
+                tr.setParent(treeitem);
+            }else {
+                tr = treeitem.getTreerow();
+                tr.getChildren().clear();
+            }
+            tc.setParent(tr);
+            treeitem.setValue(tc);
         }
-
-        tc.setParent(tr);
+//        treeitem.setValue(data);
         treeitem.setOpen(false);
         
     }

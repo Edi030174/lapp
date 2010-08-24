@@ -25,7 +25,7 @@
          UPDATED_DATE,
          UPDATED_USER
          FROM SNI.P_IDOSS_TYPE
-             WHERE  P_IDOSS_TYPE_ID=#{p_idoss_type_id}
+         WHERE  P_IDOSS_TYPE_ID=#{p_idoss_type_id}
 
 
     </select>
