@@ -5,15 +5,15 @@ import net.lintasarta.idoss.webui.pengaduan.model.TypeTreeModel;
 import net.lintasarta.idoss.webui.pengaduan.model.TypeTreeNode;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.pengaduan.model.PType;
+import net.lintasarta.pengaduan.model.predicate.ParentIdPType;
 import net.lintasarta.pengaduan.service.TypeService;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -26,7 +26,11 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
     protected Window window_Type;
     protected Tree tree_Type;
 
+    protected TypeTreeItemRenderer renderer;
+    protected SimpleTreeModel stm;
+
     private transient PType pType;
+
     private transient TypeService typeService;
 
     public TypeCtrl() {
@@ -35,6 +39,67 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> super()");
         }
+    }
+
+    public void getTreeModel() {
+        List<PType> pTypes = typeService.getAllType();
+
+        java.util.Collections.sort(pTypes, new Comparator<PType>() {
+            @Override
+            public int compare(PType o1, PType o2) {
+                if (o1.getParent_id() != null) {
+                    if (o2.getParent_id() != null) {
+                        return o1.getParent_id().compareTo(o2.getParent_id());
+                    }
+                    return -1;
+                } else if (o2.getParent_id() != null) {
+                    return 1;
+                }
+                return 0;
+            }
+        });
+        List<PType> notRootPTypes = new ArrayList<PType>(pTypes);
+        CollectionUtils.filter(notRootPTypes, new ParentIdPType());
+
+        List child = new ArrayList();
+        Iterator<PType> iterator = notRootPTypes.iterator();
+        PType pType = null;
+        Integer parentId = null;
+        if (iterator.hasNext()) {
+            pType = iterator.next();
+            SimpleTreeNode stnPType = new SimpleTreeNode(pType, new ArrayList());
+            child.add(stnPType);
+            parentId = pType.getParent_id();
+        }
+        List root = new ArrayList();
+        while (iterator.hasNext()) {
+            pType = iterator.next();
+            if (pType.getParent_id().compareTo(parentId) > 0) {
+                SimpleTreeNode stnChild = new SimpleTreeNode(typeService.getTypeByTypeID(pType.getParent_id()), child);
+                root.add(stnChild);
+                child = new ArrayList<PType>();
+            } else {
+                SimpleTreeNode stnPType = new SimpleTreeNode(pType, new ArrayList());
+                child.add(stnPType);
+            }
+            parentId = pType.getParent_id();
+        }
+        if (root.size() > 0) {
+            List<PType> lastChild = (List<PType>) root.get(root.size() - 1);
+            PType lastPType = lastChild.get(lastChild.size() - 1);
+            if (lastPType.getParent_id().compareTo(parentId) < 0) {
+                SimpleTreeNode stnPType = new SimpleTreeNode(pType, new ArrayList());
+                child.add(stnPType);
+                SimpleTreeNode stnChild = new SimpleTreeNode(typeService.getTypeByTypeID(pType.getParent_id()), child);
+                root.add(stnChild);
+            }
+        }
+
+        SimpleTreeNode rootNode = new SimpleTreeNode("ROOT", root);
+        stm = new SimpleTreeModel(rootNode);
+        tree_Type.setModel(stm);
+
+        tree_Type.setTreeitemRenderer(new TypeTreeItemRenderer());
     }
 
     public void onCreate$window_Type(Event event) throws Exception {
@@ -50,20 +115,8 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
             setpType(pType);
         }
 
-        List<PType> pTypes = getTypeService().getAllType();
-        PType pType = new PType();
-        SimpleTreeNode stn = new SimpleTreeNode(pType,pTypes);
-        ArrayList al = new ArrayList();
-        al.add(stn);
+        getTreeModel();
 
-        SimpleTreeNode root = new SimpleTreeNode("ROOT",al);
-        SimpleTreeModel stm = new SimpleTreeModel(root);
-        tree_Type.setModel(stm);
-
-//        tree_Type.setModel(new SimpleTreeModel(new SimpleTreeNode(getpType(), pTypes)) );
-//        tree_Type.setModel(new TypeTreeModel(( TypeTreeNode)getTypeService().getAllType()));
-        
-        tree_Type.setTreeitemRenderer(new TypeTreeItemRenderer());
         doShowDialog(getpType());
     }
 
