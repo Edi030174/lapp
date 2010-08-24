@@ -29,7 +29,10 @@
                CREATED_DATE,
                CREATED_USER,
                UPDATED_DATE,
-               UPDATED_USER
+               UPDATED_USER,
+               UPDATED_GM,
+               CATATAN_GM,
+               STATUS_PERMOHONAN_GM
         from SNI.T_IDOSS_VERIFIKASI
         where T_IDOSS_VERIFIKASI_ID =#{t_idoss_verifikasi_id}
     </select>
@@ -52,7 +55,10 @@
                CREATED_DATE,
                CREATED_USER,
                UPDATED_DATE,
-               UPDATED_USER
+               UPDATED_USER,
+               UPDATED_GM,
+               CATATAN_GM,
+               STATUS_PERMOHONAN_GM
         from T_IDOSS_VERIFIKASI
         where NIK_PELAKSANA =#{nik_pelaksana}
     </select>
@@ -75,7 +81,10 @@
                CREATED_DATE,
                CREATED_USER,
                UPDATED_DATE,
-               UPDATED_USER
+               UPDATED_USER,
+               UPDATED_GM,
+               CATATAN_GM,
+               STATUS_PERMOHONAN_GM
         from T_IDOSS_VERIFIKASI
         where STATUS_PERMOHONANASMAN =#{status_permohonan_asman}
     </select>
@@ -98,7 +107,10 @@
                CREATED_DATE,
                CREATED_USER,
                UPDATED_DATE,
-               UPDATED_USER
+               UPDATED_USER,
+               UPDATED_GM,
+               CATATAN_GM,
+               STATUS_PERMOHONAN_GM
         from T_IDOSS_VERIFIKASI
         where STATUS_PERMOHONANMANAGER =#{status_permohonan_manager}
     </select>
@@ -121,7 +133,10 @@
                CREATED_DATE,
                CREATED_USER,
                UPDATED_DATE,
-               UPDATED_USER
+               UPDATED_USER,
+               UPDATED_GM,
+               CATATAN_GM,
+               STATUS_PERMOHONAN_GM
         from T_IDOSS_VERIFIKASI
         where NIK_PELAKSANA =#{nik_pelaksana} and STATUS_PERMOHONANASMAN =#{status_permohonan_asman}
     </select>
@@ -144,7 +159,10 @@
                CREATED_DATE,
                CREATED_USER,
                UPDATED_DATE,
-               UPDATED_USER
+               UPDATED_USER,
+               UPDATED_GM,
+               CATATAN_GM,
+               STATUS_PERMOHONAN_GM
         from SNI.T_IDOSS_VERIFIKASI
         where NIK_PELAKSANA =#{nik_pelaksana} and STATUS_PERMOHONANMANAGER =#{status_permohonan_manager}        
     </select>
@@ -167,7 +185,11 @@
         CREATED_DATE,
         CREATED_USER,
         UPDATED_DATE,
-        UPDATED_USER)
+        UPDATED_USER,
+        UPDATED_GM,
+        CATATAN_GM,
+        STATUS_PERMOHONAN_GM
+        )
         VALUES (
         #{t_idoss_verifikasi_id},
         #{tgl_permohonan,jdbcType=TIMESTAMP},
@@ -186,7 +208,10 @@
         #{created_date,jdbcType=TIMESTAMP},
         #{created_user,jdbcType=VARCHAR},
         #{updated_date,jdbcType=TIMESTAMP},
-        #{updated_user,jdbcType=VARCHAR}
+        #{updated_user,jdbcType=VARCHAR},
+        #{updated_gm,jdbcType=TIMESTAMP},
+        #{catatan_gm,jdbcType=VARCHAR},
+        #{status_permohonan_gm,jdbcType=VARCHAR}
         )
     </insert>
     
@@ -209,7 +234,10 @@
         CREATED_DATE = #{created_date,jdbcType=TIMESTAMP},
         CREATED_USER = #{created_user,jdbcType=VARCHAR},
         UPDATED_DATE = #{updated_date,jdbcType=TIMESTAMP},
-        UPDATED_USER = #{updated_user,jdbcType=VARCHAR}
+        UPDATED_USER = #{updated_user,jdbcType=VARCHAR},
+        UPDATED_GM = #{updated_gm,jdbcType=TIMESTAMP},
+        CATATAN_GM = #{catatan_gm,jdbcType=VARCHAR},
+        STATUS_PERMOHONAN_GM = #{status_permohonan_gm,jdbcType=VARCHAR}
         where T_IDOSS_VERIFIKASI_ID = #{t_idoss_verifikasi_id}
     </update>
 </mapper>

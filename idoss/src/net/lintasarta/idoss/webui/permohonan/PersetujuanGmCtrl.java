@@ -39,8 +39,8 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     protected Datebox datebox_Tanggal;
     protected Textbox textbox_NikPemohon;
     protected FCKeditor fck_DetailPermohonan;
-    protected Textbox textbox_CatatanAsman;
-    protected Textbox textbox_CatatanManager;
+    protected FCKeditor fck_CatatanAsman;
+    protected FCKeditor fck_CatatanManager;
     protected Radiogroup radiogroup_StatusPermohonanGm;
     protected Radio radio_DisetujuiGM;
     protected Radio radio_DitolakGM;
@@ -52,8 +52,8 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     private transient String oldVar_datebox_Tanggal;
     private transient String oldVar_textbox_NikPemohon;
     private transient String oldVar_fck_DetailPermohonan;
-    private transient String oldVar_textbox_CatatanAsman;
-    private transient String oldVar_textbox_CatatanManager;
+    private transient String oldVar_fck_CatatanAsman;
+    private transient String oldVar_fck_CatatanManager;
     private transient boolean oldVar_radio_DisetujuiGM;
     private transient boolean oldVar_radio_DitolakGM;
     private transient String oldVar_datebox_Tanggal2;
@@ -116,7 +116,7 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
 //
 //        window_PersetujuanGm.setVisible(workspace.isAllowed("window_PersetujuanGm"));
 //
-//        textbox_CatatanManager.setVisible(workspace.isAllowed(""));
+//        fck_CatatanManager.setVisible(workspace.isAllowed(""));
 //
 //
 //
@@ -136,8 +136,10 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         datebox_Tanggal.setValue(tVerifikasi.getTgl_permohonan());
         textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
         fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
-        textbox_CatatanAsman.setValue(tVerifikasi.getCatatan_asman());
-        textbox_CatatanManager.setValue(tVerifikasi.getCatatan_manager());
+        fck_CatatanAsman.setValue(tVerifikasi.getCatatan_asman());
+        fck_CatatanManager.setValue(tVerifikasi.getCatatan_manager());
+        datebox_Tanggal2.setValue(tVerifikasi.getUpdated_gm());
+        fck_CatatanGm.setValue(tVerifikasi.getCatatan_gm());
     }
 
     public void onClick$btn_SimpanPersetujuanGm(Event event) throws Exception{
@@ -148,7 +150,7 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         window_Permohonan.onClose();
     }
 
-    public void onClick$btnBatal(Event event) throws Exception {
+    public void onClick$btn_Batal(Event event) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
@@ -172,9 +174,12 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doWriteComponentsToBean(TVerifikasi tVerifikasi) {
         Radio status = radiogroup_StatusPermohonanGm.getSelectedItem();
-        tVerifikasi.setStatus_permohonan_manager(status.getValue());
-        tVerifikasi.setUpdated_manager(new Timestamp(datebox_Tanggal2.getValue().getTime()));
-        tVerifikasi.setCatatan_manager(fck_CatatanGm.getValue());
+        tVerifikasi.setCatatan_asman(fck_CatatanAsman.getValue());
+        tVerifikasi.setStatus_permohonan_asman(status.getValue());
+        tVerifikasi.setCatatan_manager(fck_CatatanManager.getValue());
+        tVerifikasi.setStatus_permohonan_gm(status.getValue());
+        tVerifikasi.setUpdated_gm(new Timestamp(datebox_Tanggal2.getValue().getTime()));
+        tVerifikasi.setCatatan_gm(fck_CatatanGm.getValue());
     }
 
     private void doStoreInitValues() {

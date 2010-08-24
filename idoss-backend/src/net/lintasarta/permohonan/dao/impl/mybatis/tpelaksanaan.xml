@@ -22,7 +22,8 @@
         CREATED_DATE,
         CREATED_USER,
         UPDATED_DATE,
-        UPDATED_USER
+        UPDATED_USER,
+        TGL_PENDING
         from T_IDOSS_PELAKSANAAN
         where T_IDOSS_PELAKSANAAN_ID=#{t_idoss_pelaksanaan_id}
     </select>
@@ -38,7 +39,8 @@
         CREATED_DATE,
         CREATED_USER,
         UPDATED_DATE,
-        UPDATED_USER
+        UPDATED_USER,
+        TGL_PENDING
         from T_IDOSS_PELAKSANAAN
         where ID_PELAKSANA=#{id_pelaksana}
     </select>
@@ -54,7 +56,8 @@
         CREATED_DATE,
         CREATED_USER,
         UPDATED_DATE,
-        UPDATED_USER
+        UPDATED_USER,
+        TGL_PENDING
         from T_IDOSS_PELAKSANAAN
         where STATUS_PERUBAHAN=#{status_perubahan}
     </select>
@@ -70,7 +73,8 @@
         CREATED_DATE,
         CREATED_USER,
         UPDATED_DATE,
-        UPDATED_USER
+        UPDATED_USER,
+        TGL_PENDING
         from T_IDOSS_PELAKSANAAN
         where STATUS_PERUBAHAN=#{status_perubahan} and ID_PELAKSANA=#{id_pelaksana} 
     </select>
@@ -88,7 +92,8 @@
         CREATED_DATE,
         CREATED_USER,
         UPDATED_DATE,
-        UPDATED_USER
+        UPDATED_USER,
+        TGL_PENDING
         )
         values(
         #{t_idoss_pelaksanaan_id},
@@ -102,7 +107,8 @@
         #{created_date},
         #{created_user},
         #{updated_date},
-        #{updated_user}
+        #{updated_user},
+        #{tgl_pending,jdbcType=TIMESTAMP}
         )
     </insert>
 
@@ -119,7 +125,8 @@
         CREATED_DATE=#{created_date,jdbcType=TIMESTAMP},
         CREATED_USER=#{created_user,jdbcType=VARCHAR},
         UPDATED_DATE=#{updated_date,jdbcType=TIMESTAMP},
-        UPDATED_USER=#{updated_user,jdbcType=VARCHAR}
+        UPDATED_USER=#{updated_user,jdbcType=VARCHAR},
+        TGL_PENDING=#{tgl_pending,jdbcType=TIMESTAMP}
         where T_IDOSS_PELAKSANAAN_ID=#{t_idoss_pelaksanaan_id}
     </update>
 </mapper>

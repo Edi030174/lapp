@@ -26,6 +26,9 @@ public class TVerifikasi {
     private String created_user;
     private Timestamp updated_date;
     private String updated_user;
+    private Timestamp updated_gm;
+    private String catatan_gm;
+    private String status_permohonan_gm;
 
     public TVerifikasi() {
     }
@@ -172,5 +175,29 @@ public class TVerifikasi {
 
     public void setUpdated_user(String updated_user) {
         this.updated_user = updated_user;
+    }
+
+    public Timestamp getUpdated_gm() {
+        return updated_gm;
+    }
+
+    public void setUpdated_gm(Timestamp updated_gm) {
+        this.updated_gm = updated_gm;
+    }
+
+    public String getCatatan_gm() {
+        return catatan_gm;
+    }
+
+    public void setCatatan_gm(String catatan_gm) {
+        this.catatan_gm = catatan_gm;
+    }
+
+    public String getStatus_permohonan_gm() {
+        return status_permohonan_gm;
+    }
+
+    public void setStatus_permohonan_gm(String status_permohonan_gm) {
+        this.status_permohonan_gm = status_permohonan_gm;
     }
 }
