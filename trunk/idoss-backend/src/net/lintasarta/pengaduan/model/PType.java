@@ -80,11 +80,11 @@ public class PType implements Serializable {
         this.updated_user = updated_user;
     }
 
-    public int getParent_id() {
+    public Integer getParent_id() {
         return parent_id;
     }
 
-    public void setParent_id(int parent_id) {
+    public void setParent_id(Integer parent_id) {
         this.parent_id = parent_id;
     }
 }
