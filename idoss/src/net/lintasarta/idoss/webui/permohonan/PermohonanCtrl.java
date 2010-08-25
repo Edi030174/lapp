@@ -216,6 +216,17 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         textbox_NikManager.setValue(tPermohonan.getNik_manager());
         textbox_NikGm.setValue(tPermohonan.getNik_gm());
         datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
+
+        if (tPermohonan.getType_permohonan().equals("User RO")) {
+            radiogroupType_permohonan.setSelectedItem(radio_readonly);
+        } else if (tPermohonan.getType_permohonan().equals("User RW")) {
+            radiogroupType_permohonan.setSelectedItem(radio_readwrite);
+        } else if (tPermohonan.getType_permohonan().equals("Aplikasi")) {
+            radiogroupType_permohonan.setSelectedItem(radio_aplikasi);
+        } else if (tPermohonan.getType_permohonan().equals("Lain-lain")) {
+            radiogroupType_permohonan.setSelectedItem(radio_lainlain);
+        }
+        
         fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
 
     }
