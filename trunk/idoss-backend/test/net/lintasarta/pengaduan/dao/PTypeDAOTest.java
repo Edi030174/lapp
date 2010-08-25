@@ -94,6 +94,12 @@ public class PTypeDAOTest {
         String typeDescActual = pType.getType_desc();
         String typeDescExpected ="oke";
         assertEquals(typeDescActual,typeDescExpected);
+    }
 
+    @Test
+    public void testGetPTypeByParentId() throws Exception {
+        Integer parentid = 3;
+        List<PType> pTypes = pTypeDAO.getPTypeByParentId(parentid);
+        assertEquals(pTypes.size(), 6);
     }
 }

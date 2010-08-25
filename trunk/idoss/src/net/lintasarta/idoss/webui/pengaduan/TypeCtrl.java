@@ -118,6 +118,14 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
         getTreeModel();
 
         doShowDialog(getpType());
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("pType", pType);
+        map.put("tree_Type", tree_Type);
+
+    }
+    public void onSelect$tree_Type(Event event){
+
     }
 
     private void doShowDialog(PType pType) throws InterruptedException {

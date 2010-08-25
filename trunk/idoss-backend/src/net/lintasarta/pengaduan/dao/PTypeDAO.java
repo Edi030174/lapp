@@ -25,4 +25,6 @@ public interface PTypeDAO {
 
     void saveOrUpdate(PType pType);
 
+    List<PType> getPTypeByParentId(Integer parentId);
+
 }
