@@ -24,7 +24,6 @@
            where P_IDOSS_ROOT_CAUSED_ID = #{p_idoss_root_caused_id}
     </select>
 
-
     <insert id="createPRootCaused" parameterType="prootcaused">
 
         INSERT INTO P_IDOSS_ROOT_CAUSED (
@@ -43,7 +42,6 @@
         #{created_user},
         #{updated_date},
         #{updated_user})
-
     </insert>
 
     <update id="saveOrUpdate" parameterType="prootcaused">
@@ -55,7 +53,12 @@
         UPDATED_DATE=#{updated_date},
         UPDATED_USER=#{updated_user}
         WHERE  P_IDOSS_ROOT_CAUSED_ID=#{p_idoss_root_caused_id}
-
    </update>
+    <select id="getPRootCausedByPTypeID" parameterType="int" resultType="prootcaused">
+        SELECT P.P_IDOSS_ROOT_CAUSED_ID, Q.ROOT_CAUSED
+        FROM P_IDOSS_TYPE_ROOT_CAUSED P, P_IDOSS_ROOT_CAUSED Q
+        WHERE P.P_IDOSS_TYPE_ID=#{p_idoss_type_id}
+        AND P.P_IDOSS_ROOT_CAUSED_ID=Q.P_IDOSS_ROOT_CAUSED_ID
+    </select>
 
 </mapper>

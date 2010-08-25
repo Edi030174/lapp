@@ -24,4 +24,6 @@ public interface PelaksanaanGangguanService {
     List<VHrEmployeePelaksana> getEmployeeName();
 
     void saveOrUpdate(TPenangananGangguan tPenangananGangguan);
+
+    List<PRootCaused> getRootCausedByPTypeId(int TypeId);
 }

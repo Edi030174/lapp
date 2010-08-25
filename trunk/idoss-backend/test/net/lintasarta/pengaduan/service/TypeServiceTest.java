@@ -51,7 +51,7 @@ public class TypeServiceTest {
     
     @Test
     public void testGetTypeByTypeID() throws Exception {
-        PType pType = typeService.getTypeByTypeID(2);
+        PType pType = typeService.getTypeByTypeID("2");
         assertNotNull(pType);
         assertEquals("oke",pType.getType_desc());
     }
@@ -71,7 +71,7 @@ public class TypeServiceTest {
 
     @Test
     public void testSaveOrUpdate() throws Exception {
-        int typeId = 3;
+        String typeId = "3";
 
         PType pType = typeService.getTypeByTypeID(typeId);
         pType.setType_desc("COBA");
@@ -109,7 +109,7 @@ public class TypeServiceTest {
         List<PType> child = new ArrayList<PType>();
         Iterator<PType> iterator = notRootPTypes.iterator();
         PType pType = null;
-        Integer parentId = null;
+        String parentId = null;
         if (iterator.hasNext()) {
             pType = iterator.next();
             child.add(pType);
@@ -135,5 +135,12 @@ public class TypeServiceTest {
             }
         }
         assertEquals(3, root.size());
+    }
+
+    @Test
+    public void testGetPTypeByParentId() throws Exception {
+        String parentid = "3";
+        List<PType> pTypes = typeService.getPTypeByParentId(parentid);
+        assertEquals(pTypes.size(), 6);
     }
 }

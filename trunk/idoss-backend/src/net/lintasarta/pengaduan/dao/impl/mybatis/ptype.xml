@@ -66,7 +66,7 @@
     <select id="getPTypeByParentId" parameterType="java.lang.Integer" resultType="ptype">
         SELECT P_IDOSS_TYPE_ID, TYPE_DESC, ACTIVE, CREATED_DATE, CREATED_USER, UPDATED_DATE, UPDATED_USER, MINOR_MAYOR, PARENT_ID
         FROM SNI.P_IDOSS_TYPE
-        WHERE  PARENT_ID=#{parent_id,jdbcType=INTEGER}
+        WHERE  PARENT_ID=#{parent_id,jdbcType=VARCHAR}
 
     </select>
 

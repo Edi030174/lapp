@@ -12,23 +12,23 @@ import java.sql.Timestamp;
  */
 public class PType implements Serializable {
 
-    private int p_idoss_type_id;
+    private String p_idoss_type_id;
     private String type_desc;
     private String active;
     private Timestamp created_date;
     private String created_user;
     private Timestamp updated_date;
     private String updated_user;
-    private Integer parent_id;
+    private String parent_id;
 
     public PType() {
     }
 
-    public int getP_idoss_type_id() {
+    public String getP_idoss_type_id() {
         return p_idoss_type_id;
     }
 
-    public void setP_idoss_type_id(int p_idoss_type_id) {
+    public void setP_idoss_type_id(String p_idoss_type_id) {
         this.p_idoss_type_id = p_idoss_type_id;
     }
 
@@ -80,11 +80,11 @@ public class PType implements Serializable {
         this.updated_user = updated_user;
     }
 
-    public Integer getParent_id() {
+    public String getParent_id() {
         return parent_id;
     }
 
-    public void setParent_id(Integer parent_id) {
+    public void setParent_id(String parent_id) {
         this.parent_id = parent_id;
     }
 }

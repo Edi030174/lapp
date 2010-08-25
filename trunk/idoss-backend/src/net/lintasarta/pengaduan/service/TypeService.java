@@ -15,11 +15,11 @@ public interface TypeService {
 
     List<PType> getAllType();
 
-    PType getTypeByTypeID(int typeId);
+    PType getTypeByTypeID(String typeId);
 
     void createType(PType pType);
 
     void saveOrUpdate(PType pType);
 
-    List<PType> getPTypeByParentId(Integer parentId);
+    List<PType> getPTypeByParentId(String parentId);
 }

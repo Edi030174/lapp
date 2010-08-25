@@ -64,7 +64,7 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
         List child = new ArrayList();
         Iterator<PType> iterator = notRootPTypes.iterator();
         PType pType = null;
-        Integer parentId = null;
+        String parentId = null;
         if (iterator.hasNext()) {
             pType = iterator.next();
             SimpleTreeNode stnPType = new SimpleTreeNode(pType, new ArrayList());
@@ -119,9 +119,9 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
 
         doShowDialog(getpType());
 
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("pType", pType);
-        map.put("tree_Type", tree_Type);
+//        HashMap<String, Object> map = new HashMap<String, Object>();
+//        map.put("pType", pType);
+//        map.put("tree_Type", tree_Type);
 
     }
     public void onSelect$tree_Type(Event event){

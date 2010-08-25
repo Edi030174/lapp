@@ -15,16 +15,16 @@ public interface PTypeDAO {
     
     int getCountAllPType();
 
-    int getGenerateId();
+    String getGenerateId();
     
     List<PType> getAllPType();
     
-    PType getPTypeByTypeId(int typeId);
+    PType getPTypeByTypeId(String typeId);
 
     void createPType (PType pType);
 
     void saveOrUpdate(PType pType);
 
-    List<PType> getPTypeByParentId(Integer parentId);
+    List<PType> getPTypeByParentId(String parentId);
 
 }

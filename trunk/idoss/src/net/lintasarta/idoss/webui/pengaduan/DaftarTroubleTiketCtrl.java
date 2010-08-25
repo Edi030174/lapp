@@ -163,8 +163,6 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_cari.getSelectedItem() == comboitem_Pelapor){
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
-//            } else if (combobox_cari.getSelectedItem() == comboitem_PenanggungJawab) {
-//                CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
             }
 
             PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
