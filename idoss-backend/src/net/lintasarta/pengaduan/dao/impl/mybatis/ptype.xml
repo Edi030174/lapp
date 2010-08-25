@@ -27,8 +27,6 @@
          PARENT_ID
          FROM SNI.P_IDOSS_TYPE
          WHERE  P_IDOSS_TYPE_ID=#{p_idoss_type_id}
-
-
     </select>
 
     <insert id="createPType" parameterType="ptype">
@@ -50,7 +48,6 @@
 	    #{updated_date},
 	    #{updated_user},
 	    #{parent_id})
-
     </insert>
 
     <update id="saveOrUpdate" parameterType="ptype">
@@ -64,7 +61,13 @@
         UPDATED_USER=#{updated_user},
         PARENT_ID=#{parent_id}
         WHERE  P_IDOSS_TYPE_ID=#{p_idoss_type_id}
-
     </update>
+
+    <select id="getPTypeByParentId" parameterType="java.lang.Integer" resultType="ptype">
+        SELECT P_IDOSS_TYPE_ID, TYPE_DESC, ACTIVE, CREATED_DATE, CREATED_USER, UPDATED_DATE, UPDATED_USER, MINOR_MAYOR, PARENT_ID
+        FROM SNI.P_IDOSS_TYPE
+        WHERE  PARENT_ID=#{parent_id,jdbcType=INTEGER}
+
+    </select>
 
  </mapper>
