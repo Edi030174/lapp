@@ -45,4 +45,11 @@ public class TypeServiceImpl implements TypeService {
         getpTypeDAO().saveOrUpdate(pType);
     }
 
+    @Override
+    public List<PType> getPTypeByParentId(Integer parentId) {
+        List<PType> pTypes = pTypeDAO.getPTypeByParentId(parentId);
+        return pTypes;
+
+    }
+
 }
