@@ -39,10 +39,6 @@
                     image="/images/icons/btn_search2_16x16.gif"
                     tooltiptext="${c:l('btnCari_DaftarTiket.tooltiptext')}"/>
             <checkbox id="checkbox_All" label="Show All" checked="false"/>
-            <!--<checkbox id="checkbox_Open" label="Open"/>-->
-            <!--<checkbox id="checkbox_InProgress" label="In progress"/>-->
-            <!--<checkbox id="checkbox_Pending" label="Pending"/>-->
-            <!--<checkbox id="checkbox_Selesai" label="Selesai"/>-->
         </hbox>
 
         <borderlayout id="borderlayout_daftarTroubleTiket">
