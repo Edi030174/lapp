@@ -56,7 +56,7 @@ public class PTypeDAOTest {
 
     @Test
     public void testGetPTypeByTypeId() throws Exception{
-        PType pType = pTypeDAO.getPTypeByTypeId(2);
+        PType pType = pTypeDAO.getPTypeByTypeId("2");
         assertNotNull(pType);
         assertEquals("oke",pType.getType_desc());
 
@@ -67,7 +67,7 @@ public class PTypeDAOTest {
         int i = pTypeDAO.getCountAllPType();
 
         PType pType = new PType();
-        int j = pTypeDAO.getGenerateId();
+        String j = pTypeDAO.getGenerateId();
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         pType.setP_idoss_type_id(j);
         pType.setType_desc("KEREN");
@@ -83,7 +83,7 @@ public class PTypeDAOTest {
 
     @Test
     public void saveOrUpdate() throws Exception{
-        int typeId = 2;
+        String typeId = "2";
         PType pType = pTypeDAO.getPTypeByTypeId(typeId);
         pType.setType_desc("oke");
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
@@ -98,7 +98,7 @@ public class PTypeDAOTest {
 
     @Test
     public void testGetPTypeByParentId() throws Exception {
-        Integer parentid = 3;
+        String parentid = "3";
         List<PType> pTypes = pTypeDAO.getPTypeByParentId(parentid);
         assertEquals(pTypes.size(), 6);
     }

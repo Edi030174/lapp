@@ -21,7 +21,6 @@ import static org.junit.Assert.assertEquals;
  * User: Xsis
  * Date: Jul 19, 2010
  * Time: 5:42:07 PM
- * To change this template use File | Settings | File Templates.
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -81,8 +80,6 @@ public class PelaksanaanGangguanServiceTest {
         assertEquals(rootCausedExpected, employeeNameActual);
     }
 
-
-
     @Test
     public void testSaveOrUpdate() throws Exception {
         String tiketId = "BBBB579285                      ";
@@ -101,5 +98,13 @@ public class PelaksanaanGangguanServiceTest {
         String namaPelaporActual = tPenangananGangguanResult.getNama_pelapor();
         String namaPelaporExpected = "JOSRI";
         assertEquals(namaPelaporExpected, namaPelaporActual);
+    }
+
+    @Test
+    public void testGetRootCausedByPTypeId() throws Exception {
+        int ptypeId = 4011;
+        List<PRootCaused> pRootCauseds = pelaksanaanGangguanService.getRootCausedByPTypeId(ptypeId);
+        assertEquals(pRootCauseds.size(),7);
+
     }
 }

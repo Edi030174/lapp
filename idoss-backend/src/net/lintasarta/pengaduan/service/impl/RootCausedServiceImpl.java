@@ -53,4 +53,10 @@ public class RootCausedServiceImpl implements RootCausedService {
         getpRootCausedDAO().saveOrUpdate(pRootCaused);
 
     }
+
+    @Override
+    public List<PRootCaused> getRootCausedByPTypeId(int TypeId) {
+        List<PRootCaused> pRootCauseds = pRootCausedDAO.getPRootCausedByPTypeID(TypeId);
+        return pRootCauseds;        
+    }
 }

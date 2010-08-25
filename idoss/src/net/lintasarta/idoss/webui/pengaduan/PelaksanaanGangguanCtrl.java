@@ -125,7 +125,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         listbox_NamaPelaksana.setSelectedIndex(lml.indexOf(vHrEmployeePelaksana));
 
         doShowDialog(gettPenangananGangguan());
-        
     }
 
     public void onClose$window_PelaksanaanGangguan(Event event) throws Exception {
@@ -187,7 +186,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
-
     }
 
     private void doWriteBeanToComponent(TPenangananGangguan tPenangananGangguan) throws Exception {
@@ -196,18 +194,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         texbox_Pelapor.setValue(tPenangananGangguan.getNama_pelapor());
         texbox_Bagian.setValue(tPenangananGangguan.getBagian_pelapor());
         texbox_Judul.setValue(tPenangananGangguan.getJudul());
-        textbox_Type.setValue("");
-
-//        if(tPenangananGangguan.getNama_pelaksana() != null){
-//            textbox_Pelaksana.setValue(tPenangananGangguan.getNama_pelaksana());
-//        }else {
-//            textbox_Pelaksana.setValue(getUserWorkspace().getUserSession().getEmployeeName());
-//        }
-//        if(tPenangananGangguan.getNik_pelaksana() != null){
-//            textbox_NikPelaksana.setValue(tPenangananGangguan.getNik_pelaksana());
-//        }else {
-//            textbox_NikPelaksana.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
-//        }
+        textbox_Type.setValue("401");
         fckeditor_Deskripsi.setValue(tPenangananGangguan.getDeskripsi());
         fckeditor_Solusi.setValue(tPenangananGangguan.getSolusi());
         combobox_Status.setValue(tPenangananGangguan.getStatus());
@@ -215,7 +202,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     }
 
     private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
-
         tPenangananGangguan.setDeskripsi(fckeditor_Deskripsi.getValue());
         tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
         Radio dampak = radiogroup_Dampak.getSelectedItem();
@@ -259,7 +245,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         ListModelList lml3 = (ListModelList)listbox_NamaPelaksana.getListModel();
         VHrEmployeePelaksana vHrEmployeePelaksana = (VHrEmployeePelaksana)lml3.get(itempelaksana.getIndex());
         tPenangananGangguan.setNama_pelaksana(vHrEmployeePelaksana.getEmployee_name());
-//        textbox_NikPelaksana.setValue(vHrEmployeePelaksana.getEmployee_no());
         tPenangananGangguan.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
 
         tPenangananGangguan.setStatus(combobox_Status.getValue());
@@ -362,6 +347,14 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
         }
 
+
+    }
+
+    public void onChange$textbox_Type(Event event) throws Exception{
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        textbox_Type.getValue();
 
     }
 

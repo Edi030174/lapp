@@ -100,4 +100,11 @@ public class PRootCausedDAOTest {
 
         assertEquals(rootCausedExpected, rootCausedActual);
     }
+
+    @Test
+    public void testGetPRootCausedByPTypeID() throws Exception {
+        int ptypeId = 4011;
+        List<PRootCaused> pRootCauseds = pRootCausedDAO.getPRootCausedByPTypeID(ptypeId);
+        assertEquals(pRootCauseds.size(),7);
+    }
 }

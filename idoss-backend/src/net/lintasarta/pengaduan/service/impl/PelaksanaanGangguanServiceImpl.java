@@ -86,4 +86,10 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
 
         gettPenangananGangguanDAO().saveOrUpdate(tPenangananGangguan);
     }
+
+    @Override
+    public List<PRootCaused> getRootCausedByPTypeId(int TypeId) {
+        List<PRootCaused> pRootCauseds =pRootCausedDAO.getPRootCausedByPTypeID(TypeId);
+        return pRootCauseds;
+    }
 }

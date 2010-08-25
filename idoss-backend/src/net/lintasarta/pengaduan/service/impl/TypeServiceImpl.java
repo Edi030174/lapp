@@ -30,13 +30,13 @@ public class TypeServiceImpl implements TypeService {
         return getpTypeDAO().getAllPType();
     }
 
-    public PType getTypeByTypeID(int typeId) {
+    public PType getTypeByTypeID(String typeId) {
         PType pType = pTypeDAO.getPTypeByTypeId(typeId);
         return pType;
     }
 
     public void createType(PType pType) {
-        int i = pTypeDAO.getGenerateId();
+        String i = pTypeDAO.getGenerateId();
         pType.setP_idoss_type_id(i);
         getpTypeDAO().createPType(pType);
     }
@@ -46,7 +46,7 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public List<PType> getPTypeByParentId(Integer parentId) {
+    public List<PType> getPTypeByParentId(String parentId) {
         List<PType> pTypes = pTypeDAO.getPTypeByParentId(parentId);
         return pTypes;
 
