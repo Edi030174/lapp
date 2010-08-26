@@ -8,7 +8,6 @@ import org.apache.commons.collections.Predicate;
  * User: Xsis
  * Date: Aug 19, 2010
  * Time: 4:21:05 PM
- * To change this template use File | Settings | File Templates.
  */
 public class PelaporTPenangananGangguan implements Predicate {
     String pelapor;

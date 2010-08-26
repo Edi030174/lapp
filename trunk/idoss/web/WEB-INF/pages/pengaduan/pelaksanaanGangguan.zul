@@ -75,7 +75,7 @@
                                 </vbox>
                                 <!--<space width="50px"/>-->
                                 <!--<listbox id="listbox_Type" width="140px" mold="select" rows="1"/>-->
-                               <textbox id="textbox_Type"/>
+                                <textbox id="textbox_Type"/>
                                 <button id="btn_OK" label="OK"/>
                                 <button id="btn_Type" label="Pilih"/>
                             </hbox>
@@ -86,7 +86,6 @@
                         <hbox>
                             <listbox id="listbox_NamaPelaksana" width="200px" mold="select" rows="1"/>
                         </hbox>
-
                     </row>
                     <row style="border:0px">
                         <hbox>
@@ -102,7 +101,7 @@
                                 <label value="status"/>
                             </vbox>
                             <!--<space width="50px"/>-->
-                            <combobox id="combobox_Status" width="140px" readonly="true" >
+                            <combobox id="combobox_Status" width="140px" readonly="true">
                                 <comboitem label="Open"/>
                                 <comboitem label="In Progres"/>
                                 <comboitem label="Pending"/>
