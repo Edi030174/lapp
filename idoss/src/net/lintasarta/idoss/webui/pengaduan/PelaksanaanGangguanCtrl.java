@@ -51,6 +51,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     protected Listbox listbox_NamaPelaksana;
     protected Combobox combobox_Status;
     protected Button btn_TambahRootCaused;
+    protected Button btn_OK;
 //    protected Button btnSimpan_RootCaused;
 //    protected Button btnBatal_RootCaused;
 //    protected Button btnSimpan_PelaksanaanGangguan;
@@ -113,9 +114,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 
 //        listbox_Type.setModel(new ListModelList(getPelaksanaanGangguanService().getType()));
 //        listbox_Type.setItemRenderer(new TypeListModelItemRenderer());
-
-        listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCaused()));
-        listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
+//        listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCaused()));
+//        listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
 
         listbox_NamaPelaksana.setModel(new ListModelList(getPelaksanaanGangguanService().getEmployeeName()));
         listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
@@ -189,16 +189,13 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     }
 
     private void doWriteBeanToComponent(TPenangananGangguan tPenangananGangguan) throws Exception {
-
         textbox_NomorTiket.setValue(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
         texbox_Pelapor.setValue(tPenangananGangguan.getNama_pelapor());
         texbox_Bagian.setValue(tPenangananGangguan.getBagian_pelapor());
         texbox_Judul.setValue(tPenangananGangguan.getJudul());
-        textbox_Type.setValue("401");
         fckeditor_Deskripsi.setValue(tPenangananGangguan.getDeskripsi());
         fckeditor_Solusi.setValue(tPenangananGangguan.getSolusi());
         combobox_Status.setValue(tPenangananGangguan.getStatus());
-
     }
 
     private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
@@ -346,16 +343,14 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
         }
-
-
     }
 
-    public void onChange$textbox_Type(Event event) throws Exception{
+    public void onClick$btn_OK(Event event) throws Exception{
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        textbox_Type.getValue();
-
+        listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(textbox_Type.getValue())));
+        listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
     }
 
     public TPenangananGangguan gettPenangananGangguan() {

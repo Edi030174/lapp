@@ -87,7 +87,7 @@ public class RootCausedServiceTest {
 
     @Test
     public void testGetRootCausedByPTypeId() throws Exception {
-        int ptypeId = 4011;
+        String ptypeId = "4011";
         List<PRootCaused> pRootCauseds = rootCausedService.getRootCausedByPTypeId(ptypeId);
         assertEquals(pRootCauseds.size(),7);
     }

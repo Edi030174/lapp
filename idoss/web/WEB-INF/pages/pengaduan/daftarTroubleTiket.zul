@@ -12,6 +12,7 @@
             }
 
         </style>
+
         <timer id="timer" delay="300000" repeats="true"/>
 
         <panel id="panel_daftarTroubleTiket" title="" border="none" />
@@ -31,8 +32,8 @@
                 <comboitem id="comboitem_Status" label="Status"/>
                 <comboitem id="comboitem_Pelapor" label="Pelapor"/>
             </combobox>
-            <!--<listbox id="listbox_Cari" rows="1" mold="select">-->
-                <!--<listitem id="listitem"/>   -->
+            <!--<listbox rows="1" mold="select">-->
+                <!--<listitem id="listitem_Nomor" label="Nomor Tiket"/>-->
             <!--</listbox>-->
             <textbox id="textbox_Cari" value=""/>
             <button id="btnCari_DaftarTiket" label="Cari"

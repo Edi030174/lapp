@@ -82,7 +82,7 @@ public class PelaksanaanGangguanServiceTest {
 
     @Test
     public void testSaveOrUpdate() throws Exception {
-        String tiketId = "BBBB579285                      ";
+        String tiketId = "BBBB579285";
 
         TPenangananGangguan tPenangananGangguan = pelaksanaanGangguanService.getDetail(tiketId);
         tPenangananGangguan.setNik_pelapor("878991233");
@@ -102,7 +102,7 @@ public class PelaksanaanGangguanServiceTest {
 
     @Test
     public void testGetRootCausedByPTypeId() throws Exception {
-        int ptypeId = 4011;
+        String ptypeId = "4011";
         List<PRootCaused> pRootCauseds = pelaksanaanGangguanService.getRootCausedByPTypeId(ptypeId);
         assertEquals(pRootCauseds.size(),7);
 
