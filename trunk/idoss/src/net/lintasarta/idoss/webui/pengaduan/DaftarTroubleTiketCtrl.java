@@ -92,7 +92,6 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
             panelHeight = 0;
         }
 
-
         int height = ((Intbox) Path.getComponent("/outerIndexWindow/currentDesktopHeight")).getValue();
         height = height + panelHeight;
         int maxListBoxHeight = (height - 170);
@@ -179,7 +178,6 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
             } else if (listbox_Cari.getSelectedItem() == listitem_PJ){
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
             }
-
             PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             pagedListHolder.setPageSize(getCountRows());
 
@@ -218,13 +216,11 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
             } else if (listbox_Cari.getSelectedItem() == listitem_PJ){
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
             }
-
             PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             pagedListHolder.setPageSize(getCountRows());
 
             getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftaTiket);
         }
-
         checkbox_All.setChecked(false);
     }
 
