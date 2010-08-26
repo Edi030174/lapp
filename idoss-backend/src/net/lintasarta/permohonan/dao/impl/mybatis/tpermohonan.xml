@@ -34,6 +34,7 @@
                 NIK_GM,
                 NAMA_GM,
                 TYPE_PERMOHONAN,
+                LAIN_LAIN_DESC,
                 UPDATED_PEMOHON,
                 UPDATED_DIVISI,
                 UPDATED_ASMAN,
@@ -44,7 +45,8 @@
                 UPDATED_DATE,
                 UPDATED_USER,
                 CATATAN_MANAGER,
-                CATATAN_GM
+                CATATAN_GM,
+                GEN_ID_COL
         from T_IDOSS_PERMOHONAN
         where T_IDOSS_PERMOHONAN_ID = #{t_idoss_permohonan_id}
     </select>
@@ -68,6 +70,7 @@
                 NIK_GM,
                 NAMA_GM,
                 TYPE_PERMOHONAN,
+                LAIN_LAIN_DESC,
                 UPDATED_PEMOHON,
                 UPDATED_DIVISI,
                 UPDATED_ASMAN,
@@ -78,7 +81,8 @@
                 UPDATED_DATE,
                 UPDATED_USER,
                 CATATAN_MANAGER,
-                CATATAN_GM
+                CATATAN_GM,
+                GEN_ID_COL
         from T_IDOSS_PERMOHONAN
         where NIK_PEMOHON = #{nik_pemohon}
     </select>
@@ -102,6 +106,7 @@
                 NIK_GM,
                 NAMA_GM,
                 TYPE_PERMOHONAN,
+                LAIN_LAIN_DESC,
                 UPDATED_PEMOHON,
                 UPDATED_DIVISI,
                 UPDATED_ASMAN,
@@ -112,7 +117,8 @@
                 UPDATED_DATE,
                 UPDATED_USER,
                 CATATAN_MANAGER,
-                CATATAN_GM
+                CATATAN_GM,
+                GEN_ID_COL
         from T_IDOSS_PERMOHONAN
         where NIK_DIVISI = #{nik_divisi}
     </select>
@@ -136,6 +142,7 @@
                 NIK_GM,
                 NAMA_GM,
                 TYPE_PERMOHONAN,
+                LAIN_LAIN_DESC,
                 UPDATED_PEMOHON,
                 UPDATED_DIVISI,
                 UPDATED_ASMAN,
@@ -146,7 +153,8 @@
                 UPDATED_DATE,
                 UPDATED_USER,
                 CATATAN_MANAGER,
-                CATATAN_GM
+                CATATAN_GM,
+                GEN_ID_COL
         from T_IDOSS_PERMOHONAN
         where NIK_ASMAN = #{nik_asman}
     </select>
@@ -170,6 +178,7 @@
                 NIK_GM,
                 NAMA_GM,
                 TYPE_PERMOHONAN,
+                LAIN_LAIN_DESC,
                 UPDATED_PEMOHON,
                 UPDATED_DIVISI,
                 UPDATED_ASMAN,
@@ -180,7 +189,8 @@
                 UPDATED_DATE,
                 UPDATED_USER,
                 CATATAN_MANAGER,
-                CATATAN_GM
+                CATATAN_GM,
+                GEN_ID_COL
         from T_IDOSS_PERMOHONAN
         where NIK_MANAGER = #{nik_manager}
     </select>
@@ -204,6 +214,7 @@
                 NIK_GM,
                 NAMA_GM,
                 TYPE_PERMOHONAN,
+                LAIN_LAIN_DESC,
                 UPDATED_PEMOHON,
                 UPDATED_DIVISI,
                 UPDATED_ASMAN,
@@ -214,7 +225,8 @@
                 UPDATED_DATE,
                 UPDATED_USER,
                 CATATAN_MANAGER,
-                CATATAN_GM
+                CATATAN_GM,
+                GEN_ID_COL
         from T_IDOSS_PERMOHONAN
         where NIK_GM = #{nik_gm}
     </select>
@@ -238,6 +250,7 @@
                 NIK_GM,
                 NAMA_GM,
                 TYPE_PERMOHONAN,
+                LAIN_LAIN_DESC,
                 UPDATED_PEMOHON,
                 UPDATED_DIVISI,
                 UPDATED_ASMAN,
@@ -248,7 +261,8 @@
                 UPDATED_DATE,
                 UPDATED_USER,
                 CATATAN_MANAGER,
-                CATATAN_GM
+                CATATAN_GM,
+                GEN_ID_COL
         from T_IDOSS_PERMOHONAN
         where STATUS_TRACK_PERMOHONAN = #{status_track_permohonan}
     </select>
@@ -273,6 +287,7 @@
                 NIK_GM,
                 NAMA_GM,
                 TYPE_PERMOHONAN,
+                LAIN_LAIN_DESC,
                 UPDATED_PEMOHON,
                 UPDATED_DIVISI,
                 UPDATED_ASMAN,
@@ -283,7 +298,8 @@
                 UPDATED_DATE,
                 UPDATED_USER,
                 CATATAN_MANAGER,
-                CATATAN_GM
+                CATATAN_GM,
+                GEN_ID_COL
         from T_IDOSS_PERMOHONAN
         where NIK_PEMOHON = #{nik_pemohon} and STATUS_TRACK_PERMOHONAN = #{status_track_permohonan}
     </select>
@@ -307,6 +323,7 @@
                 NIK_GM,
                 NAMA_GM,
                 TYPE_PERMOHONAN,
+                LAIN_LAIN_DESC,
                 UPDATED_PEMOHON,
                 UPDATED_DIVISI,
                 UPDATED_ASMAN,
@@ -317,7 +334,8 @@
                 UPDATED_DATE,
                 UPDATED_USER,
                 CATATAN_MANAGER,
-                CATATAN_GM
+                CATATAN_GM,
+                GEN_ID_COL
         from T_IDOSS_PERMOHONAN
         where NIK_DIVISI = #{nik_divisi} and STATUS_TRACK_PERMOHONAN = #{status_track_permohonan}
     </select>
@@ -341,6 +359,7 @@
                 NIK_GM,
                 NAMA_GM,
                 TYPE_PERMOHONAN,
+                LAIN_LAIN_DESC,
                 UPDATED_PEMOHON,
                 UPDATED_DIVISI,
                 UPDATED_ASMAN,
@@ -351,7 +370,8 @@
                 UPDATED_DATE,
                 UPDATED_USER,
                 CATATAN_MANAGER,
-                CATATAN_GM
+                CATATAN_GM,
+                GEN_ID_COL
         from T_IDOSS_PERMOHONAN
         where NIK_ASMAN = #{nik_asman} and STATUS_TRACK_PERMOHONAN = #{status_track_permohonan}
     </select>
@@ -375,6 +395,7 @@
                 NIK_GM,
                 NAMA_GM,
                 TYPE_PERMOHONAN,
+                LAIN_LAIN_DESC,
                 UPDATED_PEMOHON,
                 UPDATED_DIVISI,
                 UPDATED_ASMAN,
@@ -385,7 +406,8 @@
                 UPDATED_DATE,
                 UPDATED_USER,
                 CATATAN_MANAGER,
-                CATATAN_GM
+                CATATAN_GM,
+                GEN_ID_COL
         from T_IDOSS_PERMOHONAN
         where NIK_MANAGER = #{nik_manager} and STATUS_TRACK_PERMOHONAN = #{status_track_permohonan}
     </select>
@@ -409,6 +431,7 @@
                 NIK_GM,
                 NAMA_GM,
                 TYPE_PERMOHONAN,
+                LAIN_LAIN_DESC,
                 UPDATED_PEMOHON,
                 UPDATED_DIVISI,
                 UPDATED_ASMAN,
@@ -419,7 +442,8 @@
                 UPDATED_DATE,
                 UPDATED_USER,
                 CATATAN_MANAGER,
-                CATATAN_GM
+                CATATAN_GM,
+                GEN_ID_COL
         from T_IDOSS_PERMOHONAN
         where NIK_GM = #{nik_gm} and STATUS_TRACK_PERMOHONAN = #{status_track_permohonan}
     </select>
@@ -444,6 +468,7 @@
         NIK_GM,
         NAMA_GM,
         TYPE_PERMOHONAN,
+        LAIN_LAIN_DESC,
         UPDATED_PEMOHON,
         UPDATED_DIVISI,
         UPDATED_ASMAN,
@@ -476,6 +501,7 @@
         #{nik_gm,jdbcType=VARCHAR},
         #{nama_gm,jdbcType=VARCHAR},
         #{type_permohonan,jdbcType=VARCHAR},
+        #{lain_lain,jdbcType=VARCHAR},
         #{updated_pemohon,jdbcType=TIMESTAMP},
         #{updated_divisi,jdbcType=TIMESTAMP},
         #{updated_asman,jdbcType=TIMESTAMP},
@@ -511,6 +537,7 @@
         NIK_GM=#{nik_gm,jdbcType=VARCHAR},
         NAMA_GM=#{nama_gm,jdbcType=VARCHAR},
         TYPE_PERMOHONAN=#{type_permohonan,jdbcType=VARCHAR},
+        LAIN_LAIN_DESC=#{lain_lain,jdbcType=VARCHAR},
         UPDATED_PEMOHON=#{updated_pemohon,jdbcType=TIMESTAMP},
         UPDATED_DIVISI=#{updated_divisi,jdbcType=TIMESTAMP},
         UPDATED_ASMAN=#{updated_asman,jdbcType=TIMESTAMP},
@@ -524,4 +551,8 @@
         CATATAN_GM=#{catatan_gm,jdbcType=VARCHAR}
         where T_IDOSS_PERMOHONAN_ID=#{t_idoss_permohonan_id}
     </update>
+
+    <select id="getManager" parameterType="string" resultType="tpermohonan">
+        select * from table(cast(f_pipe_idoss_employee(#{employeeNo}) as pipe_idoss_employee))
+    </select>
 </mapper>

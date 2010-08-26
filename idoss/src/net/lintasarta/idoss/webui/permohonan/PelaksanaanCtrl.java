@@ -102,6 +102,9 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     private void doWriteBeanToComponents(TPelaksanaan tPelaksanaan) throws Exception {
         datebox_TglPermohonan.setValue(tPelaksanaan.getTgl_permohonan());
         fckCatatan_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
+        String z = tPelaksanaan.getStatus_perubahan();
+
+//        radiogroup_StatusPerubahan.setSelectedItem(tPelaksanaan.getStatus_perubahan().);
 
 
     }
@@ -149,6 +152,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         tPelaksanaan.setTgl_permohonan(new Timestamp(datebox_TglPermohonan.getValue().getTime()));
         Radio status = radiogroup_StatusPerubahan.getSelectedItem();
         tPelaksanaan.setStatus_perubahan(status.getValue());
+        tPelaksanaan.setTgl_pending(new Timestamp(datebox_Pending.getValue().getTime()));
         tPelaksanaan.setCatatan_pelaksana(fckCatatan_pelaksana.getValue());
         if (checkbox_Rfs.isChecked()) {
             tPelaksanaan.setRfs("1");

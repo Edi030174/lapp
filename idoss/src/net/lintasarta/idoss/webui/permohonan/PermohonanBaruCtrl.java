@@ -150,30 +150,22 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
-        textbox_TIdossPermohonanId.setDisabled(true);
-        textbox_NamaPemohon.setReadonly(true);
-        textbox_BagianPemohon.setReadonly(true);
-        textbox_NikPemohon.setReadonly(true);
-        datebox_Tanggal.setReadonly(true);
-        
-        textbox_Lainlain.setReadonly(true);
-        textbox_NamaManager.setReadonly(true);
-        textbox_NamaGm.setReadonly(true);
-        textbox_NikManager.setReadonly(true);
-        textbox_NikGm.setReadonly(true);
     }
 
     private void doWriteBeanToComponents(TPermohonan tPermohonan) {
         textbox_TIdossPermohonanId.setValue(getPermohonanService().getPermohonanID());
         textbox_NamaPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeName());
         textbox_BagianPemohon.setValue(getUserWorkspace().getUserSession().getDepartment());
+        String s = textbox_NikPemohon.getValue();
 //        textbox_NamaAsman.setValue(tPermohonan.getNama_asman());
-//        textbox_NamaManager.setValue(tPermohonan.getNama_manager());
-//        textbox_NamaGm.setValue(tPermohonan.getNama_gm());
+
+        tPermohonan = getPermohonanService().getManager(getUserWorkspace().getUserSession().getEmployeeNo());
+        textbox_NamaManager.setValue(tPermohonan.getNama_manager());
+        textbox_NamaGm.setValue(tPermohonan.getNama_gm());
         textbox_NikPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
 //        textbox_NikAsman.setValue(tPermohonan.getNik_asman());
-//        textbox_NikManager.setValue(tPermohonan.getNik_manager());
-//        textbox_NikGm.setValue(tPermohonan.getNik_gm());
+        textbox_NikManager.setValue(tPermohonan.getNik_manager());
+        textbox_NikGm.setValue(tPermohonan.getNik_gm());
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         datebox_Tanggal.setValue(ts);
 
@@ -352,11 +344,24 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void onCheck$radiogroupType_permohonan(TPermohonan tPermohonan) {
-        textbox_Lainlain.setReadonly(false);
+//        textbox_Lainlain.setReadonly(false);
+
+    }
+
+    private void onCheck$radio_readonly(TPermohonan tPermohonan) {
+        textbox_Lainlain.setDisabled(true);
+    }
+
+    private void onCheck$radio_readwrite(TPermohonan tPermohonan) {
+        textbox_Lainlain.setDisabled(true);
+    }
+
+    private void onCheck$radio_aplikasi(TPermohonan tPermohonan) {
+        textbox_Lainlain.setDisabled(true);
     }
 
     private void onCheck$radio_lainlain(TPermohonan tPermohonan) {
-        textbox_Lainlain.setReadonly(false);
+        textbox_Lainlain.setDisabled(false);
     }
 
     private void doWriteComponentsToBean(TPermohonan permohonan) {
@@ -376,6 +381,9 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         }
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         permohonan.setTarget_mulai_digunakan(ts);
+        String lain = textbox_Lainlain.getValue();
+        permohonan.setLain_lain(lain);
+//        radio_lainlain.setValue(lain);
         Radio type = radiogroupType_permohonan.getSelectedItem();
         permohonan.setType_permohonan(type.getValue());
         permohonan.setLain_lain(textbox_Lainlain.getValue());
@@ -385,7 +393,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         permohonan.setUpdated_pemohon(ts);
         if (checkbox_Cepat.isChecked()) {
             permohonan.setUrgensi("H");
-        } else if (checkbox_Cepat.isDisabled()) {
+        } else{
             permohonan.setUrgensi("L");
         }
 

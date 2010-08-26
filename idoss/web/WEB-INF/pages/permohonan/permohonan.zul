@@ -46,7 +46,7 @@
                                 <!--</toolbar>-->
                                 <groupbox id="groupboxPemohon" mold="3d">
                                     <caption label="Pemohon"
-                                             style="font-weight:bold"/>
+                                             style="font-weight:normal"/>
                                     <vbox>
                                         <hbox>
 
@@ -129,7 +129,7 @@
                                 </groupbox>
                                 <groupbox mold="3d">
                                     <caption label="Detil Permohonan"
-                                             style="font-weight:bold"/>
+                                             style="font-weight:normal"/>
                                     <vbox>
                                         <hbox>
                                             <vbox></vbox>

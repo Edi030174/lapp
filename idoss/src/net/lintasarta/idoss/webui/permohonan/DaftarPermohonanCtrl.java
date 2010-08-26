@@ -5,6 +5,9 @@ import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.predicate.IdTPermohonan;
+import net.lintasarta.permohonan.model.predicate.StatusPermohonan;
+import net.lintasarta.permohonan.model.predicate.TanggalPermohonan;
+import net.lintasarta.permohonan.model.predicate.TipePermohonan;
 import net.lintasarta.permohonan.service.PermohonanService;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
@@ -51,6 +54,13 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
     protected Listheader listheader_AssMgr;
     protected Listheader listheader_Mgr;
     protected Listheader listheader_GM;
+
+    protected Listbox listbox_Cari;
+    protected Listitem listitem_Nomor;
+    protected Listitem listitem_Tanggal;
+    protected Listitem listitem_Tipe;
+    protected Listitem listitem_Status;
+
 
     protected Button btnCari;
 
@@ -189,12 +199,23 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 		// if not empty
 		if (!textbox_cariPermohonanId.getValue().isEmpty()) {
 			checkbox_all.setChecked(false); // unCheck
+            List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
 
-            ListModelList lml = (ListModelList) listbox_DaftarPermohonan.getListModel();
+//            ListModelList lml = (ListModelList) listbox_DaftarPermohonan.getListModel();
+//
+//            List searchResult = new ArrayList(lml);
+//            CollectionUtils.filter(searchResult, new IdTPermohonan(textbox_cariPermohonanId.getValue()));
 
-            List searchResult = new ArrayList(lml);
-            CollectionUtils.filter(searchResult, new IdTPermohonan(textbox_cariPermohonanId.getValue()));
-
+            if (listbox_Cari.getSelectedItem() == listitem_Nomor){
+                CollectionUtils.filter(searchResult, new IdTPermohonan(textbox_cariPermohonanId.getValue()));
+            } else if (listbox_Cari.getSelectedItem() == listitem_Tanggal){
+                CollectionUtils.filter(searchResult, new TanggalPermohonan(textbox_cariPermohonanId.getValue()));
+            } else if (listbox_Cari.getSelectedItem() == listitem_Tipe){
+                CollectionUtils.filter(searchResult, new TipePermohonan(textbox_cariPermohonanId.getValue()));
+            } else if (listbox_Cari.getSelectedItem() == listitem_Status){
+                CollectionUtils.filter(searchResult, new StatusPermohonan(textbox_cariPermohonanId.getValue()));
+            }
+            
             PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>(searchResult);
             pagedListHolder.setPageSize(getCountRows());
 
@@ -217,11 +238,21 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 		}
         if (!textbox_cariPermohonanId.getValue().isEmpty()) {
 			checkbox_all.setChecked(false); // unCheck
+            List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
 
-            ListModelList lml = (ListModelList) listbox_DaftarPermohonan.getListModel();
+//            ListModelList lml = (ListModelList) listbox_DaftarPermohonan.getListModel();
+//            List searchResult = new ArrayList(lml);
+//            CollectionUtils.filter(searchResult, new IdTPermohonan(textbox_cariPermohonanId.getValue()));
 
-            List searchResult = new ArrayList(lml);
-            CollectionUtils.filter(searchResult, new IdTPermohonan(textbox_cariPermohonanId.getValue()));
+            if (listbox_Cari.getSelectedItem() == listitem_Nomor){
+                CollectionUtils.filter(searchResult, new IdTPermohonan(textbox_cariPermohonanId.getValue()));
+            } else if (listbox_Cari.getSelectedItem() == listitem_Tanggal){
+                CollectionUtils.filter(searchResult, new TanggalPermohonan(textbox_cariPermohonanId.getValue()));
+            } else if (listbox_Cari.getSelectedItem() == listitem_Tipe){
+                CollectionUtils.filter(searchResult, new TipePermohonan(textbox_cariPermohonanId.getValue()));
+            } else if (listbox_Cari.getSelectedItem() == listitem_Status){
+                CollectionUtils.filter(searchResult, new StatusPermohonan(textbox_cariPermohonanId.getValue()));
+            }
 
             PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>(searchResult);
             pagedListHolder.setPageSize(getCountRows());
