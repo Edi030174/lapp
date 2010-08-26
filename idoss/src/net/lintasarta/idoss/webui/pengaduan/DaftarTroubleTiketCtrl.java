@@ -51,11 +51,16 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
     protected Comboitem comboitem_NomorTiket;
     protected Comboitem comboitem_Status;
     protected Comboitem comboitem_Pelapor;
+    protected Listbox listbox_Cari;
+    protected Listitem listitem_Nomor;
+    protected Listitem listitem_Judul;
+    protected Listitem listitem_Status;
+    protected Listitem listitem_Pelapor;
+    protected Listitem listitem_PJ;
 //    protected Comboitem comboitem_PenanggungJawab;
 //    protected Button btnCari_DaftarTiket;
 //    protected Button btnBuatBaru_DaftarTiket;
 //    protected Button btnKeluar_DaftarTiket;
-
     protected Borderlayout borderlayout_daftarTroubleTiket;
     protected Panel panel_daftarTroubleTiket;
 
@@ -92,7 +97,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         height = height + panelHeight;
         int maxListBoxHeight = (height - 170);
         setCountRows(Math.round(maxListBoxHeight / 17));
-        combobox_cari.setSelectedItem(comboitem_NomorTiket);
+//        combobox_cari.setSelectedItem(comboitem_NomorTiket);
         borderlayout_daftarTroubleTiket.setHeight(String.valueOf(maxListBoxHeight) + "px");
         paging_DaftaTiket.setPageSize(getCountRows());
         paging_DaftaTiket.setDetailed(true);
@@ -152,17 +157,27 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
 
         if (!textbox_Cari.getValue().isEmpty()) {
 
-
             List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
 
-            if (combobox_cari.getSelectedItem() == comboitem_Judul){
+//            if (combobox_cari.getSelectedItem() == comboitem_Judul){
+//                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
+//            } else if (combobox_cari.getSelectedItem() == comboitem_NomorTiket){
+//                CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
+//            } else if (combobox_cari.getSelectedItem() == comboitem_Status){
+//                CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
+//            } else if (combobox_cari.getSelectedItem() == comboitem_Pelapor){
+//                CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
+//            }
+            if (listbox_Cari.getSelectedItem() == listitem_Judul){
                 CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (combobox_cari.getSelectedItem() == comboitem_NomorTiket){
+            } else if (listbox_Cari.getSelectedItem() == listitem_Nomor){
                 CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (combobox_cari.getSelectedItem() == comboitem_Status){
+            } else if (listbox_Cari.getSelectedItem() == listitem_Status){
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (combobox_cari.getSelectedItem() == comboitem_Pelapor){
+            } else if (listbox_Cari.getSelectedItem() == listitem_Pelapor){
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
+            } else if (listbox_Cari.getSelectedItem() == listitem_PJ){
+                CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
             }
 
             PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
@@ -180,10 +195,8 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         }
 
         if (!textbox_Cari.getValue().isEmpty()) {
-
-
             List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
-
+/*
             if (combobox_cari.getSelectedItem() == comboitem_Judul){
                 CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_cari.getSelectedItem() == comboitem_NomorTiket){
@@ -193,6 +206,18 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
             } else if (combobox_cari.getSelectedItem() == comboitem_Pelapor){
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
             }
+*/
+            if (listbox_Cari.getSelectedItem() == listitem_Judul){
+                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
+            } else if (listbox_Cari.getSelectedItem() == listitem_Nomor){
+                CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
+            } else if (listbox_Cari.getSelectedItem() == listitem_Status){
+                CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
+            } else if (listbox_Cari.getSelectedItem() == listitem_Pelapor){
+                CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
+            } else if (listbox_Cari.getSelectedItem() == listitem_PJ){
+                CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
+            }
 
             PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             pagedListHolder.setPageSize(getCountRows());
@@ -201,7 +226,6 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         }
 
         checkbox_All.setChecked(false);
-
     }
 
     public void onClick$btnRefresh_DaftarTiket(Event event) throws Exception {

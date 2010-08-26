@@ -38,8 +38,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     protected Textbox texbox_Pelapor;
     protected Textbox texbox_Bagian;
     protected Textbox texbox_Judul;
-//    protected Textbox textbox_Pelaksana;
-//    protected Textbox textbox_NikPelaksana;
     protected Textbox textbox_Type;
     protected FCKeditor fckeditor_Deskripsi;
     protected FCKeditor fckeditor_Solusi;
@@ -56,12 +54,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 //    protected Button btnBatal_RootCaused;
 //    protected Button btnSimpan_PelaksanaanGangguan;
 //    protected Button btnBatal_PelaksanaanGangguan;
-
     protected PelaksanaanGangguanCtrl pelaksanaaGangguanCtrl;
-    
-
     private transient Listbox listbox_DaftarTiket;
-
     private transient String oldVar_textbox_Pelaksana;
     private transient String oldVar_textbox_NikPelaksana;
     private transient String oldVar_fckeditor_Solusi;
@@ -69,12 +63,10 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     private transient String oldVar_combobox_Type;
     private transient String oldVar_combobox_RootCaused;
     private transient String oldVar_combobox_Status;
-
     private transient TPenangananGangguan tPenangananGangguan;
     private transient PRootCaused pRootCaused;
     private transient PType pType;
     private transient PelaksanaanGangguanService pelaksanaanGangguanService;
-
 
     public PelaksanaanGangguanCtrl() {
         super();
@@ -134,7 +126,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         }
 
         doClose();
-    }                                 
+    }
 
     public void onClick$btnSimpan_PelaksanaanGangguan(Event event) throws Exception {
 
