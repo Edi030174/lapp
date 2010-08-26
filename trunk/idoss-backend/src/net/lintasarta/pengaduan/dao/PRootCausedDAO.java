@@ -25,6 +25,6 @@ public interface PRootCausedDAO {
 
     void saveOrUpdate(PRootCaused pRootCaused);
 
-    List<PRootCaused> getPRootCausedByPTypeID(int pTypeId);
+    List<PRootCaused> getPRootCausedByPTypeID(String pTypeId);
 
 }

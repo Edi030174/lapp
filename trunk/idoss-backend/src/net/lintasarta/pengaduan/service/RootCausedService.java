@@ -23,6 +23,6 @@ public interface RootCausedService {
 
     void saveOrUpdate(PRootCaused pRootCaused);
 
-    List<PRootCaused> getRootCausedByPTypeId(int TypeId);
+    List<PRootCaused> getRootCausedByPTypeId(String typeId);
 
 }

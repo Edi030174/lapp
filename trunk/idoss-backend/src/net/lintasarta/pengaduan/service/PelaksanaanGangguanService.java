@@ -25,5 +25,5 @@ public interface PelaksanaanGangguanService {
 
     void saveOrUpdate(TPenangananGangguan tPenangananGangguan);
 
-    List<PRootCaused> getRootCausedByPTypeId(int TypeId);
+    List<PRootCaused> getRootCausedByPTypeId(String typeId);
 }

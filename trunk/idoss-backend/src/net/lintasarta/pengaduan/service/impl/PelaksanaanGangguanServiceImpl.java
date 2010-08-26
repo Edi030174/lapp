@@ -88,8 +88,8 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
     }
 
     @Override
-    public List<PRootCaused> getRootCausedByPTypeId(int TypeId) {
-        List<PRootCaused> pRootCauseds =pRootCausedDAO.getPRootCausedByPTypeID(TypeId);
+    public List<PRootCaused> getRootCausedByPTypeId(String typeId) {
+        List<PRootCaused> pRootCauseds =pRootCausedDAO.getPRootCausedByPTypeID(typeId);
         return pRootCauseds;
     }
 }

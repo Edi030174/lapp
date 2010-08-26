@@ -68,7 +68,7 @@
                                     <radio id="radio_minor" label="Minor" value="Minor" selected="true"/>
                                     <radio id="radio_mayor" label="Mayor" value="Mayor"/>
                                 </radiogroup>
-                                <space width="145px"/>
+                                <space width="100px"/>
                                 <vbox>
                                     <space height="0.5px"/>
                                     <label value="Type "/>
@@ -76,6 +76,7 @@
                                 <!--<space width="50px"/>-->
                                 <!--<listbox id="listbox_Type" width="140px" mold="select" rows="1"/>-->
                                <textbox id="textbox_Type"/>
+                                <button id="btn_OK" label="OK"/>
                                 <button id="btn_Type" label="Pilih"/>
                             </hbox>
                         </vbox>
@@ -83,14 +84,7 @@
                     <row style="border:0px">
                         <label value="Pelaksana "/>
                         <hbox>
-                            <listbox id="listbox_NamaPelaksana" width="100%" mold="select" rows="1"/>
-                            <!--<textbox id="textbox_Pelaksana"/>-->
-                            <!--<space width="112px"/>-->
-                            <!--<vbox>-->
-                                <!--<space height="0.5px"/>-->
-                                <!--<label value="NIK Pelaksana"/>-->
-                            <!--</vbox>-->
-                            <!--<textbox id="textbox_NikPelaksana"/>-->
+                            <listbox id="listbox_NamaPelaksana" width="200px" mold="select" rows="1"/>
                         </hbox>
 
                     </row>
@@ -100,7 +94,7 @@
                         </hbox>
                         <hbox>
                             <!--<combobox id="combobox_RootCaused" width="90%"/>-->
-                            <listbox id="listbox_RootCaused" width="100%" mold="select" rows="1"/>
+                            <listbox id="listbox_RootCaused" width="200px" mold="select" rows="1"/>
                             <button label=" + " id="btn_TambahRootCaused"/>
                             <space/>
                             <vbox>

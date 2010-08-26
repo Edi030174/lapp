@@ -103,7 +103,7 @@ public class PRootCausedDAOTest {
 
     @Test
     public void testGetPRootCausedByPTypeID() throws Exception {
-        int ptypeId = 4011;
+        String ptypeId = "4011";
         List<PRootCaused> pRootCauseds = pRootCausedDAO.getPRootCausedByPTypeID(ptypeId);
         assertEquals(pRootCauseds.size(),7);
     }
