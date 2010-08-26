@@ -92,4 +92,9 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
         List<PRootCaused> pRootCauseds =pRootCausedDAO.getPRootCausedByPTypeID(typeId);
         return pRootCauseds;
     }
+
+    @Override
+    public VHrEmployeePelaksana getVHrEmployeePelaksanaById(String id) {
+        return getvHrEmployeePelaksanaDAO().getVHrEmployeePelaksanaById(id);
+    }
 }

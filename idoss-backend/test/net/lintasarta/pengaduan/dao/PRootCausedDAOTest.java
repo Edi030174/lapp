@@ -58,7 +58,6 @@ public class PRootCausedDAOTest {
     @Test
     public void testGetPRootCausedByRootCausedId() throws Exception {
         PRootCaused pRootCaused = pRootCausedDAO.getPRootCausedByRootCausedId(1);
-
         assertNotNull(pRootCaused);
         assertEquals(1,pRootCaused.getP_idoss_root_caused_id());
         assertEquals("jafja",pRootCaused.getRoot_caused());

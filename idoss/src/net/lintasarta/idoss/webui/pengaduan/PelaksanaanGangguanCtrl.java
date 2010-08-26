@@ -112,10 +112,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         listbox_NamaPelaksana.setModel(new ListModelList(getPelaksanaanGangguanService().getEmployeeName()));
         listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
 
-        ListModelList lml = (ListModelList)listbox_NamaPelaksana.getModel();
-        String vHrEmployeePelaksana = tPenangananGangguan.getNama_pelaksana();
-        listbox_NamaPelaksana.setSelectedIndex(lml.indexOf(vHrEmployeePelaksana));
-
         doShowDialog(gettPenangananGangguan());
     }
 
@@ -188,6 +184,16 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         fckeditor_Deskripsi.setValue(tPenangananGangguan.getDeskripsi());
         fckeditor_Solusi.setValue(tPenangananGangguan.getSolusi());
         combobox_Status.setValue(tPenangananGangguan.getStatus());
+
+        ListModelList lml = (ListModelList)listbox_NamaPelaksana.getModel();
+        VHrEmployeePelaksana vHrEmployeePelaksana = getPelaksanaanGangguanService().getVHrEmployeePelaksanaById(tPenangananGangguan.getNik_pelaksana());
+
+        if(tPenangananGangguan.getNama_pelaksana() != null) {
+        listbox_NamaPelaksana.setSelectedIndex(lml.indexOf(vHrEmployeePelaksana));
+        listbox_NamaPelaksana.setDisabled(true);
+        }else {
+            listbox_NamaPelaksana.setSelectedIndex(6);
+        }
     }
 
     private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
@@ -343,6 +349,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         }
         listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(textbox_Type.getValue())));
         listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
+        listbox_RootCaused.setSelectedIndex(-1);
     }
 
     public TPenangananGangguan gettPenangananGangguan() {

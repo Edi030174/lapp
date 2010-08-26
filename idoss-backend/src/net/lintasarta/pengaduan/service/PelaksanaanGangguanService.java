@@ -26,4 +26,6 @@ public interface PelaksanaanGangguanService {
     void saveOrUpdate(TPenangananGangguan tPenangananGangguan);
 
     List<PRootCaused> getRootCausedByPTypeId(String typeId);
+
+    VHrEmployeePelaksana getVHrEmployeePelaksanaById(String Id);
 }

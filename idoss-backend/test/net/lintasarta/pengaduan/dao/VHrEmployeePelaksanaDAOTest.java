@@ -17,7 +17,6 @@ import static org.junit.Assert.assertEquals;
  * User: Xsis
  * Date: Aug 13, 2010
  * Time: 4:59:06 PM
- * To change this template use File | Settings | File Templates.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -45,6 +44,13 @@ public class VHrEmployeePelaksanaDAOTest {
         String rootCausedExpected = "AKHMAD FAUZAN SYAFIQ";
 
         assertEquals(rootCausedExpected, employeeNameActual);
+    }
+    @Test
+    public void testGetVHrEmployeePelaksanaById() throws Exception {
+        VHrEmployeePelaksana vHrEmployeePelaksana = vHrEmployeePelaksanaDAO.getVHrEmployeePelaksanaById("84070998");
+        assertEquals("KURNIAWAN DWI PRASETYO",vHrEmployeePelaksana.getEmployee_name());
+
+
     }
 
 }
