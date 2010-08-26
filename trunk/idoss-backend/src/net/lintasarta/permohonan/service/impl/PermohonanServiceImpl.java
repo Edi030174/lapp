@@ -192,4 +192,9 @@ public class PermohonanServiceImpl implements PermohonanService {
     public TPelaksanaan getNewPelaksanaan() {
         return new TPelaksanaan();
     }
+
+    @Override
+    public TPermohonan getManager(String nikPemohon) {
+        return gettPermohonanDAO().getManager(nikPemohon);
+    }
 }

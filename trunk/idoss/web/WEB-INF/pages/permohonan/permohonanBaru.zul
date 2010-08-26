@@ -35,7 +35,7 @@
                                     <button id="btnBatal" label="Batal"/>
                                 </toolbar>
                                 <groupbox id="groupboxPemohon" mold="3d">
-                                    <caption label="Pemohon" style="font-weight:bold"/>
+                                    <caption label="Pemohon" style="font-weight:normal"/>
                                     <vbox>
                                         <hbox>
                                             <space width="650px"></space>
@@ -70,16 +70,16 @@
                                         </vbox>
                                         <vbox>
                                             <hbox>
-                                                <textbox id="textbox_TIdossPermohonanId" width="120px"/>
+                                                <textbox id="textbox_TIdossPermohonanId" width="120px" disabled="true" style="color: black !important;"/>
                                                 <vbox>
                                                     <space height="1px"></space>
                                                     <label width="10px" value="//FSHOPAR2010"/>
                                                 </vbox>
                                             </hbox>
-                                            <textbox id="textbox_NamaPemohon" width="200px"/>
-                                            <textbox id="textbox_BagianPemohon" width="120px"/>
-                                            <textbox id="textbox_NamaManager" width="120px"/>
-                                            <textbox id="textbox_NamaGm" width="120px"/>
+                                            <textbox id="textbox_NamaPemohon" width="200px" disabled="true" style="color: black !important;"/>
+                                            <textbox id="textbox_BagianPemohon" width="120px" disabled="true" style="color: black !important;"/>
+                                            <textbox id="textbox_NamaManager" width="120px" disabled="true" style="color: black !important;"/>
+                                            <textbox id="textbox_NamaGm" width="120px" disabled="true" style="color: black !important;"/>
                                         </vbox>
                                         <vbox>
                                             <space height="1px"></space>
@@ -91,16 +91,16 @@
                                             <label width="10px" value="NIK :"/>
                                         </vbox>
                                         <vbox>
-                                            <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" readonly="true" width="150px"/>
-                                            <textbox id="textbox_NikPemohon" width="60px"/>
+                                            <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" width="150px" disabled="true" style="color: black !important;"/>
+                                            <textbox id="textbox_NikPemohon" width="60px" disabled="true" style="color: black !important;"/>
                                             <space height="22px"></space>
-                                            <textbox id="textbox_NikManager" width="60px"/>
-                                            <textbox id="textbox_NikGm" width="60px"/>
+                                            <textbox id="textbox_NikManager" width="60px" disabled="true" style="color: black !important;"/>
+                                            <textbox id="textbox_NikGm" width="60px" disabled="true" style="color: black !important;"/>
                                         </vbox>
                                     </hbox>
                                 </groupbox>
                                 <groupbox mold="3d">
-                                    <caption label="Detil Permohonan" style="font-weight:bold"/>
+                                    <caption label="Detil Permohonan" style="font-weight:normal"/>
                                     <vbox>
 
                                         <hbox>
@@ -124,7 +124,7 @@
                                                     style="font-size:8pt;font-weight:italic"
                                                     value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
                                         </vbox>
-                                        <button label="Lampiran" upload="true,maxsize=-1" id="button_Lampiran" />
+                                        <button label="Lampiran" upload="true,maxsize=-1" id="button_Lampiran"/>
                                         <!--<button label="Upload" upload="true,maxsize=-1" onUpload="dosomething"/>-->
                                     </hbox>
                                     <vbox></vbox>

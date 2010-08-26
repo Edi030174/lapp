@@ -23,7 +23,13 @@
                     image="/images/icons/refresh2_yellow_16x16.gif"/>
             <button id="btnBuatBaru_DaftarPermohonan"
                     image="/images/icons/btn_new2_16x16.gif"/>
-            <label value="Nomor"/>
+            <label value="Cari:"/>
+            <listbox id="listbox_Cari" rows="1" mold="select" width="150px">
+                <listitem id="listitem_Nomor" label="Nomor Permohonan" selected="true"/>
+                <listitem id="listitem_Tanggal" label="Tanggal"/>
+                <listitem id="listitem_Tipe" label="Tipe"/>
+                <listitem id="listitem_Status" label="Status"/>
+            </listbox>
             <textbox id="textbox_cariPermohonanId"/>
             <button id="btnCari" label="cari"
                     image="/images/icons/btn_search2_16x16.gif"/>

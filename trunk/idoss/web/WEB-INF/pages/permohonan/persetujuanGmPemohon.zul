@@ -93,7 +93,7 @@
         </groupbox>
 
         <groupbox mold="3d">
-            <caption label="" style="font-weight:bold"/>
+            <caption label="catatan GM" style="font-weight:normal"/>
             <hbox>
                 <vbox>
                     <hbox>

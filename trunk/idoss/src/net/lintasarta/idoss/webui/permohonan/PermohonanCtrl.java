@@ -206,13 +206,18 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             textbox_BagianPemohon.setValue(getUserWorkspace().getUserSession().getDepartment());
         }
-        textbox_NamaManager.setValue(tPermohonan.getNama_manager());
-        textbox_NamaGm.setValue(tPermohonan.getNama_gm());
         if (tPermohonan.getNik_pemohon() != null) {
             textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
         } else {
             textbox_NikPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
         }
+        if(tPermohonan.getUrgensi().equals("H")){
+            checkbox_Cepat.setChecked(true);
+        }else{
+            checkbox_Cepat.setChecked(false);
+        }
+        textbox_NamaManager.setValue(tPermohonan.getNama_manager());
+        textbox_NamaGm.setValue(tPermohonan.getNama_gm());
         textbox_NikManager.setValue(tPermohonan.getNik_manager());
         textbox_NikGm.setValue(tPermohonan.getNik_gm());
         datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
@@ -228,7 +233,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         }
         
         fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
-
+        textbox_Lainlain.setValue(tPermohonan.getLain_lain());
     }
 
     public void onSelect$tab_PersetujuanPemohon(Event event) {

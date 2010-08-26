@@ -103,7 +103,7 @@
         </groupbox>
 
         <groupbox mold="3d">
-            <caption label="" style="font-weight:normal"/>
+            <caption label="catatan GM" style="font-weight:normal"/>
             <hbox>
                 <vbox>
                     <label value="Status Permohonan : "/>

@@ -293,4 +293,11 @@ public class TPermohonanDAOTest {
         String namaPemohonExpected = "JOSH";
         assertEquals(namaPemohonExpected,namaPemohonActual);
     }
+    @Test
+    public void getManager() throws Exception{
+        String employeeNo = "79040893";
+        TPermohonan tPermohonan = tPermohonanDAO.getManager(employeeNo);
+        assertEquals("ZULHELMY", tPermohonan.getNama_pemohon());
+
+    }
 }
