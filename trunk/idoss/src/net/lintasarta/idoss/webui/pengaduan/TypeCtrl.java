@@ -41,64 +41,57 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    public void getTreeModel() {
-        List<PType> pTypes = typeService.getAllType();
+    public List<PType> filterByParentId(List<PType> pTypes, String parentId) {
+        List<PType> resultList = new ArrayList<PType>(pTypes);
+        CollectionUtils.filter(resultList, new ParentIdPType(parentId));
+        return resultList;
+    }
 
-        java.util.Collections.sort(pTypes, new Comparator<PType>() {
-            @Override
-            public int compare(PType o1, PType o2) {
-                if (o1.getParent_id() != null) {
-                    if (o2.getParent_id() != null) {
-                        return o1.getParent_id().compareTo(o2.getParent_id());
-                    }
-                    return -1;
-                } else if (o2.getParent_id() != null) {
-                    return 1;
-                }
-                return 0;
-            }
-        });
-        List<PType> notRootPTypes = new ArrayList<PType>(pTypes);
-        CollectionUtils.filter(notRootPTypes, new ParentIdPType());
-
-        List child = new ArrayList();
-        Iterator<PType> iterator = notRootPTypes.iterator();
-        PType pType = null;
-        String parentId = null;
-        if (iterator.hasNext()) {
-            pType = iterator.next();
-            SimpleTreeNode stnPType = new SimpleTreeNode(pType, new ArrayList());
-            child.add(stnPType);
-            parentId = pType.getParent_id();
-        }
-        List root = new ArrayList();
+    public List addChild(List<PType> pTypes) {
+        List<Object> resultList = new ArrayList<Object>();
+        Iterator<PType> iterator = pTypes.iterator();
         while (iterator.hasNext()) {
-            pType = iterator.next();
-            if (pType.getParent_id().compareTo(parentId) > 0) {
-                SimpleTreeNode stnChild = new SimpleTreeNode(typeService.getTypeByTypeID(pType.getParent_id()), child);
-                root.add(stnChild);
-                child = new ArrayList<PType>();
-            } else {
-                SimpleTreeNode stnPType = new SimpleTreeNode(pType, new ArrayList());
-                child.add(stnPType);
+            PType pType = iterator.next();
+
+            List<Object> resultChilds = new ArrayList<Object>();
+            SimpleTreeNode rcNode = new SimpleTreeNode(pType.getType_desc(), resultChilds);
+            resultList.add(rcNode);
+
+            List<PType> childs = filterByParentId(pTypes, pType.getP_idoss_type_id());
+            for (PType child : childs) {
+                List<Object> resultGrandChilds = new ArrayList<Object>();
+                SimpleTreeNode rgcNode = new SimpleTreeNode(child.getType_desc(), resultGrandChilds);
+                resultChilds.add(rgcNode);
+                iterator.next();
+
+                List<PType> grandChilds = filterByParentId(pTypes, child.getP_idoss_type_id());
+                for (PType grandChild : grandChilds) {
+                    List<Object> resultGreatGrandChilds = new ArrayList<Object>();
+                    SimpleTreeNode rggcNode = new SimpleTreeNode(grandChild.getType_desc(), resultGreatGrandChilds);
+                    resultGrandChilds.add(rggcNode);
+                    iterator.next();
+
+                    List<PType> greateGrandChilds = filterByParentId(pTypes, grandChild.getP_idoss_type_id());
+                    for (PType greateGrandChild : greateGrandChilds) {
+                        SimpleTreeNode ggcNode = new SimpleTreeNode(greateGrandChild.getType_desc(), new ArrayList());
+                        resultGreatGrandChilds.add(ggcNode);
+                        iterator.next();
+                    }
+                }
             }
-            parentId = pType.getParent_id();
         }
-//        if (root.size() > 0) {
-//            List<PType> lastChild = (List<PType>) root.get(root.size() - 1);
-//            PType lastPType = lastChild.get(lastChild.size() - 1);
-//            if (lastPType.getParent_id().compareTo(parentId) < 0) {
-//                SimpleTreeNode stnPType = new SimpleTreeNode(pType, new ArrayList());
-//                child.add(stnPType);
-//                SimpleTreeNode stnChild = new SimpleTreeNode(typeService.getTypeByTypeID(pType.getParent_id()), child);
-//                root.add(stnChild);
-//            }
-//        }
+        return resultList;
+    }
+
+    public void getTreeModel() {
+        List<PType> pTypes = getTypeService().getAllType();
+        List root = addChild(pTypes);
 
         SimpleTreeNode rootNode = new SimpleTreeNode("ROOT", root);
         stm = new SimpleTreeModel(rootNode);
         tree_Type.setModel(stm);
 
+        tree_Type.setTreeitemRenderer(new TypeTreeItemRenderer());
     }
 
     public void onCreate$window_Type(Event event) throws Exception {

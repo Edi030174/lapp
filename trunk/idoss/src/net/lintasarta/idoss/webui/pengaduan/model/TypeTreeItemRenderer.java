@@ -20,10 +20,10 @@ public class TypeTreeItemRenderer implements TreeitemRenderer, Serializable {
 
     public void render(Treeitem item, Object data) throws Exception {
         SimpleTreeNode t = (SimpleTreeNode)data;
-        PType pType = (PType)t.getData();
+        String typeDesc = (String)t.getData();
         //Contruct treecells
-        Treecell treecell = new Treecell(pType.getType_desc());
-        Treerow tr = null;
+        Treecell treecell = new Treecell(typeDesc);
+        Treerow tr;
         /*
          * Since only one treerow is allowed, if treerow is not null,
          * append treecells to it. If treerow is null, contruct a new

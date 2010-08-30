@@ -11,20 +11,17 @@ import org.apache.commons.collections.Predicate;
  */
 public class ParentIdPType implements Predicate {
 
-//    private Integer parentId;
+    private String parentId;
 
     public ParentIdPType() {
     }
 
-//    public ParentIdPType(Integer parentId) {
-//        this.parentId = parentId;
-//    }
+    public ParentIdPType(String parentId) {
+        this.parentId = parentId;
+    }
 
     @Override
     public boolean evaluate(Object object) {
-//        if (((PType) object).getParent_id() != null) {
-//            return ((PType) object).getParent_id().equals(parentId);
-//        }
-        return ((PType) object).getParent_id() != null;
+        return ((PType) object).getParent_id() != null && ((PType) object).getParent_id().equals(parentId);
     }
 }
