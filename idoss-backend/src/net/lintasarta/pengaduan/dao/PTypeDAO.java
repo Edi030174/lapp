@@ -9,7 +9,6 @@ import java.util.List;
  * User: Xsis
  * Date: Jun 23, 2010
  * Time: 8:58:46 AM
- * To change this template use File | Settings | File Templates.
  */
 public interface PTypeDAO {
     

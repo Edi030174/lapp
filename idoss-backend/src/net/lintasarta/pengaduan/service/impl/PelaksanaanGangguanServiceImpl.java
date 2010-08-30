@@ -83,7 +83,7 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
 
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         tPenangananGangguan.setUpdated_date(ts);
-
+//        tPenangananGangguan.setDurasi();
         gettPenangananGangguanDAO().saveOrUpdate(tPenangananGangguan);
     }
 

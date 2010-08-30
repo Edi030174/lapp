@@ -3,6 +3,7 @@ package net.lintasarta.pengaduan.service.impl;
 import net.lintasarta.constants.Constants;
 import net.lintasarta.pengaduan.dao.TPenangananGangguanDAO;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
+import net.lintasarta.pengaduan.model.comparator.TPenangananGangguanComparator;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
 import net.lintasarta.util.TicketIdGenerator;
 
@@ -15,7 +16,6 @@ import java.util.List;
  * User: Asri
  * Date: Jun 28, 2010
  * Time: 3:34:05 PM
- * To change this template use File | Settings | File Templates.
  */
 public class PenangananGangguanServiceImpl implements PenangananGangguanService {
 
@@ -43,7 +43,9 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
     }
 
     public List<TPenangananGangguan> getAllPenangananGangguan() {
-        return gettPenangananGangguanDAO().getAllTPenangananGangguan();
+        List<TPenangananGangguan> tPenangananGangguans = gettPenangananGangguanDAO().getAllTPenangananGangguan();
+        java.util.Collections.sort(tPenangananGangguans, new TPenangananGangguanComparator());
+        return tPenangananGangguans;
     }
 
     public TPenangananGangguan getPenangananGangguanbyTiketId(String tiketId) {
@@ -56,30 +58,11 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         return tPenangananGangguans;
     }
 
-    public List<TPenangananGangguan> getAllPenangananGangguanByNikPelaksana(TPenangananGangguan tPenangananGangguan) {
-        List<TPenangananGangguan> tPenangananGangguans = tPenangananGangguanDAO.getAllTPenangananGangguanByNikPelaksana(tPenangananGangguan);
-        return tPenangananGangguans;
-    }
-
-    public List<TPenangananGangguan> getAllPenangananGangguanByStatus(TPenangananGangguan tPenangananGangguan) {
-        List<TPenangananGangguan> tPenangananGangguans = tPenangananGangguanDAO.getAllTPenangananGangguanByStatus(tPenangananGangguan);
-        return tPenangananGangguans;
-    }
-
-    public List<TPenangananGangguan> getAllPenangananGangguanByNikPelaporStatus(TPenangananGangguan tPenangananGangguan) {
-        List<TPenangananGangguan> tPenangananGangguans = tPenangananGangguanDAO.getAllTPenangananGangguanByNikPelaporStatus(tPenangananGangguan);
-        return tPenangananGangguans;
-    }
-
-    public List<TPenangananGangguan> getAllPenangananGangguanByNikPelaksanaStatus(TPenangananGangguan tPenangananGangguan) {
-        List<TPenangananGangguan> tPenangananGangguans = tPenangananGangguanDAO.getAllTPenangananGangguanByNikPelaksanaStatus(tPenangananGangguan);
-        return tPenangananGangguans;
-    }
-
     public void createPenangananGangguan(TPenangananGangguan tPenangananGangguan) {
 
         int i = tPenangananGangguanDAO.getSeqTiketId();
         tPenangananGangguan.setGen_id_col(i);
+        tPenangananGangguan.setStatus("Open");
         tPenangananGangguan.setDurasi(1);
         tPenangananGangguan.setNama_pelaksana(Constants.EMPTY_STRING);
         tPenangananGangguan.setMttr(Constants.EMPTY_STRING);
@@ -87,9 +70,5 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         tPenangananGangguan.setCreated_date(ts);
         tPenangananGangguan.setUpdated_date(ts);
         gettPenangananGangguanDAO().createTPenangananGangguan(tPenangananGangguan);
-    }
-
-    public void saveOrUpdate(TPenangananGangguan tPenangananGangguan) {
-        gettPenangananGangguanDAO().saveOrUpdate(tPenangananGangguan);
     }
 }

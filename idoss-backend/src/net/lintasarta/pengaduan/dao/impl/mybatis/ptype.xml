@@ -7,7 +7,7 @@
         select count(*) from P_IDOSS_TYPE
     </select>
 
-    <select id="getGenerateId" resultType="int">
+    <select id="getGenerateId" resultType="String">
         select generate_id('SNI','P_IDOSS_TYPE','P_IDOSS_TYPE_ID') from dual
     </select>
 
