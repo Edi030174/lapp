@@ -1,7 +1,10 @@
 package net.lintasarta.pengaduan.service.impl;
 
 import net.lintasarta.pengaduan.dao.PRootCausedDAO;
+import net.lintasarta.pengaduan.dao.PTypeRootCausedDAO;
 import net.lintasarta.pengaduan.model.PRootCaused;
+import net.lintasarta.pengaduan.model.PType;
+import net.lintasarta.pengaduan.model.PTypeRootCaused;
 import net.lintasarta.pengaduan.service.RootCausedService;
 
 import java.sql.Timestamp;
@@ -18,6 +21,15 @@ import java.util.List;
 public class RootCausedServiceImpl implements RootCausedService {
 
     private PRootCausedDAO pRootCausedDAO;
+    private PTypeRootCausedDAO pTypeRootCausedDAO;
+
+    public PTypeRootCausedDAO getpTypeRootCausedDAO() {
+        return pTypeRootCausedDAO;
+    }
+
+    public void setpTypeRootCausedDAO(PTypeRootCausedDAO pTypeRootCausedDAO) {
+        this.pTypeRootCausedDAO = pTypeRootCausedDAO;
+    }
 
     public PRootCausedDAO getpRootCausedDAO() {
         return pRootCausedDAO;
@@ -40,18 +52,22 @@ public class RootCausedServiceImpl implements RootCausedService {
         return pRootCauseds;
     }
 
-    public void createRootCaused(PRootCaused pRootCaused) {
+    public void createRootCaused(PRootCaused pRootCaused, PTypeRootCaused pTypeRootCaused) {
         int i = pRootCausedDAO.getGenerateId();
         pRootCaused.setP_idoss_root_caused_id(i);
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         pRootCaused.setCreated_date(ts);
         pRootCaused.setUpdated_date(ts);
         getpRootCausedDAO().createPRootCaused(pRootCaused);
+
+        pTypeRootCaused.setP_idoss_root_caused_id(i);
+        pTypeRootCaused.setCreated_date(ts);
+        pTypeRootCaused.setUpdated_date(ts);
+        getpTypeRootCausedDAO().createPTypeRootCaused(pTypeRootCaused);
     }
 
     public void saveOrUpdate(PRootCaused pRootCaused) {
         getpRootCausedDAO().saveOrUpdate(pRootCaused);
-
     }
 
     @Override

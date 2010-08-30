@@ -3,6 +3,8 @@ package net.lintasarta.idoss.webui.pengaduan;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.PRootCaused;
+import net.lintasarta.pengaduan.model.PType;
+import net.lintasarta.pengaduan.model.PTypeRootCaused;
 import net.lintasarta.pengaduan.service.RootCausedService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
@@ -18,7 +20,6 @@ import java.util.Map;
  * User: Xsis
  * Date: Jul 27, 2010
  * Time: 9:25:04 AM
- * To change this template use File | Settings | File Templates.
  */
 public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
 
@@ -27,10 +28,12 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
     protected Window window_TambahRootCaused;
     protected Textbox textbox_TambahRootCaused;
     protected Listbox listbox_RootCaused;
+    protected Textbox textbox_Type;
     protected Checkbox checkbox_Aktif;
     protected Checkbox checkbox_NonAktif;
 
     private transient PRootCaused pRootCaused;
+    private transient PTypeRootCaused typeRootCaused;
     private transient RootCausedService rootCausedService;
 
     public TambahRootCausedCtrl() {
@@ -55,11 +58,15 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             setpRootCaused(null);
         }
-
         if (args.containsKey("listbox_RootCaused")) {
             listbox_RootCaused = (Listbox) args.get("listbox_RootCaused");
         } else {
             listbox_RootCaused = null;
+        }
+        if(args.containsKey("textbox_Type")) {
+            textbox_Type = (Textbox) args.get("textbox_Type");
+        }else {
+            textbox_Type = null;
         }
 
         doShowDialog(getpRootCaused());
@@ -107,11 +114,12 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
     private void doSimpanRootCaused() throws InterruptedException {
 
         PRootCaused pRootCaused = getpRootCaused();
+        PTypeRootCaused pTypeRootCaused = getTypeRootCaused();
 
-        doWriteComponentsToBean(pRootCaused);
+        doWriteComponentsToBean(pRootCaused,pTypeRootCaused);
 
         try {
-            getRootCausedService().createRootCaused(pRootCaused);
+            getRootCausedService().createRootCaused(pRootCaused, pTypeRootCaused);
 
         } catch (DataAccessException e) {
             String message = e.getMessage();
@@ -119,7 +127,6 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
-
 
         ListModelList lml = (ListModelList) listbox_RootCaused.getListModel();
 
@@ -131,8 +138,7 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
-    private void doWriteComponentsToBean(PRootCaused pRootCaused) {
-
+    private void doWriteComponentsToBean(PRootCaused pRootCaused, PTypeRootCaused pTypeRootCaused) {
         pRootCaused.setRoot_caused(textbox_TambahRootCaused.getValue());
         if (checkbox_Aktif.isChecked()) {
             pRootCaused.setActive("Y");
@@ -141,6 +147,15 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
         }
         pRootCaused.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         pRootCaused.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
+
+        pTypeRootCaused.setP_idoss_type_id(textbox_Type.getValue());
+        if (checkbox_Aktif.isChecked()) {
+            pTypeRootCaused.setActive("Y");
+        } else if (checkbox_NonAktif.isChecked()) {
+            pTypeRootCaused.setActive("T");
+        }
+        pTypeRootCaused.setCreated_user(getUserWorkspace().getUserSession().getUserName());
+        pTypeRootCaused.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
     }
 
     public void onClick$btnBatal_RootCaused(Event event) throws Exception {
@@ -161,5 +176,13 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setpRootCaused(PRootCaused pRootCaused) {
         this.pRootCaused = pRootCaused;
+    }
+
+    public PTypeRootCaused getTypeRootCaused() {
+        return new PTypeRootCaused();
+    }
+
+    public void setTypeRootCaused(PTypeRootCaused typeRootCaused) {
+        this.typeRootCaused = typeRootCaused;
     }
 }

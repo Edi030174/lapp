@@ -19,5 +19,9 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
         <property name="mapperInterface" value="net.lintasarta.pengaduan.dao.VHrEmployeePelaksanaDAO"/>
     </bean>
+    <bean id="pTypeRootCausedDAO" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="mapperInterface" value="net.lintasarta.pengaduan.dao.PTypeRootCausedDAO"/>
+    </bean>
 
 </beans>

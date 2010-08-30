@@ -303,10 +303,9 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         }
 
         HashMap<String, Object> map = new HashMap<String, Object>();
-
         map.put("pRootCaused", pRootCaused);
-
         map.put("listbox_RootCaused", listbox_RootCaused);
+        map.put("textbox_Type",textbox_Type);
 
         try {
             Executions.createComponents("/WEB-INF/pages/pengaduan/tambahRootCaused.zul", null, map);

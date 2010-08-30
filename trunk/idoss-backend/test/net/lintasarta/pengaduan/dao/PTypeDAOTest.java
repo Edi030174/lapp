@@ -102,4 +102,16 @@ public class PTypeDAOTest {
         List<PType> pTypes = pTypeDAO.getPTypeByParentId(parentid);
         assertEquals(pTypes.size(), 6);
     }
+
+    @Test
+    public void testGetPTypeTree() throws Exception {
+        List<PType> pTypes = pTypeDAO.getPTypeTree();
+        String descActual = null;
+        for (PType pType : pTypes) {
+            descActual = pType.getType_desc();
+        }
+        String descExpected = "APLIKASI";
+        assertEquals(descExpected, descActual);
+
+    }
 }

@@ -19,7 +19,6 @@ import java.util.Map;
  * User: Xsis
  * Date: Aug 9, 2010
  * Time: 4:36:27 PM
- * To change this template use File | Settings | File Templates.
  */
 public class RootCausedCtrl extends GFCBaseCtrl implements Serializable {
 
@@ -60,7 +59,6 @@ public class RootCausedCtrl extends GFCBaseCtrl implements Serializable {
             setpRootCaused(pRootCaused);
         }
 
-
         tree_RootCaused.setModel(new SimpleTreeModel((SimpleTreeNode) getRootCausedService().getAllRootCaused()) );
         tree_RootCaused.setTreeitemRenderer(new RootCausedTreeItemRenderer());
         doShowDialog(getpRootCaused());
@@ -74,7 +72,6 @@ public class RootCausedCtrl extends GFCBaseCtrl implements Serializable {
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
-
     }
 
     public void onSelect$tab_TambahRootCaused(Event event) throws Exception{
@@ -90,7 +87,6 @@ public class RootCausedCtrl extends GFCBaseCtrl implements Serializable {
             map.put("pRootCaused", getRootCausedService().getNewRootCaused());
         }
         map.put("rootCausedCtrl", this);
-
 
         Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_RootCaused/tabpanel_TambahRootCaused");
         orderTab.getChildren().clear();

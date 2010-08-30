@@ -22,4 +22,6 @@ public interface TypeService {
     void saveOrUpdate(PType pType);
 
     List<PType> getPTypeByParentId(String parentId);
+
+    List<PType> getPTypeTree();
 }

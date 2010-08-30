@@ -25,7 +25,6 @@
     </select>
 
     <insert id="createPRootCaused" parameterType="prootcaused">
-
         INSERT INTO P_IDOSS_ROOT_CAUSED (
         P_IDOSS_ROOT_CAUSED_ID,
         ROOT_CAUSED,
@@ -37,7 +36,7 @@
         VALUES(
         #{p_idoss_root_caused_id},
         #{root_caused,jdbcType=VARCHAR},
-        #{active},
+        #{active,jdbcType=VARCHAR},
         #{created_date},
         #{created_user},
         #{updated_date},
@@ -60,5 +59,4 @@
         WHERE P.P_IDOSS_TYPE_ID=#{p_idoss_type_id}
         AND P.P_IDOSS_ROOT_CAUSED_ID=Q.P_IDOSS_ROOT_CAUSED_ID
     </select>
-
 </mapper>

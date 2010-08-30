@@ -6,20 +6,20 @@ import java.sql.Timestamp;
 /**
  * Created by IntelliJ IDEA.
  * User: Xsis
- * Date: Jun 23, 2010
- * Time: 8:44:46 AM
+ * Date: Aug 27, 2010
+ * Time: 2:01:41 PM
+ * To change this template use File | Settings | File Templates.
  */
-public class PRootCaused implements Serializable {
-
+public class PTypeRootCaused implements Serializable {
     private int p_idoss_root_caused_id;
-    private String root_caused;
+    private String p_idoss_type_id;
     private String active;
     private Timestamp created_date;
     private String created_user;
     private Timestamp updated_date;
     private String updated_user;
 
-    public PRootCaused() {
+    public PTypeRootCaused() {
     }
 
     public int getP_idoss_root_caused_id() {
@@ -30,12 +30,12 @@ public class PRootCaused implements Serializable {
         this.p_idoss_root_caused_id = p_idoss_root_caused_id;
     }
 
-    public String getRoot_caused() {
-        return root_caused;
+    public String getP_idoss_type_id() {
+        return p_idoss_type_id;
     }
 
-    public void setRoot_caused(String root_caused) {
-        this.root_caused = root_caused;
+    public void setP_idoss_type_id(String p_idoss_type_id) {
+        this.p_idoss_type_id = p_idoss_type_id;
     }
 
     public String getActive() {

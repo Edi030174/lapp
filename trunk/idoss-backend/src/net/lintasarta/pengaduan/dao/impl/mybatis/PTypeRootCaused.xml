@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.pengaduan.dao.PTypeRootCausedDAO">
+    <insert id="createPTypeRootCaused" parameterType="ptyperootcaused">
+        INSERT INTO SNI.P_IDOSS_TYPE_ROOT_CAUSED
+        (P_IDOSS_TYPE_ID, P_IDOSS_ROOT_CAUSED_ID, ACTIVE, CREATED_DATE, CREATED_USER, UPDATED_DATE, UPDATED_USER)
+	    VALUES(
+	    #{p_idoss_type_id},
+	    #{p_idoss_root_caused_id},
+        #{active},
+        #{created_date},
+        #{created_user},
+        #{updated_date},
+        #{updated_user})
+    </insert>
+</mapper>
