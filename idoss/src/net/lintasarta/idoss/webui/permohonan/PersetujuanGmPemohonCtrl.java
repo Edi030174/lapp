@@ -39,9 +39,18 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     protected Datebox datebox_Tanggal;
     protected Datebox datebox_Tanggal2;
     protected FCKeditor fck_CatatanGmPemohon;
+    protected Radiogroup radiogroup_StatusPermohonanManagerPemohon;
+    protected Radio radio_DisetujuiMPemohon;
+    protected Radio radio_DitolakMPemohon;
     protected Radiogroup radiogroup_StatusPermohonanGmPemohon;
     protected Radio radio_DisetujuiGmPemohon;
     protected Radio radio_DitolakGmPemohon;
+    protected Radiogroup radiogroup_Prioritas;
+    protected Radio high;
+    protected Radio normal;
+    protected Radiogroup radiogroup_Dampak;
+    protected Radio major;
+    protected Radio minor;
 
     private transient String oldVar_textbox_TIdossPermohonanId;
     private transient String oldVar_textbox_NamaPemohon;
@@ -118,6 +127,11 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         fck_CatatanManager.setValue(tPermohonan.getCatatan_manager());
         datebox_Tanggal2.setValue(tPermohonan.getUpdated_gm());
         fck_CatatanGmPemohon.setValue(tPermohonan.getCatatan_gm());
+        if(tPermohonan.getUrgensi().equals("H")){
+            radiogroup_Prioritas.setSelectedItem(high);
+        }else{
+            radiogroup_Prioritas.setSelectedItem(normal);
+        }
     }
 
     public void onClick$btn_SimpanPersetujuanGmPemohon(Event event) throws Exception{
@@ -152,11 +166,19 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     }
 
     private void doWriteComponentsToBean(TPermohonan tPermohonan) {
-        Radio status = radiogroup_StatusPermohonanGmPemohon.getSelectedItem();
-//        tPermohonan.set(status.getValue());
+        Radio dampak = radiogroup_Dampak.getSelectedItem();
+        tPermohonan.setDampak(dampak.getValue());
+        Radio statusM = radiogroup_StatusPermohonanManagerPemohon.getSelectedItem();
+        tPermohonan.setStatus_track_permohonan(statusM.getValue());
+
+        Radio statusGM = radiogroup_StatusPermohonanGmPemohon.getSelectedItem();
+        tPermohonan.setStatus_track_permohonan(statusGM.getValue());
+
+        tPermohonan.setUpdated_manager(new Timestamp(datebox_Tanggal2.getValue().getTime()));
         tPermohonan.setUpdated_gm(new Timestamp(datebox_Tanggal2.getValue().getTime()));
+        tPermohonan.setCatatan_manager(fck_CatatanManager.getValue());
         tPermohonan.setCatatan_gm(fck_CatatanGmPemohon.getValue());
-        tPermohonan.setUpdated_gm(new Timestamp(datebox_Tanggal.getValue().getTime()));
+
     }
 
     private void doStoreInitValues() {

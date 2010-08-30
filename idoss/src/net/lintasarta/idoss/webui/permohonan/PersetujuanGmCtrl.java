@@ -174,9 +174,14 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doWriteComponentsToBean(TVerifikasi tVerifikasi) {
         Radio status = radiogroup_StatusPermohonanGm.getSelectedItem();
-        tVerifikasi.setCatatan_asman(fck_CatatanAsman.getValue());
         tVerifikasi.setStatus_permohonan_asman(status.getValue());
+        tVerifikasi.setUpdated_asman(new Timestamp(datebox_Tanggal2.getValue().getTime()));
+        tVerifikasi.setCatatan_asman(fck_CatatanAsman.getValue());
+
+        tVerifikasi.setStatus_permohonan_manager(status.getValue());
+        tVerifikasi.setUpdated_manager(new Timestamp(datebox_Tanggal2.getValue().getTime()));
         tVerifikasi.setCatatan_manager(fck_CatatanManager.getValue());
+
         tVerifikasi.setStatus_permohonan_gm(status.getValue());
         tVerifikasi.setUpdated_gm(new Timestamp(datebox_Tanggal2.getValue().getTime()));
         tVerifikasi.setCatatan_gm(fck_CatatanGm.getValue());

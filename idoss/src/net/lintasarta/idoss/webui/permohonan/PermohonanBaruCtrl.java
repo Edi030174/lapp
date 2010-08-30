@@ -343,26 +343,44 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
-    private void onCheck$radiogroupType_permohonan(TPermohonan tPermohonan) {
-//        textbox_Lainlain.setReadonly(false);
+//    private void onCheck$radiogroupType_permohonan(Event event) {
+//         if (logger.isDebugEnabled()) {
+//            logger.debug("--> " + event.toString());
+//        }
+//        if(radio_lainlain.isChecked()){
+//            textbox_Lainlain.setDisabled(true);
+//        }else{
+//            textbox_Lainlain.setDisabled(false);
+//        }
+//    }
+//
+//    private void onCheck$radio_lainlain(Event event) {
+//        if (logger.isDebugEnabled()) {
+//            logger.debug("--> " + event.toString());
+//        }
+//        if(radio_lainlain.isChecked()){
+//            textbox_Lainlain.setDisabled(true);
+//        }else{
+//            textbox_Lainlain.setDisabled(false);
+//        }
+//    }
+        
 
-    }
-
-    private void onCheck$radio_readonly(TPermohonan tPermohonan) {
-        textbox_Lainlain.setDisabled(true);
-    }
-
-    private void onCheck$radio_readwrite(TPermohonan tPermohonan) {
-        textbox_Lainlain.setDisabled(true);
-    }
-
-    private void onCheck$radio_aplikasi(TPermohonan tPermohonan) {
-        textbox_Lainlain.setDisabled(true);
-    }
-
-    private void onCheck$radio_lainlain(TPermohonan tPermohonan) {
-        textbox_Lainlain.setDisabled(false);
-    }
+//    private void onCheck$radio_readonly(TPermohonan tPermohonan) {
+//        textbox_Lainlain.setDisabled(true);
+//    }
+//
+//    private void onCheck$radio_readwrite(TPermohonan tPermohonan) {
+//        textbox_Lainlain.setDisabled(true);
+//    }
+//
+//    private void onCheck$radio_aplikasi(TPermohonan tPermohonan) {
+//        textbox_Lainlain.setDisabled(true);
+//    }
+//
+//    private void onCheck$radio_lainlain(TPermohonan tPermohonan) {
+//        textbox_Lainlain.setDisabled(false);
+//    }
 
     private void doWriteComponentsToBean(TPermohonan permohonan) {
 
@@ -394,7 +412,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         if (checkbox_Cepat.isChecked()) {
             permohonan.setUrgensi("H");
         } else{
-            permohonan.setUrgensi("L");
+            permohonan.setUrgensi("N");
         }
 
         permohonan.setCreated_user(getUserWorkspace().getUserSession().getUserName());

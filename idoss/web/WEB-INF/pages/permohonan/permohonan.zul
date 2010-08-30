@@ -153,7 +153,21 @@
                                                     style="font-size:8pt;font-weight:italic"
                                                     value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
                                         </vbox>
-                                        <button label="Lampiran" upload="true,maxsize=-1" id="button_Lampiran"/>
+                                        <vbox>
+                                            <button label="Upload Lampiran" upload="true,maxsize=-1"
+                                                    id="button_Lampiran"/>
+                                            <button label="Download Lampiran">
+                                                <attribute name="onClick">{
+                                                    java.io.InputStream is =
+                                                    desktop.getWebApp().getResourceAsStream("C:\apache-tomcat-7.0.2\bin\install_flash_player.exe");
+                                                    if (is != null)
+                                                    Filedownload.save(is, "text/html", "download.html");
+                                                    else
+                                                    alert("/test/download.html not found");
+                                                    }
+                                                </attribute>
+                                            </button>
+                                        </vbox>
                                         <!--<button label="Upload" upload="true,maxsize=-1" onUpload="dosomething"/>-->
                                     </hbox>
                                     <vbox></vbox>
@@ -163,7 +177,8 @@
                                 </groupbox>
                             </tabpanel>
                             <tabpanel id="tabPanel_PersetujuanPemohon" height="100%" style="border: 0px; padding: 0px"/>
-                            <tabpanel id="tabPanel_PersetujuanDukophar" height="100%" style="border: 0px; padding: 0px"/>
+                            <tabpanel id="tabPanel_PersetujuanDukophar" height="100%"
+                                      style="border: 0px; padding: 0px"/>
                             <tabpanel id="tabPanel_Pelaksanaan" height="100%" style="border: 0px; padding: 0px"/>
                         </tabpanels>
                     </tabbox>
