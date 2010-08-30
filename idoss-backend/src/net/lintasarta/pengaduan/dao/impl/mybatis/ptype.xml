@@ -12,7 +12,7 @@
     </select>
 
     <select id="getAllPType" resultType="ptype">
-        select * from P_IDOSS_TYPE
+        select * from P_IDOSS_TYPE order by PARENT_ID, P_IDOSS_TYPE_ID
     </select>
 
     <select id="getPTypeByTypeId" resultType="ptype">

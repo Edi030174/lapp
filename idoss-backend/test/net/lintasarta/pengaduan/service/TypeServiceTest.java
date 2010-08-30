@@ -3,6 +3,7 @@ package net.lintasarta.pengaduan.service;
 import net.lintasarta.pengaduan.model.PType;
 import net.lintasarta.pengaduan.model.predicate.ParentIdPType;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Predicate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,56 +86,176 @@ public class TypeServiceTest {
 
     }
 
+//    public List iterateSameLevel(PType pType, String parentId, ListIterator<PType> iterator, List child, List<PType> filteredPTypes, List root) throws Exception {
+//        if (iterator.hasNext()) {
+//            pType = iterator.next();
+//            child.add(pType);
+//            parentId = pType.getParent_id();
+//        }
+//        while (iterator.hasNext()) {
+//            pType = iterator.next();
+//            if (!pType.getParent_id().equals(parentId)) {
+//                final String substrParentId = pType.getParent_id().substring(0, 1);
+//                if (pType.getParent_id().length() < parentId.length()) {
+//                    pType = iterator.previous();
+//                    parentId = pType.getParent_id();
+//                    List nextParentList = iterateSameLevel(pType, parentId, iterator, child, filteredPTypes, root);
+//                    root.addAll(nextParentList);
+//                } else if (substrParentId.equals(parentId.substring(0, 1))) {
+//                    List grandChildList = new ArrayList(filteredPTypes);
+//                    CollectionUtils.filter(grandChildList, new Predicate() {
+//                        @Override
+//                        public boolean evaluate(Object object) {
+//                            if (((PType) object).getParent_id().length() > 1) {
+//                                if (((PType) object).getParent_id().substring(0, 1).equals(substrParentId)) {
+//                                    return true;
+//                                }
+//                            }
+//                            return false;
+//                        }
+//                    });
+//                    child.add(grandChildList);
+//                    int size = grandChildList.size();
+//                    for (int i = 1; i < size; i++) {
+//                        iterator.next();
+//                    }
+//                    root.add(child);
+//                    child = new ArrayList<PType>();
+//                } else {
+//                    root.add(child);
+//                    child = new ArrayList<PType>();
+//                }
+//            } else {
+//                child.add(pType);
+//            }
+//            parentId = pType.getParent_id();
+//        }
+//        if (root.size() > 0) {
+//            List<PType> lastChild = (List<PType>) root.get(root.size() - 1);
+//            PType lastPType = lastChild.get(lastChild.size() - 1);
+//            if (!lastPType.getParent_id().equals(parentId)) {
+//                root.add(child);
+//            }
+//        }
+//        return root;
+//    }
+
+    public List<PType> filterByParentId(List<PType> pTypes, String parentId) {
+        List<PType> resultList = new ArrayList<PType>(pTypes);
+        CollectionUtils.filter(resultList, new ParentIdPType(parentId));
+        return resultList;
+    }
+
+    public List constructTreeModel(List<PType> originalList, Iterator iterator, List treeList) {
+        while (iterator.hasNext()) {
+            PType pType = (PType) iterator.next();
+            List childList = filterByParentId(originalList, pType.getP_idoss_type_id());
+            List resultChildList = new ArrayList(childList);
+            int size = childList.size();
+            if (size > 0) {
+                treeList.add(constructTreeModel(originalList, iterator, treeList));
+                for (int i = 0; i < size; i++) {
+                    iterator.next();
+                }
+            } else {
+
+            }
+            treeList.add(resultChildList);
+        }
+        return treeList;
+    }
+
+//    public List iterateDeep(List<PType> childs, List<Object> resultChilds, Iterator<PType> iterator, List<PType> pTypes, List resultList, int countDeep, int count) {
+//        for (PType child : childs) {
+//            count++;
+//            if (count < countDeep) {
+//                List<Object> resultGrandChilds = new ArrayList<Object>();
+//                resultChilds.add(resultGrandChilds);
+//                iterator.next();
+//                List<PType> grandChilds = filterByParentId(pTypes, child.getP_idoss_type_id());
+//                iterateDeep(grandChilds, resultGrandChilds, iterator, pTypes, resultList, countDeep, count);
+//            } else {
+//                List<PType> greateGrandChilds = filterByParentId(pTypes, child.getP_idoss_type_id());
+//                for (PType greateGrandChild : greateGrandChilds) {
+//                    resultChilds.add(greateGrandChild);
+//                    iterator.next();
+//                }
+//                count = 0;
+//            }
+//        }
+//        return resultList;
+//    }
+
+//    public List addChild(List<PType> pTypes, int countDeep) {
+//        List<Object> resultList = new ArrayList<Object>();
+//        Iterator<PType> iterator = pTypes.iterator();
+//        while (iterator.hasNext()) {
+//            PType pType = iterator.next();
+//
+//            List<Object> resultChilds = new ArrayList<Object>();
+//            resultList.add(resultChilds);
+//
+//            List<PType> childs = filterByParentId(pTypes, pType.getP_idoss_type_id());
+//
+//            int count = 0;
+//            iterateDeep(childs, resultChilds, iterator, pTypes, resultList, countDeep, count);
+//        }
+//        return resultList;
+//    }
+
+    public List addChild(List<PType> pTypes) {
+        List<Object> resultList = new ArrayList<Object>();
+        Iterator<PType> iterator = pTypes.iterator();
+        while (iterator.hasNext()) {
+            PType pType = iterator.next();
+
+            List<Object> resultChilds = new ArrayList<Object>();
+            resultList.add(resultChilds);
+
+            List<PType> childs = filterByParentId(pTypes, pType.getP_idoss_type_id());
+            for (PType child : childs) {
+                List<Object> resultGrandChilds = new ArrayList<Object>();
+                resultChilds.add(resultGrandChilds);
+                iterator.next();
+
+                List<PType> grandChilds = filterByParentId(pTypes, child.getP_idoss_type_id());
+                for (PType grandChild : grandChilds) {
+                    List<Object> resultGreatGrandChilds = new ArrayList<Object>();
+                    resultGrandChilds.add(resultGreatGrandChilds);
+                    iterator.next();
+
+                    List<PType> greateGrandChilds = filterByParentId(pTypes, grandChild.getP_idoss_type_id());
+                    for (PType greateGrandChild : greateGrandChilds) {
+                        resultGreatGrandChilds.add(greateGrandChild);
+                        iterator.next();
+                    }
+                }
+            }
+        }
+        return resultList;
+    }
+
     @Test
     public void testGetTreeModel() throws Exception {
         List<PType> pTypes = typeService.getAllType();
+//        List<PType> notRootPTypes = new ArrayList<PType>(pTypes);
+//        CollectionUtils.filter(notRootPTypes, new ParentIdPType());
+//
+//        List<PType> child = new ArrayList<PType>();
+//        ListIterator<PType> iterator = notRootPTypes.listIterator();
+//        PType pType = null;
+//        String parentId = null;
 
-        java.util.Collections.sort(pTypes, new Comparator<PType>() {
-            @Override
-            public int compare(PType o1, PType o2) {
-                if (o1.getParent_id() != null) {
-                    if (o2.getParent_id() != null) {
-                        return o1.getParent_id().compareTo(o2.getParent_id());
-                    }
-                    return -1;
-                } else if (o2.getParent_id() != null) {
-                    return 1;
-                }
-                return 0;
-            }
-        });
-        List<PType> notRootPTypes = new ArrayList<PType>(pTypes);
-        CollectionUtils.filter(notRootPTypes, new ParentIdPType());
+//        List root = iterateSameLevel(pType, parentId, iterator, child, notRootPTypes, new ArrayList());
+//        Iterator iterator = pTypes.listIterator();
 
-        List<PType> child = new ArrayList<PType>();
-        Iterator<PType> iterator = notRootPTypes.iterator();
-        PType pType = null;
-        String parentId = null;
-        if (iterator.hasNext()) {
-            pType = iterator.next();
-            child.add(pType);
-            parentId = pType.getParent_id();
-        }
-        List<List<PType>> root = new ArrayList<List<PType>>();
-        while (iterator.hasNext()) {
-            pType = iterator.next();
-            if (pType.getParent_id().compareTo(parentId) > 0) {
-                root.add(child);
-                child = new ArrayList<PType>();
-            } else {
-                child.add(pType);
-            }
-            parentId = pType.getParent_id();
-        }
-        if (root.size() > 0) {
-            List<PType> lastChild = root.get(root.size() - 1);
-            PType lastPType = lastChild.get(lastChild.size() - 1);
-            if (lastPType.getParent_id().compareTo(parentId) < 0) {
-                child.add(pType);
-                root.add(child);
-            }
-        }
-        assertEquals(3, root.size());
+//        List treeList = constructTreeModel(pTypes, iterator, new ArrayList());
+
+//        List treeList = addChild(pTypes, 3);
+        List treeList = addChild(pTypes);
+
+        assertNotNull(treeList);
+//        assertEquals(11, root.size());
     }
 
     @Test
