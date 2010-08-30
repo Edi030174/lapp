@@ -5,6 +5,7 @@ import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.idoss.webui.util.NoEmptyStringsConstraint;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
+import net.lintasarta.pengaduan.model.comparator.TPenangananGangguanComparator;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
@@ -244,6 +245,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             lml.set(lml.indexOf(tPenangananGangguan), tPenangananGangguan);
         }
+        lml.sort(new TPenangananGangguanComparator(), true);
 
         doStoreInitValues();
     }
