@@ -192,7 +192,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         listbox_NamaPelaksana.setSelectedIndex(lml.indexOf(vHrEmployeePelaksana));
         listbox_NamaPelaksana.setDisabled(true);
         }else {
-            listbox_NamaPelaksana.setSelectedIndex(6);
+            listbox_NamaPelaksana.setSelectedIndex(-1);
         }
     }
 
@@ -241,10 +241,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         VHrEmployeePelaksana vHrEmployeePelaksana = (VHrEmployeePelaksana)lml3.get(itempelaksana.getIndex());
         tPenangananGangguan.setNama_pelaksana(vHrEmployeePelaksana.getEmployee_name());
         tPenangananGangguan.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
-
         tPenangananGangguan.setStatus(combobox_Status.getValue());
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
-
     }
 
     private void doClose() throws Exception {

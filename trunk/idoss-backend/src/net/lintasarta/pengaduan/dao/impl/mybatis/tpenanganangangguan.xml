@@ -13,7 +13,7 @@
 
     <select id="getAllTPenangananGangguan" resultType="tpenanganangangguan">
         SELECT T_IDOSS_PENANGANAN_GANGGUAN_ID, NIK_PELAPOR, NAMA_PELAPOR, BAGIAN_PELAPOR, JUDUL, DESKRIPSI, DAMPAK, P_IDOSS_TYPE_ID, NIK_PELAKSANA, NAMA_PELAKSANA, P_IDOSS_ROOT_CAUSED_ID, STATUS, SOLUSI, MTTR, DURASI, NO_HP, EXT, CREATED_DATE, CREATED_USER, UPDATED_DATE, UPDATED_USER
-        FROM SNI.T_IDOSS_PENANGANAN_GANGGUAN order BY CREATED_DATE DESC
+        FROM SNI.T_IDOSS_PENANGANAN_GANGGUAN
     </select>
 
     <select id="getTPenangananGangguanByTiketId" resultType="tpenanganangangguan">
@@ -85,7 +85,7 @@
         #{judul, jdbcType=VARCHAR},
         #{deskripsi, jdbcType=VARCHAR},
         #{dampak, jdbcType=VARCHAR},
-        #{type_id, jdbcType=INTEGER},
+        #{type_id, jdbcType=VARCHAR},
         #{nik_pelaksana, jdbcType=VARCHAR},
         #{nama_pelaksana, jdbcType=VARCHAR},
         #{root_cause_id, jdbcType=INTEGER},

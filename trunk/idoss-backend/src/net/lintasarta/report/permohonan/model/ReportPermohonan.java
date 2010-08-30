@@ -8,7 +8,6 @@ import java.sql.Timestamp;
  * User: Xsis
  * Date: Aug 11, 2010
  * Time: 2:01:10 PM
- * To change this template use File | Settings | File Templates.
  */
 public class ReportPermohonan implements Serializable {
     private String t_idoss_permohonan_id;

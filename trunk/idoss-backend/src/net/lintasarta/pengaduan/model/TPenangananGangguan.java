@@ -16,7 +16,7 @@ public class TPenangananGangguan implements Serializable {
     private String judul;
     private String deskripsi;
     private String dampak;
-    private Integer type_id;
+    private String type_id;
     private String nik_pelaksana;
     private String nama_pelaksana;
     private Integer root_cause_id;
@@ -91,11 +91,11 @@ public class TPenangananGangguan implements Serializable {
         this.dampak = dampak;
     }
 
-    public Integer getType_id() {
+    public String getType_id() {
         return type_id;
     }
 
-    public void setType_id(Integer type_id) {
+    public void setType_id(String type_id) {
         this.type_id = type_id;
     }
 

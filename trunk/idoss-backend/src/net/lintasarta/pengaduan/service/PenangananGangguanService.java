@@ -9,7 +9,6 @@ import java.util.List;
  * User: Xsis
  * Date: Jun 23, 2010
  * Time: 11:08:57 AM
- * To change this template use File | Settings | File Templates.
  */
 public interface PenangananGangguanService {
 
@@ -23,17 +22,5 @@ public interface PenangananGangguanService {
 
     List<TPenangananGangguan> getAllPenangananGanguanByNikPelapor(TPenangananGangguan tPenangananGangguan);
 
-    List<TPenangananGangguan> getAllPenangananGangguanByNikPelaksana(TPenangananGangguan tPenangananGangguan );
-
-    List<TPenangananGangguan> getAllPenangananGangguanByStatus(TPenangananGangguan tPenangananGangguan);
-
-    List<TPenangananGangguan> getAllPenangananGangguanByNikPelaporStatus(TPenangananGangguan tPenangananGangguan);
-
-    List<TPenangananGangguan> getAllPenangananGangguanByNikPelaksanaStatus(TPenangananGangguan tPenangananGangguan);
-
     void createPenangananGangguan(TPenangananGangguan tPenangananGangguan);
-
-    void saveOrUpdate(TPenangananGangguan tPenangananGangguan);
-
-
 }
