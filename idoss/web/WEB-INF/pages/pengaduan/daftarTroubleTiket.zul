@@ -24,14 +24,6 @@
                     tooltiptext="${c:l('btnBuatBaru_DaftarTiket.tooltiptext')}"/>
             <space />
             <label value="Cari berdasarkan :" />
-<!--
-            <combobox id="combobox_cari" readonly="true">
-                <comboitem id="comboitem_NomorTiket" label="Nomor Tiket"/>
-                <comboitem id="comboitem_Judul" label="Judul"/>
-                <comboitem id="comboitem_Status" label="Status"/>
-                <comboitem id="comboitem_Pelapor" label="Pelapor"/>
-            </combobox>
--->
             <listbox id="listbox_Cari" rows="1" mold="select" width="150px">
                 <listitem id="listitem_Nomor" label="Nomor Tiket" selected="true"/>
                 <listitem id="listitem_Judul" label="Judul"/>

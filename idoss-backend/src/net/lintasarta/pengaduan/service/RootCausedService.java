@@ -1,6 +1,7 @@
 package net.lintasarta.pengaduan.service;
 
 import net.lintasarta.pengaduan.model.PRootCaused;
+import net.lintasarta.pengaduan.model.PTypeRootCaused;
 
 import java.util.List;
 
@@ -19,10 +20,10 @@ public interface RootCausedService {
 
     PRootCaused getPRootCausedByRootCausedId(int rootCausedId);
 
-    void createRootCaused(PRootCaused pRootCaused);
+    void createRootCaused(PRootCaused pRootCaused, PTypeRootCaused pTypeRootCaused);
 
     void saveOrUpdate(PRootCaused pRootCaused);
 
     List<PRootCaused> getRootCausedByPTypeId(String typeId);
-
+    
 }

@@ -49,7 +49,11 @@ public class TypeServiceImpl implements TypeService {
     public List<PType> getPTypeByParentId(String parentId) {
         List<PType> pTypes = pTypeDAO.getPTypeByParentId(parentId);
         return pTypes;
-
     }
 
+    @Override
+    public List<PType> getPTypeTree() {
+        List<PType> pTypes = getpTypeDAO().getPTypeTree();
+        return pTypes;
+    }
 }

@@ -1,6 +1,7 @@
 package net.lintasarta.pengaduan.service;
 
 import net.lintasarta.pengaduan.model.PRootCaused;
+import net.lintasarta.pengaduan.model.PTypeRootCaused;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,13 +59,20 @@ public class RootCausedServiceTest {
     public void testCreateRootCaused() throws Exception {
         PRootCaused pRootCaused = new PRootCaused();
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
-        pRootCaused.setRoot_caused("haelo");
+        pRootCaused.setRoot_caused("IP ERROR CONF");
         pRootCaused.setActive("T");
         pRootCaused.setCreated_date(ts);
-        pRootCaused.setCreated_user("2472898");
+        pRootCaused.setCreated_user("ZHL");
         pRootCaused.setUpdated_date(ts);
-        pRootCaused.setUpdated_user("2472897");
-        rootCausedService.createRootCaused(pRootCaused);
+        pRootCaused.setUpdated_user("ZHL");
+
+        PTypeRootCaused pTypeRootCaused = new PTypeRootCaused();
+        pTypeRootCaused.setP_idoss_type_id("4012");
+        pTypeRootCaused.setActive("T");
+        pTypeRootCaused.setCreated_user("ZHL");
+        pTypeRootCaused.setUpdated_user("zhl");
+
+        rootCausedService.createRootCaused(pRootCaused, pTypeRootCaused);
     }
 
     @Test

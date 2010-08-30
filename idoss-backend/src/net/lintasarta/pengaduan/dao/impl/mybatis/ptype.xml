@@ -67,7 +67,15 @@
         SELECT P_IDOSS_TYPE_ID, TYPE_DESC, ACTIVE, CREATED_DATE, CREATED_USER, UPDATED_DATE, UPDATED_USER, MINOR_MAYOR, PARENT_ID
         FROM SNI.P_IDOSS_TYPE
         WHERE  PARENT_ID=#{parent_id,jdbcType=VARCHAR}
+    </select>
 
+    <select id="getPTypeTree" resultType="ptype">
+        select a.TYPE_DESC
+        ,a.P_IDOSS_TYPE_ID,a.ACTIVE
+        ,a.CREATED_DATE, a.CREATED_USER,a.UPDATED_DATE
+        ,a.UPDATED_USER,a.MINOR_MAYOR,a.PARENT_ID from p_idoss_type a
+        START WITH parent_id = -1
+        CONNECT BY PRIOR p_idoss_type_id = parent_id
     </select>
 
  </mapper>

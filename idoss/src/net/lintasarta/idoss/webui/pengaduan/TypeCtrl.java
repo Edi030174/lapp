@@ -99,7 +99,6 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
         stm = new SimpleTreeModel(rootNode);
         tree_Type.setModel(stm);
 
-        tree_Type.setTreeitemRenderer(new TypeTreeItemRenderer());
     }
 
     public void onCreate$window_Type(Event event) throws Exception {
@@ -115,8 +114,18 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
             setpType(pType);
         }
 
-        getTreeModel();
+//        List<PType> pTypes = getTypeService().getPTypeTree();
+//
+//        SimpleTreeNode stn = new SimpleTreeNode(pTypes, new ArrayList());
+//        ArrayList al = new ArrayList();
+//        al.add(stn);
+//
+//        SimpleTreeNode root = new SimpleTreeNode("ROOT",al);
+//        SimpleTreeModel stm = new SimpleTreeModel(root);
+//        tree_Type.setModel(stm);
+//        tree_Type.setTreeitemRenderer(new TypeTreeItemRenderer());
 
+        getTreeModel();
         doShowDialog(getpType());
 
 //        HashMap<String, Object> map = new HashMap<String, Object>();
