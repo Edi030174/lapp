@@ -22,8 +22,8 @@
     </style>
 
     <window id="window_Type" border="none" width="320px" height="300px"
-            title="Type" apply="${typeCtrl}" closable="true">
-        <tree id="tree_Type">
+            title="Type" apply="${typeCtrl}" closable="true" sizable="true" contentStyle="overflow:auto">
+        <tree id="tree_Type" >
         </tree>
     </window>
 </zk>

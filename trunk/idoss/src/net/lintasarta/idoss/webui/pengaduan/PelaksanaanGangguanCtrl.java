@@ -45,11 +45,11 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 //    protected Radio radio_minor;
 //    protected Radio radio_mayor;
 //    protected Listbox listbox_Type;
+    protected Tree tree_Type;
     protected Listbox listbox_RootCaused;
     protected Listbox listbox_NamaPelaksana;
     protected Combobox combobox_Status;
     protected Button btn_TambahRootCaused;
-    protected Button btn_OK;
 //    protected Button btnSimpan_RootCaused;
 //    protected Button btnBatal_RootCaused;
 //    protected Button btnSimpan_PelaksanaanGangguan;
@@ -325,6 +325,9 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         }
 
         HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("textbox_Type", textbox_Type);
+        map.put("pRootCaused", pRootCaused);
+        map.put("listbox_RootCaused", listbox_RootCaused);
 
         try {
             Executions.createComponents("/WEB-INF/pages/pengaduan/type.zul", null, map);
@@ -338,15 +341,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
         }
-    }
-
-    public void onClick$btn_OK(Event event) throws Exception{
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(textbox_Type.getValue())));
-        listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
-        listbox_RootCaused.setSelectedIndex(-1);
     }
 
     public TPenangananGangguan gettPenangananGangguan() {
@@ -371,5 +365,13 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 
     public void setPelaksanaanGangguanService(PelaksanaanGangguanService pelaksanaanGangguanService) {
         this.pelaksanaanGangguanService = pelaksanaanGangguanService;
+    }
+
+    public PType getpType() {
+        return pType;
+    }
+
+    public void setpType(PType pType) {
+        this.pType = pType;
     }
 }

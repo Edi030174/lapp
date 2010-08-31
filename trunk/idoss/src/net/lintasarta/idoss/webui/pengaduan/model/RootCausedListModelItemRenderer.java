@@ -11,7 +11,6 @@ import java.io.Serializable;
  * User: Xsis
  * Date: Jul 23, 2010
  * Time: 4:46:50 PM
- * To change this template use File | Settings | File Templates.
  */
 public class RootCausedListModelItemRenderer implements ListitemRenderer, Serializable {
 
