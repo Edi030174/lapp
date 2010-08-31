@@ -1,5 +1,6 @@
 package net.lintasarta.idoss.webui.pengaduan.model;
 
+import net.lintasarta.pengaduan.model.PType;
 import org.apache.log4j.Logger;
 import org.zkoss.zul.*;
 
@@ -18,11 +19,11 @@ public class TypeTreeItemRenderer implements TreeitemRenderer, Serializable {
 
     public void render(Treeitem item, Object data) throws Exception {
         SimpleTreeNode t = (SimpleTreeNode)data;
-        String typeDesc = (String)t.getData();
-//        PType pType = (PType)t.getData();
+//        String typeDesc = (String)t.getData();
+        PType pType = (PType)t.getData();
         //Contruct treecells
-          Treecell treecell = new Treecell(typeDesc);
-//        Treecell treecell = new Treecell(pType.getType_desc());
+//          Treecell treecell = new Treecell(typeDesc);
+        Treecell treecell = new Treecell(pType.getType_desc());
         Treerow tr;
         /*
          * Since only one treerow is allowed, if treerow is not null,
