@@ -38,9 +38,26 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_NamaPemohon;
     protected Datebox datebox_Tanggal;
     protected Textbox textbox_NikPemohon;
+
+    protected Radiogroup radiogroup_Prioritas;
+    protected Radio high;
+    protected Radio normal;
+    protected Radiogroup radiogroup_Dampak;
+    protected Radio major;
+    protected Radio minor;
+
     protected FCKeditor fck_DetailPermohonan;
+
+    protected Radiogroup radiogroup_StatusPermohonanAsman;
+    protected Radio radio_DisetujuiAM;
+    protected Radio radio_DitolakAM;
     protected FCKeditor fck_CatatanAsman;
+
+    protected Radiogroup radiogroup_StatusPermohonanManager;
+    protected Radio radio_DisetujuiM;
+    protected Radio radio_DitolakM;
     protected FCKeditor fck_CatatanManager;
+
     protected Radiogroup radiogroup_StatusPermohonanGm;
     protected Radio radio_DisetujuiGM;
     protected Radio radio_DitolakGM;
@@ -80,8 +97,6 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
 
-//        doCheckRights();
-
         Map<String, Object> args = getCreationArgsMap(event);
         if (args.containsKey("tVerifikasi")) {
             TVerifikasi tVerifikasi = (TVerifikasi) args.get("tVerifikasi");
@@ -110,17 +125,6 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
 
         doShowDialog(gettVerifikasi(),gettPermohonan());
     }
-
-//    private void doCheckRights() {
-//        UserWorkspace workspace = getUserWorkspace();
-//
-//        window_PersetujuanGm.setVisible(workspace.isAllowed("window_PersetujuanGm"));
-//
-//        fck_CatatanManager.setVisible(workspace.isAllowed(""));
-//
-//
-//
-//    }
 
     private void doShowDialog(TVerifikasi tVerifikasi,TPermohonan tPermohonan) throws InterruptedException {
         try {

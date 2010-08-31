@@ -79,7 +79,7 @@ public class VerifikasiCtrl extends GFCBaseCtrl implements Serializable {
     private transient VerifikasiService verifikasiService;
     private transient TPermohonan tPermohonan;
 
-    public VerifikasiCtrl() {
+    public VerifikasiCtrl(){
         super();
 
         if (logger.isDebugEnabled()) {

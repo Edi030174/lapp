@@ -1,10 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 <?page id="daftarZul" title="Form Daftar Permohonan" contentType="text/html;charset=UTF-8"?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
     xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
-    <window id="window_DaftarPermohonan" border="normal"
+    <window id="window_DaftarPermohonan" border="none"
             width="100%" height="100%" sizable="true" apply="${daftarPermohonanCtrl}">
         <style>
 
@@ -25,6 +28,7 @@
                     image="/images/icons/btn_new2_16x16.gif"/>
             <label value="Cari:"/>
             <listbox id="listbox_Cari" rows="1" mold="select" width="150px">
+                <listhead visible="false"/>
                 <listitem id="listitem_Nomor" label="Nomor Permohonan" selected="true"/>
                 <listitem id="listitem_Tanggal" label="Tanggal"/>
                 <listitem id="listitem_Tipe" label="Tipe"/>
@@ -34,17 +38,9 @@
             <button id="btnCari" label="cari"
                     image="/images/icons/btn_search2_16x16.gif"/>
             <separator/>
-            <!--<label value="tipe permohonan:"/>-->
             <checkbox id="checkbox_all" label="tampilkan semua"/>
-            <!--<checkbox id="checkbox_readonly" label="User RO"/>-->
-            <!--<checkbox id="checkbox_readwrite" label="User RW"/>-->
-            <!--<checkbox id="checkbox_aplikasi" label="Aplikasi"/>-->
-
         </hbox>
         <separator bar="false"/>
-        <!--<groupbox id="groupbox_DaftarPermohonan" mold="3d" closable="true" open="true">-->
-        <!--<caption label="Daftar Permohonan" style="font-weight:bold"/>-->
-
         <paging id="paging_DaftarPermohonan"/>
         <listbox id="listbox_DaftarPermohonan" vflex="true" width="99.9%" height="100%" multiple="false">
             <listhead sizable="true">
@@ -52,19 +48,11 @@
                 <listheader id="listheader_Tanggal" label="Tanggal" sort="auto" style="font-size:11px"/>
                 <listheader id="listheader_Tipe" label="Tipe" sort="auto" style="font-size:11px"/>
                 <listheader id="listheader_StatusPersetujuan" label="Status Persetujuan" sort="auto" style="font-size:11px"/>
-                <!--<listheader id="listheader_Pimbag" label="PimBag" sort="auto" style="font-size:11px"/>-->
-                <!--<listheader id="listheader_Pimdiv" label="PimDiv" sort="auto" style="font-size:11px"/>-->
                 <listheader id="listheader_AssMgr" label="AssManager" sort="auto" style="font-size:11px"/>
                 <listheader id="listheader_Mgr" label="Manager" sort="auto" style="font-size:11px"/>
                 <listheader id="listheader_GM" label="GM" sort="auto" style="font-size:11px"/>
             </listhead>
-            <!--<listitem self="@{each=persons}">
-                <listcell label="@{persons.fullName}"/>
-                <listcell label="@{persons.gender}"/>
-                <listcell label="@{persons.age}"/>
-            </listitem>-->
         </listbox>
         <space/>
-        <!--</groupbox>-->
     </window>
 </zk>

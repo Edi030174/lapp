@@ -69,37 +69,79 @@
                          width="60px" disabled="true" style="color: black !important;"/>
             </vbox>
         </hbox>
-        <!--<vbox>-->
-        <!--<label width="100px" value="detail :"/>-->
-        <!--<textbox id="textbox_DetailPermohonan" width="400px" disabled="true" multiline="true"-->
-        <!--style="color: black !important;"/>-->
-        <!--<space height="1px"></space>-->
-        <!--<label width="100px" value="catatan Asman :"/>-->
-        <!--<textbox id="textbox_CatatanAsman" width="400px" disabled="true" multiline="true"-->
-        <!--style="color: black !important;"/>-->
-        <!--<space height="1px"></space>-->
-        <!--<label width="100px" value="catatan Manager :"/>-->
-        <!--<textbox id="textbox_CatatanManager" width="400px" disabled="true" multiline="true"-->
-        <!--style="color: black !important;"/>-->
-        <!--</vbox>-->
+        <hbox>
+            <vbox>
+                <label value="Prioritas :"/>
+                <radiogroup id="radiogroup_Prioritas">
+                    <hbox>
+                        <radio id="high" label="high" value="H" disabled="true"/>
+                        <radio id="normal" label="normal" value="N" selected="true" disabled="true"/>
+                    </hbox>
+                </radiogroup>
+            </vbox>
+            <space width="80px"/>
+            <vbox>
+                <label value="Dampak :"/>
+                <radiogroup id="radiogroup_Dampak">
+                    <hbox>
+                        <radio id="major" label="major" value="MAJOR"/>
+                        <radio id="minor" label="minor" value="MINOR" selected="true"/>
+                    </hbox>
+                </radiogroup>
+            </vbox>
+        </hbox>
         <space width="20px"></space>
         <groupbox mold="3d">
             <caption label="detail permohonan" style="font-weight:normal"/>
-                <fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
-                           forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
-                           toolbarSet="Basic"/>
+            <fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
+                       forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
+                       toolbarSet="Basic"/>
         </groupbox>
         <groupbox mold="3d">
             <caption label="catatan AsMan" style="font-weight:normal"/>
-            <fckeditor id="fck_CatatanAsman" height="90%" width="484px"
-                       forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
-                       toolbarSet="Basic"/>
+            <hbox>
+                <vbox>
+                    <hbox>
+                        <label value="Status Permohonan : "/>
+                    </hbox>
+                    <radiogroup id="radiogroup_StatusPermohonanAsman">
+                        <hbox>
+                            <radio id="radio_DisetujuiAM" label="disetujui" value="disetujuiAsman" selected="true"/>
+                            <radio id="radio_DitolakAM" label="ditolak" value="ditolakAsman"/>
+                        </hbox>
+                    </radiogroup>
+                </vbox>
+                <space width="40px"/>
+                <vbox>
+                    <label value="catatan AssManager : "/>
+                    <fckeditor id="fck_CatatanAsman" height="90%" width="484px"
+                               forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
+                               toolbarSet="Basic"/>
+                </vbox>
+            </hbox>
         </groupbox>
         <groupbox mold="3d">
             <caption label="catatan Manager" style="font-weight:normal"/>
-            <fckeditor id="fck_CatatanManager" height="90%" width="484px"
-                       forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
-                       toolbarSet="Basic"/>
+            <hbox>
+                <vbox>
+                    <hbox>
+                        <label value="Status Permohonan : "/>
+                    </hbox>
+                    <radiogroup id="radiogroup_StatusPermohonanManager">
+                        <hbox>
+                            <radio id="radio_DisetujuiM" label="disetujui" value="disetujuiManager" selected="true"/>
+                            <radio id="radio_DitolakM" label="ditolak" value="ditolakManager"/>
+                        </hbox>
+                    </radiogroup>
+                </vbox>
+                <space width="40px"/>
+                <vbox>
+                    <label value="catatan Manager : "/>
+                    <fckeditor id="fck_CatatanManager" height="90%" width="484px"
+                               forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
+                               toolbarSet="Basic"/>
+                </vbox>
+            </hbox>
         </groupbox>
 
         <groupbox mold="3d">
@@ -120,7 +162,7 @@
                 </vbox>
                 <space width="40px"/>
                 <vbox>
-                    <label value="catatan : "/>
+                    <label value="catatan GM : "/>
                     <fckeditor id="fck_CatatanGm" height="99%" width="484px" customConfigurationsPath="/js/fckeditor.js"
                                toolbarSet="Basic"/>
                 </vbox>

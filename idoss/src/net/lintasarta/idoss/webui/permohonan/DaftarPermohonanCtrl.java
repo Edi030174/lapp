@@ -84,18 +84,18 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
             logger.debug("--> " + event.toString());
         }
 
-        int panelHeight = 25;
-        // TODO put the logic for working with panel in the ApplicationWorkspace
-        boolean withPanel = false;
-        if (withPanel == false) {
-            panel_daftarPermohonan.setVisible(false);
-        } else {
-            panel_daftarPermohonan.setVisible(true);
-            panelHeight = 0;
-        }
+//        int panelHeight = 25;
+        /*TOD O put the logic for working with panel in the ApplicationWorkspace*/
+//        boolean withPanel = false;
+//        if (withPanel == false) {
+//            panel_daftarPermohonan.setVisible(false);
+//        } else {
+//            panel_daftarPermohonan.setVisible(true);
+//            panelHeight = 0;
+//        }
 
         int height = ((Intbox) Path.getComponent("/outerIndexWindow/currentDesktopHeight")).getValue();
-        height = height + panelHeight;
+//        height = height + panelHeight;
         int maxListBoxHeight = (height - 170);
         setCountRows(Math.round(maxListBoxHeight / 17));
 

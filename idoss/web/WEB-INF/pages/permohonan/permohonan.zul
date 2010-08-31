@@ -157,18 +157,10 @@
                                             <button label="Upload Lampiran" upload="true,maxsize=-1"
                                                     id="button_Lampiran"/>
                                             <button label="Download Lampiran">
-                                                <attribute name="onClick">{
-                                                    java.io.InputStream is =
-                                                    desktop.getWebApp().getResourceAsStream("C:\apache-tomcat-7.0.2\bin\install_flash_player.exe");
-                                                    if (is != null)
-                                                    Filedownload.save(is, "text/html", "download.html");
-                                                    else
-                                                    alert("/test/download.html not found");
-                                                    }
+                                                <attribute name="onClick">Filedownload.save("c:\apache-tomcat-7.0.2\bin\duk.txt", null);
                                                 </attribute>
                                             </button>
                                         </vbox>
-                                        <!--<button label="Upload" upload="true,maxsize=-1" onUpload="dosomething"/>-->
                                     </hbox>
                                     <vbox></vbox>
                                     <fckeditor id="fck_DetailPermohonan" height="90%" width="484px"

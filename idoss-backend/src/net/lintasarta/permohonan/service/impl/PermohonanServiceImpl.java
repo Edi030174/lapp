@@ -151,8 +151,9 @@ public class PermohonanServiceImpl implements PermohonanService {
         TVerifikasi tVerifikasi = new TVerifikasi();
         tVerifikasi.setT_idoss_verifikasi_id(tPermohonan.getT_idoss_permohonan_id());
         tVerifikasi.setTgl_permohonan(tPermohonan.getTgl_permohonan());
-        tVerifikasi.setUrgensi("1");
-        tVerifikasi.setDampak("1");
+        tVerifikasi.setUrgensi(tPermohonan.getUrgensi());
+        tVerifikasi.setDampak(tPermohonan.getDampak());
+        tVerifikasi.setType_permohonan(tPermohonan.getType_permohonan());
         tVerifikasi.setStatus_permohonan_asman("NEW");
         tVerifikasi.setStatus_permohonan_manager("NEW");
         tVerifikasi.setCreated_date(tPermohonan.getCreated_date());
@@ -174,6 +175,8 @@ public class PermohonanServiceImpl implements PermohonanService {
 
     public void saveOrUpdateTPermohonan(TPermohonan tPermohonan) {
         gettPermohonanDAO().saveOrUpdateTPermohonan(tPermohonan);
+        TVerifikasi tVerifikasi = new TVerifikasi();
+        tVerifikasi.setDampak(tPermohonan.getDampak());
     }
 
     public TVerifikasi getTVerifikasiByTIdossVerifikasiId(String t_idoss_verifikasi_id) {
