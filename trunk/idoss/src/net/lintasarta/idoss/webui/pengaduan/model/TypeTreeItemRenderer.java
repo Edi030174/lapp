@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class TypeTreeItemRenderer implements TreeitemRenderer, Serializable {
 
-    private transient static final Logger logger = Logger.getLogger(RootCausedTreeItemRenderer.class);
+    private transient static final Logger logger = Logger.getLogger(TypeTreeItemRenderer.class);
 
 
     public void render(Treeitem item, Object data) throws Exception {
