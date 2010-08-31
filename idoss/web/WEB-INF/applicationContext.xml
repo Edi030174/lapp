@@ -88,13 +88,9 @@
         <property name="rootCausedService" ref="rootCausedService"/>
     </bean>
 
-    <bean id="rootCausedCtrl" class="net.lintasarta.idoss.webui.pengaduan.RootCausedCtrl" parent="basisCtrl"
-          scope="prototype">
-        <property name="rootCausedService" ref="rootCausedService"/>
-    </bean>
-
     <bean id="typeCtrl" class="net.lintasarta.idoss.webui.pengaduan.TypeCtrl" parent="basisCtrl" scope="prototype">
         <property name="typeService" ref="typeService"/>
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
     </bean>
 
 </beans>
