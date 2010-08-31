@@ -125,7 +125,7 @@
                                     <radio id="radio_lainlain"
                                            onCheck="textbox_Lainlain.disabled=false;textbox_Lainlain.focus=true"
                                            label="Lain-lain" value="Lain-lain"/>
-                                    <textbox id="textbox_Lainlain" width="100px" disabled="true" />
+                                    <textbox id="textbox_Lainlain" width="100px" disabled="true"/>
                                 </radiogroup>
                             </hbox>
                         </vbox>

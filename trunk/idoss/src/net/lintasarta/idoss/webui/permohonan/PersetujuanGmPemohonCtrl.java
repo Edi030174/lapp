@@ -123,15 +123,21 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
         datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
         textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
-        fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
-        fck_CatatanManager.setValue(tPermohonan.getCatatan_manager());
-        datebox_Tanggal2.setValue(tPermohonan.getUpdated_gm());
-        fck_CatatanGmPemohon.setValue(tPermohonan.getCatatan_gm());
         if(tPermohonan.getUrgensi().equals("H")){
             radiogroup_Prioritas.setSelectedItem(high);
         }else{
             radiogroup_Prioritas.setSelectedItem(normal);
         }
+        fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
+        if(tPermohonan.getStatus_track_permohonan().equals("ditolakManager")){
+            radiogroup_StatusPermohonanManagerPemohon.setSelectedItem(radio_DitolakMPemohon);
+        }
+        fck_CatatanManager.setValue(tPermohonan.getCatatan_manager());
+        if(tPermohonan.getStatus_track_permohonan().equals("ditolakGM")){
+            radiogroup_StatusPermohonanGmPemohon.setSelectedItem(radio_DitolakGmPemohon);
+        }
+        datebox_Tanggal2.setValue(tPermohonan.getUpdated_gm());
+        fck_CatatanGmPemohon.setValue(tPermohonan.getCatatan_gm());
     }
 
     public void onClick$btn_SimpanPersetujuanGmPemohon(Event event) throws Exception{
@@ -168,6 +174,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     private void doWriteComponentsToBean(TPermohonan tPermohonan) {
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tPermohonan.setDampak(dampak.getValue());
+
         Radio statusM = radiogroup_StatusPermohonanManagerPemohon.getSelectedItem();
         tPermohonan.setStatus_track_permohonan(statusM.getValue());
 
@@ -178,7 +185,6 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         tPermohonan.setUpdated_gm(new Timestamp(datebox_Tanggal2.getValue().getTime()));
         tPermohonan.setCatatan_manager(fck_CatatanManager.getValue());
         tPermohonan.setCatatan_gm(fck_CatatanGmPemohon.getValue());
-
     }
 
     private void doStoreInitValues() {

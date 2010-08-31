@@ -155,6 +155,7 @@ public class TPermohonanDAOTest {
         String nikPemohonExpected = "12313123";
         assertEquals(nikPemohonExpected, nikPemohonActual);
     }
+
 //    @Test
 //    public void testGetTPermohonanByNikDivisiStatus() throws Exception {
 //        String nikDivisi = "51900065";
@@ -171,6 +172,7 @@ public class TPermohonanDAOTest {
 //        String nikDivisiExpected = "51900065";
 //        assertEquals(nikDivisiExpected, nikDivisiActual);
 //    }
+
     @Test
     public void testGetTPermohonanByNikAsmanStatus() throws Exception {
         String nikAsman = "341213221";
