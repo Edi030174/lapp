@@ -23,7 +23,7 @@ public class TPenangananGangguan implements Serializable {
     private String status;
     private String solusi;
     private String mttr;
-    private Integer durasi;
+    private String durasi;
     private Timestamp created_date;
     private String created_user;
     private Timestamp updated_date;
@@ -31,6 +31,7 @@ public class TPenangananGangguan implements Serializable {
     private String no_hp;
     private String ext;
     private int gen_id_col;
+    private Timestamp inserted_root_caused;
 
     public TPenangananGangguan() {
     }
@@ -147,11 +148,11 @@ public class TPenangananGangguan implements Serializable {
         this.mttr = mttr;
     }
 
-    public Integer getDurasi() {
+    public String getDurasi() {
         return durasi;
     }
 
-    public void setDurasi(Integer durasi) {
+    public void setDurasi(String durasi) {
         this.durasi = durasi;
     }
 
@@ -209,5 +210,13 @@ public class TPenangananGangguan implements Serializable {
 
     public void setGen_id_col(int gen_id_col) {
         this.gen_id_col = gen_id_col;
+    }
+
+    public Timestamp getInserted_root_caused() {
+        return inserted_root_caused;
+    }
+
+    public void setInserted_root_caused(Timestamp inserted_root_caused) {
+        this.inserted_root_caused = inserted_root_caused;
     }
 }

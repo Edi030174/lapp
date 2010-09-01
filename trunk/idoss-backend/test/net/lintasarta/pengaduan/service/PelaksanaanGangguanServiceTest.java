@@ -11,7 +11,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Timestamp;
-import java.util.Calendar;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -82,21 +86,37 @@ public class PelaksanaanGangguanServiceTest {
 
     @Test
     public void testSaveOrUpdate() throws Exception {
-        String tiketId = "BBBB579285";
+        String tiketId = "000000052";
+        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
 
         TPenangananGangguan tPenangananGangguan = pelaksanaanGangguanService.getDetail(tiketId);
-        tPenangananGangguan.setNik_pelapor("878991233");
-        tPenangananGangguan.setNama_pelapor("JOSRI");
-        tPenangananGangguan.setBagian_pelapor("PROGRAMMER ABAL-ABAL");
-        tPenangananGangguan.setJudul("UJICOBA");
-        Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
+        tPenangananGangguan.setNik_pelapor("79040893");
+        tPenangananGangguan.setNama_pelapor("ZULHELMY");
+        tPenangananGangguan.setBagian_pelapor("OPERASI TI.");
+        tPenangananGangguan.setJudul("helooo");
+        tPenangananGangguan.setUpdated_user("ZHL");
         tPenangananGangguan.setUpdated_date(ts);
-        tPenangananGangguan.setUpdated_user("2432432433");
-
+        if(tPenangananGangguan.getInserted_root_caused()==null){
+            tPenangananGangguan.setInserted_root_caused(ts);
+        }
+/*
+        String dateAwal = new SimpleDateFormat("yyyy-MM-dd hh:mm aa").format(tPenangananGangguan.getCreated_date());
+        String dateAkhir = new SimpleDateFormat("yyyy-MM-dd hh:mm aa").format(ts);
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+        Date awal = getDateTime(dateAwal);
+        Date akhir = getDateTime(dateAkhir);
+        long durasi = (akhir.getTime()- awal.getTime());
+        float durasiResult =((float)durasi/(1000.0f*60.0f*60.0f));
+//        long awal = tPenangananGangguan.getCreated_date().getTime();
+//        long akhir = ts.getTime();
+//        double durasi = (double )(akhir - awal)/(1000);
+        DecimalFormat durasiResult1 = new DecimalFormat("##0.000000");
+        tPenangananGangguan.setDurasi(durasiResult1.format(durasiResult));
+*/
         pelaksanaanGangguanService.saveOrUpdate(tPenangananGangguan);
         TPenangananGangguan tPenangananGangguanResult = pelaksanaanGangguanService.getDetail(tiketId);
         String namaPelaporActual = tPenangananGangguanResult.getNama_pelapor();
-        String namaPelaporExpected = "JOSRI";
+        String namaPelaporExpected = "ZULHELMY";
         assertEquals(namaPelaporExpected, namaPelaporActual);
     }
 
@@ -105,6 +125,13 @@ public class PelaksanaanGangguanServiceTest {
         String ptypeId = "4011";
         List<PRootCaused> pRootCauseds = pelaksanaanGangguanService.getRootCausedByPTypeId(ptypeId);
         assertEquals(pRootCauseds.size(),7);
+    }
 
+    private static Date getDateTime(String dateTime) throws ParseException {
+
+        DateFormat formatOldDateTime = new SimpleDateFormat( "yyyy-MM-dd hh:mm aa");
+        Date date = formatOldDateTime.parse(dateTime);
+
+        return date;
     }
 }

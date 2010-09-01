@@ -1,6 +1,5 @@
 package net.lintasarta.pengaduan.dao;
 
-import net.lintasarta.pengaduan.model.PRootCaused;
 import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
 import org.junit.Test;
 import org.junit.runner.RunWith;
