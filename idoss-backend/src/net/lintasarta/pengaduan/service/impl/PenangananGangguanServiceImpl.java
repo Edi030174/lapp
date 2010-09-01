@@ -63,7 +63,7 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         int i = tPenangananGangguanDAO.getSeqTiketId();
         tPenangananGangguan.setGen_id_col(i);
         tPenangananGangguan.setStatus("Open");
-        tPenangananGangguan.setDurasi(1);
+        tPenangananGangguan.setDurasi(Constants.EMPTY_STRING);
         tPenangananGangguan.setNama_pelaksana(Constants.EMPTY_STRING);
         tPenangananGangguan.setMttr(Constants.EMPTY_STRING);
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());

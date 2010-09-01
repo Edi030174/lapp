@@ -5,6 +5,7 @@ import net.lintasarta.pengaduan.model.PType;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public interface PelaksanaanGangguanService {
 
     List<VHrEmployeePelaksana> getEmployeeName();
 
-    void saveOrUpdate(TPenangananGangguan tPenangananGangguan);
+    void saveOrUpdate(TPenangananGangguan tPenangananGangguan) throws ParseException;
 
     List<PRootCaused> getRootCausedByPTypeId(String typeId);
 

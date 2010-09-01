@@ -233,6 +233,28 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftaTiket);
     }
 
+    public void onClick$btn_report(Event event) throws InterruptedException{
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        HashMap<String, Object> map = new HashMap<String, Object>();
+
+        map.put("listbox_DaftarTiket", listbox_DaftarTiket);
+
+        try {
+            Executions.createComponents("/WEB-INF/report/pengaduan/repoertPengaduan.zul", null, map);
+        } catch (Exception e) {
+            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
+
+            // Show a error box
+            String msg = e.getMessage();
+            String title = Labels.getLabel("message_Error");
+
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
+        }
+    }
+
     private void showDetailViewPengaduan(TPenangananGangguan tPenangananGangguan) throws Exception {
 
         HashMap<String, Object> map = new HashMap<String, Object>();

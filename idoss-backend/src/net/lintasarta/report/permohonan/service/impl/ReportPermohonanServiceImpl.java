@@ -2,7 +2,13 @@ package net.lintasarta.report.permohonan.service.impl;
 
 import net.lintasarta.report.permohonan.model.ReportPermohonan;
 import net.lintasarta.report.permohonan.service.ReportPermohonanService;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,23 +17,51 @@ import java.util.List;
  * User: Administrator
  * Date: Aug 12, 2010
  * Time: 1:42:58 PM
- * To change this template use File | Settings | File Templates.
  */
 public class ReportPermohonanServiceImpl implements ReportPermohonanService {
 
-    public List<ReportPermohonan> getReportBelumSelesai(ReportPermohonan reportPermohonan) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    public List<ReportPermohonan> getReportSudahSelesai(ReportPermohonan reportPermohonan) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
     public void printReport(ReportPermohonan reportPermohonan, HashMap repParams) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        try {
+
+            InputStream inputStream = getClass().getResourceAsStream("/de/forsthaus/webui/reports/AuftragDetailsPojo_Report.jrxml");
+
+            /* Liste mit Daten füllen */
+//            List<ReportPermohonan> result = getOrderService().getOrderpositionsByOrder(reportPermohonan);
+
+            /* DataSource mit der Liste erstellen */
+//            JRBeanCollectionDataSource datasource = new JRBeanCollectionDataSource(result);
+
+            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+//            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, repParams, datasource);
+//            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException ex) {
+            String connectMsg = "JasperReports: Could not create the report " + ex.getMessage() + " " + ex.getLocalizedMessage();
+            System.out.println(connectMsg);
+        } catch (Exception ex) {
+            String connectMsg = "Could not create the report " + ex.getMessage() + " " + ex.getLocalizedMessage();
+            System.out.println(connectMsg);
+        }
+
+
     }
+
+    @Override
+//    public JRDataSource getReport(ReportPermohonan reportPermohonan) {
+//        return JRBeanCollectionDataSource();
+//    }
 
     public void compileReport(String aReportPathName) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        try {
+            InputStream inputStream = getClass().getResourceAsStream(aReportPathName);
+            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+        } catch (Exception ex) {
+            String connectMsg = "JasperReports: Could not create the report " + ex.getMessage() + " " + ex.getLocalizedMessage();
+            System.out.println(connectMsg);
+        }
+
     }
 }

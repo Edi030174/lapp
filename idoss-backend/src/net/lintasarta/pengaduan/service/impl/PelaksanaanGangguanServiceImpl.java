@@ -11,7 +11,11 @@ import net.lintasarta.pengaduan.dao.TPenangananGangguanDAO;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 
 import java.sql.Timestamp;
-import java.util.Calendar;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -79,13 +83,52 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
     }
 
     @Override
-    public void saveOrUpdate(TPenangananGangguan tPenangananGangguan) {
+    public void saveOrUpdate(TPenangananGangguan tPenangananGangguan) throws ParseException {
 
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         tPenangananGangguan.setUpdated_date(ts);
-//        tPenangananGangguan.setDurasi();
+        if(tPenangananGangguan.getInserted_root_caused()==null){
+            tPenangananGangguan.setInserted_root_caused(ts);
+        }
+//        long awal = tPenangananGangguan.getCreated_date().getTime();
+//        long akhir = ts.getTime();
+//        double durasi = (double )(akhir - awal)/(1000);
+//        DecimalFormat durasiResult = new DecimalFormat("##0.000000");
+
+        String dateAwal = new SimpleDateFormat("yyyy-MM-dd hh:mm aa").format(tPenangananGangguan.getCreated_date());
+        String dateAkhir = new SimpleDateFormat("yyyy-MM-dd hh:mm aa").format(ts);
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+        Date awal = getDateTime(dateAwal);
+        Date akhir = getDateTime(dateAkhir);
+        long diff = (akhir.getTime()- awal.getTime());
+        float diffResult =((float)diff/(1000.0f*60.0f*60.0f));
+        DecimalFormat durasiResult = new DecimalFormat("##0.000000");
+
+        tPenangananGangguan.setDurasi(durasiResult.format(diffResult));
+
         gettPenangananGangguanDAO().saveOrUpdate(tPenangananGangguan);
     }
+
+    private static Date getDateTime(String dateTime) throws ParseException {
+
+        DateFormat formatOldDateTime = new SimpleDateFormat( "yyyy-MM-dd hh:mm aa");
+        Date date = formatOldDateTime.parse(dateTime);
+
+        return date;
+    }
+/*
+    public static Date getDateTime(String dateTime, Date orig)
+            throws ParseException {
+        Date akhir = getDateTime(dateTime);
+
+        if (akhir.getYear() == 70) {
+            akhir.setYear(orig.getYear());
+            akhir.setMonth(orig.getMonth());
+            akhir.setDate(orig.getDate());
+        }
+        return akhir;
+    }
+*/
 
     @Override
     public List<PRootCaused> getRootCausedByPTypeId(String typeId) {

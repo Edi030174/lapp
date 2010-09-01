@@ -75,7 +75,8 @@
         CREATED_USER,
         UPDATED_DATE,
         UPDATED_USER,
-        GEN_ID_COL
+        GEN_ID_COL,
+        INSERTED_ROOT_CAUSED
         )
         VALUES(
         #{t_idoss_penanganan_gangguan_id},
@@ -99,7 +100,8 @@
         #{created_user},
         #{updated_date},
         #{updated_user},
-        #{gen_id_col}
+        #{gen_id_col},
+        #{inserted_root_caused}
         )
     </insert>
 
@@ -125,7 +127,8 @@
         CREATED_DATE=#{created_date},
         CREATED_USER=#{created_user},
         UPDATED_DATE=#{updated_date},
-        UPDATED_USER=#{updated_user}
+        UPDATED_USER=#{updated_user},
+        INSERTED_ROOT_CAUSED=#{inserted_root_caused}
         WHERE  T_IDOSS_PENANGANAN_GANGGUAN_ID=#{t_idoss_penanganan_gangguan_id}
     </update>
 </mapper>
