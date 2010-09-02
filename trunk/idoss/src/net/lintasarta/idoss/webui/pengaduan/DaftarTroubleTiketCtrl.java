@@ -18,7 +18,6 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -242,7 +241,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         map.put("listbox_DaftarTiket", listbox_DaftarTiket);
 
         try {
-            Executions.createComponents("/WEB-INF/report/pengaduan/repoertPengaduan.zul", null, map);
+            Executions.createComponents("/WEB-INF/report/pengaduan/reportPengaduan.zul", null, map);
         } catch (Exception e) {
             logger.error("onOpenWindow:: error opening window / " + e.getMessage());
 

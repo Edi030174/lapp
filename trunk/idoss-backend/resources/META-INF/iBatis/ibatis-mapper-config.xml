@@ -27,6 +27,7 @@
         <typeAlias type="net.lintasarta.pengaduan.model.PTypeRootCaused" alias="ptyperootcaused"/>
         <!--reportpermohonan-->
         <typeAlias type="net.lintasarta.report.permohonan.model.ReportPermohonan" alias="reportpermohonan"/>
+        <typeAlias type="net.lintasarta.report.pengaduan.model.ReportPengaduan" alias="reportpengaduan"/>
         <!--auditlog-->
         <typeAlias type="net.lintasarta.auditlog.model.AuditLog" alias="auditlog"/>
     </typeAliases>
@@ -49,6 +50,7 @@
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/PTypeRootCaused.xml"/>
         <!--report permohonan-->
         <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportpermohonan.xml"/>
+        <mapper resource="net/lintasarta/report/pengaduan/dao/impl/reportpengaduan.xml"/>
         <!--auditlog-->
         <mapper resource="net/lintasarta/auditlog/dao/impl/auditlog.xml"/>
      </mappers>

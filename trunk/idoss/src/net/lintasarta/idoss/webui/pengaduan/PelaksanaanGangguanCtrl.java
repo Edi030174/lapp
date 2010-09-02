@@ -202,6 +202,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tPenangananGangguan.setDampak(dampak.getValue());
 
+//        tPenangananGangguan.setType_id();
+
         Listitem item = listbox_RootCaused.getSelectedItem();
         if (item == null) {
             try {
@@ -214,19 +216,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         ListModelList lml1 = (ListModelList)listbox_RootCaused.getListModel();
         PRootCaused rootCaused = (PRootCaused)lml1.get(item.getIndex());
         tPenangananGangguan.setRoot_cause_id(rootCaused.getP_idoss_root_caused_id());
-
-//        Listitem item1 = listbox_Type.getSelectedItem();
-//        if (item == null) {
-//            try {
-//                Messagebox.show("Silakan pilih Type!");
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            return ;
-//        }
-//        ListModelList lml2 = (ListModelList)listbox_Type.getListModel();
-//        PType type = (PType)lml2.get(item1.getIndex());
-//        tPenangananGangguan.setType_id(type.getP_idoss_type_id());
 
         Listitem itempelaksana = listbox_NamaPelaksana.getSelectedItem();
         if (itempelaksana == null) {
@@ -241,6 +230,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         VHrEmployeePelaksana vHrEmployeePelaksana = (VHrEmployeePelaksana)lml3.get(itempelaksana.getIndex());
         tPenangananGangguan.setNama_pelaksana(vHrEmployeePelaksana.getEmployee_name());
         tPenangananGangguan.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
+
         tPenangananGangguan.setStatus(combobox_Status.getValue());
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
     }

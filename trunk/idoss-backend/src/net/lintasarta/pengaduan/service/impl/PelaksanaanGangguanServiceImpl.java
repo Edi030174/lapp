@@ -94,18 +94,25 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
 //        long akhir = ts.getTime();
 //        double durasi = (double )(akhir - awal)/(1000);
 //        DecimalFormat durasiResult = new DecimalFormat("##0.000000");
-
+//Update Durasi
         String dateAwal = new SimpleDateFormat("yyyy-MM-dd hh:mm aa").format(tPenangananGangguan.getCreated_date());
         String dateAkhir = new SimpleDateFormat("yyyy-MM-dd hh:mm aa").format(ts);
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
         Date awal = getDateTime(dateAwal);
         Date akhir = getDateTime(dateAkhir);
         long diff = (akhir.getTime()- awal.getTime());
         float diffResult =((float)diff/(1000.0f*60.0f*60.0f));
         DecimalFormat durasiResult = new DecimalFormat("##0.000000");
-
         tPenangananGangguan.setDurasi(durasiResult.format(diffResult));
-
+// update MTTR
+        String firtUpadate = new SimpleDateFormat("yyyy-MM-dd hh:mm aa").format(tPenangananGangguan.getInserted_root_caused());
+        String lastUpdate = new SimpleDateFormat("yyyy-MM-dd hh:mm aa").format(ts);
+        Date first = getDateTime(firtUpadate);
+        Date last = getDateTime(lastUpdate);
+        long diffMttr = (last.getTime()- first.getTime());
+        float diffResultMttr =((float)diffMttr/(1000.0f*60.0f*60.0f));
+        DecimalFormat durasiResultMttr = new DecimalFormat("##0.000000");
+        tPenangananGangguan.setMttr(durasiResultMttr.format(diffResultMttr));
+        
         gettPenangananGangguanDAO().saveOrUpdate(tPenangananGangguan);
     }
 
@@ -116,19 +123,6 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
 
         return date;
     }
-/*
-    public static Date getDateTime(String dateTime, Date orig)
-            throws ParseException {
-        Date akhir = getDateTime(dateTime);
-
-        if (akhir.getYear() == 70) {
-            akhir.setYear(orig.getYear());
-            akhir.setMonth(orig.getMonth());
-            akhir.setDate(orig.getDate());
-        }
-        return akhir;
-    }
-*/
 
     @Override
     public List<PRootCaused> getRootCausedByPTypeId(String typeId) {

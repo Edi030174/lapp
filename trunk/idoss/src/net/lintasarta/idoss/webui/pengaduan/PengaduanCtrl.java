@@ -24,7 +24,6 @@ import java.util.Map;
  * User: Asri
  * Date: Jul 6, 2010
  * Time: 2:30:38 PM
- * To change this template use File | Settings | File Templates.
  */
 public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 
@@ -45,7 +44,6 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 //    protected Button btnSimpan_pengaduan;
 //    protected Button btnBatal_pengaduan;
 //
-
     private transient String oldVar_textboxNomorTiket;
     private transient String oldVar_textboxNamaPelapor;
     private transient String oldVar_textboxNikPelapor;

@@ -94,6 +94,7 @@
     </bean>
 
     <bean id="reportPengaduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.ReportPengaduanCtrl" parent="basisCtrl" scope="prototype">
+        <property name="reportPengaduanService" ref="reportPengaduanService"/>
     </bean>
 
 </beans>
