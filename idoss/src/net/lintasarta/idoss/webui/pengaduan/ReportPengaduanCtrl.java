@@ -1,7 +1,9 @@
 package net.lintasarta.idoss.webui.pengaduan;
 
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
+import net.lintasarta.report.pengaduan.service.ReportPengaduanService;
 import org.apache.log4j.Logger;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zkex.zul.Jasperreport;
 import org.zkoss.zul.Messagebox;
@@ -23,6 +25,8 @@ public class ReportPengaduanCtrl extends GFCBaseCtrl implements Serializable{
     protected Window window_report;
     protected Jasperreport report;
 
+    private transient ReportPengaduanService reportPengaduanService;
+
     public ReportPengaduanCtrl() {
         super();
         if (logger.isDebugEnabled()) {
@@ -43,13 +47,25 @@ public class ReportPengaduanCtrl extends GFCBaseCtrl implements Serializable{
     }
 
     private void showReport() {
-        Map parameters = new HashMap();
-        parameters.put("ReportTitle", "Address Report");
-//        parameters.put("DataFile", "CustomDataSource.java");
 
-        report.setSrc("Permohonan.jasper");
+        String repSrc = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/pengaduan/Pengaduan.jasper");
+        String subDir = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/reports/pengaduan") + "/";
+
+        Map parameters = new HashMap();
+        parameters.put("ReportTitle", "sample Report");
+        parameters.put("SUBREPORT_DIR", subDir);
+
+
+        report.setSrc(repSrc);
         report.setParameters(parameters);
-//        report.setDatasource();
+        report.setDatasource(getReportPengaduanService().getReport());
     }
 
+    public ReportPengaduanService getReportPengaduanService() {
+        return reportPengaduanService;
+    }
+
+    public void setReportPengaduanService(ReportPengaduanService reportPengaduanService) {
+        this.reportPengaduanService = reportPengaduanService;
+    }
 }

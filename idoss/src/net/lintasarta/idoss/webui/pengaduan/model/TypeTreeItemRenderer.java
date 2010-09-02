@@ -25,11 +25,7 @@ public class TypeTreeItemRenderer implements TreeitemRenderer, Serializable {
 //          Treecell treecell = new Treecell(typeDesc);
         Treecell treecell = new Treecell(pType.getType_desc());
         Treerow tr;
-        /*
-         * Since only one treerow is allowed, if treerow is not null,
-         * append treecells to it. If treerow is null, contruct a new
-         * treerow and attach it to item.
-         */
+
         if(item.getTreerow()==null){
             tr = new Treerow();
             tr.setParent(item);
@@ -42,29 +38,4 @@ public class TypeTreeItemRenderer implements TreeitemRenderer, Serializable {
         item.setOpen(false);
 
     }
-
-//    @Override
-//    public void render(Treeitem treeitem, Object data) throws Exception {
-//        SimpleTreeNode stn = (SimpleTreeNode) data;
-////        TypeTreeNode ttn = (TypeTreeNode) data;
-//        List<PType> pTypes = stn.getChildren();
-//        for (PType pType : pTypes) {
-//            Treecell tc = new Treecell(pType.getType_desc());
-//            Treerow tr;
-//
-//            if(treeitem.getTreerow() == null){
-//                tr = new Treerow();
-//                tr.setParent(treeitem);
-//            }else {
-//                tr = treeitem.getTreerow();
-//                tr.getChildren().clear();
-//            }
-//            tc.setParent(tr);
-//            treeitem.setValue(tc);
-//        }
-//        treeitem.setOpen(false);
-//
-////        treeitem.setValue(data);
-//
-//    }
 }

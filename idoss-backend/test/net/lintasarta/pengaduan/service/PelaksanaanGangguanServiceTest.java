@@ -113,6 +113,15 @@ public class PelaksanaanGangguanServiceTest {
         DecimalFormat durasiResult1 = new DecimalFormat("##0.000000");
         tPenangananGangguan.setDurasi(durasiResult1.format(durasiResult));
 */
+        String firtUpadate = new SimpleDateFormat("yyyy-MM-dd hh:mm aa").format(tPenangananGangguan.getInserted_root_caused());
+        String lastUpdate = new SimpleDateFormat("yyyy-MM-dd hh:mm aa").format(ts);
+        Date first = getDateTime(firtUpadate);
+        Date last = getDateTime(lastUpdate);
+        long diffMttr = (last.getTime()- first.getTime());
+        float diffResultMttr =((float)diffMttr/(1000.0f*60.0f*60.0f));
+        DecimalFormat durasiResultMttr = new DecimalFormat("##0.000000");
+        tPenangananGangguan.setMttr(durasiResultMttr.format(diffResultMttr));
+
         pelaksanaanGangguanService.saveOrUpdate(tPenangananGangguan);
         TPenangananGangguan tPenangananGangguanResult = pelaksanaanGangguanService.getDetail(tiketId);
         String namaPelaporActual = tPenangananGangguanResult.getNama_pelapor();

@@ -125,17 +125,6 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
             listbox_RootCaused =null;
         }
 
-//        List<PType> pTypes = getTypeService().getPTypeTree();
-//
-//        SimpleTreeNode stn = new SimpleTreeNode(pTypes, new ArrayList());
-//        ArrayList al = new ArrayList();
-//        al.add(stn);
-//
-//        SimpleTreeNode root = new SimpleTreeNode("ROOT",al);
-//        SimpleTreeModel stm = new SimpleTreeModel(root);
-//        tree_Type.setModel(stm);
-//        tree_Type.setTreeitemRenderer(new TypeTreeItemRenderer());
-//
         getTreeModel();
         doShowDialog(getpType());
     }
@@ -145,10 +134,16 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
 
-        Treeitem ti = tree_Type.getSelectedItem();
-        textbox_Type.setValue(ti.getLabel());
-//        SimpleTreeNode stn = (SimpleTreeNode)tree_Type.getModel();
-//        PType pType = (PType)stn.getData();
+        Treeitem item = tree_Type.getSelectedItem();
+        textbox_Type.setValue(item.getLabel());
+
+        SimpleTreeModel stm = (SimpleTreeModel)tree_Type.getModel();
+//        SimpleTreeNode stn = (SimpleTreeNode)stm.getRoot();
+//        PType pType = (PType)stm.getChild("ROOt", item.indexOf());
+
+//        System.out.println(pType.getP_idoss_type_id());
+
+
         listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId("4012")));
         listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
         listbox_RootCaused.setSelectedIndex(-1);

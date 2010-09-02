@@ -18,5 +18,9 @@
         <property name="tPenangananGangguanDAO" ref="tPenangananGangguanDAO"/>
         <property name="vHrEmployeePelaksanaDAO" ref="vHrEmployeePelaksanaDAO"/>
     </bean>
+    <bean id="reportPengaduanService" class="net.lintasarta.report.pengaduan.service.impl.ReportPengaduanServiceImpl">
+        <property name="reportPengaduanDAO" ref="reportPengaduanDAO"/>
+    </bean>
+
     
 </beans>
