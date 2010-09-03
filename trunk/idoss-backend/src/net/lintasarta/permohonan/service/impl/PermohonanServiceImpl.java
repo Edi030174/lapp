@@ -138,7 +138,7 @@ public class PermohonanServiceImpl implements PermohonanService {
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         tPermohonan.setCreated_date(ts);
         tPermohonan.setUpdated_date(ts);
-        tPermohonan.setStatus_track_permohonan(Status.PERMOHONAN.toString());
+        tPermohonan.setStatus_track_permohonan("Permohonan Baru");
 
         gettPermohonanDAO().createTPermohonan(tPermohonan);
 
