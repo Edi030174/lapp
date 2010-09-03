@@ -98,7 +98,7 @@
                        forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
                        toolbarSet="Basic"/>
         </groupbox>
-        <groupbox mold="3d">
+        <groupbox mold="3d" id="groupbox_AM">
             <caption label="catatan AsMan" style="font-weight:normal"/>
             <hbox>
                 <vbox>
@@ -122,7 +122,7 @@
                 </vbox>
             </hbox>
         </groupbox>
-        <groupbox mold="3d">
+        <groupbox mold="3d" id="groupbox_Manager">
             <caption label="catatan Manager" style="font-weight:normal"/>
             <hbox>
                 <vbox>
@@ -147,7 +147,7 @@
             </hbox>
         </groupbox>
 
-        <groupbox mold="3d">
+        <groupbox mold="3d" id="groupbox_Gm">
             <caption label="catatan GM" style="font-weight:normal"/>
             <hbox>
                 <vbox>

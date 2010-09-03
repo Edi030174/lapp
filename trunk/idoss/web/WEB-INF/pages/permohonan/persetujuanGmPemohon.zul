@@ -97,8 +97,9 @@
             <fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
                        forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
                        toolbarSet="Basic"/>
+                 <html><![CDATA[tPermohonan.getDetail_permohonan()]]></html>
         </groupbox>
-        <groupbox mold="3d">
+        <groupbox mold="3d" id="groupbox_ManagerPemohon">
             <caption label="catatan Manager" style="font-weight:normal"/>
             <hbox>
                 <vbox>
@@ -123,7 +124,7 @@
             </hbox>
         </groupbox>
 
-        <groupbox mold="3d">
+        <groupbox mold="3d" id="groupbox_GmPemohon">
             <caption label="catatan GM" style="font-weight:normal"/>
             <hbox>
                 <vbox>

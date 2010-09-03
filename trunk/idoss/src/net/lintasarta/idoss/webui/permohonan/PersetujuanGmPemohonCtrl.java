@@ -51,6 +51,8 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     protected Radiogroup radiogroup_Dampak;
     protected Radio major;
     protected Radio minor;
+    protected Groupbox groupbox_ManagerPemohon;
+    protected Groupbox groupbox_GmPemohon;
 
     private transient String oldVar_textbox_TIdossPermohonanId;
     private transient String oldVar_textbox_NamaPemohon;
