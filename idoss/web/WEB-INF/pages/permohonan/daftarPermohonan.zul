@@ -41,19 +41,27 @@
             <separator/>
             <checkbox id="checkbox_all" label="tampilkan semua"/>
         </hbox>
-        <separator bar="false"/>
-        <paging id="paging_DaftarPermohonan"/>
-        <listbox id="listbox_DaftarPermohonan" vflex="true" width="99.9%" height="100%" multiple="false">
-            <listhead sizable="true">
-                <listheader id="listheader_Nomor" label="Nomor" sort="auto" style="font-size:11px"/>
-                <listheader id="listheader_Tanggal" label="Tanggal" sort="auto" style="font-size:11px"/>
-                <listheader id="listheader_Tipe" label="Tipe" sort="auto" style="font-size:11px"/>
-                <listheader id="listheader_StatusPersetujuan" label="Status Persetujuan" sort="auto" style="font-size:11px"/>
-                <listheader id="listheader_AssMgr" label="AssManager" sort="auto" style="font-size:11px"/>
-                <listheader id="listheader_Mgr" label="Manager" sort="auto" style="font-size:11px"/>
-                <listheader id="listheader_GM" label="GM" sort="auto" style="font-size:11px"/>
-            </listhead>
-        </listbox>
+        
+        <borderlayout id="borderlayout_daftarPermohonan">
+            <north border="none" height="26px">
+                <paging id="paging_DaftarPermohonan"/>
+            </north>
+            <center border="none">
+                <listbox id="listbox_DaftarPermohonan" vflex="true" width="99.9%" height="100%" multiple="false">
+                    <listhead sizable="true">
+                        <listheader id="listheader_Nomor" label="Nomor" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Tanggal" label="Tanggal" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Tipe" label="Tipe" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_StatusPersetujuan" label="Status Persetujuan" sort="auto"
+                                    style="font-size:11px"/>
+                        <listheader id="listheader_AssMgr" label="AssManager" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Mgr" label="Manager" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_GM" label="GM" sort="auto" style="font-size:11px"/>
+                    </listhead>
+                </listbox>
+            </center>
+            <south border="none"/>
+        </borderlayout>
         <space/>
     </window>
 </zk>

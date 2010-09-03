@@ -25,7 +25,7 @@
     </style>
     <window id="window_Permohonan" title="permohonan" border="none" apply="${permohonanCtrl}"
             sizable="true" contentStyle="overflow:auto" width="800px" height="600px" closable="true">
-        <borderlayout id="borderlayoutCustomer">
+        <borderlayout id="borderlayout_Permohonan">
             <north border="none" margins="0,0,0,0"/>
             <center border="none">
                 <div id="divPermohonan">
