@@ -23,7 +23,8 @@
         .z-groupbox-hl .z-groupbox-header { color: #000000;
         font-weight: bold; }
     </style>
-    <window id="window_PersetujuanGm" border="normal" apply="${persetujuanGmCtrl}">
+    <window id="window_PersetujuanGm" width="796px" height="544px" contentStyle="overflow:auto" border="normal"
+            apply="${persetujuanGmCtrl}">
         <toolbar>
             <button id="btn_SimpanPersetujuanGm" label="Simpan"/>
             <button id="btn_Batal" label="Batal"/>
@@ -106,8 +107,9 @@
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanAsman">
                         <hbox>
-                            <radio id="radio_DisetujuiAM" label="disetujui" value="disetujuiAsman" selected="true"/>
-                            <radio id="radio_DitolakAM" label="ditolak" value="ditolakAsman"/>
+                            <radio id="radio_DisetujuiAM" label="disetujui" value="Disetujui Asman Dukophar"
+                                   selected="true"/>
+                            <radio id="radio_DitolakAM" label="ditolak" value="Ditolak Asman Dukophar"/>
                         </hbox>
                     </radiogroup>
                 </vbox>
@@ -129,8 +131,9 @@
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanManager">
                         <hbox>
-                            <radio id="radio_DisetujuiM" label="disetujui" value="disetujuiManager" selected="true"/>
-                            <radio id="radio_DitolakM" label="ditolak" value="ditolakManager"/>
+                            <radio id="radio_DisetujuiM" label="disetujui" value="Disetujui Manager Dukophar"
+                                   selected="true"/>
+                            <radio id="radio_DitolakM" label="ditolak" value="Ditolak Manager Dukophar"/>
                         </hbox>
                     </radiogroup>
                 </vbox>
@@ -151,8 +154,9 @@
                     <label value="Status Permohonan : "/>
                     <radiogroup id="radiogroup_StatusPermohonanGm">
                         <hbox>
-                            <radio id="radio_DisetujuiGM" label="disetujui" value="disetujui" selected="true"/>
-                            <radio id="radio_DitolakGM" label="ditolak" value="ditolak"/>
+                            <radio id="radio_DisetujuiGM" label="disetujui" value="Disetujui GM Dukophar"
+                                   selected="true"/>
+                            <radio id="radio_DitolakGM" label="ditolak" value="Ditolak Gm Dukophar"/>
                         </hbox>
                     </radiogroup>
                     <hbox>

@@ -18,6 +18,7 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zul.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -60,6 +61,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_Lainlain;
     protected Checkbox checkbox_Cepat;
     protected Button button_Lampiran;
+    protected Button button_Download;
     protected FCKeditor fck_DetailPermohonan;
 
     protected Tab tab_Verifikasi;
@@ -211,9 +213,9 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             textbox_NikPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
         }
-        if(tPermohonan.getUrgensi().equals("H")){
+        if (tPermohonan.getUrgensi().equals("H")) {
             checkbox_Cepat.setChecked(true);
-        }else{
+        } else {
             checkbox_Cepat.setChecked(false);
         }
         textbox_NamaManager.setValue(tPermohonan.getNama_manager());
@@ -231,7 +233,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         } else if (tPermohonan.getType_permohonan().equals("Lain-lain")) {
             radiogroupType_permohonan.setSelectedItem(radio_lainlain);
         }
-        
+
         fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
         textbox_Lainlain.setValue(tPermohonan.getLain_lain());
     }
@@ -281,7 +283,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             map.put("tVerifikasi", getPermohonanService().getNewVerifikasi());
         }
         map.put("tPermohonan", tPermohonan);
-        
+
         map.put("permohonanCtrl", this);
 
 
@@ -348,6 +350,18 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
         window_Permohonan.onClose();
+    }
+
+    public void onClick$button_Download(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        String lam = tPermohonan.getLampiran();
+        try {
+            Filedownload.save(new File(lam), null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void doClose() throws Exception {

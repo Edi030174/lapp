@@ -23,7 +23,8 @@
         .z-groupbox-hl .z-groupbox-header { color: #000000;
         font-weight: bold; }
     </style>
-    <window id="window_PersetujuanGmPemohon" border="normal" apply="${persetujuanGmPemohonCtrl}">
+    <window id="window_PersetujuanGmPemohon" width="796px" height="544px" contentStyle="overflow:auto" border="normal"
+            apply="${persetujuanGmPemohonCtrl}">
         <toolbar>
             <button id="btn_SimpanPersetujuanGmPemohon" label="Simpan"/>
             <button id="btn_Batal" label="Batal"/>
@@ -106,9 +107,9 @@
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanManagerPemohon">
                         <hbox>
-                            <radio id="radio_DisetujuiMPemohon" label="disetujui" value="disetujuiManager"
+                            <radio id="radio_DisetujuiMPemohon" label="disetujui" value="Disetujui Manager Pemohon"
                                    selected="true"/>
-                            <radio id="radio_DitolakMPemohon" label="ditolak" value="ditolakManager"/>
+                            <radio id="radio_DitolakMPemohon" label="ditolak" value="Ditolak Manager Pemohon"/>
                         </hbox>
                     </radiogroup>
                 </vbox>
@@ -131,8 +132,9 @@
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanGmPemohon">
                         <hbox>
-                            <radio id="radio_DisetujuiGmPemohon" label="disetujui" value="disetujuiGM" selected="true"/>
-                            <radio id="radio_DitolakGmPemohon" label="ditolak" value="ditolakGM"/>
+                            <radio id="radio_DisetujuiGmPemohon" label="disetujui" value="Disetujui GM Pemohon"
+                                   selected="true"/>
+                            <radio id="radio_DitolakGmPemohon" label="ditolak" value="Ditolak Gm Pemohon"/>
                         </hbox>
                     </radiogroup>
                     <hbox>

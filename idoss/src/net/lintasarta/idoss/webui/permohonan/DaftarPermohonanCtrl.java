@@ -9,12 +9,17 @@ import net.lintasarta.permohonan.model.predicate.StatusPermohonan;
 import net.lintasarta.permohonan.model.predicate.TanggalPermohonan;
 import net.lintasarta.permohonan.model.predicate.TipePermohonan;
 import net.lintasarta.permohonan.service.PermohonanService;
+import net.lintasarta.report.util.JRreportCompiler;
+import net.lintasarta.report.util.JRreportWindow;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.component.Component;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.support.PagedListHolder;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Path;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
@@ -178,6 +183,53 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
             MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
 
         }
+    }
+
+    public void onClick$btnReport(Event event) throws Exception{
+        if (logger.isDebugEnabled()) {
+			logger.debug("--> " + event.toString());
+		}
+
+		try {
+			doPrintReport();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+    }
+
+    private void doPrintReport() throws InterruptedException {
+        if (logger.isDebugEnabled()) {
+			logger.debug("--> begin with printing");
+		}
+
+		// Get the real path for the report
+		String repSrc = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan/reportBelumSelesai.jasper");
+		String subDir = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan") + "/";
+
+		// preparing parameters. The Subreports resolved by path and the
+		// ReportName in the reports self.
+		HashMap<String, Object> repParams = new HashMap<String, Object>();
+		repParams.put("Title", "Sample Order Report");
+		repParams.put("SUBREPORT_DIR", subDir);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("JasperReport : " + repSrc);
+			logger.debug("SubDir : " + subDir);
+		}
+
+			boolean bol = false;
+			String reportName = "";
+
+			reportName = "/de/forsthaus/webui/reports/order/Test_Report_subreportAuftrag_subreportAuftragposition.jrxml";
+			bol = new JRreportCompiler().compileReport(reportName);
+			System.out.println("Report: " + reportName + " = compiled : " + bol);
+
+			// JRDataSource ds = new
+			// TestReport().getBeanCollectionByAuftrag(getOrder());
+//			JRDataSource ds = TestReport.testBeanCollectionDatasource();
+//			Component parent = DaftarPermohonanCtrl.getOrderListWindow().getRoot();
+
+//			new JRreportWindow(parent, true, repParams, repSrc, ds, "pdf");
     }
 
     public void onClick$btnRefresh(Event event) throws InterruptedException {
