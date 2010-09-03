@@ -26,6 +26,8 @@ public interface PTypeDAO {
 
     List<PType> getPTypeByParentId(String parentId);
 
+    PType getPTypeByTypeDesc(String typeDesc);
+
     List<PType> getPTypeTree();
 
 }
