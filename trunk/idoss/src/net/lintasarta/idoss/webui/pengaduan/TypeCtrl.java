@@ -136,6 +136,10 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
 
         Treeitem item = tree_Type.getSelectedItem();
         textbox_Type.setValue(item.getLabel());
+        String tpdesc = item.getLabel();
+        getTypeService().getPTypeByTypeDesc(tpdesc);
+
+        PType pType = getTypeService().getPTypeByTypeDesc(tpdesc);
 
         SimpleTreeModel stm = (SimpleTreeModel)tree_Type.getModel();
 //        SimpleTreeNode stn = (SimpleTreeNode)stm.getRoot();
@@ -144,7 +148,7 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
 //        System.out.println(pType.getP_idoss_type_id());
 
 
-        listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId("4012")));
+        listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(pType.getP_idoss_type_id())));
         listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
         listbox_RootCaused.setSelectedIndex(-1);
 

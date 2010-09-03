@@ -52,6 +52,12 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
+    public PType getPTypeByTypeDesc(String typeDesc) {
+        PType pTypes = pTypeDAO.getPTypeByTypeDesc(typeDesc);
+        return pTypes;
+    }
+
+    @Override
     public List<PType> getPTypeTree() {
         List<PType> pTypes = getpTypeDAO().getPTypeTree();
         return pTypes;
