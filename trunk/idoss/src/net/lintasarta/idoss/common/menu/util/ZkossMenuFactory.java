@@ -43,7 +43,6 @@ abstract public class ZkossMenuFactory implements Serializable {
         if (getLogger().isTraceEnabled()) {
             t1 = System.nanoTime() - t1;
             getLogger().trace("Needed time for inserting the menu: " + t1 / 1000000 + "ms");
-            // getLogger().trace("\n" + ZkossBaumUtil.getZulBaum(component));
         }
     }
 

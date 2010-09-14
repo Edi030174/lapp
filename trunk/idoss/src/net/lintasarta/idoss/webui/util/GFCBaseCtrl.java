@@ -71,7 +71,7 @@ abstract public class GFCBaseCtrl extends GenericForwardComposer implements Seri
                 Secured secured = (Secured) annotation;
                 for (String rightName : secured.value()) {
                     if (!userWorkspace.isAllowed(rightName)) {
-                        throw new SecurityException("Aufruf nicht erlaubt! Fehlendes Recht: \n\n" + "benötigter RechteName: " + rightName + "\n\n" + "In Methode: " + mtd);
+                        throw new SecurityException("Call not allowed! Not enough right: \n\n" + "Name Required rights: " + rightName + "\n\n" + "In Method: " + mtd);
                     }
                 }
                 return;
