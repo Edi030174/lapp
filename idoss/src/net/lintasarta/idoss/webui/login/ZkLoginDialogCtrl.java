@@ -51,8 +51,8 @@ public class ZkLoginDialogCtrl extends WindowBaseCtrl implements Serializable {
         loginwin.setShadow(false);
         loginwin.doModal();
 
-        UserSession userSession = SSOUtils.login();
-//        UserSession userSession = SSOUtils.loginNoSSO();
+//        UserSession userSession = SSOUtils.login();
+        UserSession userSession = SSOUtils.loginNoSSO();
         if (userSession != null) {
             txtbox_Username.setValue(userSession.getEmployeeNo());
             Clients.showBusy("Wait for IDOSS Authorization");

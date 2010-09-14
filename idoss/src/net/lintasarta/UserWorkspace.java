@@ -28,8 +28,6 @@ public class UserWorkspace implements Serializable, DisposableBean {
         return SecurityContextHolder.getContext().getAuthentication();
     }
 
-    private String userLanguage;
-
     private UserSession userSession;
 
     private Set<String> grantedAuthoritySet = null;
@@ -67,14 +65,6 @@ public class UserWorkspace implements Serializable, DisposableBean {
 
     public boolean isAllowed(String rightName) {
         return getGrantedAuthoritySet().contains(rightName);
-    }
-
-    public void setUserLanguage(String userLanguage) {
-        this.userLanguage = userLanguage;
-    }
-
-    public String getUserLanguage() {
-        return userLanguage;
     }
 
     public UserSession getUserSession() {
