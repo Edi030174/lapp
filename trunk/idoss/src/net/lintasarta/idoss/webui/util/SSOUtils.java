@@ -36,12 +36,14 @@ public class SSOUtils {
 
     public static UserSession loginNoSSO() {
         UserSession userSession = new UserSession();
-        userSession.setEmployeeNo("77960587");
-        userSession.setEmployeeName("FAJAR BAYU KURNIADHI");
-        userSession.setOrganizationid(1164);
-        userSession.setUserName("77960587-FAJAR BAYU KURNIADHI");
-        userSession.setDepartment("MANAJEMEN PRODUKSI.");
-        userSession.setJobLocation("TB. SIMATUPANG");
+//        userSession.setEmployeeRole("pemohonpengadu");
+        userSession.setEmployeeRole("xsis");
+        userSession.setEmployeeNo("79040893");
+        userSession.setEmployeeName("ZULHELMY");
+        userSession.setOrganizationid(1413);
+        userSession.setUserName("79040893-ZULHELMY");
+        userSession.setDepartment("OPERASI TI..");
+        userSession.setJobLocation("MENARA THAMRIN");
 
         Session session = Executions.getCurrent().getSession();
         session.setAttribute("userSession", userSession);

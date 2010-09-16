@@ -10,6 +10,7 @@ import java.io.Serializable;
  */
 public class UserSession implements Serializable {
 
+    private String employeeRole;
     private String employeeNo;
     private String userName;
     private String employeeName;
@@ -21,7 +22,8 @@ public class UserSession implements Serializable {
     public UserSession() {
     }
 
-    public UserSession(String employeeNo, String userName, String employeeName, String department, String jobLocation, int organizationid, String winHeight) {
+    public UserSession(String employeeRole, String employeeNo, String userName, String employeeName, String department, String jobLocation, int organizationid, String winHeight) {
+        this.employeeRole = employeeRole;
         this.employeeNo = employeeNo;
         this.userName = userName;
         this.employeeName = employeeName;
@@ -29,6 +31,14 @@ public class UserSession implements Serializable {
         this.jobLocation = jobLocation;
         this.organizationid = organizationid;
         this.winHeight = winHeight;
+    }
+
+    public String getEmployeeRole() {
+        return employeeRole;
+    }
+
+    public void setEmployeeRole(String employeeRole) {
+        this.employeeRole = employeeRole;
     }
 
     public String getEmployeeNo() {
