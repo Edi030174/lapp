@@ -8,6 +8,7 @@ import org.apache.axis2.AxisFault;
 import org.apache.axis2.transport.http.HTTPConstants;
 import org.tempuri.ValidateTicketStub;
 
+import java.math.BigDecimal;
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -55,6 +56,31 @@ public class LoginServiceImpl implements LoginService {
         return null;
     }
 
+    public String getAuthorization(VHrEmployee vHrEmployee) {
+        if (vHrEmployee.getP_organization_id().equals(new BigDecimal(1176))) {
+            if (vHrEmployee.getJob_position_code().contains("Assistant Manager")) {
+                return "asmandukophar";
+            } else if (vHrEmployee.getJob_position_code().contains("Manager")) {
+                return "managerdukophar";
+            } else {
+                return "helpdeskpelaksana";
+            }
+        } else if (vHrEmployee.getP_organization_id().equals(new BigDecimal(1155))) {
+            if (vHrEmployee.getJob_position_code().contains("General Manager")) {
+                return "gmdukophar";
+            }
+        } else if (!vHrEmployee.getP_organization_id().equals(new BigDecimal(1176))) {
+            if (vHrEmployee.getJob_position_code().contains("Manager")) {
+                return "managerpemohon";
+            }
+        } else if (!vHrEmployee.getP_organization_id().equals(new BigDecimal(1155))) {
+            if (vHrEmployee.getJob_position_code().contains("General Manager")) {
+                return "gmpemohon";
+            }
+        }
+        return "pemohonpengadu";
+    }
+
     public UserSession getUserSession(String userUrl, String ticketId) {
         String result = validateTicketId(userUrl, ticketId);
         StringTokenizer token = new StringTokenizer(result, "|");
@@ -71,6 +97,7 @@ public class LoginServiceImpl implements LoginService {
                 String jobLocation = vHrEmployee.getJob_location();
                 int orgId = vHrEmployee.getP_organization_id().intValue();
                 UserSession userSession = new UserSession();
+                userSession.setEmployeeRole(getAuthorization(vHrEmployee));
                 userSession.setDepartment(department);
                 userSession.setEmployeeName(employeeName);
                 userSession.setEmployeeNo(employeeNo);
@@ -81,29 +108,6 @@ public class LoginServiceImpl implements LoginService {
 
                 return userSession;
             }
-        }
-        return null;
-    }
-
-    public UserSession getUserSessionWithoutSSO(String employeeNo) {
-        VHrEmployee vHrEmployee = getVHrEmployee(employeeNo);
-        if (vHrEmployee != null) {
-//            String department = "N/A";
-//            String jobLocation = "JAKARTA";
-//            int orgId = 0;
-            String department = vHrEmployee.getOrganization_code();
-            String jobLocation = vHrEmployee.getJob_location();
-            int orgId = vHrEmployee.getP_organization_id().intValue();
-            UserSession userSession = new UserSession();
-            userSession.setDepartment(department);
-            userSession.setEmployeeName(vHrEmployee.getEmployee_name());
-            userSession.setEmployeeNo(employeeNo);
-            userSession.setJobLocation(jobLocation);
-            userSession.setOrganizationid(orgId);
-            userSession.setUserName(vHrEmployee.getNama());
-            userSession.setWinHeight("800px");
-
-            return userSession;
         }
         return null;
     }

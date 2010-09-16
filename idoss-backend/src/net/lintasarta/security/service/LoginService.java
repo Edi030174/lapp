@@ -10,5 +10,4 @@ import net.lintasarta.security.model.UserSession;
  */
 public interface LoginService {
     UserSession getUserSession(String userUrl, String ticketId);
-    UserSession getUserSessionWithoutSSO(String employeeNo);
 }

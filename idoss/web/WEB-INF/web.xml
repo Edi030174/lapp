@@ -8,16 +8,20 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
+            classpath:META-INF/iBatis/ibatis-spring-config.xml,
             classpath:META-INF/spring/datasource.xml,
-            classpath:META-INF/spring/spring-config.xml,
             classpath:META-INF/spring/spring-idoss-security-config.xml,
             classpath:META-INF/spring/spring-dao-*.xml,
             classpath:META-INF/spring/spring-service-*.xml,
             WEB-INF/applicationContext.xml,
             WEB-INF/spring-security-context.xml
+            <!-- Config for Security IDOSS Authorization-->
+            classpath:META-INF/spring/spring-based-dao-config.xml,
+            classpath:META-INF/spring/spring-paging-config.xml,
+            classpath:META-INF/spring/spring-security-dao-config.xml,
+            classpath:META-INF/spring/spring-security-service-config.xml
         </param-value>
     </context-param>
-
     <!-- ====================================================== -->
     <!--                  SPRING CONTEXT LOADER                 -->
     <!-- ====================================================== -->

@@ -79,7 +79,7 @@
 									<label id="label_ZKLoginDialog_pwd"
 										value="${c:l('label_ZKLoginDialog_pwd.value')}" />
 									<textbox id="txtbox_Password"
-										type="password" name="sso_password" width="98%" />
+										type="password" name="j_password" width="98%" />
 								</row>
 
 								<row spans="2">
