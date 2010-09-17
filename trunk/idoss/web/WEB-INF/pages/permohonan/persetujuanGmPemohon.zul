@@ -97,7 +97,7 @@
             <fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
                        forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
                        toolbarSet="Basic"/>
-                 <html><![CDATA[tPermohonan.getDetail_permohonan()]]></html>
+            <label id="tes"></label>
         </groupbox>
         <groupbox mold="3d" id="groupbox_ManagerPemohon">
             <caption label="catatan Manager" style="font-weight:normal"/>
@@ -135,7 +135,7 @@
                         <hbox>
                             <radio id="radio_DisetujuiGmPemohon" label="disetujui" value="Disetujui GM Pemohon"
                                    selected="true"/>
-                            <radio id="radio_DitolakGmPemohon" label="ditolak" value="Ditolak Gm Pemohon"/>
+                            <radio id="radio_DitolakGmPemohon" label="ditolak" value="Ditolak GM Pemohon"/>
                         </hbox>
                     </radiogroup>
                     <hbox>

@@ -45,6 +45,7 @@
         <borderlayout id="borderlayout_daftarPermohonan">
             <north border="none" height="26px">
                 <paging id="paging_DaftarPermohonan"/>
+
             </north>
             <center border="none">
                 <listbox id="listbox_DaftarPermohonan" vflex="true" width="99.9%" height="100%" multiple="false">

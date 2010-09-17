@@ -29,34 +29,56 @@
 	</style>
 	<subDataset name="Table Dataset 1"/>
 	<queryString>
-		<![CDATA[SELECT  A.T_IDOSS_PERMOHONAN_ID,A.CREATED_DATE,A.NAMA_PEMOHON,A.TYPE_PERMOHONAN, DECODE(A.URGENSI,'H','HIGH','NORMAL') as URGENSI,A.TGL_PERMOHONAN,
-        A.NAMA_ASMAN, DECODE(b.URGENSI,'H','HIGH','NORMAL') as PRIORITAS, b.DAMPAK,b.STATUS_PERMOHONANASMAN, b.UPDATED_ASMAN,
-        c.NAMA_PELAKSANA, c.STATUS_PERUBAHAN, c.UPDATED_DATE
-FROM T_IDOSS_PERMOHONAN A, T_IDOSS_VERIFIKASI B, T_IDOSS_PELAKSANAAN C
-WHERE A.T_IDOSS_PERMOHONAN_ID=B.T_IDOSS_VERIFIKASI_ID AND A.T_IDOSS_PERMOHONAN_ID=C.T_IDOSS_PELAKSANAAN_ID
-      AND NOT C.STATUS_PERUBAHAN='CLOSED']]>
+		<![CDATA[select a.T_IDOSS_PERMOHONAN_ID nomor , to_char(a.tgl_permohonan ,'dd-MON-yyyy mm:hh') tanggal,a.TYPE_PERMOHONAN,
+       a.DETAIL_PERMOHONAN deskripsi, a.NAMA_PEMOHON , a.BAGIAN_PEMOHON ,
+       (Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Pemohon' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Manager Pemohon' then a.NAMA_MANAGER else
+             Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Pemohon' or  a.STATUS_TRACK_PERMOHONAN='Ditolak GM Pemohon' then a.NAMA_GM else
+                Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Asman Dukophar' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Asman Dukophar' then b.NAMA_ASMAN else
+                    Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Dukophar' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Manager Dukophar' then b.NAMA_MANAGER else
+                        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Dukopharr' or  a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar' then b.NAMA_GM else '' end
+                    end
+                end
+             end
+         end) as nama_ver,
+          (Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Pemohon' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Manager Pemohon' then 'Manager' else
+             Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Pemohon' or  a.STATUS_TRACK_PERMOHONAN='Ditolak GM Pemohon' then 'General Manager' else
+                Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Asman Dukophar' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Asman Dukophar' then 'Asman Dukophar' else
+                    Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Dukophar' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Manager Dukophar' then 'Manager Dukophar' else
+                        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Dukopharr' or  a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar' then 'GM Dukophar' else '' end
+                    end
+                end
+             end
+         end) as jabatan,
+          (Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Pemohon' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Manager Pemohon' then to_char(a.UPDATED_MANAGER  ,'dd-MON-yyyy mm:hh') else
+             Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Pemohon' or  a.STATUS_TRACK_PERMOHONAN='Ditolak GM Pemohon' then to_char(a.UPDATED_GM ,'dd-MON-yyyy mm:hh') else
+                Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Asman Dukophar' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Asman Dukophar' then to_char(b.UPDATED_ASMAN ,'dd-MON-yyyy mm:hh') else
+                    Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Dukophar' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Manager Dukophar' then to_char(b.UPDATED_MANAGER ,'dd-MON-yyyy mm:hh') else
+                        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Dukopharr' or  a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar' then to_char(b.UPDATED_GM ,'dd-MON-yyyy mm:hh') else '' end
+                    end
+                end
+             end
+         end) as tgl_ver,
+       a.STATUS_TRACK_PERMOHONAN
+from T_IDOSS_PERMOHONAN a, T_IDOSS_VERIFIKASI b, T_IDOSS_PELAKSANAAN c
+where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_ID=c.T_IDOSS_PELAKSANAAN_ID and c.STATUS_PERUBAHAN <> 'CLOSED']]>
 	</queryString>
-	<field name="T_IDOSS_PERMOHONAN_ID" class="java.lang.String"/>
-	<field name="CREATED_DATE" class="java.sql.Timestamp"/>
-	<field name="NAMA_PEMOHON" class="java.lang.String"/>
+	<field name="NOMOR" class="java.lang.String"/>
+	<field name="TANGGAL" class="java.lang.String"/>
 	<field name="TYPE_PERMOHONAN" class="java.lang.String"/>
-	<field name="URGENSI" class="java.lang.String"/>
-	<field name="TGL_PERMOHONAN" class="java.sql.Timestamp"/>
-	<field name="NAMA_ASMAN" class="java.lang.String"/>
-	<field name="PRIORITAS" class="java.lang.String"/>
-	<field name="DAMPAK" class="java.lang.String"/>
-	<field name="STATUS_PERMOHONANASMAN" class="java.lang.String"/>
-	<field name="UPDATED_ASMAN" class="java.sql.Timestamp"/>
-	<field name="NAMA_PELAKSANA" class="java.lang.String"/>
-	<field name="STATUS_PERUBAHAN" class="java.lang.String"/>
-	<field name="UPDATED_DATE" class="java.sql.Timestamp"/>
+	<field name="DESKRIPSI" class="java.lang.String"/>
+	<field name="NAMA_PEMOHON" class="java.lang.String"/>
+	<field name="BAGIAN_PEMOHON" class="java.lang.String"/>
+	<field name="NAMA_VER" class="java.lang.String"/>
+	<field name="JABATAN" class="java.lang.String"/>
+	<field name="TGL_VER" class="java.lang.String"/>
+	<field name="STATUS_TRACK_PERMOHONAN" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="33" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<staticText>
-				<reportElement x="301" y="12" width="197" height="20"/>
+				<reportElement x="301" y="0" width="197" height="20"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -68,66 +90,57 @@ WHERE A.T_IDOSS_PERMOHONAN_ID=B.T_IDOSS_VERIFIKASI_ID AND A.T_IDOSS_PERMOHONAN_I
 		<band height="19" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="45" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="2" width="82" height="40"/>
+				<reportElement mode="Opaque" x="82" y="0" width="100" height="40" backcolor="#C0C0C0"/>
 				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Nomor]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="82" y="2" width="100" height="40" backcolor="#E2ECF9"/>
-				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Bottom" lineSpacing="Single">
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="182" y="2" width="74" height="40"/>
+				<reportElement mode="Opaque" x="182" y="0" width="74" height="40" backcolor="#C0C0C0"/>
 				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipe]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="256" y="2" width="81" height="40"/>
+				<reportElement mode="Opaque" x="256" y="0" width="81" height="40" backcolor="#C0C0C0"/>
 				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Deskripsi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="337" y="22" width="96" height="20"/>
+				<reportElement mode="Opaque" x="337" y="20" width="96" height="20" backcolor="#C0C0C0"/>
 				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
@@ -135,12 +148,13 @@ WHERE A.T_IDOSS_PERMOHONAN_ID=B.T_IDOSS_VERIFIKASI_ID AND A.T_IDOSS_PERMOHONAN_I
 				<text><![CDATA[Nama]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="433" y="22" width="65" height="20"/>
+				<reportElement mode="Opaque" x="433" y="20" width="65" height="20" backcolor="#C0C0C0"/>
 				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
@@ -148,12 +162,13 @@ WHERE A.T_IDOSS_PERMOHONAN_ID=B.T_IDOSS_VERIFIKASI_ID AND A.T_IDOSS_PERMOHONAN_I
 				<text><![CDATA[Bagian]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="498" y="22" width="97" height="20"/>
+				<reportElement mode="Opaque" x="498" y="20" width="97" height="20" backcolor="#C0C0C0"/>
 				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
@@ -161,12 +176,13 @@ WHERE A.T_IDOSS_PERMOHONAN_ID=B.T_IDOSS_VERIFIKASI_ID AND A.T_IDOSS_PERMOHONAN_I
 				<text><![CDATA[Nama]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="595" y="22" width="62" height="20"/>
+				<reportElement mode="Opaque" x="595" y="20" width="62" height="20" backcolor="#C0C0C0"/>
 				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
@@ -174,38 +190,41 @@ WHERE A.T_IDOSS_PERMOHONAN_ID=B.T_IDOSS_VERIFIKASI_ID AND A.T_IDOSS_PERMOHONAN_I
 				<text><![CDATA[Jabatan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="337" y="2" width="161" height="20"/>
+				<reportElement mode="Opaque" x="337" y="0" width="161" height="20" backcolor="#C0C0C0"/>
 				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Top">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Pemohon]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="733" y="2" width="69" height="40"/>
+				<reportElement mode="Opaque" x="733" y="0" width="69" height="40" backcolor="#C0C0C0"/>
 				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Status]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="657" y="22" width="76" height="20"/>
+				<reportElement mode="Opaque" x="657" y="20" width="76" height="20" backcolor="#C0C0C0"/>
 				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
@@ -213,46 +232,126 @@ WHERE A.T_IDOSS_PERMOHONAN_ID=B.T_IDOSS_VERIFIKASI_ID AND A.T_IDOSS_PERMOHONAN_I
 				<text><![CDATA[Tgl]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="498" y="2" width="235" height="20"/>
+				<reportElement mode="Opaque" x="498" y="0" width="235" height="20" backcolor="#C0C0C0"/>
 				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Top">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Persetujuan]]></text>
 			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="82" height="40" backcolor="#C0C0C0"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nomor]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="33" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="82" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{T_IDOSS_PERMOHONAN_ID}]]></textFieldExpression>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMOR}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="82" y="0" width="100" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{CREATED_DATE}]]></textFieldExpression>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TANGGAL}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="337" y="0" width="62" height="20"/>
-				<textElement/>
+				<reportElement x="256" y="0" width="81" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{DESKRIPSI} != null ? $F{DESKRIPSI}: "-")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="0" width="96" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{NAMA_PEMOHON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="0" width="65" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BAGIAN_PEMOHON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="498" y="0" width="97" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NAMA_VER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="595" y="0" width="62" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{JABATAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="733" y="0" width="69" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{STATUS_TRACK_PERMOHONAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="657" y="0" width="76" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TGL_VER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="182" y="0" width="74" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TYPE_PERMOHONAN}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="18" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="17" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="17" splitType="Stretch"/>
 	</summary>
 </jasperReport>

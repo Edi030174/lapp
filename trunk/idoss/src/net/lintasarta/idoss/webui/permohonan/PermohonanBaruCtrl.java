@@ -1,5 +1,6 @@
 package net.lintasarta.idoss.webui.permohonan;
 
+import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPelaksanaan;
@@ -110,6 +111,8 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
+        
+        doCheckRights();
 
         Map<String, Object> args = getCreationArgsMap(event);
 
@@ -134,6 +137,10 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
 
         doShowDialog(gettPermohonan());
 
+    }
+
+    private void doCheckRights() {
+        UserWorkspace workspace = getUserWorkspace();
     }
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
@@ -187,14 +194,12 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         }
         doSimpan();
         window_Permohonan.onClose();
-
     }
 
     public void onClick$btnBatal(Event event) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-
         window_Permohonan.onClose();
     }
 
@@ -342,45 +347,6 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
 
 
     }
-
-//    private void onCheck$radiogroupType_permohonan(Event event) {
-//         if (logger.isDebugEnabled()) {
-//            logger.debug("--> " + event.toString());
-//        }
-//        if(radio_lainlain.isChecked()){
-//            textbox_Lainlain.setDisabled(true);
-//        }else{
-//            textbox_Lainlain.setDisabled(false);
-//        }
-//    }
-//
-//    private void onCheck$radio_lainlain(Event event) {
-//        if (logger.isDebugEnabled()) {
-//            logger.debug("--> " + event.toString());
-//        }
-//        if(radio_lainlain.isChecked()){
-//            textbox_Lainlain.setDisabled(true);
-//        }else{
-//            textbox_Lainlain.setDisabled(false);
-//        }
-//    }
-        
-
-//    private void onCheck$radio_readonly(TPermohonan tPermohonan) {
-//        textbox_Lainlain.setDisabled(true);
-//    }
-//
-//    private void onCheck$radio_readwrite(TPermohonan tPermohonan) {
-//        textbox_Lainlain.setDisabled(true);
-//    }
-//
-//    private void onCheck$radio_aplikasi(TPermohonan tPermohonan) {
-//        textbox_Lainlain.setDisabled(true);
-//    }
-//
-//    private void onCheck$radio_lainlain(TPermohonan tPermohonan) {
-//        textbox_Lainlain.setDisabled(false);
-//    }
 
     private void doWriteComponentsToBean(TPermohonan permohonan) {
 

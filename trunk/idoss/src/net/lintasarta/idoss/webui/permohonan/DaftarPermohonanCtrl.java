@@ -1,5 +1,6 @@
 package net.lintasarta.idoss.webui.permohonan;
 
+import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.permohonan.model.DaftarPermohonanModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
@@ -46,6 +47,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
     protected Listheader listheader_Tanggal;
     protected Listheader listheader_Tipe;
     protected Listheader listheader_StatusPersetujuan;
+    protected Button btnBuatBaru_DaftarPermohonan;
 
     protected Checkbox checkbox_all;
     protected Checkbox checkbox_readonly;
@@ -88,6 +90,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
+        doCheckRights();
 
         int panelHeight = 25;
         /*TODO put the logic for working with panel in the ApplicationWorkspace*/
@@ -137,6 +140,13 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 
         getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonan, paging_DaftarPermohonan);
         listbox_DaftarPermohonan.setItemRenderer(new DaftarPermohonanModelItemRenderer());
+    }
+
+    private void doCheckRights() {
+        UserWorkspace workspace = getUserWorkspace();
+        btnBuatBaru_DaftarPermohonan.setVisible(workspace.isAllowed("btnBuatBaru_DaftarPermohonan"));
+
+        
     }
 
     public void onPermohonanItemDoubleClicked(Event event) throws Exception {
@@ -190,7 +200,6 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         if (logger.isDebugEnabled()) {
 			logger.debug("--> " + event.toString());
 		}
-
 		try {
 			doPrintReport();
 		} catch (InterruptedException e) {
@@ -203,34 +212,18 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 			logger.debug("--> begin with printing");
 		}
 
-		// Get the real path for the report
-		String repSrc = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan/reportBelumSelesai.jasper");
-		String subDir = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan") + "/";
+        try {
+            Executions.createComponents("/WEB-INF/pages/permohonan/permohonanBaru.zul",null,null);
+        } catch (Exception e) {
+            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
 
-		// preparing parameters. The Subreports resolved by path and the
-		// ReportName in the reports self.
-		HashMap<String, Object> repParams = new HashMap<String, Object>();
-		repParams.put("Title", "Sample Order Report");
-		repParams.put("SUBREPORT_DIR", subDir);
+            // Show a error box
+            String msg = e.getMessage();
+            String title = Labels.getLabel("message_Error");
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("JasperReport : " + repSrc);
-			logger.debug("SubDir : " + subDir);
-		}
-
-			boolean bol = false;
-			String reportName = "";
-
-			reportName = "/de/forsthaus/webui/reports/order/Test_Report_subreportAuftrag_subreportAuftragposition.jrxml";
-			bol = new JRreportCompiler().compileReport(reportName);
-			System.out.println("Report: " + reportName + " = compiled : " + bol);
-
-			// JRDataSource ds = new
-			// TestReport().getBeanCollectionByAuftrag(getOrder());
-//			JRDataSource ds = TestReport.testBeanCollectionDatasource();
-//			Component parent = DaftarPermohonanCtrl.getOrderListWindow().getRoot();
-
-//			new JRreportWindow(parent, true, repParams, repSrc, ds, "pdf");
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
+        }
     }
 
     public void onClick$btnRefresh(Event event) throws InterruptedException {

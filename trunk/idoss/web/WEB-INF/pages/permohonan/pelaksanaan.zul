@@ -38,7 +38,8 @@
                                onCheck="datebox_Pending.disabled=true"/>
                         <radio id="inprogress" label="In Progress" value="INPROGRESS"
                                onCheck="datebox_Pending.disabled=true"/>
-                        <radio id="closed" label="Closed" value="CLOSED" onCheck="datebox_Pending.disabled=true;datebox_Pending.setValue('')"/>
+                        <radio id="closed" label="Closed" value="CLOSED"
+                               onCheck="datebox_Pending.disabled=true"/>
                         <radio id="pending" label="Pending  s/d" value="PENDING"
                                onCheck="datebox_Pending.disabled=false;datebox_Pending.readonly=true"/>
                         <datebox id="datebox_Pending" format="dd MMMM yyyy" disabled="true" width="150px"

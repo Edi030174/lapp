@@ -6,9 +6,12 @@
     <menuItem id="menu_Item_Chat" zulNavigation="/WEB-INF/pages/chat/chat.zul"/>
 
     <!--<menu id="menu_Category_Ophar">-->
-    <menuItem id="menu_Item_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarTroubleTiket.zul"/>
-    <menuItem id="menu_Item_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftarPermohonan.zul"/>
+    <menuItem id="menu_Item_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarTroubleTiket.zul" rightName="menu_Item_Pengaduan"/>
+    <menuItem id="menu_Item_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftarPermohonan.zul" rightName="menu_Item_Permohonan"/>
     <!--</menu>-->
+    <menuItem id="menu_Item_Report1" zulNavigation="/WEB-INF/pages/pengaduan/report1.zul" rightName="menu_Item_Report1"/>
+    <menuItem id="menu_Item_Report2" zulNavigation="/WEB-INF/pages/pengaduan/report2.zul" rightName="menu_Item_Report2"/>
+    <menuItem id="menu_Item_Report3" zulNavigation="/WEB-INF/pages/pengaduan/report3.zul" rightName="menu_Item_Report3"/>
 
     <!--<menu id="menu_Category_Permohonan">
         <menuItem id="menu_Item_PersetujuanPermohonan" zulNavigation="/WEB-INF/pages/permohonan/persetujuandivisipemohon.zul"/>

@@ -1,5 +1,6 @@
 package net.lintasarta.idoss.webui.permohonan;
 
+import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPermohonan;
@@ -45,6 +46,9 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     protected Radiogroup radiogroup_Dampak;
     protected Radio major;
     protected Radio minor;
+    protected Groupbox groupbox_AM;
+    protected Groupbox groupbox_Manager;
+    protected Groupbox groupbox_Gm;
 
     protected FCKeditor fck_DetailPermohonan;
 
@@ -96,6 +100,7 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
+        doCheckRights();
 
         Map<String, Object> args = getCreationArgsMap(event);
         if (args.containsKey("tVerifikasi")) {
@@ -126,6 +131,18 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         doShowDialog(gettVerifikasi(),gettPermohonan());
     }
 
+    private void doCheckRights() {
+        UserWorkspace workspace = getUserWorkspace();
+        groupbox_AM.setVisible(workspace.isAllowed("groupbox_AMDukophar"));
+        groupbox_Manager.setVisible(workspace.isAllowed("groupbox_ManagerDukophar"));
+        groupbox_Gm.setVisible(workspace.isAllowed("groupbox_GmDukophar"));
+
+
+
+
+
+    }
+
     private void doShowDialog(TVerifikasi tVerifikasi,TPermohonan tPermohonan) throws InterruptedException {
         try {
             doWriteBeanToComponents(tVerifikasi,tPermohonan);
@@ -140,9 +157,24 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         datebox_Tanggal.setValue(tVerifikasi.getTgl_permohonan());
         textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
         fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
+        if(tVerifikasi.getStatus_permohonan_asman().equals("Ditolak Asman Dukophar")){
+            radiogroup_StatusPermohonanAsman.setSelectedItem(radio_DitolakAM);
+        }else{
+            radiogroup_StatusPermohonanAsman.setSelectedItem(radio_DisetujuiAM);
+        }
         fck_CatatanAsman.setValue(tVerifikasi.getCatatan_asman());
+//        if(tVerifikasi.getStatus_permohonan_manager().equals("Ditolak Manager Dukophar")){
+//            radiogroup_StatusPermohonanManager.setSelectedItem(radio_DitolakM);
+//        }else{
+//            radiogroup_StatusPermohonanManager.setSelectedItem(radio_DisetujuiM);
+//        }
         fck_CatatanManager.setValue(tVerifikasi.getCatatan_manager());
         datebox_Tanggal2.setValue(tVerifikasi.getUpdated_gm());
+//        if(tVerifikasi.getStatus_permohonan_gm().equals("Ditolak GM Dukophar")){
+//            radiogroup_StatusPermohonanGm.setSelectedItem(radio_DitolakGM);
+//        }else{
+//            radiogroup_StatusPermohonanGm.setSelectedItem(radio_DisetujuiGM);
+//        }
         fck_CatatanGm.setValue(tVerifikasi.getCatatan_gm());
     }
 
@@ -177,16 +209,21 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteComponentsToBean(TVerifikasi tVerifikasi) {
-        Radio status = radiogroup_StatusPermohonanGm.getSelectedItem();
-        tVerifikasi.setStatus_permohonan_asman(status.getValue());
+        Radio dampak = radiogroup_Dampak.getSelectedItem();
+        tVerifikasi.setDampak(dampak.getValue());
+
+        Radio statusAM = radiogroup_StatusPermohonanAsman.getSelectedItem();
+        tVerifikasi.setStatus_permohonan_asman(statusAM.getValue());
         tVerifikasi.setUpdated_asman(new Timestamp(datebox_Tanggal2.getValue().getTime()));
         tVerifikasi.setCatatan_asman(fck_CatatanAsman.getValue());
 
-        tVerifikasi.setStatus_permohonan_manager(status.getValue());
+        Radio statusM = radiogroup_StatusPermohonanManager.getSelectedItem();
+        tVerifikasi.setStatus_permohonan_manager(statusM.getValue());
         tVerifikasi.setUpdated_manager(new Timestamp(datebox_Tanggal2.getValue().getTime()));
         tVerifikasi.setCatatan_manager(fck_CatatanManager.getValue());
 
-        tVerifikasi.setStatus_permohonan_gm(status.getValue());
+        Radio statusGM = radiogroup_StatusPermohonanGm.getSelectedItem();
+        tVerifikasi.setStatus_permohonan_gm(statusGM.getValue());
         tVerifikasi.setUpdated_gm(new Timestamp(datebox_Tanggal2.getValue().getTime()));
         tVerifikasi.setCatatan_gm(fck_CatatanGm.getValue());
     }

@@ -1,5 +1,6 @@
 package net.lintasarta.idoss.webui.permohonan;
 
+import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPelaksanaan;
@@ -121,16 +122,17 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
+        doCheckRights();
         tab_Permohonan.setClosable(false);
 
-        tab_PersetujuanPemohon.setVisible(true);
-        tabPanel_PersetujuanPemohon.setVisible(true);
-
-        tab_PersetujuanDukophar.setVisible(true);
-        tabPanel_PersetujuanDukophar.setVisible(true);
-
-        tab_Pelaksanaan.setVisible(true);
-        tabPanel_Pelaksanaan.setVisible(true);
+//        tab_PersetujuanPemohon.setVisible(true);
+//        tabPanel_PersetujuanPemohon.setVisible(true);
+//
+//        tab_PersetujuanDukophar.setVisible(true);
+//        tabPanel_PersetujuanDukophar.setVisible(true);
+//
+//        tab_Pelaksanaan.setVisible(true);
+//        tabPanel_Pelaksanaan.setVisible(true);
 
         Map<String, Object> args = getCreationArgsMap(event);
 
@@ -153,6 +155,25 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             listbox_DaftarPermohonan = null;
         }
         doShowDialog(gettPermohonan());
+    }
+
+    private void doCheckRights() {
+        UserWorkspace workspace = getUserWorkspace();
+        window_Permohonan.setVisible(workspace.isAllowed("window_Permohonan"));
+        tab_Permohonan.setVisible(workspace.isAllowed("tab_Permohonan"));
+        tabPanel_Permohonan.setVisible(workspace.isAllowed("tab_Permohonan"));
+        tab_PersetujuanPemohon.setVisible(workspace.isAllowed("tab_PersetujuanPemohon"));
+        tabPanel_PersetujuanPemohon.setVisible(workspace.isAllowed("tab_PersetujuanPemohon"));
+        tab_PersetujuanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanDukophar"));
+        tabPanel_PersetujuanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanDukophar"));
+        tab_Pelaksanaan.setVisible(workspace.isAllowed("tab_Pelaksanaan"));
+        tabPanel_Pelaksanaan.setVisible(workspace.isAllowed("tab_Pelaksanaan"));
+
+
+
+
+
+
     }
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
