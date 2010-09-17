@@ -1,5 +1,6 @@
 package net.lintasarta.idoss.webui.permohonan;
 
+import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPermohonan;
@@ -30,6 +31,8 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
 
     protected Button btn_SimpanPersetujuanGmPemohon;
     protected Button btn_Batal;
+
+    protected Label tes;
 
     protected Textbox textbox_TIdossPermohonanId;
     protected Textbox textbox_NamaPemohon;
@@ -85,6 +88,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
+        doCheckRights();
 
         Map<String, Object> args = getCreationArgsMap(event);
 
@@ -110,6 +114,14 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         doShowDialog(gettPermohonan());
     }
 
+    private void doCheckRights() {
+        UserWorkspace workspace = getUserWorkspace();
+        groupbox_ManagerPemohon.setVisible(workspace.isAllowed("groupbox_ManagerPemohon"));
+        groupbox_GmPemohon.setVisible(workspace.isAllowed("groupbox_GmPemohon"));
+
+
+    }
+
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
 
         settPermohonan(tPermohonan);
@@ -131,6 +143,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
             radiogroup_Prioritas.setSelectedItem(normal);
         }
         fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
+        tes.setValue(tPermohonan.getDetail_permohonan());
         if(tPermohonan.getStatus_track_permohonan().equals("ditolakManager")){
             radiogroup_StatusPermohonanManagerPemohon.setSelectedItem(radio_DitolakMPemohon);
         }
@@ -190,6 +203,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     }
 
     private void doStoreInitValues() {
+
 
     }
 

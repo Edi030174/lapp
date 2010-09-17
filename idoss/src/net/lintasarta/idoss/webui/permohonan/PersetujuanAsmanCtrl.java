@@ -29,8 +29,4 @@ public class PersetujuanAsmanCtrl extends GFCBaseCtrl implements Serializable {
     protected Datebox datebox_Tanggal;
     protected Textbox textbox_NikPemohon;
     protected Textbox textbox_DetailPermohonan;
-    
-
-
-
 }

@@ -1,5 +1,6 @@
 package net.lintasarta.idoss.webui.permohonan;
 
+import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPelaksanaan;
@@ -30,9 +31,10 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     protected Window window_Pelaksanaan;
 
     protected Radiogroup radiogroup_StatusPerubahan;
-    protected Radio selesai;
-    protected Radio tunda;
-    protected Radio mulai;
+    protected Radio open;
+    protected Radio inprogress;
+    protected Radio closed;
+    protected Radio pending;
     protected Datebox datebox_TglPermohonan;
     protected Datebox datebox_Pending;
     protected FCKeditor fckCatatan_pelaksana;
@@ -89,6 +91,8 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         doShowDialog(gettPelaksanaan());
     }
 
+
+
     private void doShowDialog(TPelaksanaan tPelaksanaan) throws InterruptedException {
         try {
             doWriteBeanToComponents(tPelaksanaan);
@@ -100,13 +104,24 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteBeanToComponents(TPelaksanaan tPelaksanaan) throws Exception {
+        if (tPelaksanaan.getRfs().equals("1")) {
+            checkbox_Rfs.setChecked(true);
+        } else {
+            checkbox_Rfs.setChecked(false);
+        }
+
+        if (tPelaksanaan.getStatus_perubahan().equals("OPEN")) {
+            radiogroup_StatusPerubahan.setSelectedItem(open);
+        } else if (tPelaksanaan.getStatus_perubahan().equals("INPROGRESS")) {
+            radiogroup_StatusPerubahan.setSelectedItem(inprogress);
+        } else if (tPelaksanaan.getStatus_perubahan().equals("CLOSED")) {
+            radiogroup_StatusPerubahan.setSelectedItem(closed);
+        } else if (tPelaksanaan.getStatus_perubahan().equals("PENDING")) {
+            radiogroup_StatusPerubahan.setSelectedItem(pending);
+        }
+
         datebox_TglPermohonan.setValue(tPelaksanaan.getTgl_permohonan());
         fckCatatan_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
-        String z = tPelaksanaan.getStatus_perubahan();
-
-//        radiogroup_StatusPerubahan.setSelectedItem(tPelaksanaan.getStatus_perubahan().);
-
-
     }
 
     public void onClick$btnSimpan_Pelaksanaan(Event event) throws Exception {
@@ -149,11 +164,16 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteComponentsToBean(TPelaksanaan tPelaksanaan) {
-        tPelaksanaan.setTgl_permohonan(new Timestamp(datebox_TglPermohonan.getValue().getTime()));
         Radio status = radiogroup_StatusPerubahan.getSelectedItem();
         tPelaksanaan.setStatus_perubahan(status.getValue());
         tPelaksanaan.setTgl_pending(new Timestamp(datebox_Pending.getValue().getTime()));
+
+        tPelaksanaan.setTgl_permohonan(new Timestamp(datebox_TglPermohonan.getValue().getTime()));
+
         tPelaksanaan.setCatatan_pelaksana(fckCatatan_pelaksana.getValue());
+        tPelaksanaan.setNama_pelaksana(getUserWorkspace().getUserSession().getEmployeeName());
+        tPelaksanaan.setId_pelaksana(getUserWorkspace().getUserSession().getEmployeeNo());
+
         if (checkbox_Rfs.isChecked()) {
             tPelaksanaan.setRfs("1");
         } else if (checkbox_Rfs.isDisabled()) {

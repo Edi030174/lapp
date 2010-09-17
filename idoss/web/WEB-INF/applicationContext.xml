@@ -93,8 +93,15 @@
         <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
     </bean>
 
-    <bean id="reportPengaduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.ReportPengaduanCtrl" parent="basisCtrl" scope="prototype">
+    <bean id="reportPengaduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.ReportPengaduanCtrl" parent="basisCtrl"
+          scope="prototype">
         <property name="reportPengaduanService" ref="reportPengaduanService"/>
+    </bean>
+    <bean id="report1Ctrl" class="net.lintasarta.idoss.webui.pengaduan.Report1Ctrl" parent="basisCtrl" scope="prototype">
+    </bean>
+    <bean id="report2Ctrl" class="net.lintasarta.idoss.webui.permohonan.Report2Ctrl" parent="basisCtrl" scope="prototype">
+    </bean>
+    <bean id="report3Ctrl" class="net.lintasarta.idoss.webui.permohonan.Report3Ctrl" parent="basisCtrl" scope="prototype">
     </bean>
 
 </beans>
