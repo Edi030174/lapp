@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportAduan" language="groovy" pageWidth="1190" pageHeight="842" orientation="Landscape" columnWidth="1150" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="status" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="awal_ganggguan" class="java.lang.String"/>
+	<field name="akhir_ganggguan" class="java.lang.String"/>
+	<field name="durasi" class="java.math.BigDecimal"/>
+	<field name="no_gangguan" class="java.math.BigDecimal"/>
+	<field name="asal_aduan" class="java.lang.String"/>
+	<field name="tipe_gangguan" class="java.lang.String"/>
+	<field name="severity" class="java.lang.String"/>
+	<field name="problem" class="java.lang.String"/>
+	<field name="p_idoss_root_caused_id" class="java.math.BigDecimal"/>
+	<field name="solusi" class="java.lang.String"/>
+	<field name="pj" class="java.lang.String"/>
+	<field name="mttr" class="java.lang.String"/>
+	<field name="tercapai" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="936" y="29" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[PENTING]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="59" splitType="Stretch">
+			<staticText>
+				<reportElement x="25" y="37" width="40" height="20"/>
+				<textElement/>
+				<text><![CDATA[BULAN:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="37" width="40" height="20"/>
+				<textElement/>
+				<text><![CDATA[TAHUN:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="0" width="239" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REKAP PENANGANAN GANGGUAN NMS]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="12" width="105" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Awal Gangguan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="210" y="12" width="58" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Durasi(jam)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="105" y="12" width="105" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Akhir Gangguan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="268" y="12" width="72" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Gangguan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="340" y="12" width="100" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Asal Aduan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="440" y="12" width="68" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipe Gangguan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="508" y="12" width="53" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Severity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="561" y="12" width="55" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Problem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="616" y="12" width="72" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Root Caused]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="688" y="12" width="87" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Solusi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="775" y="12" width="81" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="856" y="12" width="80" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MTTR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="936" y="12" width="126" height="20" backcolor="#CCCCCC"/>
+				<box>
+					<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.25" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tercapai/Tidak Tercapai]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="1" width="105" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{awal_ganggguan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="1" width="103" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{akhir_ganggguan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="208" y="1" width="58" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{durasi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="0" width="72" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[($F{no_gangguan}!= null ? $F{no_gangguan}: "-")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="338" y="0" width="100" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{asal_aduan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="1" width="68" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{tipe_gangguan}!= null ? $F{tipe_gangguan}: "-")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="508" y="0" width="53" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{severity} != null ? $F{severity}: "-")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="561" y="0" width="55" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{problem}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="616" y="0" width="72" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[($F{p_idoss_root_caused_id} != null ? $F{p_idoss_root_caused_id}: "-")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="688" y="0" width="87" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{solusi}!= null ? $F{solusi}: "-")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="775" y="0" width="81" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{pj}!=null?$F{pj}:"-")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="856" y="0" width="80" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{mttr} != null ? $F{mttr}: "-")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="936" y="1" width="126" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tercapai}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="85" y="5" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[mayor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="85" y="25" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[minor]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

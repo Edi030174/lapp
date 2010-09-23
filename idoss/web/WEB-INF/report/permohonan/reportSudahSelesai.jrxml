@@ -4,19 +4,16 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[select a.T_IDOSS_PERMOHONAN_ID nomor , to_char(a.tgl_permohonan ,'dd-MON-yyyy mm:hh') tanggal,a.TYPE_PERMOHONAN,
-       a.DETAIL_PERMOHONAN deskripsi, a.NAMA_PEMOHON , a.BAGIAN_PEMOHON, b.NAMA_PELAKSANA, to_char(b.UPDATED_DATE ,'dd-MON-yyyy mm:hh') tgl_pelaksana
-from T_IDOSS_PERMOHONAN a, T_IDOSS_PELAKSANAAN b
-where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_PELAKSANAAN_ID]]>
+		<![CDATA[]]>
 	</queryString>
-	<field name="NOMOR" class="java.lang.String"/>
-	<field name="TANGGAL" class="java.lang.String"/>
-	<field name="TYPE_PERMOHONAN" class="java.lang.String"/>
-	<field name="DESKRIPSI" class="java.lang.String"/>
-	<field name="NAMA_PEMOHON" class="java.lang.String"/>
-	<field name="BAGIAN_PEMOHON" class="java.lang.String"/>
-	<field name="NAMA_PELAKSANA" class="java.lang.String"/>
-	<field name="TGL_PELAKSANA" class="java.lang.String"/>
+	<field name="nomor" class="java.lang.String"/>
+	<field name="tanggal" class="java.lang.String"/>
+	<field name="type_permohonan" class="java.lang.String"/>
+	<field name="deskripsi" class="java.lang.String"/>
+	<field name="nama_pemohon" class="java.lang.String"/>
+	<field name="bagian_pemohon" class="java.lang.String"/>
+	<field name="nama_pelaksana" class="java.lang.String"/>
+	<field name="tgl_pelaksana" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -176,7 +173,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_PELAKSANAAN_ID]]>
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMOR}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nomor}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="0" width="102" height="20"/>
@@ -184,7 +181,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_PELAKSANAAN_ID]]>
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{TANGGAL}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tanggal}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="273" y="0" width="100" height="20"/>
@@ -192,7 +189,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_PELAKSANAAN_ID]]>
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{DESKRIPSI} != null ? $F{DESKRIPSI}: "-")]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{deskripsi} != null ? $F{deskripsi}: "-")]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="373" y="0" width="127" height="20"/>
@@ -200,7 +197,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_PELAKSANAAN_ID]]>
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{NAMA_PEMOHON}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_pemohon}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="500" y="0" width="100" height="20"/>
@@ -208,7 +205,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_PELAKSANAAN_ID]]>
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{BAGIAN_PEMOHON}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bagian_pemohon}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="600" y="0" width="100" height="20"/>
@@ -216,7 +213,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_PELAKSANAAN_ID]]>
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{NAMA_PELAKSANA} != null ? $F{NAMA_PELAKSANA}: "-")]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{nama_pelaksana} != null ? $F{nama_pelaksana}: "-")]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="700" y="0" width="102" height="20"/>
@@ -224,7 +221,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_PELAKSANAAN_ID]]>
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{TGL_PELAKSANA}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tgl_pelaksana}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="202" y="0" width="71" height="20"/>
@@ -232,7 +229,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_PELAKSANAAN_ID]]>
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{TYPE_PERMOHONAN}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{type_permohonan}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
