@@ -27,7 +27,11 @@
         </style>
         <borderlayout height="100%">
             <north maxsize="24" size="24" border="0">
+                <hbox>
                 <button id="btnReport" label="Report!"/>
+                <label value="Status:"/>
+                    <textbox id="txt_tahun"/>
+                </hbox>
             </north>
             <center border="none" flex="true">
                 <iframe id="report"/>

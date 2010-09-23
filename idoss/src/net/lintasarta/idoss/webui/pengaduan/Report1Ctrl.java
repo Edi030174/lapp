@@ -7,6 +7,7 @@ import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Iframe;
+import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
 import javax.sql.DataSource;
@@ -32,6 +33,7 @@ public class Report1Ctrl extends GFCBaseCtrl implements Serializable {
     protected Window window_Report1;
     protected Iframe report;
     protected Button btnReport;
+    protected Textbox txt_tahun;
     protected Report1Ctrl report1Ctrl;
     private transient DataSource dataSource;
 
