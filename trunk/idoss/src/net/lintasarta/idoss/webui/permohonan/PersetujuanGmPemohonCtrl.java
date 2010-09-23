@@ -125,13 +125,14 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     }
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
-
+        UserWorkspace workspace = getUserWorkspace();
         settPermohonan(tPermohonan);
         if(tPermohonan.getStatus_track_permohonan().contains("Permohonan Baru")){
             btn_SimpanPersetujuanManagerPemohon.setVisible(true);
             btn_SimpanPersetujuanGmPemohon.setVisible(false);
         }else if(tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Pemohon")){
-            btn_SimpanPersetujuanGmPemohon.setVisible(true);
+            btn_SimpanPersetujuanManagerPemohon.setVisible(false);
+            btn_SimpanPersetujuanGmPemohon.setVisible(false);
         }else {
             btn_SimpanPersetujuanManagerPemohon.setVisible(false);
             btn_SimpanPersetujuanGmPemohon.setVisible(false);

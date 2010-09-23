@@ -1,6 +1,5 @@
 package net.lintasarta.report.permohonan.dao;
 
-
 import net.lintasarta.report.permohonan.model.ReportPermohonan;
 
 import java.util.List;
@@ -15,4 +14,5 @@ public interface ReportPermohonanDAO {
 
     List<ReportPermohonan> getReportBelumSelesai(ReportPermohonan reportPermohonan);
     List<ReportPermohonan> getReportSudahSelesai(ReportPermohonan reportPermohonan);
+
 }
