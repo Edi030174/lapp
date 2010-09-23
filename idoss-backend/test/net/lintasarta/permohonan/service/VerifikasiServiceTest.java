@@ -50,8 +50,8 @@ public class VerifikasiServiceTest {
         tVerifikasi.setUpdated_user("jos");
         tVerifikasi.setDampak("T");
         tVerifikasi.setRfs("t");
-        tVerifikasi.setStatus_permohonan_asman("t");
-        tVerifikasi.setStatus_permohonan_manager("t");
+        tVerifikasi.setStatus_permohonanasman("t");
+        tVerifikasi.setStatus_permohonanmanager("t");
         tVerifikasi.setType_permohonan("a");
         tVerifikasi.setUpdated_asman(ts);
         tVerifikasi.setUpdated_manager(ts);

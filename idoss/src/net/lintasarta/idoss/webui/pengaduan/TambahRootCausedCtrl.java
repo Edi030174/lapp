@@ -6,6 +6,7 @@ import net.lintasarta.pengaduan.model.PRootCaused;
 import net.lintasarta.pengaduan.model.PType;
 import net.lintasarta.pengaduan.model.PTypeRootCaused;
 import net.lintasarta.pengaduan.service.RootCausedService;
+import net.lintasarta.pengaduan.service.TypeService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
@@ -35,6 +36,7 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
     private transient PRootCaused pRootCaused;
     private transient PTypeRootCaused typeRootCaused;
     private transient RootCausedService rootCausedService;
+    private transient TypeService typeService;
 
     public TambahRootCausedCtrl() {
         super();
@@ -148,7 +150,11 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
         pRootCaused.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         pRootCaused.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
-        pTypeRootCaused.setP_idoss_type_id(textbox_Type.getValue());
+        String tpdesc = textbox_Type.getValue();
+        PType pType = getTypeService().getPTypeByTypeDesc(tpdesc);
+        String id = pType.getP_idoss_type_id();
+
+        pTypeRootCaused.setP_idoss_type_id(id);
         if (checkbox_Aktif.isChecked()) {
             pTypeRootCaused.setActive("Y");
         } else if (checkbox_NonAktif.isChecked()) {
@@ -184,5 +190,13 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setTypeRootCaused(PTypeRootCaused typeRootCaused) {
         this.typeRootCaused = typeRootCaused;
+    }
+
+    public TypeService getTypeService() {
+        return typeService;
+    }
+
+    public void setTypeService(TypeService typeService) {
+        this.typeService = typeService;
     }
 }

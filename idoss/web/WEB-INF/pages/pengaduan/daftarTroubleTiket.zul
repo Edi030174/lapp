@@ -16,7 +16,6 @@
         <timer id="timer" delay="300000" repeats="true"/>
         <panel id="panel_daftarTroubleTiket" title="" border="none" />
         <hbox style="padding: 3px">
-            <button id="btn_report" label="report"/>
             <button id="btnRefresh_DaftarTiket"
                     image="/images/icons/refresh2_yellow_16x16.gif"
                     tooltiptext="${c:l('btnRefresh_DaftarTiket.tooltiptext')}"/>

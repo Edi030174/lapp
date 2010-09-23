@@ -22,7 +22,6 @@
 
         <panel id="panel_daftarPermohonan" title="" border="none"/>
         <hbox>
-            <button id="btnReport" label="Report"/>
             <button id="btnRefresh"
                     image="/images/icons/refresh2_yellow_16x16.gif"/>
             <button id="btnBuatBaru_DaftarPermohonan"

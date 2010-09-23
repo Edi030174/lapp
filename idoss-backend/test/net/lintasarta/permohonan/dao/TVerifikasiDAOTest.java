@@ -76,11 +76,11 @@ public class TVerifikasiDAOTest {
         public void testGetTVerifikasiByStatusPermohonanAsman() throws Exception {
         String statusPermohonanAsman = "READ_ONLY";
         TVerifikasi tVerifikasi = new TVerifikasi();
-        tVerifikasi.setStatus_permohonan_asman(statusPermohonanAsman);
+        tVerifikasi.setStatus_permohonanasman(statusPermohonanAsman);
         List<TVerifikasi> tVerifikasis = tVerifikasiDAO.getTVerifikasiByStatusPermohonanAsman(tVerifikasi);
         String statusPermohonanAsmanActual = null;
         for (TVerifikasi verifikasi : tVerifikasis) {
-            statusPermohonanAsmanActual = verifikasi.getStatus_permohonan_asman();
+            statusPermohonanAsmanActual = verifikasi.getStatus_permohonanasman();
         }
         String statusPermohonanAsmanExpected = "READ_ONLY";
         assertEquals(statusPermohonanAsmanExpected, statusPermohonanAsmanActual);
@@ -90,11 +90,11 @@ public class TVerifikasiDAOTest {
         public void testGetTVerifikasiByStatusPermohonanManager() throws Exception {
         String statusPermohonanManager = "FULL";
         TVerifikasi tVerifikasi = new TVerifikasi();
-        tVerifikasi.setStatus_permohonan_manager(statusPermohonanManager);
+        tVerifikasi.setStatus_permohonanmanager(statusPermohonanManager);
         List<TVerifikasi> tVerifikasis = tVerifikasiDAO.getTVerifikasiByStatusPermohonanManager(tVerifikasi);
         String statusPermohonanManagerActual = null;
         for (TVerifikasi verifikasi : tVerifikasis) {
-            statusPermohonanManagerActual = verifikasi.getStatus_permohonan_manager();
+            statusPermohonanManagerActual = verifikasi.getStatus_permohonanmanager();
         }
         String statusPermohonanManagerExpected = "FULL";
         assertEquals(statusPermohonanManagerExpected, statusPermohonanManagerActual);
@@ -107,11 +107,11 @@ public class TVerifikasiDAOTest {
 
         TVerifikasi tVerifikasi = new TVerifikasi();
         tVerifikasi.setNik_pelaksana(nikPelaksana);
-        tVerifikasi.setStatus_permohonan_asman(statusPermohonanAsman);
+        tVerifikasi.setStatus_permohonanasman(statusPermohonanAsman);
         List<TVerifikasi> tVerifikasis = tVerifikasiDAO.getTVerifikasiByNikPelaksanaStatusPA(tVerifikasi);
         String statusPermohonanAsmanActual = null;
         for (TVerifikasi verifikasi : tVerifikasis) {
-             statusPermohonanAsmanActual=verifikasi.getStatus_permohonan_asman();
+             statusPermohonanAsmanActual=verifikasi.getStatus_permohonanasman();
         }
         String statusPermohonanAsmanExpected = "READ_ONLY";
         assertEquals(statusPermohonanAsmanExpected, statusPermohonanAsmanActual);
@@ -124,11 +124,11 @@ public class TVerifikasiDAOTest {
 
         TVerifikasi tVerifikasi = new TVerifikasi();
         tVerifikasi.setNik_pelaksana(nikPelaksana);
-        tVerifikasi.setStatus_permohonan_manager(statusPermohonanManager);
+        tVerifikasi.setStatus_permohonanmanager(statusPermohonanManager);
         List<TVerifikasi> tVerifikasis = tVerifikasiDAO.getTVerifikasiByNikPelaksanaStatusPM(tVerifikasi);
         String statusPermohonanManagerActual = null;
         for (TVerifikasi verifikasi : tVerifikasis) {
-             statusPermohonanManagerActual=verifikasi.getStatus_permohonan_manager();
+             statusPermohonanManagerActual=verifikasi.getStatus_permohonanmanager();
         }
         String statusPermohonanManagerExpected = "FULL";
         assertEquals(statusPermohonanManagerExpected, statusPermohonanManagerActual);
@@ -150,7 +150,7 @@ public class TVerifikasiDAOTest {
         tVerifikasi.setNik_pelaksana("897897");
         tVerifikasi.setRfs("4");
 //        tVerifikasi.setCatatan_per_type("jejejejeje");
-        tVerifikasi.setStatus_permohonan_asman("NEW");
+        tVerifikasi.setStatus_permohonanasman("NEW");
 
         String tglIsian = "2010-06-29 15:00:10";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -160,7 +160,7 @@ public class TVerifikasiDAOTest {
 
 //        Blob b = new BLOB();
 //        tVerifikasi.setCatatan_asman();
-        tVerifikasi.setStatus_permohonan_manager("FULL");
+        tVerifikasi.setStatus_permohonanmanager("FULL");
         tVerifikasi.setUpdated_manager(dt);
         tVerifikasi.setCreated_date(dt);
         tVerifikasi.setCreated_user("S");

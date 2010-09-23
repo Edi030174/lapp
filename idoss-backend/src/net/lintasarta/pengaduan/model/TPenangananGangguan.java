@@ -16,10 +16,10 @@ public class TPenangananGangguan implements Serializable {
     private String judul;
     private String deskripsi;
     private String dampak;
-    private String type_id;
+    private String p_idoss_type_id;
     private String nik_pelaksana;
     private String nama_pelaksana;
-    private Integer root_cause_id;
+    private Integer p_idoss_root_caused_id;
     private String status;
     private String solusi;
     private String mttr;
@@ -92,12 +92,12 @@ public class TPenangananGangguan implements Serializable {
         this.dampak = dampak;
     }
 
-    public String getType_id() {
-        return type_id;
+    public String getP_idoss_type_id() {
+        return p_idoss_type_id;
     }
 
-    public void setType_id(String type_id) {
-        this.type_id = type_id;
+    public void setP_idoss_type_id(String p_idoss_type_id) {
+        this.p_idoss_type_id = p_idoss_type_id;
     }
 
     public String getNik_pelaksana() {
@@ -116,12 +116,12 @@ public class TPenangananGangguan implements Serializable {
         this.nama_pelaksana = nama_pelaksana;
     }
 
-    public Integer getRoot_cause_id() {
-        return root_cause_id;
+    public Integer getP_idoss_root_caused_id() {
+        return p_idoss_root_caused_id;
     }
 
-    public void setRoot_cause_id(Integer root_cause_id) {
-        this.root_cause_id = root_cause_id;
+    public void setP_idoss_root_caused_id(Integer p_idoss_root_caused_id) {
+        this.p_idoss_root_caused_id = p_idoss_root_caused_id;
     }
 
     public String getStatus() {

@@ -30,6 +30,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     protected Window window_PersetujuanGmPemohon;
 
     protected Button btn_SimpanPersetujuanGmPemohon;
+    protected Button btn_SimpanPersetujuanManagerPemohon;
     protected Button btn_Batal;
 
     protected Label tes;
@@ -118,18 +119,36 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         UserWorkspace workspace = getUserWorkspace();
         groupbox_ManagerPemohon.setVisible(workspace.isAllowed("groupbox_ManagerPemohon"));
         groupbox_GmPemohon.setVisible(workspace.isAllowed("groupbox_GmPemohon"));
-
+        btn_SimpanPersetujuanManagerPemohon.setVisible(workspace.isAllowed("btn_SimpanPersetujuanManagerPemohon"));
+        btn_SimpanPersetujuanGmPemohon.setVisible(workspace.isAllowed("btn_SimpanPersetujuanGmPemohon"));
 
     }
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
 
         settPermohonan(tPermohonan);
+        if(tPermohonan.getStatus_track_permohonan().contains("Permohonan Baru")){
+            btn_SimpanPersetujuanManagerPemohon.setVisible(true);
+            btn_SimpanPersetujuanGmPemohon.setVisible(false);
+        }else if(tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Pemohon")){
+            btn_SimpanPersetujuanGmPemohon.setVisible(true);
+        }else {
+            btn_SimpanPersetujuanManagerPemohon.setVisible(false);
+            btn_SimpanPersetujuanGmPemohon.setVisible(false);
+        }
+
         try {
             doWriteBeanToComponents(tPermohonan);
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
+    }
+
+    public void onClick$btn_Batal(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        window_Permohonan.onClose();
     }
 
     private void doWriteBeanToComponents(TPermohonan tPermohonan) throws Exception{
@@ -143,20 +162,27 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
             radiogroup_Prioritas.setSelectedItem(normal);
         }
         fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
-        tes.setValue(tPermohonan.getDetail_permohonan());
-        if(tPermohonan.getStatus_track_permohonan().equals("ditolakManager")){
+//        tes.setValue(tPermohonan.getDetail_permohonan());
+        if(tPermohonan.getStatus_track_permohonan().equals("Ditolak Manager Pemohon")){
             radiogroup_StatusPermohonanManagerPemohon.setSelectedItem(radio_DitolakMPemohon);
         }
         fck_CatatanManager.setValue(tPermohonan.getCatatan_manager());
-        if(tPermohonan.getStatus_track_permohonan().equals("ditolakGM")){
+        if(tPermohonan.getStatus_track_permohonan().equals("Ditolak GM Pemohon")){
             radiogroup_StatusPermohonanGmPemohon.setSelectedItem(radio_DitolakGmPemohon);
         }
         datebox_Tanggal2.setValue(tPermohonan.getUpdated_gm());
         fck_CatatanGmPemohon.setValue(tPermohonan.getCatatan_gm());
     }
 
-    public void onClick$btn_SimpanPersetujuanGmPemohon(Event event) throws Exception{
+    public void onClick$btn_SimpanPersetujuanManagerPemohon(Event event)throws Exception{
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        doSave();
+        window_Permohonan.onClose();
+    }
 
+    public void onClick$btn_SimpanPersetujuanGmPemohon(Event event) throws Exception{
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
@@ -164,16 +190,24 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         window_Permohonan.onClose();
     }
 
-    public void onClick$btn_Batal(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
+    private void doSave() throws Exception{
+        TPermohonan tPermohonan = gettPermohonan();
+        doWriteComponentsToBean(tPermohonan);
+
+        try {
+            getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
+        } catch (DataAccessException e) {
+            String message = e.getMessage();
+            String title = Labels.getLabel("message_Error");
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
-        window_Permohonan.onClose();
+        doStoreInitValues();
     }
 
     private void doSimpan() throws Exception{
         TPermohonan tPermohonan = gettPermohonan();
-        doWriteComponentsToBean(tPermohonan);
+        doWriteComponentsToBean2(tPermohonan);
 
         try {
             getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
@@ -190,15 +224,18 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tPermohonan.setDampak(dampak.getValue());
 
-        Radio statusM = radiogroup_StatusPermohonanManagerPemohon.getSelectedItem();
-        tPermohonan.setStatus_track_permohonan(statusM.getValue());
+        String statusM = radiogroup_StatusPermohonanManagerPemohon.getSelectedItem().getValue();
+        tPermohonan.setStatus_track_permohonan(statusM);
 
+        tPermohonan.setUpdated_manager(new Timestamp(datebox_Tanggal2.getValue().getTime()));
+        tPermohonan.setCatatan_manager(fck_CatatanManager.getValue());
+    }
+
+    private void doWriteComponentsToBean2(TPermohonan tPermohonan) {
         Radio statusGM = radiogroup_StatusPermohonanGmPemohon.getSelectedItem();
         tPermohonan.setStatus_track_permohonan(statusGM.getValue());
 
-        tPermohonan.setUpdated_manager(new Timestamp(datebox_Tanggal2.getValue().getTime()));
         tPermohonan.setUpdated_gm(new Timestamp(datebox_Tanggal2.getValue().getTime()));
-        tPermohonan.setCatatan_manager(fck_CatatanManager.getValue());
         tPermohonan.setCatatan_gm(fck_CatatanGmPemohon.getValue());
     }
 

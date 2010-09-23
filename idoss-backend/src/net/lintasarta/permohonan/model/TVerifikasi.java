@@ -16,10 +16,10 @@ public class TVerifikasi {
     private String nik_pelaksana;
     private String rfs;
     private String catatan_per_type;
-    private String status_permohonan_asman;
+    private String status_permohonanasman;
     private Timestamp updated_asman;
     private String catatan_asman;
-    private String status_permohonan_manager;
+    private String status_permohonanmanager;
     private Timestamp updated_manager;
     private String catatan_manager;
     private Timestamp created_date;
@@ -97,12 +97,12 @@ public class TVerifikasi {
         this.catatan_per_type = catatan_per_type;
     }
 
-    public String getStatus_permohonan_asman() {
-        return status_permohonan_asman;
+    public String getStatus_permohonanasman() {
+        return status_permohonanasman;
     }
 
-    public void setStatus_permohonan_asman(String status_permohonan_asman) {
-        this.status_permohonan_asman = status_permohonan_asman;
+    public void setStatus_permohonanasman(String status_permohonanasman) {
+        this.status_permohonanasman = status_permohonanasman;
     }
 
     public Timestamp getUpdated_asman() {
@@ -121,12 +121,12 @@ public class TVerifikasi {
         this.catatan_asman = catatan_asman;
     }
 
-    public String getStatus_permohonan_manager() {
-        return status_permohonan_manager;
+    public String getStatus_permohonanmanager() {
+        return status_permohonanmanager;
     }
 
-    public void setStatus_permohonan_manager(String status_permohonan_manager) {
-        this.status_permohonan_manager = status_permohonan_manager;
+    public void setStatus_permohonanmanager(String status_permohonanmanager) {
+        this.status_permohonanmanager = status_permohonanmanager;
     }
 
     public Timestamp getUpdated_manager() {

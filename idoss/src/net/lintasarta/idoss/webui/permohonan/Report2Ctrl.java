@@ -74,7 +74,7 @@ public class Report2Ctrl extends GFCBaseCtrl implements Serializable {
 
             //prepare the AMedia for iframe
             final InputStream mediais = new ByteArrayInputStream(buf);
-            final AMedia amedia = new AMedia("reportAduan.pdf", "pdf", "application/pdf", mediais);
+            final AMedia amedia = new AMedia("reportPermohonanBelumSelesai.pdf", "pdf", "application/pdf", mediais);
 
             //set iframe content
             report.setContent(amedia);

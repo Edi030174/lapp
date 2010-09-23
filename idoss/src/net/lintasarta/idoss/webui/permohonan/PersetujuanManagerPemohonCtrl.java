@@ -162,7 +162,7 @@ public class PersetujuanManagerPemohonCtrl extends GFCBaseCtrl implements Serial
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tVerifikasi.setDampak(dampak.getValue());
         Radio status = radiogroup_StatusPermohonanManagerPemohon.getSelectedItem();
-        tVerifikasi.setStatus_permohonan_asman(status.getValue());
+        tVerifikasi.setStatus_permohonanasman(status.getValue());
         tVerifikasi.setCatatan_asman(fck_CatatanManagerPemohon.getValue());
     }
 

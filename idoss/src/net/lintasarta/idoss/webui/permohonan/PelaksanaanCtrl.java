@@ -104,11 +104,11 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteBeanToComponents(TPelaksanaan tPelaksanaan) throws Exception {
-        if (tPelaksanaan.getRfs().equals("1")) {
-            checkbox_Rfs.setChecked(true);
-        } else {
-            checkbox_Rfs.setChecked(false);
-        }
+//        if (tPelaksanaan.getRfs().equals("1")) {
+//            checkbox_Rfs.setChecked(true);
+//        } else {
+//            checkbox_Rfs.setChecked(false);
+//        }
 
         if (tPelaksanaan.getStatus_perubahan().equals("OPEN")) {
             radiogroup_StatusPerubahan.setSelectedItem(open);

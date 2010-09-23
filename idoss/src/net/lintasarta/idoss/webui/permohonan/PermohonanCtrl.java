@@ -123,7 +123,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
         doCheckRights();
-        tab_Permohonan.setClosable(false);
+//        tab_Permohonan.setClosable(false);
 
 //        tab_PersetujuanPemohon.setVisible(true);
 //        tabPanel_PersetujuanPemohon.setVisible(true);
@@ -154,14 +154,22 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             listbox_DaftarPermohonan = null;
         }
+        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanPemohon");
+        orderTab.getChildren().clear();
+
+        Panel panel = new Panel();
+        Panelchildren pChildren = new Panelchildren();
+
+        panel.appendChild(pChildren);
+        orderTab.appendChild(panel);
         doShowDialog(gettPermohonan());
     }
 
     private void doCheckRights() {
         UserWorkspace workspace = getUserWorkspace();
-        window_Permohonan.setVisible(workspace.isAllowed("window_Permohonan"));
-        tab_Permohonan.setVisible(workspace.isAllowed("tab_Permohonan"));
-        tabPanel_Permohonan.setVisible(workspace.isAllowed("tab_Permohonan"));
+//        window_Permohonan.setVisible(workspace.isAllowed("window_Permohonan"));
+//        tab_Permohonan.setVisible(workspace.isAllowed("tab_Permohonan"));
+//        tabPanel_Permohonan.setVisible(workspace.isAllowed("tab_Permohonan"));
         tab_PersetujuanPemohon.setVisible(workspace.isAllowed("tab_PersetujuanPemohon"));
         tabPanel_PersetujuanPemohon.setVisible(workspace.isAllowed("tab_PersetujuanPemohon"));
         tab_PersetujuanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanDukophar"));
@@ -389,30 +397,30 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> DataIsChanged :" + isDataChanged());
         }
-        if (isDataChanged()) {
-
-            // Show a confirm box
-            String message = Labels.getLabel("message_Data_Modified_Save_Data_YesNo");
-            String title = Labels.getLabel("message_Information");
-
-            MultiLineMessageBox.doSetTemplate();
-            if (MultiLineMessageBox.show(message, title, MultiLineMessageBox.YES | MultiLineMessageBox.NO, MultiLineMessageBox.QUESTION, true, new EventListener() {
-                public void onEvent(Event evt) {
-                    switch (((Integer) evt.getData()).intValue()) {
-                        case MultiLineMessageBox.YES:
-                            try {
-                                doSimpan();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        case MultiLineMessageBox.NO:
-                            break; //
-                    }
-                }
-            }
-            ) == MultiLineMessageBox.YES) {
-            }
-        }
+//        if (isDataChanged()) {
+//
+//            // Show a confirm box
+//            String message = Labels.getLabel("message_Data_Modified_Save_Data_YesNo");
+//            String title = Labels.getLabel("message_Information");
+//
+//            MultiLineMessageBox.doSetTemplate();
+//            if (MultiLineMessageBox.show(message, title, MultiLineMessageBox.YES | MultiLineMessageBox.NO, MultiLineMessageBox.QUESTION, true, new EventListener() {
+//                public void onEvent(Event evt) {
+//                    switch (((Integer) evt.getData()).intValue()) {
+//                        case MultiLineMessageBox.YES:
+//                            try {
+//                                doSimpan();
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                        case MultiLineMessageBox.NO:
+//                            break; //
+//                    }
+//                }
+//            }
+//            ) == MultiLineMessageBox.YES) {
+//            }
+//        }
         window_Permohonan.onClose();
     }
 
