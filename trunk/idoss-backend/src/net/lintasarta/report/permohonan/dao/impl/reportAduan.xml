@@ -11,8 +11,10 @@
         a.DAMPAK as severity,
         a.JUDUL as Problem,
         a.P_IDOSS_ROOT_CAUSED_ID,
-        a.SOLUSI, a.NAMA_PELAKSANA as PJ, a.MTTR, 
+        a.SOLUSI, a.NAMA_PELAKSANA as PJ, a.MTTR,
         (Case when a.STATUS='CLOSED' then 'TERCAPAI' else 'TIDAK' end) as tercapai
         from T_IDOSS_PENANGANAN_GANGGUAN a where a.STATUS=#{status, jdbcType=VARCHAR}
+        and to_char(a.CREATED_DATE,'MM')=#{bulan, jdbcType=VARCHAR}
+        and to_char(a.CREATED_DATE,'yyyy')=#{tahun, jdbcType=VARCHAR}
     </select>
 </mapper>
