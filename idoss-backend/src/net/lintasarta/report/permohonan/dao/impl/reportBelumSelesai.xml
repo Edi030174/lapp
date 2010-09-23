@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="net.lintasarta.report.permohonan.dao.ReportBelumSelesaiDAO">
-    <select id="getReportBelumSelesai" parameterType="reportbelumselesai" resultType="reportbelumselesai">
+    <select id="getReportBelumSelesai" resultType="reportbelumselesai">
         select a.T_IDOSS_PERMOHONAN_ID nomor , to_char(a.tgl_permohonan ,'dd-MON-yyyy mm:hh') tanggal,a.TYPE_PERMOHONAN,
         a.DETAIL_PERMOHONAN deskripsi, a.NAMA_PEMOHON , a.BAGIAN_PEMOHON ,
         (Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Pemohon' or a.STATUS_TRACK_PERMOHONAN='Ditolak ManagerPemohon' then a.NAMA_MANAGER else
