@@ -57,19 +57,19 @@ public class ReportServiceImpl implements ReportService {
         this.reportSudahSelesaiDAO = reportSudahSelesaiDAO;
     }
 
-    public List<ReportAduan> getAduan() {
-        return null;
+    public List<ReportAduan> getAduan(String status) {
+        return reportAduanDAO.getReportAduan(status);
     }
 
     public List<ReportBelumSelesai> getBelumSelesai() {
-        return null;
+        return reportBelumSelesaiDAO.getReportBelumSelesai();
     }
 
     public List<ReportSudahSelesai> getSudahSelesai() {
-        return null;
+        return reportSudahSelesaiDAO.getReportSudahSelesai();
     }
 
-    public List<ReportRekapAduan> getRekapAduan() {
-        return null;
+    public List<ReportRekapAduan> getRekapAduan(String tahun) {
+        return reportRekapAduanDAO.getReportRekapAduan(tahun);
     }
 }

@@ -21,13 +21,10 @@ import static junit.framework.Assert.assertNotNull;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
 		locations = {
-                "classpath:META-INF/spring/spring-config.xml",
+                "classpath:META-INF/ibatis/ibatis-spring-config.xml",
                 "classpath:META-INF/spring/datasource.xml",
-                "classpath:META-INF/spring/spring-idoss-security-config.xml",
-                "classpath:META-INF/spring/spring-dao-idoss-pengaduan-config.xml",
-                "classpath:META-INF/spring/spring-dao-idoss-permohonan-config.xml",
+                "classpath:META-INF/spring/spring-based-dao-config.xml",
                 "classpath:META-INF/spring/spring-dao-idoss-report-config.xml"
-
 		}
 )
 public class ReportSudahSelesaiDAOTest {
@@ -36,12 +33,7 @@ public class ReportSudahSelesaiDAOTest {
 
     @Test
     public void tesGetReportSudahSelesai() throws Exception{
-         ReportSudahSelesai reportSudahSelesai = new ReportSudahSelesai();
-
-        List<ReportSudahSelesai> reportSudahSelesais = reportSudahSelesaiDAO.getReportSudahSelesai(reportSudahSelesai);
-
+        List<ReportSudahSelesai> reportSudahSelesais = reportSudahSelesaiDAO.getReportSudahSelesai();
         assertNotNull(reportSudahSelesais);
-
-
     }
 }

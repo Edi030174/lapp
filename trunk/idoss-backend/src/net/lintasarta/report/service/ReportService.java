@@ -14,8 +14,8 @@ import java.util.List;
  * Time: 1:39:35 PM
  */
 public interface ReportService {
-    List<ReportAduan> getAduan();
+    List<ReportAduan> getAduan(String status);
     List<ReportBelumSelesai> getBelumSelesai();
     List<ReportSudahSelesai> getSudahSelesai();
-    List<ReportRekapAduan> getRekapAduan();
+    List<ReportRekapAduan> getRekapAduan(String tahun);
 }
