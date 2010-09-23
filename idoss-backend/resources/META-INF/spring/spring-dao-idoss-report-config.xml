@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="reportAduanDAO" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="mapperInterface" value="net.lintasarta.report.permohonan.dao.ReportAduanDAO"/>
+    </bean>
+    <bean id="reportBelumSelesaiDAO" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="mapperInterface" value="net.lintasarta.report.permohonan.dao.ReportBelumSelesaiDAO"/>
+    </bean>
+    <bean id="reportSudahSelesaiDAO" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="mapperInterface" value="net.lintasarta.report.permohonan.dao.ReportSudahSelesaiDAO"/>
+    </bean>
+    <bean id="reportRekapAduanDAO" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="mapperInterface" value="net.lintasarta.report.permohonan.dao.ReportRekapAduanDAO"/>
+    </bean>
+</beans>
