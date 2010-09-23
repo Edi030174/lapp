@@ -147,13 +147,21 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     private void doShowDialog(TVerifikasi tVerifikasi, TPermohonan tPermohonan) throws InterruptedException {
         if (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon")) {
             btn_SimpanPersetujuanAsman.setVisible(true);
-        } else if (tPermohonan.getStatus_track_permohonan().contains("Disetujui Asman Dukophar")) {
+        }else{
             btn_SimpanPersetujuanAsman.setVisible(false);
-            btn_SimpanPersetujuanManager.setVisible(true);
+            btn_SimpanPersetujuanManager.setVisible(false);
             btn_SimpanPersetujuanGm.setVisible(false);
-        } else if (tVerifikasi.getStatus_permohonanmanager().contains("Disetujui Manager Dukophar")) {
+        }
+        if (tPermohonan.getStatus_track_permohonan().contains("Disetujui Asman Dukophar")) {
+            btn_SimpanPersetujuanManager.setVisible(true);
+        }else{
+            btn_SimpanPersetujuanAsman.setVisible(false);
+            btn_SimpanPersetujuanManager.setVisible(false);
+            btn_SimpanPersetujuanGm.setVisible(false);
+        }
+        if (tVerifikasi.getStatus_permohonanmanager().contains("Disetujui Manager Dukophar")) {
             btn_SimpanPersetujuanGm.setVisible(true);
-        } else {
+        }else{
             btn_SimpanPersetujuanAsman.setVisible(false);
             btn_SimpanPersetujuanManager.setVisible(false);
             btn_SimpanPersetujuanGm.setVisible(false);

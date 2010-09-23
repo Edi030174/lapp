@@ -9,6 +9,7 @@ import org.zkoss.zul.Button;
 import org.zkoss.zul.Iframe;
 import org.zkoss.zul.Window;
 
+import javax.sql.DataSource;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,6 +33,7 @@ public class Report1Ctrl extends GFCBaseCtrl implements Serializable {
     protected Iframe report;
     protected Button btnReport;
     protected Report1Ctrl report1Ctrl;
+    private transient DataSource dataSource;
 
     public Report1Ctrl() {
         super();
@@ -70,7 +72,7 @@ public class Report1Ctrl extends GFCBaseCtrl implements Serializable {
 //            params.put("ReportTitle", "The First Jasper Report Ever");
             params.put("status", "Open");
 
-            final byte[] buf = JasperRunManager.runReportToPdf(is, params, getConnection());
+            final byte[] buf = JasperRunManager.runReportToPdf(is, params, dataSource.getConnection());
 
             //prepare the AMedia for iframe
             final InputStream mediais = new ByteArrayInputStream(buf);
@@ -87,18 +89,18 @@ public class Report1Ctrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    private static Connection getConnection()
-            throws ClassNotFoundException, SQLException {
+//    private static Connection getConnection()
+//            throws ClassNotFoundException, SQLException {
         //Change these settings according to your local configuration
-        String driver = "oracle.jdbc.OracleDriver";
-        String connectString = "jdbc:oracle:thin:@10.24.8.78:1521:db11";
-        String user = "sni";
-        String password = "sni";
+//        String driver = "oracle.jdbc.OracleDriver";
+//        String connectString = "jdbc:oracle:thin:@10.24.8.78:1521:db11";
+//        String user = "sni";
+//        String password = "sni";
 
-        Class.forName(driver);
-        Connection conn = DriverManager.getConnection(connectString, user, password);
-        return conn;
-    }
+//        Class.forName(driver);
+//        Connection conn = DriverManager.getConnection(connectString, user, password);
+//        return conn;
+//    }
 
     public Report1Ctrl getReport1Ctrl() {
         return report1Ctrl;

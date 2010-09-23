@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.report.permohonan.dao.ReportBelumSelesaiDAO">
+    <select id="getReportBelumSelesai" parameterType="reportbelumselesai" resultType="reportbelumselesai">
+        select a.T_IDOSS_PERMOHONAN_ID nomor , to_char(a.tgl_permohonan ,'dd-MON-yyyy mm:hh') tanggal,a.TYPE_PERMOHONAN,
+        a.DETAIL_PERMOHONAN deskripsi, a.NAMA_PEMOHON , a.BAGIAN_PEMOHON ,
+        (Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Pemohon' or a.STATUS_TRACK_PERMOHONAN='Ditolak Manager
+        Pemohon' then a.NAMA_MANAGER else
+        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Pemohon' or a.STATUS_TRACK_PERMOHONAN='Ditolak GM Pemohon'
+        then a.NAMA_GM else
+        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Asman Dukophar' or a.STATUS_TRACK_PERMOHONAN='Ditolak Asman
+        Dukophar' then b.NAMA_ASMAN else
+        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Dukophar' or a.STATUS_TRACK_PERMOHONAN='Ditolak Manager
+        Dukophar' then b.NAMA_MANAGER else
+        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Dukopharr' or a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar'
+        then b.NAMA_GM else '' end
+        end
+        end
+        end
+        end) as nama_ver,
+        (Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Pemohon' or a.STATUS_TRACK_PERMOHONAN='Ditolak Manager
+        Pemohon' then 'Manager' else
+        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Pemohon' or a.STATUS_TRACK_PERMOHONAN='Ditolak GM Pemohon'
+        then 'General Manager' else
+        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Asman Dukophar' or a.STATUS_TRACK_PERMOHONAN='Ditolak Asman
+        Dukophar' then 'Asman Dukophar' else
+        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Dukophar' or a.STATUS_TRACK_PERMOHONAN='Ditolak Manager
+        Dukophar' then 'Manager Dukophar' else
+        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Dukopharr' or a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar'
+        then 'GM Dukophar' else '' end
+        end
+        end
+        end
+        end) as jabatan,
+        (Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Pemohon' or a.STATUS_TRACK_PERMOHONAN='Ditolak Manager
+        Pemohon' then to_char(a.UPDATED_MANAGER ,'dd-MON-yyyy mm:hh') else
+        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Pemohon' or a.STATUS_TRACK_PERMOHONAN='Ditolak GM Pemohon'
+        then to_char(a.UPDATED_GM ,'dd-MON-yyyy mm:hh') else
+        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Asman Dukophar' or a.STATUS_TRACK_PERMOHONAN='Ditolak Asman
+        Dukophar' then to_char(b.UPDATED_ASMAN ,'dd-MON-yyyy mm:hh') else
+        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Dukophar' or a.STATUS_TRACK_PERMOHONAN='Ditolak Manager
+        Dukophar' then to_char(b.UPDATED_MANAGER ,'dd-MON-yyyy mm:hh') else
+        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Dukopharr' or a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar'
+        then to_char(b.UPDATED_GM ,'dd-MON-yyyy mm:hh') else '' end
+        end
+        end
+        end
+        end) as tgl_ver,
+        a.STATUS_TRACK_PERMOHONAN
+        from T_IDOSS_PERMOHONAN a, T_IDOSS_VERIFIKASI b, T_IDOSS_PELAKSANAAN c
+        where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_ID=c.T_IDOSS_PELAKSANAAN_ID and
+        c.STATUS_PERUBAHAN
+        <>
+        'CLOSED'
+    </select>
+</mapper>
