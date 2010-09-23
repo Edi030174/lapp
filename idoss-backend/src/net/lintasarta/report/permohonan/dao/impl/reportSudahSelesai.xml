@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="net.lintasarta.report.permohonan.dao.ReportSudahSelesaiDAO">
-    <select id="getReportSudahSelesai" parameterType="reportsudahselesai" resultType="reportsudahselesai">
+    <select id="getReportSudahSelesai" resultType="reportsudahselesai">
         select a.T_IDOSS_PERMOHONAN_ID nomor , to_char(a.tgl_permohonan ,'dd-MON-yyyy mm:hh') tanggal,a.TYPE_PERMOHONAN,
                a.DETAIL_PERMOHONAN deskripsi, a.NAMA_PEMOHON , a.BAGIAN_PEMOHON, b.NAMA_PELAKSANA, to_char(b.UPDATED_DATE ,'dd-MON-yyyy mm:hh') tgl_pelaksana
         from T_IDOSS_PERMOHONAN a, T_IDOSS_PELAKSANAAN b
