@@ -9,6 +9,8 @@ import net.lintasarta.report.permohonan.model.ReportBelumSelesai;
 import net.lintasarta.report.permohonan.model.ReportRekapAduan;
 import net.lintasarta.report.permohonan.model.ReportSudahSelesai;
 import net.lintasarta.report.service.ReportService;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import java.util.List;
 
@@ -57,19 +59,23 @@ public class ReportServiceImpl implements ReportService {
         this.reportSudahSelesaiDAO = reportSudahSelesaiDAO;
     }
 
-    public List<ReportAduan> getAduan(String status) {
-        return reportAduanDAO.getReportAduan(status);
+    public JRDataSource getAduan(String status) {
+        List<ReportAduan> reportAduans =  reportAduanDAO.getReportAduan(status);
+        return new JRBeanCollectionDataSource(reportAduans);
     }
 
-    public List<ReportBelumSelesai> getBelumSelesai() {
-        return reportBelumSelesaiDAO.getReportBelumSelesai();
+    public JRDataSource getBelumSelesai() {
+        List<ReportBelumSelesai> reportBelumSelesais =  reportBelumSelesaiDAO.getReportBelumSelesai();
+        return new JRBeanCollectionDataSource(reportBelumSelesais);
     }
 
-    public List<ReportSudahSelesai> getSudahSelesai() {
-        return reportSudahSelesaiDAO.getReportSudahSelesai();
+    public JRDataSource getSudahSelesai() {
+        List<ReportSudahSelesai> reportSudahSelesais = reportSudahSelesaiDAO.getReportSudahSelesai();
+        return new JRBeanCollectionDataSource(reportSudahSelesais);
     }
 
-    public List<ReportRekapAduan> getRekapAduan(String tahun) {
-        return reportRekapAduanDAO.getReportRekapAduan(tahun);
+    public JRDataSource getRekapAduan(String tahun) {
+        List<ReportRekapAduan> reportRekapAduans = reportRekapAduanDAO.getReportRekapAduan(tahun);
+        return new JRBeanCollectionDataSource(reportRekapAduans);
     }
 }
