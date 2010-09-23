@@ -4,6 +4,7 @@ import net.lintasarta.report.permohonan.model.ReportAduan;
 import net.lintasarta.report.permohonan.model.ReportBelumSelesai;
 import net.lintasarta.report.permohonan.model.ReportRekapAduan;
 import net.lintasarta.report.permohonan.model.ReportSudahSelesai;
+import net.sf.jasperreports.engine.JRDataSource;
 
 import java.util.List;
 
@@ -14,8 +15,8 @@ import java.util.List;
  * Time: 1:39:35 PM
  */
 public interface ReportService {
-    List<ReportAduan> getAduan(String status);
-    List<ReportBelumSelesai> getBelumSelesai();
-    List<ReportSudahSelesai> getSudahSelesai();
-    List<ReportRekapAduan> getRekapAduan(String tahun);
+    JRDataSource getAduan(String status);
+    JRDataSource getBelumSelesai();
+    JRDataSource getSudahSelesai();
+    JRDataSource getRekapAduan(String tahun);
 }
