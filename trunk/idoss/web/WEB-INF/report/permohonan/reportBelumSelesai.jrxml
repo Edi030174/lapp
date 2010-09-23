@@ -29,38 +29,7 @@
 	</style>
 	<subDataset name="Table Dataset 1"/>
 	<queryString>
-		<![CDATA[select a.T_IDOSS_PERMOHONAN_ID nomor , to_char(a.tgl_permohonan ,'dd-MON-yyyy mm:hh') tanggal,a.TYPE_PERMOHONAN,
-       a.DETAIL_PERMOHONAN deskripsi, a.NAMA_PEMOHON , a.BAGIAN_PEMOHON ,
-       (Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Pemohon' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Manager Pemohon' then a.NAMA_MANAGER else
-             Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Pemohon' or  a.STATUS_TRACK_PERMOHONAN='Ditolak GM Pemohon' then a.NAMA_GM else
-                Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Asman Dukophar' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Asman Dukophar' then b.NAMA_ASMAN else
-                    Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Dukophar' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Manager Dukophar' then b.NAMA_MANAGER else
-                        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Dukopharr' or  a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar' then b.NAMA_GM else '' end
-                    end
-                end
-             end
-         end) as nama_ver,
-          (Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Pemohon' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Manager Pemohon' then 'Manager' else
-             Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Pemohon' or  a.STATUS_TRACK_PERMOHONAN='Ditolak GM Pemohon' then 'General Manager' else
-                Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Asman Dukophar' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Asman Dukophar' then 'Asman Dukophar' else
-                    Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Dukophar' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Manager Dukophar' then 'Manager Dukophar' else
-                        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Dukopharr' or  a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar' then 'GM Dukophar' else '' end
-                    end
-                end
-             end
-         end) as jabatan,
-          (Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Pemohon' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Manager Pemohon' then to_char(a.UPDATED_MANAGER  ,'dd-MON-yyyy mm:hh') else
-             Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Pemohon' or  a.STATUS_TRACK_PERMOHONAN='Ditolak GM Pemohon' then to_char(a.UPDATED_GM ,'dd-MON-yyyy mm:hh') else
-                Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Asman Dukophar' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Asman Dukophar' then to_char(b.UPDATED_ASMAN ,'dd-MON-yyyy mm:hh') else
-                    Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Dukophar' or  a.STATUS_TRACK_PERMOHONAN='Ditolak Manager Dukophar' then to_char(b.UPDATED_MANAGER ,'dd-MON-yyyy mm:hh') else
-                        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Dukopharr' or  a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar' then to_char(b.UPDATED_GM ,'dd-MON-yyyy mm:hh') else '' end
-                    end
-                end
-             end
-         end) as tgl_ver,
-       a.STATUS_TRACK_PERMOHONAN
-from T_IDOSS_PERMOHONAN a, T_IDOSS_VERIFIKASI b, T_IDOSS_PELAKSANAAN c
-where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_ID=c.T_IDOSS_PELAKSANAAN_ID and c.STATUS_PERUBAHAN <> 'CLOSED']]>
+		<![CDATA[]]>
 	</queryString>
 	<field name="nomor" class="java.lang.String"/>
 	<field name="tanggal" class="java.lang.String"/>
@@ -269,7 +238,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_I
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMOR}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nomor}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="82" y="0" width="100" height="20"/>
@@ -277,7 +246,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_I
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{TANGGAL}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tanggal}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="256" y="0" width="81" height="20"/>
@@ -285,7 +254,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_I
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{DESKRIPSI} != null ? $F{DESKRIPSI}: "-")]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{deskripsi} != null ? $F{deskripsi}: "-")]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="337" y="0" width="96" height="20"/>
@@ -293,7 +262,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_I
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{NAMA_PEMOHON}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_pemohon}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="433" y="0" width="65" height="20"/>
@@ -301,7 +270,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_I
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{BAGIAN_PEMOHON}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bagian_pemohon}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="498" y="0" width="97" height="20"/>
@@ -309,7 +278,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_I
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{NAMA_VER}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_ver}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="595" y="0" width="62" height="20"/>
@@ -317,7 +286,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_I
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{JABATAN}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{jabatan}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="733" y="0" width="69" height="20"/>
@@ -325,7 +294,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_I
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{STATUS_TRACK_PERMOHONAN}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{status_track_permohonan}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="657" y="0" width="76" height="20"/>
@@ -333,7 +302,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_I
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{TGL_VER}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tgl_ver}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="182" y="0" width="74" height="20"/>
@@ -341,7 +310,7 @@ where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_I
 					<bottomPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{TYPE_PERMOHONAN}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{type_permohonan}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
