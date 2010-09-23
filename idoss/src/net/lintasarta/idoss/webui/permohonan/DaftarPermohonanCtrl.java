@@ -10,8 +10,6 @@ import net.lintasarta.permohonan.model.predicate.StatusPermohonan;
 import net.lintasarta.permohonan.model.predicate.TanggalPermohonan;
 import net.lintasarta.permohonan.model.predicate.TipePermohonan;
 import net.lintasarta.permohonan.service.PermohonanService;
-import net.lintasarta.report.util.JRreportCompiler;
-import net.lintasarta.report.util.JRreportWindow;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.component.Component;
 import org.apache.commons.collections.CollectionUtils;
