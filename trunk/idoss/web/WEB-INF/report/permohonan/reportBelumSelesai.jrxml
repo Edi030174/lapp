@@ -62,16 +62,16 @@
 from T_IDOSS_PERMOHONAN a, T_IDOSS_VERIFIKASI b, T_IDOSS_PELAKSANAAN c
 where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_ID=c.T_IDOSS_PELAKSANAAN_ID and c.STATUS_PERUBAHAN <> 'CLOSED']]>
 	</queryString>
-	<field name="NOMOR" class="java.lang.String"/>
-	<field name="TANGGAL" class="java.lang.String"/>
-	<field name="TYPE_PERMOHONAN" class="java.lang.String"/>
-	<field name="DESKRIPSI" class="java.lang.String"/>
-	<field name="NAMA_PEMOHON" class="java.lang.String"/>
-	<field name="BAGIAN_PEMOHON" class="java.lang.String"/>
-	<field name="NAMA_VER" class="java.lang.String"/>
-	<field name="JABATAN" class="java.lang.String"/>
-	<field name="TGL_VER" class="java.lang.String"/>
-	<field name="STATUS_TRACK_PERMOHONAN" class="java.lang.String"/>
+	<field name="nomor" class="java.lang.String"/>
+	<field name="tanggal" class="java.lang.String"/>
+	<field name="type_permohonan" class="java.lang.String"/>
+	<field name="deskripsi" class="java.lang.String"/>
+	<field name="nama_pemohon" class="java.lang.String"/>
+	<field name="bagian_pemohon" class="java.lang.String"/>
+	<field name="nama_ver" class="java.lang.String"/>
+	<field name="jabatan" class="java.lang.String"/>
+	<field name="tgl_ver" class="java.lang.String"/>
+	<field name="status_track_permohonan" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
