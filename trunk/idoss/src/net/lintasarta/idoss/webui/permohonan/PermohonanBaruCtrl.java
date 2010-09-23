@@ -112,7 +112,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
         
-        doCheckRights();
+//        doCheckRights();
 
         Map<String, Object> args = getCreationArgsMap(event);
 

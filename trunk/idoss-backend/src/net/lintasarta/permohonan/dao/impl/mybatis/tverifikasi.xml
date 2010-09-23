@@ -86,7 +86,7 @@
                CATATAN_GM,
                STATUS_PERMOHONAN_GM
         from T_IDOSS_VERIFIKASI
-        where STATUS_PERMOHONANASMAN =#{status_permohonan_asman}
+        where STATUS_PERMOHONANASMAN =#{status_permohonanasman}
     </select>
 
     <select id="getTVerifikasiByStatusPermohonanManager" parameterType="tverifikasi" resultType="tverifikasi">
@@ -112,7 +112,7 @@
                CATATAN_GM,
                STATUS_PERMOHONAN_GM
         from T_IDOSS_VERIFIKASI
-        where STATUS_PERMOHONANMANAGER =#{status_permohonan_manager}
+        where STATUS_PERMOHONANMANAGER =#{status_permohonanmanager}
     </select>
 
     <select id="getTVerifikasiByNikPelaksanaStatusPA" resultType="tverifikasi">
@@ -138,7 +138,7 @@
                CATATAN_GM,
                STATUS_PERMOHONAN_GM
         from T_IDOSS_VERIFIKASI
-        where NIK_PELAKSANA =#{nik_pelaksana} and STATUS_PERMOHONANASMAN =#{status_permohonan_asman}
+        where NIK_PELAKSANA =#{nik_pelaksana} and STATUS_PERMOHONANASMAN =#{status_permohonanasman}
     </select>
 
     <select id="getTVerifikasiByNikPelaksanaStatusPM" resultType="tverifikasi">
@@ -164,7 +164,7 @@
                CATATAN_GM,
                STATUS_PERMOHONAN_GM
         from SNI.T_IDOSS_VERIFIKASI
-        where NIK_PELAKSANA =#{nik_pelaksana} and STATUS_PERMOHONANMANAGER =#{status_permohonan_manager}        
+        where NIK_PELAKSANA =#{nik_pelaksana} and STATUS_PERMOHONANMANAGER =#{status_permohonanmanager}
     </select>
 
     <insert id="createTVerifikasi" parameterType="tverifikasi">
@@ -199,10 +199,10 @@
         #{nik_pelaksana,jdbcType=VARCHAR},
         #{rfs,jdbcType=VARCHAR},
         #{catatan_per_type,jdbcType=VARCHAR},
-        #{status_permohonan_asman,jdbcType=VARCHAR},
+        #{status_permohonanasman,jdbcType=VARCHAR},
         #{updated_asman,jdbcType=TIMESTAMP},
         #{catatan_asman,jdbcType=VARCHAR},
-        #{status_permohonan_manager,jdbcType=VARCHAR},
+        #{status_permohonanmanager,jdbcType=VARCHAR},
         #{updated_manager,jdbcType=TIMESTAMP},
         #{catatan_manager,jdbcType=VARCHAR},
         #{created_date,jdbcType=TIMESTAMP},
@@ -225,10 +225,10 @@
         NIK_PELAKSANA = #{nik_pelaksana,jdbcType=VARCHAR},
         RFS = #{rfs,jdbcType=VARCHAR},
         CATATAN_PERTYPE = #{catatan_per_type,jdbcType=VARCHAR},
-        STATUS_PERMOHONANASMAN = #{status_permohonan_asman,jdbcType=VARCHAR},
+        STATUS_PERMOHONANASMAN = #{status_permohonanasman,jdbcType=VARCHAR},
         UPDATED_ASMAN = #{updated_asman,jdbcType=TIMESTAMP},
         CATATAN_ASMAN = #{catatan_asman,jdbcType=VARCHAR},
-        STATUS_PERMOHONANMANAGER = #{status_permohonan_manager,jdbcType=VARCHAR},
+        STATUS_PERMOHONANMANAGER = #{status_permohonanmanager,jdbcType=VARCHAR},
         UPDATED_MANAGER = #{updated_manager,jdbcType=TIMESTAMP},
         CATATAN_MANAGER = #{catatan_manager,jdbcType=VARCHAR},
         CREATED_DATE = #{created_date,jdbcType=TIMESTAMP},

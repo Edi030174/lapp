@@ -110,7 +110,14 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         listheader_TglUpdate.setSortAscending(new FieldComparator("updated_date", true));
         listheader_TglUpdate.setSortDescending(new FieldComparator("updated_date", false));
 
-        List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
+        String nikPelapor = getUserWorkspace().getUserSession().getEmployeeNo();
+
+        TPenangananGangguan tPenangananGangguan = new TPenangananGangguan();
+        tPenangananGangguan.setNik_pelapor(nikPelapor);
+//        List<TPenangananGangguan> tPenangananGangguans = penangananGangguanService.getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
+//        TPenangananGangguan tPenangananGangguan = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(plp);
+        
+        List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
         PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
         pagedListHolder.setPageSize(getCountRows());
 

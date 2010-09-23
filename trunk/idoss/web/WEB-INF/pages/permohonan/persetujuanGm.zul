@@ -26,7 +26,9 @@
     <window id="window_PersetujuanGm" width="796px" height="544px" contentStyle="overflow:auto" border="normal"
             apply="${persetujuanGmCtrl}">
         <toolbar>
-            <button id="btn_SimpanPersetujuanGm" label="Simpan"/>
+            <button id="btn_SimpanPersetujuanAsman" label="SimpanASMAN"/>
+            <button id="btn_SimpanPersetujuanManager" label="SimpanMAN"/>
+            <button id="btn_SimpanPersetujuanGm" label="SimpanGM"/>
             <button id="btn_Batal" label="Batal"/>
         </toolbar>
         <hbox>

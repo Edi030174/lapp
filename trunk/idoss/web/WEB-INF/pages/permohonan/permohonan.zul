@@ -38,8 +38,7 @@
                         </tabs>
                         <tabpanels>
                             <!--tap permohonan-->
-                            <tabpanel id="tabPanel_Permohonan"
-                                      height="100%" style="border: 0px; padding: 0px">
+                            <tabpanel id="tabPanel_Permohonan" height="100%" style="border: 0px; padding: 0px">
                                 <!--<toolbar>-->
                                 <!--<button id="btnSimpan_Permohonan" label="Simpan"/>-->
                                 <!--<button id="btnBatal" label="Batal"/>-->
@@ -166,8 +165,7 @@
                                 </groupbox>
                             </tabpanel>
                             <tabpanel id="tabPanel_PersetujuanPemohon" height="100%" style="border: 0px; padding: 0px"/>
-                            <tabpanel id="tabPanel_PersetujuanDukophar" height="100%"
-                                      style="border: 0px; padding: 0px"/>
+                            <tabpanel id="tabPanel_PersetujuanDukophar" height="100%" style="border: 0px; padding: 0px"/>
                             <tabpanel id="tabPanel_Pelaksanaan" height="100%" style="border: 0px; padding: 0px"/>
                         </tabpanels>
                     </tabbox>

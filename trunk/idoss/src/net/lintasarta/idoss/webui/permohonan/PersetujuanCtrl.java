@@ -174,12 +174,12 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
 //        Radio dampak = radiogroup_Dampak.getSelectedItem();
 //        tVerifikasi.setDampak(dampak.getValue());
         Radio status = radiogroup_Statuspermohonanasman.getSelectedItem();
-        tVerifikasi.setStatus_permohonan_asman(status.getValue());
+        tVerifikasi.setStatus_permohonanasman(status.getValue());
         tVerifikasi.setTgl_permohonan(new Timestamp(dateboxTanggal1.getValue().getTime()));
         tVerifikasi.setNik_pelaksana(textbox_NikPelaksana.getValue());
         tVerifikasi.setCatatan_asman(fckCatatan_asman.getValue());
         Radio statusMan = radiogroup_Statuspermohonanmanager.getSelectedItem();
-        tVerifikasi.setStatus_permohonan_manager(statusMan.getValue());
+        tVerifikasi.setStatus_permohonanmanager(statusMan.getValue());
         tVerifikasi.setUpdated_asman(new Timestamp(dateboxTanggal2.getValue().getTime()));
         tVerifikasi.setCatatan_manager(fckCatatan_manager.getValue());
         tVerifikasi.setRfs("rfs");

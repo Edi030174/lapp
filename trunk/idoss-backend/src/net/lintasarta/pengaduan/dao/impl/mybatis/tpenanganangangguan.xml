@@ -86,10 +86,10 @@
         #{judul, jdbcType=VARCHAR},
         #{deskripsi, jdbcType=VARCHAR},
         #{dampak, jdbcType=VARCHAR},
-        #{type_id, jdbcType=VARCHAR},
+        #{p_idoss_type_id, jdbcType=VARCHAR},
         #{nik_pelaksana, jdbcType=VARCHAR},
         #{nama_pelaksana, jdbcType=VARCHAR},
-        #{root_cause_id, jdbcType=INTEGER},
+        #{p_idoss_root_caused_id, jdbcType=INTEGER},
         #{status, jdbcType=VARCHAR},
         #{solusi, jdbcType=VARCHAR},
         #{mttr, jdbcType=VARCHAR},
@@ -101,7 +101,7 @@
         #{updated_date},
         #{updated_user},
         #{gen_id_col},
-        #{inserted_root_caused}
+        #{inserted_root_caused,jdbcType=TIMESTAMP}
         )
     </insert>
 
@@ -114,10 +114,10 @@
         JUDUL=#{judul, jdbcType=VARCHAR},
         DESKRIPSI=#{deskripsi, jdbcType=VARCHAR},
         DAMPAK=#{dampak, jdbcType=VARCHAR},
-        P_IDOSS_TYPE_ID=#{type_id, jdbcType=INTEGER},
+        P_IDOSS_TYPE_ID=#{p_idoss_type_id, jdbcType=INTEGER},
         NIK_PELAKSANA=#{nik_pelaksana, jdbcType=VARCHAR},
         NAMA_PELAKSANA=#{nama_pelaksana, jdbcType=VARCHAR},
-        P_IDOSS_ROOT_CAUSED_ID=#{root_cause_id, jdbcType=INTEGER},
+        P_IDOSS_ROOT_CAUSED_ID=#{p_idoss_root_caused_id, jdbcType=INTEGER},
         STATUS=#{status, jdbcType=VARCHAR},
         SOLUSI=#{solusi, jdbcType=VARCHAR},
         MTTR=#{mttr, jdbcType=VARCHAR},

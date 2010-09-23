@@ -103,5 +103,8 @@
     </bean>
     <bean id="report3Ctrl" class="net.lintasarta.idoss.webui.permohonan.Report3Ctrl" parent="basisCtrl" scope="prototype">
     </bean>
+    <bean id="report4Ctrl" class="net.lintasarta.idoss.webui.pengaduan.Report4Ctrl" parent="basisCtrl" scope="prototype">
+    </bean>
+
 
 </beans>

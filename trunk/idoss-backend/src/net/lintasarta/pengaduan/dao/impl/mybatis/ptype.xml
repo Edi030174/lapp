@@ -12,13 +12,22 @@
     </select>
 
     <select id="getAllPType" resultType="ptype">
-        select * from P_IDOSS_TYPE order by PARENT_ID, P_IDOSS_TYPE_ID
+        select
+        P_IDOSS_TYPE_ID,
+         P_IDOSS_TYPE_ID || TYPE_DESC as TYPE_DESC,
+         ACTIVE,
+         CREATED_DATE,
+         CREATED_USER,
+         UPDATED_DATE,
+         UPDATED_USER,
+         PARENT_ID 
+        from P_IDOSS_TYPE order by PARENT_ID, P_IDOSS_TYPE_ID
     </select>
 
     <select id="getPTypeByTypeId" resultType="ptype">
          SELECT 
          P_IDOSS_TYPE_ID,
-         TYPE_DESC,
+         P_IDOSS_TYPE_ID || TYPE_DESC as TYPE_DESC,
          ACTIVE,
          CREATED_DATE,
          CREATED_USER,
@@ -72,7 +81,7 @@
     <select id="getPTypeByTypeDesc" parameterType="ptype" resultType="ptype">
         SELECT P_IDOSS_TYPE_ID, TYPE_DESC, ACTIVE, CREATED_DATE, CREATED_USER, UPDATED_DATE, UPDATED_USER, MINOR_MAYOR, PARENT_ID
         FROM SNI.P_IDOSS_TYPE
-        WHERE  TYPE_DESC = #{type_desc,jdbcType=VARCHAR}
+        WHERE  to_char(P_IDOSS_TYPE_ID||TYPE_DESC) = #{type_desc,jdbcType=VARCHAR}
     </select>
 
     <select id="getPTypeTree" resultType="ptype">
