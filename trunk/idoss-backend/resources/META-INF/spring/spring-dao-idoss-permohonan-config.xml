@@ -15,22 +15,4 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
         <property name="mapperInterface" value="net.lintasarta.permohonan.dao.TVerifikasiDAO"/>
     </bean>
-
-    <bean id="reportAduanDAO" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-        <property name="mapperInterface" value="net.lintasarta.report.permohonan.dao.ReportAduanDAO"/>
-    </bean>
-    <bean id="reportBelumSelesai" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-        <property name="mapperInterface" value="net.lintasarta.report.permohonan.dao.ReportBelumSelesaiDAO"/>
-    </bean>
-    <bean id="reportSudahSelesai" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-        <property name="mapperInterface" value="net.lintasarta.report.permohonan.dao.ReportSudahSelesaiDAO"/>
-    </bean>
-    <bean id="reportRekapAduan" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-        <property name="mapperInterface" value="net.lintasarta.report.permohonan.dao.ReportRekapAduanDAO"/>
-    </bean>
-
 </beans>
