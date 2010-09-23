@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="net.lintasarta.report.permohonan.dao.ReportAduanDAO">
-    <select id="getReportAduan" parameterType="reportaduan" resultType="reportaduan">
+    <select id="getReportAduan" parameterType="String" resultType="reportaduan">
     select to_char(a.CREATED_DATE,'dd-MON-yyyy mm:hh') as AWAL_GANGGGUAN,
         to_char(a.UPDATED_DATE,'dd-MON-yyyy mm:hh') as AKHIR_GANGGGUAN,
         a.durasi, a.P_IDOSS_ROOT_CAUSED_ID as NO_GANGGUAN,
@@ -13,6 +13,6 @@
         a.P_IDOSS_ROOT_CAUSED_ID,
         a.SOLUSI, a.NAMA_PELAKSANA as PJ, a.MTTR, 
         (Case when a.STATUS='CLOSED' then 'TERCAPAI' else 'TIDAK' end) as tercapai
-        from T_IDOSS_PENANGANAN_GANGGUAN a where a.STATUS=$P{status}
+        from T_IDOSS_PENANGANAN_GANGGUAN a where a.STATUS=#{status, jdbcType=VARCHAR}
     </select>
 </mapper>

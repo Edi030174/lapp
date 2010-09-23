@@ -26,7 +26,10 @@
         <typeAlias type="net.lintasarta.pengaduan.model.VHrEmployeePelaksana" alias="vhremployeepelaksana"/>
         <typeAlias type="net.lintasarta.pengaduan.model.PTypeRootCaused" alias="ptyperootcaused"/>
         <!--reportpermohonan-->
-        <typeAlias type="net.lintasarta.report.permohonan.model.ReportPermohonan" alias="reportpermohonan"/>
+        <typeAlias type="net.lintasarta.report.permohonan.model.ReportAduan" alias="ReportAduan"/>
+        <typeAlias type="net.lintasarta.report.permohonan.model.ReportBelumSelesai" alias="reportbelumselesai"/>
+        <typeAlias type="net.lintasarta.report.permohonan.model.ReportSudahSelesai" alias="reportsudahselesai"/>
+        <typeAlias type="net.lintasarta.report.permohonan.model.ReportRekapAduan" alias="reportrekapaduan"/>
         <typeAlias type="net.lintasarta.report.pengaduan.model.ReportPengaduan" alias="reportpengaduan"/>
         <!--auditlog-->
         <typeAlias type="net.lintasarta.auditlog.model.AuditLog" alias="auditlog"/>
@@ -49,8 +52,11 @@
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/vhremployeepelaksana.xml"/>
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/PTypeRootCaused.xml"/>
         <!--report permohonan-->
-        <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportpermohonan.xml"/>
-        <mapper resource="net/lintasarta/report/pengaduan/dao/impl/reportpengaduan.xml"/>
+        <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportAduan.xml"/>
+        <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportBelumSelesai.xml"/>
+        <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportSudahSelesai.xml"/>
+        <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportRekapAduan.xml"/>
+
         <!--auditlog-->
         <mapper resource="net/lintasarta/auditlog/dao/impl/auditlog.xml"/>
      </mappers>

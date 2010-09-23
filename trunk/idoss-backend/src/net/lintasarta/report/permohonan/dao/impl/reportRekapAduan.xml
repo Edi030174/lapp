@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="net.lintasarta.report.permohonan.dao.ReportRekapAduanDAO">
-    <select id="getReportRekapAduan" parameterType="reportrekapaduan" resultType="reportrekapaduan">
-        select * from table(cast(F_PIPE_IDOSS_REKAP_ADUAN($P{tahun}) as  pipe_idoss_rekap_aduan))
+    <select id="getReportRekapAduan" parameterType="String" resultType="reportrekapaduan">
+        select * from table(cast(F_PIPE_IDOSS_REKAP_ADUAN(#{tahun, jdbcType=VARCHAR}) as  pipe_idoss_rekap_aduan))
     </select>
 </mapper>
