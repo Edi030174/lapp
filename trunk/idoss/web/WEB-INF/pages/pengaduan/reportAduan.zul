@@ -29,8 +29,38 @@
             <north maxsize="24" size="24" border="0">
                 <hbox>
                 <button id="btnReport" label="Report!"/>
-                <label value="Status:"/>
-                    <textbox id="txt_tahun"/>
+                    
+                <label value="Bulan:"/>
+                    <listbox id="listbox_bulan" rows="1" mold="select" width="150px">
+                        <listhead visible="false"/>
+                        <listitem id="listitem_01" label="Januari" value="01"  selected="true"/>
+                        <listitem id="listitem_02" label="Februari" value="02" />
+                        <listitem id="listitem_03" label="Maret" value="03" />
+                        <listitem id="listitem_04" label="April" value="04" />
+                        <listitem id="listitem_05" label="Mei" value="05" />
+                        <listitem id="listitem_06" label="Juni" value="06" />
+                        <listitem id="listitem_07" label="Juli" value="07" />
+                        <listitem id="listitem_08" label="Agustus" value="08" />
+                        <listitem id="listitem_09" label="September" value="09" />
+                        <listitem id="listitem_10" label="Oktober" value="10" />
+                        <listitem id="listitem_11" label="November" value="11" />
+                        <listitem id="listitem_12" label="Desember" value="12" />
+                    </listbox>
+                    <label value="  Tahun:"/>
+                    <listbox id="listbox_tahun" rows="1" mold="select" width="150px">
+                        <listhead visible="false"/>
+                        <listitem id="listitem_2010" label="2010" selected="true"/>
+                        <listitem id="listitem_2011" label="2011"/>
+                        <listitem id="listitem_2012" label="2012"/>
+                        <listitem id="listitem_2013" label="2013"/>
+                        <listitem id="listitem_2014" label="2014"/>
+                        <listitem id="listitem_2015" label="2015"/>
+                        <listitem id="listitem_2016" label="2016"/>
+                        <listitem id="listitem_2017" label="2017"/>
+                        <listitem id="listitem_2018" label="2018"/>
+                        <listitem id="listitem_2019" label="2019"/>
+                        <listitem id="listitem_2020" label="2020"/>
+                    </listbox>
                 </hbox>
             </north>
             <center border="none" flex="true">

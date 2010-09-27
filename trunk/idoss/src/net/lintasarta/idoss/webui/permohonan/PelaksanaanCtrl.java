@@ -4,7 +4,11 @@ import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPelaksanaan;
+import net.lintasarta.permohonan.model.TPermohonan;
+import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PelaksanaanService;
+import net.lintasarta.permohonan.service.PermohonanService;
+import net.lintasarta.permohonan.service.VerifikasiService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
@@ -25,8 +29,8 @@ import java.util.Calendar;
  * To change this template use File | Settings | File Templates.
  */
 public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
+    private transient final static Logger logger = Logger.getLogger(PelaksanaanCtrl.class);
 
-    private transient final static Logger logger = Logger.getLogger(PermohonanCtrl.class);
     protected Window window_Permohonan;
     protected Window window_Pelaksanaan;
 
@@ -51,8 +55,12 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     protected Button btnSimpan_Pelaksanaan;
     protected PelaksanaanCtrl pelaksanaanCtrl;
 
+    private transient TPermohonan tPermohonan;
     private transient TPelaksanaan tPelaksanaan;
+    private transient TVerifikasi tVerifikasi;
+    private transient PermohonanService permohonanService;
     private transient PelaksanaanService pelaksanaanService;
+    private transient VerifikasiService verifikasiService;
 
     public PelaksanaanCtrl() {
         super();
@@ -69,6 +77,18 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         }
 
         Map<String, Object> args = getCreationArgsMap(event);
+        if (args.containsKey("tVerifikasi")) {
+            TVerifikasi tVerifikasi = (TVerifikasi) args.get("tVerifikasi");
+            settVerifikasi(tVerifikasi);
+        } else {
+            settVerifikasi(null);
+        }
+        if (args.containsKey("tPermohonan")) {
+            TPermohonan tPermohonan = (TPermohonan) args.get("tPermohonan");
+            settPermohonan(tPermohonan);
+        } else {
+            settPermohonan(null);
+        }
         if (args.containsKey("tPelaksanaan")) {
             TPelaksanaan tPelaksanaan = (TPelaksanaan) args.get("tPelaksanaan");
             settPelaksanaan(tPelaksanaan);
@@ -87,13 +107,20 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             listbox_DaftarPermohonan = null;
         }
-
-        doShowDialog(gettPelaksanaan());
+//        doCheckRights(gettPermohonan(), gettVerifikasi());
+        doShowDialog(gettPelaksanaan(), gettPermohonan(), gettVerifikasi());
     }
 
+//    private void doCheckRights(TPermohonan tPermohonan, TVerifikasi tVerifikasi) {
+//        UserWorkspace workspace = getUserWorkspace();
+////        boolean pl = (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) && (tVerifikasi.getDampak().equals("MINOR"));
+////        boolean pk = (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Dukophar")) && (tVerifikasi.getDampak().equals("MAJOR"));
+////        boolean pm = pl^pk;
+////        btnSimpan_Pelaksanaan.setVisible(pm);
+//    }
 
 
-    private void doShowDialog(TPelaksanaan tPelaksanaan) throws InterruptedException {
+    private void doShowDialog(TPelaksanaan tPelaksanaan, TPermohonan tPermohonan, TVerifikasi tVerifikasi) throws InterruptedException {
         try {
             doWriteBeanToComponents(tPelaksanaan);
 
@@ -159,15 +186,16 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doStoreInitValues() {
 
-        
 
     }
 
     private void doWriteComponentsToBean(TPelaksanaan tPelaksanaan) {
         Radio status = radiogroup_StatusPerubahan.getSelectedItem();
         tPelaksanaan.setStatus_perubahan(status.getValue());
-        tPelaksanaan.setTgl_pending(new Timestamp(datebox_Pending.getValue().getTime()));
-
+        if (radiogroup_StatusPerubahan.getSelectedItem().equals(pending)) {
+            tPelaksanaan.setTgl_pending(new Timestamp(datebox_Pending.getValue().getTime()));
+        }
+        ;
         tPelaksanaan.setTgl_permohonan(new Timestamp(datebox_TglPermohonan.getValue().getTime()));
 
         tPelaksanaan.setCatatan_pelaksana(fckCatatan_pelaksana.getValue());
@@ -200,5 +228,37 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setPelaksanaanService(PelaksanaanService pelaksanaanService) {
         this.pelaksanaanService = pelaksanaanService;
+    }
+
+    public PermohonanService getPermohonanService() {
+        return permohonanService;
+    }
+
+    public void setPermohonanService(PermohonanService permohonanService) {
+        this.permohonanService = permohonanService;
+    }
+
+    public TPermohonan gettPermohonan() {
+        return tPermohonan;
+    }
+
+    public void settPermohonan(TPermohonan tPermohonan) {
+        this.tPermohonan = tPermohonan;
+    }
+
+    public TVerifikasi gettVerifikasi() {
+        return tVerifikasi;
+    }
+
+    public void settVerifikasi(TVerifikasi tVerifikasi) {
+        this.tVerifikasi = tVerifikasi;
+    }
+
+    public VerifikasiService getVerifikasiService() {
+        return verifikasiService;
+    }
+
+    public void setVerifikasiService(VerifikasiService verifikasiService) {
+        this.verifikasiService = verifikasiService;
     }
 }

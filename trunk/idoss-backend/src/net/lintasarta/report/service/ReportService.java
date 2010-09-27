@@ -15,7 +15,7 @@ import java.util.List;
  * Time: 1:39:35 PM
  */
 public interface ReportService {
-    JRDataSource getAduan(String status);
+    JRDataSource getAduan(String bulan, String tahun);
     JRDataSource getBelumSelesai();
     JRDataSource getSudahSelesai();
     JRDataSource getRekapAduan(String tahun);

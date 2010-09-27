@@ -21,6 +21,8 @@ public class ReportAduan {
     private String pj;
     private String mttr;
     private String tercapai;
+    private String bulan;
+    private String tahun;
 
     public ReportAduan() {
     }
@@ -127,5 +129,21 @@ public class ReportAduan {
 
     public void setTercapai(String tercapai) {
         this.tercapai = tercapai;
+    }
+
+    public String getBulan() {
+        return bulan;
+    }
+
+    public void setBulan(String bulan) {
+        this.bulan = bulan;
+    }
+
+    public String getTahun() {
+        return tahun;
+    }
+
+    public void setTahun(String tahun) {
+        this.tahun = tahun;
     }
 }

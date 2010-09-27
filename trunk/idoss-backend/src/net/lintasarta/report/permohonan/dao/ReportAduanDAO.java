@@ -12,5 +12,5 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface ReportAduanDAO {
-    List<ReportAduan> getReportAduan(String status);
+    List<ReportAduan> getReportAduan(ReportAduan reportAduan);
 }

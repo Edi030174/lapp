@@ -161,10 +161,6 @@
                             <radio id="radio_DitolakGM" label="ditolak" value="Ditolak GM Dukophar"/>
                         </hbox>
                     </radiogroup>
-                    <hbox>
-                        <label value="Tanggal : "/>
-                        <datebox id="datebox_Tanggal2" format="dd MMMM yyyy" readonly="true" width="150px"/>
-                    </hbox>
                 </vbox>
                 <space width="40px"/>
                 <vbox>
