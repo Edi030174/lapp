@@ -59,8 +59,11 @@ public class ReportServiceImpl implements ReportService {
         this.reportSudahSelesaiDAO = reportSudahSelesaiDAO;
     }
 
-    public JRDataSource getAduan(String status) {
-        List<ReportAduan> reportAduans =  reportAduanDAO.getReportAduan(status);
+    public JRDataSource getAduan(String bulan, String tahun) {
+        ReportAduan reportAduan = new ReportAduan();
+        reportAduan.setBulan(bulan);
+        reportAduan.setTahun(tahun);
+        List<ReportAduan> reportAduans =  reportAduanDAO.getReportAduan(reportAduan);
         return new JRBeanCollectionDataSource(reportAduans);
     }
 

@@ -33,8 +33,12 @@ public class ReportAduanDAOTest {
 
     @Test
     public void tesGetReportAduan() throws Exception{
-        String status = "Open";
-        List<ReportAduan> reportAduans = reportAduanDAO.getReportAduan(status);
+        String bulan = "08";
+        String tahun = "2010";
+        ReportAduan reportAduan = new ReportAduan();
+        reportAduan.setBulan(bulan);
+        reportAduan.setTahun(tahun);
+        List<ReportAduan> reportAduans = reportAduanDAO.getReportAduan(reportAduan);
         assertNotNull(reportAduans);
     }
 }

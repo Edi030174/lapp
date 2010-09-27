@@ -23,7 +23,7 @@ import java.util.Map;
  * Time: 3:58:32 PM
  * To change this template use File | Settings | File Templates.
  */
-public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializable{
+public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializable {
     private transient final static Logger logger = Logger.getLogger(PersetujuanGmPemohonCtrl.class);
 
     protected Window window_Permohonan;
@@ -76,11 +76,11 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     private transient PermohonanService permohonanService;
     private transient TPermohonan tPermohonan;
 
-    public PersetujuanGmPemohonCtrl(){
+    public PersetujuanGmPemohonCtrl() {
         super();
 
         if (logger.isDebugEnabled()) {
-			logger.debug("--> super()");
+            logger.debug("--> super()");
         }
     }
 
@@ -89,7 +89,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        doCheckRights();
+
 
         Map<String, Object> args = getCreationArgsMap(event);
 
@@ -111,32 +111,34 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         } else {
             listbox_DaftarPermohonan = null;
         }
-
+        doCheckRights(gettPermohonan());
         doShowDialog(gettPermohonan());
     }
 
-    private void doCheckRights() {
+    private void doCheckRights(TPermohonan tPermohonan) {
         UserWorkspace workspace = getUserWorkspace();
         groupbox_ManagerPemohon.setVisible(workspace.isAllowed("groupbox_ManagerPemohon"));
         groupbox_GmPemohon.setVisible(workspace.isAllowed("groupbox_GmPemohon"));
-        btn_SimpanPersetujuanManagerPemohon.setVisible(workspace.isAllowed("btn_SimpanPersetujuanManagerPemohon"));
-        btn_SimpanPersetujuanGmPemohon.setVisible(workspace.isAllowed("btn_SimpanPersetujuanGmPemohon"));
+        boolean b = (workspace.isAllowed("btn_SimpanPersetujuanManagerPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Permohonan Baru"));
+        btn_SimpanPersetujuanManagerPemohon.setVisible(b);
+        boolean bb = (workspace.isAllowed("btn_SimpanPersetujuanGmPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Pemohon"));
+        btn_SimpanPersetujuanGmPemohon.setVisible(bb);
 
     }
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
-        UserWorkspace workspace = getUserWorkspace();
-        settPermohonan(tPermohonan);
-        if(tPermohonan.getStatus_track_permohonan().contains("Permohonan Baru")){
-            btn_SimpanPersetujuanManagerPemohon.setVisible(true);
-            btn_SimpanPersetujuanGmPemohon.setVisible(false);
-        }else if(tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Pemohon")){
-            btn_SimpanPersetujuanManagerPemohon.setVisible(false);
-            btn_SimpanPersetujuanGmPemohon.setVisible(false);
-        }else {
-            btn_SimpanPersetujuanManagerPemohon.setVisible(false);
-            btn_SimpanPersetujuanGmPemohon.setVisible(false);
-        }
+//        UserWorkspace workspace = getUserWorkspace();
+//        settPermohonan(tPermohonan);
+//        if(tPermohonan.getStatus_track_permohonan().contains("Permohonan Baru")){
+//            btn_SimpanPersetujuanManagerPemohon.setVisible(true);
+//            btn_SimpanPersetujuanGmPemohon.setVisible(false);
+//        }else if(tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Pemohon")){
+//            btn_SimpanPersetujuanManagerPemohon.setVisible(false);
+//            btn_SimpanPersetujuanGmPemohon.setVisible(false);
+//        }else {
+//            btn_SimpanPersetujuanManagerPemohon.setVisible(false);
+//            btn_SimpanPersetujuanGmPemohon.setVisible(false);
+//        }
 
         try {
             doWriteBeanToComponents(tPermohonan);
@@ -152,30 +154,39 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         window_Permohonan.onClose();
     }
 
-    private void doWriteBeanToComponents(TPermohonan tPermohonan) throws Exception{
+    private void doWriteBeanToComponents(TPermohonan tPermohonan) throws Exception {
         textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
         textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
         datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
         textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
-        if(tPermohonan.getUrgensi().equals("H")){
+        if (tPermohonan.getUrgensi().equals("H")) {
             radiogroup_Prioritas.setSelectedItem(high);
-        }else{
+        } else {
             radiogroup_Prioritas.setSelectedItem(normal);
         }
         fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
-//        tes.setValue(tPermohonan.getDetail_permohonan());
-        if(tPermohonan.getStatus_track_permohonan().equals("Ditolak Manager Pemohon")){
+
+        if (tPermohonan.getDetail_permohonan() != null) {
+            String mm = tPermohonan.getDetail_permohonan();
+            String nn = mm.replaceAll("<(.*?)>", "");
+            tes.setValue(nn);
+        }
+
+//        String nn = mm.replace("<*>","");
+
+
+        if (tPermohonan.getStatus_track_permohonan().equals("Ditolak Manager Pemohon")) {
             radiogroup_StatusPermohonanManagerPemohon.setSelectedItem(radio_DitolakMPemohon);
         }
         fck_CatatanManager.setValue(tPermohonan.getCatatan_manager());
-        if(tPermohonan.getStatus_track_permohonan().equals("Ditolak GM Pemohon")){
+        if (tPermohonan.getStatus_track_permohonan().equals("Ditolak GM Pemohon")) {
             radiogroup_StatusPermohonanGmPemohon.setSelectedItem(radio_DitolakGmPemohon);
         }
         datebox_Tanggal2.setValue(tPermohonan.getUpdated_gm());
         fck_CatatanGmPemohon.setValue(tPermohonan.getCatatan_gm());
     }
 
-    public void onClick$btn_SimpanPersetujuanManagerPemohon(Event event)throws Exception{
+    public void onClick$btn_SimpanPersetujuanManagerPemohon(Event event) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
@@ -183,7 +194,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         window_Permohonan.onClose();
     }
 
-    public void onClick$btn_SimpanPersetujuanGmPemohon(Event event) throws Exception{
+    public void onClick$btn_SimpanPersetujuanGmPemohon(Event event) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
@@ -191,7 +202,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         window_Permohonan.onClose();
     }
 
-    private void doSave() throws Exception{
+    private void doSave() throws Exception {
         TPermohonan tPermohonan = gettPermohonan();
         doWriteComponentsToBean(tPermohonan);
 
@@ -206,7 +217,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         doStoreInitValues();
     }
 
-    private void doSimpan() throws Exception{
+    private void doSimpan() throws Exception {
         TPermohonan tPermohonan = gettPermohonan();
         doWriteComponentsToBean2(tPermohonan);
 

@@ -12,6 +12,7 @@ import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Iframe;
+import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Window;
 
 import javax.sql.DataSource;
@@ -34,6 +35,8 @@ public class ReportAduanCtrl extends GFCBaseCtrl implements Serializable {
     protected Window window_Report1;
     protected Iframe report;
     protected Button btnReport;
+    protected Listbox listbox_bulan;
+    protected Listbox listbox_tahun;
     protected ReportAduanCtrl reportAduanCtrl;
 
     private transient ReportService reportService;
@@ -70,8 +73,10 @@ public class ReportAduanCtrl extends GFCBaseCtrl implements Serializable {
         }
         String repSrc = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan/reportAduan.jasper");
 
-        String status = null;
-        JRDataSource ds = reportService.getAduan(status);
+//        String status = null;
+        String bulan = (String) listbox_bulan.getSelectedItem().getValue();
+        String tahun = listbox_tahun.getSelectedItem().getLabel();
+        JRDataSource ds = reportService.getAduan(bulan, tahun);
 
         Component parent = window_Report1.getRoot();
 
