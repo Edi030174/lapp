@@ -4,8 +4,14 @@
 <mapper namespace="net.lintasarta.report.permohonan.dao.ReportSudahSelesaiDAO">
     <select id="getReportSudahSelesai" resultType="reportsudahselesai">
         select a.T_IDOSS_PERMOHONAN_ID nomor , to_char(a.tgl_permohonan ,'dd-MON-yyyy mm:hh') tanggal,a.TYPE_PERMOHONAN,
-               a.DETAIL_PERMOHONAN deskripsi, a.NAMA_PEMOHON , a.BAGIAN_PEMOHON, b.NAMA_PELAKSANA, to_char(b.UPDATED_DATE ,'dd-MON-yyyy mm:hh') tgl_pelaksana
-        from T_IDOSS_PERMOHONAN a, T_IDOSS_PELAKSANAAN b
+        a.DETAIL_PERMOHONAN deskripsi, a.NAMA_PEMOHON , a.BAGIAN_PEMOHON, b.NAMA_PELAKSANA,
+        to_char(b.UPDATED_DATE ,'dd-MON-yyyy mm:hh') tgl_pelaksana,
+        to_char(a.CREATED_DATE,'Month') as bulan,
+        to_char(a.CREATED_DATE,'yyyy') as tahun
+        from T_IDOSS_PERMOHONAN a, T_IDOSS_PELAKSANAAN b,  T_IDOSS_PELAKSANAAN c
         where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_PELAKSANAAN_ID
+        and a.T_IDOSS_PERMOHONAN_ID=c.T_IDOSS_PELAKSANAAN_ID and
+        c.STATUS_PERUBAHAN ='CLOSED' and to_char(a.CREATED_DATE,'MM')=#{bulan, jdbcType=VARCHAR}
+        and to_char(a.CREATED_DATE,'yyyy')=#{tahun, jdbcType=VARCHAR}
     </select>
 </mapper>

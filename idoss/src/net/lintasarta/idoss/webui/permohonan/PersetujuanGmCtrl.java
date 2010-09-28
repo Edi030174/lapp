@@ -114,13 +114,11 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             settPermohonan(null);
         }
-
         if (args.containsKey("persetujuanGmCtrl")) {
             persetujuanGmCtrl = (PersetujuanGmCtrl) args.get("persetujuanGmCtrl");
         } else {
             persetujuanGmCtrl = null;
         }
-
         if (args.containsKey("listbox_DaftarPermohonan")) {
             listbox_DaftarPermohonan = (Listbox) args.get("listbox_DaftarPermohonan");
         } else {
@@ -145,22 +143,6 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doShowDialog(TVerifikasi tVerifikasi, TPermohonan tPermohonan) throws InterruptedException {
-
-//        if (tPermohonan.getStatus_track_permohonan().contains("Disetujui Asman Dukophar")) {
-//            btn_SimpanPersetujuanManager.setVisible(true);
-//        }else{
-////            btn_SimpanPersetujuanAsman.setVisible(false);
-//            btn_SimpanPersetujuanManager.setVisible(false);
-//            btn_SimpanPersetujuanGm.setVisible(false);
-//        }
-//        if (tVerifikasi.getStatus_permohonanmanager().contains("Disetujui Manager Dukophar")) {
-//            btn_SimpanPersetujuanGm.setVisible(true);
-//        }else{
-////            btn_SimpanPersetujuanAsman.setVisible(false);
-//            btn_SimpanPersetujuanManager.setVisible(false);
-//            btn_SimpanPersetujuanGm.setVisible(false);
-//        }
-
         try {
             doWriteBeanToComponents(tVerifikasi, tPermohonan);
         } catch (Exception e) {
@@ -305,6 +287,7 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doStoreInitValues() {
 //        oldVar_radio_DisetujuiGM = radio_DisetujuiGM.getValue();
+        oldVar_textbox_TIdossPermohonanId = textbox_TIdossPermohonanId.getValue(); 
 
     }
 

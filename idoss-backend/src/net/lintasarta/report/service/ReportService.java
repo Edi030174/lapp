@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface ReportService {
     JRDataSource getAduan(String bulan, String tahun);
-    JRDataSource getBelumSelesai();
-    JRDataSource getSudahSelesai();
+    JRDataSource getBelumSelesai(String bulan, String tahun);
+    JRDataSource getSudahSelesai(String bulan, String tahun);
     JRDataSource getRekapAduan(String tahun);
 }

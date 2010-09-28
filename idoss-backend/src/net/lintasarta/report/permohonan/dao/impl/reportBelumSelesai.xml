@@ -38,9 +38,12 @@
         end
         end
         end) as tgl_ver,
-        a.STATUS_TRACK_PERMOHONAN
+        a.STATUS_TRACK_PERMOHONAN,
+        to_char(a.CREATED_DATE,'Month') as bulan,
+        to_char(a.CREATED_DATE,'yyyy') as tahun
         from T_IDOSS_PERMOHONAN a, T_IDOSS_VERIFIKASI b, T_IDOSS_PELAKSANAAN c
         where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID and a.T_IDOSS_PERMOHONAN_ID=c.T_IDOSS_PELAKSANAAN_ID and
-        c.STATUS_PERUBAHAN &lt;>'CLOSED'
+        c.STATUS_PERUBAHAN &lt;>'CLOSED' and to_char(a.CREATED_DATE,'MM')=#{bulan, jdbcType=VARCHAR}
+        and to_char(a.CREATED_DATE,'yyyy')=#{tahun, jdbcType=VARCHAR}
     </select>
 </mapper>

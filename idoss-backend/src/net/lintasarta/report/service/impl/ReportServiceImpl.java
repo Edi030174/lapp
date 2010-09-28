@@ -67,13 +67,19 @@ public class ReportServiceImpl implements ReportService {
         return new JRBeanCollectionDataSource(reportAduans);
     }
 
-    public JRDataSource getBelumSelesai() {
-        List<ReportBelumSelesai> reportBelumSelesais =  reportBelumSelesaiDAO.getReportBelumSelesai();
+    public JRDataSource getBelumSelesai(String bulan, String tahun) {
+        ReportBelumSelesai reportBelumSelesai = new ReportBelumSelesai();
+        reportBelumSelesai.setBulan(bulan);
+        reportBelumSelesai.setTahun(tahun);
+        List<ReportBelumSelesai> reportBelumSelesais =  reportBelumSelesaiDAO.getReportBelumSelesai(reportBelumSelesai);
         return new JRBeanCollectionDataSource(reportBelumSelesais);
     }
 
-    public JRDataSource getSudahSelesai() {
-        List<ReportSudahSelesai> reportSudahSelesais = reportSudahSelesaiDAO.getReportSudahSelesai();
+    public JRDataSource getSudahSelesai(String bulan, String tahun) {
+        ReportSudahSelesai reportSudahSelesai = new ReportSudahSelesai();
+        reportSudahSelesai.setBulan(bulan);
+        reportSudahSelesai.setTahun(tahun);
+        List<ReportSudahSelesai> reportSudahSelesais = reportSudahSelesaiDAO.getReportSudahSelesai(reportSudahSelesai);
         return new JRBeanCollectionDataSource(reportSudahSelesais);
     }
 

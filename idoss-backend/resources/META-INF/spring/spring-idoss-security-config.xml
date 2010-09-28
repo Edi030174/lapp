@@ -6,6 +6,10 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
         <property name="mapperInterface" value="net.lintasarta.security.dao.VHrEmployeeDAO"/>
     </bean>
+    <bean id="pApplicationUserDAO" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="mapperInterface" value="net.lintasarta.security.dao.PApplicationUserDAO"/>
+    </bean>
     <bean id="loginService" class="net.lintasarta.security.service.impl.LoginServiceImpl">
         <property name="vHrEmployeeDAO" ref="vHrEmployeeDAO"/>
     </bean>

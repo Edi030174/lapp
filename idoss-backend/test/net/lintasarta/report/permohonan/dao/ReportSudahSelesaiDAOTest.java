@@ -31,9 +31,9 @@ public class ReportSudahSelesaiDAOTest {
     @Autowired
     private ReportSudahSelesaiDAO reportSudahSelesaiDAO;
 
-    @Test
-    public void tesGetReportSudahSelesai() throws Exception{
-        List<ReportSudahSelesai> reportSudahSelesais = reportSudahSelesaiDAO.getReportSudahSelesai();
-        assertNotNull(reportSudahSelesais);
-    }
+//    @Test
+//    public void tesGetReportSudahSelesai() throws Exception{
+//        List<ReportSudahSelesai> reportSudahSelesais = reportSudahSelesaiDAO.getReportSudahSelesai();
+//        assertNotNull(reportSudahSelesais);
+//    }
 }

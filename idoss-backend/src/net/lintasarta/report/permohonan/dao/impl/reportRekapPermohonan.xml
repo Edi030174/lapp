@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.report.permohonan.dao.ReportRekapPermohonanDAO">
+    <select id="getReportRekapPermohonan" resultType="reportrekappermohonan">
+        select a.TYPE_PERMOHONAN,
+        a.BAGIAN_PEMOHON,
+        b.NAMA_PELAKSANA,
+        count(b.NAMA_PELAKSANA) as n_pelaksana
+        from T_IDOSS_PERMOHONAN a, T_IDOSS_PELAKSANAAN b,  T_IDOSS_PELAKSANAAN c
+        where  a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_PELAKSANAAN_ID
+        and a.T_IDOSS_PERMOHONAN_ID=c.T_IDOSS_PELAKSANAAN_ID
+        and c.STATUS_PERUBAHAN ='CLOSED'
+        and to_char(a.CREATED_DATE,'MM')=#{bulan, jdbcType=VARCHAR}
+        and to_char(a.CREATED_DATE,'yyyy')=#{tahun, jdbcType=VARCHAR}
+        group by a.TYPE_PERMOHONAN, a.BAGIAN_PEMOHON , b.NAMA_PELAKSANA
+    </select>
+</mapper>
