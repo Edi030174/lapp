@@ -178,10 +178,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         tabPanel_Pelaksanaan.setVisible(workspace.isAllowed("tab_Pelaksanaan"));
 
 
-
-
-
-
     }
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
@@ -346,6 +342,13 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         }
         if (tPermohonan != null) {
             map.put("tPermohonan", tPermohonan);
+        }
+        TVerifikasi tVerifikasi = null;
+        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
+            tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
+        }
+        if (tVerifikasi != null) {
+            map.put("tVerifikasi", tVerifikasi);
         }
         map.put("permohonanCtrl", this);
 

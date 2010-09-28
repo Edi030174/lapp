@@ -16,6 +16,8 @@ public class ReportSudahSelesai {
     private String bagian_pemohon;
     private String nama_pelaksana;
     private String tgl_pelaksana ;
+    private String bulan;
+    private String tahun;
 
     public ReportSudahSelesai() {
     }
@@ -82,5 +84,21 @@ public class ReportSudahSelesai {
 
     public void setTgl_pelaksana(String tgl_pelaksana) {
         this.tgl_pelaksana = tgl_pelaksana;
+    }
+
+    public String getBulan() {
+        return bulan;
+    }
+
+    public void setBulan(String bulan) {
+        this.bulan = bulan;
+    }
+
+    public String getTahun() {
+        return tahun;
+    }
+
+    public void setTahun(String tahun) {
+        this.tahun = tahun;
     }
 }

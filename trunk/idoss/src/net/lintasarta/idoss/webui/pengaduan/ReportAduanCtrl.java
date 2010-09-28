@@ -72,14 +72,10 @@ public class ReportAduanCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
         String repSrc = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan/reportAduan.jasper");
-
-//        String status = null;
         String bulan = (String) listbox_bulan.getSelectedItem().getValue();
         String tahun = listbox_tahun.getSelectedItem().getLabel();
         JRDataSource ds = reportService.getAduan(bulan, tahun);
-
         Component parent = window_Report1.getRoot();
-
         new JRreportWindow(parent, true, null, repSrc, ds, "pdf");
     }
 }

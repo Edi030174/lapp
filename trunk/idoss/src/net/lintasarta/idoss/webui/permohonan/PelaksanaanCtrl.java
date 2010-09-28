@@ -95,64 +95,62 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             settPelaksanaan(null);
         }
-
         if (args.containsKey("pelaksanaanCtrl")) {
             pelaksanaanCtrl = (PelaksanaanCtrl) args.get("pelaksanaanCtrl");
         } else {
             pelaksanaanCtrl = null;
         }
-
         if (args.containsKey("listbox_DaftarPermohonan")) {
             listbox_DaftarPermohonan = (Listbox) args.get("listbox_DaftarPermohonan");
         } else {
             listbox_DaftarPermohonan = null;
         }
-//        doCheckRights(gettPermohonan(), gettVerifikasi());
+        doCheckRights(gettPermohonan(), gettVerifikasi());
         doShowDialog(gettPelaksanaan(), gettPermohonan(), gettVerifikasi());
     }
 
-//    private void doCheckRights(TPermohonan tPermohonan, TVerifikasi tVerifikasi) {
-//        UserWorkspace workspace = getUserWorkspace();
-////        boolean pl = (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) && (tVerifikasi.getDampak().equals("MINOR"));
-////        boolean pk = (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Dukophar")) && (tVerifikasi.getDampak().equals("MAJOR"));
-////        boolean pm = pl^pk;
-////        btnSimpan_Pelaksanaan.setVisible(pm);
-//    }
-
+    private void doCheckRights(TPermohonan tPermohonan, TVerifikasi tVerifikasi) {
+        UserWorkspace workspace = getUserWorkspace();
+        boolean pl = (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) && (tVerifikasi.getDampak().equals("MINOR"));
+        boolean pk = (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Dukophar")) && (tVerifikasi.getDampak().equals("MAJOR"));
+        boolean pm = pl^pk;
+        btnSimpan_Pelaksanaan.setVisible(pm);
+    }
 
     private void doShowDialog(TPelaksanaan tPelaksanaan, TPermohonan tPermohonan, TVerifikasi tVerifikasi) throws InterruptedException {
         try {
             doWriteBeanToComponents(tPelaksanaan);
-
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
-
     }
 
     private void doWriteBeanToComponents(TPelaksanaan tPelaksanaan) throws Exception {
-//        if (tPelaksanaan.getRfs().equals("1")) {
-//            checkbox_Rfs.setChecked(true);
-//        } else {
-//            checkbox_Rfs.setChecked(false);
-//        }
-
         if (tPelaksanaan.getStatus_perubahan().equals("OPEN")) {
             radiogroup_StatusPerubahan.setSelectedItem(open);
         } else if (tPelaksanaan.getStatus_perubahan().equals("INPROGRESS")) {
             radiogroup_StatusPerubahan.setSelectedItem(inprogress);
+            checkbox_Rfs.setChecked(true);
         } else if (tPelaksanaan.getStatus_perubahan().equals("CLOSED")) {
             radiogroup_StatusPerubahan.setSelectedItem(closed);
+            checkbox_Rfs.setChecked(true);
         } else if (tPelaksanaan.getStatus_perubahan().equals("PENDING")) {
             radiogroup_StatusPerubahan.setSelectedItem(pending);
+            checkbox_Rfs.setChecked(true);
         }
-
-        datebox_TglPermohonan.setValue(tPelaksanaan.getTgl_permohonan());
+        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
+        datebox_TglPermohonan.setValue(ts);
         fckCatatan_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
     }
 
-    public void onClick$btnSimpan_Pelaksanaan(Event event) throws Exception {
+    public void onClick$btnBatal(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        window_Permohonan.onClose();
+    }
 
+    public void onClick$btnSimpan_Pelaksanaan(Event event) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
@@ -160,19 +158,13 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         window_Permohonan.onClose();
     }
 
-    public void onClick$btnBatal(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-
-        window_Permohonan.onClose();
-    }
-
     private void doSimpan() throws Exception {
+        TPermohonan tPermohonan = gettPermohonan();
         TPelaksanaan tPelaksanaan = gettPelaksanaan();
+        doWriteComponentsToBean(tPelaksanaan, tPermohonan);
 
-        doWriteComponentsToBean(tPelaksanaan);
         try {
+            getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
             getPelaksanaanService().saveOrUpdateTPelaksanaan(tPelaksanaan);
         } catch (DataAccessException e) {
             String message = e.getMessage();
@@ -184,29 +176,47 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
+    public void onCheck$inprogress(Event event){
+        if (logger.isDebugEnabled()) {
+			logger.debug("--> " + event.toString());
+		}
+        checkbox_Rfs.setChecked(true);
+    }
+    public void onCheck$closed(Event event){
+        if (logger.isDebugEnabled()) {
+			logger.debug("--> " + event.toString());
+		}
+        checkbox_Rfs.setChecked(true);
+    }
+    public void onCheck$pending(Event event){
+        if (logger.isDebugEnabled()) {
+			logger.debug("--> " + event.toString());
+		}
+        checkbox_Rfs.setChecked(true);
+    }
+
     private void doStoreInitValues() {
 
 
     }
 
-    private void doWriteComponentsToBean(TPelaksanaan tPelaksanaan) {
+    private void doWriteComponentsToBean(TPelaksanaan tPelaksanaan, TPermohonan tPermohonan) {
         Radio status = radiogroup_StatusPerubahan.getSelectedItem();
         tPelaksanaan.setStatus_perubahan(status.getValue());
+        tPermohonan.setStatus_track_permohonan(status.getValue());
         if (radiogroup_StatusPerubahan.getSelectedItem().equals(pending)) {
             tPelaksanaan.setTgl_pending(new Timestamp(datebox_Pending.getValue().getTime()));
         }
-        ;
         tPelaksanaan.setTgl_permohonan(new Timestamp(datebox_TglPermohonan.getValue().getTime()));
-
         tPelaksanaan.setCatatan_pelaksana(fckCatatan_pelaksana.getValue());
         tPelaksanaan.setNama_pelaksana(getUserWorkspace().getUserSession().getEmployeeName());
         tPelaksanaan.setId_pelaksana(getUserWorkspace().getUserSession().getEmployeeNo());
 
-        if (checkbox_Rfs.isChecked()) {
-            tPelaksanaan.setRfs("1");
-        } else if (checkbox_Rfs.isDisabled()) {
-            tPelaksanaan.setRfs("0");
-        }
+//        if (checkbox_Rfs.isChecked()) {
+//            tPelaksanaan.setRfs("1");
+//        } else if (checkbox_Rfs.isDisabled()) {
+//            tPelaksanaan.setRfs("0");
+//        }
         tPelaksanaan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         tPelaksanaan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
         Timestamp now = new Timestamp(Calendar.getInstance().getTimeInMillis());

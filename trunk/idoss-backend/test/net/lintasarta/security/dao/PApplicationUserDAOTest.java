@@ -1,7 +1,6 @@
-package net.lintasarta.report.permohonan.dao;
+package net.lintasarta.security.dao;
 
-import net.lintasarta.report.permohonan.model.ReportBelumSelesai;
-import net.lintasarta.report.permohonan.model.ReportRekapAduan;
+import net.lintasarta.security.model.VHrEmployee;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +9,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static junit.framework.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by IntelliJ IDEA.
  * User: Administrator
- * Date: Sep 23, 2010
- * Time: 3:04:17 PM
+ * Date: Sep 28, 2010
+ * Time: 3:55:46 PM
  * To change this template use File | Settings | File Templates.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,16 +24,19 @@ import static junit.framework.Assert.assertNotNull;
                 "classpath:META-INF/ibatis/ibatis-spring-config.xml",
                 "classpath:META-INF/spring/datasource.xml",
                 "classpath:META-INF/spring/spring-based-dao-config.xml",
-                "classpath:META-INF/spring/spring-dao-idoss-report-config.xml"
+                "classpath:META-INF/spring/spring-dao-idoss-report-config.xml",
+				"classpath:META-INF/spring/spring-idoss-security-config.xml"
 		}
 )
-public class ReportBelumSelesaiDAOTest {
+public class PApplicationUserDAOTest {
     @Autowired
-    private ReportBelumSelesaiDAO reportBelumSelesaiDAO;
+    private PApplicationUserDAO pApplicationUserDAO;
 
-//    @Test
-//    public void tesGetReportBelumSelesai() throws Exception{
-//        List<ReportBelumSelesai> reportBelumSelesais = reportBelumSelesaiDAO.getReportBelumSelesai();
-//        assertNotNull(reportBelumSelesais);
-//    }
+    @Test
+    public void testGetEmployeeNoByUserName() {
+        String userName = "PHS";
+        String employeeNoActual = pApplicationUserDAO.getEmployeeNoByUserName(userName);
+        String employeeNoExpected = "76000800";
+        assertEquals(employeeNoExpected, employeeNoActual);
+    }
 }

@@ -18,6 +18,8 @@ public class ReportBelumSelesai {
     private String jabatan;
     private String tgl_ver;
     private String status_track_permohonan;
+    private String bulan;
+    private String tahun;
 
     public ReportBelumSelesai() {
     }
@@ -100,5 +102,21 @@ public class ReportBelumSelesai {
 
     public void setStatus_track_permohonan(String status_track_permohonan) {
         this.status_track_permohonan = status_track_permohonan;
+    }
+
+    public String getBulan() {
+        return bulan;
+    }
+
+    public void setBulan(String bulan) {
+        this.bulan = bulan;
+    }
+
+    public String getTahun() {
+        return tahun;
+    }
+
+    public void setTahun(String tahun) {
+        this.tahun = tahun;
     }
 }

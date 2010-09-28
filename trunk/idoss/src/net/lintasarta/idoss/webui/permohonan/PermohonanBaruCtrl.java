@@ -149,7 +149,6 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
             settPermohonan(tPermohonan);
 
         }
-
         try {
             doWriteBeanToComponents(tPermohonan);
             window_Permohonan.doModal();
@@ -165,7 +164,6 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         textbox_BagianPemohon.setValue(getUserWorkspace().getUserSession().getDepartment());
         String s = textbox_NikPemohon.getValue();
 //        textbox_NamaAsman.setValue(tPermohonan.getNama_asman());
-
         tPermohonan = getPermohonanService().getManager(getUserWorkspace().getUserSession().getEmployeeNo());
         textbox_NamaManager.setValue(tPermohonan.getNama_manager());
         textbox_NamaGm.setValue(tPermohonan.getNama_gm());
@@ -175,7 +173,6 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         textbox_NikGm.setValue(tPermohonan.getNik_gm());
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         datebox_Tanggal.setValue(ts);
-
     }
 
     public void onClose$window_Permohonan(Event event) throws Exception {
@@ -197,6 +194,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public void onClick$btnBatal(Event event) throws Exception {
+
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
@@ -204,6 +202,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doClose() throws Exception {
+
         if (logger.isDebugEnabled()) {
             logger.debug("--> DataIsChanged :" + isDataChanged());
         }

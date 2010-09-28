@@ -12,6 +12,7 @@ import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Iframe;
+import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Window;
 
 import java.io.ByteArrayInputStream;
@@ -36,6 +37,8 @@ public class ReportSudahSelesaiCtrl extends GFCBaseCtrl implements Serializable 
     protected Window window_Report3;
     protected Iframe report;
     protected Button btnReport;
+    protected Listbox listbox_bulan;
+    protected Listbox listbox_tahun;
     protected ReportSudahSelesaiCtrl reportSudahSelesaiCtrl;
 
     private transient ReportService reportService;
@@ -71,7 +74,9 @@ public class ReportSudahSelesaiCtrl extends GFCBaseCtrl implements Serializable 
             logger.debug("--> " + event.toString());
         }
         String repSrc = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan/reportSudahSelesai.jasper");
-        JRDataSource ds = reportService.getSudahSelesai();
+        String bulan = (String) listbox_bulan.getSelectedItem().getValue();
+        String tahun = listbox_tahun.getSelectedItem().getLabel();
+        JRDataSource ds = reportService.getSudahSelesai(bulan,tahun);
         Component parent = window_Report3.getRoot();
         new JRreportWindow(parent, true, null, repSrc, ds, "pdf");
     }
