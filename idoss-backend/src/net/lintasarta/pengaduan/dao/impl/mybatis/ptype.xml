@@ -14,7 +14,7 @@
     <select id="getAllPType" resultType="ptype">
         select
         P_IDOSS_TYPE_ID,
-         P_IDOSS_TYPE_ID || TYPE_DESC as TYPE_DESC,
+         TYPE_DESC as TYPE_DESC,
          ACTIVE,
          CREATED_DATE,
          CREATED_USER,
@@ -27,7 +27,7 @@
     <select id="getPTypeByTypeId" resultType="ptype">
          SELECT 
          P_IDOSS_TYPE_ID,
-         P_IDOSS_TYPE_ID || TYPE_DESC as TYPE_DESC,
+         TYPE_DESC,
          ACTIVE,
          CREATED_DATE,
          CREATED_USER,
