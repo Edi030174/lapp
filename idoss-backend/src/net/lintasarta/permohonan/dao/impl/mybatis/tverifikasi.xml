@@ -194,7 +194,7 @@
         #{t_idoss_verifikasi_id},
         #{tgl_permohonan,jdbcType=TIMESTAMP},
         #{urgensi,jdbcType=VARCHAR},
-        #{dampak,jdbcType=VARCHAR},
+        'MINOR',
         #{type_permohonan,jdbcType=VARCHAR},
         #{nik_pelaksana,jdbcType=VARCHAR},
         #{rfs,jdbcType=VARCHAR},

@@ -215,20 +215,22 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         }
         listbox_NamaPelaksana.setSelectedIndex(indexPlks);
 
+        if (tPenangananGangguan.getP_idoss_type_id() != null) {
+            PType pType = getTypeService().getTypeByTypeID(tPenangananGangguan.getP_idoss_type_id());
 
-        PType pType = getTypeService().getTypeByTypeID(tPenangananGangguan.getP_idoss_type_id());
+            textbox_Type.setValue(pType.getType_desc());
 
-        textbox_Type.setValue(pType.getType_desc());
+            listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(pType.getP_idoss_type_id())));
 
-        listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(pType.getP_idoss_type_id())));
-        listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
-        int indexRoot = 0;
-        ListModel listRoot = listbox_RootCaused.getModel();
-        for (int i =0; i < listRoot.getSize(); i++) {
-                PRootCaused rc = (PRootCaused) listRoot.getElementAt(i);
-                if (rc.getP_idoss_root_caused_id()==tPenangananGangguan.getP_idoss_root_caused_id()) indexRoot =i;
+            listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
+            int indexRoot = 0;
+            ListModel listRoot = listbox_RootCaused.getModel();
+            for (int i =0; i < listRoot.getSize(); i++) {
+                    PRootCaused rc = (PRootCaused) listRoot.getElementAt(i);
+                    if (rc.getP_idoss_root_caused_id()==tPenangananGangguan.getP_idoss_root_caused_id()) indexRoot =i;
+            }
+            listbox_RootCaused.setSelectedIndex(indexRoot);
         }
-          listbox_RootCaused.setSelectedIndex(indexRoot);
     }
 
     private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
