@@ -26,8 +26,8 @@
     <window id="window_PersetujuanGmPemohon" width="796px" height="544px" contentStyle="overflow:auto" border="normal"
             apply="${persetujuanGmPemohonCtrl}">
         <toolbar>
-            <button id="btn_SimpanPersetujuanManagerPemohon" label="SimpanM"/>
-            <button id="btn_SimpanPersetujuanGmPemohon" label="SimpanGM"/>
+            <button id="btn_SimpanPersetujuanManagerPemohon" label="Simpan"/>
+            <button id="btn_SimpanPersetujuanGmPemohon" label="Simpan"/>
             <button id="btn_Batal" label="Batal"/>
         </toolbar>
         <hbox>
