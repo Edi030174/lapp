@@ -61,14 +61,18 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
             List<Object> resultChilds = new ArrayList<Object>();
 //            SimpleTreeNode rcNode = new SimpleTreeNode(pType.getType_desc(), resultChilds);
             SimpleTreeNode rcNode = new SimpleTreeNode(pType, resultChilds);
-            resultList.add(rcNode);
+            if (pType.getActive().equalsIgnoreCase("Y")) {
+                resultList.add(rcNode);
+            }
 
             List<PType> childs = filterByParentId(pTypes, pType.getP_idoss_type_id());
             for (PType child : childs) {
                 List<Object> resultGrandChilds = new ArrayList<Object>();
 //                SimpleTreeNode rgcNode = new SimpleTreeNode(child.getType_desc(), resultGrandChilds);
                 SimpleTreeNode rgcNode = new SimpleTreeNode(child, resultGrandChilds);
-                resultChilds.add(rgcNode);
+                if (child.getActive().equalsIgnoreCase("Y")) {
+                    resultChilds.add(rgcNode);
+                }
                 iterator.next();
 
                 List<PType> grandChilds = filterByParentId(pTypes, child.getP_idoss_type_id());
@@ -76,14 +80,18 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
                     List<Object> resultGreatGrandChilds = new ArrayList<Object>();
 //                    SimpleTreeNode rggcNode = new SimpleTreeNode(grandChild.getType_desc(), resultGreatGrandChilds);
                     SimpleTreeNode rggcNode = new SimpleTreeNode(grandChild, resultGreatGrandChilds);
-                    resultGrandChilds.add(rggcNode);
+                    if (grandChild.getActive().equalsIgnoreCase("Y")) {
+                        resultGrandChilds.add(rggcNode);
+                    }
                     iterator.next();
 
                     List<PType> greateGrandChilds = filterByParentId(pTypes, grandChild.getP_idoss_type_id());
                     for (PType greateGrandChild : greateGrandChilds) {
 //                        SimpleTreeNode ggcNode = new SimpleTreeNode(greateGrandChild.getType_desc(), new ArrayList());
                         SimpleTreeNode ggcNode = new SimpleTreeNode(greateGrandChild, new ArrayList());
-                        resultGreatGrandChilds.add(ggcNode);
+                        if (greateGrandChild.getActive().equalsIgnoreCase("Y")) {
+                            resultGreatGrandChilds.add(ggcNode);
+                        }
                         iterator.next();
                     }
                 }
@@ -136,12 +144,10 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
 
         Treeitem item = tree_Type.getSelectedItem();
         textbox_Type.setValue(item.getLabel());
-        String tpdesc = item.getLabel();
-        getTypeService().getPTypeByTypeDesc(tpdesc);
 
-        PType pType = getTypeService().getPTypeByTypeDesc(tpdesc);
+        PType pType = (PType) item.getValue();
 
-        SimpleTreeModel stm = (SimpleTreeModel)tree_Type.getModel();
+//        SimpleTreeModel stm = (SimpleTreeModel)tree_Type.getModel();
 //        SimpleTreeNode stn = (SimpleTreeNode)stm.getRoot();
 //        PType pType = (PType)stm.getChild("ROOt", item.indexOf());
 
