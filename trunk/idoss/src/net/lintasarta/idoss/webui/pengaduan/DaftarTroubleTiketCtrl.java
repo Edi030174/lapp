@@ -7,6 +7,7 @@ import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.pengaduan.model.predicate.*;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
+import net.lintasarta.security.model.UserSession;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.support.PagedListHolder;
@@ -18,6 +19,7 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -116,8 +118,15 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         tPenangananGangguan.setNik_pelapor(nikPelapor);
 //        List<TPenangananGangguan> tPenangananGangguans = penangananGangguanService.getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
 //        TPenangananGangguan tPenangananGangguan = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(plp);
-        
-        List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
+
+        List<TPenangananGangguan> tPenangananGangguans = new ArrayList<TPenangananGangguan>();
+        getUserWorkspace().getUserSession();
+        UserSession userSession = getUserWorkspace().getUserSession();
+        if (userSession.getEmployeeRole().equalsIgnoreCase("helpdeskpelaksana")) {
+            tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
+        } else {
+            tPenangananGangguans = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
+        }
         PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
         pagedListHolder.setPageSize(getCountRows());
 

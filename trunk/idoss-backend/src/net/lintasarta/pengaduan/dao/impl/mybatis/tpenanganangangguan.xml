@@ -93,7 +93,7 @@
         #{status, jdbcType=VARCHAR},
         #{solusi, jdbcType=VARCHAR},
         #{mttr, jdbcType=VARCHAR},
-        #{durasi, jdbcType=INTEGER},
+        0,
         #{no_hp, jdbcType=VARCHAR},
         #{ext, jdbcType=VARCHAR},
         #{created_date},

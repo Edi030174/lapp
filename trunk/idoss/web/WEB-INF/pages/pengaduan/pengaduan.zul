@@ -58,13 +58,13 @@
                         <hbox>
                             <textbox id="textbox_NomorHP"/>
                             <space/>
-                            <label value="Ext"/>
+                            <label value="Ext (*)"/>
                             <space width="20.5px"/>
                             <textbox id="textbox_Ext" maxlength="5"/>
                         </hbox>
                     </row>
                     <row style="border:0px">
-                        <label value="Judul"/>
+                        <label value="Judul (*)"/>
                         <textbox id="textbox_Judul" width="99%"/>
                     </row>
                     <row style="border:0px">

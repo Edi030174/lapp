@@ -287,7 +287,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         textbox_NomorHP.setConstraint(new SimpleConstraint("[0-9-/() ]*", Labels.getLabel("message.error.PhoneNumber")));
         textbox_Judul.setConstraint(new NoEmptyStringsConstraint());
         textbox_Ext.setConstraint(new NoEmptyStringsConstraint());
-        textbox_Ext.setConstraint( new SimpleConstraint("[0-9-/() ]*", Labels.getLabel("message.error.PhoneNumber")));
+//        textbox_Ext.setConstraint( new SimpleConstraint("[0-9-/() ]*", Labels.getLabel("message.error.PhoneNumber")));
     }
 
     public boolean isValidationOn() {
