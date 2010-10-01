@@ -11,6 +11,4 @@ import net.lintasarta.security.model.VHrEmployee;
  */
 public interface LoginService {
     UserSession getUserSession(String userUrl, String ticketId);
-    VHrEmployee getVHrEmployee(String employeeNo);
-    String getAuthorization(VHrEmployee vHrEmployee);
 }

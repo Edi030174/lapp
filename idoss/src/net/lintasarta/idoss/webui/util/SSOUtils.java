@@ -56,29 +56,4 @@ public class SSOUtils {
         session.setAttribute("userSession", userSession);
         return userSession;
     }
-
-    public static UserSession loginNoSSO(String initial) {
-        LoginService loginService = (LoginService) SpringUtil.getBean("loginService");
-        PApplicationUserDAO pApplicationUserDAO = (PApplicationUserDAO) SpringUtil.getBean("pApplicationUserDAO");
-
-        String employeeNo = pApplicationUserDAO.getEmployeeNoByUserName(initial);
-
-        VHrEmployee employee = loginService.getVHrEmployee(employeeNo);
-
-        String employeeRole = loginService.getAuthorization(employee);
-
-        UserSession userSession = new UserSession();
-        userSession.setEmployeeRole(employeeRole);
-        userSession.setEmployeeNo(employee.getEmployee_no());
-        userSession.setEmployeeName(employee.getEmployee_name());
-        userSession.setOrganizationid(employee.getP_organization_id().intValue());
-        userSession.setUserName(employee.getEmployee_name());
-        userSession.setDepartment(employee.getOrganization_code());
-        userSession.setJobLocation(employee.getJob_location());
-        userSession.setWinHeight("800px");
-
-        Session session = Executions.getCurrent().getSession();
-        session.setAttribute("userSession", userSession);
-        return userSession;
-    }
 }

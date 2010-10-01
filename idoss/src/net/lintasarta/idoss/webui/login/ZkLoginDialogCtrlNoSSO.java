@@ -2,11 +2,9 @@ package net.lintasarta.idoss.webui.login;
 
 import net.lintasarta.idoss.webui.util.SSOUtils;
 import net.lintasarta.idoss.webui.util.WindowBaseCtrl;
-import net.lintasarta.security.model.UserSession;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
@@ -17,10 +15,10 @@ import java.io.Serializable;
 /**
  * Created by IntelliJ IDEA.
  * User: Antonius
- * Date: Jun 23, 2010
- * Time: 11:18:50 AM
+ * Date: Oct 1, 2010
+ * Time: 3:50:30 PM
  */
-public class ZkLoginDialogCtrl extends WindowBaseCtrl implements Serializable {
+public class ZkLoginDialogCtrlNoSSO extends WindowBaseCtrl implements Serializable {
 
     private transient final static Logger logger = Logger.getLogger(ZkLoginDialogCtrl.class);
 
@@ -28,7 +26,7 @@ public class ZkLoginDialogCtrl extends WindowBaseCtrl implements Serializable {
     protected Textbox txtbox_Username;
     protected Textbox txtbox_Password;
 
-    public ZkLoginDialogCtrl() {
+    public ZkLoginDialogCtrlNoSSO() {
         super();
 
         if (logger.isDebugEnabled()) {
@@ -52,13 +50,7 @@ public class ZkLoginDialogCtrl extends WindowBaseCtrl implements Serializable {
         loginwin.setShadow(false);
         loginwin.doModal();
 
-        UserSession userSession = SSOUtils.login();
-        if (userSession != null) {
-            txtbox_Username.setValue(userSession.getEmployeeRole());
-            txtbox_Password.setValue("idoss");
-            Clients.showBusy("Wait for IDOSS Authorization");
-            Clients.submitForm("f");
-        }
+        SSOUtils.loginNoSSO();
     }
 
     public void onClick$button_ZKLoginDialog_Close() throws IOException {
