@@ -1,13 +1,7 @@
 package net.lintasarta.report.service.impl;
 
-import net.lintasarta.report.permohonan.dao.ReportAduanDAO;
-import net.lintasarta.report.permohonan.dao.ReportBelumSelesaiDAO;
-import net.lintasarta.report.permohonan.dao.ReportRekapAduanDAO;
-import net.lintasarta.report.permohonan.dao.ReportSudahSelesaiDAO;
-import net.lintasarta.report.permohonan.model.ReportAduan;
-import net.lintasarta.report.permohonan.model.ReportBelumSelesai;
-import net.lintasarta.report.permohonan.model.ReportRekapAduan;
-import net.lintasarta.report.permohonan.model.ReportSudahSelesai;
+import net.lintasarta.report.permohonan.dao.*;
+import net.lintasarta.report.permohonan.model.*;
 import net.lintasarta.report.service.ReportService;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -26,6 +20,7 @@ public class ReportServiceImpl implements ReportService {
     private ReportBelumSelesaiDAO reportBelumSelesaiDAO;
     private ReportRekapAduanDAO reportRekapAduanDAO;
     private ReportSudahSelesaiDAO reportSudahSelesaiDAO;
+    private ReportRekapPermohonanDAO reportRekapPermohonanDAO;
 
     public ReportAduanDAO getReportAduanDAO() {
         return reportAduanDAO;
@@ -59,6 +54,14 @@ public class ReportServiceImpl implements ReportService {
         this.reportSudahSelesaiDAO = reportSudahSelesaiDAO;
     }
 
+    public ReportRekapPermohonanDAO getReportRekapPermohonanDAO() {
+        return reportRekapPermohonanDAO;
+    }
+
+    public void setReportRekapPermohonanDAO(ReportRekapPermohonanDAO reportRekapPermohonanDAO) {
+        this.reportRekapPermohonanDAO = reportRekapPermohonanDAO;
+    }
+
     public JRDataSource getAduan(String bulan, String tahun) {
         ReportAduan reportAduan = new ReportAduan();
         reportAduan.setBulan(bulan);
@@ -86,5 +89,13 @@ public class ReportServiceImpl implements ReportService {
     public JRDataSource getRekapAduan(String tahun) {
         List<ReportRekapAduan> reportRekapAduans = reportRekapAduanDAO.getReportRekapAduan(tahun);
         return new JRBeanCollectionDataSource(reportRekapAduans);
+    }
+
+    public JRDataSource getRekapPermohonan(String bulan, String tahun) {
+        ReportRekapPermohonan reportRekapPermohonan = new ReportRekapPermohonan();
+        reportRekapPermohonan.setBulan(bulan);
+        reportRekapPermohonan.setTahun(tahun);
+        List<ReportRekapPermohonan> reportRekapPermohonans = reportRekapPermohonanDAO.getReportRekapPermohonan(reportRekapPermohonan);
+        return new JRBeanCollectionDataSource(reportRekapPermohonans);
     }
 }

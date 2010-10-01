@@ -7,5 +7,6 @@
         <property name="reportBelumSelesaiDAO" ref="reportBelumSelesaiDAO"/>
         <property name="reportSudahSelesaiDAO" ref="reportSudahSelesaiDAO"/>
         <property name="reportRekapAduanDAO" ref="reportRekapAduanDAO"/>
+        <property name="reportRekapPermohonanDAO" ref="reportRekapPermohonanDAO"/>
     </bean>
 </beans>

@@ -10,14 +10,14 @@ import org.apache.commons.collections.Predicate;
  * Time: 11:29:57 AM
  */
 public class PelaksanaTPenangananGangguan implements Predicate {
-    private String Pelaksana;
+    String pelaksana;
 
     public PelaksanaTPenangananGangguan(String pelaksana) {
-        this.Pelaksana = pelaksana;
+        this.pelaksana = pelaksana;
     }
 
     @Override
     public boolean evaluate(Object o) {
-        return ((TPenangananGangguan) o).getNama_pelaksana().toUpperCase().contains(Pelaksana.toUpperCase());
+        return ((TPenangananGangguan) o).getNama_pelaksana().toUpperCase().contains(pelaksana.toUpperCase());
     }
 }

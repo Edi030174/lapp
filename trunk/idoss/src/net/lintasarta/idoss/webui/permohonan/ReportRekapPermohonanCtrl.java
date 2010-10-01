@@ -68,7 +68,7 @@ public class ReportRekapPermohonanCtrl extends GFCBaseCtrl implements Serializab
         String repSrc = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan/reportRekapPermohonan.jasper");
         String bulan = (String) listbox_bulan.getSelectedItem().getValue();
         String tahun = listbox_tahun.getSelectedItem().getLabel();
-        JRDataSource ds = reportService.getBelumSelesai(bulan, tahun);
+        JRDataSource ds = reportService.getRekapPermohonan(bulan, tahun);
         Component parent = window_Report5.getRoot();
         new JRreportWindow(parent, true, null, repSrc, ds, "pdf");
     }

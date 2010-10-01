@@ -13,6 +13,7 @@
     <menuItem id="menu_Item_Report_Belum_Selesai" zulNavigation="/WEB-INF/pages/pengaduan/reportBelumSelesai.zul" rightName="menu_Item_Report2"/>
     <menuItem id="menu_Item_Report_Sudah_Selesai" zulNavigation="/WEB-INF/pages/pengaduan/reportSudahSelesai.zul" rightName="menu_Item_Report3"/>
     <menuItem id="menu_Item_Report_Rekap_Aduan" zulNavigation="/WEB-INF/pages/pengaduan/reportRekapAduan.zul"/>
+    <menuItem id="menu_Item_Report_Rekap_Permohonan" zulNavigation="/WEB-INF/pages/pengaduan/reportRekapPermohonan.zul"/>
 
 
     <!--<menu id="menu_Category_Permohonan">

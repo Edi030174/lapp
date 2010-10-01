@@ -105,6 +105,9 @@
     <bean id="reportRekapAduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.ReportRekapAduanCtrl" parent="basisCtrl" scope="prototype">
         <property name="reportService" ref="reportService" />
     </bean>
+    <bean id="reportRekapPermohonanCtrl" class="net.lintasarta.idoss.webui.permohonan.ReportRekapPermohonanCtrl" parent="basisCtrl" scope="prototype">
+        <property name="reportService" ref="reportService" />
+    </bean>
 
 
 </beans>

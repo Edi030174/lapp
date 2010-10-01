@@ -9,6 +9,8 @@
 	<field name="bagian_pemohon" class="java.lang.String"/>
 	<field name="nama_pelaksana" class="java.lang.String"/>
 	<field name="n_pelaksana" class="java.lang.String"/>
+	<field name="bulan" class="java.lang.String"/>
+	<field name="tahun" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

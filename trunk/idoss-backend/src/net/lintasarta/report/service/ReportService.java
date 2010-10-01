@@ -19,4 +19,5 @@ public interface ReportService {
     JRDataSource getBelumSelesai(String bulan, String tahun);
     JRDataSource getSudahSelesai(String bulan, String tahun);
     JRDataSource getRekapAduan(String tahun);
+    JRDataSource getRekapPermohonan(String bulan, String tahun);
 }

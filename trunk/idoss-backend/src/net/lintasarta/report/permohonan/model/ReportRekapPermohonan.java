@@ -12,6 +12,8 @@ public class ReportRekapPermohonan {
     private String bagian_pemohon;
     private String nama_pelaksana;
     private String n_pelaksana;
+    private String bulan;
+    private String tahun;
 
     public ReportRekapPermohonan() {
     }
@@ -46,5 +48,21 @@ public class ReportRekapPermohonan {
 
     public void setN_pelaksana(String n_pelaksana) {
         this.n_pelaksana = n_pelaksana;
+    }
+
+    public String getBulan() {
+        return bulan;
+    }
+
+    public void setBulan(String bulan) {
+        this.bulan = bulan;
+    }
+
+    public String getTahun() {
+        return tahun;
+    }
+
+    public void setTahun(String tahun) {
+        this.tahun = tahun;
     }
 }

@@ -18,8 +18,8 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
         <property name="mapperInterface" value="net.lintasarta.report.permohonan.dao.ReportRekapAduanDAO"/>
     </bean>
-    <!--<bean id="reportRekapPermohonanDAO" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">-->
-        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
-        <!--<property name="mapperInterface" value="net.lintasarta.report.permohonan.dao.ReportRekapPermohonanDAO"/>-->
-    <!--</bean>-->
+    <bean id="reportRekapPermohonanDAO" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="mapperInterface" value="net.lintasarta.report.permohonan.dao.ReportRekapPermohonanDAO"/>
+    </bean>
 </beans>
