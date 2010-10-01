@@ -4,6 +4,7 @@ import net.lintasarta.security.dao.VHrEmployeeDAO;
 import net.lintasarta.security.model.UserSession;
 import net.lintasarta.security.model.VHrEmployee;
 import net.lintasarta.security.service.LoginService;
+import net.lintasarta.security.util.LoginConstants;
 import org.apache.axis2.AxisFault;
 import org.apache.axis2.transport.http.HTTPConstants;
 import org.tempuri.ValidateTicketStub;
@@ -59,26 +60,26 @@ public class LoginServiceImpl implements LoginService {
     public String getAuthorization(VHrEmployee vHrEmployee) {
         if (vHrEmployee.getP_organization_id().equals(new BigDecimal(1176))) {
             if (vHrEmployee.getJob_position_code().contains("Assistant Manager")) {
-                return "asmandukophar";
+                return LoginConstants.AMDUK;
             } else if (vHrEmployee.getJob_position_code().contains("Manager")) {
-                return "managerdukophar";
+                return LoginConstants.MDUK;
             } else {
-                return "helpdeskpelaksana";
+                return LoginConstants.HELPD;
             }
         } else if (vHrEmployee.getP_organization_id().equals(new BigDecimal(1155))) {
             if (vHrEmployee.getJob_position_code().contains("General Manager")) {
-                return "gmdukophar";
+                return LoginConstants.GMDUK;
             }
         } else if (!vHrEmployee.getP_organization_id().equals(new BigDecimal(1176))) {
             if (vHrEmployee.getJob_position_code().contains("Manager")) {
-                return "managerpemohon";
+                return LoginConstants.MUSER;
             }
         } else if (!vHrEmployee.getP_organization_id().equals(new BigDecimal(1155))) {
             if (vHrEmployee.getJob_position_code().contains("General Manager")) {
-                return "gmpemohon";
+                return LoginConstants.GMUSER;
             }
         }
-        return "pemohonpengadu";
+        return LoginConstants.USER;
     }
 
     public UserSession getUserSession(String userUrl, String ticketId) {
