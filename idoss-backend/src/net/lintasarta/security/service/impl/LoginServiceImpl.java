@@ -112,4 +112,28 @@ public class LoginServiceImpl implements LoginService {
         }
         return null;
     }
+
+    public UserSession getUserSessionNoSSO(String employeeNo, String userName, String employeeName) {
+        VHrEmployee vHrEmployee = getVHrEmployee(employeeNo);
+        if (vHrEmployee != null) {
+//            String department = "N/A";
+//            String jobLocation = "JAKARTA";
+//            int orgId = 0;
+            String department = vHrEmployee.getOrganization_code();
+            String jobLocation = vHrEmployee.getJob_location();
+            int orgId = vHrEmployee.getP_organization_id().intValue();
+            UserSession userSession = new UserSession();
+            userSession.setEmployeeRole(getAuthorization(vHrEmployee));
+            userSession.setDepartment(department);
+            userSession.setEmployeeName(employeeName);
+            userSession.setEmployeeNo(employeeNo);
+            userSession.setJobLocation(jobLocation);
+            userSession.setOrganizationid(orgId);
+            userSession.setUserName(userName);
+            userSession.setWinHeight("800px");
+
+            return userSession;
+        }
+        return null;
+    }
 }
