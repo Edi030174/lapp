@@ -52,14 +52,15 @@ public class ZkLoginDialogCtrl extends WindowBaseCtrl implements Serializable {
         loginwin.setShadow(false);
         loginwin.doModal();
 
+        SSOUtils.loginNoSSO();
+
 //        UserSession userSession = SSOUtils.login();
-        UserSession userSession = SSOUtils.loginNoSSO();
-        if (userSession != null) {
-            txtbox_Username.setValue(userSession.getEmployeeRole());
-            txtbox_Password.setValue("idoss");
-            Clients.showBusy("Wait for IDOSS Authorization");
-            Clients.submitForm("f");
-        }
+//        if (userSession != null) {
+//            txtbox_Username.setValue(userSession.getEmployeeRole());
+//            txtbox_Password.setValue("idoss");
+//            Clients.showBusy("Wait for IDOSS Authorization");
+//            Clients.submitForm("f");
+//        }
     }
 
     public void onClick$button_ZKLoginDialog_Close() throws IOException {

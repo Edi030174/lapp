@@ -44,7 +44,7 @@ public class SSOUtils {
 //        userSession.setEmployeeRole("asmandukophar");
 //        userSession.setEmployeeRole("managerdukophar");
 //        userSession.setEmployeeRole("gmdukophar");
-        userSession.setEmployeeRole("helpdeskpelaksana");
+//        userSession.setEmployeeRole("helpdeskpelaksana");
         userSession.setEmployeeNo("79040893");
         userSession.setEmployeeName("ZULHELMY");
         userSession.setOrganizationid(1413);

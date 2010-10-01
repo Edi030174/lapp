@@ -32,7 +32,7 @@
         <!--}-->
     <!--</script>-->
 
-	<window id="loginwin" border="none" width="1px"
+	<window id="loginwin" border="none" width="300px"
 		style="background-color: #EDEDED;"
 		use="net.lintasarta.idoss.webui.login.ZkLoginDialogCtrl">
 		<groupbox mold="3d" closable="false">
