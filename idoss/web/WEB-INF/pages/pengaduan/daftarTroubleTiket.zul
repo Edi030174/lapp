@@ -25,6 +25,7 @@
             <space />
             <label value="Cari berdasarkan :" />
             <listbox id="listbox_Cari" rows="1" mold="select" width="150px">
+                <listhead visible="false"/>
                 <listitem id="listitem_Nomor" label="Nomor Tiket" selected="true"/>
                 <listitem id="listitem_Judul" label="Judul"/>
                 <listitem id="listitem_Status" label="Status"/>

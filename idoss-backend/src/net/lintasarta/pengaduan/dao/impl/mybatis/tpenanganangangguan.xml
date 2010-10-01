@@ -121,7 +121,7 @@
         STATUS=#{status, jdbcType=VARCHAR},
         SOLUSI=#{solusi, jdbcType=VARCHAR},
         MTTR=#{mttr, jdbcType=VARCHAR},
-        DURASI=#{durasi, jdbcType=INTEGER},
+        DURASI=#{durasi, jdbcType=VARCHAR},
         NO_HP=#{no_hp, jdbcType=VARCHAR},
         EXT=#{ext, jdbcType=VARCHAR},
         CREATED_DATE=#{created_date},

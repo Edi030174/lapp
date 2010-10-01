@@ -14,10 +14,7 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -141,8 +138,9 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-
+        HashMap<String, Object> map = new HashMap<String, Object>();
         Treeitem item = tree_Type.getSelectedItem();
+        map.put("Titem", item);
         textbox_Type.setValue(item.getLabel());
 
         PType pType = (PType) item.getValue();

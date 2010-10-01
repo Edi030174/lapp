@@ -8,6 +8,7 @@ import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.pengaduan.model.predicate.*;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
 import net.lintasarta.security.model.UserSession;
+import net.lintasarta.security.util.LoginConstants;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.support.PagedListHolder;
@@ -122,7 +123,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         List<TPenangananGangguan> tPenangananGangguans = new ArrayList<TPenangananGangguan>();
         getUserWorkspace().getUserSession();
         UserSession userSession = getUserWorkspace().getUserSession();
-        if (userSession.getEmployeeRole().equalsIgnoreCase("helpdeskpelaksana")) {
+        if (userSession.getEmployeeRole().equalsIgnoreCase(LoginConstants.HELPD)) {
             tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
         } else {
             tPenangananGangguans = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(tPenangananGangguan);

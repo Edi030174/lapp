@@ -30,7 +30,7 @@
         <typeAlias type="net.lintasarta.report.permohonan.model.ReportBelumSelesai" alias="reportbelumselesai"/>
         <typeAlias type="net.lintasarta.report.permohonan.model.ReportSudahSelesai" alias="reportsudahselesai"/>
         <typeAlias type="net.lintasarta.report.permohonan.model.ReportRekapAduan" alias="reportrekapaduan"/>
-        <!--<typeAlias type="net.lintasarta.report.permohonan.model.ReportRekapPermohonan" alias="reportrekappermohonan"/>-->
+        <typeAlias type="net.lintasarta.report.permohonan.model.ReportRekapPermohonan" alias="reportrekappermohonan"/>
         <typeAlias type="net.lintasarta.report.pengaduan.model.ReportPengaduan" alias="reportpengaduan"/>
         <!--auditlog-->
         <typeAlias type="net.lintasarta.auditlog.model.AuditLog" alias="auditlog"/>
@@ -58,7 +58,7 @@
         <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportBelumSelesai.xml"/>
         <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportSudahSelesai.xml"/>
         <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportRekapAduan.xml"/>
-        <!--<mapper resource="net/lintasarta/report/permohonan/dao/impl/reportRekapPermohonan.xml"/>-->
+        <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportRekapPermohonan.xml"/>
 
         <!--auditlog-->
         <mapper resource="net/lintasarta/auditlog/dao/impl/auditlog.xml"/>

@@ -10,15 +10,15 @@ import org.apache.commons.collections.Predicate;
  * Time: 3:48:21 PM
  */
 public class NomorTiketTPenangananGangguan implements Predicate {
+    private String id;
 
-    private String nomor_tiket;
-
-    public NomorTiketTPenangananGangguan(String nomor_tiket) {
-        this.nomor_tiket = nomor_tiket;
+    public NomorTiketTPenangananGangguan(String id) {
+        this.id = id;
     }
 
     @Override
     public boolean evaluate(Object o) {
-        return ((TPenangananGangguan) o).getT_idoss_penanganan_gangguan_id().contains(nomor_tiket.toString());
+//        return ((TPenangananGangguan) o).getT_idoss_penanganan_gangguan_id().contains(id.toString());
+        return ((TPenangananGangguan) o).getT_idoss_penanganan_gangguan_id().toUpperCase().contains(id.toUpperCase());
     }
 }

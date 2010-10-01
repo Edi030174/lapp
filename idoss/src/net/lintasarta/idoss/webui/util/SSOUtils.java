@@ -38,7 +38,7 @@ public class SSOUtils {
 
     public static UserSession loginNoSSO() {
         UserSession userSession = new UserSession();
-//        userSession.setEmployeeRole("pemohonpengadu");
+//        userSession.setEmployeeRole("pemohonpengadu");  //Pemohon Pengadu OPHAR
 //        userSession.setEmployeeRole("managerpemohon");
 //        userSession.setEmployeeRole("gmpemohon");
 //        userSession.setEmployeeRole("asmandukophar");
