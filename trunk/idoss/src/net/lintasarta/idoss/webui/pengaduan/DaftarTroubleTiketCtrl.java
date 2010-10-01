@@ -120,8 +120,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
 //        List<TPenangananGangguan> tPenangananGangguans = penangananGangguanService.getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
 //        TPenangananGangguan tPenangananGangguan = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(plp);
 
-        List<TPenangananGangguan> tPenangananGangguans = new ArrayList<TPenangananGangguan>();
-        getUserWorkspace().getUserSession();
+        List<TPenangananGangguan> tPenangananGangguans;
         UserSession userSession = getUserWorkspace().getUserSession();
         if (userSession.getEmployeeRole().equalsIgnoreCase(LoginConstants.HELPD)) {
             tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();

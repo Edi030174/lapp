@@ -4,11 +4,13 @@ import net.lintasarta.security.dao.PApplicationUserDAO;
 import net.lintasarta.security.model.UserSession;
 import net.lintasarta.security.model.VHrEmployee;
 import net.lintasarta.security.service.LoginService;
+import net.lintasarta.security.util.LoginConstants;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zkplus.spring.SpringUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 
 /**
  * Created by IntelliJ IDEA.
@@ -37,22 +39,14 @@ public class SSOUtils {
     }
 
     public static UserSession loginNoSSO() {
-        UserSession userSession = new UserSession();
-//        userSession.setEmployeeRole("pemohonpengadu");  //Pemohon Pengadu OPHAR
-//        userSession.setEmployeeRole("managerpemohon");
-//        userSession.setEmployeeRole("gmpemohon");
-//        userSession.setEmployeeRole("asmandukophar");
-//        userSession.setEmployeeRole("managerdukophar");
-//        userSession.setEmployeeRole("gmdukophar");
-//        userSession.setEmployeeRole("helpdeskpelaksana");
-        userSession.setEmployeeNo("79040893");
-        userSession.setEmployeeName("ZULHELMY");
-        userSession.setOrganizationid(1413);
-        userSession.setUserName("79040893-ZULHELMY");
-        userSession.setDepartment("OPERASI TI..");
-        userSession.setJobLocation("MENARA THAMRIN");
 
+        String employeeNo = "79040893";
+        String userName = "79040893-ZULHELMY";
+        String employeeName = "ZULHELMY";
+        
+        LoginService loginService = (LoginService) SpringUtil.getBean("loginService");
         Session session = Executions.getCurrent().getSession();
+        UserSession userSession = loginService.getUserSessionNoSSO(employeeNo, userName, employeeName);
         session.setAttribute("userSession", userSession);
         return userSession;
     }
