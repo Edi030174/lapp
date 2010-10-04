@@ -1,5 +1,6 @@
 package net.lintasarta.pengaduan.dao;
 
+import net.lintasarta.pengaduan.model.PType;
 import net.lintasarta.pengaduan.model.PTypeRootCaused;
 
 /**
@@ -10,5 +11,6 @@ import net.lintasarta.pengaduan.model.PTypeRootCaused;
  */
 public interface PTypeRootCausedDAO {
     void createPTypeRootCaused(PTypeRootCaused pTypeRootCaused);
+    PTypeRootCaused getPTypeRootCausedByRootCausedId(Integer pRootCausedId);
 
 }

@@ -1,6 +1,7 @@
 package net.lintasarta.pengaduan.service;
 
 import net.lintasarta.pengaduan.model.PType;
+import net.lintasarta.pengaduan.model.PTypeRootCaused;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ public interface TypeService {
     List<PType> getAllType();
 
     PType getTypeByTypeID(String typeId);
+
+    PTypeRootCaused getPTypeRootCausedByRootCausedId(Integer pRootCausedId);
 
     void createType(PType pType);
 

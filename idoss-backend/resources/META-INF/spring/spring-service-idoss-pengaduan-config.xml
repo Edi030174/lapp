@@ -8,6 +8,7 @@
     </bean>
     <bean id="typeService" class="net.lintasarta.pengaduan.service.impl.TypeServiceImpl">
         <property name="pTypeDAO" ref="pTypeDAO"/>
+        <property name="pTypeRootCausedDAO" ref="pTypeRootCausedDAO"/>
     </bean>
     <bean id="penangananGangguanService" class="net.lintasarta.pengaduan.service.impl.PenangananGangguanServiceImpl">
         <property name="tPenangananGangguanDAO" ref="tPenangananGangguanDAO"/>

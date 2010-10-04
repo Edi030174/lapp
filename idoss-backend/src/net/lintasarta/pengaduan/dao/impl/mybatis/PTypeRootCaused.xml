@@ -14,4 +14,8 @@
         #{updated_date},
         #{updated_user})
     </insert>
+    <select id="getPTypeRootCausedByRootCausedId" resultType="ptyperootcaused">
+        select * from P_IDOSS_TYPE_ROOT_CAUSED
+        where P_IDOSS_ROOT_CAUSED_ID=#{p_idoss_root_caused_id, jdbcType=INTEGER}
+    </select>
 </mapper>

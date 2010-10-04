@@ -5,10 +5,7 @@ import net.lintasarta.idoss.webui.pengaduan.model.PelaksanaListModelItemRenderer
 import net.lintasarta.idoss.webui.pengaduan.model.RootCausedListModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
-import net.lintasarta.pengaduan.model.PRootCaused;
-import net.lintasarta.pengaduan.model.PType;
-import net.lintasarta.pengaduan.model.TPenangananGangguan;
-import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
+import net.lintasarta.pengaduan.model.*;
 import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.pengaduan.service.RootCausedService;
 import net.lintasarta.pengaduan.service.TypeService;
@@ -67,6 +64,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     private transient String oldVar_combobox_Status;
     private transient TPenangananGangguan tPenangananGangguan;
     private transient PRootCaused pRootCaused;
+    private transient PType pType;
     private transient PelaksanaanGangguanService pelaksanaanGangguanService;
     private transient TypeService typeService;
     private transient RootCausedService rootCausedService;
@@ -235,8 +233,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tPenangananGangguan.setDampak(dampak.getValue());
-
-//        tPenangananGangguan.setP_idoss_type_id();
         Listitem item = listbox_RootCaused.getSelectedItem();
         if (item == null) {
             try {
@@ -248,18 +244,9 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         }
         ListModelList lml1 = (ListModelList) listbox_RootCaused.getListModel();
         PRootCaused rootCaused = (PRootCaused) lml1.get(item.getIndex());
-
-
-//        Treeitem titem = tree_Type.getSelectedItem();
-
-//        PType pType = getTypeService().getPTypeByTypeDesc(textbox_Type.getValue());
-
-        
-//        PType pType = (PType)textbox_Type.get
-//        tPenangananGangguan.setP_idoss_type_id(pType.getP_idoss_type_id());
+        PTypeRootCaused pTypeRootCaused = getTypeService().getPTypeRootCausedByRootCausedId(rootCaused.getP_idoss_root_caused_id());
+        tPenangananGangguan.setP_idoss_type_id(pTypeRootCaused.getP_idoss_type_id());
         tPenangananGangguan.setP_idoss_root_caused_id(rootCaused.getP_idoss_root_caused_id());
-
-
         Listitem itempelaksana = listbox_NamaPelaksana.getSelectedItem();
         if (itempelaksana == null) {
             try {
@@ -360,6 +347,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("textbox_Type", textbox_Type);
         map.put("pRootCaused", pRootCaused);
+        //pType sudah di-put:
+        map.put("pType", pType);
         map.put("listbox_RootCaused", listbox_RootCaused);
 
         try {
@@ -390,6 +379,14 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 
     public void setpRootCaused(PRootCaused pRootCaused) {
         this.pRootCaused = pRootCaused;
+    }
+
+    public PType getpType() {
+        return pType;
+    }
+
+    public void setpType(PType pType) {
+        this.pType = pType;
     }
 
     public PelaksanaanGangguanService getPelaksanaanGangguanService() {
