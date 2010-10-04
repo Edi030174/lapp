@@ -3,6 +3,7 @@ package net.lintasarta.idoss.webui.pengaduan;
 import net.lintasarta.idoss.webui.pengaduan.model.RootCausedListModelItemRenderer;
 import net.lintasarta.idoss.webui.pengaduan.model.TypeTreeItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
+import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.PRootCaused;
 import net.lintasarta.pengaduan.model.PType;
 import net.lintasarta.pengaduan.model.predicate.ParentIdPType;
@@ -10,6 +11,8 @@ import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.pengaduan.service.TypeService;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
+import org.zkoss.util.resource.Labels;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
@@ -134,13 +137,12 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
         doShowDialog(getpType());
     }
 
-    public void onSelect$tree_Type(Event event){
+    public void onSelect$tree_Type(Event event) throws InterruptedException {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        HashMap<String, Object> map = new HashMap<String, Object>();
+
         Treeitem item = tree_Type.getSelectedItem();
-        map.put("Titem", item);
         textbox_Type.setValue(item.getLabel());
 
         PType pType = (PType) item.getValue();
@@ -155,6 +157,20 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
         listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(pType.getP_idoss_type_id())));
         listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
         listbox_RootCaused.setSelectedIndex(-1);
+//        HashMap<String, Object> map = new HashMap<String, Object>();
+//        map.put("pType", pType.getP_idoss_type_id());
+//        try {
+//            Executions.createComponents("/WEB-INF/pages/pengaduan/pelaksanaanGangguan.zul", null, map);
+//        } catch (Exception e) {
+//            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
+//
+//            // Show a error box
+//            String msg = e.getMessage();
+//            String title = Labels.getLabel("message_Error");
+//
+//            MultiLineMessageBox.doSetTemplate();
+//            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
+//        }
 
         window_Type.onClose();
     }
