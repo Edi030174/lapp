@@ -47,7 +47,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 //    protected Radio radio_minor;
 //    protected Radio radio_mayor;
 //    protected Listbox listbox_Type;
-//    protected Tree tree_Type;
     protected Listbox listbox_RootCaused;
     protected Listbox listbox_NamaPelaksana;
     protected Combobox combobox_Status;
@@ -59,7 +58,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 //    protected Button btnBatal_PelaksanaanGangguan;
     protected PelaksanaanGangguanCtrl pelaksanaaGangguanCtrl;
     private transient Listbox listbox_DaftarTiket;
-    private transient Treeitem Titem;
     private transient String oldVar_textbox_Pelaksana;
     private transient String oldVar_textbox_NikPelaksana;
     private transient String oldVar_fckeditor_Solusi;
@@ -69,7 +67,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     private transient String oldVar_combobox_Status;
     private transient TPenangananGangguan tPenangananGangguan;
     private transient PRootCaused pRootCaused;
-    private transient PType pType;
     private transient PelaksanaanGangguanService pelaksanaanGangguanService;
     private transient TypeService typeService;
     private transient RootCausedService rootCausedService;
@@ -110,12 +107,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         } else {
             listbox_DaftarTiket = null;
         }
-//        if (args.containsKey("tree_Type")) {
-//            tree_Type = (Tree) args.get("tree_Type");
-//        } else {
-//            tree_Type = null;
-//        }
-
 //        listbox_Type.setModel(new ListModelList(getPelaksanaanGangguanService().getType()));
 //        listbox_Type.setItemRenderer(new TypeListModelItemRenderer());
 //        listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCaused()));
@@ -260,9 +251,12 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 
 
 //        Treeitem titem = tree_Type.getSelectedItem();
-//        PType pType = (PType) titem.getValue();
+
 //        PType pType = getTypeService().getPTypeByTypeDesc(textbox_Type.getValue());
-        tPenangananGangguan.setP_idoss_type_id(pType.getP_idoss_type_id());
+
+        
+//        PType pType = (PType)textbox_Type.get
+//        tPenangananGangguan.setP_idoss_type_id(pType.getP_idoss_type_id());
         tPenangananGangguan.setP_idoss_root_caused_id(rootCaused.getP_idoss_root_caused_id());
 
 
@@ -420,13 +414,5 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 
     public void setRootCausedService(RootCausedService rootCausedService) {
         this.rootCausedService = rootCausedService;
-    }
-
-    public PType getpType() {
-        return pType;
-    }
-
-    public void setpType(PType pType) {
-        this.pType = pType;
     }
 }

@@ -120,13 +120,16 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
 //        List<TPenangananGangguan> tPenangananGangguans = penangananGangguanService.getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
 //        TPenangananGangguan tPenangananGangguan = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(plp);
 
-        List<TPenangananGangguan> tPenangananGangguans;
+        //filter daftar
+/*        List<TPenangananGangguan> tPenangananGangguans;
         UserSession userSession = getUserWorkspace().getUserSession();
         if (userSession.getEmployeeRole().equalsIgnoreCase(LoginConstants.HELPD)) {
             tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
         } else {
             tPenangananGangguans = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
-        }
+        }*/
+
+        List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
         PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
         pagedListHolder.setPageSize(getCountRows());
 
