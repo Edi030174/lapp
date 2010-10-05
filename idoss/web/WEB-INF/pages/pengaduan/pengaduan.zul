@@ -6,7 +6,6 @@
 
     <window id="window_Pengaduan" position="center,top" width="600px" sizable="true"
             title="Form Pengaduan" closable="true" apply="${pengaduanCtrl}">
-
         <style>
             body { padding: 0 0; /* 0 padding on top and bottom and 0
             padding on right and left */ }
@@ -23,11 +22,9 @@
             <!-- Title in bold letters -->
             .z-groupbox-hl .z-groupbox-header { color: #000000;
             font-weight: bold; }
-
         </style>
         <groupbox id="groupbox_Pengaduan" mold="3d" closable="true" open="true">
             <caption label="Pengaduan" style="font-weight:bold"/>
-
             <grid style="border:0px">
                 <columns sizable="true ">
                     <column width="15%"/>

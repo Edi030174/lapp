@@ -23,12 +23,12 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
         locations = {
-                "classpath:META-INF/spring/spring-config.xml",
+                "classpath:META-INF/ibatis/ibatis-spring-config.xml",
                 "classpath:META-INF/spring/datasource.xml",
                 "classpath:META-INF/spring/spring-idoss-security-config.xml",
                 "classpath:META-INF/spring/spring-dao-idoss-pengaduan-config.xml",
-                "classpath:META-INF/spring/spring-service-idoss-pengaduan-config.xml"
-
+                "classpath:META-INF/spring/spring-service-idoss-pengaduan-config.xml",
+                "classpath:META-INF/spring/spring-based-dao-config.xml"
         }
 )
 public class PenangananGangguanServiceTest {
@@ -58,7 +58,7 @@ public class PenangananGangguanServiceTest {
 
     @Test
     public void testGetAllPenangananGanguanByNikPelapor() throws Exception {
-        String nikPelapor="878991233";
+        String nikPelapor="73950481";
 
         TPenangananGangguan tPenangananGangguan = new TPenangananGangguan();
         tPenangananGangguan.setNik_pelapor(nikPelapor);
@@ -67,7 +67,7 @@ public class PenangananGangguanServiceTest {
         for (TPenangananGangguan penangananGangguan : tPenangananGangguans) {
              statusActual = penangananGangguan.getStatus();
         }
-        String statusExpected=null;
+        String statusExpected="Open";
         assertEquals(statusExpected,statusActual);
     }
 }

@@ -162,13 +162,10 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         textbox_TIdossPermohonanId.setValue(getPermohonanService().getPermohonanID());
         textbox_NamaPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeName());
         textbox_BagianPemohon.setValue(getUserWorkspace().getUserSession().getDepartment());
-        String s = textbox_NikPemohon.getValue();
-//        textbox_NamaAsman.setValue(tPermohonan.getNama_asman());
         tPermohonan = getPermohonanService().getManager(getUserWorkspace().getUserSession().getEmployeeNo());
         textbox_NamaManager.setValue(tPermohonan.getNama_manager());
         textbox_NamaGm.setValue(tPermohonan.getNama_gm());
         textbox_NikPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
-//        textbox_NikAsman.setValue(tPermohonan.getNik_asman());
         textbox_NikManager.setValue(tPermohonan.getNik_manager());
         textbox_NikGm.setValue(tPermohonan.getNik_gm());
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
