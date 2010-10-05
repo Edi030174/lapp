@@ -15,4 +15,5 @@ public class LoginConstants {
     public static final String GMDUK = "gmduk";
     public static final String HELPD = "helpd";
     public static final String PELAK = "pelak";
+    public static final String MONITOR = "monitor";
 }

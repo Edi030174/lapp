@@ -88,7 +88,7 @@
                     </row>
                     <row style="border:0px">
                         <hbox>
-                            <label value="Root Coused"/>
+                            <label value="Root Caused"/>
                         </hbox>
                         <hbox>
                             <!--<combobox id="combobox_RootCaused" width="90%"/>-->
@@ -104,7 +104,7 @@
                                 <comboitem label="Open"/>
                                 <comboitem label="In Progres"/>
                                 <comboitem label="Pending"/>
-                                <comboitem label="Selesai"/>
+                                <comboitem label="Closed"/>
                             </combobox>
                         </hbox>
                     </row>

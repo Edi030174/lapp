@@ -1,4 +1,3 @@
-
 package net.lintasarta.idoss.webui.pengaduan;
 
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
@@ -87,10 +86,6 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         }
 
         doShowDialog(gettPenangananGangguan());
-        textbox_NomorTiket.setValue(getPenangananGangguanService().getTiketId());
-        textbox_NamaPelapor.setValue(getUserWorkspace().getUserSession().getEmployeeName());
-        textbox_NikPelapor.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
-        textbox_Bagian.setValue(getUserWorkspace().getUserSession().getDepartment());
     }
 
     private void doShowDialog(TPenangananGangguan tPenangananGangguan) throws InterruptedException {
@@ -100,11 +95,19 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
             tPenangananGangguan = getPenangananGangguanService().getNewPenangananGangguan();
         }
         try {
+            doWriteBeanToComponent(tPenangananGangguan);
             window_Pengaduan.doModal();
 
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
+    }
+
+    private void doWriteBeanToComponent(TPenangananGangguan tPenangananGangguan) {
+        textbox_NomorTiket.setValue(getPenangananGangguanService().getTiketId());
+        textbox_NamaPelapor.setValue(getUserWorkspace().getUserSession().getEmployeeName());
+        textbox_NikPelapor.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
+        textbox_Bagian.setValue(getUserWorkspace().getUserSession().getDepartment());
     }
 
     public void onClose$window_Pengaduan(Event event) throws Exception {
