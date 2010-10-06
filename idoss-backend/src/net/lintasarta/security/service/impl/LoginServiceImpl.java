@@ -64,7 +64,7 @@ public class LoginServiceImpl implements LoginService {
             } else if (vHrEmployee.getJob_position_code().contains("Manager")) {
                 return LoginConstants.MDUK;
             } else {
-                return LoginConstants.HELPD;
+                return LoginConstants.IDOSS_HELPDESK_ADUAN;
             }
         } else if (vHrEmployee.getP_organization_id().equals(new BigDecimal(1155))) {
             if (vHrEmployee.getJob_position_code().contains("General Manager")) {
@@ -79,7 +79,7 @@ public class LoginServiceImpl implements LoginService {
                 return LoginConstants.GMUSER;
             }
         }
-        return LoginConstants.USER;
+        return LoginConstants.IDOSS_INPUT_ADUAN;
     }
 
     public UserSession getUserSession(String userUrl, String ticketId) {
