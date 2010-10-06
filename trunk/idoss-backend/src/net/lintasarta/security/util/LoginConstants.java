@@ -14,8 +14,8 @@ public class LoginConstants {
     public static final String GMDUK = "gmduk";
 
     // Role Modul Pengaduan
-    public static final String IDOSS_HELPDESK_ADUAN = "IDOSS HELPDESK ADUAN";       // helpd
-    public static final String IDOSS_INPUT_ADUAN = "IDOSS INPUT ADUAN";             // user
-    public static final String IDOSS_MONITORING_ADUAN = "IDOSS MONITORING ADUAN";   // monitoring
-    public static final String IDOSS_PELAKSANA_ADUAN = "IDOSS PELAKSANA ADUAN";     // pelak
+    public static final String IDOSS_HELPDESK_ADUAN = "IDOSS_HELPDESK_ADUAN";       // helpd
+    public static final String IDOSS_INPUT_ADUAN = "IDOSS_INPUT_ADUAN";             // user
+    public static final String IDOSS_MONITORING_ADUAN = "IDOSS_MONITORING_ADUAN";   // monitoring
+    public static final String IDOSS_PELAKSANA_ADUAN = "IDOSS_PELAKSANA_ADUAN";     // pelak
 }
