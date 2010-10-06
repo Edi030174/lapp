@@ -20,6 +20,7 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -248,6 +249,10 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         tPenangananGangguan.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
 
         tPenangananGangguan.setStatus(combobox_Status.getValue());
+        if(combobox_Status.getValue().equals("Closed")){
+            Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
+            tPenangananGangguan.setUpdated_date(ts);
+        }
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
     }
 
