@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
-    <window id="window_PenangananGangguan" position="center,top" width="590px" sizable="true"
+    <window id="window_PenangananGangguan" position="center,top" width="590px" sizable="true" border="normal"
             title="Form Penanganan Gangguan" closable="true" apply="${penangananGangguanCtrl}">
         <style>
             body { padding: 0 0; /* 0 padding on top and bottom and 0

@@ -8,7 +8,7 @@
     </select>
 
     <select id="getSeqTiketId" resultType="int">
-       select generate_id('SNI','T_IDOSS_PENANGANAN_GANGGUAN','GEN_ID_COL') from dual
+       select SEQ_T_IDOSS_PERMOHONAN.nextval from dual
     </select>
 
     <select id="getAllTPenangananGangguan" resultType="tpenanganangangguan">

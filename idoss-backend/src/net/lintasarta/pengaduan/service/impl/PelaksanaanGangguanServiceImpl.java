@@ -17,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * Created by IntelliJ IDEA.
@@ -86,15 +87,15 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
     public void saveOrUpdate(TPenangananGangguan tPenangananGangguan) throws ParseException {
 
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
-        tPenangananGangguan.setUpdated_date(ts);
-        if(tPenangananGangguan.getInserted_root_caused()==null){
+        if (tPenangananGangguan.getInserted_root_caused() == null) {
             tPenangananGangguan.setInserted_root_caused(ts);
         }
 //        long awal = tPenangananGangguan.getCreated_date().getTime();
 //        long akhir = ts.getTime();
 //        double durasi = (double )(akhir - awal)/(1000);
 //        DecimalFormat durasiResult = new DecimalFormat("##0.000000");
-//Update Durasi
+
+/*Update Durasi
         String dateAwal = new SimpleDateFormat("yyyy-MM-dd hh:mm aa").format(tPenangananGangguan.getCreated_date());
         String dateAkhir = new SimpleDateFormat("yyyy-MM-dd hh:mm aa").format(ts);
         Date awal = getDateTime(dateAwal);
@@ -103,7 +104,7 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
         float diffResult =((float)diff/(1000.0f*60.0f*60.0f));
         DecimalFormat durasiResult = new DecimalFormat("##0.000000");
         tPenangananGangguan.setDurasi(durasiResult.format(diffResult));
-// update MTTR
+update MTTR
         String firtUpadate = new SimpleDateFormat("yyyy-MM-dd hh:mm aa").format(tPenangananGangguan.getInserted_root_caused());
         String lastUpdate = new SimpleDateFormat("yyyy-MM-dd hh:mm aa").format(ts);
         Date first = getDateTime(firtUpadate);
@@ -111,14 +112,39 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
         long diffMttr = (last.getTime()- first.getTime());
         float diffResultMttr =((float)diffMttr/(1000.0f*60.0f*60.0f));
         DecimalFormat durasiResultMttr = new DecimalFormat("##0.000000");
-        tPenangananGangguan.setMttr(durasiResultMttr.format(diffResultMttr));
-        
+        tPenangananGangguan.setMttr(durasiResultMttr.format(diffResultMttr));*/
+//
+        Timestamp start = tPenangananGangguan.getCreated_date();
+        Timestamp end = tPenangananGangguan.getUpdated_date();
+        long duration = end.getTime() - start.getTime();
+        String dur = getDuration(duration);
+        /*SimpleDateFormat dateFormat = new SimpleDateFormat("d" + "\'d\'" + " HH:mm");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));*/
+        tPenangananGangguan.setDurasi(dur);
+//
         gettPenangananGangguanDAO().saveOrUpdate(tPenangananGangguan);
+    }
+
+    private String getDuration(long duration) {
+        final int millisPerSecond = 1000;
+        final int millisPerMinute = 1000 * 60;
+        final int millisPerHour = 1000 * 60 * 60;
+//        final int millisPerDay = 1000 * 60 * 60 * 24;
+//        int days = (int) (duration / millisPerDay);
+//        int hours = (int) (duration % millisPerDay / millisPerHour);
+        int hours = (int) (duration / millisPerHour);
+        int minutes = (int) (duration % millisPerHour / millisPerMinute);
+        int seconds = (int) (duration % millisPerMinute / millisPerSecond);
+//        return String.format("%d %02d:%02d:%02d", days, hours, minutes, seconds);
+
+        DecimalFormat df = new DecimalFormat("00");
+//        return (days == 0 ? "" : days + " ")+ df.format(hours) + ":" + df.format(minutes) + ":" + df.format(seconds);
+        return df.format(hours) + ":" + df.format(minutes);
     }
 
     private static Date getDateTime(String dateTime) throws ParseException {
 
-        DateFormat formatOldDateTime = new SimpleDateFormat( "yyyy-MM-dd hh:mm aa");
+        DateFormat formatOldDateTime = new SimpleDateFormat("yyyy-MM-dd hh:mm aa");
         Date date = formatOldDateTime.parse(dateTime);
 
         return date;
@@ -126,7 +152,7 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
 
     @Override
     public List<PRootCaused> getRootCausedByPTypeId(String typeId) {
-        List<PRootCaused> pRootCauseds =pRootCausedDAO.getPRootCausedByPTypeID(typeId);
+        List<PRootCaused> pRootCauseds = pRootCausedDAO.getPRootCausedByPTypeID(typeId);
         return pRootCauseds;
     }
 

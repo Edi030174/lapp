@@ -123,7 +123,9 @@ public class LoginServiceImpl implements LoginService {
             String jobLocation = vHrEmployee.getJob_location();
             int orgId = vHrEmployee.getP_organization_id().intValue();
             UserSession userSession = new UserSession();
-            userSession.setEmployeeRole(getAuthorization(vHrEmployee));
+            userSession.setEmployeeRole(
+                    getAuthorization(vHrEmployee)
+            );
             userSession.setDepartment(department);
             userSession.setEmployeeName(employeeName);
             userSession.setEmployeeNo(employeeNo);
