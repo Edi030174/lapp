@@ -1,20 +1,12 @@
 package net.lintasarta.idoss.webui.util;
 
-import net.lintasarta.pengaduan.model.PApplication;
-import net.lintasarta.pengaduan.service.PApplicationService;
-import net.lintasarta.security.dao.PApplicationUserDAO;
 import net.lintasarta.security.model.UserSession;
-import net.lintasarta.security.model.VHrEmployee;
 import net.lintasarta.security.service.LoginService;
-import net.lintasarta.security.util.LoginConstants;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zkplus.spring.SpringUtil;
-import org.zkoss.zul.Textbox;
 
 import javax.servlet.http.HttpServletRequest;
-import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,8 +15,6 @@ import java.util.List;
  * Time: 5:06:44 PM
  */
 public class SSOUtils {
-    private transient PApplicationService pApplicationService;
-    protected Textbox txtbox_Username;
     public static UserSession login() {
         HttpServletRequest request = (HttpServletRequest) Executions.getCurrent().getNativeRequest();
 
@@ -44,18 +34,11 @@ public class SSOUtils {
         return null;
     }
 
-    public static UserSession loginNoSSO(String username) {
+    public static UserSession loginNoSSO() {
 
-        PApplicationService pApplicationService = (PApplicationService) SpringUtil.getBean("pApplicationService");
-        List<PApplication> pApplications = pApplicationService.getRoleByUsername(username);
-
-        String employeeNo = pApplications.get(0).getEmployee_no();
-        String userName = pApplications.get(0).getUser_name();
-        String employeeName = pApplications.get(0).getEmployee_name();
-
-//        String employeeNo = "79040893";
-//        String userName = "79040893-ZULHELMY";
-//        String employeeName = "ZULHELMY";
+        String employeeNo = "79040893";
+        String userName = "79040893-ZULHELMY";
+        String employeeName = "ZULHELMY";
 
 //        String employeeNo = "73950481";
 //        String userName = "73950481-RINA KUSMAYANTI";
@@ -70,13 +53,5 @@ public class SSOUtils {
         UserSession userSession = loginService.getUserSessionNoSSO(employeeNo, userName, employeeName);
         session.setAttribute("userSession", userSession);
         return userSession;
-    }
-
-    public PApplicationService getpApplicationService() {
-        return pApplicationService;
-    }
-
-    public void setpApplicationService(PApplicationService pApplicationService) {
-        this.pApplicationService = pApplicationService;
     }
 }

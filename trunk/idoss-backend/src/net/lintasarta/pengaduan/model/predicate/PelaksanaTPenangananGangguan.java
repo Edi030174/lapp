@@ -18,6 +18,6 @@ public class PelaksanaTPenangananGangguan implements Predicate {
 
     @Override
     public boolean evaluate(Object o) {
-        return ((TPenangananGangguan) o).getNama_pelaksana().toUpperCase().contains(pelaksana.toUpperCase());
+        return ((TPenangananGangguan) o).getNama_pelaksana() != null && ((TPenangananGangguan) o).getNama_pelaksana().toUpperCase().contains(pelaksana.toUpperCase());
     }
 }

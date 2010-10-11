@@ -73,6 +73,36 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         }
     }
 
+    public void setDaftarTiket() {
+        UserSession userSession = getUserWorkspace().getUserSession();
+        if (userSession.getEmployeeRole().equals("helpd")) {
+            List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
+
+            PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
+            pagedListHolder.setPageSize(getCountRows());
+
+            paging_DaftarTiket.setPageSize(getCountRows());
+            paging_DaftarTiket.setDetailed(true);
+
+            getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
+            listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
+        } else {
+            String nikPelapor = getUserWorkspace().getUserSession().getEmployeeNo();
+            TPenangananGangguan tPenangananGangguan = new TPenangananGangguan();
+            tPenangananGangguan.setNik_pelapor(nikPelapor);
+            List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
+
+            PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
+            pagedListHolder.setPageSize(getCountRows());
+
+            paging_DaftarTiket.setPageSize(getCountRows());
+            paging_DaftarTiket.setDetailed(true);
+
+            getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
+            listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
+        }
+    }
+
     public void onCreate$window_DaftarTroubleTiket(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
@@ -115,53 +145,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         listheader_TglUpdate.setSortAscending(new FieldComparator("updated_date", true));
         listheader_TglUpdate.setSortDescending(new FieldComparator("updated_date", false));
 
-//        List<TPenangananGangguan> tPenangananGangguans = penangananGangguanService.getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
-//        TPenangananGangguan tPenangananGangguan = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(plp);
-
-        //filter daftar
-/*        List<TPenangananGangguan> tPenangananGangguans;
-        if (userSession.getEmployeeRole().equalsIgnoreCase(LoginConstants.HELPD)) {
-            tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
-        } else {
-            tPenangananGangguans = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
-        }*/
-
-        UserSession userSession = getUserWorkspace().getUserSession();
-        String tes = userSession.getEmployeeRole();
-        if (userSession.getEmployeeRole().equals("helpd")) {
-            List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
-
-            PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
-            pagedListHolder.setPageSize(getCountRows());
-
-            paging_DaftarTiket.setPageSize(getCountRows());
-            paging_DaftarTiket.setDetailed(true);
-
-            getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
-            listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
-        } else {
-            String nikPelapor = getUserWorkspace().getUserSession().getEmployeeNo();
-            TPenangananGangguan tPenangananGangguan = new TPenangananGangguan();
-            tPenangananGangguan.setNik_pelapor(nikPelapor);
-            List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
-
-            PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
-            pagedListHolder.setPageSize(getCountRows());
-
-            paging_DaftarTiket.setPageSize(getCountRows());
-            paging_DaftarTiket.setDetailed(true);
-
-            getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
-            listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
-        }
-        /*PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
-        pagedListHolder.setPageSize(getCountRows());
-
-        paging_DaftarTiket.setPageSize(getCountRows());
-        paging_DaftarTiket.setDetailed(true);
-
-        getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
-        listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());*/
+        setDaftarTiket();
     }
 
     private void doCheckRights() {
@@ -330,11 +314,12 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
 
         textbox_Cari.setValue("");
 
-        List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
-        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
-        pagedListHolder.setPageSize(getCountRows());
-
-        getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
+        setDaftarTiket();
+//        List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
+//        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
+//        pagedListHolder.setPageSize(getCountRows());
+//
+//        getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
     }
 
     public void onClick$btn_report(Event event) throws InterruptedException {

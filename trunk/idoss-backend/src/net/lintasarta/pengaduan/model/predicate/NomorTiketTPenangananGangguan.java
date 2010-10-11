@@ -18,7 +18,6 @@ public class NomorTiketTPenangananGangguan implements Predicate {
 
     @Override
     public boolean evaluate(Object o) {
-//        return ((TPenangananGangguan) o).getT_idoss_penanganan_gangguan_id().contains(id.toString());
         return ((TPenangananGangguan) o).getT_idoss_penanganan_gangguan_id().toUpperCase().contains(id.toUpperCase());
     }
 }
