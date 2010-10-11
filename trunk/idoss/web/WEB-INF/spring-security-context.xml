@@ -33,10 +33,10 @@
 
         <!-- Login with SSO or no SSO setting -->
 
-		<form-login login-page="/zkloginDialog.zul"
-			authentication-failure-url="/index.zul"/>
-		<!--<form-login login-page="/zkLoginDialogNoSSO.zul"-->
-			<!--authentication-failure-url="/zkLoginDialogNoSSO.zul?login_error=1"/>-->
+		<!--<form-login login-page="/zkloginDialog.zul"-->
+			<!--authentication-failure-url="/index.zul"/>-->
+		<form-login login-page="/zkLoginDialogNoSSO.zul"
+			authentication-failure-url="/zkLoginDialogNoSSO.zul?login_error=1"/>
         <access-denied-handler error-page="/index.zul" />
 
 		<!-- ====================================================== -->
