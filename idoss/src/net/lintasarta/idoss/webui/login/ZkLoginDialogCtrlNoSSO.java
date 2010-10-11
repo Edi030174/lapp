@@ -50,7 +50,7 @@ public class ZkLoginDialogCtrlNoSSO extends WindowBaseCtrl implements Serializab
         loginwin.setShadow(false);
         loginwin.doModal();
 
-//        SSOUtils.loginNoSSO();
+        SSOUtils.loginNoSSO();
     }
 
     public void onClick$button_ZKLoginDialog_Close() throws IOException {
