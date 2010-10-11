@@ -35,22 +35,11 @@ public class SSOUtils {
     }
 
     public static UserSession loginNoSSO() {
-
-        String employeeNo = "79040893";
-        String userName = "79040893-ZULHELMY";
-        String employeeName = "ZULHELMY";
-
-//        String employeeNo = "73950481";
-//        String userName = "73950481-RINA KUSMAYANTI";
-//        String employeeName = "RINA KUSMAYANTI";
-
-//        String employeeNo = "84070998";
-//        String userName = "84070998-KURNIAWAN DWI PRASETYO";
-//        String employeeName = "KURNIAWAN DWI PRASETYO";
+        NoSSO noSSO = (NoSSO) SpringUtil.getBean("noSSO");
 
         LoginService loginService = (LoginService) SpringUtil.getBean("loginService");
         Session session = Executions.getCurrent().getSession();
-        UserSession userSession = loginService.getUserSessionNoSSO(employeeNo, userName, employeeName);
+        UserSession userSession = loginService.getUserSessionNoSSO(noSSO.getEmployeeNo(), noSSO.getUserName(), noSSO.getEmployeeName());
         session.setAttribute("userSession", userSession);
         return userSession;
     }
