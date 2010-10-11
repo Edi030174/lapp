@@ -26,9 +26,7 @@
           p:pagedListWrapper-ref="pagedListWrapper">
     </bean>
 
-    <bean id="indexCtrl" class="net.lintasarta.idoss.webui.index.IndexCtrl" parent="basisCtrl" scope="prototype">
-        <property name="loginService" ref="loginService"/>
-    </bean>
+    <bean id="indexCtrl" class="net.lintasarta.idoss.webui.index.IndexCtrl" parent="basisCtrl" scope="prototype" />
 
     <bean id="chatWindow" class="net.lintasarta.idoss.chat.ChatWindow" parent="basisCtrl"
           scope="prototype">
