@@ -8,6 +8,8 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
+            <!-- Uncomment this to run without SSO by configuring file:no-sso.properties -->
+            WEB-INF/no-sso.xml,
             classpath:META-INF/iBatis/ibatis-spring-config.xml,
             classpath:META-INF/spring/datasource.xml,
             classpath:META-INF/spring/spring-idoss-security-config.xml,
