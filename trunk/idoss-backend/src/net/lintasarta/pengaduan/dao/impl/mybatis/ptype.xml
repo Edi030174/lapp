@@ -78,12 +78,6 @@
         WHERE  PARENT_ID=#{parent_id,jdbcType=VARCHAR}
     </select>
 
-    <select id="getPTypeByTypeDesc" parameterType="ptype" resultType="ptype">
-        SELECT P_IDOSS_TYPE_ID, TYPE_DESC, ACTIVE, CREATED_DATE, CREATED_USER, UPDATED_DATE, UPDATED_USER, MINOR_MAYOR, PARENT_ID
-        FROM SNI.P_IDOSS_TYPE
-        WHERE  to_char(P_IDOSS_TYPE_ID||TYPE_DESC) = #{type_desc,jdbcType=VARCHAR}
-    </select>
-
     <select id="getPTypeTree" resultType="ptype">
         select a.TYPE_DESC
         ,a.P_IDOSS_TYPE_ID,a.ACTIVE

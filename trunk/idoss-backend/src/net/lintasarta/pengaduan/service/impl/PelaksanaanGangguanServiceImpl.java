@@ -114,13 +114,17 @@ update MTTR
         DecimalFormat durasiResultMttr = new DecimalFormat("##0.000000");
         tPenangananGangguan.setMttr(durasiResultMttr.format(diffResultMttr));*/
 //
-        Timestamp start = tPenangananGangguan.getCreated_date();
-        Timestamp end = tPenangananGangguan.getUpdated_date();
-        long duration = end.getTime() - start.getTime();
-        String dur = getDuration(duration);
+        if (tPenangananGangguan.getCreated_date() != null) {
+            if (tPenangananGangguan.getUpdated_date() != null) {
+                Timestamp start = tPenangananGangguan.getCreated_date();
+                Timestamp end = tPenangananGangguan.getUpdated_date();
+                long duration = end.getTime() - start.getTime();
+                String dur = getDuration(duration);
+                tPenangananGangguan.setDurasi(dur);
+            }
+        }
         /*SimpleDateFormat dateFormat = new SimpleDateFormat("d" + "\'d\'" + " HH:mm");
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));*/
-        tPenangananGangguan.setDurasi(dur);
 //
         gettPenangananGangguanDAO().saveOrUpdate(tPenangananGangguan);
     }

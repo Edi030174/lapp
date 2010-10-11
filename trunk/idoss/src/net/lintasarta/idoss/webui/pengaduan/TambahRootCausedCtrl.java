@@ -37,6 +37,7 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
     private transient PTypeRootCaused typeRootCaused;
     private transient RootCausedService rootCausedService;
     private transient TypeService typeService;
+    private transient PType pType;
 
     public TambahRootCausedCtrl() {
         super();
@@ -67,9 +68,12 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
         }
         if(args.containsKey("textbox_Type")) {
             textbox_Type = (Textbox) args.get("textbox_Type");
-        }else {
+            PType pType = (PType) textbox_Type.getAttribute("pType");
+            setpType(pType);
+        } else {
             textbox_Type = null;
         }
+
 
         doShowDialog(getpRootCaused());
     }
@@ -150,11 +154,8 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
         pRootCaused.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         pRootCaused.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
-        String tpdesc = textbox_Type.getValue();
-        PType pType = getTypeService().getPTypeByTypeDesc(tpdesc);
-        String id = pType.getP_idoss_type_id();
-
-        pTypeRootCaused.setP_idoss_type_id(id);
+        String typeId = getpType().getP_idoss_type_id();
+        pTypeRootCaused.setP_idoss_type_id(typeId);
         if (checkbox_Aktif.isChecked()) {
             pTypeRootCaused.setActive("Y");
         } else if (checkbox_NonAktif.isChecked()) {
@@ -198,5 +199,13 @@ public class TambahRootCausedCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setTypeService(TypeService typeService) {
         this.typeService = typeService;
+    }
+
+    public PType getpType() {
+        return pType;
+    }
+
+    public void setpType(PType pType) {
+        this.pType = pType;
     }
 }

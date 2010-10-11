@@ -35,8 +35,10 @@
 
 		<!--<form-login login-page="/zkloginDialog.zul"-->
 			<!--authentication-failure-url="/zkloginDialog.zul?login_error=1"/>-->
-		<form-login login-page="/zkLoginDialogNoSSO.zul"
-			authentication-failure-url="/zkLoginDialogNoSSO.zul?login_error=1"/>
+		<!--<form-login login-page="/zkLoginDialogNoSSO.zul"-->
+			<!--authentication-failure-url="/zkLoginDialogNoSSO.zul?login_error=1"/>-->
+        <form-login login-page="/zkLoginUMC.zul"
+			authentication-failure-url="/zkLoginUMC.zul?login_error=1"/>
 
 		<!-- ====================================================== -->
 		<!--        Tell Spring where it goes after logout.         -->

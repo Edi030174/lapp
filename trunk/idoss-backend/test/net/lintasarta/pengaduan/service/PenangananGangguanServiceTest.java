@@ -1,6 +1,7 @@
 package net.lintasarta.pengaduan.service;
 
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
+import net.lintasarta.security.model.VHrEmployee;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,19 @@ public class PenangananGangguanServiceTest {
         assertEquals("000022ZHL87987897DELIVERY0000000",tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
         assertEquals("JONTORR", tPenangananGangguan.getNama_pelapor());
     }
+
+    @Test
+    public void testGetEmployeeName() throws Exception {
+        List<VHrEmployee> vHrEmployees = penangananGangguanService.getEmployeeName();
+        String employee_nameActual = null;
+        for (VHrEmployee vHrEmployee : vHrEmployees) {
+            employee_nameActual = vHrEmployee.getEmployee_name();
+        }
+        String employee_nameExpected = "ZULHELMY";
+        assertEquals(employee_nameExpected, employee_nameActual);
+    }
+
+
 
     @Test
     public void testGetAllPenangananGanguanByNikPelapor() throws Exception {

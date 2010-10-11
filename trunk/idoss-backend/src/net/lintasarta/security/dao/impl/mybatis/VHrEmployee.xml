@@ -11,4 +11,10 @@
         from sni.v_hr_employee
         where employee_no = #{employeeNo}
     </select>
+
+    <select id="getVHrEmployeeByEmployeeName" resultType="vHrEmployee">
+        select  a.EMPLOYEE_NO, a.EMPLOYEE_NAME, a.ORGANIZATION_CODE
+        from V_HR_EMPLOYEE a
+        ORDER BY EMPLOYEE_NAME ASC
+    </select>
 </mapper>

@@ -40,18 +40,18 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     protected Textbox texbox_Judul;
     protected Textbox textbox_Type;
     protected FCKeditor fckeditor_Deskripsi;
-    protected FCKeditor fckeditor_Solusi;
+    protected FCKeditor fckeditor_Solusi;//pelaksana hanya status & solusi yg enable
     protected Radiogroup radiogroup_Dampak;
 //    protected Radio radio_minor;
 //    protected Radio radio_mayor;
 //    protected Listbox listbox_Type;
     protected Listbox listbox_RootCaused;
     protected Listbox listbox_NamaPelaksana;
-    protected Combobox combobox_Status;
+    protected Combobox combobox_Status;//pelaksana hanya status & solusi yg enable
     protected Button btn_TambahRootCaused;
 //    protected Button btnSimpan_RootCaused;
 //    protected Button btnBatal_RootCaused;
-    protected Button btnSimpan_PelaksanaanGangguan;
+    protected Button btnSimpan_PelaksanaanGangguan;//monitoring disable all
 
 //    protected Button btnBatal_PelaksanaanGangguan;
     protected PelaksanaanGangguanCtrl pelaksanaaGangguanCtrl;
@@ -120,6 +120,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     private void doCheckRights() {
         UserWorkspace workspace = getUserWorkspace();
         btnSimpan_PelaksanaanGangguan.setVisible(workspace.isAllowed("btnSimpan_PelaksanaanGangguan"));
+        
 
 
     }

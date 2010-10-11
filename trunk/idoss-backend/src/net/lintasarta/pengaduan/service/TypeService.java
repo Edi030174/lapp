@@ -25,7 +25,7 @@ public interface TypeService {
 
     List<PType> getPTypeByParentId(String parentId);
 
-    PType getPTypeByTypeDesc(String typeDesc);
+    PType getPTypeByTypeId(String typeId);
 
     List<PType> getPTypeTree();
 }

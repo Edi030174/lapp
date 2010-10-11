@@ -20,8 +20,10 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
 		locations = {
-				"classpath:META-INF/iBatis/ibatis-spring-config.xml",
-				"classpath:META-INF/spring/datasource.xml",
+                "classpath:META-INF/ibatis/ibatis-spring-config.xml",
+                "classpath:META-INF/spring/datasource.xml",
+                "classpath:META-INF/spring/spring-based-dao-config.xml",
+                "classpath:META-INF/spring/spring-dao-idoss-report-config.xml",
 				"classpath:META-INF/spring/spring-idoss-security-config.xml"
 		}
 )
@@ -38,6 +40,17 @@ public class VHrEmployeeDAOTest {
             employee_nameActual = vHrEmployee.getEmployee_name();
         }
         String employee_nameExpected = "BENNY PRABOWOSUNU";
+        assertEquals(employee_nameExpected, employee_nameActual);
+    }
+
+    @Test
+    public void testGetVHrEmployeeByEmployeeName() {
+        List<VHrEmployee> vHrEmployees = vHrEmployeeDAO.getVHrEmployeeByEmployeeName();
+        String employee_nameActual = null;
+        for (VHrEmployee vHrEmployee : vHrEmployees) {
+            employee_nameActual = vHrEmployee.getEmployee_name();
+        }
+        String employee_nameExpected = "ZULHELMY";
         assertEquals(employee_nameExpected, employee_nameActual);
     }
 }

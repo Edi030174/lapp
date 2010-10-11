@@ -1,6 +1,7 @@
 package net.lintasarta.pengaduan.service;
 
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
+import net.lintasarta.security.model.VHrEmployee;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ public interface PenangananGangguanService {
 
     List<TPenangananGangguan> getAllPenangananGangguan();
 
+    List<VHrEmployee> getEmployeeName();
+    
     TPenangananGangguan getPenangananGangguanbyTiketId(String tiketId);
 
     List<TPenangananGangguan> getAllPenangananGanguanByNikPelapor(TPenangananGangguan tPenangananGangguan);

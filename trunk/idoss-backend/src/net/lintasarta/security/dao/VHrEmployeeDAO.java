@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface VHrEmployeeDAO {
     List<VHrEmployee> getVHrEmployeeByEmployeeNo(String employeeNo);
+    List<VHrEmployee> getVHrEmployeeByEmployeeName();
 }

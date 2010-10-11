@@ -145,18 +145,12 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
         Treeitem item = tree_Type.getSelectedItem();
         textbox_Type.setValue(item.getLabel());
 
-        PType pType = (PType) item.getValue();
-
-//        SimpleTreeModel stm = (SimpleTreeModel)tree_Type.getModel();
-//        SimpleTreeNode stn = (SimpleTreeNode)stm.getRoot();
-//        PType pType = (PType)stm.getChild("ROOt", item.indexOf());
-
-//        System.out.println(pType.getP_idoss_type_id());
-
+        pType = (PType) item.getValue();
+        textbox_Type.setAttribute("pType", pType);
 
         listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(pType.getP_idoss_type_id())));
         listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
-        listbox_RootCaused.setSelectedIndex(-1);
+        listbox_RootCaused.setSelectedIndex(0);
 //        HashMap<String, Object> map = new HashMap<String, Object>();
 //        map.put("pType", pType.getP_idoss_type_id());
 //        try {
@@ -173,6 +167,7 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
 //        }
 
         window_Type.onClose();
+
     }
 
     private void doShowDialog(PType pType) throws InterruptedException {

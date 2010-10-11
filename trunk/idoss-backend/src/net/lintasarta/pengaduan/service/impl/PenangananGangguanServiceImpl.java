@@ -5,6 +5,8 @@ import net.lintasarta.pengaduan.dao.TPenangananGangguanDAO;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.pengaduan.model.comparator.TPenangananGangguanComparator;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
+import net.lintasarta.security.dao.VHrEmployeeDAO;
+import net.lintasarta.security.model.VHrEmployee;
 import net.lintasarta.util.TicketIdGenerator;
 
 import java.sql.Timestamp;
@@ -20,6 +22,7 @@ import java.util.List;
 public class PenangananGangguanServiceImpl implements PenangananGangguanService {
 
     private TPenangananGangguanDAO tPenangananGangguanDAO;
+    private VHrEmployeeDAO vHrEmployeeDAO;
 
     public TPenangananGangguanDAO gettPenangananGangguanDAO() {
         return tPenangananGangguanDAO;
@@ -27,6 +30,14 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
 
     public void settPenangananGangguanDAO(TPenangananGangguanDAO tPenangananGangguanDAO) {
         this.tPenangananGangguanDAO = tPenangananGangguanDAO;
+    }
+
+    public VHrEmployeeDAO getvHrEmployeeDAO() {
+        return vHrEmployeeDAO;
+    }
+
+    public void setvHrEmployeeDAO(VHrEmployeeDAO vHrEmployeeDAO) {
+        this.vHrEmployeeDAO = vHrEmployeeDAO;
     }
 
     public TPenangananGangguan getNewPenangananGangguan() {
@@ -46,6 +57,11 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         List<TPenangananGangguan> tPenangananGangguans = gettPenangananGangguanDAO().getAllTPenangananGangguan();
         java.util.Collections.sort(tPenangananGangguans, new TPenangananGangguanComparator());
         return tPenangananGangguans;
+    }
+
+    public List<VHrEmployee> getEmployeeName() {
+        List<VHrEmployee> vHrEmployees = getvHrEmployeeDAO().getVHrEmployeeByEmployeeName();
+        return vHrEmployees;
     }
 
     public TPenangananGangguan getPenangananGangguanbyTiketId(String tiketId) {
@@ -71,4 +87,5 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         tPenangananGangguan.setUpdated_date(ts);
         gettPenangananGangguanDAO().createTPenangananGangguan(tPenangananGangguan);
     }
+
 }

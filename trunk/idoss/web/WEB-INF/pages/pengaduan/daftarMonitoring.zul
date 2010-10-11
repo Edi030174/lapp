@@ -1,0 +1,73 @@
+<?page id="daftarZul" title="Form Daftar Trouble Tiket" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <window id="window_Monitoring" apply="${MonitoringCtrl}"
+            border="none" width="100%">
+        <style>
+            body { padding: 0 0; /* 0 padding on top and bottom and 0
+            padding on right and left */ }
+            }
+
+        </style>
+
+        <timer id="timer" delay="300000" repeats="true"/>
+        <panel id="panel_daftarTroubleTiket" title="" border="none" />
+        <hbox style="padding: 3px">
+            <button id="btnRefresh_DaftarTiket"
+                    image="/images/icons/refresh2_yellow_16x16.gif"
+                    tooltiptext="${c:l('btnRefresh_DaftarTiket.tooltiptext')}"/>
+            <button id="btnBuatBaru_DaftarTiket"
+                    image="/images/icons/btn_new2_16x16.gif"
+                    tooltiptext="${c:l('btnBuatBaru_DaftarTiket.tooltiptext')}"/>
+            <button id="btnBuatBaru_DaftarTiketHelpdesk"
+                    image="/images/icons/btn_new2_16x16.gif"
+                    tooltiptext="${c:l('btnBuatBaru_DaftarTiket.tooltiptext')}"/>
+            <space />
+            <label value="Cari berdasarkan :" />
+            <listbox id="listbox_Cari" rows="1" mold="select" width="150px">
+                <listhead visible="false"/>
+                <listitem id="listitem_Nomor" label="Nomor Tiket" selected="true"/>
+                <listitem id="listitem_Judul" label="Judul"/>
+                <listitem id="listitem_Status" label="Status"/>
+                <listitem id="listitem_Pelapor" label="Pelapor"/>
+                <listitem id="listitem_PJ" label="Penanggung Jawab"/>
+            </listbox>
+            <textbox id="textbox_Cari" value=""/>
+            <button id="btnCari_DaftarTiket" label="Cari"
+                    image="/images/icons/btn_search2_16x16.gif"
+                    tooltiptext="${c:l('btnCari_DaftarTiket.tooltiptext')}"/>
+            <checkbox id="checkbox_All" label="Show All" checked="false"/>
+        </hbox>
+        <borderlayout id="borderlayout_daftarTroubleTiket">
+            <north border="none" height="26px">
+                <paging id="paging_DaftarTiket" />
+            </north>
+            <center border="none">
+                <listbox id="listbox_DaftarTiket" vflex="true" width="99.9%" height="100%" multiple="false">
+                    <listhead sizable="true">
+                        <listheader id="listheader_NomorTiket" label="Nomor trouble tiket"
+                                    sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Judul" label="Judul" align="left"
+                                    sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Status" label="Status" align="left"
+                                    sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Pelapor" label="Pelapor" align="left"
+                                    sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_PenanggungJawab" label="Penanggung jawab" align="left"
+                                    sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Durasi" label="Durasi" align="left"
+                                    sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_MTTR" label="MTTR" align="left"
+                                    sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_TglUpdate" label="Tanggal Update"
+                                    sort="auto" style="font-size:11px"/>
+                    </listhead>
+                </listbox>
+            </center>
+            <south border="none"/>
+        </borderlayout>
+    </window>
+</zk>
