@@ -123,6 +123,15 @@ update MTTR
                 tPenangananGangguan.setDurasi(dur);
             }
         }
+        if (tPenangananGangguan.getInserted_root_caused() != null) {
+            if (tPenangananGangguan.getUpdated_date() != null) {
+                Timestamp start = tPenangananGangguan.getInserted_root_caused();
+                Timestamp end = tPenangananGangguan.getUpdated_date();
+                long MTTR = end.getTime() - start.getTime();
+                String mttr = getDuration(MTTR);
+                tPenangananGangguan.setDurasi(mttr);
+            }
+        }
         /*SimpleDateFormat dateFormat = new SimpleDateFormat("d" + "\'d\'" + " HH:mm");
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));*/
 //
