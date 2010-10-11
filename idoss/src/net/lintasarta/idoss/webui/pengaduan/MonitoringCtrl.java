@@ -36,6 +36,8 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
 
     protected Window window_Monitoring;
     protected Textbox textbox_Cari;
+    protected Datebox datebox_TanggalAwal;
+    protected Datebox datebox_TanggalAkhir;
     protected Button btnBuatBaru_DaftarTiket;
     protected Button btnBuatBaru_DaftarTiketHelpdesk;
     protected Paging paging_DaftarTiket;
@@ -113,17 +115,10 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
         listheader_TglUpdate.setSortAscending(new FieldComparator("updated_date", true));
         listheader_TglUpdate.setSortDescending(new FieldComparator("updated_date", false));
 
-//        List<TPenangananGangguan> tPenangananGangguans = penangananGangguanService.getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
-//        TPenangananGangguan tPenangananGangguan = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(plp);
+        setDaftarTiket();
+    }
 
-        //filter daftar
-/*        List<TPenangananGangguan> tPenangananGangguans;
-        if (userSession.getEmployeeRole().equalsIgnoreCase(LoginConstants.HELPD)) {
-            tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
-        } else {
-            tPenangananGangguans = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
-        }*/
-
+    private void setDaftarTiket() {
         UserSession userSession = getUserWorkspace().getUserSession();
         String tes = userSession.getEmployeeRole();
         if (userSession.getEmployeeRole().equals("helpd")) {
@@ -152,14 +147,6 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
             getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
             listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
         }
-        /*PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
-        pagedListHolder.setPageSize(getCountRows());
-
-        paging_DaftarTiket.setPageSize(getCountRows());
-        paging_DaftarTiket.setDetailed(true);
-
-        getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
-        listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());*/
     }
 
     private void doCheckRights() {
@@ -194,10 +181,9 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
             logger.debug("--> " + event.toString());
         }
 
+        List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
+
         if (!textbox_Cari.getValue().isEmpty()) {
-
-            List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
-
             if (listbox_Cari.getSelectedItem() == listitem_Judul) {
                 CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
             } else if (listbox_Cari.getSelectedItem() == listitem_Nomor) {
@@ -209,11 +195,17 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
             } else if (listbox_Cari.getSelectedItem() == listitem_PJ) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
             }
-            PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
-            pagedListHolder.setPageSize(getCountRows());
-
-            getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
+        } else {
+            if (datebox_TanggalAkhir.getValue() != null) {
+                if (datebox_TanggalAwal.getValue() != null) {
+                    CollectionUtils.filter(searchResult, new TanggalTPenangananGangguan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()));
+                }
+            }
         }
+        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
+        pagedListHolder.setPageSize(getCountRows());
+
+        getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
         checkbox_All.setChecked(false);
     }
 
@@ -223,8 +215,9 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
             logger.debug("--> " + event.toString());
         }
 
+        List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
+
         if (!textbox_Cari.getValue().isEmpty()) {
-            List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
             if (listbox_Cari.getSelectedItem() == listitem_Judul) {
                 CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
             } else if (listbox_Cari.getSelectedItem() == listitem_Nomor) {
@@ -236,11 +229,17 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
             } else if (listbox_Cari.getSelectedItem() == listitem_PJ) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
             }
-            PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
-            pagedListHolder.setPageSize(getCountRows());
-
-            getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
+        } else {
+            if (datebox_TanggalAkhir.getValue() != null) {
+                if (datebox_TanggalAwal.getValue() != null) {
+                    CollectionUtils.filter(searchResult, new TanggalTPenangananGangguan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()));
+                }
+            }
         }
+        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
+        pagedListHolder.setPageSize(getCountRows());
+
+        getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
         checkbox_All.setChecked(false);
     }
 
@@ -327,12 +326,7 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
         }
 
         textbox_Cari.setValue("");
-
-        List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
-        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
-        pagedListHolder.setPageSize(getCountRows());
-
-        getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
+        setDaftarTiket();
     }
 
     public void onClick$btn_report(Event event) throws InterruptedException {

@@ -26,20 +26,34 @@
                     image="/images/icons/btn_new2_16x16.gif"
                     tooltiptext="${c:l('btnBuatBaru_DaftarTiket.tooltiptext')}"/>
             <space />
-            <label value="Cari berdasarkan :" />
-            <listbox id="listbox_Cari" rows="1" mold="select" width="150px">
-                <listhead visible="false"/>
-                <listitem id="listitem_Nomor" label="Nomor Tiket" selected="true"/>
-                <listitem id="listitem_Judul" label="Judul"/>
-                <listitem id="listitem_Status" label="Status"/>
-                <listitem id="listitem_Pelapor" label="Pelapor"/>
-                <listitem id="listitem_PJ" label="Penanggung Jawab"/>
-            </listbox>
-            <textbox id="textbox_Cari" value=""/>
-            <button id="btnCari_DaftarTiket" label="Cari"
-                    image="/images/icons/btn_search2_16x16.gif"
-                    tooltiptext="${c:l('btnCari_DaftarTiket.tooltiptext')}"/>
-            <checkbox id="checkbox_All" label="Show All" checked="false"/>
+            <vbox>
+                <hbox>
+                    <label value="Cari berdasarkan :"/>
+                    <listbox id="listbox_Cari" rows="1" mold="select" width="150px">
+                        <listhead visible="false"/>
+                        <listitem id="listitem_Nomor" label="Nomor Tiket" selected="true"/>
+                        <listitem id="listitem_Judul" label="Judul"/>
+                        <listitem id="listitem_Status" label="Status"/>
+                        <listitem id="listitem_Pelapor" label="Pelapor"/>
+                        <listitem id="listitem_PJ" label="Penanggung Jawab"/>
+                    </listbox>
+                    <textbox id="textbox_Cari" value=""/>
+                    <checkbox id="checkbox_All" label="Show All" checked="false"/>
+                    <button id="btnCari_DaftarTiket" label="Cari"
+                            image="/images/icons/btn_search2_16x16.gif"
+                            tooltiptext="${c:l('btnCari_DaftarTiket.tooltiptext')}"/>
+                </hbox>
+                <hbox>
+                    <label value="Tanggal Awal :" style="align:right"/>
+                    <datebox id="datebox_TanggalAwal" cols="12" format="dd MMMM yyyy"
+                             readonly="true" width="150px"
+                             style="color: #000000 !important;"/>
+                    <label value="Tanggal Akhir :" style="align:right"/>
+                    <datebox id="datebox_TanggalAkhir" cols="12" format="dd MMMM yyyy"
+                             readonly="true" width="150px"
+                             style="color: #000000 !important;"/>
+                </hbox>
+            </vbox>
         </hbox>
         <borderlayout id="borderlayout_daftarTroubleTiket">
             <north border="none" height="26px">
