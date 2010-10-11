@@ -116,14 +116,6 @@ public class IndexCtrl extends GFCBaseCtrl implements Serializable {
         Executions.createComponents("/WEB-INF/pages/mainTreeMenu.zul", west, null);
     }
 
-    public LoginService getLoginService() {
-        return loginService;
-    }
-
-    public void setLoginService(LoginService loginService) {
-        this.loginService = loginService;
-    }
-
     public void setCurrentDesktopHeight(int desktopHeight) {
         if (isTreeMenu()) {
             this.currentDesktopHeight.setValue(Integer.valueOf(desktopHeight));
