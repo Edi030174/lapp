@@ -1,6 +1,7 @@
 package net.lintasarta.pengaduan.dao;
 
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
+import net.lintasarta.security.model.VHrEmployee;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ public interface TPenangananGangguanDAO {
     int getSeqTiketId();
 
     List<TPenangananGangguan> getAllTPenangananGangguan();
+
+    List<VHrEmployee> getVHrEmployeeByEmployeeName();
 
     TPenangananGangguan getTPenangananGangguanByTiketId(String tiketId);
 

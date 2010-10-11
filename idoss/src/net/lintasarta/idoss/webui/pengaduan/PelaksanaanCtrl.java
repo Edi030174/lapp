@@ -9,7 +9,6 @@ import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.pengaduan.model.predicate.*;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
 import net.lintasarta.security.model.UserSession;
-import net.lintasarta.security.util.LoginConstants;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.support.PagedListHolder;
@@ -21,7 +20,6 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,11 +30,11 @@ import java.util.List;
  * Date: Jul 6, 2010
  * Time: 1:55:56 PM
  */
-public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan> implements Serializable {
+public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implements Serializable {
 
-    private transient static final Logger logger = Logger.getLogger(DaftarTroubleTiketCtrl.class);
+    private transient static final Logger logger = Logger.getLogger(PelaksanaanCtrl.class);
 
-    protected Window window_DaftarTroubleTiket;
+    protected Window window_Pelaksanaan;
     protected Textbox textbox_Cari;
     protected Button btnBuatBaru_DaftarTiket;
     protected Button btnBuatBaru_DaftarTiketHelpdesk;
@@ -65,7 +63,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
 
     private transient PenangananGangguanService penangananGangguanService;
 
-    public DaftarTroubleTiketCtrl() {
+    public PelaksanaanCtrl() {
         super();
 
         if (logger.isDebugEnabled()) {
@@ -73,7 +71,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         }
     }
 
-    public void onCreate$window_DaftarTroubleTiket(Event event) throws Exception {
+    public void onCreate$window_Pelaksanaan(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
@@ -252,8 +250,8 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
             logger.debug("--> " + event.toString());
         }
 
-        Events.postEvent("onCreate", window_DaftarTroubleTiket, event);
-        window_DaftarTroubleTiket.invalidate();
+        Events.postEvent("onCreate", window_Pelaksanaan, event);
+        window_Pelaksanaan.invalidate();
     }
 
     public void onClick$btnBuatBaru_DaftarTiket(Event event) throws Exception {
@@ -364,7 +362,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
             logger.debug("--> " + event.toString());
         }
 
-        window_DaftarTroubleTiket.onClose();
+        window_Pelaksanaan.onClose();
     }
 
     public void onTimer$timer(Event event) {
@@ -373,8 +371,8 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
             logger.debug("--> " + event.toString());
         }
 
-        Events.postEvent("onCreate", window_DaftarTroubleTiket, event);
-        window_DaftarTroubleTiket.invalidate();
+        Events.postEvent("onCreate", window_Pelaksanaan, event);
+        window_Pelaksanaan.invalidate();
     }
 
     public void showDetailView(TPenangananGangguan tPenangananGangguan) throws Exception {

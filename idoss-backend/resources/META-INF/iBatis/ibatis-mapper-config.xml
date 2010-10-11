@@ -15,6 +15,8 @@
 
     <typeAliases>
         <typeAlias type="net.lintasarta.security.model.VHrEmployee" alias="vHrEmployee"/>
+        <typeAlias type="net.lintasarta.pengaduan.model.PApplication" alias="papplication"/>
+
         <!--permohonan -->
         <typeAlias type="net.lintasarta.permohonan.model.TPelaksanaan" alias="tpelaksanaan"/>
         <typeAlias type="net.lintasarta.permohonan.model.TPermohonan" alias="tpermohonan"/>
@@ -53,6 +55,8 @@
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/tpenanganangangguan.xml"/>
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/vhremployeepelaksana.xml"/>
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/PTypeRootCaused.xml"/>
+        <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/PApplication.xml"/>
+
         <!--report permohonan-->
         <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportAduan.xml"/>
         <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportBelumSelesai.xml"/>

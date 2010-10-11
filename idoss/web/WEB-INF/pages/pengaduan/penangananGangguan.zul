@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
     <window id="window_PenangananGangguan" position="center,top" width="590px" sizable="true" border="normal"
-            title="Form Penanganan Gangguan" closable="true" apply="${penangananGangguanCtrl}">
+            title="Form Pengaduan Helpdesk" closable="true" apply="${penangananGangguanCtrl}">
         <style>
             body { padding: 0 0; /* 0 padding on top and bottom and 0
             padding on right and left */ }
@@ -23,7 +23,7 @@
             .z-groupbox-hl .z-groupbox-header { color: #000000;
             font-weight: bold; }
         </style>
-        <caption label="Penanganan Gangguan" style="font-weight:bold"/>
+        <caption label="Pengaduan" style="font-weight:bold"/>
         <grid style="border:0px">
             <columns sizable="true ">
                 <column width="14%"/>
@@ -35,20 +35,24 @@
                     <textbox id="textbox_NomorTiket" readonly="true"/>
                 </row>
                 <row style="border:0px">
-                    <label value="Pelapor"/>
+                    <label value="Nama Pelapor"/>
                     <hbox>
-                        <textbox id="texbox_Pelapor" readonly="true"/>
+                        <combobox id="combobox_NamaPelapor" autodrop="true" autocomplete="true" buttonVisible="true"
+                                  width="200px"
+                                  readonly="true">
+                            <comboitem/>
+                        </combobox>
                         <space/>
                         <vbox>
                             <space height="0.5px"/>
                             <label value="Bagian"/>
                         </vbox>
-                        <textbox id="texbox_Bagian" readonly="true"/>
+                        <textbox id="texbox_Bagian" readonly="true" width="200px"/>
                     </hbox>
                 </row>
                 <row style="border:0px">
                     <label value="Judul"/>
-                    <textbox id="texbox_Judul" width="99%" readonly="true"/>
+                    <textbox id="texbox_Judul" width="99%"/>
                 </row>
                 <row style="border:0px">
                     <label value="Deskripsi"/>

@@ -1,15 +1,19 @@
 package net.lintasarta.idoss.webui.pengaduan;
 
 import net.lintasarta.UserWorkspace;
+import net.lintasarta.idoss.webui.pengaduan.model.PelaksanaComboBoxItemRenderer;
 import net.lintasarta.idoss.webui.pengaduan.model.PelaksanaListModelItemRenderer;
 import net.lintasarta.idoss.webui.pengaduan.model.RootCausedListModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
+import net.lintasarta.idoss.webui.util.NoEmptyStringsConstraint;
 import net.lintasarta.pengaduan.model.*;
 import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
 import net.lintasarta.pengaduan.service.RootCausedService;
 import net.lintasarta.pengaduan.service.TypeService;
+import net.lintasarta.security.model.VHrEmployee;
+import net.lintasarta.security.util.LoginConstants;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
@@ -22,6 +26,7 @@ import org.zkoss.zul.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable {
@@ -30,7 +35,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
 
     protected Window window_PenangananGangguan;
     protected Textbox textbox_NomorTiket;
-    protected Textbox texbox_Pelapor;
+    protected Combobox combobox_NamaPelapor;
     protected Textbox texbox_Bagian;
     protected Textbox texbox_Judul;
     protected Textbox textbox_Type;
@@ -51,13 +56,18 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     private transient String oldVar_combobox_Type;
     private transient String oldVar_combobox_RootCaused;
     private transient String oldVar_combobox_Status;
+
+    private transient boolean validationOn;
+
     private transient TPenangananGangguan tPenangananGangguan;
     private transient PRootCaused pRootCaused;
     private transient PType pType;
+
     private transient PelaksanaanGangguanService pelaksanaanGangguanService;
     private transient PenangananGangguanService penangananGangguanService;
     private transient TypeService typeService;
     private transient RootCausedService rootCausedService;
+    private transient VHrEmployee employee;
 
     public PenangananGangguanCtrl() {
         super();
@@ -68,11 +78,9 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     }
 
     public void onCreate$window_PenangananGangguan(Event event) throws Exception {
-
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        doCheckRights();
 
         Map<String, Object> args = getCreationArgsMap(event);
 
@@ -99,6 +107,24 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
 
         doShowDialog(gettPenangananGangguan());
+        doDisplayNama();
+    }
+
+    private void doDisplayNama() {
+        List<VHrEmployee> nm = getPenangananGangguanService().getEmployeeName();
+        ListModelList model = new ListModelList(nm);
+        combobox_NamaPelapor.setModel(model);
+        combobox_NamaPelapor.setItemRenderer(new PelaksanaComboBoxItemRenderer());
+    }
+
+    public void onChange$combobox_NamaPelapor() {
+        Comboitem item = combobox_NamaPelapor.getSelectedItem();
+        setEmployee((VHrEmployee) item.getValue());
+        texbox_Bagian.setValue(getEmployee().getOrganization_code());
+    }
+
+    public void onChange$listbox_RootCaused() {
+        listbox_RootCaused.getSelectedItem();
     }
 
     private void doShowDialog(TPenangananGangguan tPenangananGangguan) throws InterruptedException {
@@ -126,22 +152,22 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
 //        combobox_Status.setValue(tPenangananGangguan.getStatus());
 
         textbox_NomorTiket.setValue(getPenangananGangguanService().getTiketId());
-        texbox_Pelapor.setValue(getUserWorkspace().getUserSession().getEmployeeName());
+//        texbox_Pelapor.setValue(getUserWorkspace().getUserSession().getEmployeeName());
 //        textbox_NikPelapor.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
-        texbox_Bagian.setValue(getUserWorkspace().getUserSession().getDepartment());
+//        texbox_Bagian.setValue(getUserWorkspace().getUserSession().getDepartment());
 
         VHrEmployeePelaksana vHrEmployeePelaksana = getPelaksanaanGangguanService().getVHrEmployeePelaksanaById(tPenangananGangguan.getNik_pelaksana());
 
         int indexPlks = 0;
         ListModel listPlks = listbox_NamaPelaksana.getModel();
-        for (int i =0; i < listPlks.getSize(); i++) {
+        for (int i = 0; i < listPlks.getSize(); i++) {
             VHrEmployeePelaksana np = (VHrEmployeePelaksana) listPlks.getElementAt(i);
-            if (np.getEmployee_no().equals(tPenangananGangguan.getNik_pelaksana())) indexPlks =i;
+            if (np.getEmployee_no().equals(tPenangananGangguan.getNik_pelaksana())) indexPlks = i;
         }
         listbox_NamaPelaksana.setSelectedIndex(indexPlks);
 
         if (tPenangananGangguan.getP_idoss_type_id() != null) {
-            PType pType = getTypeService().getTypeByTypeID(tPenangananGangguan.getP_idoss_type_id());
+            pType = getTypeService().getTypeByTypeID(tPenangananGangguan.getP_idoss_type_id());
 
             textbox_Type.setValue(pType.getType_desc());
 
@@ -150,19 +176,12 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
             int indexRoot = 0;
             ListModel listRoot = listbox_RootCaused.getModel();
-            for (int i =0; i < listRoot.getSize(); i++) {
+            for (int i = 0; i < listRoot.getSize(); i++) {
                 PRootCaused rc = (PRootCaused) listRoot.getElementAt(i);
-                if (rc.getP_idoss_root_caused_id()==tPenangananGangguan.getP_idoss_root_caused_id()) indexRoot =i;
+                if (rc.getP_idoss_root_caused_id() == tPenangananGangguan.getP_idoss_root_caused_id()) indexRoot = i;
             }
             listbox_RootCaused.setSelectedIndex(indexRoot);
         }
-    }
-
-    private void doCheckRights() {
-        UserWorkspace workspace = getUserWorkspace();
-        btnSimpan_PenangananGangguan.setVisible(workspace.isAllowed("btnSimpan_PenangananGangguan"));
-
-
     }
 
     public void onClose$window_PenangananGangguan(Event event) throws Exception {
@@ -196,10 +215,18 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
 
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
 
+        if (!isValidationOn()) {
+            doSetValidation();
+        }
+
         doWriteComponentsToBean(tPenangananGangguan);
 
+        tPenangananGangguan = gettPenangananGangguan();
         try {
-            getPelaksanaanGangguanService().saveOrUpdate(tPenangananGangguan);
+            if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase(LoginConstants.IDOSS_HELPDESK_ADUAN)) {
+                tPenangananGangguan.setNik_pelapor(getEmployee().getEmployee_no());
+            }
+            getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -215,7 +242,21 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         }
     }
 
+    private void doSetValidation() {
+
+        setValidationOn(true);
+
+        texbox_Judul.setConstraint(new NoEmptyStringsConstraint());
+
+//        textbox_Ext.setConstraint( new SimpleConstraint("[0-9-/() ]*", Labels.getLabel("message.error.PhoneNumber")));
+    }
+
     private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
+        tPenangananGangguan.setT_idoss_penanganan_gangguan_id(textbox_NomorTiket.getValue());
+        tPenangananGangguan.setNama_pelapor(combobox_NamaPelapor.getValue());
+        tPenangananGangguan.setBagian_pelapor(texbox_Bagian.getValue());
+        tPenangananGangguan.setNik_pelapor(getEmployee().getEmployee_no());
+        tPenangananGangguan.setJudul(texbox_Judul.getValue());
         tPenangananGangguan.setDeskripsi(fckeditor_Deskripsi.getValue());
         tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
         Radio dampak = radiogroup_Dampak.getSelectedItem();
@@ -247,13 +288,15 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         VHrEmployeePelaksana vHrEmployeePelaksana = (VHrEmployeePelaksana) lml3.get(itempelaksana.getIndex());
         tPenangananGangguan.setNama_pelaksana(vHrEmployeePelaksana.getEmployee_name());
         tPenangananGangguan.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
-
+        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
+        tPenangananGangguan.setCreated_date(ts);
         tPenangananGangguan.setStatus(combobox_Status.getValue());
-        if(combobox_Status.getValue().equals("Closed")){
-            Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
+        if (combobox_Status.getValue().equals("Closed")) {
             tPenangananGangguan.setUpdated_date(ts);
         }
+        tPenangananGangguan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
+        settPenangananGangguan(tPenangananGangguan);
     }
 
     private void doClose() throws Exception {
@@ -338,7 +381,6 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("textbox_Type", textbox_Type);
         map.put("pRootCaused", pRootCaused);
-        map.put("pType", pType);
         map.put("listbox_RootCaused", listbox_RootCaused);
 
         try {
@@ -409,5 +451,21 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
 
     public void setRootCausedService(RootCausedService rootCausedService) {
         this.rootCausedService = rootCausedService;
+    }
+
+    public boolean isValidationOn() {
+        return validationOn;
+    }
+
+    public void setValidationOn(boolean validationOn) {
+        this.validationOn = validationOn;
+    }
+
+    public VHrEmployee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(VHrEmployee employee) {
+        this.employee = employee;
     }
 }

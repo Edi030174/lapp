@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 public class RootCausedListModelItemRenderer implements ListitemRenderer, Serializable {
 
-    private transient static final Logger logger = Logger.getLogger(TypeListModelItemRenderer.class);
+    private transient static final Logger logger = Logger.getLogger(RootCausedListModelItemRenderer.class);
 
     @Override
     public void render(Listitem item, Object data) throws Exception {

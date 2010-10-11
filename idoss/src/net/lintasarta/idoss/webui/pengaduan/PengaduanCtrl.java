@@ -120,12 +120,12 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     public void onClick$btnSimpan_pengaduan(Event event) throws InterruptedException {
+
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
         doSimpan();
         window_Pengaduan.onClose();
-
     }
 
     public void onClick$btnBatal_pengaduan(Event event) throws InterruptedException {

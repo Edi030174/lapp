@@ -1,5 +1,6 @@
 package net.lintasarta.security.service.impl;
 
+import net.lintasarta.pengaduan.dao.PApplicationDAO;
 import net.lintasarta.security.dao.VHrEmployeeDAO;
 import net.lintasarta.security.model.UserSession;
 import net.lintasarta.security.model.VHrEmployee;
@@ -22,6 +23,7 @@ import java.util.StringTokenizer;
  */
 public class LoginServiceImpl implements LoginService {
     private VHrEmployeeDAO vHrEmployeeDAO;
+    private PApplicationDAO pApplicationDAO;
 
     public VHrEmployeeDAO getvHrEmployeeDAO() {
         return vHrEmployeeDAO;
@@ -29,6 +31,14 @@ public class LoginServiceImpl implements LoginService {
 
     public void setvHrEmployeeDAO(VHrEmployeeDAO vHrEmployeeDAO) {
         this.vHrEmployeeDAO = vHrEmployeeDAO;
+    }
+
+    public PApplicationDAO getpApplicationDAO() {
+        return pApplicationDAO;
+    }
+
+    public void setpApplicationDAO(PApplicationDAO pApplicationDAO) {
+        this.pApplicationDAO = pApplicationDAO;
     }
 
     public String validateTicketId(String requestUrl, String ticketId) {

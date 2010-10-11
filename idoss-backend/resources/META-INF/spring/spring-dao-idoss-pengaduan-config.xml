@@ -27,5 +27,8 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
         <property name="mapperInterface" value="net.lintasarta.report.pengaduan.dao.ReportPengaduanDAO"/>
     </bean>
-
+        <bean id="pApplicationDAO" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="mapperInterface" value="net.lintasarta.pengaduan.dao.PApplicationDAO"/>
+    </bean>
 </beans>

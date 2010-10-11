@@ -38,6 +38,18 @@
           parent="basisListCtrl" scope="prototype">
         <property name="penangananGangguanService" ref="penangananGangguanService"/>
     </bean>
+    <bean id="MonitoringCtrl" class="net.lintasarta.idoss.webui.pengaduan.MonitoringCtrl"
+          parent="basisListCtrl" scope="prototype">
+        <property name="penangananGangguanService" ref="penangananGangguanService"/>
+    </bean>
+    <bean id="HelpdeskCtrl" class="net.lintasarta.idoss.webui.pengaduan.HelpdeskCtrl"
+          parent="basisListCtrl" scope="prototype">
+        <property name="penangananGangguanService" ref="penangananGangguanService"/>
+    </bean>
+    <bean id="PelaksanaanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PelaksanaanCtrl"
+          parent="basisListCtrl" scope="prototype">
+        <property name="penangananGangguanService" ref="penangananGangguanService"/>
+    </bean>
 
     <bean id="daftarPermohonanCtrl" class="net.lintasarta.idoss.webui.permohonan.DaftarPermohonanCtrl"
           parent="basisListCtrl" scope="prototype">
