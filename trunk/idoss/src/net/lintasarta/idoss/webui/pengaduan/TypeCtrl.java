@@ -150,7 +150,7 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
 
         listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(pType.getP_idoss_type_id())));
         listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
-        listbox_RootCaused.setSelectedIndex(0);
+        listbox_RootCaused.setSelectedIndex(-1);
 //        HashMap<String, Object> map = new HashMap<String, Object>();
 //        map.put("pType", pType.getP_idoss_type_id());
 //        try {
