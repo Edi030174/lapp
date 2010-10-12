@@ -93,6 +93,7 @@
                     <hbox>
                         <!--<combobox id="combobox_RootCaused" width="90%"/>-->
                         <listbox id="listbox_RootCaused" width="200px" mold="select" rows="1"/>
+                        
                         <button label=" + " id="btn_TambahRootCaused"/>
                         <space/>
                         <vbox>

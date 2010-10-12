@@ -59,8 +59,6 @@ public class HelpdeskCtrl extends GFCBaseListCtrl<TPenangananGangguan> implement
     protected Listitem listitem_PJ;
     protected Borderlayout borderlayout_daftarTroubleTiket;
     protected Panel panel_daftarTroubleTiket;
-    //pelaksana btn buat baru tdk ada
-    //daftar hanya yg milik pelaksana
     private int countRows;
 
     private transient PenangananGangguanService penangananGangguanService;
@@ -121,7 +119,7 @@ public class HelpdeskCtrl extends GFCBaseListCtrl<TPenangananGangguan> implement
     private void setDaftarTiket() {
         UserSession userSession = getUserWorkspace().getUserSession();
         String tes = userSession.getEmployeeRole();
-//        if (userSession.getEmployeeRole().equals("helpd")) {
+        if (userSession.getEmployeeRole().equals("helpd")) {
             List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
 
             PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
@@ -132,21 +130,21 @@ public class HelpdeskCtrl extends GFCBaseListCtrl<TPenangananGangguan> implement
 
             getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
             listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
-//        } else {
-//            String nikPelapor = getUserWorkspace().getUserSession().getEmployeeNo();
-//            TPenangananGangguan tPenangananGangguan = new TPenangananGangguan();
-//            tPenangananGangguan.setNik_pelapor(nikPelapor);
-//            List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
-//
-//            PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
-//            pagedListHolder.setPageSize(getCountRows());
-//
-//            paging_DaftarTiket.setPageSize(getCountRows());
-//            paging_DaftarTiket.setDetailed(true);
-//
-//            getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
-//            listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
-//        }
+        } else {
+            String status = "Open";
+            TPenangananGangguan tPenangananGangguan = new TPenangananGangguan();
+            tPenangananGangguan.setStatus(status);
+            List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllTPenangananGangguanByStatus(tPenangananGangguan);
+
+            PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
+            pagedListHolder.setPageSize(getCountRows());
+
+            paging_DaftarTiket.setPageSize(getCountRows());
+            paging_DaftarTiket.setDetailed(true);
+
+            getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
+            listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
+        }
     }
 
     private void doCheckRights() {

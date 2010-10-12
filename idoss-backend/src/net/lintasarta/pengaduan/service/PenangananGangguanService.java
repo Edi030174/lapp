@@ -25,5 +25,9 @@ public interface PenangananGangguanService {
 
     List<TPenangananGangguan> getAllPenangananGanguanByNikPelapor(TPenangananGangguan tPenangananGangguan);
 
+    List<TPenangananGangguan> getAllTPenangananGangguanByNikPelaksana(TPenangananGangguan tPenangananGangguan);
+
+    List<TPenangananGangguan> getAllTPenangananGangguanByStatus(TPenangananGangguan tPenangananGangguan);
+
     void createPenangananGangguan(TPenangananGangguan tPenangananGangguan);
 }
