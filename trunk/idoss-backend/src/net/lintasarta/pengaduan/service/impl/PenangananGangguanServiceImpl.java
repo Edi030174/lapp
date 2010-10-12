@@ -72,7 +72,17 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
     public List<TPenangananGangguan> getAllPenangananGanguanByNikPelapor(TPenangananGangguan tPenangananGangguan) {
         List<TPenangananGangguan> tPenangananGangguans = tPenangananGangguanDAO.getAllTPenangananGangguanByNikPelapor(tPenangananGangguan);
         return tPenangananGangguans;
-    }                                                                            
+    }
+
+    public List<TPenangananGangguan> getAllTPenangananGangguanByNikPelaksana(TPenangananGangguan tPenangananGangguan) {
+        List<TPenangananGangguan> tPenangananGangguans = tPenangananGangguanDAO.getAllTPenangananGangguanByNikPelaksana(tPenangananGangguan);
+        return tPenangananGangguans;
+    }
+
+    public List<TPenangananGangguan> getAllTPenangananGangguanByStatus(TPenangananGangguan tPenangananGangguan) {
+        List<TPenangananGangguan> tPenangananGangguans = tPenangananGangguanDAO.getAllTPenangananGangguanByStatus(tPenangananGangguan);
+        return tPenangananGangguans;
+    }
 
     public void createPenangananGangguan(TPenangananGangguan tPenangananGangguan) {
 

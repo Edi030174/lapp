@@ -120,23 +120,10 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
 
     private void setDaftarTiket() {
         UserSession userSession = getUserWorkspace().getUserSession();
-        String tes = userSession.getEmployeeRole();
-        if (userSession.getEmployeeRole().equals("helpd")) {
-            List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
-
-            PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
-            pagedListHolder.setPageSize(getCountRows());
-
-            paging_DaftarTiket.setPageSize(getCountRows());
-            paging_DaftarTiket.setDetailed(true);
-
-            getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
-            listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
-        } else {
-            String nikPelapor = getUserWorkspace().getUserSession().getEmployeeNo();
+            String nikPelaksana = getUserWorkspace().getUserSession().getEmployeeNo();
             TPenangananGangguan tPenangananGangguan = new TPenangananGangguan();
-            tPenangananGangguan.setNik_pelapor(nikPelapor);
-            List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
+            tPenangananGangguan.setNik_pelaksana(nikPelaksana);
+            List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllTPenangananGangguanByNikPelaksana(tPenangananGangguan);
 
             PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
             pagedListHolder.setPageSize(getCountRows());
@@ -146,7 +133,6 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
 
             getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
             listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
-        }
     }
 
     private void doCheckRights() {
