@@ -99,6 +99,10 @@
           parent="basisCtrl" scope="prototype">
         <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
     </bean>
+    <bean id="pelaksanaanGangguanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PelaksanaanGangguanCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+    </bean>
 
     <bean id="tambahRootCausedCtrl" class="net.lintasarta.idoss.webui.pengaduan.TambahRootCausedCtrl" parent="basisCtrl"
           scope="prototype">
