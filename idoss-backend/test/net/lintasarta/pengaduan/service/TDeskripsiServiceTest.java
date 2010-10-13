@@ -37,7 +37,7 @@ public class TDeskripsiServiceTest {
 
     @Test
     public void testGetTDeskripsiByGangguanId() {
-        String id = "0";
+        String id = "000001072";
         List<TDeskripsi> tDeskripsiList = tDeskripsiService.getTDeskripsiByGangguanId(id);
         assertEquals(1, tDeskripsiList.size());
     }
