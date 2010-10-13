@@ -59,7 +59,6 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
             PType pType = iterator.next();
 
             List<Object> resultChilds = new ArrayList<Object>();
-//            SimpleTreeNode rcNode = new SimpleTreeNode(pType.getType_desc(), resultChilds);
             SimpleTreeNode rcNode = new SimpleTreeNode(pType, resultChilds);
             if (pType.getActive().equalsIgnoreCase("Y")) {
                 resultList.add(rcNode);
@@ -68,7 +67,6 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
             List<PType> childs = filterByParentId(pTypes, pType.getP_idoss_type_id());
             for (PType child : childs) {
                 List<Object> resultGrandChilds = new ArrayList<Object>();
-//                SimpleTreeNode rgcNode = new SimpleTreeNode(child.getType_desc(), resultGrandChilds);
                 SimpleTreeNode rgcNode = new SimpleTreeNode(child, resultGrandChilds);
                 if (child.getActive().equalsIgnoreCase("Y")) {
                     resultChilds.add(rgcNode);
@@ -78,7 +76,6 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
                 List<PType> grandChilds = filterByParentId(pTypes, child.getP_idoss_type_id());
                 for (PType grandChild : grandChilds) {
                     List<Object> resultGreatGrandChilds = new ArrayList<Object>();
-//                    SimpleTreeNode rggcNode = new SimpleTreeNode(grandChild.getType_desc(), resultGreatGrandChilds);
                     SimpleTreeNode rggcNode = new SimpleTreeNode(grandChild, resultGreatGrandChilds);
                     if (grandChild.getActive().equalsIgnoreCase("Y")) {
                         resultGrandChilds.add(rggcNode);
@@ -87,7 +84,6 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
 
                     List<PType> greateGrandChilds = filterByParentId(pTypes, grandChild.getP_idoss_type_id());
                     for (PType greateGrandChild : greateGrandChilds) {
-//                        SimpleTreeNode ggcNode = new SimpleTreeNode(greateGrandChild.getType_desc(), new ArrayList());
                         SimpleTreeNode ggcNode = new SimpleTreeNode(greateGrandChild, new ArrayList());
                         if (greateGrandChild.getActive().equalsIgnoreCase("Y")) {
                             resultGreatGrandChilds.add(ggcNode);
@@ -144,21 +140,27 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
 
         Treeitem item = tree_Type.getSelectedItem();
         Treeitem itemParent = item.getParentItem();
-        Treeitem itemGrandParent = itemParent.getParentItem();
+        if (itemParent != null) {
+            Treeitem itemGrandParent = itemParent.getParentItem();
+            if (itemGrandParent != null) {
+                Treeitem itemGrandGrandParent = itemGrandParent.getParentItem();
+                if (itemGrandGrandParent != null) {
+                    textbox_Type.setValue(itemGrandParent.getLabel() + ", " + itemParent.getLabel() + ", " + item.getLabel());
 
-        textbox_Type.setValue(itemGrandParent.getLabel() + ", " + itemParent.getLabel() + ", " + item.getLabel());
+                    pType = (PType) item.getValue();
+                    textbox_Type.setAttribute("pType", pType);
 
-        pType = (PType) item.getValue();
-        textbox_Type.setAttribute("pType", pType);
+                    List<PRootCaused> pRootCausedList = getPelaksanaanGangguanService().getRootCausedByPTypeId(pType.getP_idoss_type_id());
+                    if (pRootCausedList.size() > 0) {
+                        listbox_RootCaused.setModel(new ListModelList(pRootCausedList));
+                        listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
+                        listbox_RootCaused.setSelectedIndex(0);
+                    }
 
-        List<PRootCaused> pRootCausedList = getPelaksanaanGangguanService().getRootCausedByPTypeId(pType.getP_idoss_type_id());
-        if (pRootCausedList.size() > 0) {
-            listbox_RootCaused.setModel(new ListModelList(pRootCausedList));
-            listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
-            listbox_RootCaused.setSelectedIndex(0);
+                    window_Type.onClose();
+                }
+            }
         }
-        
-        window_Type.onClose();
 
     }
 

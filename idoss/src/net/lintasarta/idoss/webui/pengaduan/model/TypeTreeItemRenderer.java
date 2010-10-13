@@ -19,21 +19,17 @@ public class TypeTreeItemRenderer implements TreeitemRenderer, Serializable {
 
     public void render(Treeitem item, Object data) throws Exception {
         SimpleTreeNode t = (SimpleTreeNode)data;
-//        String typeDesc = (String)t.getData();
         PType pType = (PType)t.getData();
-        //Contruct treecells
-//          Treecell treecell = new Treecell(typeDesc);
         Treecell treecell = new Treecell(pType.getType_desc());
         Treerow tr;
 
-        if(item.getTreerow()==null){
+        if(item.getTreerow() == null){
             tr = new Treerow();
             tr.setParent(item);
         }else{
             tr = item.getTreerow();
             tr.getChildren().clear();
         }
-        //Attach treecells to treerow
         treecell.setParent(tr);
         item.setValue(pType);
         item.setOpen(false);
