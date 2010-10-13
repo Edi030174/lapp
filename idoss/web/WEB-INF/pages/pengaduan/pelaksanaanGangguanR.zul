@@ -1,0 +1,123 @@
+<?page title="Form Pelaksanaan Gangguan" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <window id="window_PelaksanaanGangguan" position="center,top" width="590px" sizable="false" border="normal"
+            title="Form Pelaksanaan Gangguan" closable="true" apply="${pelaksanaanGangguanCtrl}">
+        <style>
+            body { padding: 0 0; /* 0 padding on top and bottom and 0
+            padding on right and left */ }
+
+            <!-- cut the vertical borders in the rows -->
+            tr.z-row td.z-row-inner { border-right: 0px #CCC; }
+
+            <!-- Make Plain Grid -->
+            .GridLayoutNoBorder tr.z-row td.z-row-inner, tr.z-row
+            .z-cell,div.z-grid { border: none; overflow: hidden; zoom:
+            1; background: white; border-top: none; border-left: none;
+            border-right: none; border-bottom: none; }
+
+            <!-- Title in bold letters -->
+            .z-groupbox-hl .z-groupbox-header { color: #000000;
+            font-weight: bold; }
+        </style>
+        <caption label="Pelaksanaan Gangguan" style="font-weight:bold"/>
+        <grid style="border:0px">
+            <columns sizable="true ">
+                <column width="14%"/>
+                <column/>
+            </columns>
+            <rows>
+                <row style="border:0px">
+                    <label value="Nomor Tiket"/>
+                    <textbox id="textbox_NomorTiket" readonly="true"/>
+                </row>
+                <row style="border:0px">
+                    <label value="Pelapor"/>
+                    <hbox>
+                        <textbox id="texbox_Pelapor" readonly="true"/>
+                        <space/>
+                        <vbox>
+                            <space height="0.5px"/>
+                            <label value="Bagian"/>
+                        </vbox>
+                        <textbox id="texbox_Bagian" readonly="true"/>
+                    </hbox>
+                </row>
+                <row style="border:0px">
+                    <label value="Judul"/>
+                    <textbox id="texbox_Judul" width="99%" readonly="true"/>
+                </row>
+                <row style="border:0px">
+                    <label value="Deskripsi"/>
+                    <fckeditor id="fckeditor_Deskripsi" customConfigurationsPath="/js/fckeditor.js"
+                               toolbarSet="Basic"
+                               width="99%" height="50%"/>
+                </row>
+                <row style="border:0px">
+                    <label value="Dampak"/>
+                    <vbox>
+                        <hbox>
+                            <radiogroup id="radiogroup_Dampak" orient="horizontal">
+                                <radio id="radio_minor" label="Minor" value="Minor" selected="true"/>
+                                <radio id="radio_mayor" label="Mayor" value="Mayor"/>
+                            </radiogroup>
+                            <space width="100px"/>
+                            <vbox>
+                                <space height="0.5px"/>
+                                <label value="Type "/>
+                            </vbox>
+                            <!--<space width="50px"/>-->
+                            <!--<listbox id="listbox_Type" width="140px" mold="select" rows="1"/>-->
+                            <textbox id="textbox_Type" readonly="true"/>
+                            <button id="btn_Type" label="Pilih"/>
+                        </hbox>
+                    </vbox>
+                </row>
+                <row style="border:0px">
+                    <label value="Pelaksana "/>
+                    <hbox>
+                        <listbox id="listbox_NamaPelaksana" width="200px" mold="select" rows="1"/>
+                    </hbox>
+                </row>
+                <row style="border:0px">
+                    <hbox>
+                        <label value="Root Caused"/>
+                    </hbox>
+                    <hbox>
+                        <!--<combobox id="combobox_RootCaused" width="90%"/>-->
+                        <listbox id="listbox_RootCaused" width="200px" mold="select" rows="1"/>
+                        <button label=" + " id="btn_TambahRootCaused"/>
+                        <space/>
+                        <vbox>
+                            <space height="0.5px"/>
+                            <label value="status"/>
+                        </vbox>
+                        <!--<space width="50px"/>-->
+                        <combobox id="combobox_Status" width="140px" readonly="true">
+                            <comboitem label="Open"/>
+                            <comboitem label="In Progres"/>
+                            <comboitem label="Pending"/>
+                            <comboitem label="Closed"/>
+                        </combobox>
+                    </hbox>
+                </row>
+                <row style="border:0px">
+                    <label value="Solusi"/>
+                    <fckeditor id="fckeditor_Solusi" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic"
+                               width="99%" height="50%"/>
+                </row>
+            </rows>
+        </grid>
+        <div align="center">
+            <button id="btnSimpan_PelaksanaanGangguan" label="Simpan" height="20"
+                    image="/images/icons/btn_save2_16x16.gif"
+                    tooltiptext="${c:l('btnSimpan_PelaksanaanGangguan.tooltiptext')}"/>
+            <button id="btnBatal_PelaksanaanGangguan" label="Keluar" height="20"
+                    image="/images/icons/btn_close_16x16.gif"
+                    tooltiptext="${c:l('btnBatal_PelaksanaanGangguan.tooltiptext')}"/>
+        </div>
+    </window>
+</zk>
