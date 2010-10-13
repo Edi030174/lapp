@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
     <window id="window_Solusi" position="center,bottom" mode="overlapped" border="normal" width="640px" height="300px"
-            title="Solusi" closable="true" sizable="true" contentStyle="overflow:auto">
+            title="Solusi" closable="true" sizable="true" contentStyle="overflow:auto" apply="${daftarSolusiCtrl}">
         <style>
             body { padding: 0 0; /* 0 padding on top and bottom and 0
             padding on right and left */ }
