@@ -3,6 +3,7 @@ package net.lintasarta.idoss.webui.pengaduan;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.idoss.webui.util.NoEmptyStringsConstraint;
+import net.lintasarta.pengaduan.model.TDeskripsi;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.pengaduan.model.comparator.TPenangananGangguanComparator;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
@@ -207,19 +208,15 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doSimpan() throws InterruptedException {
 
-//        Field[] fields = new Field[0];
-//        try {
-//            fields = Class.forName("net.lintasarta.pengaduan.model.TPenangananGangguan").getDeclaredFields();
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-//        }
-//        for (Field field : fields) {
-//            String fieldStr = field.toString();
-//            int i = fieldStr.lastIndexOf(".");
-//            fieldStr = fieldStr.substring(i+1, fieldStr.length());
-//            System.out.println("fieldStr = " + fieldStr);
-//        }
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
+
+        TDeskripsi tDeskripsi = new TDeskripsi();
+        tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
+
+        if (fckeditor_Des.getValue() != null)
+            tDeskripsi.setDeskripsi(fckeditor_Des.getValue());
+
+        tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
 
         if (!isValidationOn()) {
             doSetValidation();
@@ -228,7 +225,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         doWriteComponentsToBean(tPenangananGangguan);
 
         try {
-            getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan);
+            getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");

@@ -79,7 +79,6 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        doCheckRights();
         doHideTanggal();
 
         int panelHeight = 25;
@@ -132,13 +131,6 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
 
             getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
             listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
-    }
-
-    private void doCheckRights() {
-        UserWorkspace workspace = getUserWorkspace();
-        btnBuatBaru_DaftarTiket.setVisible(workspace.isAllowed("btnBuatBaru_DaftarTiket"));
-        btnBuatBaru_DaftarTiketHelpdesk.setVisible(workspace.isAllowed("btnBuatBaru_DaftarTiketHelpdesk"));
-
     }
 
     public void onDoubleClickedTiketItem(Event event) throws Exception {

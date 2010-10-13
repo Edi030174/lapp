@@ -20,6 +20,7 @@
         <property name="pRootCausedDAO" ref="pRootCausedDAO"/>
         <property name="tPenangananGangguanDAO" ref="tPenangananGangguanDAO"/>
         <property name="vHrEmployeePelaksanaDAO" ref="vHrEmployeePelaksanaDAO"/>
+        <property name="tDeskripsiService" ref="tDeskripsiService"/>
     </bean>
     <bean id="reportPengaduanService" class="net.lintasarta.report.pengaduan.service.impl.ReportPengaduanServiceImpl">
         <property name="reportPengaduanDAO" ref="reportPengaduanDAO"/>

@@ -122,7 +122,7 @@ public class PelaksanaanGangguanServiceTest {
         DecimalFormat durasiResultMttr = new DecimalFormat("##0.000000");
         tPenangananGangguan.setMttr(durasiResultMttr.format(diffResultMttr));
 
-        pelaksanaanGangguanService.saveOrUpdate(tPenangananGangguan);
+        pelaksanaanGangguanService.saveOrUpdate(tPenangananGangguan,null);
         TPenangananGangguan tPenangananGangguanResult = pelaksanaanGangguanService.getDetail(tiketId);
         String namaPelaporActual = tPenangananGangguanResult.getNama_pelapor();
         String namaPelaporExpected = "ZULHELMY";

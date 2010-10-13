@@ -57,6 +57,10 @@
                                width="99%" height="50%"/>
                 </row>
                 <row style="border:0px">
+                    <label value="zzz" visible="false"/>
+                    <button id="btn_historyDeskripsi" label="history deskripsi"/>
+                </row>
+                <row style="border:0px">
                     <label value="Dampak"/>
                     <vbox>
                         <hbox>
@@ -108,6 +112,10 @@
                     <label value="Solusi"/>
                     <fckeditor id="fckeditor_Solusi" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic"
                                width="99%" height="50%"/>
+                </row>
+                <row style="border:0px">
+                    <label value="zzz" visible="false"/>
+                    <button id="btn_historySolusi" label="history solusi"/>
                 </row>
             </rows>
         </grid>
