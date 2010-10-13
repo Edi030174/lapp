@@ -92,7 +92,7 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
     }
 
     public void createTDeskripsi(TDeskripsi tDeskripsi) {
-        if (tDeskripsi.getDeskripsi() != null && tDeskripsi.getSolusi() != null) {
+        if (tDeskripsi.getDeskripsi() != null || tDeskripsi.getSolusi() != null) {
             tDeskripsi.setUpdated_date(new Timestamp(Calendar.getInstance().getTimeInMillis()));
             tDeskripsiService.createTDeskripsi(tDeskripsi);
         }
