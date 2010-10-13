@@ -36,7 +36,7 @@ public class TDeskripsiDAOTest {
     public void testGetTDeskripsiByGangguanId() {
         String id = "0";
         List<TDeskripsi> tDeskripsiList = tDeskripsiDAO.getTDeskripsiByGangguanId(id);
-        assertEquals(1, tDeskripsiList.size());
+        assertEquals(5, tDeskripsiList.size());
 
     }
 

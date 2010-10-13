@@ -15,6 +15,9 @@
         <property name="vHrEmployeeDAO" ref="vHrEmployeeDAO"/>
         <property name="tDeskripsiService" ref="tDeskripsiService" />
     </bean>
+    <bean id="tdeskripsiService" class="net.lintasarta.pengaduan.service.impl.TDeskripsiServiceImpl">
+        <property name="tDeskripsiDAO" ref="tDeskripsiDAO"/>
+    </bean>
     <bean id="pelaksaanaanGangguanService" class="net.lintasarta.pengaduan.service.impl.PelaksanaanGangguanServiceImpl">
         <property name="pTypeDAO" ref="pTypeDAO"/>
         <property name="pRootCausedDAO" ref="pRootCausedDAO"/>

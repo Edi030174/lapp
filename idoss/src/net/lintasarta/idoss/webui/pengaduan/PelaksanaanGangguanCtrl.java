@@ -162,6 +162,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         }
 
         HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("t_idoss_penanganan_gangguan_id", gettPenangananGangguan().getT_idoss_penanganan_gangguan_id());
         try {
             Executions.createComponents("/WEB-INF/pages/pengaduan/hisDeskripsi.zul", null, map);
         } catch (Exception e) {
