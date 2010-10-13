@@ -1,5 +1,6 @@
 package net.lintasarta.pengaduan.service;
 
+import net.lintasarta.pengaduan.model.TDeskripsi;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.security.model.VHrEmployee;
 
@@ -29,5 +30,5 @@ public interface PenangananGangguanService {
 
     List<TPenangananGangguan> getAllTPenangananGangguanByStatus(TPenangananGangguan tPenangananGangguan);
 
-    void createPenangananGangguan(TPenangananGangguan tPenangananGangguan);
+    void createPenangananGangguan(TPenangananGangguan tPenangananGangguan, TDeskripsi tDeskripsi);
 }

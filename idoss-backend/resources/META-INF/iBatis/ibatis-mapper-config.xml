@@ -27,6 +27,7 @@
         <typeAlias type="net.lintasarta.pengaduan.model.PType" alias="ptype"/>
         <typeAlias type="net.lintasarta.pengaduan.model.VHrEmployeePelaksana" alias="vhremployeepelaksana"/>
         <typeAlias type="net.lintasarta.pengaduan.model.PTypeRootCaused" alias="ptyperootcaused"/>
+        <typeAlias type="net.lintasarta.pengaduan.model.TDeskripsi" alias="tdeskripsi"/>
         <!--reportpermohonan-->
         <typeAlias type="net.lintasarta.report.permohonan.model.ReportAduan" alias="ReportAduan"/>
         <typeAlias type="net.lintasarta.report.permohonan.model.ReportBelumSelesai" alias="reportbelumselesai"/>
@@ -56,6 +57,7 @@
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/vhremployeepelaksana.xml"/>
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/PTypeRootCaused.xml"/>
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/PApplication.xml"/>
+        <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/tdeskripsi.xml"/>
 
         <!--report permohonan-->
         <mapper resource="net/lintasarta/report/permohonan/dao/impl/reportAduan.xml"/>

@@ -13,6 +13,7 @@
     <bean id="penangananGangguanService" class="net.lintasarta.pengaduan.service.impl.PenangananGangguanServiceImpl">
         <property name="tPenangananGangguanDAO" ref="tPenangananGangguanDAO"/>
         <property name="vHrEmployeeDAO" ref="vHrEmployeeDAO"/>
+        <property name="tDeskripsiService" ref="tDeskripsiService" />
     </bean>
     <bean id="pelaksaanaanGangguanService" class="net.lintasarta.pengaduan.service.impl.PelaksanaanGangguanServiceImpl">
         <property name="pTypeDAO" ref="pTypeDAO"/>
@@ -25,5 +26,8 @@
     </bean>
     <bean id="PApplicationService" class="net.lintasarta.pengaduan.service.impl.PApplicationServiceImpl">
         <property name="pApplicationDAO" ref="pApplicationDAO"/>
+    </bean>
+    <bean id="tDeskripsiService" class="net.lintasarta.pengaduan.service.impl.TDeskripsiServiceImpl">
+        <property name="tDeskripsiDAO" ref="tDeskripsiDAO" />
     </bean>
 </beans>

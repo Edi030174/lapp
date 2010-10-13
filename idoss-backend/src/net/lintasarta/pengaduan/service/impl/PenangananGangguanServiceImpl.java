@@ -2,9 +2,11 @@ package net.lintasarta.pengaduan.service.impl;
 
 import net.lintasarta.constants.Constants;
 import net.lintasarta.pengaduan.dao.TPenangananGangguanDAO;
+import net.lintasarta.pengaduan.model.TDeskripsi;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.pengaduan.model.comparator.TPenangananGangguanComparator;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
+import net.lintasarta.pengaduan.service.TDeskripsiService;
 import net.lintasarta.security.dao.VHrEmployeeDAO;
 import net.lintasarta.security.model.VHrEmployee;
 import net.lintasarta.util.TicketIdGenerator;
@@ -23,6 +25,7 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
 
     private TPenangananGangguanDAO tPenangananGangguanDAO;
     private VHrEmployeeDAO vHrEmployeeDAO;
+    private TDeskripsiService tDeskripsiService;
 
     public TPenangananGangguanDAO gettPenangananGangguanDAO() {
         return tPenangananGangguanDAO;
@@ -42,6 +45,10 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
 
     public TPenangananGangguan getNewPenangananGangguan() {
         return new TPenangananGangguan();
+    }
+
+    public void settDeskripsiService(TDeskripsiService tDeskripsiService) {
+        this.tDeskripsiService = tDeskripsiService;
     }
 
     public String getTiketId() {
@@ -84,7 +91,14 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         return tPenangananGangguans;
     }
 
-    public void createPenangananGangguan(TPenangananGangguan tPenangananGangguan) {
+    public void createTDeskripsi(TDeskripsi tDeskripsi) {
+        if (tDeskripsi.getDeskripsi() != null && tDeskripsi.getSolusi() != null) {
+            tDeskripsi.setUpdated_date(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+            tDeskripsiService.createTDeskripsi(tDeskripsi);
+        }
+    }
+
+    public void createPenangananGangguan(TPenangananGangguan tPenangananGangguan, TDeskripsi tDeskripsi) {
 
         int i = tPenangananGangguanDAO.getSeqTiketId();
         tPenangananGangguan.setGen_id_col(i);
@@ -96,6 +110,7 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         tPenangananGangguan.setCreated_date(ts);
         tPenangananGangguan.setUpdated_date(ts);
         gettPenangananGangguanDAO().createTPenangananGangguan(tPenangananGangguan);
-    }
 
+        createTDeskripsi(tDeskripsi);
+    }
 }
