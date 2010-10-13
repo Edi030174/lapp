@@ -196,10 +196,11 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         TDeskripsi tDeskripsi = new TDeskripsi();
         tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
 
-        if (tPenangananGangguan.getDeskripsi() != null)
-            tDeskripsi.setDeskripsi(tPenangananGangguan.getDeskripsi());
-        if (tPenangananGangguan.getSolusi() != null)
-            tDeskripsi.setSolusi(tPenangananGangguan.getSolusi());
+        if (fckeditor_Deskripsi.getValue() != null)
+            tDeskripsi.setDeskripsi(fckeditor_Deskripsi.getValue());
+        if (fckeditor_Solusi.getValue() != null)
+            tDeskripsi.setSolusi(fckeditor_Solusi.getValue());
+
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
 
         if (!isValidationOn()) {
