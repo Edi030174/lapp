@@ -1,6 +1,5 @@
 package net.lintasarta.idoss.webui.pengaduan;
 
-import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.pengaduan.model.PelaksanaComboBoxItemRenderer;
 import net.lintasarta.idoss.webui.pengaduan.model.PelaksanaListModelItemRenderer;
 import net.lintasarta.idoss.webui.pengaduan.model.RootCausedListModelItemRenderer;
@@ -45,17 +44,9 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     protected Listbox listbox_RootCaused;
     protected Listbox listbox_NamaPelaksana;
     protected Combobox combobox_Status;
-    protected Button btn_TambahRootCaused;
-    protected Button btnSimpan_PenangananGangguan;
     protected PenangananGangguanCtrl pelaksanaaGangguanCtrl;
     private transient Listbox listbox_DaftarTiket;
-    private transient String oldVar_textbox_Pelaksana;
-    private transient String oldVar_textbox_NikPelaksana;
     private transient String oldVar_fckeditor_Solusi;
-    private transient String oldVar_radiogroup_Dampak;
-    private transient String oldVar_combobox_Type;
-    private transient String oldVar_combobox_RootCaused;
-    private transient String oldVar_combobox_Status;
 
     private transient boolean validationOn;
 
@@ -143,20 +134,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     }
 
     private void doWriteBeanToComponent(TPenangananGangguan tPenangananGangguan) throws Exception {
-//        textbox_NomorTiket.setValue(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
-//        texbox_Pelapor.setValue(tPenangananGangguan.getNama_pelapor());
-//        texbox_Bagian.setValue(tPenangananGangguan.getBagian_pelapor());
-//        texbox_Judul.setValue(tPenangananGangguan.getJudul());
-//        fckeditor_Deskripsi.setValue(tPenangananGangguan.getDeskripsi());
-//        fckeditor_Solusi.setValue(tPenangananGangguan.getSolusi());
-//        combobox_Status.setValue(tPenangananGangguan.getStatus());
-
         textbox_NomorTiket.setValue(getPenangananGangguanService().getTiketId());
-//        texbox_Pelapor.setValue(getUserWorkspace().getUserSession().getEmployeeName());
-//        textbox_NikPelapor.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
-//        texbox_Bagian.setValue(getUserWorkspace().getUserSession().getDepartment());
-
-        VHrEmployeePelaksana vHrEmployeePelaksana = getPelaksanaanGangguanService().getVHrEmployeePelaksanaById(tPenangananGangguan.getNik_pelaksana());
 
         int indexPlks = 0;
         ListModel listPlks = listbox_NamaPelaksana.getModel();
@@ -335,13 +313,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     private boolean isDataChanged() throws Exception {
         boolean change = false;
 
-//        if (oldVar_textbox_Pelaksana !=(textbox_Pelaksana.getValue())) {
-//            change = true;
-//        }
-//        if (oldVar_textbox_NikPelaksana !=(textbox_NikPelaksana.getValue())) {
-//            change = true;
-//        }
-        if (oldVar_fckeditor_Solusi != (fckeditor_Solusi.getValue())) {
+        if (!oldVar_fckeditor_Solusi.equals(fckeditor_Solusi.getValue())) {
             change = true;
         }
 
