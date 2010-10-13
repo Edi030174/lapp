@@ -36,6 +36,7 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
 
     protected Window window_Monitoring;
     protected Textbox textbox_Cari;
+    protected Hbox idHboxTanggal;
     protected Datebox datebox_TanggalAwal;
     protected Datebox datebox_TanggalAkhir;
     protected Button btnBuatBaru_DaftarTiket;
@@ -79,6 +80,7 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
             logger.debug("--> " + event.toString());
         }
         doCheckRights();
+        doHideTanggal();
 
         int panelHeight = 25;
         // TODO put the logic for working with panel in the ApplicationWorkspace
@@ -118,10 +120,8 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
         setDaftarTiket();
     }
 
-    private void setDaftarTiket() {
+    public void setDaftarTiket() {
         UserSession userSession = getUserWorkspace().getUserSession();
-        String tes = userSession.getEmployeeRole();
-//        if (userSession.getEmployeeRole().equals("helpd")) {
             List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
 
             PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
@@ -132,21 +132,6 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
 
             getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
             listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
-//        } else {
-//            String nikPelapor = getUserWorkspace().getUserSession().getEmployeeNo();
-//            TPenangananGangguan tPenangananGangguan = new TPenangananGangguan();
-//            tPenangananGangguan.setNik_pelapor(nikPelapor);
-//            List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGanguanByNikPelapor(tPenangananGangguan);
-//
-//            PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
-//            pagedListHolder.setPageSize(getCountRows());
-//
-//            paging_DaftarTiket.setPageSize(getCountRows());
-//            paging_DaftarTiket.setDetailed(true);
-//
-//            getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
-//            listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
-//        }
     }
 
     private void doCheckRights() {
@@ -329,6 +314,45 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
         setDaftarTiket();
     }
 
+    public void onSelect$listbox_Cari(Event event)throws Exception{
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        logger.debug("NILAINYA : "+listbox_Cari.getSelectedItem().getValue().toString());
+        int hierarchy = Integer.parseInt(listbox_Cari.getSelectedItem().getValue().toString());
+        doShowBerdasarkan(hierarchy);
+    }
+
+    private void doShowBerdasarkan(int hierarchy){
+        switch(hierarchy){
+            case 1 :{
+
+               doHideTanggal();
+                break;
+            }
+            case 2 :{
+               doHideTanggal();
+                break;
+            }
+            case 3 :{
+               doHideTanggal();
+                break;
+            }
+            case 4 :{
+               doHideTanggal();
+                break;
+            }
+            case 5 :{
+               doHideTanggal();
+                break;
+            }
+            case 6 :{
+               doViewTanggal();
+                break;
+            }
+        }
+    }
+
     public void onClick$btn_report(Event event) throws InterruptedException {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
@@ -389,6 +413,14 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
         }
+    }
+
+    private void doViewTanggal() {
+        idHboxTanggal.setVisible(true);
+    }
+
+    private void doHideTanggal() {
+        idHboxTanggal.setVisible(false);
     }
 
     public int getCountRows() {

@@ -143,7 +143,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             if (np.getEmployee_no().equals(tPenangananGangguan.getNik_pelaksana())) indexPlks = i;
         }
         listbox_NamaPelaksana.setSelectedIndex(indexPlks);
-
+        combobox_Status.setSelectedIndex(0);
         if (tPenangananGangguan.getP_idoss_type_id() != null) {
             pType = getTypeService().getTypeByTypeID(tPenangananGangguan.getP_idoss_type_id());
 
@@ -192,7 +192,6 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     private void doSimpan() throws Exception {
 
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
-
         if (!isValidationOn()) {
             doSetValidation();
         }
@@ -224,7 +223,13 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
 
         setValidationOn(true);
 
+        combobox_NamaPelapor.setConstraint(new NoEmptyStringsConstraint());
+        texbox_Bagian.setConstraint(new NoEmptyStringsConstraint());
+        
         texbox_Judul.setConstraint(new NoEmptyStringsConstraint());
+        textbox_Type.setConstraint(new NoEmptyStringsConstraint());
+        combobox_Status.setConstraint(new NoEmptyStringsConstraint());
+
 
 //        textbox_Ext.setConstraint( new SimpleConstraint("[0-9-/() ]*", Labels.getLabel("message.error.PhoneNumber")));
     }
@@ -278,6 +283,22 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     }
 
     private void doClose() throws Exception {
+        if (combobox_NamaPelapor.getConstraint() != null) {
+            combobox_NamaPelapor = new Combobox();
+        }
+        if (texbox_Bagian.getConstraint() != null) {
+            texbox_Bagian = new Textbox();
+        }
+        if (texbox_Judul.getConstraint() != null) {
+            texbox_Judul = new Textbox();
+        }
+        if (textbox_Type.getConstraint() != null) {
+            textbox_Type = new Textbox();
+        }
+        if (combobox_Status.getConstraint() != null) {
+            combobox_Status = new Combobox();
+        }
+
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> DataIsChanged :" + isDataChanged());

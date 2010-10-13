@@ -5,6 +5,7 @@ import net.lintasarta.idoss.webui.pengaduan.model.PelaksanaListModelItemRenderer
 import net.lintasarta.idoss.webui.pengaduan.model.RootCausedListModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
+import net.lintasarta.idoss.webui.util.NoEmptyStringsConstraint;
 import net.lintasarta.pengaduan.model.*;
 import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.pengaduan.service.RootCausedService;
@@ -53,7 +54,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 //    protected Button btnBatal_RootCaused;
     protected Button btnSimpan_PelaksanaanGangguan;//monitoring disable all
 
-//    protected Button btnBatal_PelaksanaanGangguan;
+private transient boolean validationOn;
     protected PelaksanaanGangguanCtrl pelaksanaaGangguanCtrl;
     private transient Listbox listbox_DaftarTiket;
     private transient String oldVar_textbox_Pelaksana;
@@ -120,7 +121,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     private void doCheckRights() {
         UserWorkspace workspace = getUserWorkspace();
         btnSimpan_PelaksanaanGangguan.setVisible(workspace.isAllowed("btnSimpan_PelaksanaanGangguan"));
-        
+
 
 
     }
@@ -155,6 +156,10 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     private void doSimpan() throws Exception {
 
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
+
+        if (!isValidationOn()) {
+            doSetValidation();
+        }
 
         doWriteComponentsToBean(tPenangananGangguan);
 
@@ -203,7 +208,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 //            listbox_NamaPelaksana.setSelectedIndex(-1);
 //        }
 //        listbox_NamaPelaksana.setModel(new ListModelList());
-        
+
         int indexPlks = 0;
         ListModel listPlks = listbox_NamaPelaksana.getModel();
         for (int i =0; i < listPlks.getSize(); i++) {
@@ -272,6 +277,12 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     }
 
     private void doClose() throws Exception {
+         if (texbox_Pelapor.getConstraint() != null) {
+            texbox_Pelapor = new Textbox();
+        }
+        if (texbox_Bagian.getConstraint() != null) {
+            texbox_Bagian = new Textbox();
+        }
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> DataIsChanged :" + isDataChanged());
@@ -369,6 +380,27 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
         }
+    }
+
+    private void doSetValidation() {
+
+        setValidationOn(true);
+
+        textbox_NomorTiket.setConstraint(new NoEmptyStringsConstraint());
+        texbox_Pelapor.setConstraint(new NoEmptyStringsConstraint());
+        texbox_Bagian.setConstraint(new NoEmptyStringsConstraint());
+        texbox_Judul.setConstraint(new NoEmptyStringsConstraint());
+        textbox_Type.setConstraint(new NoEmptyStringsConstraint());
+        combobox_Status.setConstraint(new NoEmptyStringsConstraint());
+        
+    }
+
+    public boolean isValidationOn() {
+        return validationOn;
+    }
+
+    public void setValidationOn(boolean validationOn) {
+        this.validationOn = validationOn;
     }
 
     public TPenangananGangguan gettPenangananGangguan() {

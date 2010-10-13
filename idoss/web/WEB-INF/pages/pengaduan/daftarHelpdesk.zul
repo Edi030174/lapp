@@ -31,11 +31,12 @@
                     <label value="Cari berdasarkan :"/>
                     <listbox id="listbox_Cari" rows="1" mold="select" width="150px">
                         <listhead visible="false"/>
-                        <listitem id="listitem_Nomor" label="Nomor Tiket" selected="true"/>
-                        <listitem id="listitem_Judul" label="Judul"/>
-                        <listitem id="listitem_Status" label="Status"/>
-                        <listitem id="listitem_Pelapor" label="Pelapor"/>
-                        <listitem id="listitem_PJ" label="Penanggung Jawab"/>
+                        <listitem id="listitem_Nomor" label="Nomor Tiket" value="1" selected="true"/>
+                        <listitem id="listitem_Judul" label="Judul" value="2"/>
+                        <listitem id="listitem_Status" label="Status" value="3"/>
+                        <listitem id="listitem_Pelapor" label="Pelapor" value="4"/>
+                        <listitem id="listitem_PJ" label="Penanggung Jawab" value="5"/>
+                        <listitem id="listitem_Tanggal" label="Tanggal" value="6"/>
                     </listbox>
                     <textbox id="textbox_Cari" value=""/>
                     <checkbox id="checkbox_All" label="Show All" checked="false"/>
@@ -43,7 +44,7 @@
                             image="/images/icons/btn_search2_16x16.gif"
                             tooltiptext="${c:l('btnCari_DaftarTiket.tooltiptext')}"/>
                 </hbox>
-                <hbox>
+                <hbox id="idHboxTanggal">
                     <label value="Tanggal Awal :" style="align:right"/>
                     <datebox id="datebox_TanggalAwal" cols="12" format="dd MMMM yyyy"
                              readonly="true" width="150px"

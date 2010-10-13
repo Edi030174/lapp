@@ -44,7 +44,6 @@
                             image="/images/icons/btn_search2_16x16.gif"
                             tooltiptext="${c:l('btnCari_DaftarTiket.tooltiptext')}"/>
                 </hbox>
-
                 <hbox id="idHboxTanggal">
                     <label value="Tanggal Awal :" style="align:right"/>
                     <datebox id="datebox_TanggalAwal" cols="12" format="dd MMMM yyyy"
@@ -55,7 +54,6 @@
                              readonly="true" width="150px"
                              style="color: #000000 !important;"/>
                 </hbox>
-
             </vbox>
         </hbox>
         <borderlayout id="borderlayout_daftarTroubleTiket">
