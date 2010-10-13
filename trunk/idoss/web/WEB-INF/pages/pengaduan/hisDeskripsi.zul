@@ -1,0 +1,35 @@
+<?page id="daftarZul" title="Form Daftar Trouble Tiket" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <window id="window_Deskripsi" position="center,top" mode="overlapped" border="normal" width="640px" height="300px"
+            title="Deskripsi" closable="true" sizable="true" contentStyle="overflow:auto" apply="${daftarDeskripsi}">
+        <style>
+            body { padding: 0 0; /* 0 padding on top and bottom and 0
+            padding on right and left */ }
+            }
+        </style>
+        <timer id="timer" delay="300000" repeats="true"/>
+        <panel id="panel_daftarDeskripsi" title="" border="none" />
+        <borderlayout id="borderlayout_daftarDeskripsi">
+            <north border="none" height="26px">
+                <paging id="paging_DaftarDeskripsi" />
+            </north>
+            <center border="none">
+                <listbox id="listbox_DaftarDeskripsi" vflex="true" width="99.9%" height="100%" multiple="false">
+                    <listhead sizable="true">
+                        <listheader id="listheader_Tanggal" label="Tanggal"
+                                    sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_By" label="By" align="left"
+                                    sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Deskripsi" label="Deskripsi" align="left"
+                                    sort="auto" style="font-size:11px"/>
+                    </listhead>
+                </listbox>
+            </center>
+            <south border="none"/>
+        </borderlayout>
+    </window>
+</zk>

@@ -54,7 +54,11 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 //    protected Button btnBatal_RootCaused;
     protected Button btnSimpan_PelaksanaanGangguan;//monitoring disable all
 
-private transient boolean validationOn;
+    protected Button btn_historyDeskripsi;
+    protected Button btn_historySolusi;
+
+
+    private transient boolean validationOn;
     protected PelaksanaanGangguanCtrl pelaksanaaGangguanCtrl;
     private transient Listbox listbox_DaftarTiket;
     private transient String oldVar_textbox_Pelaksana;
@@ -123,7 +127,6 @@ private transient boolean validationOn;
         btnSimpan_PelaksanaanGangguan.setVisible(workspace.isAllowed("btnSimpan_PelaksanaanGangguan"));
 
 
-
     }
 
     public void onClose$window_PelaksanaanGangguan(Event event) throws Exception {
@@ -153,6 +156,46 @@ private transient boolean validationOn;
         window_PelaksanaanGangguan.onClose();
     }
 
+    public void onClick$btn_historyDeskripsi(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        try {
+            Executions.createComponents("/WEB-INF/pages/pengaduan/hisDeskripsi.zul", null, map);
+        } catch (Exception e) {
+            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
+
+            // Show a error box
+            String msg = e.getMessage();
+            String title = Labels.getLabel("message_Error");
+
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
+        }
+    }
+
+    public void onClick$btn_historySolusi(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        try {
+            Executions.createComponents("/WEB-INF/pages/pengaduan/hisSolusi.zul", null, map);
+        } catch (Exception e) {
+            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
+
+            // Show a error box
+            String msg = e.getMessage();
+            String title = Labels.getLabel("message_Error");
+
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
+        }
+    }
+
     private void doSimpan() throws Exception {
 
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
@@ -163,8 +206,18 @@ private transient boolean validationOn;
 
         doWriteComponentsToBean(tPenangananGangguan);
 
+        TDeskripsi tDeskripsi = new TDeskripsi();
+        tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
+
+        if (fckeditor_Deskripsi.getValue() != null)
+            tDeskripsi.setDeskripsi(fckeditor_Deskripsi.getValue());
+        if (fckeditor_Solusi.getValue() != null)
+            tDeskripsi.setSolusi(fckeditor_Solusi.getValue());
+
+        tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
+
         try {
-            getPelaksanaanGangguanService().saveOrUpdate(tPenangananGangguan);
+            getPelaksanaanGangguanService().saveOrUpdate(tPenangananGangguan,tDeskripsi);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -184,7 +237,7 @@ private transient boolean validationOn;
 
         try {
             doWriteBeanToComponent(tPenangananGangguan);
-            window_PelaksanaanGangguan.doModal();
+            window_PelaksanaanGangguan.doOverlapped();
 
         } catch (Exception e) {
             Messagebox.show(e.toString());
@@ -196,8 +249,6 @@ private transient boolean validationOn;
         texbox_Pelapor.setValue(tPenangananGangguan.getNama_pelapor());
         texbox_Bagian.setValue(tPenangananGangguan.getBagian_pelapor());
         texbox_Judul.setValue(tPenangananGangguan.getJudul());
-        fckeditor_Deskripsi.setValue(tPenangananGangguan.getDeskripsi());
-        fckeditor_Solusi.setValue(tPenangananGangguan.getSolusi());
         combobox_Status.setValue(tPenangananGangguan.getStatus());
 
 //        ListModelList lml = (ListModelList) listbox_NamaPelaksana.getModel();
@@ -211,9 +262,9 @@ private transient boolean validationOn;
 
         int indexPlks = 0;
         ListModel listPlks = listbox_NamaPelaksana.getModel();
-        for (int i =0; i < listPlks.getSize(); i++) {
-                VHrEmployeePelaksana np = (VHrEmployeePelaksana) listPlks.getElementAt(i);
-                if (np.getEmployee_no().equals(tPenangananGangguan.getNik_pelaksana())) indexPlks =i;
+        for (int i = 0; i < listPlks.getSize(); i++) {
+            VHrEmployeePelaksana np = (VHrEmployeePelaksana) listPlks.getElementAt(i);
+            if (np.getEmployee_no().equals(tPenangananGangguan.getNik_pelaksana())) indexPlks = i;
         }
         listbox_NamaPelaksana.setSelectedIndex(indexPlks);
 
@@ -227,9 +278,9 @@ private transient boolean validationOn;
             listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
             int indexRoot = 0;
             ListModel listRoot = listbox_RootCaused.getModel();
-            for (int i =0; i < listRoot.getSize(); i++) {
-                    PRootCaused rc = (PRootCaused) listRoot.getElementAt(i);
-                    if (rc.getP_idoss_root_caused_id()==tPenangananGangguan.getP_idoss_root_caused_id()) indexRoot =i;
+            for (int i = 0; i < listRoot.getSize(); i++) {
+                PRootCaused rc = (PRootCaused) listRoot.getElementAt(i);
+                if (rc.getP_idoss_root_caused_id() == tPenangananGangguan.getP_idoss_root_caused_id()) indexRoot = i;
             }
             listbox_RootCaused.setSelectedIndex(indexRoot);
         }
@@ -237,7 +288,9 @@ private transient boolean validationOn;
 
     private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
         tPenangananGangguan.setDeskripsi(fckeditor_Deskripsi.getValue());
-        tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
+        if (fckeditor_Solusi.getValue() != null) {
+            tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
+        }
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tPenangananGangguan.setDampak(dampak.getValue());
         Listitem item = listbox_RootCaused.getSelectedItem();
@@ -269,7 +322,7 @@ private transient boolean validationOn;
         tPenangananGangguan.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
 
         tPenangananGangguan.setStatus(combobox_Status.getValue());
-        if(combobox_Status.getValue().equals("Closed")){
+        if (combobox_Status.getValue().equals("Closed")) {
             Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
             tPenangananGangguan.setUpdated_date(ts);
         }
@@ -277,7 +330,7 @@ private transient boolean validationOn;
     }
 
     private void doClose() throws Exception {
-         if (texbox_Pelapor.getConstraint() != null) {
+        if (texbox_Pelapor.getConstraint() != null) {
             texbox_Pelapor = new Textbox();
         }
         if (texbox_Bagian.getConstraint() != null) {
@@ -392,7 +445,7 @@ private transient boolean validationOn;
         texbox_Judul.setConstraint(new NoEmptyStringsConstraint());
         textbox_Type.setConstraint(new NoEmptyStringsConstraint());
         combobox_Status.setConstraint(new NoEmptyStringsConstraint());
-        
+
     }
 
     public boolean isValidationOn() {

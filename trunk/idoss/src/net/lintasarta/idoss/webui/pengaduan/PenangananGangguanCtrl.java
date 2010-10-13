@@ -45,6 +45,10 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     protected Listbox listbox_NamaPelaksana;
     protected Combobox combobox_Status;
     protected PenangananGangguanCtrl pelaksanaaGangguanCtrl;
+
+    protected Button btn_historyDeskripsi;
+    protected Button btn_historySolusi;
+
     private transient Listbox listbox_DaftarTiket;
     private transient String oldVar_fckeditor_Solusi;
 
@@ -189,10 +193,56 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         window_PenangananGangguan.onClose();
     }
 
+    public void onClick$btn_historyDeskripsi(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        try {
+            Executions.createComponents("/WEB-INF/pages/pengaduan/hisDeskripsi.zul", null, map);
+        } catch (Exception e) {
+            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
+
+            // Show a error box
+            String msg = e.getMessage();
+            String title = Labels.getLabel("message_Error");
+
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
+        }
+    }
+
+    public void onClick$btn_historySolusi(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        try {
+            Executions.createComponents("/WEB-INF/pages/pengaduan/hisSolusi.zul", null, map);
+        } catch (Exception e) {
+            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
+
+            // Show a error box
+            String msg = e.getMessage();
+            String title = Labels.getLabel("message_Error");
+
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
+        }
+    }
+
     private void doSimpan() throws Exception {
 
-
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
+
+        if (!isValidationOn()) {
+            doSetValidation();
+        }
+
+        doWriteComponentsToBean(tPenangananGangguan);
+
         TDeskripsi tDeskripsi = new TDeskripsi();
         tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
 
@@ -202,19 +252,14 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             tDeskripsi.setSolusi(fckeditor_Solusi.getValue());
 
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
-
-        if (!isValidationOn()) {
-            doSetValidation();
-        }
-
-        doWriteComponentsToBean(tPenangananGangguan);
-
-        tPenangananGangguan = gettPenangananGangguan();
         try {
             if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase(LoginConstants.IDOSS_HELPDESK_ADUAN)) {
                 tPenangananGangguan.setNik_pelapor(getEmployee().getEmployee_no());
             }
-            getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi);
+            Listitem item = listbox_RootCaused.getSelectedItem();
+            if (item != null) {
+                getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi);
+            }
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -236,7 +281,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
 
         combobox_NamaPelapor.setConstraint(new NoEmptyStringsConstraint());
         texbox_Bagian.setConstraint(new NoEmptyStringsConstraint());
-        
+
         texbox_Judul.setConstraint(new NoEmptyStringsConstraint());
         textbox_Type.setConstraint(new NoEmptyStringsConstraint());
         combobox_Status.setConstraint(new NoEmptyStringsConstraint());

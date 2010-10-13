@@ -1,20 +1,19 @@
 package net.lintasarta.pengaduan.service.impl;
 
 import net.lintasarta.pengaduan.dao.VHrEmployeePelaksanaDAO;
-import net.lintasarta.pengaduan.model.PRootCaused;
-import net.lintasarta.pengaduan.model.PType;
-import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
+import net.lintasarta.pengaduan.model.*;
 import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.pengaduan.dao.PRootCausedDAO;
 import net.lintasarta.pengaduan.dao.PTypeDAO;
 import net.lintasarta.pengaduan.dao.TPenangananGangguanDAO;
-import net.lintasarta.pengaduan.model.TPenangananGangguan;
+import net.lintasarta.pengaduan.service.TDeskripsiService;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -30,6 +29,11 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
     private PRootCausedDAO pRootCausedDAO;
     private PTypeDAO pTypeDAO;
     private VHrEmployeePelaksanaDAO vHrEmployeePelaksanaDAO;
+    private TDeskripsiService tDeskripsiService;
+
+    public void settDeskripsiService(TDeskripsiService tDeskripsiService) {
+        this.tDeskripsiService = tDeskripsiService;
+    }
 
     public TPenangananGangguanDAO gettPenangananGangguanDAO() {
         return tPenangananGangguanDAO;
@@ -83,8 +87,15 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
         return getvHrEmployeePelaksanaDAO().getAllVHrEmployeePelaksana();
     }
 
+    public void createTDeskripsi(TDeskripsi tDeskripsi) {
+        if (tDeskripsi.getDeskripsi() != null || tDeskripsi.getSolusi() != null) {
+            tDeskripsi.setUpdated_date(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+            tDeskripsiService.createTDeskripsi(tDeskripsi);
+        }
+    }
+
     @Override
-    public void saveOrUpdate(TPenangananGangguan tPenangananGangguan) throws ParseException {
+    public void saveOrUpdate(TPenangananGangguan tPenangananGangguan, TDeskripsi tDeskripsi) throws ParseException {
 
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         if (tPenangananGangguan.getInserted_root_caused() == null) {
@@ -132,10 +143,9 @@ update MTTR
                 tPenangananGangguan.setDurasi(mttr);
             }
         }
-        /*SimpleDateFormat dateFormat = new SimpleDateFormat("d" + "\'d\'" + " HH:mm");
-        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));*/
-//
+
         gettPenangananGangguanDAO().saveOrUpdate(tPenangananGangguan);
+        createTDeskripsi(tDeskripsi);
     }
 
     private String getDuration(long duration) {
