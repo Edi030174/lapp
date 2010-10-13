@@ -37,6 +37,9 @@ public class DaftarDeskripsiModelItemRenderer implements ListitemRenderer {
         lc = new Listcell(tDeskripsi.getDeskripsi());
         lc.setParent(item);
 
+        lc = new Listcell(tDeskripsi.getSolusi());
+        lc.setParent(item);
+
         item.setAttribute("data", data);
         ComponentsCtrl.applyForward(item, "onDoubleClick=onDoubleClickedTiketItem");
     }
