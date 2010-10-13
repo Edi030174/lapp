@@ -27,11 +27,10 @@ import static org.junit.Assert.assertNull;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
         locations = {
-                "classpath:META-INF/spring/spring-config.xml",
+                "classpath:META-INF/ibatis/ibatis-spring-config.xml",
                 "classpath:META-INF/spring/datasource.xml",
-                "classpath:META-INF/spring/spring-idoss-security-config.xml",
-                "classpath:META-INF/spring/spring-dao-idoss-pengaduan-config.xml",
-                "classpath:META-INF/spring/spring-dao-idoss-permohonan-config.xml"
+                "classpath:META-INF/spring/spring-based-dao-config.xml",
+                "classpath:META-INF/spring/spring-dao-idoss-pengaduan-config.xml"
         }
 )
 public class TpenangananGangguanDAOTest {
@@ -210,5 +209,11 @@ public class TpenangananGangguanDAOTest {
         String namaPelaporActual = tPenangananGangguanResult.getNama_pelapor();
         String namaPelaporExpected = "JONTORR";
         assertEquals(namaPelaporExpected, namaPelaporActual);
+    }
+
+    @Test
+    public void testGetSeqTiketId() {
+        int i = tPenangananGangguanDAO.getSeqTiketId();
+        assertEquals(1069, i);
     }
 }

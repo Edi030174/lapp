@@ -191,7 +191,17 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
 
     private void doSimpan() throws Exception {
 
+
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
+        TDeskripsi tDeskripsi = new TDeskripsi();
+        tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
+
+        if (tPenangananGangguan.getDeskripsi() != null)
+            tDeskripsi.setDeskripsi(tPenangananGangguan.getDeskripsi());
+        if (tPenangananGangguan.getSolusi() != null)
+            tDeskripsi.setSolusi(tPenangananGangguan.getSolusi());
+        tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
+
         if (!isValidationOn()) {
             doSetValidation();
         }
@@ -203,7 +213,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase(LoginConstants.IDOSS_HELPDESK_ADUAN)) {
                 tPenangananGangguan.setNik_pelapor(getEmployee().getEmployee_no());
             }
-            getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan);
+            getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
