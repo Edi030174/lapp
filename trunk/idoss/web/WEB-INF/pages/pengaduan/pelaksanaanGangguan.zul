@@ -71,7 +71,7 @@
                             </vbox>
                             <!--<space width="50px"/>-->
                             <!--<listbox id="listbox_Type" width="140px" mold="select" rows="1"/>-->
-                            <textbox id="textbox_Type" readonly="true"/>
+                            <textbox id="textbox_Type" readonly="true" width="200px"/>
                             <button id="btn_Type" label="Pilih"/>
                         </hbox>
                     </vbox>
