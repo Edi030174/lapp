@@ -36,6 +36,10 @@
           parent="basisListCtrl" scope="prototype">
         <property name="penangananGangguanService" ref="penangananGangguanService"/>
     </bean>
+    <bean id="daftarDeskripsiCtrl" class="net.lintasarta.idoss.webui.pengaduan.DaftarDeskripsiCtrl"
+          parent="basisListCtrl" scope="prototype">
+        <property name="tDeskripsiService" ref="tdeskripsiService"/>
+    </bean>
     <bean id="MonitoringCtrl" class="net.lintasarta.idoss.webui.pengaduan.MonitoringCtrl"
           parent="basisListCtrl" scope="prototype">
         <property name="penangananGangguanService" ref="penangananGangguanService"/>

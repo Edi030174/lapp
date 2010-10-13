@@ -440,14 +440,11 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         }
     }
 
-
-    private void doViewTanggal()
-    {
+    private void doViewTanggal(){
         idHboxTanggal.setVisible(true);
     }
 
-    private void doHideTanggal()
-    {
+    private void doHideTanggal(){
         idHboxTanggal.setVisible(false);
     }
 

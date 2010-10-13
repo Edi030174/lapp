@@ -1,14 +1,18 @@
 package net.lintasarta.idoss.webui.pengaduan;
 
+import net.lintasarta.idoss.webui.pengaduan.model.DaftarDeskripsiModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.pengaduan.model.TDeskripsi;
 import net.lintasarta.pengaduan.service.TDeskripsiService;
 import org.apache.log4j.Logger;
+import org.springframework.beans.support.PagedListHolder;
 import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -63,12 +67,32 @@ public class DaftarDeskripsiCtrl extends GFCBaseListCtrl<TDeskripsi> implements 
         paging_DaftarDeskripsi.setPageSize(getCountRows());
         paging_DaftarDeskripsi.setDetailed(true);
 
-        listheader_Tanggal.setSortAscending(new FieldComparator("t_idoss_penanganan_gangguan_id", true));
-        listheader_Tanggal.setSortDescending(new FieldComparator("t_idoss_penanganan_gangguan_id", false));
-        listheader_By.setSortAscending(new FieldComparator("judul", true));
-        listheader_By.setSortDescending(new FieldComparator("judul", false));
-        listheader_Deskripsi.setSortAscending(new FieldComparator("status", true));
-        listheader_Deskripsi.setSortDescending(new FieldComparator("status", false));
+        listheader_Tanggal.setSortAscending(new FieldComparator("updated_date", true));
+        listheader_Tanggal.setSortDescending(new FieldComparator("updated_date", false));
+        listheader_By.setSortAscending(new FieldComparator("updated_by", true));
+        listheader_By.setSortDescending(new FieldComparator("updated_by", false));
+        listheader_Deskripsi.setSortAscending(new FieldComparator("deskripsi", true));
+        listheader_Deskripsi.setSortDescending(new FieldComparator("deskripsi", false));
+
+        Map<String, Object> args = getCreationArgsMap(event);
+        if (args.containsKey("t_idoss_penanganan_gangguan_id")) {
+            String id = (String) args.get("t_idoss_penanganan_gangguan_id");
+            setDaftarDeskripsi(id);
+        }
+    }
+
+    private void setDaftarDeskripsi(String id) {
+
+        List<TDeskripsi> tDeskripsis = gettDeskripsiService().getTDeskripsiByGangguanId(id);
+
+        PagedListHolder<TDeskripsi> pagedListHolder = new PagedListHolder<TDeskripsi>(tDeskripsis);
+        pagedListHolder.setPageSize(getCountRows());
+
+        paging_DaftarDeskripsi.setPageSize(getCountRows());
+        paging_DaftarDeskripsi.setDetailed(true);
+
+        getPagedListWrapper().init(pagedListHolder, listbox_DaftarDeskripsi, paging_DaftarDeskripsi);
+        listbox_DaftarDeskripsi.setItemRenderer(new DaftarDeskripsiModelItemRenderer());
     }
 
     public TDeskripsiService gettDeskripsiService() {
