@@ -98,9 +98,13 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         } else {
             listbox_DaftarTiket = null;
         }
-        listbox_NamaPelaksana.setModel(new ListModelList(getPelaksanaanGangguanService().getEmployeeName()));
+        ListModelList lmlNamaPelaksana = new ListModelList(getPelaksanaanGangguanService().getEmployeeName());
+        VHrEmployeePelaksana pelaksana = new VHrEmployeePelaksana();
+        pelaksana.setEmployee_name("Silahkan pilih");
+        pelaksana.setEmployee_no("tt");
+        lmlNamaPelaksana.add(0, pelaksana);
+        listbox_NamaPelaksana.setModel(lmlNamaPelaksana);
         listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
-
         doShowDialog(gettPenangananGangguan());
         doDisplayNama();
     }
@@ -180,10 +184,12 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        if(combobox_Status.getSelectedItem()!=null){
-        doSimpan();
+        pType = (PType) textbox_Type.getAttribute("pType");
+
+        if (isValidatedFlow()) {
+            doSimpan();
+            window_PenangananGangguan.onClose();
         }
-        window_PenangananGangguan.onClose();
     }
 
     public void onClick$btnBatal_PenangananGangguan(Event event) throws Exception {
@@ -258,10 +264,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase(LoginConstants.IDOSS_HELPDESK_ADUAN)) {
                 tPenangananGangguan.setNik_pelapor(getEmployee().getEmployee_no());
             }
-            Listitem item = listbox_RootCaused.getSelectedItem();
-            if (item != null) {
-                getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi);
-            }
+            getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -292,6 +295,56 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
 //        textbox_Ext.setConstraint( new SimpleConstraint("[0-9-/() ]*", Labels.getLabel("message.error.PhoneNumber")));
     }
 
+    private boolean isValidatedFlow() throws InterruptedException {
+        if (combobox_Status.getValue().equalsIgnoreCase("Open")) {
+            /* Tidak boleh kosong:
+                Nomor Tiket
+                Nama Pelapor
+                Bagian
+                Judul
+            */
+        } else if (combobox_Status.getValue().equalsIgnoreCase("InProgress")) {
+            /* Tidak boleh kosong:
+                Nomor Tiket
+                Nama Pelapor
+                Bagian
+                Judul
+                Pelaksana
+            */
+            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silahkan pilih")) {
+                Messagebox.show("Silahkan pilih nama pelaksana");
+                return false;
+            }
+            if (listbox_NamaPelaksana.getSelectedItem() == null) {
+                Messagebox.show("Silahkan pilih nama pelaksana");
+                return false;
+            }
+        } else if (combobox_Status.getValue().equalsIgnoreCase("Closed")) {
+            /* Tidak boleh kosong:
+                Nomor Tiket
+                Nama Pelapor
+                Bagian
+                Judul
+                Tipe
+                Root Caused
+                Solusi
+            */
+            if (textbox_Type.getValue().length() < 1) {
+                Messagebox.show("Silahkan pilih tipe");
+                return false;
+            }
+            if (listbox_RootCaused.getSelectedItem() == null) {
+                Messagebox.show("Silahkan pilih root caused");
+                return false;
+            }
+            if (fckeditor_Solusi.getValue().length() < 1) {
+                Messagebox.show("Silahkan isikan solusi");
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
         tPenangananGangguan.setT_idoss_penanganan_gangguan_id(textbox_NomorTiket.getValue());
         tPenangananGangguan.setNama_pelapor(combobox_NamaPelapor.getValue());
@@ -302,39 +355,32 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tPenangananGangguan.setDampak(dampak.getValue());
+
+        if (pType != null) {
+            tPenangananGangguan.setP_idoss_type_id(pType.getP_idoss_type_id());
+        }
+
         Listitem item = listbox_RootCaused.getSelectedItem();
-        if (item == null) {
-            try {
-                Messagebox.show("Silakan pilih Root Caused!");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return;
+        if (item != null) {
+            ListModelList lml1 = (ListModelList) listbox_RootCaused.getListModel();
+            PRootCaused rootCaused = (PRootCaused) lml1.get(item.getIndex());
+            tPenangananGangguan.setP_idoss_root_caused_id(rootCaused.getP_idoss_root_caused_id());
         }
-        ListModelList lml1 = (ListModelList) listbox_RootCaused.getListModel();
-        PRootCaused rootCaused = (PRootCaused) lml1.get(item.getIndex());
-        PTypeRootCaused pTypeRootCaused = getTypeService().getPTypeRootCausedByRootCausedId(rootCaused.getP_idoss_root_caused_id());
-        tPenangananGangguan.setP_idoss_type_id(pTypeRootCaused.getP_idoss_type_id());
-        tPenangananGangguan.setP_idoss_root_caused_id(rootCaused.getP_idoss_root_caused_id());
+
         Listitem itempelaksana = listbox_NamaPelaksana.getSelectedItem();
-        if (itempelaksana == null) {
-            try {
-                Messagebox.show("Silakan pilih Pelaksana!");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return;
-        }
         ListModelList lml3 = (ListModelList) listbox_NamaPelaksana.getListModel();
         VHrEmployeePelaksana vHrEmployeePelaksana = (VHrEmployeePelaksana) lml3.get(itempelaksana.getIndex());
-        tPenangananGangguan.setNama_pelaksana(vHrEmployeePelaksana.getEmployee_name());
-        tPenangananGangguan.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
+        if (!vHrEmployeePelaksana.getEmployee_name().equalsIgnoreCase("Silahkan pilih")) {
+            tPenangananGangguan.setNama_pelaksana(vHrEmployeePelaksana.getEmployee_name());
+        }
+        if (!vHrEmployeePelaksana.getEmployee_no().equalsIgnoreCase("tt")) {
+            tPenangananGangguan.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
+        }
+
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         tPenangananGangguan.setCreated_date(ts);
         tPenangananGangguan.setStatus(combobox_Status.getValue());
-        if (combobox_Status.getValue().equals("Closed")) {
-            tPenangananGangguan.setUpdated_date(ts);
-        }
+        tPenangananGangguan.setUpdated_date(ts);
         tPenangananGangguan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
         settPenangananGangguan(tPenangananGangguan);
