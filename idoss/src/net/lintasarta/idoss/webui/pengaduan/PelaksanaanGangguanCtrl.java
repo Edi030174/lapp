@@ -323,7 +323,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         tPenangananGangguan.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
 
         tPenangananGangguan.setStatus(combobox_Status.getValue());
-        if (combobox_Status.getValue().equals("Closed")) {
+        if (combobox_Status.getValue().equals("Closed")){
             Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
             tPenangananGangguan.setUpdated_date(ts);
         }
