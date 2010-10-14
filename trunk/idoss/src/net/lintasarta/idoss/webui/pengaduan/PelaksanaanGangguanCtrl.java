@@ -143,7 +143,9 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
+        if(combobox_Status.getSelectedItem()!=null){
         doSimpan();
+        }
         window_PelaksanaanGangguan.onClose();
     }
 
