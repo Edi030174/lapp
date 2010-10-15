@@ -29,7 +29,7 @@
             <north border="none" margins="0,0,0,0"/>
             <center border="none">
                 <div id="divPermohonan">
-                    <tabbox id="tabBox_Permohonan" width="100%">
+                    <tabbox id="tabBox_Permohonan" width="100%" orient="horizontal">
                         <tabs>
                             <tab id="tab_Permohonan" label="Permohonan"/>
                             <tab id="tab_PersetujuanPemohon" label="Persetujuan Pemohon"/>

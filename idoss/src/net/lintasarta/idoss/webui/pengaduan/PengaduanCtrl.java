@@ -210,6 +210,12 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
 
+        if (!isValidationOn()) {
+            doSetValidation();
+        }
+
+        doWriteComponentsToBean(tPenangananGangguan);
+
         TDeskripsi tDeskripsi = new TDeskripsi();
         tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
 
@@ -217,12 +223,6 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
             tDeskripsi.setDeskripsi(fckeditor_Des.getValue());
 
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
-
-        if (!isValidationOn()) {
-            doSetValidation();
-        }
-
-        doWriteComponentsToBean(tPenangananGangguan);
 
         try {
             getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi);

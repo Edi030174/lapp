@@ -9,7 +9,22 @@
        select generate_id('SNI','T_IDOSS_DESKRIPSI','GEN_ID_COL') from dual
     </select>
     <insert id="createTDeskripsi" parameterType="tdeskripsi">
-        insert into t_idoss_deskripsi (t_idoss_deskripsi_id, solusi, deskripsi, t_idoss_penanganan_gangguan_id, updated_by, updated_date, gen_id_col)
-        values (#{t_idoss_deskripsi_id}, #{solusi}, #{deskripsi}, #{t_idoss_penanganan_gangguan_id, jdbcType=VARCHAR}, #{updated_by}, #{updated_date}, #{gen_id_col})
+        insert into t_idoss_deskripsi(
+        t_idoss_deskripsi_id, 
+        solusi,
+        deskripsi,
+        t_idoss_penanganan_gangguan_id,
+        updated_by,
+        updated_date,
+        gen_id_col
+        )
+        values(
+        #{t_idoss_deskripsi_id},
+        #{solusi,jdbcType=VARCHAR},
+        #{deskripsi},
+        #{t_idoss_penanganan_gangguan_id,jdbcType=VARCHAR},
+        #{updated_by},
+        #{updated_date},
+        #{gen_id_col})
     </insert>    
 </mapper>

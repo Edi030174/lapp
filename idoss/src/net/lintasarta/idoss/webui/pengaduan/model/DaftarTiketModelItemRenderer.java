@@ -44,9 +44,9 @@ public class DaftarTiketModelItemRenderer implements ListitemRenderer {
         lc = new Listcell(penangananGangguan.getNama_pelaksana());
         lc.setParent(item);
 
-        String i = penangananGangguan.getDurasi();
-        String dur = String.valueOf(i);
-        lc = new Listcell(dur);
+//        String i = penangananGangguan.getDurasi();
+//        String dur = String.valueOf(i);
+        lc = new Listcell(penangananGangguan.getDurasi());
         lc.setParent(item);
 
         lc = new Listcell(penangananGangguan.getMttr());

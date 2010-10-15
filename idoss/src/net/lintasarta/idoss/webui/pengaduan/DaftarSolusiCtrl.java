@@ -1,6 +1,6 @@
 package net.lintasarta.idoss.webui.pengaduan;
 
-import net.lintasarta.idoss.webui.pengaduan.model.DaftarDeskripsiModelItemRenderer;
+import net.lintasarta.idoss.webui.pengaduan.model.DaftarSolusiModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.pengaduan.model.TDeskripsi;
 import net.lintasarta.pengaduan.service.TDeskripsiService;
@@ -92,7 +92,7 @@ public class DaftarSolusiCtrl extends GFCBaseListCtrl<TDeskripsi> implements Ser
         paging_DaftarSolusi.setDetailed(true);
 
         getPagedListWrapper().init(pagedListHolder, listbox_DaftarSolusi, paging_DaftarSolusi);
-        listbox_DaftarSolusi.setItemRenderer(new DaftarDeskripsiModelItemRenderer());
+        listbox_DaftarSolusi.setItemRenderer(new DaftarSolusiModelItemRenderer());
     }
 
     public TDeskripsiService gettDeskripsiService() {
