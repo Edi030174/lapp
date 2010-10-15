@@ -63,7 +63,7 @@
             <center border="none">
                 <listbox id="listbox_DaftarTiket" vflex="true" width="99.9%" height="100%" multiple="false">
                     <listhead sizable="true">
-                        <listheader id="listheader_NomorTiket" label="Nomor trouble tiket"
+                        <listheader id="listheader_NomorTiket" label="No. Trouble Tiket"
                                     sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_Judul" label="Judul" align="left"
                                     sort="auto" style="font-size:11px"/>
@@ -71,7 +71,7 @@
                                     sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_Pelapor" label="Pelapor" align="left"
                                     sort="auto" style="font-size:11px"/>
-                        <listheader id="listheader_PenanggungJawab" label="Penanggung jawab" align="left"
+                        <listheader id="listheader_PenanggungJawab" label="Pelaksana" align="left"
                                     sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_Durasi" label="Durasi" align="left"
                                     sort="auto" style="font-size:11px"/>

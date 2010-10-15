@@ -44,7 +44,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     protected Listbox listbox_RootCaused;
     protected Listbox listbox_NamaPelaksana;
     protected Combobox combobox_Status;
-    protected PenangananGangguanCtrl pelaksanaaGangguanCtrl;
+    protected PenangananGangguanCtrl penangananGangguanCtrl;
 
     protected Button btn_historyDeskripsi;
     protected Button btn_historySolusi;
@@ -88,9 +88,9 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         }
 
         if (args.containsKey("penangananGangguanCtrl")) {
-            pelaksanaaGangguanCtrl = (PenangananGangguanCtrl) args.get("penangananGangguanCtrl");
+            penangananGangguanCtrl = (PenangananGangguanCtrl) args.get("penangananGangguanCtrl");
         } else {
-            pelaksanaaGangguanCtrl = null;
+            penangananGangguanCtrl = null;
         }
 
         if (args.containsKey("listbox_DaftarTiket")) {
@@ -100,8 +100,8 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         }
         ListModelList lmlNamaPelaksana = new ListModelList(getPelaksanaanGangguanService().getEmployeeName());
         VHrEmployeePelaksana pelaksana = new VHrEmployeePelaksana();
-        pelaksana.setEmployee_name("Silahkan pilih");
-        pelaksana.setEmployee_no("tt");
+        pelaksana.setEmployee_name("Silakan pilih");
+        pelaksana.setEmployee_no("555");
         lmlNamaPelaksana.add(0, pelaksana);
         listbox_NamaPelaksana.setModel(lmlNamaPelaksana);
         listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
@@ -109,81 +109,12 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         doDisplayNama();
     }
 
-    private void doDisplayNama() {
-        List<VHrEmployee> nm = getPenangananGangguanService().getEmployeeName();
-        ListModelList model = new ListModelList(nm);
-        combobox_NamaPelapor.setModel(model);
-        combobox_NamaPelapor.setItemRenderer(new PelaksanaComboBoxItemRenderer());
-    }
-
-    public void onChange$combobox_NamaPelapor() {
-        Comboitem item = combobox_NamaPelapor.getSelectedItem();
-        setEmployee((VHrEmployee) item.getValue());
-        texbox_Bagian.setValue(getEmployee().getOrganization_code());
-    }
-
-    public void onChange$listbox_RootCaused() {
-        listbox_RootCaused.getSelectedItem();
-    }
-
-    private void doShowDialog(TPenangananGangguan tPenangananGangguan) throws InterruptedException {
-
-        if (tPenangananGangguan == null) {
-
-            tPenangananGangguan = getPenangananGangguanService().getNewPenangananGangguan();
-        }
-        try {
-            doWriteBeanToComponent(tPenangananGangguan);
-            window_PenangananGangguan.doModal();
-
-        } catch (Exception e) {
-            Messagebox.show(e.toString());
-        }
-    }
-
-    private void doWriteBeanToComponent(TPenangananGangguan tPenangananGangguan) throws Exception {
-        textbox_NomorTiket.setValue(getPenangananGangguanService().getTiketId());
-
-        int indexPlks = 0;
-        ListModel listPlks = listbox_NamaPelaksana.getModel();
-        for (int i = 0; i < listPlks.getSize(); i++) {
-            VHrEmployeePelaksana np = (VHrEmployeePelaksana) listPlks.getElementAt(i);
-            if (np.getEmployee_no().equals(tPenangananGangguan.getNik_pelaksana())) indexPlks = i;
-        }
-        listbox_NamaPelaksana.setSelectedIndex(indexPlks);
-        combobox_Status.setSelectedIndex(0);
-        if (tPenangananGangguan.getP_idoss_type_id() != null) {
-            pType = getTypeService().getTypeByTypeID(tPenangananGangguan.getP_idoss_type_id());
-
-            textbox_Type.setValue(pType.getType_desc());
-
-            listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(pType.getP_idoss_type_id())));
-
-            listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
-            int indexRoot = 0;
-            ListModel listRoot = listbox_RootCaused.getModel();
-            for (int i = 0; i < listRoot.getSize(); i++) {
-                PRootCaused rc = (PRootCaused) listRoot.getElementAt(i);
-                if (rc.getP_idoss_root_caused_id() == tPenangananGangguan.getP_idoss_root_caused_id()) indexRoot = i;
-            }
-            listbox_RootCaused.setSelectedIndex(indexRoot);
-        }
-    }
-
-    public void onClose$window_PenangananGangguan(Event event) throws Exception {
-
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-
-        doClose();
-    }
-
     public void onClick$btnSimpan_PenangananGangguan(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
+
         pType = (PType) textbox_Type.getAttribute("pType");
 
         if (isValidatedFlow()) {
@@ -241,6 +172,81 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         }
     }
 
+    public void onClick$btn_TambahRootCaused(Event event) throws Exception {
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("pRootCaused", pRootCaused);
+        map.put("listbox_RootCaused", listbox_RootCaused);
+        map.put("textbox_Type", textbox_Type);
+
+        try {
+            Executions.createComponents("/WEB-INF/pages/pengaduan/tambahRootCaused.zul", null, map);
+        } catch (Exception e) {
+            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
+
+            // Show a error box
+            String msg = e.getMessage();
+            String title = Labels.getLabel("message_Error");
+
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
+        }
+    }
+
+    public void onClick$btn_Type(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("textbox_Type", textbox_Type);
+        map.put("pRootCaused", pRootCaused);
+        map.put("listbox_RootCaused", listbox_RootCaused);
+
+        try {
+            Executions.createComponents("/WEB-INF/pages/pengaduan/type.zul", null, map);
+        } catch (Exception e) {
+            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
+
+            // Show a error box
+            String msg = e.getMessage();
+            String title = Labels.getLabel("message_Error");
+
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
+        }
+    }
+
+    public void onChange$combobox_NamaPelapor() {
+        Comboitem item = combobox_NamaPelapor.getSelectedItem();
+        setEmployee((VHrEmployee) item.getValue());
+        texbox_Bagian.setValue(getEmployee().getOrganization_code());
+    }
+
+    public void onChange$listbox_RootCaused() {
+        listbox_RootCaused.getSelectedItem();
+    }
+
+    public void onClose$window_PenangananGangguan(Event event) throws Exception {
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+
+        doClose();
+    }
+
+    private void doDisplayNama() {
+        List<VHrEmployee> nm = getPenangananGangguanService().getEmployeeName();
+        ListModelList model = new ListModelList(nm);
+        combobox_NamaPelapor.setModel(model);
+        combobox_NamaPelapor.setItemRenderer(new PelaksanaComboBoxItemRenderer());
+    }
+
     private void doSimpan() throws Exception {
 
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
@@ -280,6 +286,91 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         }
     }
 
+    private void doShowDialog(TPenangananGangguan tPenangananGangguan) throws InterruptedException {
+
+        if (tPenangananGangguan == null) {
+
+            tPenangananGangguan = getPenangananGangguanService().getNewPenangananGangguan();
+        }
+        try {
+            doWriteBeanToComponent(tPenangananGangguan);
+            window_PenangananGangguan.doModal();
+
+        } catch (Exception e) {
+            Messagebox.show(e.toString());
+        }
+    }
+
+    private void doWriteBeanToComponent(TPenangananGangguan tPenangananGangguan) throws Exception {
+        textbox_NomorTiket.setValue(getPenangananGangguanService().getTiketId());
+
+        int indexPlks = 0;
+        ListModel listPlks = listbox_NamaPelaksana.getModel();
+        for (int i = 0; i < listPlks.getSize(); i++) {
+            VHrEmployeePelaksana np = (VHrEmployeePelaksana) listPlks.getElementAt(i);
+            if (np.getEmployee_no().equals(tPenangananGangguan.getNik_pelaksana())) indexPlks = i;
+        }
+        listbox_NamaPelaksana.setSelectedIndex(indexPlks);
+        combobox_Status.setSelectedIndex(0);
+        if (tPenangananGangguan.getP_idoss_type_id() != null) {
+            pType = getTypeService().getTypeByTypeID(tPenangananGangguan.getP_idoss_type_id());
+
+            textbox_Type.setValue(pType.getType_desc());
+
+            listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(pType.getP_idoss_type_id())));
+
+            listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
+            int indexRoot = 0;
+            ListModel listRoot = listbox_RootCaused.getModel();
+            for (int i = 0; i < listRoot.getSize(); i++) {
+                PRootCaused rc = (PRootCaused) listRoot.getElementAt(i);
+                if (rc.getP_idoss_root_caused_id() == tPenangananGangguan.getP_idoss_root_caused_id()) indexRoot = i;
+            }
+            listbox_RootCaused.setSelectedIndex(indexRoot);
+        }
+    }
+
+    private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
+        tPenangananGangguan.setT_idoss_penanganan_gangguan_id(textbox_NomorTiket.getValue());
+        tPenangananGangguan.setNama_pelapor(combobox_NamaPelapor.getValue());
+        tPenangananGangguan.setBagian_pelapor(texbox_Bagian.getValue());
+        tPenangananGangguan.setNik_pelapor(getEmployee().getEmployee_no());
+        tPenangananGangguan.setJudul(texbox_Judul.getValue());
+        tPenangananGangguan.setDeskripsi(fckeditor_Deskripsi.getValue());
+        tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
+        Radio dampak = radiogroup_Dampak.getSelectedItem();
+        tPenangananGangguan.setDampak(dampak.getValue());
+        if (pType != null) {
+            tPenangananGangguan.setP_idoss_type_id(pType.getP_idoss_type_id());
+        }
+        Listitem item = listbox_RootCaused.getSelectedItem();
+        if (item != null) {
+            ListModelList lml1 = (ListModelList) listbox_RootCaused.getListModel();
+            PRootCaused rootCaused = (PRootCaused) lml1.get(item.getIndex());
+            tPenangananGangguan.setP_idoss_root_caused_id(rootCaused.getP_idoss_root_caused_id());
+        }
+        Listitem itempelaksana = listbox_NamaPelaksana.getSelectedItem();
+        ListModelList lml3 = (ListModelList) listbox_NamaPelaksana.getListModel();
+        VHrEmployeePelaksana vHrEmployeePelaksana = (VHrEmployeePelaksana) lml3.get(itempelaksana.getIndex());
+        if (!vHrEmployeePelaksana.getEmployee_name().equalsIgnoreCase("Silakan pilih")) {
+            tPenangananGangguan.setNama_pelaksana(vHrEmployeePelaksana.getEmployee_name());
+        }
+        if (!vHrEmployeePelaksana.getEmployee_no().equalsIgnoreCase("555")) {
+            tPenangananGangguan.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
+        }
+        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
+        tPenangananGangguan.setCreated_date(ts);
+
+        tPenangananGangguan.setStatus(combobox_Status.getValue());
+
+        tPenangananGangguan.setUpdated_date(ts);
+
+        tPenangananGangguan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
+        tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
+
+        settPenangananGangguan(tPenangananGangguan);
+    }
+
     private void doSetValidation() {
 
         setValidationOn(true);
@@ -293,97 +384,6 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
 
 
 //        textbox_Ext.setConstraint( new SimpleConstraint("[0-9-/() ]*", Labels.getLabel("message.error.PhoneNumber")));
-    }
-
-    private boolean isValidatedFlow() throws InterruptedException {
-        if (combobox_Status.getValue().equalsIgnoreCase("Open")) {
-            /* Tidak boleh kosong:
-                Nomor Tiket
-                Nama Pelapor
-                Bagian
-                Judul
-            */
-        } else if (combobox_Status.getValue().equalsIgnoreCase("InProgress")) {
-            /* Tidak boleh kosong:
-                Nomor Tiket
-                Nama Pelapor
-                Bagian
-                Judul
-                Pelaksana
-            */
-            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silahkan pilih")) {
-                Messagebox.show("Silahkan pilih nama pelaksana");
-                return false;
-            }
-            if (listbox_NamaPelaksana.getSelectedItem() == null) {
-                Messagebox.show("Silahkan pilih nama pelaksana");
-                return false;
-            }
-        } else if (combobox_Status.getValue().equalsIgnoreCase("Closed")) {
-            /* Tidak boleh kosong:
-                Nomor Tiket
-                Nama Pelapor
-                Bagian
-                Judul
-                Tipe
-                Root Caused
-                Solusi
-            */
-            if (textbox_Type.getValue().length() < 1) {
-                Messagebox.show("Silahkan pilih tipe");
-                return false;
-            }
-            if (listbox_RootCaused.getSelectedItem() == null) {
-                Messagebox.show("Silahkan pilih root caused");
-                return false;
-            }
-            if (fckeditor_Solusi.getValue().length() < 1) {
-                Messagebox.show("Silahkan isikan solusi");
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
-        tPenangananGangguan.setT_idoss_penanganan_gangguan_id(textbox_NomorTiket.getValue());
-        tPenangananGangguan.setNama_pelapor(combobox_NamaPelapor.getValue());
-        tPenangananGangguan.setBagian_pelapor(texbox_Bagian.getValue());
-        tPenangananGangguan.setNik_pelapor(getEmployee().getEmployee_no());
-        tPenangananGangguan.setJudul(texbox_Judul.getValue());
-        tPenangananGangguan.setDeskripsi(fckeditor_Deskripsi.getValue());
-        tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
-        Radio dampak = radiogroup_Dampak.getSelectedItem();
-        tPenangananGangguan.setDampak(dampak.getValue());
-
-        if (pType != null) {
-            tPenangananGangguan.setP_idoss_type_id(pType.getP_idoss_type_id());
-        }
-
-        Listitem item = listbox_RootCaused.getSelectedItem();
-        if (item != null) {
-            ListModelList lml1 = (ListModelList) listbox_RootCaused.getListModel();
-            PRootCaused rootCaused = (PRootCaused) lml1.get(item.getIndex());
-            tPenangananGangguan.setP_idoss_root_caused_id(rootCaused.getP_idoss_root_caused_id());
-        }
-
-        Listitem itempelaksana = listbox_NamaPelaksana.getSelectedItem();
-        ListModelList lml3 = (ListModelList) listbox_NamaPelaksana.getListModel();
-        VHrEmployeePelaksana vHrEmployeePelaksana = (VHrEmployeePelaksana) lml3.get(itempelaksana.getIndex());
-        if (!vHrEmployeePelaksana.getEmployee_name().equalsIgnoreCase("Silahkan pilih")) {
-            tPenangananGangguan.setNama_pelaksana(vHrEmployeePelaksana.getEmployee_name());
-        }
-        if (!vHrEmployeePelaksana.getEmployee_no().equalsIgnoreCase("tt")) {
-            tPenangananGangguan.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
-        }
-
-        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
-        tPenangananGangguan.setCreated_date(ts);
-        tPenangananGangguan.setStatus(combobox_Status.getValue());
-        tPenangananGangguan.setUpdated_date(ts);
-        tPenangananGangguan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
-        tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
-        settPenangananGangguan(tPenangananGangguan);
     }
 
     private void doClose() throws Exception {
@@ -435,6 +435,56 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         window_PenangananGangguan.onClose();
     }
 
+    private boolean isValidatedFlow() throws InterruptedException {
+        if (combobox_Status.getValue().equalsIgnoreCase("Open")) {
+            /* Tidak boleh kosong:
+                Nomor Tiket
+                Nama Pelapor
+                Bagian
+                Judul
+            */
+        } else if (combobox_Status.getValue().equalsIgnoreCase("InProgress")) {
+            /* Tidak boleh kosong:
+                Nomor Tiket
+                Nama Pelapor
+                Bagian
+                Judul
+                Pelaksana
+            */
+            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
+                Messagebox.show("Silakan pilih nama pelaksana");
+                return false;
+            }
+            if (listbox_NamaPelaksana.getSelectedItem() == null) {
+                Messagebox.show("Silakan pilih nama pelaksana");
+                return false;
+            }
+        } else if (combobox_Status.getValue().equalsIgnoreCase("Closed")) {
+            /* Tidak boleh kosong:
+                Nomor Tiket
+                Nama Pelapor
+                Bagian
+                Judul
+                Tipe
+                Root Caused
+                Solusi
+            */
+            if (textbox_Type.getValue().length() < 1) {
+                Messagebox.show("Silakan pilih tipe");
+                return false;
+            }
+            if (listbox_RootCaused.getSelectedItem() == null) {
+                Messagebox.show("Silakan pilih root caused");
+                return false;
+            }
+            if (fckeditor_Solusi.getValue().length() < 1) {
+                Messagebox.show("Silakan isikan solusi");
+                return false;
+            }
+        }
+        return true;
+    }
+
     private boolean isDataChanged() throws Exception {
         boolean change = false;
 
@@ -443,55 +493,6 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         }
 
         return change;
-    }
-
-    public void onClick$btn_TambahRootCaused(Event event) throws Exception {
-
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("pRootCaused", pRootCaused);
-        map.put("listbox_RootCaused", listbox_RootCaused);
-        map.put("textbox_Type", textbox_Type);
-
-        try {
-            Executions.createComponents("/WEB-INF/pages/pengaduan/tambahRootCaused.zul", null, map);
-        } catch (Exception e) {
-            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
-
-            // Show a error box
-            String msg = e.getMessage();
-            String title = Labels.getLabel("message_Error");
-
-            MultiLineMessageBox.doSetTemplate();
-            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
-        }
-    }
-
-    public void onClick$btn_Type(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("textbox_Type", textbox_Type);
-        map.put("pRootCaused", pRootCaused);
-        map.put("listbox_RootCaused", listbox_RootCaused);
-
-        try {
-            Executions.createComponents("/WEB-INF/pages/pengaduan/type.zul", null, map);
-        } catch (Exception e) {
-            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
-
-            // Show a error box
-            String msg = e.getMessage();
-            String title = Labels.getLabel("message_Error");
-
-            MultiLineMessageBox.doSetTemplate();
-            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
-        }
     }
 
     public TPenangananGangguan gettPenangananGangguan() {

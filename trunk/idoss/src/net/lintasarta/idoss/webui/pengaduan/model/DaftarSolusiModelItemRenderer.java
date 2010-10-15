@@ -1,7 +1,6 @@
 package net.lintasarta.idoss.webui.pengaduan.model;
 
 import net.lintasarta.pengaduan.model.TDeskripsi;
-import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.sys.ComponentsCtrl;
 import org.zkoss.zul.Listcell;
@@ -11,9 +10,9 @@ import org.zkoss.zul.ListitemRenderer;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
-public class DaftarDeskripsiModelItemRenderer implements ListitemRenderer {
+public class DaftarSolusiModelItemRenderer implements ListitemRenderer {
 
-    private transient final static Logger logger = Logger.getLogger(DaftarDeskripsiModelItemRenderer.class);
+    private transient final static Logger logger = Logger.getLogger(DaftarSolusiModelItemRenderer.class);
 
     @Override
     public void render(Listitem item, Object data) throws Exception {
@@ -34,8 +33,8 @@ public class DaftarDeskripsiModelItemRenderer implements ListitemRenderer {
         lc = new Listcell(tDeskripsi.getUpdated_by());
         lc.setParent(item);
 
-        if (tDeskripsi.getDeskripsi() != null) {
-            lc = new Listcell(tDeskripsi.getDeskripsi());
+        if (tDeskripsi.getSolusi() != null) {
+            lc = new Listcell(tDeskripsi.getSolusi());
             lc.setParent(item);
         }
 
