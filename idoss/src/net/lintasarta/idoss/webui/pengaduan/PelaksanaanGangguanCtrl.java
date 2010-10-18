@@ -455,6 +455,11 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
                 return false;
             }
         } else if (combobox_Status.getValue().equalsIgnoreCase("Closed")) {
+            TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
+            if (tPenangananGangguan.getStatus().equalsIgnoreCase("Pending")) {
+                Messagebox.show("Status Pending tidak boleh langsung Closed, harus melalui In Progress");
+                return false;
+            }
             /* Tidak boleh kosong:
                 Nomor Tiket
                 Nama Pelapor
