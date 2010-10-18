@@ -108,6 +108,9 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         tPenangananGangguan.setCreated_date(ts);
         tPenangananGangguan.setUpdated_date(ts);
+        if (tPenangananGangguan.getP_idoss_root_caused_id() != null) {
+            tPenangananGangguan.setInserted_root_caused(ts);
+        }
         gettPenangananGangguanDAO().createTPenangananGangguan(tPenangananGangguan);
 
         createTDeskripsi(tDeskripsi);

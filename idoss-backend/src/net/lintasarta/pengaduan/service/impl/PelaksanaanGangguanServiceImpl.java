@@ -98,8 +98,11 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
     public void saveOrUpdate(TPenangananGangguan tPenangananGangguan, TDeskripsi tDeskripsi) throws ParseException {
 
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
-        if (tPenangananGangguan.getInserted_root_caused() == null) {
-            tPenangananGangguan.setInserted_root_caused(ts);
+
+        if (tPenangananGangguan.getP_idoss_root_caused_id() != null) {
+            if (tPenangananGangguan.getInserted_root_caused() == null) {
+                tPenangananGangguan.setInserted_root_caused(ts);
+            }
         }
 //        long awal = tPenangananGangguan.getCreated_date().getTime();
 //        long akhir = ts.getTime();
@@ -140,7 +143,7 @@ update MTTR
                 Timestamp end = tPenangananGangguan.getUpdated_date();
                 long MTTR = end.getTime() - start.getTime();
                 String mttr = getDuration(MTTR);
-                tPenangananGangguan.setDurasi(mttr);
+                tPenangananGangguan.setMttr(mttr);
             }
         }
 
