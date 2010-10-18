@@ -438,7 +438,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
                 Judul
             */
             return true;
-        } else if (combobox_Status.getValue().equalsIgnoreCase("InProgress")) {
+        } else if (combobox_Status.getValue().equalsIgnoreCase("In Progress")) {
             /* Tidak boleh kosong:
                 Nomor Tiket
                 Nama Pelapor

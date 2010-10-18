@@ -102,7 +102,7 @@
                         <!--<space width="50px"/>-->
                         <combobox id="combobox_Status" width="140px" readonly="true">
                             <comboitem label="Open"/>
-                            <comboitem label="In Progres"/>
+                            <comboitem label="In Progress"/>
                             <comboitem label="Pending"/>
                             <comboitem label="Closed"/>
                         </combobox>
