@@ -58,15 +58,15 @@
                 </row>
                 <row style="border:0px">
                     <label value="zzz" visible="false"/>
-                    <button id="btn_historyDeskripsi" label="history deskripsi"/>
+                    <button id="btn_historyDeskripsi" label="history deskripsi" disabled="true"/>
                 </row>
                 <row style="border:0px">
                     <label value="Dampak"/>
                     <vbox>
                         <hbox>
                             <radiogroup id="radiogroup_Dampak" orient="horizontal">
-                                <radio id="radio_minor" label="Minor" value="Minor" selected="true"/>
-                                <radio id="radio_mayor" label="Mayor" value="Mayor"/>
+                                <radio id="radio_minor" label="Minor" value="Minor" selected="true" disabled="true"/>
+                                <radio id="radio_mayor" label="Mayor" value="Mayor" disabled="true"/>
                             </radiogroup>
                             <space width="100px"/>
                             <vbox>
@@ -76,7 +76,7 @@
                             <!--<space width="50px"/>-->
                             <!--<listbox id="listbox_Type" width="140px" mold="select" rows="1"/>-->
                             <textbox id="textbox_Type" readonly="true" width="200px" disabled="true"/>
-                            <button id="btn_Type" label="Pilih"/>
+                            <button id="btn_Type" label="Pilih" disabled="true"/>
                         </hbox>
                     </vbox>
                 </row>
@@ -93,7 +93,7 @@
                     <hbox>
                         <!--<combobox id="combobox_RootCaused" width="90%"/>-->
                         <listbox id="listbox_RootCaused" width="200px" mold="select" rows="1" disabled="true"/>
-                        <button label=" + " id="btn_TambahRootCaused"/>
+                        <button label=" + " id="btn_TambahRootCaused" disabled="true"/>
                         <space/>
                         <vbox>
                             <space height="0.5px"/>
@@ -103,7 +103,7 @@
                         <combobox id="combobox_Status" width="140px" readonly="true">
                             <comboitem label="Open" disabled="true"/>
                             <comboitem label="In Progres" disabled="true"/>
-                            <comboitem label="Pending" disabled="true"/>
+                            <comboitem label="Pending"/>
                             <comboitem label="Closed"/>
                         </combobox>
                     </hbox>
@@ -115,7 +115,7 @@
                 </row>
                 <row style="border:0px">
                     <label value="zzz" visible="false"/>
-                    <button id="btn_historySolusi" label="history solusi"/>
+                    <button id="btn_historySolusi" label="history solusi" disabled="true"/>
                 </row>
             </rows>
         </grid>
