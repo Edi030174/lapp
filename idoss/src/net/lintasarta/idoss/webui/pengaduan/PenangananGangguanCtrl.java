@@ -443,7 +443,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
                 Bagian
                 Judul
             */
-        } else if (combobox_Status.getValue().equalsIgnoreCase("InProgress")) {
+        } else if (combobox_Status.getValue().equalsIgnoreCase("In Progress")) {
             /* Tidak boleh kosong:
                 Nomor Tiket
                 Nama Pelapor
@@ -451,7 +451,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
                 Judul
                 Pelaksana
             */
-            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
+            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")){
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;
             }
