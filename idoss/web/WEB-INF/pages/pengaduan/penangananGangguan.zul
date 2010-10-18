@@ -31,8 +31,11 @@
             </columns>
             <rows>
                 <row style="border:0px">
+                    <textbox id="textbox_NomorTiket" visible="false" readonly="true"/>
+                </row>
+                <row style="border:0px">
                     <label value="Nomor Tiket"/>
-                    <textbox id="textbox_NomorTiket" readonly="true"/>
+                    <textbox value="Auto Generate" readonly="true"/>
                 </row>
                 <row style="border:0px">
                     <label value="Nama Pelapor"/>

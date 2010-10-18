@@ -108,6 +108,11 @@
         <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
     </bean>
 
+    <bean id="pelaksanaanGangguanRCtrl" class="net.lintasarta.idoss.webui.pengaduan.PelaksanaanGangguanRCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+    </bean>
+
     <bean id="tambahRootCausedCtrl" class="net.lintasarta.idoss.webui.pengaduan.TambahRootCausedCtrl" parent="basisCtrl"
           scope="prototype">
         <property name="rootCausedService" ref="rootCausedService"/>

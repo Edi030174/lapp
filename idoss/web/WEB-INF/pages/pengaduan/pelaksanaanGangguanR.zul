@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
     <window id="window_PelaksanaanGangguan" position="center,top" width="590px" sizable="false" border="normal"
-            title="Form Pelaksanaan Gangguan" closable="true" apply="${pelaksanaanGangguanCtrl}">
+            title="Form Pelaksanaan Gangguan" closable="true" apply="${pelaksanaanGangguanRCtrl}">
         <style>
             body { padding: 0 0; /* 0 padding on top and bottom and 0
             padding on right and left */ }
@@ -32,29 +32,33 @@
             <rows>
                 <row style="border:0px">
                     <label value="Nomor Tiket"/>
-                    <textbox id="textbox_NomorTiket" readonly="true"/>
+                    <textbox id="textbox_NomorTiket" readonly="true" disabled="true"/>
                 </row>
                 <row style="border:0px">
                     <label value="Pelapor"/>
                     <hbox>
-                        <textbox id="texbox_Pelapor" readonly="true"/>
+                        <textbox id="texbox_Pelapor" readonly="true" disabled="true"/>
                         <space/>
                         <vbox>
                             <space height="0.5px"/>
                             <label value="Bagian"/>
                         </vbox>
-                        <textbox id="texbox_Bagian" readonly="true"/>
+                        <textbox id="texbox_Bagian" readonly="true" disabled="true"/>
                     </hbox>
                 </row>
                 <row style="border:0px">
                     <label value="Judul"/>
-                    <textbox id="texbox_Judul" width="99%" readonly="true"/>
+                    <textbox id="texbox_Judul" width="99%" readonly="true" disabled="true"/>
                 </row>
                 <row style="border:0px">
                     <label value="Deskripsi"/>
                     <fckeditor id="fckeditor_Deskripsi" customConfigurationsPath="/js/fckeditor.js"
                                toolbarSet="Basic"
                                width="99%" height="50%"/>
+                </row>
+                <row style="border:0px">
+                    <label value="zzz" visible="false"/>
+                    <button id="btn_historyDeskripsi" label="history deskripsi"/>
                 </row>
                 <row style="border:0px">
                     <label value="Dampak"/>
@@ -71,7 +75,7 @@
                             </vbox>
                             <!--<space width="50px"/>-->
                             <!--<listbox id="listbox_Type" width="140px" mold="select" rows="1"/>-->
-                            <textbox id="textbox_Type" readonly="true"/>
+                            <textbox id="textbox_Type" readonly="true" width="200px" disabled="true"/>
                             <button id="btn_Type" label="Pilih"/>
                         </hbox>
                     </vbox>
@@ -79,7 +83,7 @@
                 <row style="border:0px">
                     <label value="Pelaksana "/>
                     <hbox>
-                        <listbox id="listbox_NamaPelaksana" width="200px" mold="select" rows="1"/>
+                        <listbox id="listbox_NamaPelaksana" width="200px" mold="select" rows="1" disabled="true"/>
                     </hbox>
                 </row>
                 <row style="border:0px">
@@ -88,7 +92,7 @@
                     </hbox>
                     <hbox>
                         <!--<combobox id="combobox_RootCaused" width="90%"/>-->
-                        <listbox id="listbox_RootCaused" width="200px" mold="select" rows="1"/>
+                        <listbox id="listbox_RootCaused" width="200px" mold="select" rows="1" disabled="true"/>
                         <button label=" + " id="btn_TambahRootCaused"/>
                         <space/>
                         <vbox>
@@ -97,9 +101,9 @@
                         </vbox>
                         <!--<space width="50px"/>-->
                         <combobox id="combobox_Status" width="140px" readonly="true">
-                            <comboitem label="Open"/>
-                            <comboitem label="In Progres"/>
-                            <comboitem label="Pending"/>
+                            <comboitem label="Open" disabled="true"/>
+                            <comboitem label="In Progres" disabled="true"/>
+                            <comboitem label="Pending" disabled="true"/>
                             <comboitem label="Closed"/>
                         </combobox>
                     </hbox>
@@ -108,6 +112,10 @@
                     <label value="Solusi"/>
                     <fckeditor id="fckeditor_Solusi" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic"
                                width="99%" height="50%"/>
+                </row>
+                <row style="border:0px">
+                    <label value="zzz" visible="false"/>
+                    <button id="btn_historySolusi" label="history solusi"/>
                 </row>
             </rows>
         </grid>

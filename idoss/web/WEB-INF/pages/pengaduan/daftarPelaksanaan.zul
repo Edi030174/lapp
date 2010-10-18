@@ -19,12 +19,6 @@
             <button id="btnRefresh_DaftarTiket"
                     image="/images/icons/refresh2_yellow_16x16.gif"
                     tooltiptext="${c:l('btnRefresh_DaftarTiket.tooltiptext')}"/>
-            <button id="btnBuatBaru_DaftarTiket"
-                    image="/images/icons/btn_new2_16x16.gif"
-                    tooltiptext="${c:l('btnBuatBaru_DaftarTiket.tooltiptext')}"/>
-            <button id="btnBuatBaru_DaftarTiketHelpdesk"
-                    image="/images/icons/btn_new2_16x16.gif"
-                    tooltiptext="${c:l('btnBuatBaru_DaftarTiket.tooltiptext')}"/>
             <space/>
             <vbox>
                 <hbox>
