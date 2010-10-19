@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.pengaduan.dao.MttrDAO">
+    <select id="getGeneratedID" resultType="int">
+        select generate_id('SNI','T_IDOSS_MTTR','GEN_ID_COL') from dual
+    </select>
+
+    <select id="getMttrByMttrId" resultType="mttr">
+        select * from T_IDOSS_MTTR
+        where T_IDOSS_MTTR_ID = #{t_idoss_mttr_id}
+    </select>
+
+    <insert id="createMttr" parameterType="mttr">
+        INSERT INTO T_IDOSS_MTTR(
+        T_IDOSS_MTTR_ID,
+        NOMOR_TIKET,
+        MTTR, 
+        OPENED,
+        CLOSED,
+        INPROGRESS,
+        PENDING,
+        TARGET,
+        UPDATED_BY,
+        UPDATED_DATE,
+        GEN_ID_COL)
+        VALUES(
+        #{t_idoss_mttr_id},
+        #{nomor_tiket},
+        #{mttr},
+        #{opened},
+        #{closed},
+        #{inprogress},
+        #{pending},
+        #{target},
+        #{updated_by},
+        #{updated_date},
+        #{gen_id_col})
+    </insert>
+
+    <update id="saveOrUpdateMttr" parameterType="mttr">
+        UPDATE T_IDOSS_MTTR
+        SET
+        MTTR=#{mttr,jdbcType=INTEGER},
+        OPENED=#{opened,jdbcType=INTEGER},
+        CLOSED=#{closed,jdbcType=INTEGER},
+        INPROGRESS=#{inprogress,jdbcType=INTEGER},
+        PENDING=#{pending,jdbcType=INTEGER},
+        TARGET=#{target,jdbcType=INTEGER},
+        UPDATED_BY=#{updated_by,jdbcType=VARCHAR},
+        UPDATED_DATE=#{updated_date,jdbcType=TIMESTAMP},
+        GEN_ID_COL=#{gen_id_col,jdbcType=INTEGER}
+        WHERE  T_IDOSS_MTTR_ID=#{t_idoss_mttr_id}
+    </update>
+
+</mapper>

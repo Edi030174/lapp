@@ -23,7 +23,7 @@
         .z-groupbox-hl .z-groupbox-header { color: #000000;
         font-weight: bold; }
     </style>
-    <window id="window_Permohonan" title="permohonan" border="none" apply="${permohonanCtrl}"
+    <window id="window_Permohonan" title="permohonan" border="normal" apply="${permohonanCtrl}"
             sizable="true" contentStyle="overflow:auto" width="800px" height="600px" closable="true">
         <borderlayout id="borderlayout_Permohonan">
             <north border="none" margins="0,0,0,0"/>
@@ -94,14 +94,14 @@
                                                            value="//FSHOPAR2010"/>
                                                 </vbox>
                                             </hbox>
-                                            <textbox id="textbox_NamaPemohon"
-                                                     width="200px" disabled="true" style="color: black !important;"/>
-                                            <textbox id="textbox_BagianPemohon"
-                                                     width="120px" disabled="true" style="color: black !important;"/>
-                                            <textbox id="textbox_NamaManager"
-                                                     width="120px" disabled="true" style="color: black !important;"/>
-                                            <textbox id="textbox_NamaGm"
-                                                     width="120px" disabled="true" style="color: black !important;"/>
+                                            <textbox id="textbox_NamaPemohon" width="200px" disabled="true"
+                                                     style="color: black !important;"/>
+                                            <textbox id="textbox_BagianPemohon" width="300px" disabled="true"
+                                                     style="color: black !important;"/>
+                                            <textbox id="textbox_NamaManager" width="200px" disabled="true"
+                                                     style="color: black !important;"/>
+                                            <textbox id="textbox_NamaGm" width="200px" disabled="true"
+                                                     style="color: black !important;"/>
                                         </vbox>
                                         <vbox>
                                             <space height="1px"></space>
@@ -153,8 +153,6 @@
                                                     value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
                                         </vbox>
                                         <vbox>
-                                            <button label="Upload Lampiran" upload="true,maxsize=-1"
-                                                    id="button_Lampiran"/>
                                             <button label="Download" id="button_Download"/>
                                         </vbox>
                                     </hbox>
@@ -165,7 +163,8 @@
                                 </groupbox>
                             </tabpanel>
                             <tabpanel id="tabPanel_PersetujuanPemohon" height="100%" style="border: 0px; padding: 0px"/>
-                            <tabpanel id="tabPanel_PersetujuanDukophar" height="100%" style="border: 0px; padding: 0px"/>
+                            <tabpanel id="tabPanel_PersetujuanDukophar" height="100%"
+                                      style="border: 0px; padding: 0px"/>
                             <tabpanel id="tabPanel_Pelaksanaan" height="100%" style="border: 0px; padding: 0px"/>
                         </tabpanels>
                     </tabbox>

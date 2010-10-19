@@ -16,6 +16,7 @@
     <typeAliases>
         <typeAlias type="net.lintasarta.security.model.VHrEmployee" alias="vHrEmployee"/>
         <typeAlias type="net.lintasarta.pengaduan.model.PApplication" alias="papplication"/>
+        <typeAlias type="net.lintasarta.pengaduan.model.Mttr" alias="mttr"/>
 
         <!--permohonan -->
         <typeAlias type="net.lintasarta.permohonan.model.TPelaksanaan" alias="tpelaksanaan"/>
@@ -46,6 +47,8 @@
     <mappers>
         <mapper resource="net/lintasarta/security/dao/impl/mybatis/VHrEmployee.xml"/>
         <mapper resource="net/lintasarta/security/dao/impl/mybatis/PApplicationUser.xml"/>
+        <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/mttr.xml"/>
+
         <!--permohonan -->
         <mapper resource="net/lintasarta/permohonan/dao/impl/mybatis/tpelaksanaan.xml"/>
         <mapper resource="net/lintasarta/permohonan/dao/impl/mybatis/tpermohonan.xml"/>

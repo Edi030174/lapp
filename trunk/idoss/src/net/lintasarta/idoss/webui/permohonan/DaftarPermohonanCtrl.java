@@ -121,10 +121,6 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         listheader_Tipe.setSortAscending(new FieldComparator("type_permohonan", true));
         listheader_StatusPersetujuan.setSortDescending(new FieldComparator("status_track_permohonan", true));
         listheader_StatusPersetujuan.setSortAscending(new FieldComparator("status_track_permohonan", true));
-//        listheader_Pimbag.setSortAscending(new FieldComparator("", true));
-//        listheader_Pimbag.setSortDescending(new FieldComparator("", true));
-//        listheader_Pimdiv.setSortAscending(new FieldComparator("nama_divisi", true));
-//        listheader_Pimdiv.setSortDescending(new FieldComparator("nama_divisi", true));
         listheader_AssMgr.setSortDescending(new FieldComparator("nama_asman", true));
         listheader_AssMgr.setSortAscending(new FieldComparator("nama_asman", true));
         listheader_Mgr.setSortDescending(new FieldComparator("nama_manager", true));

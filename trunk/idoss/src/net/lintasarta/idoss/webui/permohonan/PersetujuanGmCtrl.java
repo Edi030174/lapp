@@ -1,8 +1,11 @@
 package net.lintasarta.idoss.webui.permohonan;
 
 import net.lintasarta.UserWorkspace;
+import net.lintasarta.idoss.webui.pengaduan.model.PelaksanaListModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
+import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
+import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
@@ -40,6 +43,8 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_NamaPemohon;
     protected Datebox datebox_Tanggal;
     protected Textbox textbox_NikPemohon;
+
+    protected Listbox listbox_NamaPelaksana;
 
     protected Radiogroup radiogroup_Prioritas;
     protected Radio high;
@@ -84,6 +89,7 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
 
     private transient TPermohonan tPermohonan;
     private transient TVerifikasi tVerifikasi;
+    private transient TPelaksanaan tPelaksanaan;
     private transient VerifikasiService verifikasiService;
     private transient PermohonanService permohonanService;
 
@@ -124,6 +130,13 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             listbox_DaftarPermohonan = null;
         }
+        ListModelList lmlNamaPelaksana = new ListModelList(getVerifikasiService().getEmployeeName());
+        VHrEmployeePelaksana pelaksana = new VHrEmployeePelaksana();
+        pelaksana.setEmployee_name("Silakan pilih");
+        pelaksana.setEmployee_no("555");
+        lmlNamaPelaksana.add(0, pelaksana);
+        listbox_NamaPelaksana.setModel(lmlNamaPelaksana);
+        listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
 
         doCheckRights(gettVerifikasi(), gettPermohonan());
         doShowDialog(gettVerifikasi(), gettPermohonan());
@@ -134,11 +147,11 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         groupbox_AM.setVisible(workspace.isAllowed("groupbox_AMDukophar"));
         groupbox_Manager.setVisible(workspace.isAllowed("groupbox_ManagerDukophar"));
         groupbox_Gm.setVisible(workspace.isAllowed("groupbox_GmDukophar"));
-        boolean b = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon")); 
+        boolean b = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon"));
         btn_SimpanPersetujuanAsman.setVisible(b);
         boolean bb = (workspace.isAllowed("btn_SimpanPersetujuanManager")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Asman Dukophar"));
         btn_SimpanPersetujuanManager.setVisible(bb);
-        boolean bbb = (workspace.isAllowed("btn_SimpanPersetujuanGm")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar"))&& (tVerifikasi.getDampak().equals("MAJOR"));
+        boolean bbb = (workspace.isAllowed("btn_SimpanPersetujuanGm")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) && (tVerifikasi.getDampak().equals("MAJOR"));
         btn_SimpanPersetujuanGm.setVisible(bbb);
     }
 
@@ -155,8 +168,15 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
         datebox_Tanggal.setValue(tVerifikasi.getTgl_permohonan());
         textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
+        int indexPlks = 0;
+        ListModel listPlks = listbox_NamaPelaksana.getModel();
+        for (int i = 0; i < listPlks.getSize(); i++) {
+            VHrEmployeePelaksana np = (VHrEmployeePelaksana) listPlks.getElementAt(i);
+            if (np.getEmployee_no().equals(tVerifikasi.getNik_pelaksana())) indexPlks = i;
+        }
+        listbox_NamaPelaksana.setSelectedIndex(indexPlks);
         fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
-        if (tVerifikasi.getDampak().equals("MAJOR")){
+        if (tVerifikasi.getDampak().equals("MAJOR")) {
             radiogroup_Dampak.setSelectedItem(major);
         }
         if (tVerifikasi.getStatus_permohonanasman().equals("Ditolak Asman Dukophar")) {
@@ -184,14 +204,29 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        doSimpanAsmanDukophar();
-        window_Permohonan.onClose();
+        if (isValidatedFlow()) {
+            doSimpanAsmanDukophar();
+            window_Permohonan.onClose();
+        }
+    }
+
+    private boolean isValidatedFlow() throws InterruptedException {
+        if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
+                Messagebox.show("Silakan pilih nama pelaksana");
+                return false;
+            }
+            if (listbox_NamaPelaksana.getSelectedItem() == null) {
+                Messagebox.show("Silakan pilih nama pelaksana");
+                return false;
+            }
+        return true;
     }
 
     private void doSimpanAsmanDukophar() throws Exception {
         TPermohonan tPermohonan = gettPermohonan();
         TVerifikasi tVerifikasi = gettVerifikasi();
-        doWriteComponentsToBean1(tPermohonan, tVerifikasi);
+        TPelaksanaan tPelaksanaan = gettPelaksanaan();
+        doWriteComponentsToBean1(tPermohonan, tVerifikasi, tPelaksanaan);
 
         try {
             getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
@@ -205,9 +240,18 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         doStoreInitValues();
     }
 
-    private void doWriteComponentsToBean1(TPermohonan tPermohonan, TVerifikasi tVerifikasi) {
+    private void doWriteComponentsToBean1(TPermohonan tPermohonan, TVerifikasi tVerifikasi, TPelaksanaan tPelaksanaan) {
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tVerifikasi.setDampak(dampak.getValue());
+        Listitem itempelaksana = listbox_NamaPelaksana.getSelectedItem();
+        ListModelList lml3 = (ListModelList) listbox_NamaPelaksana.getListModel();
+        VHrEmployeePelaksana vHrEmployeePelaksana = (VHrEmployeePelaksana) lml3.get(itempelaksana.getIndex());
+        if (!vHrEmployeePelaksana.getEmployee_name().equalsIgnoreCase("Silakan pilih")) {
+            tPelaksanaan.setNama_pelaksana(vHrEmployeePelaksana.getEmployee_name());
+        }
+        if (!vHrEmployeePelaksana.getEmployee_no().equalsIgnoreCase("555")) {
+            tVerifikasi.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
+        }
 
         Radio statusAM = radiogroup_StatusPermohonanAsman.getSelectedItem();
         tVerifikasi.setStatus_permohonanasman(statusAM.getValue());
@@ -287,7 +331,7 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doStoreInitValues() {
 //        oldVar_radio_DisetujuiGM = radio_DisetujuiGM.getValue();
-        oldVar_textbox_TIdossPermohonanId = textbox_TIdossPermohonanId.getValue(); 
+        oldVar_textbox_TIdossPermohonanId = textbox_TIdossPermohonanId.getValue();
 
     }
 
@@ -305,6 +349,14 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
 
     public void settVerifikasi(TVerifikasi tVerifikasi) {
         this.tVerifikasi = tVerifikasi;
+    }
+
+    public TPelaksanaan gettPelaksanaan() {
+        return tPelaksanaan;
+    }
+
+    public void settPelaksanaan(TPelaksanaan tPelaksanaan) {
+        this.tPelaksanaan = tPelaksanaan;
     }
 
     public VerifikasiService getVerifikasiService() {

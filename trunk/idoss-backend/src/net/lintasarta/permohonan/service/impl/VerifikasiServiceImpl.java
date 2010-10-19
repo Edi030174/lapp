@@ -1,5 +1,7 @@
 package net.lintasarta.permohonan.service.impl;
 
+import net.lintasarta.pengaduan.dao.VHrEmployeePelaksanaDAO;
+import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
 import net.lintasarta.permohonan.dao.TPelaksanaanDAO;
 import net.lintasarta.permohonan.dao.TPermohonanDAO;
 import net.lintasarta.permohonan.dao.TVerifikasiDAO;
@@ -17,6 +19,7 @@ public class VerifikasiServiceImpl implements VerifikasiService {
     private TPermohonanDAO tPermohonanDAO;
     private TVerifikasiDAO tVerifikasiDAO;
     private TPelaksanaanDAO tPelaksanaanDAO;
+    private VHrEmployeePelaksanaDAO vHrEmployeePelaksanaDAO;
 
     public TPermohonanDAO gettPermohonanDAO() {
         return tPermohonanDAO;
@@ -46,6 +49,14 @@ public class VerifikasiServiceImpl implements VerifikasiService {
         return new TVerifikasi();
     }
 
+    public VHrEmployeePelaksanaDAO getvHrEmployeePelaksanaDAO() {
+        return vHrEmployeePelaksanaDAO;
+    }
+
+    public void setvHrEmployeePelaksanaDAO(VHrEmployeePelaksanaDAO vHrEmployeePelaksanaDAO) {
+        this.vHrEmployeePelaksanaDAO = vHrEmployeePelaksanaDAO;
+    }
+
     public int getCountAllTVerifikasi() {
         return gettVerifikasiDAO().getCountAllTVerifikasi();
     }
@@ -56,6 +67,11 @@ public class VerifikasiServiceImpl implements VerifikasiService {
 
     public TVerifikasi getTVerifikasiByTIdossVerifikasiId(String t_idoss_verifikasi_id) {
         return gettVerifikasiDAO().getTVerifikasiByTIdossVerifikasiId(t_idoss_verifikasi_id);
+    }
+
+    @Override
+    public List<VHrEmployeePelaksana> getEmployeeName() {
+        return getvHrEmployeePelaksanaDAO().getAllVHrEmployeePelaksana();
     }
 
     public void createTVerifikasi(TVerifikasi tVerifikasi) {
