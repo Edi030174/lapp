@@ -281,17 +281,21 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
-
-        ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
-        if (lml.indexOf(tPenangananGangguan) == -1) {
-            lml.add(tPenangananGangguan);
-        } else {
-            lml.set(lml.indexOf(tPenangananGangguan), tPenangananGangguan);
+        if (!tPenangananGangguan.getStatus().equals("Open")) {
+            ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
+            if (lml.indexOf(tPenangananGangguan) == -1) {
+                lml.add(tPenangananGangguan);
+            } else {
+                lml.set(lml.indexOf(tPenangananGangguan), tPenangananGangguan);
+            }
         }
     }
 
     private void doShowDialog(TPenangananGangguan tPenangananGangguan) throws InterruptedException {
-
+        if (tPenangananGangguan.getStatus().equals("Closed")) {
+            btnSimpan_PelaksanaanGangguan.setVisible(false);
+            combobox_Status.setDisabled(true);
+        }
         try {
             doWriteBeanToComponent(tPenangananGangguan);
             window_PelaksanaanGangguan.doOverlapped();

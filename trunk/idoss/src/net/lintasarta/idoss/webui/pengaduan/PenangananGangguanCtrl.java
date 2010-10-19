@@ -277,12 +277,13 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
-
-        ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
-        if (lml.indexOf(tPenangananGangguan) == -1) {
-            lml.add(tPenangananGangguan);
-        } else {
-            lml.set(lml.indexOf(tPenangananGangguan), tPenangananGangguan);
+        if (!tPenangananGangguan.getStatus().equals("Open")) {
+            ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
+            if (lml.indexOf(tPenangananGangguan) == -1) {
+                lml.add(tPenangananGangguan);
+            } else {
+                lml.set(lml.indexOf(tPenangananGangguan), tPenangananGangguan);
+            }
         }
     }
 
@@ -451,7 +452,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
                 Judul
                 Pelaksana
             */
-            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")){
+            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;
             }

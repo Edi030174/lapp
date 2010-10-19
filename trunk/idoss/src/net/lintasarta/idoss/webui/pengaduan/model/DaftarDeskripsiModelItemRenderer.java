@@ -3,6 +3,7 @@ package net.lintasarta.idoss.webui.pengaduan.model;
 import net.lintasarta.pengaduan.model.TDeskripsi;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import org.apache.log4j.Logger;
+import org.zkforge.fckez.FCKeditor;
 import org.zkoss.zk.ui.sys.ComponentsCtrl;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
