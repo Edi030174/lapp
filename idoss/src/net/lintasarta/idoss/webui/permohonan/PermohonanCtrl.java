@@ -61,7 +61,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     protected Textbox textbox_Lainlain;
     protected Checkbox checkbox_Cepat;
-    protected Button button_Lampiran;
     protected Button button_Download;
     protected FCKeditor fck_DetailPermohonan;
 
@@ -181,6 +180,11 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
+        if(tPermohonan.getLampiran()!=null){
+            button_Download.setVisible(true);
+        }else{
+            button_Download.setVisible(false);
+        }
         if (tPermohonan == null) {
             tPermohonan = getPermohonanService().getNewPermohonan();
             settPermohonan(tPermohonan);
@@ -212,8 +216,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         radio_readonly.setDisabled(true);
         radio_readwrite.setDisabled(true);
         checkbox_Cepat.setDisabled(true);
-        button_Lampiran.setDisabled(true);
-
     }
 
     private void doWriteBeanToComponents(TPermohonan tPermohonan) {
@@ -479,11 +481,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             change = true;
         }
         return change;
-    }
-
-    public void onUpload$button_Lampiran(UploadEvent event) throws IOException {
-        Media media = event.getMedia();
-        setUploadMedia(media);
     }
 
     private void doSimpan() throws InterruptedException {
