@@ -17,5 +17,6 @@
          <property name="tPelaksanaanDAO" ref="tPelaksanaanDAO"/>
         <property name="tPermohonanDAO" ref="tPermohonanDAO"/>
         <property name="tVerifikasiDAO" ref="tVerifikasiDAO"/>
+        <property name="vHrEmployeePelaksanaDAO" ref="vHrEmployeePelaksanaDAO"/>
     </bean>
 </beans>

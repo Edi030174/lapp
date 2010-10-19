@@ -1,5 +1,6 @@
 package net.lintasarta.permohonan.service;
 
+import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
 import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
@@ -16,6 +17,7 @@ public interface VerifikasiService {
     int getCountAllTVerifikasi();
     List<TVerifikasi> getAllTVerifikasi();
     TVerifikasi getTVerifikasiByTIdossVerifikasiId(String t_idoss_verifikasi_id);
+    List<VHrEmployeePelaksana> getEmployeeName();
     void createTVerifikasi(TVerifikasi tVerifikasi);
     void saveOrUpdateTVerifikasi (TVerifikasi tVerifikasi);
 }

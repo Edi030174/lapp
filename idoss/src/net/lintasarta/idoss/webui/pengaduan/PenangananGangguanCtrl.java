@@ -277,7 +277,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
-        if (!tPenangananGangguan.getStatus().equals("Open")) {
+        if (tPenangananGangguan.getStatus().equals("Open")) {
             ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
             if (lml.indexOf(tPenangananGangguan) == -1) {
                 lml.add(tPenangananGangguan);

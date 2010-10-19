@@ -93,6 +93,12 @@
                 </radiogroup>
             </vbox>
         </hbox>
+        <hbox>
+            <label value="Pelaksana "/>
+            <hbox>
+                <listbox id="listbox_NamaPelaksana" width="200px" mold="select" rows="1"/>
+            </hbox>
+        </hbox>
         <space width="20px"></space>
         <groupbox mold="3d">
             <caption label="detail permohonan" style="font-weight:normal"/>

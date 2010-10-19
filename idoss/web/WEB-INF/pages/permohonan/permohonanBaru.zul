@@ -6,7 +6,7 @@
     xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-    <window id="window_Permohonan" title="permohonan" border="none" apply="${permohonanBaruCtrl}"
+    <window id="window_Permohonan" title="permohonan" border="normal" apply="${permohonanBaruCtrl}"
             sizable="true" width="800px" height="480px" closable="true">
         <style>
             body { padding: 0 0; /* 0 padding on top and bottom and 0
@@ -78,11 +78,11 @@
                                 </hbox>
                                 <textbox id="textbox_NamaPemohon" width="200px" disabled="true"
                                          style="color: black !important;"/>
-                                <textbox id="textbox_BagianPemohon" width="120px" disabled="true"
+                                <textbox id="textbox_BagianPemohon" width="300px" disabled="true"
                                          style="color: black !important;"/>
-                                <textbox id="textbox_NamaManager" width="120px" disabled="true"
+                                <textbox id="textbox_NamaManager" width="200px" disabled="true"
                                          style="color: black !important;"/>
-                                <textbox id="textbox_NamaGm" width="120px" disabled="true"
+                                <textbox id="textbox_NamaGm" width="200px" disabled="true"
                                          style="color: black !important;"/>
                             </vbox>
                             <vbox>

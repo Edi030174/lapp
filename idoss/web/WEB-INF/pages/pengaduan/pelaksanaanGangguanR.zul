@@ -58,7 +58,7 @@
                 </row>
                 <row style="border:0px">
                     <label value="zzz" visible="false"/>
-                    <button id="btn_historyDeskripsi" label="history deskripsi" disabled="true"/>
+                    <button id="btn_historyDeskripsi" label="history deskripsi"/>
                 </row>
                 <row style="border:0px">
                     <label value="Dampak"/>
@@ -92,8 +92,8 @@
                     </hbox>
                     <hbox>
                         <!--<combobox id="combobox_RootCaused" width="90%"/>-->
-                        <listbox id="listbox_RootCaused" width="200px" mold="select" rows="1" disabled="true"/>
-                        <button label=" + " id="btn_TambahRootCaused" disabled="true"/>
+                        <listbox id="listbox_RootCaused" width="200px" mold="select" rows="1"/>
+                        <button label=" + " id="btn_TambahRootCaused"/>
                         <space/>
                         <vbox>
                             <space height="0.5px"/>
@@ -115,7 +115,7 @@
                 </row>
                 <row style="border:0px">
                     <label value="zzz" visible="false"/>
-                    <button id="btn_historySolusi" label="history solusi" disabled="true"/>
+                    <button id="btn_historySolusi" label="history solusi"/>
                 </row>
             </rows>
         </grid>

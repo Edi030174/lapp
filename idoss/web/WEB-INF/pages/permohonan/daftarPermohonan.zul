@@ -30,10 +30,10 @@
                     <label value="Cari:"/>
                     <listbox id="listbox_Cari" rows="1" mold="select" width="150px">
                         <listhead visible="false"/>
-                        <listitem id="listitem_Nomor" label="Nomor Permohonan" selected="true"/>
-                        <listitem id="listitem_Tanggal" label="Tanggal"/>
-                        <listitem id="listitem_Tipe" label="Tipe"/>
-                        <listitem id="listitem_Status" label="Status"/>
+                        <listitem id="listitem_Nomor" label="Nomor Permohonan" value="1" selected="true"/>
+                        <listitem id="listitem_Tipe" label="Tipe" value="2"/>
+                        <listitem id="listitem_Status" label="Status" value="3"/>
+                        <listitem id="listitem_Tanggal" label="Tanggal" value="4"/>
                     </listbox>
                     <textbox id="textbox_cariPermohonanId"/>
                     <button id="btnCari" label="cari"
