@@ -401,34 +401,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             texbox_Bagian = new Textbox();
         }
 
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> DataIsChanged :" + isDataChanged());
-        }
-        if (isDataChanged()) {
-
-            // Show a confirm box
-            String message = Labels.getLabel("message_Data_Modified_Save_Data_YesNo");
-            String title = Labels.getLabel("message_Information");
-
-            MultiLineMessageBox.doSetTemplate();
-            if (MultiLineMessageBox.show(message, title, MultiLineMessageBox.YES | MultiLineMessageBox.NO, MultiLineMessageBox.QUESTION, true, new EventListener() {
-                public void onEvent(Event evt) {
-                    switch ((Integer) evt.getData()) {
-                        case MultiLineMessageBox.YES:
-                            try {
-                                doSimpan();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        case MultiLineMessageBox.NO:
-                            break; //
-                    }
-                }
-            }
-
-            ) == MultiLineMessageBox.YES) {
-            }
-        }
         window_PelaksanaanGangguan.onClose();
     }
 
