@@ -39,5 +39,4 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
         <property name="mapperInterface" value="net.lintasarta.pengaduan.dao.MttrDAO"/>
     </bean>
-
 </beans>

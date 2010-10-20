@@ -17,6 +17,7 @@ import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
@@ -52,6 +53,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     protected Button btn_historySolusi;
     protected PelaksanaanGangguanCtrl pelaksanaanGangguanCtrl;
     private transient boolean validationOn;
+    private transient Window window_Helpdesk;
     private transient Listbox listbox_DaftarTiket;
     private transient String oldVar_textbox_Pelaksana;
     private transient String oldVar_textbox_NikPelaksana;
@@ -97,6 +99,12 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             pelaksanaanGangguanCtrl = null;
         }
 
+        if (args.containsKey("window_Helpdesk")) {
+            window_Helpdesk = (Window) args.get("window_Helpdesk");
+        } else {
+            window_Helpdesk = null;
+        }
+
         if (args.containsKey("listbox_DaftarTiket")) {
             listbox_DaftarTiket = (Listbox) args.get("listbox_DaftarTiket");
         } else {
@@ -137,6 +145,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         if (isValidatedFlow()) {
             doSimpan();
             window_PelaksanaanGangguan.onClose();
+            Events.postEvent("onCreate", window_Helpdesk, event);
+            window_Helpdesk.invalidate();
         }
     }
 
@@ -245,6 +255,14 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         listbox_RootCaused.getSelectedItem();
     }
 
+    public void onSelect$listbox_NamaPelaksana() {
+        if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
+            combobox_Status.setSelectedIndex(0);
+        } else {
+            combobox_Status.setSelectedIndex(1);
+        }
+    }
+
     public void onClose$window_PelaksanaanGangguan(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
@@ -281,6 +299,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
+
 
         ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
         if (lml.indexOf(tPenangananGangguan) == -1) {

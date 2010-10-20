@@ -231,6 +231,14 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         listbox_RootCaused.getSelectedItem();
     }
 
+    public void onSelect$listbox_NamaPelaksana() {
+        if(listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")){
+            combobox_Status.setSelectedIndex(0);
+        }else{
+            combobox_Status.setSelectedIndex(1);
+        }
+    }
+
     public void onClose$window_PenangananGangguan(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {

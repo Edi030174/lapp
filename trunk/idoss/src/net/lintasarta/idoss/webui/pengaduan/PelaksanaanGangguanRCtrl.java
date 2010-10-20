@@ -313,7 +313,7 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         combobox_Status.setValue(tPenangananGangguan.getStatus());
 
 //        ListModelList lml = (ListModelList) listbox_NamaPelaksana.getModel();
-        VHrEmployeePelaksana vHrEmployeePelaksana = getPelaksanaanGangguanService().getVHrEmployeePelaksanaById(tPenangananGangguan.getNik_pelaksana());
+//        VHrEmployeePelaksana vHrEmployeePelaksana = getPelaksanaanGangguanService().getVHrEmployeePelaksanaById(tPenangananGangguan.getNik_pelaksana());
 //        if (tPenangananGangguan.getNama_pelaksana() != null) {
 //            listbox_NamaPelaksana.setSelectedIndex(lml.indexOf(vHrEmployeePelaksana));
 //        } else {
