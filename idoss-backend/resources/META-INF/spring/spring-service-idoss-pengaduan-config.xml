@@ -34,4 +34,7 @@
     <bean id="tDeskripsiService" class="net.lintasarta.pengaduan.service.impl.TDeskripsiServiceImpl">
         <property name="tDeskripsiDAO" ref="tDeskripsiDAO" />
     </bean>
+    <bean id="MttrService" class="net.lintasarta.pengaduan.service.impl.MttrServiceImpl">
+        <property name="mttrDAO" ref="MttrDAO"/>
+    </bean>
 </beans>

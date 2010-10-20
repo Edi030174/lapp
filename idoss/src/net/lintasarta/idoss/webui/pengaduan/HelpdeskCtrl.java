@@ -412,6 +412,7 @@ public class HelpdeskCtrl extends GFCBaseListCtrl<TPenangananGangguan> implement
         HashMap<String, Object> map = new HashMap<String, Object>();
 
         map.put("tPenangananGangguan", tPenangananGangguan);
+        map.put("window_Helpdesk",window_Helpdesk);
 
         map.put("listbox_DaftarTiket", listbox_DaftarTiket);
 
