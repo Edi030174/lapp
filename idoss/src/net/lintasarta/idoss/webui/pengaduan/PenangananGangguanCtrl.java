@@ -224,7 +224,11 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     public void onChange$combobox_NamaPelapor() {
         Comboitem item = combobox_NamaPelapor.getSelectedItem();
         setEmployee((VHrEmployee) item.getValue());
+        if(getEmployee().getOrganization_code()!=null){
         texbox_Bagian.setValue(getEmployee().getOrganization_code());
+        }else{
+            combobox_NamaPelapor.setFocus(true);
+        }
     }
 
     public void onChange$listbox_RootCaused() {

@@ -47,8 +47,8 @@
                         <textbox id="textbox_NikPelapor" readonly="true"/>
                         <space/>
                         <label value="Bagian"/>
-                        <space width="0.5px"/>
-                        <textbox id="textbox_Bagian" readonly="true"/>
+                        <space width="20.5px"/>
+                        <textbox id="textbox_Bagian" readonly="true" width="250px"/>
                     </hbox>
 
                 </row>
