@@ -6,6 +6,7 @@ import net.lintasarta.idoss.webui.pengaduan.model.DaftarTiketModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
+import net.lintasarta.pengaduan.model.comparator.TPenangananGangguanComparator;
 import net.lintasarta.pengaduan.model.predicate.*;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
 import net.lintasarta.security.model.UserSession;
@@ -56,6 +57,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
     protected Listheader listheader_TglUpdate;
     protected Checkbox checkbox_All;
     private transient Listbox listbox_Cari;
+    protected Listitem listitem_All;
     protected Listitem listitem_Nomor;
     protected Listitem listitem_Judul;
     protected Listitem listitem_Status;
@@ -85,7 +87,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
             logger.debug("--> " + event.toString());
         }
         doCheckRights();
-        doHideTanggal();
+        doViewTanggal();
 
         int panelHeight = 25;
         // TODO put the logic for working with panel in the ApplicationWorkspace
@@ -222,10 +224,20 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
 
         if (!textbox_Cari.getValue().isEmpty()) {
-            if (listbox_Cari.getSelectedItem() == listitem_Judul) {
+            if (listbox_Cari.getSelectedItem() == listitem_All) {
+                CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
                 CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
+                CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
+                CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
+                if (datebox_TanggalAkhir.getValue() != null) {
+                    if (datebox_TanggalAwal.getValue() != null) {
+                        CollectionUtils.filter(searchResult, new TanggalTPenangananGangguan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()));
+                    }
+                }
             } else if (listbox_Cari.getSelectedItem() == listitem_Nomor) {
                 CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
+            } else if (listbox_Cari.getSelectedItem() == listitem_Judul) {
+                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
             } else if (listbox_Cari.getSelectedItem() == listitem_Status) {
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
             } else if (listbox_Cari.getSelectedItem() == listitem_Pelapor) {
@@ -339,40 +351,43 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
 //        getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
     }
 
-    public void onSelect$listbox_Cari(Event event)throws Exception{
+    public void onSelect$listbox_Cari(Event event) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        logger.debug("NILAINYA : "+listbox_Cari.getSelectedItem().getValue().toString());
+        logger.debug("NILAINYA : " + listbox_Cari.getSelectedItem().getValue().toString());
         int hierarchy = Integer.parseInt(listbox_Cari.getSelectedItem().getValue().toString());
         doShowBerdasarkan(hierarchy);
     }
 
-    private void doShowBerdasarkan(int hierarchy){
-        switch(hierarchy){
-            case 1 :{
-
-               doHideTanggal();
+    private void doShowBerdasarkan(int hierarchy) {
+        switch (hierarchy) {
+            case 1: {
+                doViewTanggal();
                 break;
             }
-            case 2 :{
-               doHideTanggal();
+            case 2: {
+                doHideTanggal();
                 break;
             }
-            case 3 :{
-               doHideTanggal();
+            case 3: {
+                doHideTanggal();
                 break;
             }
-            case 4 :{
-               doHideTanggal();
+            case 4: {
+                doHideTanggal();
                 break;
             }
-            case 5 :{
-               doHideTanggal();
+            case 5: {
+                doHideTanggal();
                 break;
             }
-            case 6 :{
-               doViewTanggal();
+            case 6: {
+                doHideTanggal();
+                break;
+            }
+            case 7: {
+                doViewTanggal();
                 break;
             }
         }
@@ -440,11 +455,11 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         }
     }
 
-    private void doViewTanggal(){
+    private void doViewTanggal() {
         idHboxTanggal.setVisible(true);
     }
 
-    private void doHideTanggal(){
+    private void doHideTanggal() {
         idHboxTanggal.setVisible(false);
     }
 

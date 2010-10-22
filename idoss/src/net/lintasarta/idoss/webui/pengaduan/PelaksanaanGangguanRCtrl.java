@@ -386,51 +386,7 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
             texbox_Bagian = new Textbox();
         }
 
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> DataIsChanged :" + isDataChanged());
-        }
-        if (isDataChanged()) {
-
-            // Show a confirm box
-            String message = Labels.getLabel("message_Data_Modified_Save_Data_YesNo");
-            String title = Labels.getLabel("message_Information");
-
-            MultiLineMessageBox.doSetTemplate();
-            if (MultiLineMessageBox.show(message, title, MultiLineMessageBox.YES | MultiLineMessageBox.NO, MultiLineMessageBox.QUESTION, true, new EventListener() {
-                public void onEvent(Event evt) {
-                    switch ((Integer) evt.getData()) {
-                        case MultiLineMessageBox.YES:
-                            try {
-                                doSimpan();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        case MultiLineMessageBox.NO:
-                            break; //
-                    }
-                }
-            }
-
-            ) == MultiLineMessageBox.YES) {
-            }
-        }
         window_PelaksanaanGangguan.onClose();
-    }
-
-    private boolean isDataChanged() throws Exception {
-        boolean change = false;
-
-//        if (oldVar_textbox_Pelaksana !=(textbox_Pelaksana.getValue())) {
-//            change = true;
-//        }
-//        if (oldVar_textbox_NikPelaksana !=(textbox_NikPelaksana.getValue())) {
-//            change = true;
-//        }
-        if (oldVar_fckeditor_Solusi != (fckeditor_Solusi.getValue())) {
-            change = true;
-        }
-
-        return change;
     }
 
     private boolean isValidatedFlow() throws InterruptedException {

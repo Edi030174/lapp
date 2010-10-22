@@ -172,9 +172,6 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
             tes.setValue(nn);
         }
 
-//        String nn = mm.replace("<*>","");
-
-
         if (tPermohonan.getStatus_track_permohonan().equals("Ditolak Manager Pemohon")) {
             radiogroup_StatusPermohonanManagerPemohon.setSelectedItem(radio_DitolakMPemohon);
         }

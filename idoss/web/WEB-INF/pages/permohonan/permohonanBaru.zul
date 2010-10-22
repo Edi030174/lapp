@@ -73,7 +73,7 @@
                                              style="color: black !important;"/>
                                     <vbox>
                                         <space height="1px"></space>
-                                        <label width="10px" value="//FSHOPAR2010"/>
+                                        <label width="10px" value="/FPSOPHAR 2010"/>
                                     </vbox>
                                 </hbox>
                                 <textbox id="textbox_NamaPemohon" width="200px" disabled="true"
