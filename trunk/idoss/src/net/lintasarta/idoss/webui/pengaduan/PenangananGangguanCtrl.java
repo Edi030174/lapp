@@ -416,35 +416,6 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             combobox_Status = new Combobox();
         }
 
-
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> DataIsChanged :" + isDataChanged());
-        }
-        if (isDataChanged()) {
-
-            // Show a confirm box
-            String message = Labels.getLabel("message_Data_Modified_Save_Data_YesNo");
-            String title = Labels.getLabel("message_Information");
-
-            MultiLineMessageBox.doSetTemplate();
-            if (MultiLineMessageBox.show(message, title, MultiLineMessageBox.YES | MultiLineMessageBox.NO, MultiLineMessageBox.QUESTION, true, new EventListener() {
-                public void onEvent(Event evt) {
-                    switch ((Integer) evt.getData()) {
-                        case MultiLineMessageBox.YES:
-                            try {
-                                doSimpan();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        case MultiLineMessageBox.NO:
-                            break; //
-                    }
-                }
-            }
-
-            ) == MultiLineMessageBox.YES) {
-            }
-        }
         window_PenangananGangguan.onClose();
     }
 
@@ -496,16 +467,6 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             }
         }
         return true;
-    }
-
-    private boolean isDataChanged() throws Exception {
-        boolean change = false;
-
-        if (!oldVar_fckeditor_Solusi.equals(fckeditor_Solusi.getValue())) {
-            change = true;
-        }
-
-        return change;
     }
 
     public TPenangananGangguan gettPenangananGangguan() {

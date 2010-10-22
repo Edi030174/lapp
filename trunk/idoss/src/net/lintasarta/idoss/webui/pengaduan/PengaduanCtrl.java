@@ -148,62 +148,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
             textbox_Ext = new Textbox();
         }
 
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> DataIsChanged :" + isDataChanged());
-        }
-        if (isDataChanged()) {
-
-            // Show a confirm box
-            String message = Labels.getLabel("message_Data_Modified_Save_Data_YesNo");
-            String title = Labels.getLabel("message_Information");
-
-            MultiLineMessageBox.doSetTemplate();
-            if (MultiLineMessageBox.show(message, title, MultiLineMessageBox.YES | MultiLineMessageBox.NO, MultiLineMessageBox.QUESTION, true, new EventListener() {
-                public void onEvent(Event evt) {
-                    switch (((Integer) evt.getData()).intValue()) {
-                        case MultiLineMessageBox.YES:
-                            try {
-                                doSimpan();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        case MultiLineMessageBox.NO:
-                            break; //
-                    }
-                }
-            }
-
-            ) == MultiLineMessageBox.YES) {
-            }
-        }
         window_Pengaduan.onClose();
-    }
-
-    private boolean isDataChanged() throws Exception {
-        boolean change = false;
-
-        if (oldVar_textboxNomorTiket != textbox_NomorTiket.getValue()) {
-            change = true;
-        }
-        if (oldVar_textboxNamaPelapor != textbox_NamaPelapor.getValue()) {
-            change = true;
-        }
-        if (oldVar_textboxNikPelapor != textbox_NikPelapor.getValue()) {
-            change = true;
-        }
-        if (oldVar_textboxNomorHP != textbox_NomorHP.getValue()) {
-            change = true;
-        }
-        if (oldVar_textboxExt != textbox_Ext.getValue()) {
-            change = true;
-        }
-        if (oldVar_textboxJudul != textbox_Judul.getValue()) {
-            change = true;
-        }
-        if (oldVar_fckeditorDes != fckeditor_Des.getValue()) {
-            change = true;
-        }
-        return change;
     }
 
     private void doSimpan() throws InterruptedException {

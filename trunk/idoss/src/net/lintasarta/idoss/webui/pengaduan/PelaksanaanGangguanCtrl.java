@@ -326,7 +326,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         texbox_Bagian.setValue(tPenangananGangguan.getBagian_pelapor());
         texbox_Judul.setValue(tPenangananGangguan.getJudul());
         combobox_Status.setValue(tPenangananGangguan.getStatus());
-
+        fckeditor_Deskripsi.setValue(tPenangananGangguan.getDeskripsi());
+        fckeditor_Solusi.setValue(tPenangananGangguan.getSolusi());
 //        ListModelList lml = (ListModelList) listbox_NamaPelaksana.getModel();
         VHrEmployeePelaksana vHrEmployeePelaksana = getPelaksanaanGangguanService().getVHrEmployeePelaksanaById(tPenangananGangguan.getNik_pelaksana());
 //        if (tPenangananGangguan.getNama_pelaksana() != null) {
@@ -402,22 +403,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         }
 
         window_PelaksanaanGangguan.onClose();
-    }
-
-    private boolean isDataChanged() throws Exception {
-        boolean change = false;
-
-//        if (oldVar_textbox_Pelaksana !=(textbox_Pelaksana.getValue())) {
-//            change = true;
-//        }
-//        if (oldVar_textbox_NikPelaksana !=(textbox_NikPelaksana.getValue())) {
-//            change = true;
-//        }
-        if (oldVar_fckeditor_Solusi != (fckeditor_Solusi.getValue())) {
-            change = true;
-        }
-
-        return change;
     }
 
     private boolean isValidatedFlow() throws InterruptedException {

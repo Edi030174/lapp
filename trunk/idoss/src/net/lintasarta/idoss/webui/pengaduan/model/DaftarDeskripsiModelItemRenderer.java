@@ -24,22 +24,21 @@ public class DaftarDeskripsiModelItemRenderer implements ListitemRenderer {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + tDeskripsi.getSolusi() + ", " + tDeskripsi.getDeskripsi());
         }
-        Listcell lc = new Listcell(tDeskripsi.getT_idoss_penanganan_gangguan_id());
+        if (tDeskripsi.getDeskripsi() != null) {
+            Listcell lc = new Listcell(tDeskripsi.getT_idoss_penanganan_gangguan_id());
 //        lc.setParent(item);
 
-        Timestamp ts = tDeskripsi.getUpdated_date();
-        String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-        lc = new Listcell(tgl);
-        lc.setParent(item);
+            Timestamp ts = tDeskripsi.getUpdated_date();
+            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+            lc = new Listcell(tgl);
+            lc.setParent(item);
 
-        lc = new Listcell(tDeskripsi.getUpdated_by());
-        lc.setParent(item);
+            lc = new Listcell(tDeskripsi.getUpdated_by());
+            lc.setParent(item);
 
-        if (tDeskripsi.getDeskripsi() != null) {
             lc = new Listcell(tDeskripsi.getDeskripsi());
             lc.setParent(item);
         }
-
         item.setAttribute("data", data);
         ComponentsCtrl.applyForward(item, "onDoubleClick=onDoubleClickedTiketItem");
     }

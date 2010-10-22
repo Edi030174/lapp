@@ -61,7 +61,6 @@
           parent="basisListCtrl" scope="prototype">
         <property name="permohonanService" ref="permohonanService"/>
     </bean>
-
     <bean id="permohonanBaruCtrl" class="net.lintasarta.idoss.webui.permohonan.PermohonanBaruCtrl" parent="basisCtrl"
           scope="prototype">
         <property name="permohonanService" ref="permohonanService"/>
