@@ -147,6 +147,8 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         groupbox_AM.setVisible(workspace.isAllowed("groupbox_AMDukophar"));
         groupbox_Manager.setVisible(workspace.isAllowed("groupbox_ManagerDukophar"));
         groupbox_Gm.setVisible(workspace.isAllowed("groupbox_GmDukophar"));
+//        boolean np = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && ((tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) || (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Dukophar")));
+//        listbox_NamaPelaksana.setVisible(np);
         boolean b = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon"));
         btn_SimpanPersetujuanAsman.setVisible(b);
         boolean bb = (workspace.isAllowed("btn_SimpanPersetujuanManager")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Asman Dukophar"));
@@ -212,13 +214,13 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
 
     private boolean isValidatedFlow() throws InterruptedException {
         if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
-                Messagebox.show("Silakan pilih nama pelaksana");
-                return false;
-            }
-            if (listbox_NamaPelaksana.getSelectedItem() == null) {
-                Messagebox.show("Silakan pilih nama pelaksana");
-                return false;
-            }
+            Messagebox.show("Silakan pilih nama pelaksana");
+            return false;
+        }
+        if (listbox_NamaPelaksana.getSelectedItem() == null) {
+            Messagebox.show("Silakan pilih nama pelaksana");
+            return false;
+        }
         return true;
     }
 
@@ -246,12 +248,12 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         Listitem itempelaksana = listbox_NamaPelaksana.getSelectedItem();
         ListModelList lml3 = (ListModelList) listbox_NamaPelaksana.getListModel();
         VHrEmployeePelaksana vHrEmployeePelaksana = (VHrEmployeePelaksana) lml3.get(itempelaksana.getIndex());
-        if (!vHrEmployeePelaksana.getEmployee_name().equalsIgnoreCase("Silakan pilih")) {
-            tPelaksanaan.setNama_pelaksana(vHrEmployeePelaksana.getEmployee_name());
-        }
-        if (!vHrEmployeePelaksana.getEmployee_no().equalsIgnoreCase("555")) {
-            tVerifikasi.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
-        }
+//        if (!vHrEmployeePelaksana.getEmployee_name().equalsIgnoreCase("Silakan pilih")) {
+//            tPelaksanaan.setNama_pelaksana(vHrEmployeePelaksana.getEmployee_name());
+//        }
+//        if (!vHrEmployeePelaksana.getEmployee_no().equalsIgnoreCase("555")) {
+//            tVerifikasi.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
+//        }
 
         Radio statusAM = radiogroup_StatusPermohonanAsman.getSelectedItem();
         tVerifikasi.setStatus_permohonanasman(statusAM.getValue());
