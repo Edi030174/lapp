@@ -94,10 +94,7 @@
             </vbox>
         </hbox>
         <hbox>
-            <label value="Pelaksana "/>
-            <hbox>
-                <listbox id="listbox_NamaPelaksana" width="200px" mold="select" rows="1"/>
-            </hbox>
+
         </hbox>
         <space width="20px"></space>
         <groupbox mold="3d">
@@ -120,6 +117,8 @@
                             <radio id="radio_DitolakAM" label="ditolak" value="Ditolak Asman Dukophar"/>
                         </hbox>
                     </radiogroup>
+                    <label value="Pelaksana"/>
+                <listbox id="listbox_NamaPelaksana" width="200px" mold="select" rows="1"/>
                 </vbox>
                 <space width="40px"/>
                 <vbox>
