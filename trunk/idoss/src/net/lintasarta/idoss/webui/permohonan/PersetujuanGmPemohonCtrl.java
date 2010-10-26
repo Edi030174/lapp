@@ -3,17 +3,23 @@ package net.lintasarta.idoss.webui.permohonan;
 import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
+import net.lintasarta.pelapor.model.comparator.TPelaporComparator;
 import net.lintasarta.permohonan.model.TPermohonan;
+import net.lintasarta.permohonan.model.comparator.TPermohonanComparator;
 import net.lintasarta.permohonan.service.PermohonanService;
+import net.lintasarta.plik.model.TPlik;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.resource.Labels;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -38,11 +44,14 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     protected Textbox textbox_TIdossPermohonanId;
     protected Textbox textbox_NamaPemohon;
     protected Textbox textbox_NikPemohon;
-    protected FCKeditor fck_DetailPermohonan;
-    protected FCKeditor fck_CatatanManager;
+    //protected FCKeditor fck_DetailPermohonan;
+    //protected FCKeditor fck_CatatanManager;
+    protected Textbox fck_DetailPermohonan;
+    protected Textbox fck_CatatanManager;
     protected Datebox datebox_Tanggal;
     protected Datebox datebox_Tanggal2;
-    protected FCKeditor fck_CatatanGmPemohon;
+    //protected FCKeditor fck_CatatanGmPemohon;
+    protected Textbox fck_CatatanGmPemohon;
     protected Radiogroup radiogroup_StatusPermohonanManagerPemohon;
     protected Radio radio_DisetujuiMPemohon;
     protected Radio radio_DitolakMPemohon;
@@ -68,6 +77,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     private transient String oldVar_fck_CatatanGmPemohon;
     private transient boolean oldVar_radio_DisetujuiGmPemohon;
     private transient boolean oldVar_radio_DitolakGmPemohon;
+    private transient Window window_DaftarPermohonan;
 //    private transient String oldVar_
 
     protected Listbox listbox_DaftarPermohonan;
@@ -104,6 +114,11 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
             persetujuanGmPemohonCtrl = (PersetujuanGmPemohonCtrl) args.get("PersetujuanGmPemohonCtrl");
         } else {
             persetujuanGmPemohonCtrl = null;
+        }
+        if (args.containsKey("window_DaftarPermohonan")) {
+            window_DaftarPermohonan = (Window) args.get("window_DaftarPermohonan");
+        } else {
+            window_DaftarPermohonan = null;
         }
 
         if (args.containsKey("listbox_DaftarPermohonan")) {
@@ -189,6 +204,8 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         }
         doSave();
         window_Permohonan.onClose();
+                Events.postEvent("onCreate", window_DaftarPermohonan, event);
+        window_DaftarPermohonan.invalidate();
     }
 
     public void onClick$btn_SimpanPersetujuanGmPemohon(Event event) throws Exception {
@@ -211,7 +228,8 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
-        doStoreInitValues();
+
+
     }
 
     private void doSimpan() throws Exception {
@@ -228,6 +246,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         }
         doStoreInitValues();
     }
+
 
     private void doWriteComponentsToBean(TPermohonan tPermohonan) {
         Radio dampak = radiogroup_Dampak.getSelectedItem();

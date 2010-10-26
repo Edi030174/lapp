@@ -137,13 +137,15 @@
                                         style="font-size:8pt;font-weight:italic"
                                         value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
                             </vbox>
+                            <button label="Download" id="button_Download"/>
                             <button label="Lampiran" upload="true,maxsize=-1" id="button_Lampiran"/>
                             <!--<button label="Upload" upload="true,maxsize=-1" onUpload="dosomething"/>-->
                         </hbox>
                         <vbox/>
-                        <fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
+                        <!--<fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
                                    forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
-                                   toolbarSet="Basic"/>
+                                   toolbarSet="Basic"/>  -->
+                        <textbox id="fck_DetailPermohonan" rows="3" width="300px"/>
                     </groupbox>
                 </div>
             </center>

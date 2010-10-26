@@ -18,6 +18,7 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zul.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -58,7 +59,9 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_Lainlain;
     protected Checkbox checkbox_Cepat;
     protected Button button_Lampiran;
-    protected FCKeditor fck_DetailPermohonan;
+    protected Button button_Download;
+    //protected FCKeditor fck_DetailPermohonan;
+    protected Textbox fck_DetailPermohonan;
 
     protected Tab tab_Verifikasi;
     protected Tabpanel tabPanel_Verifikasi;
@@ -205,7 +208,24 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
 
     public void onUpload$button_Lampiran(UploadEvent event) throws IOException {
         Media media = event.getMedia();
-        setUploadMedia(media);
+        //allowed_types : zip/ rar/ word/ excel/ pdf/ txt.
+        String file = media.getName();
+        int zip = file.indexOf("zip");
+        int rar = file.indexOf("rar");
+        int doc = file.indexOf("doc");
+        int docx = file.indexOf("docx");
+        int xls = file.indexOf("xls");
+        int xlsx = file.indexOf("xlsx");
+        int pdf = file.indexOf("pdf");
+        int txt = file.indexOf("txt");
+        if(zip !=-1 || rar !=-1 || doc !=-1 || docx !=-1 || pdf !=-1 || txt !=-1 || xls !=-1 || xlsx !=-1)
+        {
+            setUploadMedia(media);
+        }
+        else
+        {
+            alert("Silahkan gunakan format : zip/ rar/ word/ excel/ pdf/ txt");
+        }
     }
 
     private void doSimpan() throws InterruptedException {
@@ -299,6 +319,20 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         permohonan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         permohonan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
+    }
+
+
+
+    public void onClick$button_Download(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        String lam = "C:\\tempatlampiran\\lampiran.xlsx";
+        try {
+            Filedownload.save(new File(lam), null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public TPermohonan gettPermohonan() {
