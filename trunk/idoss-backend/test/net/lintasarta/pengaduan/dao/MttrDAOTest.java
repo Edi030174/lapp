@@ -79,4 +79,10 @@ public class MttrDAOTest {
 
         assertEquals(updated_byExpected, updated_byActual);
     }
+
+    @Test
+    public void testGetGenerateId() throws Exception{
+        int i = mttrDAO.getGenerateId();
+    }
+
 }
