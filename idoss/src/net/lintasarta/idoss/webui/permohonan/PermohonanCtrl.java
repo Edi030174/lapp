@@ -62,7 +62,8 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_Lainlain;
     protected Checkbox checkbox_Cepat;
     protected Button button_Download;
-    protected FCKeditor fck_DetailPermohonan;
+    //protected FCKeditor fck_DetailPermohonan;
+    protected Textbox fck_DetailPermohonan;
 
     protected Tab tab_Verifikasi;
     protected Tabpanel tabPanel_Verifikasi;
@@ -85,6 +86,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     protected PermohonanCtrl permohonanCtrl;
 
     private transient String oldVar_textboxTIdossPermohonanId;
+    private transient Window window_DaftarPermohonan;
     private transient String oldVar_textboxNamaPemohon;
     private transient String oldVar_textboxBagianPemohon;
     private transient String oldVar_textboxNamaManager;
@@ -152,6 +154,12 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             listbox_DaftarPermohonan = (Listbox) args.get("listbox_DaftarPermohonan");
         } else {
             listbox_DaftarPermohonan = null;
+        }
+        
+        if (args.containsKey("window_DaftarPermohonan")) {
+            window_DaftarPermohonan = (Window) args.get("window_DaftarPermohonan");
+        } else {
+            window_DaftarPermohonan = null;
         }
         Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanPemohon");
         orderTab.getChildren().clear();
@@ -282,6 +290,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         map.put("tPermohonan", tPermohonan);
 
         map.put("permohonanCtrl", this);
+        map.put("window_DaftarPermohonan", window_DaftarPermohonan);
 
         Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanPemohon");
         orderTab.getChildren().clear();

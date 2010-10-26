@@ -95,9 +95,11 @@
         <space width="10px"></space>
         <groupbox mold="3d">
             <caption label="detail permohonan" style="font-weight:normal"/>
+            <!--
             <fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
                        forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
-                       toolbarSet="Basic"/>
+                       toolbarSet="Basic"/> -->
+            <textbox id="fck_DetailPermohonan" rows="3" width="300px"/>
             <label id="tes"></label>
         </groupbox>
         <groupbox mold="3d" id="groupbox_ManagerPemohon">
@@ -118,9 +120,11 @@
                 <space width="40px"/>
                 <vbox>
                     <label value="catatan Manager : "/>
+                    <!--
                     <fckeditor id="fck_CatatanManager" height="90%" width="484px"
                                forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
-                               toolbarSet="Basic"/>
+                               toolbarSet="Basic"/> -->
+                     <textbox id="fck_CatatanManager" rows="3" width="300px"/>
                 </vbox>
             </hbox>
         </groupbox>
@@ -148,8 +152,11 @@
                 <space width="40px"/>
                 <vbox>
                     <label value="catatan GM : "/>
+                    <!--
                     <fckeditor id="fck_CatatanGmPemohon" height="99%" width="484px"
                                customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic"/>
+                    -->
+                   <textbox id="fck_CatatanGmPemohon" rows="3" width="300px"/>
                 </vbox>
             </hbox>
         </groupbox>

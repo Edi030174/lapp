@@ -156,9 +156,12 @@
                                         </vbox>
                                     </hbox>
                                     <vbox></vbox>
+                                    <!--
                                     <fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
                                                forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
                                                toolbarSet="Basic"/>
+                                     -->
+                                     <textbox id="fck_DetailPermohonan" rows="3" width="300px"/>
                                 </groupbox>
                             </tabpanel>
                             <tabpanel id="tabPanel_PersetujuanPemohon" height="100%" style="border: 0px; padding: 0px"/>

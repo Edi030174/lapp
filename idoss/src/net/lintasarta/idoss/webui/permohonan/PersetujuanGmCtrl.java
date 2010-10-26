@@ -56,22 +56,26 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     protected Groupbox groupbox_Manager;
     protected Groupbox groupbox_Gm;
 
-    protected FCKeditor fck_DetailPermohonan;
+    //protected FCKeditor fck_DetailPermohonan;
+    protected Textbox fck_DetailPermohonan;
 
     protected Radiogroup radiogroup_StatusPermohonanAsman;
     protected Radio radio_DisetujuiAM;
     protected Radio radio_DitolakAM;
-    protected FCKeditor fck_CatatanAsman;
+    //protected FCKeditor fck_CatatanAsman;
+    protected Textbox fck_CatatanAsman;
 
     protected Radiogroup radiogroup_StatusPermohonanManager;
     protected Radio radio_DisetujuiM;
     protected Radio radio_DitolakM;
-    protected FCKeditor fck_CatatanManager;
+    //protected FCKeditor fck_CatatanManager;
+    protected Textbox fck_CatatanManager;
 
     protected Radiogroup radiogroup_StatusPermohonanGm;
     protected Radio radio_DisetujuiGM;
     protected Radio radio_DitolakGM;
-    protected FCKeditor fck_CatatanGm;
+    //protected FCKeditor fck_CatatanGm;
+    protected Textbox fck_CatatanGm;
 
     private transient String oldVar_textbox_TIdossPermohonanId;
     private transient String oldVar_textbox_NamaPemohon;
