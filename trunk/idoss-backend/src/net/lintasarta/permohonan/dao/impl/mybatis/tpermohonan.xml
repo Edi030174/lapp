@@ -485,7 +485,7 @@
         values(
         #{t_idoss_permohonan_id},
         #{tgl_permohonan,jdbcType=TIMESTAMP},
-        'MINOR',
+        #{dampak,jdbcType=VARCHAR},
         #{urgensi,jdbcType=VARCHAR},
         #{target_mulai_digunakan,jdbcType=TIMESTAMP},
         #{detail_permohonan,jdbcType=VARCHAR},

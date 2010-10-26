@@ -3,11 +3,9 @@ package net.lintasarta.idoss.webui.permohonan;
 import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
-import net.lintasarta.pelapor.model.comparator.TPelaporComparator;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.comparator.TPermohonanComparator;
 import net.lintasarta.permohonan.service.PermohonanService;
-import net.lintasarta.plik.model.TPlik;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkforge.fckez.FCKeditor;
@@ -204,16 +202,8 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         }
         doSave();
         window_Permohonan.onClose();
-                Events.postEvent("onCreate", window_DaftarPermohonan, event);
+        Events.postEvent("onCreate", window_DaftarPermohonan, event);
         window_DaftarPermohonan.invalidate();
-    }
-
-    public void onClick$btn_SimpanPersetujuanGmPemohon(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        doSimpan();
-        window_Permohonan.onClose();
     }
 
     private void doSave() throws Exception {
@@ -232,6 +222,25 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
 
     }
 
+    private void doWriteComponentsToBean(TPermohonan tPermohonan) {
+        Radio dampak = radiogroup_Dampak.getSelectedItem();
+        tPermohonan.setDampak(dampak.getValue());
+
+        String statusM = radiogroup_StatusPermohonanManagerPemohon.getSelectedItem().getValue();
+        tPermohonan.setStatus_track_permohonan(statusM);
+
+        tPermohonan.setUpdated_manager(new Timestamp(datebox_Tanggal2.getValue().getTime()));
+        tPermohonan.setCatatan_manager(fck_CatatanManager.getValue());
+    }
+
+    public void onClick$btn_SimpanPersetujuanGmPemohon(Event event) throws Exception {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        doSimpan();
+        window_Permohonan.onClose();
+    }
+
     private void doSimpan() throws Exception {
         TPermohonan tPermohonan = gettPermohonan();
         doWriteComponentsToBean2(tPermohonan);
@@ -245,18 +254,6 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
         doStoreInitValues();
-    }
-
-
-    private void doWriteComponentsToBean(TPermohonan tPermohonan) {
-        Radio dampak = radiogroup_Dampak.getSelectedItem();
-        tPermohonan.setDampak(dampak.getValue());
-
-        String statusM = radiogroup_StatusPermohonanManagerPemohon.getSelectedItem().getValue();
-        tPermohonan.setStatus_track_permohonan(statusM);
-
-        tPermohonan.setUpdated_manager(new Timestamp(datebox_Tanggal2.getValue().getTime()));
-        tPermohonan.setCatatan_manager(fck_CatatanManager.getValue());
     }
 
     private void doWriteComponentsToBean2(TPermohonan tPermohonan) {

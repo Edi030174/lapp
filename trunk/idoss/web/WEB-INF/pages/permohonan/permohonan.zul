@@ -32,6 +32,7 @@
                     <tabbox id="tabBox_Permohonan" width="100%" orient="horizontal">
                         <tabs>
                             <tab id="tab_Permohonan" label="Permohonan"/>
+                            <tab id="tab_Persetujuan" label="Persetujuan"/>
                             <tab id="tab_PersetujuanPemohon" label="Persetujuan Pemohon"/>
                             <tab id="tab_PersetujuanDukophar" label="Persetujuan Dukophar"/>
                             <tab id="tab_Pelaksanaan" label="Pelaksanaan"/>
@@ -90,7 +91,7 @@
                                                         style="color: #000000 !important;"/>
                                                 <vbox>
                                                     <space height="1px"></space>
-                                                    <label width="10px" value="/FPSOPHAR 2010"/>
+                                                    <label width="10px" value="/FPSOPHAR/2010"/>
                                                 </vbox>
                                             </hbox>
                                             <textbox id="textbox_NamaPemohon" width="200px" disabled="true"
@@ -143,27 +144,38 @@
                                         </hbox>
                                     </vbox>
                                     <hbox>
-                                        <checkbox id="checkbox_Cepat"
-                                                  label="Perlu Penanganan Cepat  "/>
-                                        <vbox>
-                                            <space height="2px"></space>
-                                            <label
-                                                    style="font-size:8pt;font-weight:italic"
-                                                    value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
-                                        </vbox>
-                                        <vbox>
+                                        <hbox>
+                                            <label value="Prioritas : "/>
+                                            <checkbox id="checkbox_Cepat"
+                                                      label="Perlu Penanganan Cepat"/>
+                                            <vbox>
+                                                <space height="2px"/>
+                                                <label
+                                                        style="font-size:8pt;font-weight:italic"
+                                                        value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
+                                            </vbox>
                                             <button label="Download" id="button_Download"/>
-                                        </vbox>
+                                        </hbox>
+                                        <!--<button label="Upload" upload="true,maxsize=-1" onUpload="dosomething"/>-->
                                     </hbox>
-                                    <vbox></vbox>
+                                    <hbox>
+                                        <label value="Dampak : "/>
+                                        <radiogroup id="radiogroup_Dampak">
+                                            <hbox>
+                                                <radio id="major" label="major" value="MAJOR"/>
+                                                <radio id="minor" label="minor" value="MINOR" selected="true"/>
+                                            </hbox>
+                                        </radiogroup>
+                                    </hbox>
                                     <!--
                                     <fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
                                                forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
                                                toolbarSet="Basic"/>
                                      -->
-                                     <textbox id="fck_DetailPermohonan" rows="3" width="300px"/>
+                                    <textbox id="fck_DetailPermohonan" rows="3" width="300px"/>
                                 </groupbox>
                             </tabpanel>
+                            <tabpanel id="tabPanel_Persetujuan" height="100%" style="border: 0px; padding: 0px"/>
                             <tabpanel id="tabPanel_PersetujuanPemohon" height="100%" style="border: 0px; padding: 0px"/>
                             <tabpanel id="tabPanel_PersetujuanDukophar" height="100%"
                                       style="border: 0px; padding: 0px"/>

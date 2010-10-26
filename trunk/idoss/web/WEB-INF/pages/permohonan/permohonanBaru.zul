@@ -7,7 +7,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
     <window id="window_Permohonan" title="permohonan" border="normal" apply="${permohonanBaruCtrl}"
-            sizable="true" width="800px" height="480px" closable="true">
+            sizable="true" width="800px" height="480px" closable="true" contentStyle="overflow:auto">
         <style>
             body { padding: 0 0; /* 0 padding on top and bottom and 0
             padding on right and left */ }
@@ -62,7 +62,7 @@
                                 <label width="10px" value=":"/>
                                 <space height="1px"/>
                                 <label width="10px" value=":"/>
-                                <space height="1px"></space>
+                                <space height="1px"/>
                                 <label width="10px" value=":"/>
                                 <space height="1px"/>
                                 <label width="10px" value=":"/>
@@ -73,7 +73,7 @@
                                              style="color: black !important;"/>
                                     <vbox>
                                         <space height="1px"/>
-                                        <label width="10px" value="/FPSOPHAR 2010"/>
+                                        <label width="10px" value="/FPSOPHAR/2010"/>
                                     </vbox>
                                 </hbox>
                                 <textbox id="textbox_NamaPemohon" width="200px" disabled="true"
@@ -129,19 +129,30 @@
                             </hbox>
                         </vbox>
                         <hbox>
-                            <checkbox id="checkbox_Cepat"
-                                      label="Perlu Penanganan Cepat  "/>
-                            <vbox>
-                                <space height="2px"/>
-                                <label
-                                        style="font-size:8pt;font-weight:italic"
-                                        value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
-                            </vbox>
-                            <button label="Download" id="button_Download"/>
-                            <button label="Lampiran" upload="true,maxsize=-1" id="button_Lampiran"/>
+                            <hbox>
+                                <label value="Prioritas : "/>
+                                <checkbox id="checkbox_Cepat"
+                                          label="Perlu Penanganan Cepat  "/>
+                                <vbox>
+                                    <space height="2px"/>
+                                    <label
+                                            style="font-size:8pt;font-weight:italic"
+                                            value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
+                                </vbox>
+                                <button label="Download" id="button_Download"/>
+                                <button label="Lampiran" upload="true,maxsize=-1" id="button_Lampiran"/>
+                            </hbox>
                             <!--<button label="Upload" upload="true,maxsize=-1" onUpload="dosomething"/>-->
                         </hbox>
-                        <vbox/>
+                        <hbox>
+                            <label value="Dampak : "/>
+                            <radiogroup id="radiogroup_Dampak">
+                                <hbox>
+                                    <radio id="major" label="major" value="MAJOR"/>
+                                    <radio id="minor" label="minor" value="MINOR" selected="true"/>
+                                </hbox>
+                            </radiogroup>
+                        </hbox>
                         <!--<fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
                                    forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
                                    toolbarSet="Basic"/>  -->
@@ -149,7 +160,6 @@
                     </groupbox>
                 </div>
             </center>
-
             <east border="none"/>
             <west border="none"/>
             <south border="none"/>

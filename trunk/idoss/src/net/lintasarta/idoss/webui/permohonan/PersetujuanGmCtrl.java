@@ -112,6 +112,7 @@ public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
         }
 
         Map<String, Object> args = getCreationArgsMap(event);
+
         if (args.containsKey("tVerifikasi")) {
             TVerifikasi tVerifikasi = (TVerifikasi) args.get("tVerifikasi");
             settVerifikasi(tVerifikasi);

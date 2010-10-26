@@ -31,7 +31,7 @@
                     <label value="Cari berdasarkan :"/>
                     <listbox id="listbox_Cari" rows="1" mold="select" width="150px">
                         <listhead visible="false"/>
-                        <listitem label="Silahkan pilih" selected="true" />
+                        <listitem id="listitem_silakanpilih" label="Silakan pilih" selected="true"/>
                         <listitem id="listitem_All" label="All field" value="1" />
                         <listitem id="listitem_Nomor" label="Nomor Tiket" value="2"/>
                         <listitem id="listitem_Judul" label="Judul" value="3"/>

@@ -6,11 +6,9 @@ import net.lintasarta.idoss.webui.pengaduan.model.DaftarTiketModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
-import net.lintasarta.pengaduan.model.comparator.TPenangananGangguanComparator;
 import net.lintasarta.pengaduan.model.predicate.*;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
 import net.lintasarta.security.model.UserSession;
-import net.lintasarta.security.util.LoginConstants;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.support.PagedListHolder;
@@ -84,7 +82,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
             logger.debug("--> " + event.toString());
         }
         doCheckRights();
-        doViewTanggal();
+        doHideTanggal();
 
         int panelHeight = 25;
         // TODO put the logic for working with panel in the ApplicationWorkspace
@@ -180,14 +178,12 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
     }
 
     public void onClick$btnCari_DaftarTiket(Event event) throws Exception {
-
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-
         List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
-
         PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>();
+
         if (!textbox_Cari.getValue().isEmpty()) {
             if (listbox_Cari.getSelectedItem() == listitem_All) {
                 Set searchAllResult = new HashSet();
@@ -196,8 +192,12 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
                 CollectionUtils.select(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
                 CollectionUtils.select(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
                 CollectionUtils.select(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
-                CollectionUtils.select(searchResult, new TanggalTPenangananGangguan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()), searchAllResult);
-                pagedListHolder = new PagedListHolder<TPenangananGangguan>(new ArrayList(searchAllResult));
+                if (datebox_TanggalAkhir.getValue() != null) {
+                    if (datebox_TanggalAwal.getValue() != null) {
+                        CollectionUtils.select(searchResult, new TanggalTPenangananGangguan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()), searchAllResult);
+                    }
+                }
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(new ArrayList<TPenangananGangguan>(searchAllResult));
             } else if (listbox_Cari.getSelectedItem() == listitem_Judul) {
                 CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
                 pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
@@ -223,7 +223,6 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
             }
         }
         pagedListHolder.setPageSize(getCountRows());
-
         getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
         checkbox_All.setChecked(false);
     }
@@ -234,39 +233,46 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
             logger.debug("--> " + event.toString());
         }
         List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
-
+        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>();
         if (!textbox_Cari.getValue().isEmpty()) {
             if (listbox_Cari.getSelectedItem() == listitem_All) {
-                CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
-                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
-                CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
-                CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
+                Set<TPenangananGangguan> searchAllResult = new HashSet<TPenangananGangguan>();
+                CollectionUtils.select(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
                 if (datebox_TanggalAkhir.getValue() != null) {
                     if (datebox_TanggalAwal.getValue() != null) {
-                        CollectionUtils.filter(searchResult, new TanggalTPenangananGangguan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()));
+                        CollectionUtils.select(searchResult, new TanggalTPenangananGangguan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()), searchAllResult);
                     }
                 }
-            } else if (listbox_Cari.getSelectedItem() == listitem_Nomor) {
-                CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(new ArrayList<TPenangananGangguan>(searchAllResult));
             } else if (listbox_Cari.getSelectedItem() == listitem_Judul) {
                 CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
+            } else if (listbox_Cari.getSelectedItem() == listitem_Nomor) {
+                CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             } else if (listbox_Cari.getSelectedItem() == listitem_Status) {
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             } else if (listbox_Cari.getSelectedItem() == listitem_Pelapor) {
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             } else if (listbox_Cari.getSelectedItem() == listitem_PJ) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             }
         } else {
             if (datebox_TanggalAkhir.getValue() != null) {
                 if (datebox_TanggalAwal.getValue() != null) {
                     CollectionUtils.filter(searchResult, new TanggalTPenangananGangguan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()));
+                    pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
                 }
             }
         }
-        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
         pagedListHolder.setPageSize(getCountRows());
-
         getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
         checkbox_All.setChecked(false);
     }

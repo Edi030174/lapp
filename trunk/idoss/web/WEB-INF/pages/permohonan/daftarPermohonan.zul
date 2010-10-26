@@ -27,13 +27,15 @@
                     image="/images/icons/btn_new2_16x16.gif"/>
             <vbox>
                 <hbox>
-                    <label value="Cari:"/>
+                    <label value="Cari berdasarkan :"/>
                     <listbox id="listbox_Cari" rows="1" mold="select" width="150px">
                         <listhead visible="false"/>
-                        <listitem id="listitem_Nomor" label="Nomor Permohonan" value="1" selected="true"/>
-                        <listitem id="listitem_Tipe" label="Tipe" value="2"/>
-                        <listitem id="listitem_Status" label="Status" value="3"/>
-                        <listitem id="listitem_Tanggal" label="Tanggal" value="4"/>
+                        <listitem id="listitem_silakanpilih" label="Silakan pilih" selected="true"/>
+                        <listitem id="listitem_All" label="All field" value="1"/>
+                        <listitem id="listitem_Nomor" label="Nomor Permohonan" value="2"/>
+                        <listitem id="listitem_Tipe" label="Tipe" value="3"/>
+                        <listitem id="listitem_Status" label="Status" value="4"/>
+                        <listitem id="listitem_Tanggal" label="Tanggal" value="5"/>
                     </listbox>
                     <textbox id="textbox_cariPermohonanId"/>
                     <button id="btnCari" label="cari"

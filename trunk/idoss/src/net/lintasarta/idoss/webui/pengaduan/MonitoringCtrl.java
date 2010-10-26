@@ -1,6 +1,5 @@
 package net.lintasarta.idoss.webui.pengaduan;
 
-
 import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.pengaduan.model.DaftarTiketModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
@@ -18,16 +17,13 @@ import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
-
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.List;
-
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA.
- * User: Asri
- * Date: Jul 6, 2010
+ * User: Joshua
+ * Date: Sept 15, 2010
  * Time: 1:55:56 PM
  */
 public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> implements Serializable {
@@ -53,6 +49,8 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
     protected Listheader listheader_TglUpdate;
     protected Checkbox checkbox_All;
     protected Listbox listbox_Cari;
+    protected Listitem listitem_silakanpilih;
+    protected Listitem listitem_All;
     protected Listitem listitem_Nomor;
     protected Listitem listitem_Judul;
     protected Listitem listitem_Status;
@@ -121,16 +119,16 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
 
     public void setDaftarTiket() {
         UserSession userSession = getUserWorkspace().getUserSession();
-            List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
+        List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
 
-            PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
-            pagedListHolder.setPageSize(getCountRows());
+        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
+        pagedListHolder.setPageSize(getCountRows());
 
-            paging_DaftarTiket.setPageSize(getCountRows());
-            paging_DaftarTiket.setDetailed(true);
+        paging_DaftarTiket.setPageSize(getCountRows());
+        paging_DaftarTiket.setDetailed(true);
 
-            getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
-            listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
+        getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
+        listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
     }
 
     public void onDoubleClickedTiketItem(Event event) throws Exception {
@@ -153,35 +151,51 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
     }
 
     public void onClick$btnCari_DaftarTiket(Event event) throws Exception {
-
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-
         List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
 
+        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>();
         if (!textbox_Cari.getValue().isEmpty()) {
-            if (listbox_Cari.getSelectedItem() == listitem_Judul) {
+            if (listbox_Cari.getSelectedItem() == listitem_All) {
+                Set<TPenangananGangguan> searchAllResult = new HashSet<TPenangananGangguan>();
+                CollectionUtils.select(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
+                if (datebox_TanggalAkhir.getValue() != null) {
+                    if (datebox_TanggalAwal.getValue() != null) {
+                        CollectionUtils.select(searchResult, new TanggalTPenangananGangguan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()), searchAllResult);
+                    }
+                }
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(new ArrayList<TPenangananGangguan>(searchAllResult));
+            } else if (listbox_Cari.getSelectedItem() == listitem_Judul) {
                 CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             } else if (listbox_Cari.getSelectedItem() == listitem_Nomor) {
                 CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             } else if (listbox_Cari.getSelectedItem() == listitem_Status) {
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             } else if (listbox_Cari.getSelectedItem() == listitem_Pelapor) {
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             } else if (listbox_Cari.getSelectedItem() == listitem_PJ) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             }
         } else {
             if (datebox_TanggalAkhir.getValue() != null) {
                 if (datebox_TanggalAwal.getValue() != null) {
                     CollectionUtils.filter(searchResult, new TanggalTPenangananGangguan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()));
+                    pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
                 }
             }
         }
-        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
         pagedListHolder.setPageSize(getCountRows());
-
         getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
         checkbox_All.setChecked(false);
     }
@@ -191,31 +205,48 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-
         List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
 
+        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>();
         if (!textbox_Cari.getValue().isEmpty()) {
-            if (listbox_Cari.getSelectedItem() == listitem_Judul) {
+            if (listbox_Cari.getSelectedItem() == listitem_All) {
+                Set<TPenangananGangguan> searchAllResult = new HashSet<TPenangananGangguan>();
+                CollectionUtils.select(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
+                if (datebox_TanggalAkhir.getValue() != null) {
+                    if (datebox_TanggalAwal.getValue() != null) {
+                        CollectionUtils.select(searchResult, new TanggalTPenangananGangguan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()), searchAllResult);
+                    }
+                }
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(new ArrayList<TPenangananGangguan>(searchAllResult));
+            } else if (listbox_Cari.getSelectedItem() == listitem_Judul) {
                 CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             } else if (listbox_Cari.getSelectedItem() == listitem_Nomor) {
                 CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             } else if (listbox_Cari.getSelectedItem() == listitem_Status) {
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             } else if (listbox_Cari.getSelectedItem() == listitem_Pelapor) {
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             } else if (listbox_Cari.getSelectedItem() == listitem_PJ) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
+                pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
             }
         } else {
             if (datebox_TanggalAkhir.getValue() != null) {
                 if (datebox_TanggalAwal.getValue() != null) {
                     CollectionUtils.filter(searchResult, new TanggalTPenangananGangguan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()));
+                    pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
                 }
             }
         }
-        PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
         pagedListHolder.setPageSize(getCountRows());
-
         getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
         checkbox_All.setChecked(false);
     }
@@ -306,40 +337,43 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
         setDaftarTiket();
     }
 
-    public void onSelect$listbox_Cari(Event event)throws Exception{
+    public void onSelect$listbox_Cari(Event event) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        logger.debug("NILAINYA : "+listbox_Cari.getSelectedItem().getValue().toString());
+        logger.debug("NILAINYA : " + listbox_Cari.getSelectedItem().getValue().toString());
         int hierarchy = Integer.parseInt(listbox_Cari.getSelectedItem().getValue().toString());
         doShowBerdasarkan(hierarchy);
     }
 
-    private void doShowBerdasarkan(int hierarchy){
-        switch(hierarchy){
-            case 1 :{
-
-               doHideTanggal();
+    private void doShowBerdasarkan(int hierarchy) {
+        switch (hierarchy) {
+            case 1: {
+                doViewTanggal();
                 break;
             }
-            case 2 :{
-               doHideTanggal();
+            case 2: {
+                doHideTanggal();
                 break;
             }
-            case 3 :{
-               doHideTanggal();
+            case 3: {
+                doHideTanggal();
                 break;
             }
-            case 4 :{
-               doHideTanggal();
+            case 4: {
+                doHideTanggal();
                 break;
             }
-            case 5 :{
-               doHideTanggal();
+            case 5: {
+                doHideTanggal();
                 break;
             }
-            case 6 :{
-               doViewTanggal();
+            case 6: {
+                doHideTanggal();
+                break;
+            }
+            case 7: {
+                doViewTanggal();
                 break;
             }
         }

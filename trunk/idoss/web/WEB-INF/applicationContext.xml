@@ -26,7 +26,7 @@
           p:pagedListWrapper-ref="pagedListWrapper">
     </bean>
 
-    <bean id="indexCtrl" class="net.lintasarta.idoss.webui.index.IndexCtrl" parent="basisCtrl" scope="prototype" />
+    <bean id="indexCtrl" class="net.lintasarta.idoss.webui.index.IndexCtrl" parent="basisCtrl" scope="prototype"/>
 
     <bean id="chatWindow" class="net.lintasarta.idoss.chat.ChatWindow" parent="basisCtrl"
           scope="prototype">
@@ -89,12 +89,19 @@
           parent="basisCtrl" scope="prototype">
         <property name="verifikasiService" ref="verifikasiService"/>
     </bean>
+    <bean id="persetujuanCtrl" class="net.lintasarta.idoss.webui.permohonan.PersetujuanCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="permohonanService" ref="permohonanService"/>
+        <property name="verifikasiService" ref="verifikasiService"/>
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+    </bean>
 
     <bean id="pengaduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PengaduanCtrl" parent="basisCtrl"
           scope="prototype">
         <property name="penangananGangguanService" ref="penangananGangguanService"/>
     </bean>
-    <bean id="penangananGangguanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PenangananGangguanCtrl" parent="basisCtrl"
+    <bean id="penangananGangguanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PenangananGangguanCtrl"
+          parent="basisCtrl"
           scope="prototype">
         <property name="penangananGangguanService" ref="penangananGangguanService"/>
         <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
@@ -122,19 +129,24 @@
         <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
     </bean>
 
-    <bean id="reportAduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.ReportAduanCtrl" parent="basisCtrl" scope="prototype">
-        <property name="reportService" ref="reportService" />
+    <bean id="reportAduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.ReportAduanCtrl" parent="basisCtrl"
+          scope="prototype">
+        <property name="reportService" ref="reportService"/>
     </bean>
-    <bean id="reportBelumSelesaiCtrl" class="net.lintasarta.idoss.webui.permohonan.ReportBelumSelesaiCtrl" parent="basisCtrl" scope="prototype">
-        <property name="reportService" ref="reportService" />
+    <bean id="reportBelumSelesaiCtrl" class="net.lintasarta.idoss.webui.permohonan.ReportBelumSelesaiCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="reportService" ref="reportService"/>
     </bean>
-    <bean id="reportSudahSelesaiCtrl" class="net.lintasarta.idoss.webui.permohonan.ReportSudahSelesaiCtrl" parent="basisCtrl" scope="prototype">
-        <property name="reportService" ref="reportService" />
+    <bean id="reportSudahSelesaiCtrl" class="net.lintasarta.idoss.webui.permohonan.ReportSudahSelesaiCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="reportService" ref="reportService"/>
     </bean>
-    <bean id="reportRekapAduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.ReportRekapAduanCtrl" parent="basisCtrl" scope="prototype">
-        <property name="reportService" ref="reportService" />
+    <bean id="reportRekapAduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.ReportRekapAduanCtrl" parent="basisCtrl"
+          scope="prototype">
+        <property name="reportService" ref="reportService"/>
     </bean>
-    <bean id="reportRekapPermohonanCtrl" class="net.lintasarta.idoss.webui.permohonan.ReportRekapPermohonanCtrl" parent="basisCtrl" scope="prototype">
-        <property name="reportService" ref="reportService" />
+    <bean id="reportRekapPermohonanCtrl" class="net.lintasarta.idoss.webui.permohonan.ReportRekapPermohonanCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="reportService" ref="reportService"/>
     </bean>
 </beans>

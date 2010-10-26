@@ -347,8 +347,19 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 
         if (tPenangananGangguan.getP_idoss_type_id() != null) {
             PType pType = getTypeService().getTypeByTypeID(tPenangananGangguan.getP_idoss_type_id());
+            String x = tPenangananGangguan.getP_idoss_type_id();    //4011
+            String y = x.substring(0, x.length() - 1);              //401
+            String z = y.substring(0, y.length() - 2);              //4
+            PType pType1 = getTypeService().getTypeByTypeID(x);
+            PType pType2 = getTypeService().getTypeByTypeID(y);
+            PType pType3 = getTypeService().getTypeByTypeID(z);
+            String xx = pType1.getType_desc();
+            String yy = pType2.getType_desc();
+            String zz = pType3.getType_desc();
 
-            textbox_Type.setValue(pType.getType_desc());
+            textbox_Type.setValue(zz + " - " + yy + " - " + xx);
+//            textbox_Type.setValue(tPenangananGangguan.getP_idoss_type_id());
+            //textbox_Type.setValue(pType.getType_desc());
 
             listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(pType.getP_idoss_type_id())));
 

@@ -145,7 +145,7 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
             if (itemGrandParent != null) {
                 Treeitem itemGrandGrandParent = itemGrandParent.getParentItem();
                 if (itemGrandGrandParent != null) {
-                    textbox_Type.setValue(itemGrandParent.getLabel() + ", " + itemParent.getLabel() + ", " + item.getLabel());
+                    textbox_Type.setValue(itemGrandParent.getLabel() + " - " + itemParent.getLabel() + " - " + item.getLabel());
 
                     pType = (PType) item.getValue();
                     textbox_Type.setAttribute("pType", pType);

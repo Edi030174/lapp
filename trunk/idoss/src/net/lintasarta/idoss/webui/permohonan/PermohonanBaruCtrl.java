@@ -54,7 +54,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     protected Radio radio_readwrite;
     protected Radio radio_aplikasi;
     protected Radio radio_lainlain;
-
+    protected Radiogroup radiogroup_Dampak;
 
     protected Textbox textbox_Lainlain;
     protected Checkbox checkbox_Cepat;
@@ -283,41 +283,43 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
-    private void doWriteComponentsToBean(TPermohonan permohonan) {
+    private void doWriteComponentsToBean(TPermohonan tPermohonan) {
 
-        permohonan.setT_idoss_permohonan_id(textbox_TIdossPermohonanId.getValue());
-        permohonan.setNama_pemohon(textbox_NamaPemohon.getValue());
-        permohonan.setBagian_pemohon(textbox_BagianPemohon.getValue());
-        permohonan.setTgl_permohonan(new Timestamp(datebox_Tanggal.getValue().getTime()));
-        permohonan.setNik_pemohon(textbox_NikPemohon.getValue());
-        permohonan.setNama_manager(textbox_NamaManager.getValue());
-        permohonan.setNik_manager(textbox_NikManager.getValue());
-        permohonan.setNama_gm(textbox_NamaGm.getValue());
-        permohonan.setNik_gm(textbox_NikGm.getValue());
-        permohonan.setDetail_permohonan(fck_DetailPermohonan.getValue());
+        tPermohonan.setT_idoss_permohonan_id(textbox_TIdossPermohonanId.getValue());
+        tPermohonan.setNama_pemohon(textbox_NamaPemohon.getValue());
+        tPermohonan.setBagian_pemohon(textbox_BagianPemohon.getValue());
+        tPermohonan.setTgl_permohonan(new Timestamp(datebox_Tanggal.getValue().getTime()));
+        tPermohonan.setNik_pemohon(textbox_NikPemohon.getValue());
+        tPermohonan.setNama_manager(textbox_NamaManager.getValue());
+        tPermohonan.setNik_manager(textbox_NikManager.getValue());
+        tPermohonan.setNama_gm(textbox_NamaGm.getValue());
+        tPermohonan.setNik_gm(textbox_NikGm.getValue());
+        tPermohonan.setDetail_permohonan(fck_DetailPermohonan.getValue());
         if (getUploadMedia() != null) {
-            permohonan.setUploadStream(getUploadMedia().getStreamData());
+            tPermohonan.setUploadStream(getUploadMedia().getStreamData());
         }
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
-        permohonan.setTarget_mulai_digunakan(ts);
+        tPermohonan.setTarget_mulai_digunakan(ts);
         String lain = textbox_Lainlain.getValue();
-        permohonan.setLain_lain(lain);
+        tPermohonan.setLain_lain(lain);
 //        radio_lainlain.setValue(lain);
         Radio type = radiogroupType_permohonan.getSelectedItem();
-        permohonan.setType_permohonan(type.getValue());
-        permohonan.setLain_lain(textbox_Lainlain.getValue());
-        permohonan.setUpdated_divisi(ts);
-        permohonan.setUpdated_gm(ts);
-        permohonan.setUpdated_manager(ts);
-        permohonan.setUpdated_pemohon(ts);
+        tPermohonan.setType_permohonan(type.getValue());
+        tPermohonan.setLain_lain(textbox_Lainlain.getValue());
+        tPermohonan.setUpdated_divisi(ts);
+        tPermohonan.setUpdated_gm(ts);
+        tPermohonan.setUpdated_manager(ts);
+        tPermohonan.setUpdated_pemohon(ts);
         if (checkbox_Cepat.isChecked()) {
-            permohonan.setUrgensi("H");
+            tPermohonan.setUrgensi("H");
         } else{
-            permohonan.setUrgensi("N");
+            tPermohonan.setUrgensi("N");
         }
+        Radio dampak = radiogroup_Dampak.getSelectedItem();
+        tPermohonan.setDampak(dampak.getValue());
 
-        permohonan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
-        permohonan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
+        tPermohonan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
+        tPermohonan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
     }
 
