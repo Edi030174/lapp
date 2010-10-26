@@ -22,10 +22,12 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
 		locations = {
-				"classpath:META-INF/ibatis/ibatis-spring-config.xml",
+                "classpath:META-INF/ibatis/ibatis-spring-config.xml",
                 "classpath:META-INF/spring/datasource.xml",
                 "classpath:META-INF/spring/spring-based-dao-config.xml",
-                "classpath:META-INF/spring/spring-service-idoss-pengaduan-config.xml"
+                "classpath:META-INF/spring/spring-service-idoss-pengaduan-config.xml",
+                "classpath:META-INF/spring/spring-dao-idoss-pengaduan-config.xml",
+                "classpath:META-INF/spring/spring-idoss-security-config.xml"
 		}
 )
 public class MttrServiceTest {
@@ -44,7 +46,6 @@ public class MttrServiceTest {
     public void testCreateMttr() throws Exception{
         Mttr mttr = new Mttr();
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
-        mttr.setT_idoss_mttr_id(2);
         mttr.setNomor_tiket("002");
         mttr.setMttr(4);
         mttr.setOpened(7);
