@@ -16,6 +16,7 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zul.*;
 
@@ -58,6 +59,9 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     protected Radio radio_readwrite;
     protected Radio radio_aplikasi;
     protected Radio radio_lainlain;
+    protected Radiogroup radiogroup_Dampak;
+    protected Radio major;
+    protected Radio minor;
 
     protected Textbox textbox_Lainlain;
     protected Checkbox checkbox_Cepat;
@@ -65,8 +69,8 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     //protected FCKeditor fck_DetailPermohonan;
     protected Textbox fck_DetailPermohonan;
 
-    protected Tab tab_Verifikasi;
-    protected Tabpanel tabPanel_Verifikasi;
+    protected Tab tab_Persetujuan;
+    protected Tabpanel tabPanel_Persetujuan;
 
     protected Tab tab_PersetujuanPemohon;
     protected Tabpanel tabPanel_PersetujuanPemohon;
@@ -155,7 +159,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             listbox_DaftarPermohonan = null;
         }
-        
+
         if (args.containsKey("window_DaftarPermohonan")) {
             window_DaftarPermohonan = (Window) args.get("window_DaftarPermohonan");
         } else {
@@ -170,6 +174,9 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         panel.appendChild(pChildren);
         orderTab.appendChild(panel);
         doShowDialog(gettPermohonan());
+
+        Events.postEvent("onSelect$tab_Persetujuan", window_Permohonan, event);
+        window_Permohonan.invalidate();
     }
 
     private void doCheckRights() {
@@ -177,20 +184,21 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 //        window_Permohonan.setVisible(workspace.isAllowed("window_Permohonan"));
 //        tab_Permohonan.setVisible(workspace.isAllowed("tab_Permohonan"));
 //        tabPanel_Permohonan.setVisible(workspace.isAllowed("tab_Permohonan"));
+
+//        tab_Persetujuan.setVisible(workspace.isAllowed("tab_Persetujuan"));
+//        tabPanel_Persetujuan.setVisible(workspace.isAllowed("tabPanel_Persetujuan"));
         tab_PersetujuanPemohon.setVisible(workspace.isAllowed("tab_PersetujuanPemohon"));
         tabPanel_PersetujuanPemohon.setVisible(workspace.isAllowed("tab_PersetujuanPemohon"));
         tab_PersetujuanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanDukophar"));
         tabPanel_PersetujuanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanDukophar"));
         tab_Pelaksanaan.setVisible(workspace.isAllowed("tab_Pelaksanaan"));
         tabPanel_Pelaksanaan.setVisible(workspace.isAllowed("tab_Pelaksanaan"));
-
-
     }
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
-        if(tPermohonan.getLampiran()!=null){
+        if (tPermohonan.getLampiran() != null) {
             button_Download.setVisible(true);
-        }else{
+        } else {
             button_Download.setVisible(false);
         }
         if (tPermohonan == null) {
@@ -223,6 +231,8 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         radio_lainlain.setDisabled(true);
         radio_readonly.setDisabled(true);
         radio_readwrite.setDisabled(true);
+        major.setDisabled(true);
+        minor.setDisabled(true);
         checkbox_Cepat.setDisabled(true);
     }
 
@@ -268,9 +278,42 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         } else if (tPermohonan.getType_permohonan().equals("Lain-lain")) {
             radiogroupType_permohonan.setSelectedItem(radio_lainlain);
         }
+        if (tPermohonan.getDampak().equals("MAJOR")) {
+            radiogroup_Dampak.setSelectedItem(major);
+        }
 
         fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
         textbox_Lainlain.setValue(tPermohonan.getLain_lain());
+    }
+
+    public void onSelect$tab_Persetujuan(Event event) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        TVerifikasi tVerifikasi = null;
+        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
+            tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
+        }
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        if (tVerifikasi != null) {
+            map.put("tVerifikasi", tVerifikasi);
+        } else {
+            map.put("tVerifikasi", getPermohonanService().getNewVerifikasi());
+        }
+        map.put("tPermohonan", tPermohonan);
+        map.put("permohonanCtrl", this);
+        map.put("window_DaftarPermohonan", window_DaftarPermohonan);
+
+        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_Persetujuan");
+        orderTab.getChildren().clear();
+
+        Panel panel = new Panel();
+        Panelchildren pChildren = new Panelchildren();
+
+        panel.appendChild(pChildren);
+        orderTab.appendChild(panel);
+
+        Executions.createComponents("/WEB-INF/pages/permohonan/persetujuan.zul", pChildren, map);
     }
 
     public void onSelect$tab_PersetujuanPemohon(Event event) {

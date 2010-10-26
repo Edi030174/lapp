@@ -14,7 +14,7 @@
         </style>
 
         <timer id="timer" delay="300000" repeats="true"/>
-        <panel id="panel_daftarTroubleTiket" title="" border="none" />
+        <panel id="panel_daftarTroubleTiket" title="" border="none"/>
         <hbox style="padding: 3px">
             <button id="btnRefresh_DaftarTiket"
                     image="/images/icons/refresh2_yellow_16x16.gif"
@@ -25,18 +25,20 @@
             <button id="btnBuatBaru_DaftarTiketHelpdesk"
                     image="/images/icons/btn_new2_16x16.gif"
                     tooltiptext="${c:l('btnBuatBaru_DaftarTiket.tooltiptext')}"/>
-            <space />
+            <space/>
             <vbox>
                 <hbox>
                     <label value="Cari berdasarkan :"/>
                     <listbox id="listbox_Cari" rows="1" mold="select" width="150px">
                         <listhead visible="false"/>
-                        <listitem id="listitem_Nomor" label="Nomor Tiket" value="1" selected="true"/>
-                        <listitem id="listitem_Judul" label="Judul" value="2"/>
-                        <listitem id="listitem_Status" label="Status" value="3"/>
-                        <listitem id="listitem_Pelapor" label="Pelapor" value="4"/>
-                        <listitem id="listitem_PJ" label="Penanggung Jawab" value="5"/>
-                        <listitem id="listitem_Tanggal" label="Tanggal" value="6"/>
+                        <listitem id="listitem_silakanpilih" label="Silakan pilih" selected="true"/>
+                        <listitem id="listitem_All" label="All field" value="1"/>
+                        <listitem id="listitem_Nomor" label="Nomor Tiket" value="2"/>
+                        <listitem id="listitem_Judul" label="Judul" value="3"/>
+                        <listitem id="listitem_Status" label="Status" value="4"/>
+                        <listitem id="listitem_Pelapor" label="Pelapor" value="5"/>
+                        <listitem id="listitem_PJ" label="Penanggung Jawab" value="6"/>
+                        <listitem id="listitem_Tanggal" label="Tanggal" value="7"/>
                     </listbox>
                     <textbox id="textbox_Cari" value=""/>
                     <checkbox id="checkbox_All" label="Show All" checked="false"/>
@@ -58,7 +60,7 @@
         </hbox>
         <borderlayout id="borderlayout_daftarTroubleTiket">
             <north border="none" height="26px">
-                <paging id="paging_DaftarTiket" />
+                <paging id="paging_DaftarTiket"/>
             </north>
             <center border="none">
                 <listbox id="listbox_DaftarTiket" vflex="true" width="99.9%" height="100%" multiple="false">
