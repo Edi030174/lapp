@@ -56,7 +56,6 @@ public class MttrServiceImpl implements MttrService {
     @Override
     public void createMttr(Mttr mttr) {
         int i = mttrDAO.getGenerateId();
-        mttr.setT_idoss_mttr_id(i);
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         mttr.setUpdated_date(ts);
         getMttrDAO().createMttr(mttr);
