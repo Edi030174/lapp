@@ -50,7 +50,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     protected Button btn_TambahRootCaused;
     protected Button btnSimpan_PelaksanaanGangguan;//monitoring disable all
     protected Button btn_historyDeskripsi;
-    protected Button btn_historySolusi;
     protected PelaksanaanGangguanCtrl pelaksanaanGangguanCtrl;
     private transient boolean validationOn;
     private transient Window window_Helpdesk;
@@ -168,27 +167,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         map.put("t_idoss_penanganan_gangguan_id", gettPenangananGangguan().getT_idoss_penanganan_gangguan_id());
         try {
             Executions.createComponents("/WEB-INF/pages/pengaduan/hisDeskripsi.zul", null, map);
-        } catch (Exception e) {
-            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
-
-            // Show a error box
-            String msg = e.getMessage();
-            String title = Labels.getLabel("message_Error");
-
-            MultiLineMessageBox.doSetTemplate();
-            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
-        }
-    }
-
-    public void onClick$btn_historySolusi(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("t_idoss_penanganan_gangguan_id", gettPenangananGangguan().getT_idoss_penanganan_gangguan_id());
-        try {
-            Executions.createComponents("/WEB-INF/pages/pengaduan/hisSolusi.zul", null, map);
         } catch (Exception e) {
             logger.error("onOpenWindow:: error opening window / " + e.getMessage());
 

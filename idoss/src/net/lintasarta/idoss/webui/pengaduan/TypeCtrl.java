@@ -30,6 +30,7 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
     protected Window window_Type;
     protected Tree tree_Type;
     protected Textbox textbox_Type;
+    protected Button btn_TambahRootCaused;
     protected Listbox listbox_RootCaused;
     protected SimpleTreeModel stm;
 
@@ -123,6 +124,11 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
         }else {
             textbox_Type = null;
         }
+        if(args.containsKey("btn_TambahRootCaused")){
+            btn_TambahRootCaused = (Button) args.get("btn_TambahRootCaused");
+        }else {
+            btn_TambahRootCaused = null;
+        }
         if(args.containsKey("listbox_RootCaused")){
             listbox_RootCaused = (Listbox) args.get("listbox_RootCaused");
         }else {
@@ -146,6 +152,8 @@ public class TypeCtrl extends GFCBaseCtrl implements Serializable {
                 Treeitem itemGrandGrandParent = itemGrandParent.getParentItem();
                 if (itemGrandGrandParent != null) {
                     textbox_Type.setValue(itemGrandParent.getLabel() + " - " + itemParent.getLabel() + " - " + item.getLabel());
+
+                    btn_TambahRootCaused.setVisible(true);
 
                     pType = (PType) item.getValue();
                     textbox_Type.setAttribute("pType", pType);
