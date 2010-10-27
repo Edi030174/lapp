@@ -12,5 +12,5 @@ import java.util.List;
  */
 public interface TDeskripsiService {
     public List<TDeskripsi> getTDeskripsiByGangguanId(String id);
-    public void createTDeskripsi(TDeskripsi tDeskripsi);
+    public void createTDeskripsi(TDeskripsi tDeskripsi, String nomorTiket);
 }

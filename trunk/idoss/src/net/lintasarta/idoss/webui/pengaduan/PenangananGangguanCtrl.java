@@ -315,7 +315,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     }
 
     private void doWriteBeanToComponent(TPenangananGangguan tPenangananGangguan) throws Exception {
-        textbox_NomorTiket.setValue(getPenangananGangguanService().getTiketId());
+//        textbox_NomorTiket.setValue(getPenangananGangguanService().getTiketId());
 
         int indexPlks = 0;
         ListModel listPlks = listbox_NamaPelaksana.getModel();
@@ -344,7 +344,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     }
 
     private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
-        tPenangananGangguan.setT_idoss_penanganan_gangguan_id(textbox_NomorTiket.getValue());
+//        tPenangananGangguan.setT_idoss_penanganan_gangguan_id(textbox_NomorTiket.getValue());
         tPenangananGangguan.setNama_pelapor(combobox_NamaPelapor.getValue());
         tPenangananGangguan.setBagian_pelapor(texbox_Bagian.getValue());
         tPenangananGangguan.setNik_pelapor(getEmployee().getEmployee_no());

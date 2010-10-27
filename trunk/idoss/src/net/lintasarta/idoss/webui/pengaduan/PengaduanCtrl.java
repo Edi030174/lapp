@@ -105,7 +105,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteBeanToComponent(TPenangananGangguan tPenangananGangguan) {
-        textbox_NomorTiket.setValue(getPenangananGangguanService().getTiketId());
+//        textbox_NomorTiket.setValue(getPenangananGangguanService().getTiketId());
         textbox_NamaPelapor.setValue(getUserWorkspace().getUserSession().getEmployeeName());
         textbox_NikPelapor.setValue(getUserWorkspace().getUserSession().getEmployeeNo());
         textbox_Bagian.setValue(getUserWorkspace().getUserSession().getDepartment());
@@ -207,7 +207,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) {
 
-        tPenangananGangguan.setT_idoss_penanganan_gangguan_id(textbox_NomorTiket.getValue());
+//        tPenangananGangguan.setT_idoss_penanganan_gangguan_id(textbox_NomorTiket.getValue());
         tPenangananGangguan.setNama_pelapor(textbox_NamaPelapor.getValue());
         tPenangananGangguan.setNik_pelapor(textbox_NikPelapor.getValue());
         tPenangananGangguan.setBagian_pelapor(textbox_Bagian.getValue());
