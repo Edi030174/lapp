@@ -48,7 +48,6 @@ public class MttrDAOTest {
     public void testCreateMttr() throws Exception{
         Mttr mttr = new Mttr();
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
-        mttr.setT_idoss_mttr_id(2);
         mttr.setNomor_tiket("002");
         mttr.setMttr(4);
         mttr.setOpened(7);
