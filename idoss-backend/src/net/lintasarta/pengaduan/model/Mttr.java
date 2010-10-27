@@ -10,27 +10,27 @@ import java.sql.Timestamp;
  * Time: 2:37:37 PM
  */
 public class Mttr implements Serializable{
-    private int t_idoss_mttr_id;
+    private long t_idoss_mttr_id;
     private String nomor_tiket;
-    private int mttr;
-    private int opened;
-    private int closed;
-    private int inprogress;
-    private int pending;
-    private int target;
+    private long mttr;
+    private long opened;
+    private long closed;
+    private long inprogress;
+    private long pending;
+    private long target;
     private String updated_by;
     private Timestamp updated_date;
-    private int gen_id_col;
+    private long gen_id_col;
 
     public Mttr() {
     }
 
-    public int getT_idoss_mttr_id() {
+    public long getT_idoss_mttr_id() {
         return t_idoss_mttr_id;
     }
 
-    public void setT_idoss_mttr_id(int t_idoss_mttr_id) {
-        this.t_idoss_mttr_id = t_idoss_mttr_id;
+    public long getGen_id_col() {
+        return gen_id_col;
     }
 
     public String getNomor_tiket() {
@@ -41,51 +41,51 @@ public class Mttr implements Serializable{
         this.nomor_tiket = nomor_tiket;
     }
 
-    public int getMttr() {
+    public long getMttr() {
         return mttr;
     }
 
-    public void setMttr(int mttr) {
+    public void setMttr(long mttr) {
         this.mttr = mttr;
     }
 
-    public int getOpened() {
+    public long getOpened() {
         return opened;
     }
 
-    public void setOpened(int opened) {
+    public void setOpened(long opened) {
         this.opened = opened;
     }
 
-    public int getClosed() {
+    public long getClosed() {
         return closed;
     }
 
-    public void setClosed(int closed) {
+    public void setClosed(long closed) {
         this.closed = closed;
     }
 
-    public int getInprogress() {
+    public long getInprogress() {
         return inprogress;
     }
 
-    public void setInprogress(int inprogress) {
+    public void setInprogress(long inprogress) {
         this.inprogress = inprogress;
     }
 
-    public int getPending() {
+    public long getPending() {
         return pending;
     }
 
-    public void setPending(int pending) {
+    public void setPending(long pending) {
         this.pending = pending;
     }
 
-    public int getTarget() {
+    public long getTarget() {
         return target;
     }
 
-    public void setTarget(int target) {
+    public void setTarget(long target) {
         this.target = target;
     }
 
@@ -103,13 +103,5 @@ public class Mttr implements Serializable{
 
     public void setUpdated_date(Timestamp updated_date) {
         this.updated_date = updated_date;
-    }
-
-    public int getGen_id_col() {
-        return gen_id_col;
-    }
-
-    public void setGen_id_col(int gen_id_col) {
-        this.gen_id_col = gen_id_col;
     }
 }
