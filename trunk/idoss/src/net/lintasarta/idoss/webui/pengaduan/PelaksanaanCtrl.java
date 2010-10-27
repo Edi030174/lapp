@@ -34,6 +34,7 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
     protected Window window_Pelaksanaan;
     protected Textbox textbox_Cari;
     protected Hbox idHboxTanggal;
+    protected Combobox combobox_Cari;
     protected Datebox datebox_TanggalAwal;
     protected Datebox datebox_TanggalAkhir;
     protected Paging paging_DaftarTiket;
@@ -45,16 +46,10 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
     protected Listheader listheader_PenanggungJawab;
     protected Listheader listheader_Durasi;
     protected Listheader listheader_MTTR;
+    protected Listheader listheader_TglCreate;
     protected Listheader listheader_TglUpdate;
     protected Checkbox checkbox_All;
     protected Listbox listbox_Cari;
-    protected Listitem listitem_silakanpilih;
-    protected Listitem listitem_All;
-    protected Listitem listitem_Nomor;
-    protected Listitem listitem_Judul;
-    protected Listitem listitem_Status;
-    protected Listitem listitem_Pelapor;
-    protected Listitem listitem_PJ;
     protected Borderlayout borderlayout_daftarTroubleTiket;
     protected Panel panel_daftarTroubleTiket;
     private int countRows;
@@ -73,7 +68,6 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        doHideTanggal();
 
         int panelHeight = 25;
         // TODO put the logic for working with panel in the ApplicationWorkspace
@@ -107,6 +101,8 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
         listheader_Durasi.setSortDescending(new FieldComparator("durasi", false));
         listheader_MTTR.setSortAscending(new FieldComparator("mttr", true));
         listheader_MTTR.setSortDescending(new FieldComparator("mttr", false));
+        listheader_TglCreate.setSortAscending(new FieldComparator("created_date", true));
+        listheader_TglCreate.setSortDescending(new FieldComparator("created_date", false));
         listheader_TglUpdate.setSortAscending(new FieldComparator("updated_date", true));
         listheader_TglUpdate.setSortDescending(new FieldComparator("updated_date", false));
 
@@ -164,7 +160,7 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
         }
 
         if (!textbox_Cari.getValue().isEmpty()) {
-            if (listbox_Cari.getSelectedItem() == listitem_All) {
+            if (combobox_Cari.getValue().equalsIgnoreCase("All")) {
                 Set searchAllResult = new HashSet();
                 CollectionUtils.select(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
                 CollectionUtils.select(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
@@ -177,15 +173,15 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
 //                    }
 //                }
                 searchResult = new ArrayList<TPenangananGangguan>(searchAllResult);
-            } else if (listbox_Cari.getSelectedItem() == listitem_Judul) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Judul")) {
                 CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (listbox_Cari.getSelectedItem() == listitem_Nomor) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Nomor Tiket")) {
                 CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (listbox_Cari.getSelectedItem() == listitem_Status) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Status")) {
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (listbox_Cari.getSelectedItem() == listitem_Pelapor) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelapor")) {
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (listbox_Cari.getSelectedItem() == listitem_PJ) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Penanggung Jawab")) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
             }
         }
@@ -193,6 +189,8 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
         pagedListHolder.setPageSize(getCountRows());
         getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
         checkbox_All.setChecked(false);
+        datebox_TanggalAwal.setValue(null);
+        datebox_TanggalAkhir.setValue(null);
     }
 
     public void onOK$textbox_Cari(Event event) throws Exception {
@@ -210,7 +208,7 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
         }
 
         if (!textbox_Cari.getValue().isEmpty()) {
-            if (listbox_Cari.getSelectedItem() == listitem_All) {
+            if (combobox_Cari.getValue().equalsIgnoreCase("All")) {
                 Set searchAllResult = new HashSet();
                 CollectionUtils.select(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
                 CollectionUtils.select(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()), searchAllResult);
@@ -223,15 +221,15 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
 //                    }
 //                }
                 searchResult = new ArrayList<TPenangananGangguan>(searchAllResult);
-            } else if (listbox_Cari.getSelectedItem() == listitem_Judul) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Judul")) {
                 CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (listbox_Cari.getSelectedItem() == listitem_Nomor) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Nomor Tiket")) {
                 CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (listbox_Cari.getSelectedItem() == listitem_Status) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Status")) {
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (listbox_Cari.getSelectedItem() == listitem_Pelapor) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelapor")) {
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (listbox_Cari.getSelectedItem() == listitem_PJ) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Penanggung Jawab")) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
             }
         }
@@ -239,6 +237,8 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
         pagedListHolder.setPageSize(getCountRows());
         getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
         checkbox_All.setChecked(false);
+        datebox_TanggalAwal.setValue(null);
+        datebox_TanggalAkhir.setValue(null);
     }
 
     public void onClick$btnRefresh_DaftarTiket(Event event) throws Exception {
@@ -324,10 +324,12 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
         }
 
         textbox_Cari.setValue("");
+        datebox_TanggalAwal.setValue(null);
+        datebox_TanggalAkhir.setValue(null);
         setDaftarTiket();
     }
 
-    public void onSelect$listbox_Cari(Event event) throws Exception {
+    /*public void onSelect$listbox_Cari(Event event) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
@@ -366,7 +368,7 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
                 break;
             }
         }
-    }
+    }*/
 
     public void onClick$btn_report(Event event) throws InterruptedException {
         if (logger.isDebugEnabled()) {

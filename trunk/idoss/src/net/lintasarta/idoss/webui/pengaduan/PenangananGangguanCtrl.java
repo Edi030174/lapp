@@ -19,7 +19,6 @@ import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
@@ -47,7 +46,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     protected PenangananGangguanCtrl penangananGangguanCtrl;
 
     protected Button btn_historyDeskripsi;
-    protected Button btn_historySolusi;
+    protected Button btn_TambahRootCaused;
 
     private transient Listbox listbox_DaftarTiket;
     private transient String oldVar_fckeditor_Solusi;
@@ -152,26 +151,6 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         }
     }
 
-    public void onClick$btn_historySolusi(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        try {
-            Executions.createComponents("/WEB-INF/pages/pengaduan/hisSolusi.zul", null, map);
-        } catch (Exception e) {
-            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
-
-            // Show a error box
-            String msg = e.getMessage();
-            String title = Labels.getLabel("message_Error");
-
-            MultiLineMessageBox.doSetTemplate();
-            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
-        }
-    }
-
     public void onClick$btn_TambahRootCaused(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
@@ -206,6 +185,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         map.put("textbox_Type", textbox_Type);
         map.put("pRootCaused", pRootCaused);
         map.put("listbox_RootCaused", listbox_RootCaused);
+        map.put("btn_TambahRootCaused", btn_TambahRootCaused);
 
         try {
             Executions.createComponents("/WEB-INF/pages/pengaduan/type.zul", null, map);
@@ -224,9 +204,9 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     public void onChange$combobox_NamaPelapor() {
         Comboitem item = combobox_NamaPelapor.getSelectedItem();
         setEmployee((VHrEmployee) item.getValue());
-        if(getEmployee().getOrganization_code()!=null){
-        texbox_Bagian.setValue(getEmployee().getOrganization_code());
-        }else{
+        if (getEmployee().getOrganization_code() != null) {
+            texbox_Bagian.setValue(getEmployee().getOrganization_code());
+        } else {
             combobox_NamaPelapor.setFocus(true);
         }
     }
@@ -236,9 +216,9 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     }
 
     public void onSelect$listbox_NamaPelaksana() {
-        if(listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")){
+        if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
             combobox_Status.setSelectedIndex(0);
-        }else{
+        } else {
             combobox_Status.setSelectedIndex(1);
         }
     }
@@ -311,6 +291,9 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
 
         } catch (Exception e) {
             Messagebox.show(e.toString());
+        }
+        if (textbox_Type.getValue().length() < 1) {
+            btn_TambahRootCaused.setVisible(false);
         }
     }
 

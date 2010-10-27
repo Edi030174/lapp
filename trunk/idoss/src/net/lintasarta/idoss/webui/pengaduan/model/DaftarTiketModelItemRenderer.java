@@ -52,9 +52,14 @@ public class DaftarTiketModelItemRenderer implements ListitemRenderer {
         lc = new Listcell(penangananGangguan.getMttr());
         lc.setParent(item);
 
-        Timestamp ts = penangananGangguan.getUpdated_date();
+        Timestamp ts = penangananGangguan.getCreated_date();
         String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
         lc = new Listcell(tgl);
+        lc.setParent(item);
+
+        Timestamp ts2 = penangananGangguan.getUpdated_date();
+        String tgl2 = new SimpleDateFormat("dd-MM-yyyy").format(ts2);
+        lc = new Listcell(tgl2);
         lc.setParent(item);
 
         item.setAttribute("data", data);
