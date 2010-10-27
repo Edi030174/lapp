@@ -50,7 +50,7 @@ public class TDeskripsiServiceTest {
         tDeskripsi.setUpdated_by("Anton lagi");
         tDeskripsi.setUpdated_date(new Timestamp(Calendar.getInstance().getTimeInMillis()));
         tDeskripsi.setT_idoss_penanganan_gangguan_id("0");
-        tDeskripsiService.createTDeskripsi(tDeskripsi);
+        tDeskripsiService.createTDeskripsi(tDeskripsi, null);
 
         assertEquals(5, tDeskripsiService.getTDeskripsiByGangguanId("0").size());
     }

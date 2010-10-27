@@ -94,16 +94,17 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         return tPenangananGangguans;
     }
 
-    public void createTDeskripsi(TDeskripsi tDeskripsi) {
+    public void createTDeskripsi(TDeskripsi tDeskripsi, String nomorTiket) {
         if (tDeskripsi.getDeskripsi() != null || tDeskripsi.getSolusi() != null) {
             tDeskripsi.setUpdated_date(new Timestamp(Calendar.getInstance().getTimeInMillis()));
-            tDeskripsiService.createTDeskripsi(tDeskripsi);
+            tDeskripsiService.createTDeskripsi(tDeskripsi, nomorTiket);
         }
     }
 
     public void createPenangananGangguan(TPenangananGangguan tPenangananGangguan, TDeskripsi tDeskripsi) {
 
         int i = tPenangananGangguanDAO.getSeqTiketId();
+        tPenangananGangguan.setT_idoss_penanganan_gangguan_id(getTiketId());
         tPenangananGangguan.setGen_id_col(i);
         tPenangananGangguan.setDurasi(Constants.EMPTY_STRING);
 //        tPenangananGangguan.setNama_pelaksana(Constants.EMPTY_STRING);
@@ -116,6 +117,6 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         }
         gettPenangananGangguanDAO().createTPenangananGangguan(tPenangananGangguan);
 
-        createTDeskripsi(tDeskripsi);
+        createTDeskripsi(tDeskripsi, tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
     }
 }

@@ -87,10 +87,10 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
         return getvHrEmployeePelaksanaDAO().getAllVHrEmployeePelaksana();
     }
 
-    public void createTDeskripsi(TDeskripsi tDeskripsi) {
+    public void createTDeskripsi(TDeskripsi tDeskripsi, String nomorTiket) {
         if (tDeskripsi.getDeskripsi() != null || tDeskripsi.getSolusi() != null) {
             tDeskripsi.setUpdated_date(new Timestamp(Calendar.getInstance().getTimeInMillis()));
-            tDeskripsiService.createTDeskripsi(tDeskripsi);
+            tDeskripsiService.createTDeskripsi(tDeskripsi, nomorTiket);
         }
     }
 
@@ -148,7 +148,7 @@ update MTTR
         }
 
         gettPenangananGangguanDAO().saveOrUpdate(tPenangananGangguan);
-        createTDeskripsi(tDeskripsi);
+        createTDeskripsi(tDeskripsi, tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
     }
 
     private String getDuration(long duration) {
