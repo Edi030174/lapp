@@ -3,14 +3,11 @@ package net.lintasarta.report.permohonan.service.impl;
 import net.lintasarta.report.permohonan.model.ReportPermohonan;
 import net.lintasarta.report.permohonan.service.ReportPermohonanService;
 import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.

@@ -62,6 +62,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     protected Button button_Download;
     //protected FCKeditor fck_DetailPermohonan;
     protected Textbox fck_DetailPermohonan;
+    protected Label label_viewAttachment;
 
     protected Tab tab_Verifikasi;
     protected Tabpanel tabPanel_Verifikasi;
@@ -221,6 +222,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         if(zip !=-1 || rar !=-1 || doc !=-1 || docx !=-1 || pdf !=-1 || txt !=-1 || xls !=-1 || xlsx !=-1)
         {
             setUploadMedia(media);
+            label_viewAttachment.setValue(file);
         }
         else
         {

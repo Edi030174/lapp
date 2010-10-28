@@ -27,16 +27,15 @@
                     image="/images/icons/btn_new2_16x16.gif"/>
             <vbox>
                 <hbox>
-                    <label value="Cari berdasarkan :"/>
-                    <listbox id="listbox_Cari" rows="1" mold="select" width="150px">
-                        <listhead visible="false"/>
-                        <listitem id="listitem_silakanpilih" label="Silakan pilih" selected="true"/>
-                        <listitem id="listitem_All" label="All field" value="1"/>
-                        <listitem id="listitem_Nomor" label="Nomor Permohonan" value="2"/>
-                        <listitem id="listitem_Tipe" label="Tipe" value="3"/>
-                        <listitem id="listitem_Status" label="Status" value="4"/>
-                        <listitem id="listitem_Tanggal" label="Tanggal" value="5"/>
-                    </listbox>
+
+                    <combobox id="listbox_Cari" width="140px" readonly="true">
+                        <comboitem label="All" />
+                        <comboitem label="Nomor" />
+                        <comboitem label="Tipe" />
+                        <comboitem label="Status" />
+                        <comboitem label="Dampak" />
+                     </combobox>
+                    
                     <textbox id="textbox_cariPermohonanId"/>
                     <button id="btnCari" label="cari"
                             image="/images/icons/btn_search2_16x16.gif"/>
@@ -64,6 +63,7 @@
                     <listhead sizable="true">
                         <listheader id="listheader_Nomor" label="Nomor" sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_Tanggal" label="Tanggal" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Dampak" label="Dampak" sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_Tipe" label="Tipe" sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_StatusPersetujuan" label="Status Persetujuan" sort="auto"
                                     style="font-size:11px"/>
