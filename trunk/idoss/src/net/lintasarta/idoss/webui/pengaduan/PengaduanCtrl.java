@@ -9,14 +9,11 @@ import net.lintasarta.pengaduan.model.comparator.TPenangananGangguanComparator;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
-import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
 import java.util.Map;
 
 /**
@@ -39,7 +36,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_Judul;
     protected Listbox listbox_DaftarTiket;
 
-    protected FCKeditor fckeditor_Des;
+    protected Textbox textbox_deskripsi;
 
 //    protected Button btnSimpan_pengaduan;
 //    protected Button btnBatal_pengaduan;
@@ -164,8 +161,8 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         TDeskripsi tDeskripsi = new TDeskripsi();
         tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
 
-        if (fckeditor_Des.getValue() != null)
-            tDeskripsi.setDeskripsi(fckeditor_Des.getValue());
+        if (textbox_deskripsi.getValue() != null)
+            tDeskripsi.setDeskripsi(textbox_deskripsi.getValue());
 
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
 
@@ -201,7 +198,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         oldVar_textboxNomorHP = textbox_NomorHP.getValue();
         oldVar_textboxExt = textbox_Ext.getValue();
         oldVar_textboxJudul = textbox_Judul.getValue();
-        oldVar_fckeditorDes = fckeditor_Des.getValue();
+        oldVar_fckeditorDes = textbox_deskripsi.getValue();
 
     }
 
@@ -214,7 +211,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         tPenangananGangguan.setNo_hp(textbox_NomorHP.getValue());
         tPenangananGangguan.setExt(textbox_Ext.getValue());
         tPenangananGangguan.setJudul(textbox_Judul.getValue());
-        tPenangananGangguan.setDeskripsi(fckeditor_Des.getValue());
+        tPenangananGangguan.setDeskripsi(textbox_deskripsi.getValue());
         tPenangananGangguan.setStatus("Open");
         tPenangananGangguan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());

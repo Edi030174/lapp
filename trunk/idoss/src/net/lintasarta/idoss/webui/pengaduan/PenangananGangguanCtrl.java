@@ -15,10 +15,10 @@ import net.lintasarta.security.model.VHrEmployee;
 import net.lintasarta.security.util.LoginConstants;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
-import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
@@ -37,8 +37,8 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     protected Textbox texbox_Bagian;
     protected Textbox texbox_Judul;
     protected Textbox textbox_Type;
-    protected FCKeditor fckeditor_Deskripsi;
-    protected FCKeditor fckeditor_Solusi;
+    protected Textbox textbox_deskripsi;
+    protected Textbox textbox_solusi;
     protected Radiogroup radiogroup_Dampak;
     protected Listbox listbox_RootCaused;
     protected Listbox listbox_NamaPelaksana;
@@ -49,7 +49,8 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     protected Button btn_TambahRootCaused;
 
     private transient Listbox listbox_DaftarTiket;
-    private transient String oldVar_fckeditor_Solusi;
+    private transient String oldVar_textbox_solusi;
+    private transient Window window_Helpdesk;
 
     private transient boolean validationOn;
 
@@ -92,6 +93,12 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             penangananGangguanCtrl = null;
         }
 
+        if (args.containsKey("window_Helpdesk")) {
+            window_Helpdesk = (Window) args.get("window_Helpdesk");
+        } else {
+            window_Helpdesk = null;
+        }
+
         if (args.containsKey("listbox_DaftarTiket")) {
             listbox_DaftarTiket = (Listbox) args.get("listbox_DaftarTiket");
         } else {
@@ -119,6 +126,8 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         if (isValidatedFlow()) {
             doSimpan();
             window_PenangananGangguan.onClose();
+            Events.postEvent("onCreate", window_Helpdesk, event);
+            window_Helpdesk.invalidate();
         }
     }
 
@@ -252,10 +261,10 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         TDeskripsi tDeskripsi = new TDeskripsi();
         tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
 
-        if (fckeditor_Deskripsi.getValue() != null)
-            tDeskripsi.setDeskripsi(fckeditor_Deskripsi.getValue());
-        if (fckeditor_Solusi.getValue() != null)
-            tDeskripsi.setSolusi(fckeditor_Solusi.getValue());
+        if (textbox_deskripsi.getValue() != null)
+            tDeskripsi.setDeskripsi(textbox_deskripsi.getValue());
+        if (textbox_solusi.getValue() != null)
+            tDeskripsi.setSolusi(textbox_solusi.getValue());
 
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
         try {
@@ -332,8 +341,8 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         tPenangananGangguan.setBagian_pelapor(texbox_Bagian.getValue());
         tPenangananGangguan.setNik_pelapor(getEmployee().getEmployee_no());
         tPenangananGangguan.setJudul(texbox_Judul.getValue());
-        tPenangananGangguan.setDeskripsi(fckeditor_Deskripsi.getValue());
-        tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
+        tPenangananGangguan.setDeskripsi(textbox_deskripsi.getValue());
+        tPenangananGangguan.setSolusi(textbox_solusi.getValue());
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tPenangananGangguan.setDampak(dampak.getValue());
         if (pType != null) {
@@ -418,6 +427,12 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
                 Judul
                 Pelaksana
             */
+            if(textbox_solusi.getValue().length() > 0){
+                Messagebox.show("Status: In Progress ->solusi tidak boleh diisi. solusi akan dihapus");
+                textbox_solusi.setValue("");
+                return false;
+
+            }
             if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;
@@ -425,6 +440,12 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             if (listbox_NamaPelaksana.getSelectedItem() == null) {
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;
+            }
+            if(textbox_solusi.getValue().length() > 0){
+                Messagebox.show("solusi tidak boleh diisi karena Status: In Progress");
+                textbox_solusi.setValue("");
+                return false;
+
             }
         } else if (combobox_Status.getValue().equalsIgnoreCase("Closed")) {
             /* Tidak boleh kosong:
@@ -436,6 +457,14 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
                 Root Caused
                 Solusi
             */
+            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
+                Messagebox.show("Silakan pilih nama pelaksana");
+                return false;
+            }
+            if (listbox_NamaPelaksana.getSelectedItem() == null) {
+                Messagebox.show("Silakan pilih nama pelaksana");
+                return false;
+            }
             if (textbox_Type.getValue().length() < 1) {
                 Messagebox.show("Silakan pilih tipe");
                 return false;
@@ -444,7 +473,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
                 Messagebox.show("Silakan pilih root caused");
                 return false;
             }
-            if (fckeditor_Solusi.getValue().length() < 1) {
+            if (textbox_solusi.getValue().length() < 1) {
                 Messagebox.show("Silakan isikan solusi");
                 return false;
             }

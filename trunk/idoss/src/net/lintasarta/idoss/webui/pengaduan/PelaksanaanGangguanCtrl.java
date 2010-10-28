@@ -12,11 +12,9 @@ import net.lintasarta.pengaduan.service.RootCausedService;
 import net.lintasarta.pengaduan.service.TypeService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
-import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
@@ -41,8 +39,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     protected Textbox texbox_Bagian;
     protected Textbox texbox_Judul;
     protected Textbox textbox_Type;
-    protected FCKeditor fckeditor_Deskripsi;
-    protected FCKeditor fckeditor_Solusi;//pelaksana hanya status & solusi yg enable
+    protected Textbox textbox_deskripsi;
+    protected Textbox textbox_solusi;//pelaksana hanya status & solusi yg enable
     protected Radiogroup radiogroup_Dampak;
     protected Listbox listbox_RootCaused;
     protected Listbox listbox_NamaPelaksana;
@@ -56,7 +54,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     private transient Listbox listbox_DaftarTiket;
     private transient String oldVar_textbox_Pelaksana;
     private transient String oldVar_textbox_NikPelaksana;
-    private transient String oldVar_fckeditor_Solusi;
+    private transient String oldVar_textbox_solusi;
     private transient String oldVar_radiogroup_Dampak;
     private transient String oldVar_combobox_Type;
     private transient String oldVar_combobox_RootCaused;
@@ -214,6 +212,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         map.put("pRootCaused", pRootCaused);
         map.put("pType", pType);
         map.put("listbox_RootCaused", listbox_RootCaused);
+        map.put("btn_TambahRootCaused", btn_TambahRootCaused);
 
         try {
             Executions.createComponents("/WEB-INF/pages/pengaduan/type.zul", null, map);
@@ -263,10 +262,10 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         TDeskripsi tDeskripsi = new TDeskripsi();
         tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
 
-        if (fckeditor_Deskripsi.getValue() != null)
-            tDeskripsi.setDeskripsi(fckeditor_Deskripsi.getValue());
-        if (fckeditor_Solusi.getValue() != null)
-            tDeskripsi.setSolusi(fckeditor_Solusi.getValue());
+        if (textbox_deskripsi.getValue() != null)
+            tDeskripsi.setDeskripsi(textbox_deskripsi.getValue());
+        if (textbox_solusi.getValue() != null)
+            tDeskripsi.setSolusi(textbox_solusi.getValue());
 
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
         try {
@@ -296,6 +295,9 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
+        if (textbox_Type.getValue().length() < 1) {
+            btn_TambahRootCaused.setVisible(false);
+        }
     }
 
     private void doWriteBeanToComponent(TPenangananGangguan tPenangananGangguan) throws Exception {
@@ -304,8 +306,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         texbox_Bagian.setValue(tPenangananGangguan.getBagian_pelapor());
         texbox_Judul.setValue(tPenangananGangguan.getJudul());
         combobox_Status.setValue(tPenangananGangguan.getStatus());
-        fckeditor_Deskripsi.setValue(tPenangananGangguan.getDeskripsi());
-        fckeditor_Solusi.setValue(tPenangananGangguan.getSolusi());
+        textbox_deskripsi.setValue(tPenangananGangguan.getDeskripsi());
+        textbox_solusi.setValue(tPenangananGangguan.getSolusi());
 //        ListModelList lml = (ListModelList) listbox_NamaPelaksana.getModel();
         VHrEmployeePelaksana vHrEmployeePelaksana = getPelaksanaanGangguanService().getVHrEmployeePelaksanaById(tPenangananGangguan.getNik_pelaksana());
 //        if (tPenangananGangguan.getNama_pelaksana() != null) {
@@ -337,10 +339,9 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 
             textbox_Type.setValue(zz + " - " + yy + " - " + xx);
 //            textbox_Type.setValue(tPenangananGangguan.getP_idoss_type_id());
-            //textbox_Type.setValue(pType.getType_desc());
+//            textbox_Type.setValue(pType.getType_desc());
 
             listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(pType.getP_idoss_type_id())));
-
             listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
             int indexRoot = 0;
             ListModel listRoot = listbox_RootCaused.getModel();
@@ -353,9 +354,9 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     }
 
     private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
-        tPenangananGangguan.setDeskripsi(fckeditor_Deskripsi.getValue());
-        if (fckeditor_Solusi.getValue() != null) {
-            tPenangananGangguan.setSolusi(fckeditor_Solusi.getValue());
+        tPenangananGangguan.setDeskripsi(textbox_deskripsi.getValue());
+        if (textbox_solusi.getValue() != null) {
+            tPenangananGangguan.setSolusi(textbox_solusi.getValue());
         }
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tPenangananGangguan.setDampak(dampak.getValue());
@@ -425,6 +426,14 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
                 Messagebox.show("Status Pending tidak boleh langsung Closed, harus melalui In Progress");
                 return false;
             }
+            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
+                Messagebox.show("Silakan pilih nama pelaksana");
+                return false;
+            }
+            if (listbox_NamaPelaksana.getSelectedItem() == null) {
+                Messagebox.show("Silakan pilih nama pelaksana");
+                return false;
+            }
             /* Tidak boleh kosong:
                 Nomor Tiket
                 Nama Pelapor
@@ -442,7 +451,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
                 Messagebox.show("Silakan pilih root caused");
                 return false;
             }
-            if (fckeditor_Solusi.getValue().length() < 1) {
+            if (textbox_solusi.getValue().length() < 1) {
                 Messagebox.show("Silakan isikan solusi");
                 return false;
             }

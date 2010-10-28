@@ -58,9 +58,8 @@
                 </row>
                 <row style="border:0px">
                     <label value="Deskripsi"/>
-                    <fckeditor id="fckeditor_Deskripsi" customConfigurationsPath="/js/fckeditor.js"
-                               toolbarSet="Basic"
-                               width="99%" height="50%"/>
+                    <!--<fckeditor id="fckeditor_Deskripsi" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic" width="99%" height="50%"/>-->
+                    <textbox id="textbox_deskripsi" width="99%" multiline="true" rows="7" maxlength="3999"/>
                 </row>
                 <row style="border:0px">
                     <label value="zzz" visible="false"/>
@@ -117,8 +116,8 @@
                 </row>
                 <row style="border:0px">
                     <label value="Solusi"/>
-                    <fckeditor id="fckeditor_Solusi" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic"
-                               width="99%" height="50%"/>
+                    <!--<fckeditor id="fckeditor_Solusi" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic" width="99%" height="50%"/>-->
+                    <textbox id="textbox_solusi" width="99%" multiline="true" rows="7" maxlength="3999"/>
                 </row>
             </rows>
         </grid>

@@ -36,7 +36,6 @@
                         <comboitem label="Status"/>
                         <comboitem label="Pelapor"/>
                         <comboitem label="Pelaksana"/>
-                        <comboitem label="Tanggal"/>
                     </combobox>
                     <textbox id="textbox_Cari" value=""/>
                     <checkbox id="checkbox_All" label="Show All" checked="false"/>
