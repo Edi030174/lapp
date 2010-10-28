@@ -195,10 +195,10 @@ public class HelpdeskCtrl extends GFCBaseListCtrl<TPenangananGangguan> implement
 //                    }
 //                }
                 searchResult = new ArrayList<TPenangananGangguan>(searchAllResult);
-            } else if (combobox_Cari.getValue().equalsIgnoreCase("Judul")) {
-                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Nomor Tiket")) {
                 CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Judul")) {
+                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Status")) {
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelapor")) {
@@ -242,10 +242,10 @@ public class HelpdeskCtrl extends GFCBaseListCtrl<TPenangananGangguan> implement
 //                    }
 //                }
                 searchResult = new ArrayList<TPenangananGangguan>(searchAllResult);
-            } else if (combobox_Cari.getValue().equalsIgnoreCase("Judul")) {
-                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Nomor Tiket")) {
                 CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Judul")) {
+                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Status")) {
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelapor")) {
@@ -321,7 +321,7 @@ public class HelpdeskCtrl extends GFCBaseListCtrl<TPenangananGangguan> implement
         HashMap<String, Object> map = new HashMap<String, Object>();
 
         map.put("tPenangananGangguan", tPenangananGangguan);
-
+        map.put("window_Helpdesk", window_Helpdesk);
         map.put("listbox_DaftarTiket", listbox_DaftarTiket);
 
         try {
@@ -348,48 +348,6 @@ public class HelpdeskCtrl extends GFCBaseListCtrl<TPenangananGangguan> implement
         datebox_TanggalAkhir.setValue(null);
         setDaftarTiket();
     }
-
-    /*public void onSelect$listbox_Cari(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        logger.debug("NILAINYA : " + listbox_Cari.getSelectedItem().getValue().toString());
-        int hierarchy = Integer.parseInt(listbox_Cari.getSelectedItem().getValue().toString());
-        doShowBerdasarkan(hierarchy);
-    }
-
-    private void doShowBerdasarkan(int hierarchy) {
-        switch (hierarchy) {
-            case 1: {
-                doViewTanggal();
-                break;
-            }
-            case 2: {
-                doHideTanggal();
-                break;
-            }
-            case 3: {
-                doHideTanggal();
-                break;
-            }
-            case 4: {
-                doHideTanggal();
-                break;
-            }
-            case 5: {
-                doHideTanggal();
-                break;
-            }
-            case 6: {
-                doHideTanggal();
-                break;
-            }
-            case 7: {
-                doViewTanggal();
-                break;
-            }
-        }
-    }*/
 
     public void onClick$btn_report(Event event) throws InterruptedException {
         if (logger.isDebugEnabled()) {

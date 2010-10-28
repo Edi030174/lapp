@@ -68,10 +68,8 @@
                 </row>
                 <row style="border:0px">
                     <label value="Deskripsi"/>
-                    <fckeditor id="fckeditor_Des" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic"
-                               width="99%">
-
-                    </fckeditor>
+                    <!--<fckeditor id="fckeditor_Des" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic" width="99%"/>-->
+                    <textbox id="textbox_deskripsi" width="99%" multiline="true" rows="9" maxlength="3999"/>
                 </row>
             </rows>
         </grid>

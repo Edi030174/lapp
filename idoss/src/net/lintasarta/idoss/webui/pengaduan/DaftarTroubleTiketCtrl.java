@@ -200,15 +200,15 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
 //                    }
 //                }
                 searchResult = new ArrayList<TPenangananGangguan>(searchAllResult);
-            } else if (combobox_Cari.getValue().equalsIgnoreCase("Judul")) {
-                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Nomor Tiket")) {
                 CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Judul")) {
+                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Status")) {
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelapor")) {
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (combobox_Cari.getValue().equalsIgnoreCase("Penanggung Jawab")) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
             }
         }
@@ -248,15 +248,15 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
 //                    }
 //                }
                 searchResult = new ArrayList<TPenangananGangguan>(searchAllResult);
-            } else if (combobox_Cari.getValue().equalsIgnoreCase("Judul")) {
-                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Nomor Tiket")) {
                 CollectionUtils.filter(searchResult, new NomorTiketTPenangananGangguan(textbox_Cari.getValue()));
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Judul")) {
+                CollectionUtils.filter(searchResult, new JudulTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Status")) {
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelapor")) {
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (combobox_Cari.getValue().equalsIgnoreCase("Penanggung Jawab")) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
             }
         }
@@ -361,48 +361,6 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
 //
 //        getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
     }
-
-    /*public void onSelect$listbox_Cari(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        logger.debug("NILAINYA : " + listbox_Cari.getSelectedItem().getValue().toString());
-        int hierarchy = Integer.parseInt(listbox_Cari.getSelectedItem().getValue().toString());
-        doShowBerdasarkan(hierarchy);
-    }
-
-    private void doShowBerdasarkan(int hierarchy) {
-        switch (hierarchy) {
-            case 1: {
-                doViewTanggal();
-                break;
-            }
-            case 2: {
-                doHideTanggal();
-                break;
-            }
-            case 3: {
-                doHideTanggal();
-                break;
-            }
-            case 4: {
-                doHideTanggal();
-                break;
-            }
-            case 5: {
-                doHideTanggal();
-                break;
-            }
-            case 6: {
-                doHideTanggal();
-                break;
-            }
-            case 7: {
-                doViewTanggal();
-                break;
-            }
-        }
-    }*/
 
     public void onClick$btn_report(Event event) throws InterruptedException {
         if (logger.isDebugEnabled()) {
