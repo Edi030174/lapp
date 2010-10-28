@@ -39,6 +39,9 @@ public class DaftarPermohonanModelItemRenderer implements ListitemRenderer, Seri
         lc = new Listcell(tgl);
 		lc.setParent(item);
 
+        lc = new Listcell(tPermohonan.getDampak());
+		lc.setParent(item);
+
 		lc = new Listcell(tPermohonan.getType_permohonan());
 		lc.setParent(item);
 		lc = new Listcell(tPermohonan.getStatus_track_permohonan());

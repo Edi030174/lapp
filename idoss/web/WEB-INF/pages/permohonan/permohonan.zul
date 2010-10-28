@@ -87,20 +87,20 @@
                                         <vbox>
                                             <hbox>
                                                 <textbox
-                                                        id="textbox_TIdossPermohonanId" width="120px" disabled="true"
+                                                        id="textbox_TIdossPermohonanId" width="120px" readonly="true"
                                                         style="color: #000000 !important;"/>
                                                 <vbox>
                                                     <space height="1px"></space>
                                                     <label width="10px" value="/FPSOPHAR/2010"/>
                                                 </vbox>
                                             </hbox>
-                                            <textbox id="textbox_NamaPemohon" width="200px" disabled="true"
+                                            <textbox id="textbox_NamaPemohon" width="200px" readonly="true"
                                                      style="color: black !important;"/>
-                                            <textbox id="textbox_BagianPemohon" width="300px" disabled="true"
+                                            <textbox id="textbox_BagianPemohon" width="300px" readonly="true"
                                                      style="color: black !important;"/>
-                                            <textbox id="textbox_NamaManager" width="200px" disabled="true"
+                                            <textbox id="textbox_NamaManager" width="200px" readonly="true"
                                                      style="color: black !important;"/>
-                                            <textbox id="textbox_NamaGm" width="200px" disabled="true"
+                                            <textbox id="textbox_NamaGm" width="200px" readonly="true"
                                                      style="color: black !important;"/>
                                         </vbox>
                                         <vbox>
@@ -114,15 +114,15 @@
                                         </vbox>
                                         <vbox>
                                             <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy"
-                                                     disabled="true" readonly="true" width="150px"
+                                                     readonly="true" width="150px"
                                                      style="color: #000000 !important;"/>
                                             <textbox id="textbox_NikPemohon"
-                                                     width="60px" disabled="true" style="color: black !important;"/>
+                                                     width="60px" readonly="true" style="color: black !important;"/>
                                             <space height="22px"></space>
                                             <textbox id="textbox_NikManager"
-                                                     width="60px" disabled="true" style="color: black !important;"/>
+                                                     width="60px" readonly="true" style="color: black !important;"/>
                                             <textbox id="textbox_NikGm"
-                                                     width="60px" disabled="true" style="color: black !important;"/>
+                                                     width="60px" readonly="true" style="color: black !important;"/>
                                         </vbox>
                                     </hbox>
                                 </groupbox>
@@ -172,6 +172,7 @@
                                                forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
                                                toolbarSet="Basic"/>
                                      -->
+                                     <label value="Deskripsi : "/>
                                     <textbox id="fck_DetailPermohonan" rows="3" width="300px"/>
                                 </groupbox>
                             </tabpanel>

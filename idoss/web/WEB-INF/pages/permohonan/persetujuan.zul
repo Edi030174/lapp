@@ -50,7 +50,7 @@
             </vbox>
             <vbox>
                 <hbox>
-                    <textbox id="textbox_TIdossPermohonanId" width="120px" disabled="true"
+                    <textbox id="textbox_TIdossPermohonanId" width="120px" readonly="true" 
                              style="color: #000000 !important;"/>
                     <vbox>
                         <space height="1px"/>
@@ -59,7 +59,7 @@
                     </vbox>
                 </hbox>
                 <textbox id="textbox_NamaPemohon"
-                         width="200px" disabled="true" style="color: black !important;"/>
+                         width="200px" readonly="true" style="color: black !important;"/>
             </vbox>
             <vbox>
                 <space height="1px"/>
@@ -67,10 +67,10 @@
                 <label width="10px" value="NIK :"/>
             </vbox>
             <vbox>
-                <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" disabled="true" readonly="true"
+                <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" readonly="true"
                          width="150px" style="color: #000000 !important;"/>
                 <textbox id="textbox_NikPemohon"
-                         width="60px" disabled="true" style="color: black !important;"/>
+                         width="60px" readonly="true" style="color: black !important;"/>
             </vbox>
         </hbox>
         <hbox>
@@ -97,6 +97,7 @@
         <space width="10px"/>
         <groupbox mold="3d">
             <caption label="detail permohonan" style="font-weight:normal"/>
+            <label value="Deskripsi : "/>
             <textbox id="textbox_DetailPermohonan" rows="3" width="300px"/>
         </groupbox>
         <groupbox mold="3d" id="groupbox_ManagerPemohon">
