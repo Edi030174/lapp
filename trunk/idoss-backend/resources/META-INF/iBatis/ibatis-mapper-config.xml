@@ -15,20 +15,6 @@
 
     <typeAliases>
 
-        <!--PLIK-->
-        <typeAlias type="net.lintasarta.plik.model.TPlik" alias="tplik"/>
-
-        <!--Pelapor-->
-        <typeAlias type="net.lintasarta.pelapor.model.TPelapor" alias="tpelapor"/>
-
-        <!--Gangguan-->
-        <typeAlias type="net.lintasarta.gangguan.model.TGangguan" alias="tgangguan"/>
-        <typeAlias type="net.lintasarta.gangguan.model.TVoucher" alias="tvoucher"/>
-        <typeAlias type="net.lintasarta.gangguan.model.TAplikasi" alias="taplikasi"/>
-        <typeAlias type="net.lintasarta.gangguan.model.THardware" alias="thardware"/>
-        <typeAlias type="net.lintasarta.gangguan.model.TJaringan" alias="tjaringan"/>
-        <typeAlias type="net.lintasarta.gangguan.model.TLainLain" alias="tlainlain"/>
-
         <typeAlias type="net.lintasarta.security.model.VHrEmployee" alias="vHrEmployee"/>
         <typeAlias type="net.lintasarta.pengaduan.model.PApplication" alias="papplication"/>
         <typeAlias type="net.lintasarta.pengaduan.model.Mttr" alias="mttr"/>
@@ -60,18 +46,6 @@
     </typeHandlers>
 
     <mappers>
-         <!--PLIK-->
-        <mapper resource="net/lintasarta/plik/dao/impl/mybatis/tplik.xml"/>
-         <!--Pelapor-->
-        <mapper resource="net/lintasarta/pelapor/dao/impl/mybatis/tpelapor.xml"/>
-        <!--Gangguan-->
-        <mapper resource="net/lintasarta/gangguan/dao/impl/mybatis/tgangguan.xml"/>
-        <mapper resource="net/lintasarta/gangguan/dao/impl/mybatis/tvoucher.xml"/>
-        <mapper resource="net/lintasarta/gangguan/dao/impl/mybatis/taplikasi.xml"/>
-        <mapper resource="net/lintasarta/gangguan/dao/impl/mybatis/thardware.xml"/>
-        <mapper resource="net/lintasarta/gangguan/dao/impl/mybatis/tjaringan.xml"/>
-        <mapper resource="net/lintasarta/gangguan/dao/impl/mybatis/tlainlain.xml"/>
-
         <mapper resource="net/lintasarta/security/dao/impl/mybatis/VHrEmployee.xml"/>
         <mapper resource="net/lintasarta/security/dao/impl/mybatis/PApplicationUser.xml"/>
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/mttr.xml"/>
