@@ -42,6 +42,8 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
     protected Textbox textbox_deskripsi;
     protected Textbox textbox_solusi;//pelaksana hanya status & solusi yg enable
     protected Radiogroup radiogroup_Dampak;
+    protected Radio radio_major;
+    protected Radio radio_minor;
     protected Listbox listbox_RootCaused;
     protected Listbox listbox_NamaPelaksana;
     protected Combobox combobox_Status;//pelaksana hanya status & solusi yg enable
@@ -317,6 +319,9 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         combobox_Status.setValue(tPenangananGangguan.getStatus());
         if(tPenangananGangguan.getStatus().equals("Closed")){
             textbox_solusi.setReadonly(false);
+        }
+        if (tPenangananGangguan.getDampak().equals("Major")) {
+            radiogroup_Dampak.setSelectedItem(radio_major);
         }
         textbox_deskripsi.setValue(tPenangananGangguan.getDeskripsi());
         textbox_solusi.setValue(tPenangananGangguan.getSolusi());

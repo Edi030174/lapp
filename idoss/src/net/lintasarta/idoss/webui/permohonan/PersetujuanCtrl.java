@@ -392,6 +392,8 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
 
         try {
             getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
+            tVerifikasi.setNik_asman(getUserWorkspace().getUserSession().getEmployeeNo());
+            tVerifikasi.setNama_asman(getUserWorkspace().getUserSession().getEmployeeName());
             getVerifikasiService().saveOrUpdateTVerifikasi(tVerifikasi);
         } catch (DataAccessException e) {
             String message = e.getMessage();
@@ -447,6 +449,8 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         doWriteComponentsToBean4(tPermohonan, tVerifikasi);
 
         try {
+            tVerifikasi.setNik_manager(getUserWorkspace().getUserSession().getEmployeeNo());
+            tVerifikasi.setNama_manager(getUserWorkspace().getUserSession().getEmployeeName());
             getVerifikasiService().saveOrUpdateTVerifikasi(tVerifikasi);
             getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
         } catch (DataAccessException e) {
@@ -483,6 +487,8 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         doWriteComponentsToBean5(tPermohonan, tVerifikasi);
 
         try {
+            tVerifikasi.setNik_gm(getUserWorkspace().getUserSession().getEmployeeNo());
+            tVerifikasi.setNama_gm(getUserWorkspace().getUserSession().getEmployeeName());
             getVerifikasiService().saveOrUpdateTVerifikasi(tVerifikasi);
             getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
         } catch (DataAccessException e) {

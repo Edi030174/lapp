@@ -8,6 +8,7 @@ import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.model.comparator.TPermohonanComparator;
 import net.lintasarta.permohonan.service.PermohonanService;
+import net.lintasarta.security.model.VHrEmployee;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.media.Media;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -160,11 +162,68 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
+    private VHrEmployee getNamaVHrEmployee(String vHrEmployeeNo) {
+        List<VHrEmployee> vHrEmployees = getPermohonanService().getVHrEmployeeByEmployeeNo(vHrEmployeeNo);
+        for (VHrEmployee vHrEmployee : vHrEmployees) {
+            return vHrEmployee;
+        }
+        return null;
+    }
+
+    private TPermohonan setNikNama(TPermohonan tPermohonan, String employeeNo) {
+        VHrEmployee parentEmployee = getNamaVHrEmployee(employeeNo);
+        if (parentEmployee.getJob_position_code().equals("Assistant Manager") || parentEmployee.getJob_position_code().equals("Analyst")) {
+            tPermohonan.setNik_asman(employeeNo);
+            tPermohonan.setNama_asman(parentEmployee.getEmployee_name());
+        } else if (parentEmployee.getJob_position_code().equals("Manager") || parentEmployee.getJob_position_code().equals("POH Manager")) {
+            tPermohonan.setNik_manager(employeeNo);
+            tPermohonan.setNama_manager(parentEmployee.getEmployee_name());
+        } else if (parentEmployee.getJob_position_code().equals("General Manager") || parentEmployee.getJob_position_code().equals("POH General Manager")) {
+            tPermohonan.setNik_gm(employeeNo);
+            tPermohonan.setNama_gm(parentEmployee.getEmployee_name());
+        }
+        return tPermohonan;
+    }
+
+    private TPermohonan setBoss(TPermohonan tPermohonan, String employeeNo) {
+        tPermohonan = setNikNama(tPermohonan, employeeNo);
+
+        String parentEmployeeNo = getPermohonanService().getManager(employeeNo);
+        tPermohonan = setNikNama(tPermohonan, parentEmployeeNo);
+
+        String grandParentEmployeeNo = getPermohonanService().getManager(parentEmployeeNo);
+        tPermohonan = setNikNama(tPermohonan, grandParentEmployeeNo);
+
+        return tPermohonan;
+
+//        String parentEmployeeNo = getPermohonanService().getManager(employeeNo);
+//        if (!parentEmployeeNo.equals(employeeNo)) {
+//            String grandParentEmployeeNo = getPermohonanService().getManager(parentEmployeeNo);
+//            if (!grandParentEmployeeNo.equals(parentEmployeeNo)) {
+//                tPermohonan.setNik_manager(parentEmployeeNo);
+//                tPermohonan.setNama_manager(getNamaVHrEmployee(parentEmployeeNo).getEmployee_name());
+//
+//                tPermohonan.setNik_gm(grandParentEmployeeNo);
+//                tPermohonan.setNama_gm(getNamaVHrEmployee(grandParentEmployeeNo).getEmployee_name());
+//            } else {
+//                tPermohonan.setNik_manager(employeeNo);
+//                tPermohonan.setNama_manager(getNamaVHrEmployee(employeeNo).getEmployee_name());
+//
+//                tPermohonan.setNik_gm(parentEmployeeNo);
+//                tPermohonan.setNama_gm(getNamaVHrEmployee(parentEmployeeNo).getEmployee_name());
+//            }
+//        } else {
+//            tPermohonan.setNik_gm(employeeNo);
+//            tPermohonan.setNama_gm(getNamaVHrEmployee(employeeNo).getEmployee_name());
+//        }
+//        return tPermohonan;
+    }
+
     private void doWriteBeanToComponents(TPermohonan tPermohonan) {
         textbox_TIdossPermohonanId.setValue(getPermohonanService().getPermohonanID());
         textbox_NamaPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeName());
         textbox_BagianPemohon.setValue(getUserWorkspace().getUserSession().getDepartment());
-        tPermohonan = getPermohonanService().getManager(getUserWorkspace().getUserSession().getEmployeeNo());
+        tPermohonan = setBoss(tPermohonan, getUserWorkspace().getUserSession().getEmployeeNo());
         textbox_NamaManager.setValue(tPermohonan.getNama_manager());
         textbox_NamaGm.setValue(tPermohonan.getNama_gm());
         textbox_NikPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeNo());

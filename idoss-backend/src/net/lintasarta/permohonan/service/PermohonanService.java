@@ -3,6 +3,7 @@ package net.lintasarta.permohonan.service;
 import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
+import net.lintasarta.security.model.VHrEmployee;
 
 import java.util.List;
 
@@ -23,6 +24,11 @@ public interface PermohonanService {
     TVerifikasi getNewVerifikasi();
     TPelaksanaan getTPelaksanaanByTIdossPelaksanaanId(String t_idoss_pelaksanaan_id);
     TPelaksanaan getNewPelaksanaan();
-    TPermohonan getManager(String nikPemohon);
-
+    String getManager(String nikPemohon);
+    List<TPermohonan> getTPermohonanByStatusAndNikManager(TPermohonan tPermohonan);
+    List<TPermohonan> getTPermohonanByStatusAndNikGM(TPermohonan tPermohonan);
+    List<TPermohonan> getTPermohonanByStatusTrackPermohonan(TPermohonan tPermohonan);
+    List<TPermohonan> getTPermohonanByStatusTrackPermohonanAndDampak(TPermohonan tPermohonan);
+    List<TPermohonan> getTPermohonanByNikPemohon(TPermohonan tPermohonan);
+    List<VHrEmployee> getVHrEmployeeByEmployeeNo(String employeeNo);
 }

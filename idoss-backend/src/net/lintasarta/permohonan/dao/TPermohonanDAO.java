@@ -19,6 +19,7 @@ public interface TPermohonanDAO {
     List<TPermohonan> getTPermohonanByNikManager(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByNikGm(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByStatusTrackPermohonan(TPermohonan tPermohonan);
+    List<TPermohonan> getTPermohonanByStatusTrackPermohonanAndDampak(TPermohonan tPermohonan);
 
     List<TPermohonan> getTPermohonanByNikPemohonStatus(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByNikAsmanStatus(TPermohonan tPermohonan);
@@ -28,5 +29,8 @@ public interface TPermohonanDAO {
     void createTPermohonan (TPermohonan tPermohonan);
     void saveOrUpdateTPermohonan (TPermohonan tPermohonan);
 
-    TPermohonan getManager (String employeeNo);
+    String getManager (String employeeNo);
+
+    List<TPermohonan> getTPermohonanByStatusAndNikManager(TPermohonan tPermohonan);
+    List<TPermohonan> getTPermohonanByStatusAndNikGM(TPermohonan tPermohonan);
 }

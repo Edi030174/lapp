@@ -109,8 +109,7 @@
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanManagerPemohon">
                         <hbox>
-                            <radio id="radio_DisetujuiMPemohon" label="disetujui" value="Disetujui Manager Pemohon"
-                                   selected="true"/>
+                            <radio id="radio_DisetujuiMPemohon" label="disetujui" value="Disetujui Manager Pemohon" selected="true"/>
                             <radio id="radio_DitolakMPemohon" label="ditolak" value="Ditolak Manager Pemohon"/>
                         </hbox>
                     </radiogroup>
@@ -137,8 +136,7 @@
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanGmPemohon">
                         <hbox>
-                            <radio id="radio_DisetujuiGmPemohon" label="disetujui" value="Disetujui GM Pemohon"
-                                   selected="true"/>
+                            <radio id="radio_DisetujuiGmPemohon" label="disetujui" value="Disetujui GM Pemohon" selected="true"/>
                             <radio id="radio_DitolakGmPemohon" label="ditolak" value="Ditolak GM Pemohon"/>
                         </hbox>
                     </radiogroup>
@@ -165,8 +163,7 @@
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanAsman">
                         <hbox>
-                            <radio id="radio_DisetujuiAM" label="disetujui" value="Disetujui Asman Dukophar"
-                                   selected="true"/>
+                            <radio id="radio_DisetujuiAM" label="disetujui" value="Disetujui Asman Dukophar" selected="true"/>
                             <radio id="radio_DitolakAM" label="ditolak" value="Ditolak Asman Dukophar"/>
                         </hbox>
                     </radiogroup>
@@ -194,8 +191,7 @@
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanManager">
                         <hbox>
-                            <radio id="radio_DisetujuiM" label="disetujui" value="Disetujui Manager Dukophar"
-                                   selected="true"/>
+                            <radio id="radio_DisetujuiM" label="disetujui" value="Disetujui Manager Dukophar" selected="true"/>
                             <radio id="radio_DitolakM" label="ditolak" value="Ditolak Manager Dukophar"/>
                         </hbox>
                     </radiogroup>
