@@ -89,6 +89,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     private transient boolean oldVar_radioDitolak;
     private transient String oldVar_fckCatatanAsman;
     private transient Window window_DaftarPermohonan;
+    private transient Vbox vboxPrioritas;
 
     private transient String oldVar_checkbox2;
     private transient boolean oldVar_radioDisetujui2;
@@ -173,6 +174,11 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         btn_SimpanPersetujuanGmPemohon.setVisible(save_gmuser);
         boolean save_amdukophar = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon"));
         btn_SimpanPersetujuanAsman.setVisible(save_amdukophar);
+//        if(btn_SimpanPersetujuanAsman.setVisible(save_amdukophar)){
+//            vboxPrioritas.setVisible(true);
+//        }else{
+//            vboxPrioritas.setVisible(false);
+//        }
         boolean save_mdukophar = (workspace.isAllowed("btn_SimpanPersetujuanManager")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Asman Dukophar"));
         btn_SimpanPersetujuanManager.setVisible(save_mdukophar);
         boolean save_gmdukophar = (workspace.isAllowed("btn_SimpanPersetujuanGm")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) && (tVerifikasi.getDampak().equals("MAJOR"));
@@ -183,26 +189,37 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             radio_normal.setDisabled(true);
             radio_major.setDisabled(true);
             radio_minor.setDisabled(true);
+            textbox_DetailPermohonan.setReadonly(true);
         } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("gmuser")) {
             radio_high.setDisabled(true);
             radio_normal.setDisabled(true);
             radio_major.setDisabled(true);
             radio_minor.setDisabled(true);
+            textbox_DetailPermohonan.setReadonly(true);
         } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("amduk")) {
             radio_high.setDisabled(false);
             radio_normal.setDisabled(false);
             radio_major.setDisabled(false);
             radio_minor.setDisabled(false);
+            textbox_DetailPermohonan.setReadonly(true);
         } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("mduk")) {
             radio_high.setDisabled(false);
             radio_normal.setDisabled(false);
             radio_major.setDisabled(false);
             radio_minor.setDisabled(false);
+            vboxPrioritas.setVisible(true);
+            textbox_DetailPermohonan.setReadonly(true);
         } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("gmduk")) {
             radio_high.setDisabled(false);
             radio_normal.setDisabled(false);
             radio_major.setDisabled(false);
             radio_minor.setDisabled(false);
+            textbox_DetailPermohonan.setReadonly(true);
+        }
+        else
+        {
+             vboxPrioritas.setVisible(false);
+             textbox_DetailPermohonan.setReadonly(false);
         }
 //        boolean np = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && ((tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) || (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Dukophar")));
 //        listbox_NamaPelaksana.setVisible(np);
@@ -482,6 +499,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         tVerifikasi.setUpdated_gm(ts);
         tVerifikasi.setCatatan_gm(textbox_gmdukophar.getValue());
     }
+
 
     public TPelaksanaan gettPelaksanaan() {
         return tPelaksanaan;
