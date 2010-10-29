@@ -21,6 +21,8 @@ public interface PelaksanaanGangguanService {
 
     List<VHrEmployeePelaksana> getEmployeeName();
 
+    TPenangananGangguan getTPenangananGangguanByTiketId(String tiketId);
+
     void saveOrUpdate(TPenangananGangguan tPenangananGangguan, TDeskripsi tDeskripsi) throws ParseException;
 
     List<PRootCaused> getRootCausedByPTypeId(String typeId);

@@ -88,6 +88,15 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         return tPenangananGangguans;
     }
 
+    public List<TPenangananGangguan> getAllTPenangananGangguanByNikPelaksanaStatus(String nik_pelaksana, String status) {
+        TPenangananGangguan tPenangananGangguan = new TPenangananGangguan();
+        tPenangananGangguan.setNik_pelaksana(nik_pelaksana);
+        tPenangananGangguan.setStatus(status);
+        List<TPenangananGangguan> tPenangananGangguans = tPenangananGangguanDAO.getAllTPenangananGangguanByNikPelaksanaStatus(tPenangananGangguan);
+        java.util.Collections.sort(tPenangananGangguans, new TPenangananGangguanComparator());
+        return tPenangananGangguans;
+    }
+
     public List<TPenangananGangguan> getAllTPenangananGangguanByStatus(TPenangananGangguan tPenangananGangguan) {
         List<TPenangananGangguan> tPenangananGangguans = tPenangananGangguanDAO.getAllTPenangananGangguanByStatus(tPenangananGangguan);
         java.util.Collections.sort(tPenangananGangguans, new TPenangananGangguanComparator());

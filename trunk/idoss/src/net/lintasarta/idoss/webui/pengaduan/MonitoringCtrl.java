@@ -1,6 +1,5 @@
 package net.lintasarta.idoss.webui.pengaduan;
 
-import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.pengaduan.model.DaftarTiketModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
@@ -17,6 +16,7 @@ import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -188,10 +188,15 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelapor")) {
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (combobox_Cari.getValue().equalsIgnoreCase("Penanggung Jawab")) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
             }
+        } else {
+            if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
+                CollectionUtils.filter(searchResult, new PelaksanaNullTPenangananGangguan());
+            }
         }
+
         pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
         pagedListHolder.setPageSize(getCountRows());
         getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
@@ -236,8 +241,12 @@ public class MonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> impleme
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelapor")) {
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (combobox_Cari.getValue().equalsIgnoreCase("Penanggung Jawab")) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
+            }
+        } else {
+            if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
+                CollectionUtils.filter(searchResult, new PelaksanaNullTPenangananGangguan());
             }
         }
         pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);

@@ -111,6 +111,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         lmlNamaPelaksana.add(0, pelaksana);
         listbox_NamaPelaksana.setModel(lmlNamaPelaksana);
         listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
+        textbox_solusi.setReadonly(true);
         doShowDialog(gettPenangananGangguan());
         doDisplayNama();
     }
@@ -220,6 +221,21 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         }
     }
 
+    public void onChange$combobox_Status(){
+        if(combobox_Status.getValue().equals("Open")){
+            textbox_solusi.setReadonly(true);
+            textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+        }else if(combobox_Status.getValue().equals("In Progress")){
+            textbox_solusi.setReadonly(true);
+            textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+        }else if(combobox_Status.getValue().equals("Pending")){
+            textbox_solusi.setReadonly(true);
+            textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+        }else if(combobox_Status.getValue().equals("Closed")){
+            textbox_solusi.setReadonly(false);
+        }
+    }
+
     public void onChange$listbox_RootCaused() {
         listbox_RootCaused.getSelectedItem();
     }
@@ -228,7 +244,9 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
             combobox_Status.setSelectedIndex(0);
         } else {
-            combobox_Status.setSelectedIndex(1);
+            if (combobox_Status.getSelectedIndex() != 3) {
+                combobox_Status.setSelectedIndex(1);
+            }
         }
     }
 
@@ -431,7 +449,6 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
                 Messagebox.show("Status: In Progress ->solusi tidak boleh diisi. solusi akan dihapus");
                 textbox_solusi.setValue("");
                 return false;
-
             }
             if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
                 Messagebox.show("Silakan pilih nama pelaksana");
@@ -457,14 +474,8 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
                 Root Caused
                 Solusi
             */
-            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
-                Messagebox.show("Silakan pilih nama pelaksana");
-                return false;
-            }
-            if (listbox_NamaPelaksana.getSelectedItem() == null) {
-                Messagebox.show("Silakan pilih nama pelaksana");
-                return false;
-            }
+            gettPenangananGangguan().setNik_pelaksana(getUserWorkspace().getUserSession().getEmployeeNo());
+            gettPenangananGangguan().setNama_pelaksana(getUserWorkspace().getUserSession().getEmployeeName());
             if (textbox_Type.getValue().length() < 1) {
                 Messagebox.show("Silakan pilih tipe");
                 return false;

@@ -25,17 +25,17 @@ public class TanggalTPenangananGangguan implements Predicate {
 
     @Override
     public boolean evaluate(Object o) {
-        Timestamp updatedDate = ((TPenangananGangguan) o).getUpdated_date();
+        Timestamp createdDate = ((TPenangananGangguan) o).getCreated_date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
-        Date tanggalUpdate = null;
+        Date tanggalCreate = null;
         try {
-            tanggalUpdate = sdf.parse(sdf.format(updatedDate));
+            tanggalCreate = sdf.parse(sdf.format(createdDate));
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if (tanggalUpdate != null) {
-            if (tanggalUpdate.compareTo(tanggalAwal) >= 0) {
-                if (tanggalUpdate.compareTo(tanggalAkhir) <= 0) {
+        if (tanggalCreate != null) {
+            if (tanggalCreate.compareTo(tanggalAwal) >= 0) {
+                if (tanggalCreate.compareTo(tanggalAkhir) <= 0) {
                     return true;
                 }
             }

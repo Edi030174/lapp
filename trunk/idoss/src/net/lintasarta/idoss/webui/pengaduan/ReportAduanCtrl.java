@@ -4,23 +4,14 @@ import net.lintasarta.idoss.report.util.JRreportWindow;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.report.service.ReportService;
 import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JasperRunManager;
 import org.apache.log4j.Logger;
-import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zul.Button;
-import org.zkoss.zul.Iframe;
-import org.zkoss.zul.Listbox;
-import org.zkoss.zul.Window;
+import org.zkoss.zul.*;
 
-import javax.sql.DataSource;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -37,6 +28,8 @@ public class ReportAduanCtrl extends GFCBaseCtrl implements Serializable {
     protected Button btnReport;
     protected Listbox listbox_bulan;
     protected Listbox listbox_tahun;
+    protected Combobox combobox_bulan;
+    protected Combobox combobox_tahun;
     protected ReportAduanCtrl reportAduanCtrl;
 
     private transient ReportService reportService;
@@ -72,8 +65,8 @@ public class ReportAduanCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
         String repSrc = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan/reportAduan.jasper");
-        String bulan = (String) listbox_bulan.getSelectedItem().getValue();
-        String tahun = listbox_tahun.getSelectedItem().getLabel();
+        String bulan = (String) combobox_bulan.getSelectedItem().getValue();
+        String tahun = (String) combobox_tahun.getSelectedItem().getValue();
         JRDataSource ds = reportService.getAduan(bulan, tahun);
         Component parent = window_Report1.getRoot();
         new JRreportWindow(parent, true, null, repSrc, ds, "pdf");

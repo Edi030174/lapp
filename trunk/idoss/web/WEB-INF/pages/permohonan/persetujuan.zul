@@ -50,7 +50,7 @@
             </vbox>
             <vbox>
                 <hbox>
-                    <textbox id="textbox_TIdossPermohonanId" width="120px" readonly="true" 
+                    <textbox id="textbox_TIdossPermohonanId" width="120px" readonly="true"
                              style="color: #000000 !important;"/>
                     <vbox>
                         <space height="1px"/>
@@ -114,6 +114,8 @@
                             <radio id="radio_DitolakMPemohon" label="ditolak" value="Ditolak Manager Pemohon"/>
                         </hbox>
                     </radiogroup>
+                    <label value="Prioritas : "/>
+                    <checkbox id="checkbox_Cepat" label="Perlu Penanganan Cepat"/>
                 </vbox>
                 <space width="40px"/>
                 <vbox>
@@ -198,7 +200,7 @@
                         </hbox>
                     </radiogroup>
                 </vbox>
-                                <space width="40px"/>
+                <space width="40px"/>
                 <vbox>
                     <label value="catatan Manager : "/>
                     <!--

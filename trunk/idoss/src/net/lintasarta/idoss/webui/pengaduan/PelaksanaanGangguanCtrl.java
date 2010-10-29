@@ -40,8 +40,11 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     protected Textbox texbox_Judul;
     protected Textbox textbox_Type;
     protected Textbox textbox_deskripsi;
+    protected Textbox textbox_deskripsibaru;
     protected Textbox textbox_solusi;//pelaksana hanya status & solusi yg enable
     protected Radiogroup radiogroup_Dampak;
+    protected Radio radio_minor;
+    protected Radio radio_major;
     protected Listbox listbox_RootCaused;
     protected Listbox listbox_NamaPelaksana;
     protected Combobox combobox_Status;//pelaksana hanya status & solusi yg enable
@@ -120,7 +123,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         lmlNamaPelaksana.add(0, pelaksana);
         listbox_NamaPelaksana.setModel(lmlNamaPelaksana);
         listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
-
+        textbox_solusi.setReadonly(true);
         doShowDialog(gettPenangananGangguan());
     }
 
@@ -232,11 +235,28 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         listbox_RootCaused.getSelectedItem();
     }
 
+    public void onChange$combobox_Status() {
+        if (combobox_Status.getValue().equals("Open")) {
+            textbox_solusi.setReadonly(true);
+            textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+        } else if (combobox_Status.getValue().equals("In Progress")) {
+            textbox_solusi.setReadonly(true);
+            textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+        } else if (combobox_Status.getValue().equals("Pending")) {
+            textbox_solusi.setReadonly(true);
+            textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+        } else if (combobox_Status.getValue().equals("Closed")) {
+            textbox_solusi.setReadonly(false);
+        }
+    }
+
     public void onSelect$listbox_NamaPelaksana() {
         if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
             combobox_Status.setSelectedIndex(0);
         } else {
-            combobox_Status.setSelectedIndex(1);
+            if (combobox_Status.getSelectedIndex() != 3) {
+                combobox_Status.setSelectedIndex(1);
+            }
         }
     }
 
@@ -262,14 +282,17 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         TDeskripsi tDeskripsi = new TDeskripsi();
         tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
 
-        if (textbox_deskripsi.getValue() != null)
-            tDeskripsi.setDeskripsi(textbox_deskripsi.getValue());
+        if (textbox_deskripsibaru.getValue() != null)
+            tDeskripsi.setDeskripsi(textbox_deskripsibaru.getValue());
         if (textbox_solusi.getValue() != null)
             tDeskripsi.setSolusi(textbox_solusi.getValue());
 
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
         try {
-            getPelaksanaanGangguanService().saveOrUpdate(tPenangananGangguan, tDeskripsi);
+            TPenangananGangguan tp = getPelaksanaanGangguanService().getTPenangananGangguanByTiketId(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
+            if (!tp.getStatus().equalsIgnoreCase("Closed")) {
+                getPelaksanaanGangguanService().saveOrUpdate(tPenangananGangguan, tDeskripsi);
+            }
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -287,7 +310,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     }
 
     private void doShowDialog(TPenangananGangguan tPenangananGangguan) throws InterruptedException {
-
         try {
             doWriteBeanToComponent(tPenangananGangguan);
             window_PelaksanaanGangguan.doOverlapped();
@@ -306,6 +328,12 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         texbox_Bagian.setValue(tPenangananGangguan.getBagian_pelapor());
         texbox_Judul.setValue(tPenangananGangguan.getJudul());
         combobox_Status.setValue(tPenangananGangguan.getStatus());
+        if (tPenangananGangguan.getStatus().equals("Closed")) {
+            textbox_solusi.setReadonly(false);
+        }
+        if (tPenangananGangguan.getDampak().equals("Major")) {
+            radiogroup_Dampak.setSelectedItem(radio_major);
+        }
         textbox_deskripsi.setValue(tPenangananGangguan.getDeskripsi());
         textbox_solusi.setValue(tPenangananGangguan.getSolusi());
 //        ListModelList lml = (ListModelList) listbox_NamaPelaksana.getModel();
@@ -354,7 +382,9 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     }
 
     private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
-        tPenangananGangguan.setDeskripsi(textbox_deskripsi.getValue());
+        if (textbox_deskripsibaru.getValue().length() > 1) {
+            tPenangananGangguan.setDeskripsi(textbox_deskripsibaru.getValue());
+        }
         if (textbox_solusi.getValue() != null) {
             tPenangananGangguan.setSolusi(textbox_solusi.getValue());
         }
