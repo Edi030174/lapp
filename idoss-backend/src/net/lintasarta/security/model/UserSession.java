@@ -18,6 +18,7 @@ public class UserSession implements Serializable {
     private String jobLocation;
     private int organizationid;
     private String winHeight;
+    private String jobPositionCode;
 
     public UserSession() {
     }
@@ -95,5 +96,13 @@ public class UserSession implements Serializable {
 
     public void setWinHeight(String winHeight) {
         this.winHeight = winHeight;
+    }
+
+    public String getJobPositionCode() {
+        return jobPositionCode;
+    }
+
+    public void setJobPositionCode(String jobPositionCode) {
+        this.jobPositionCode = jobPositionCode;
     }
 }

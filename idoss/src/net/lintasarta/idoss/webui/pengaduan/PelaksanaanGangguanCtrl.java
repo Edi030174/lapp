@@ -335,6 +335,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         }
         if (tPenangananGangguan.getDampak().equals("Major")) {
             radiogroup_Dampak.setSelectedItem(radio_major);
+        }else{
+            radiogroup_Dampak.setSelectedItem(radio_minor);
         }
         textbox_deskripsi.setValue(tPenangananGangguan.getDeskripsi());
         textbox_solusi.setValue(tPenangananGangguan.getSolusi());
