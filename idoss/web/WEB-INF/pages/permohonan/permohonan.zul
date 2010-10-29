@@ -33,8 +33,6 @@
                         <tabs>
                             <tab id="tab_Permohonan" label="Permohonan"/>
                             <tab id="tab_Persetujuan" label="Persetujuan"/>
-                            <tab id="tab_PersetujuanPemohon" label="Persetujuan Pemohon"/>
-                            <tab id="tab_PersetujuanDukophar" label="Persetujuan Dukophar"/>
                             <tab id="tab_Pelaksanaan" label="Pelaksanaan"/>
                         </tabs>
                         <tabpanels>
@@ -177,9 +175,6 @@
                                 </groupbox>
                             </tabpanel>
                             <tabpanel id="tabPanel_Persetujuan" height="100%" style="border: 0px; padding: 0px"/>
-                            <tabpanel id="tabPanel_PersetujuanPemohon" height="100%" style="border: 0px; padding: 0px"/>
-                            <tabpanel id="tabPanel_PersetujuanDukophar" height="100%"
-                                      style="border: 0px; padding: 0px"/>
                             <tabpanel id="tabPanel_Pelaksanaan" height="100%" style="border: 0px; padding: 0px"/>
                         </tabpanels>
                     </tabbox>
