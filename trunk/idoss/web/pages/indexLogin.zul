@@ -80,11 +80,11 @@
 					<grid id="statusBarGrid" fixedLayout="true" height="20px" width="100%">
 						<columns sizable="false">
 							<column label="User:" width="5%" style="background-color: #D6DCDE;" />
-							<column id="statusBarColUser" label="" width="20%" style="background-color: #D6DCDE;" />
+							<column id="statusBarColUser" label="" width="15%" style="background-color: #D6DCDE;" />
                             <column label="Role:" width="5%" style="background-color: #D6DCDE;" />
-							<column id="statusBarColRole" label="" width="17%" style="background-color: #D6DCDE;" />
+							<column id="statusBarColRole" label="" width="14%" style="background-color: #D6DCDE;" />
 							<column label="Job:" width="5%" style="background-color: #D6DCDE;" />
-							<column id="statusBarColJob" label="" width="20%" style="background-color: #D6DCDE;" />
+							<column id="statusBarColJob" label="" width="18%" style="background-color: #D6DCDE;" />
 							<column id="statusBarAppVersion" style="color: #FF0000; background-color: #D6DCDE;" width="15%" />
 							<column id="colDate" width="17%" style="background-color: #D6DCDE;" align="right" />
 						</columns>
