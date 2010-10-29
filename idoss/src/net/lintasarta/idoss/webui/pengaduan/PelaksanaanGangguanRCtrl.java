@@ -15,6 +15,7 @@ import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
@@ -48,6 +49,7 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
     protected Button btnSimpan_PelaksanaanGangguan;//monitoring disable all
     protected Button btn_historyDeskripsi;
     protected PelaksanaanGangguanRCtrl pelaksanaanGangguanCtrl;
+    private transient Window window_Pelaksanaan;
     private transient boolean validationOn;
     private transient Listbox listbox_DaftarTiket;
     private transient String oldVar_textbox_Pelaksana;
@@ -93,6 +95,11 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         } else {
             pelaksanaanGangguanCtrl = null;
         }
+        if (args.containsKey("window_Pelaksanaan")) {
+            window_Pelaksanaan = (Window) args.get("window_Pelaksanaan");
+        } else {
+            window_Pelaksanaan = null;
+        }
 
         if (args.containsKey("listbox_DaftarTiket")) {
             listbox_DaftarTiket = (Listbox) args.get("listbox_DaftarTiket");
@@ -112,7 +119,7 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         lmlNamaPelaksana.add(0, pelaksana);
         listbox_NamaPelaksana.setModel(lmlNamaPelaksana);
         listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
-
+        textbox_solusi.setReadonly(true);
         doShowDialog(gettPenangananGangguan());
     }
 
@@ -134,6 +141,8 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         if (isValidatedFlow()) {
             doSimpan();
             window_PelaksanaanGangguan.onClose();
+            Events.postEvent("onCreate", window_Pelaksanaan, event);
+            window_Pelaksanaan.invalidate();
         }
     }
 
@@ -222,6 +231,21 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         listbox_RootCaused.getSelectedItem();
     }
 
+    public void onChange$combobox_Status(){
+        if(combobox_Status.getValue().equals("Open")){
+            textbox_solusi.setReadonly(true);
+            textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+        }else if(combobox_Status.getValue().equals("In Progress")){
+            textbox_solusi.setReadonly(true);
+            textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+        }else if(combobox_Status.getValue().equals("Pending")){
+            textbox_solusi.setReadonly(true);
+            textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+        }else if(combobox_Status.getValue().equals("Closed")){
+            textbox_solusi.setReadonly(false);
+        }
+    }
+
     public void onClose$window_PelaksanaanGangguan(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
@@ -291,8 +315,12 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         texbox_Bagian.setValue(tPenangananGangguan.getBagian_pelapor());
         texbox_Judul.setValue(tPenangananGangguan.getJudul());
         combobox_Status.setValue(tPenangananGangguan.getStatus());
+        if(tPenangananGangguan.getStatus().equals("Closed")){
+            textbox_solusi.setReadonly(false);
+        }
         textbox_deskripsi.setValue(tPenangananGangguan.getDeskripsi());
         textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+
 
 //        ListModelList lml = (ListModelList) listbox_NamaPelaksana.getModel();
 //        VHrEmployeePelaksana vHrEmployeePelaksana = getPelaksanaanGangguanService().getVHrEmployeePelaksanaById(tPenangananGangguan.getNik_pelaksana());
@@ -389,7 +417,7 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
                 Judul
             */
             return true;
-        } else if (combobox_Status.getValue().equalsIgnoreCase("InProgress")) {
+        } else if (combobox_Status.getValue().equalsIgnoreCase("In Progress")) {
             /* Tidak boleh kosong:
                 Nomor Tiket
                 Nama Pelapor

@@ -10,11 +10,9 @@ import net.lintasarta.permohonan.model.comparator.TPermohonanComparator;
 import net.lintasarta.permohonan.service.PermohonanService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
-import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.media.Media;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zul.*;
 
@@ -115,7 +113,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        
+
 //        doCheckRights();
 
         Map<String, Object> args = getCreationArgsMap(event);
@@ -218,15 +216,12 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         int xls = file.indexOf("xls");
         int xlsx = file.indexOf("xlsx");
         int pdf = file.indexOf("pdf");
-        int txt = file.indexOf("txt");
-        if(zip !=-1 || rar !=-1 || doc !=-1 || docx !=-1 || pdf !=-1 || txt !=-1 || xls !=-1 || xlsx !=-1)
-        {
+
+        if (zip != -1 || rar != -1 || doc != -1 || docx != -1 || pdf != -1 ||  xls != -1 || xlsx != -1) {
             setUploadMedia(media);
             label_viewAttachment.setValue(file);
-        }
-        else
-        {
-            alert("Silahkan gunakan format : zip/ rar/ word/ excel/ pdf/ txt");
+        } else {
+            alert("Silahkan gunakan format : zip/ rar/ word/ excel/ pdf");
         }
     }
 
@@ -287,7 +282,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doWriteComponentsToBean(TPermohonan tPermohonan) {
 
-        tPermohonan.setT_idoss_permohonan_id(textbox_TIdossPermohonanId.getValue());
+//        tPermohonan.setT_idoss_permohonan_id(textbox_TIdossPermohonanId.getValue());
         tPermohonan.setNama_pemohon(textbox_NamaPemohon.getValue());
         tPermohonan.setBagian_pemohon(textbox_BagianPemohon.getValue());
         tPermohonan.setTgl_permohonan(new Timestamp(datebox_Tanggal.getValue().getTime()));
@@ -324,7 +319,6 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         tPermohonan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
     }
-
 
 
     public void onClick$button_Download(Event event) throws Exception {

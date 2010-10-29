@@ -203,8 +203,12 @@ public class HelpdeskCtrl extends GFCBaseListCtrl<TPenangananGangguan> implement
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelapor")) {
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (combobox_Cari.getValue().equalsIgnoreCase("Penanggung Jawab")) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
+            }
+        } else {
+            if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
+                CollectionUtils.filter(searchResult, new PelaksanaNullTPenangananGangguan());
             }
         }
         pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
@@ -250,8 +254,12 @@ public class HelpdeskCtrl extends GFCBaseListCtrl<TPenangananGangguan> implement
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelapor")) {
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (combobox_Cari.getValue().equalsIgnoreCase("Penanggung Jawab")) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
+            }
+        } else {
+            if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
+                CollectionUtils.filter(searchResult, new PelaksanaNullTPenangananGangguan());
             }
         }
         pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);

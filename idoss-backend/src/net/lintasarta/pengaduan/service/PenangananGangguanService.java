@@ -28,6 +28,8 @@ public interface PenangananGangguanService {
 
     List<TPenangananGangguan> getAllTPenangananGangguanByNikPelaksana(TPenangananGangguan tPenangananGangguan);
 
+    List<TPenangananGangguan> getAllTPenangananGangguanByNikPelaksanaStatus(String nik_pelaksana, String status);
+
     List<TPenangananGangguan> getAllTPenangananGangguanByStatus(TPenangananGangguan tPenangananGangguan);
 
     void createPenangananGangguan(TPenangananGangguan tPenangananGangguan, TDeskripsi tDeskripsi);

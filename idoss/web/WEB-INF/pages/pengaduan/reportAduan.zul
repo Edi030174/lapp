@@ -30,36 +30,35 @@
                 <hbox>
                     <button id="btnReport" label="Report!"/>
                     <label value="Bulan:"/>
-                    <listbox id="listbox_bulan" rows="1" mold="select" width="150px">
-                        <listhead visible="false"/>
-                        <listitem id="listitem_01" label="Januari" value="01" selected="true"/>
-                        <listitem id="listitem_02" label="Februari" value="02"/>
-                        <listitem id="listitem_03" label="Maret" value="03"/>
-                        <listitem id="listitem_04" label="April" value="04"/>
-                        <listitem id="listitem_05" label="Mei" value="05"/>
-                        <listitem id="listitem_06" label="Juni" value="06"/>
-                        <listitem id="listitem_07" label="Juli" value="07"/>
-                        <listitem id="listitem_08" label="Agustus" value="08"/>
-                        <listitem id="listitem_09" label="September" value="09"/>
-                        <listitem id="listitem_10" label="Oktober" value="10"/>
-                        <listitem id="listitem_11" label="November" value="11"/>
-                        <listitem id="listitem_12" label="Desember" value="12"/>
-                    </listbox>
+                    <combobox id="combobox_bulan" width="140px" readonly="true">
+                        <comboitem label="Januari" value="JAN"/>
+                        <comboitem label="Februari" value="FEB"/>
+                        <comboitem label="Maret" value="MAR"/>
+                        <comboitem label="April" value="APR"/>
+                        <comboitem label="Mei" value="MAY"/>
+                        <comboitem label="Juni" value="JUN"/>
+                        <comboitem label="Juli" value="JUL"/>
+                        <comboitem label="Agustus" value="AUG"/>
+                        <comboitem label="September" value="SEP"/>
+                        <comboitem label="Oktober" value="OCT"/>
+                        <comboitem label="November" value="NOV"/>
+                        <comboitem label="Desember" value="DEC"/>
+                        <!--JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC-->
+                    </combobox>
                     <label value="  Tahun:"/>
-                    <listbox id="listbox_tahun" rows="1" mold="select" width="150px">
-                        <listhead visible="false"/>
-                        <listitem id="listitem_2010" label="2010" selected="true"/>
-                        <listitem id="listitem_2011" label="2011"/>
-                        <listitem id="listitem_2012" label="2012"/>
-                        <listitem id="listitem_2013" label="2013"/>
-                        <listitem id="listitem_2014" label="2014"/>
-                        <listitem id="listitem_2015" label="2015"/>
-                        <listitem id="listitem_2016" label="2016"/>
-                        <listitem id="listitem_2017" label="2017"/>
-                        <listitem id="listitem_2018" label="2018"/>
-                        <listitem id="listitem_2019" label="2019"/>
-                        <listitem id="listitem_2020" label="2020"/>
-                    </listbox>
+                    <combobox id="combobox_tahun" width="140px" readonly="true">
+                        <comboitem label="2010" value="2010"/>
+                        <comboitem label="2011" value="2011"/>
+                        <comboitem label="2012" value="2012"/>
+                        <comboitem label="2013" value="2013"/>
+                        <comboitem label="2014" value="2014"/>
+                        <comboitem label="2015" value="2015"/>
+                        <comboitem label="2016" value="2016"/>
+                        <comboitem label="2017" value="2017"/>
+                        <comboitem label="2018" value="2018"/>
+                        <comboitem label="2019" value="2019"/>
+                        <comboitem label="2020" value="2020"/>
+                    </combobox>
                 </hbox>
             </north>
             <center border="none" flex="true">

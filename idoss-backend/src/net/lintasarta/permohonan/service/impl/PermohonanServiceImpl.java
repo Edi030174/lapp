@@ -128,6 +128,7 @@ public class PermohonanServiceImpl implements PermohonanService {
 
     public void createTPermohonan(String uploadedFileName, TPermohonan tPermohonan) {
         int i = tPermohonanDAO.getGeneratedID();
+        tPermohonan.setT_idoss_permohonan_id(getPermohonanID());
         tPermohonan.setGen_id_col(i);
         if (uploadedFileName != null) {
             saveFile(uploadedFileName, tPermohonan.getUploadStream());

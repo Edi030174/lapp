@@ -187,7 +187,6 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         }
         lml.sort(new TPenangananGangguanComparator(), true);
 
-        doStoreInitValues();
     }
 
     private void doStoreInitValues() {

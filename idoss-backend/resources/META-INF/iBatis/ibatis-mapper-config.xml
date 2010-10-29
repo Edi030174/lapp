@@ -31,7 +31,7 @@
         <typeAlias type="net.lintasarta.pengaduan.model.PTypeRootCaused" alias="ptyperootcaused"/>
         <typeAlias type="net.lintasarta.pengaduan.model.TDeskripsi" alias="tdeskripsi"/>
         <!--reportpermohonan-->
-        <typeAlias type="net.lintasarta.report.permohonan.model.ReportAduan" alias="ReportAduan"/>
+        <typeAlias type="net.lintasarta.report.permohonan.model.ReportAduan" alias="reportaduan"/>
         <typeAlias type="net.lintasarta.report.permohonan.model.ReportBelumSelesai" alias="reportbelumselesai"/>
         <typeAlias type="net.lintasarta.report.permohonan.model.ReportSudahSelesai" alias="reportsudahselesai"/>
         <typeAlias type="net.lintasarta.report.permohonan.model.ReportRekapAduan" alias="reportrekapaduan"/>

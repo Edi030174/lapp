@@ -211,7 +211,12 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
             }
+        } else {
+            if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
+                CollectionUtils.filter(searchResult, new PelaksanaNullTPenangananGangguan());
+            }
         }
+
         pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
         pagedListHolder.setPageSize(getCountRows());
         getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
@@ -258,6 +263,10 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
+            }
+        } else {
+            if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
+                CollectionUtils.filter(searchResult, new PelaksanaNullTPenangananGangguan());
             }
         }
         pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);

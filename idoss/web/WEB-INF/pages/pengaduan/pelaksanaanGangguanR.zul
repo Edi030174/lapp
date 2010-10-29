@@ -36,15 +36,11 @@
                 </row>
                 <row style="border:0px">
                     <label value="Pelapor"/>
-                    <hbox>
-                        <textbox id="texbox_Pelapor" readonly="true"/>
-                        <space/>
-                        <vbox>
-                            <space height="0.5px"/>
-                            <label value="Bagian"/>
-                        </vbox>
-                        <textbox id="texbox_Bagian" readonly="true"/>
-                    </hbox>
+                    <textbox id="texbox_Pelapor" readonly="true" width="50%"/>
+                </row>
+                <row style="border:0px">
+                    <label value="Bagian"/>
+                    <textbox id="texbox_Bagian" readonly="true" width="50%"/>
                 </row>
                 <row style="border:0px">
                     <label value="Judul"/>
@@ -53,7 +49,7 @@
                 <row style="border:0px">
                     <label value="Deskripsi"/>
                     <!--<fckeditor id="fckeditor_Deskripsi" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic" width="99%" height="50%"/>-->
-                    <textbox id="textbox_deskripsi" width="99%" multiline="true" rows="7" maxlength="3999"/>
+                    <textbox id="textbox_deskripsi" width="99%" multiline="true" rows="7" maxlength="3999" readonly="true"/>
                 </row>
                 <row style="border:0px">
                     <label value="zzz" visible="false"/>
@@ -101,7 +97,7 @@
                         <!--<space width="50px"/>-->
                         <combobox id="combobox_Status" width="140px" readonly="true">
                             <comboitem label="Open" disabled="true"/>
-                            <comboitem label="In Progres" disabled="true"/>
+                            <comboitem label="In Progress"/>
                             <comboitem label="Pending"/>
                             <comboitem label="Closed"/>
                         </combobox>

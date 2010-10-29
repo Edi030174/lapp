@@ -70,7 +70,8 @@
                             <vbox>
                                 <hbox>
                                     <textbox id="textbox_TIdossPermohonanId" width="120px" readonly="true"
-                                             style="color: black !important;"/>
+                                             style="color: black !important;" visible="false"/>
+                                    <textbox value="Auto Generate" readonly="true"/>
                                     <vbox>
                                         <space height="1px"/>
                                         <label width="10px" value="/FPSOPHAR/2010"/>
@@ -130,9 +131,9 @@
                         </vbox>
                         <hbox>
                             <hbox>
-                                <label value="Prioritas : "/>
+                                <label value="Prioritas : " visible="false"/>
                                 <checkbox id="checkbox_Cepat"
-                                          label="Perlu Penanganan Cepat  "/>
+                                          label="Perlu Penanganan Cepat  " visible="false"/>
                                 <vbox>
                                     <space height="2px"/>
                                     <label
@@ -151,8 +152,8 @@
                             <label value="Dampak : "/>
                             <radiogroup id="radiogroup_Dampak">
                                 <hbox>
-                                    <radio id="major" label="major" value="MAJOR"/>
-                                    <radio id="minor" label="minor" value="MINOR" selected="true"/>
+                                    <radio id="major" label="major" value="MAJOR" disabled="true"/>
+                                    <radio id="minor" label="minor" value="MINOR" selected="true" disabled="true"/>
                                 </hbox>
                             </radiogroup>
                         </hbox>

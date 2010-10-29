@@ -10,7 +10,7 @@ package net.lintasarta.report.permohonan.model;
 public class ReportAduan {
     private String awal_ganggguan;
     private String akhir_ganggguan;
-    private Integer durasi;
+    private String durasi;
     private Integer no_gangguan;
     private String asal_aduan;
     private String tipe_gangguan;
@@ -23,6 +23,7 @@ public class ReportAduan {
     private String tercapai;
     private String bulan;
     private String tahun;
+    private String jumlah_server;
 
     public ReportAduan() {
     }
@@ -43,11 +44,11 @@ public class ReportAduan {
         this.akhir_ganggguan = akhir_ganggguan;
     }
 
-    public Integer getDurasi() {
+    public String getDurasi() {
         return durasi;
     }
 
-    public void setDurasi(Integer durasi) {
+    public void setDurasi(String durasi) {
         this.durasi = durasi;
     }
 

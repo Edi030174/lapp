@@ -13,7 +13,6 @@ import net.lintasarta.permohonan.service.PermohonanService;
 import net.lintasarta.permohonan.service.VerifikasiService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
-import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
@@ -21,7 +20,7 @@ import org.zkoss.zul.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -48,6 +47,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     protected Button btn_SimpanPersetujuanManager;
     protected Button btn_SimpanPersetujuanGm;
     protected Button btn_Batal;
+    protected Checkbox checkbox_Cepat;
     protected Textbox textbox_TIdossPermohonanId;
     protected Textbox textbox_NamaPemohon;
     protected Textbox textbox_NikPemohon;
@@ -215,11 +215,9 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             radio_major.setDisabled(false);
             radio_minor.setDisabled(false);
             textbox_DetailPermohonan.setReadonly(true);
-        }
-        else
-        {
-             vboxPrioritas.setVisible(false);
-             textbox_DetailPermohonan.setReadonly(false);
+        } else {
+            vboxPrioritas.setVisible(false);
+            textbox_DetailPermohonan.setReadonly(false);
         }
 //        boolean np = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && ((tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) || (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Dukophar")));
 //        listbox_NamaPelaksana.setVisible(np);
@@ -326,6 +324,11 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         tPermohonan.setUpdated_manager(ts);
         tPermohonan.setCatatan_manager(textbox_muser.getValue());
+        if (checkbox_Cepat.isChecked()) {
+            tPermohonan.setUrgensi("H");
+        } else {
+            tPermohonan.setUrgensi("N");
+        }
     }
 
     public void onClick$btn_SimpanPersetujuanGmPemohon(Event event) throws Exception {

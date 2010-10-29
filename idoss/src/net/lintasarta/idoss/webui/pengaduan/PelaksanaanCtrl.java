@@ -1,10 +1,10 @@
 package net.lintasarta.idoss.webui.pengaduan;
 
-import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.pengaduan.model.DaftarTiketModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
+import net.lintasarta.pengaduan.model.comparator.TPenangananGangguanComparator;
 import net.lintasarta.pengaduan.model.predicate.*;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
 import net.lintasarta.security.model.UserSession;
@@ -17,6 +17,7 @@ import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -123,7 +124,25 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
         paging_DaftarTiket.setDetailed(true);
 
         getPagedListWrapper().init(pagedListHolder, listbox_DaftarTiket, paging_DaftarTiket);
+
+        //
+        List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
+        PagedListHolder<TPenangananGangguan> pagedListHolder2;
+        Set searchAllResult = new HashSet();
+        CollectionUtils.select(searchResult, new StatusTPenangananGangguan("In Progress"), searchAllResult);
+        CollectionUtils.select(searchResult, new StatusTPenangananGangguan("Pending"), searchAllResult);
+        searchResult = new ArrayList<TPenangananGangguan>(searchAllResult);
+        pagedListHolder2 = new PagedListHolder<TPenangananGangguan>(searchResult);
+        pagedListHolder2.setPageSize(getCountRows());
+        getPagedListWrapper().init(pagedListHolder2, listbox_DaftarTiket, paging_DaftarTiket);
+        //
+
         listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
+
+        //
+        ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
+        lml.sort(new TPenangananGangguanComparator(), true);
+        //
     }
 
     public void onDoubleClickedTiketItem(Event event) throws Exception {
@@ -181,8 +200,12 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelapor")) {
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (combobox_Cari.getValue().equalsIgnoreCase("Penanggung Jawab")) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
+            }
+         } else {
+            if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
+                CollectionUtils.filter(searchResult, new PelaksanaNullTPenangananGangguan());
             }
         }
         pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
@@ -229,8 +252,12 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
                 CollectionUtils.filter(searchResult, new StatusTPenangananGangguan(textbox_Cari.getValue()));
             } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelapor")) {
                 CollectionUtils.filter(searchResult, new PelaporTPenangananGangguan(textbox_Cari.getValue()));
-            } else if (combobox_Cari.getValue().equalsIgnoreCase("Penanggung Jawab")) {
+            } else if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
                 CollectionUtils.filter(searchResult, new PelaksanaTPenangananGangguan(textbox_Cari.getValue()));
+            }
+        } else {
+            if (combobox_Cari.getValue().equalsIgnoreCase("Pelaksana")) {
+                CollectionUtils.filter(searchResult, new PelaksanaNullTPenangananGangguan());
             }
         }
         pagedListHolder = new PagedListHolder<TPenangananGangguan>(searchResult);
@@ -279,6 +306,7 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
 
         map.put("tPenangananGangguan", tPenangananGangguan);
 
+
         map.put("listbox_DaftarTiket", listbox_DaftarTiket);
 
         try {
@@ -300,7 +328,7 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
         HashMap<String, Object> map = new HashMap<String, Object>();
 
         map.put("tPenangananGangguan", tPenangananGangguan);
-
+        map.put("window_Pelaksanaan",window_Pelaksanaan);
         map.put("listbox_DaftarTiket", listbox_DaftarTiket);
 
         try {
@@ -328,47 +356,6 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
         datebox_TanggalAkhir.setValue(null);
         setDaftarTiket();
     }
-
-    /*public void onSelect$listbox_Cari(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        int hierarchy = Integer.parseInt(listbox_Cari.getSelectedItem().getValue().toString());
-        doShowBerdasarkan(hierarchy);
-    }
-
-    private void doShowBerdasarkan(int hierarchy) {
-        switch (hierarchy) {
-            case 1: {
-                doViewTanggal();
-                break;
-            }
-            case 2: {
-                doHideTanggal();
-                break;
-            }
-            case 3: {
-                doHideTanggal();
-                break;
-            }
-            case 4: {
-                doHideTanggal();
-                break;
-            }
-            case 5: {
-                doHideTanggal();
-                break;
-            }
-            case 6: {
-                doHideTanggal();
-                break;
-            }
-            case 7: {
-                doViewTanggal();
-                break;
-            }
-        }
-    }*/
 
     public void onClick$btn_report(Event event) throws InterruptedException {
         if (logger.isDebugEnabled()) {
@@ -415,7 +402,7 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
         HashMap<String, Object> map = new HashMap<String, Object>();
 
         map.put("tPenangananGangguan", tPenangananGangguan);
-
+        map.put("window_Pelaksanaan", window_Pelaksanaan);
         map.put("listbox_DaftarTiket", listbox_DaftarTiket);
 
         try {

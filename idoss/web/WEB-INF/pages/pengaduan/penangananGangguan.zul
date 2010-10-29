@@ -39,18 +39,14 @@
                 </row>
                 <row style="border:0px">
                     <label value="Nama Pelapor"/>
-                    <hbox>
-                        <combobox id="combobox_NamaPelapor" autodrop="true" autocomplete="true" buttonVisible="true"
-                                  width="200px">
-                            <comboitem/>
-                        </combobox>
-                        <space/>
-                        <vbox>
-                            <space height="0.5px"/>
-                            <label value="Bagian"/>
-                        </vbox>
-                        <textbox id="texbox_Bagian" readonly="true" width="200px"/>
-                    </hbox>
+                    <combobox id="combobox_NamaPelapor" autodrop="true" autocomplete="true" buttonVisible="true"
+                              width="50%">
+                        <comboitem/>
+                    </combobox>
+                </row>
+                <row style="border:0px">
+                    <label value="Bagian"/>
+                    <textbox id="texbox_Bagian" readonly="true" width="50%"/>
                 </row>
                 <row style="border:0px">
                     <label value="Judul"/>
@@ -98,7 +94,7 @@
                     <hbox>
                         <!--<combobox id="combobox_RootCaused" width="90%"/>-->
                         <listbox id="listbox_RootCaused" width="200px" mold="select" rows="1"/>
-                        
+
                         <button label=" + " id="btn_TambahRootCaused"/>
                         <space/>
                         <vbox>

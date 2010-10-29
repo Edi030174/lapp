@@ -10,7 +10,7 @@
 	</queryString>
 	<field name="awal_ganggguan" class="java.lang.String"/>
 	<field name="akhir_ganggguan" class="java.lang.String"/>
-	<field name="durasi" class="java.math.BigDecimal"/>
+	<field name="durasi" class="java.lang.String"/>
 	<field name="no_gangguan" class="java.math.BigDecimal"/>
 	<field name="asal_aduan" class="java.lang.String"/>
 	<field name="tipe_gangguan" class="java.lang.String"/>
@@ -243,7 +243,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{durasi}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{durasi} != null ? $F{durasi}: "-")]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="266" y="0" width="72" height="20"/>

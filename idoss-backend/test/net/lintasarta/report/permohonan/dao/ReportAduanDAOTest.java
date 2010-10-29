@@ -33,9 +33,9 @@ public class ReportAduanDAOTest {
 
     @Test
     public void tesGetReportAduan() throws Exception{
-        String bulan = "08";
-        String tahun = "2010";
         ReportAduan reportAduan = new ReportAduan();
+        String bulan = "OCT";
+        String tahun = "2010";
         reportAduan.setBulan(bulan);
         reportAduan.setTahun(tahun);
         List<ReportAduan> reportAduans = reportAduanDAO.getReportAduan(reportAduan);

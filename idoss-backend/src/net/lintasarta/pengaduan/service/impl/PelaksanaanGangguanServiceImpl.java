@@ -1,11 +1,11 @@
 package net.lintasarta.pengaduan.service.impl;
 
-import net.lintasarta.pengaduan.dao.VHrEmployeePelaksanaDAO;
-import net.lintasarta.pengaduan.model.*;
-import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.pengaduan.dao.PRootCausedDAO;
 import net.lintasarta.pengaduan.dao.PTypeDAO;
 import net.lintasarta.pengaduan.dao.TPenangananGangguanDAO;
+import net.lintasarta.pengaduan.dao.VHrEmployeePelaksanaDAO;
+import net.lintasarta.pengaduan.model.*;
+import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.pengaduan.service.TDeskripsiService;
 
 import java.sql.Timestamp;
@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 /**
  * Created by IntelliJ IDEA.
@@ -85,6 +84,10 @@ public class PelaksanaanGangguanServiceImpl implements PelaksanaanGangguanServic
     @Override
     public List<VHrEmployeePelaksana> getEmployeeName() {
         return getvHrEmployeePelaksanaDAO().getAllVHrEmployeePelaksana();
+    }
+
+    public TPenangananGangguan getTPenangananGangguanByTiketId(String tiketId) {
+        return tPenangananGangguanDAO.getTPenangananGangguanByTiketId(tiketId);
     }
 
     public void createTDeskripsi(TDeskripsi tDeskripsi, String nomorTiket) {
