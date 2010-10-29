@@ -12,6 +12,7 @@
         <property name="tPelaksanaanDAO" ref="tPelaksanaanDAO"/>
         <property name="tPermohonanDAO" ref="tPermohonanDAO"/>
         <property name="tVerifikasiDAO" ref="tVerifikasiDAO"/>
+        <property name="vHrEmployeeDAO" ref="vHrEmployeeDAO"/>
     </bean>
     <bean id="verifikasiService" class="net.lintasarta.permohonan.service.impl.VerifikasiServiceImpl">
          <property name="tPelaksanaanDAO" ref="tPelaksanaanDAO"/>

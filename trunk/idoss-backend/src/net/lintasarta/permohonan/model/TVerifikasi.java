@@ -29,6 +29,12 @@ public class TVerifikasi {
     private Timestamp updated_gm;
     private String catatan_gm;
     private String status_permohonan_gm;
+    private String nik_asman;
+    private String nama_asman;
+    private String nik_manager;
+    private String nama_manager;
+    private String nik_gm;
+    private String nama_gm;
 
     public TVerifikasi() {
     }
@@ -199,5 +205,53 @@ public class TVerifikasi {
 
     public void setStatus_permohonan_gm(String status_permohonan_gm) {
         this.status_permohonan_gm = status_permohonan_gm;
+    }
+
+    public String getNik_asman() {
+        return nik_asman;
+    }
+
+    public void setNik_asman(String nik_asman) {
+        this.nik_asman = nik_asman;
+    }
+
+    public String getNama_asman() {
+        return nama_asman;
+    }
+
+    public void setNama_asman(String nama_asman) {
+        this.nama_asman = nama_asman;
+    }
+
+    public String getNik_manager() {
+        return nik_manager;
+    }
+
+    public void setNik_manager(String nik_manager) {
+        this.nik_manager = nik_manager;
+    }
+
+    public String getNama_manager() {
+        return nama_manager;
+    }
+
+    public void setNama_manager(String nama_manager) {
+        this.nama_manager = nama_manager;
+    }
+
+    public String getNik_gm() {
+        return nik_gm;
+    }
+
+    public void setNik_gm(String nik_gm) {
+        this.nik_gm = nik_gm;
+    }
+
+    public String getNama_gm() {
+        return nama_gm;
+    }
+
+    public void setNama_gm(String nama_gm) {
+        this.nama_gm = nama_gm;
     }
 }

@@ -6,8 +6,10 @@ import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.predicate.*;
 import net.lintasarta.permohonan.model.TPermohonan;
+import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.model.predicate.*;
 import net.lintasarta.permohonan.service.PermohonanService;
+import net.lintasarta.security.util.LoginConstants;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.support.PagedListHolder;
@@ -119,7 +121,33 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         listheader_GM.setSortDescending(new FieldComparator("nama_gm", true));
         listheader_GM.setSortAscending(new FieldComparator("nama_gm", true));
 
-        List<TPermohonan> tPermohonans = getPermohonanService().getAllTPermohonan();
+        List<TPermohonan> tPermohonans = new ArrayList<TPermohonan>();
+
+        TPermohonan tPermohonan = new TPermohonan();
+        tPermohonan.setNik_pemohon(getUserWorkspace().getUserSession().getEmployeeNo());
+
+        String role = getUserWorkspace().getUserSession().getEmployeeRole();
+
+        if (role.equalsIgnoreCase(LoginConstants.INPUT_PERMOHONAN)) {
+            tPermohonans = getPermohonanService().getTPermohonanByNikPemohon(tPermohonan);
+        } else if (role.equalsIgnoreCase(LoginConstants.MUSER)) {
+            tPermohonan.setStatus_track_permohonan("Permohonan Baru");
+            tPermohonans = getPermohonanService().getTPermohonanByStatusAndNikManager(tPermohonan);
+        } else if (role.equalsIgnoreCase(LoginConstants.GMUSER)) {
+            tPermohonan.setStatus_track_permohonan("Disetujui Manager Pemohon");
+            tPermohonans = getPermohonanService().getTPermohonanByStatusAndNikGM(tPermohonan);
+        } else if (role.equalsIgnoreCase(LoginConstants.AMDUK)) {
+            tPermohonan.setStatus_track_permohonan("Disetujui GM Pemohon");
+            tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan);
+        } else if (role.equalsIgnoreCase(LoginConstants.MDUK)) {
+            tPermohonan.setStatus_track_permohonan("Disetujui Asman Dukophar");
+            tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan);
+        } else if (role.equalsIgnoreCase(LoginConstants.GMDUK)) {
+            tPermohonan.setDampak("MAJOR");
+            tPermohonan.setStatus_track_permohonan("Disetujui Manager Dukophar");
+            tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonanAndDampak(tPermohonan);
+        }
+
         PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>(tPermohonans);
         pagedListHolder.setPageSize(getCountRows());
 
@@ -383,4 +411,4 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
     public void setPermohonanService(PermohonanService permohonanService) {
         this.permohonanService = permohonanService;
     }
-}
+}   

@@ -8,6 +8,8 @@ import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.model.comparator.TPermohonanComparator;
 import net.lintasarta.permohonan.service.PermohonanService;
+import net.lintasarta.security.dao.VHrEmployeeDAO;
+import net.lintasarta.security.model.VHrEmployee;
 import net.lintasarta.util.PermohonanIdGenerator;
 
 import java.io.*;
@@ -26,6 +28,7 @@ public class PermohonanServiceImpl implements PermohonanService {
     private TPermohonanDAO tPermohonanDAO;
     private TVerifikasiDAO tVerifikasiDAO;
     private TPelaksanaanDAO tPelaksanaanDAO;
+    private VHrEmployeeDAO vHrEmployeeDAO;
 
     public String getFilePath() {
         return filePath;
@@ -57,6 +60,10 @@ public class PermohonanServiceImpl implements PermohonanService {
 
     public void settPelaksanaanDAO(TPelaksanaanDAO tPelaksanaanDAO) {
         this.tPelaksanaanDAO = tPelaksanaanDAO;
+    }
+
+    public void setvHrEmployeeDAO(VHrEmployeeDAO vHrEmployeeDAO) {
+        this.vHrEmployeeDAO = vHrEmployeeDAO;
     }
 
     public TPermohonan getNewPermohonan() {
@@ -198,7 +205,27 @@ public class PermohonanServiceImpl implements PermohonanService {
     }
 
     @Override
-    public TPermohonan getManager(String nikPemohon) {
+    public String getManager(String nikPemohon) {
         return gettPermohonanDAO().getManager(nikPemohon);
+    }
+
+    public List<TPermohonan> getTPermohonanByStatusAndNikManager(TPermohonan tPermohonan) {
+        return tPermohonanDAO.getTPermohonanByStatusAndNikManager(tPermohonan);
+    }
+    public List<TPermohonan> getTPermohonanByStatusAndNikGM(TPermohonan tPermohonan) {
+        return tPermohonanDAO.getTPermohonanByStatusAndNikGM(tPermohonan);
+    }
+    public List<TPermohonan> getTPermohonanByStatusTrackPermohonan(TPermohonan tPermohonan) {
+        return tPermohonanDAO.getTPermohonanByStatusTrackPermohonan(tPermohonan);
+    }
+    public List<TPermohonan> getTPermohonanByStatusTrackPermohonanAndDampak(TPermohonan tPermohonan) {
+        return tPermohonanDAO.getTPermohonanByStatusTrackPermohonanAndDampak(tPermohonan);
+    }
+    public List<TPermohonan> getTPermohonanByNikPemohon(TPermohonan tPermohonan) {
+        return tPermohonanDAO.getTPermohonanByNikPemohon(tPermohonan);
+    }
+
+    public List<VHrEmployee> getVHrEmployeeByEmployeeNo(String employeeNo) {
+        return vHrEmployeeDAO.getVHrEmployeeByEmployeeNo(employeeNo);
     }
 }

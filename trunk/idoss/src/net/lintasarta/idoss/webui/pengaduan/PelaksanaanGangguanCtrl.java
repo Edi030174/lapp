@@ -292,6 +292,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             TPenangananGangguan tp = getPelaksanaanGangguanService().getTPenangananGangguanByTiketId(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
             if (!tp.getStatus().equalsIgnoreCase("Closed")) {
                 getPelaksanaanGangguanService().saveOrUpdate(tPenangananGangguan, tDeskripsi);
+            }else{
+                alert("Status sudah Closed!");
             }
         } catch (DataAccessException e) {
             String message = e.getMessage();
