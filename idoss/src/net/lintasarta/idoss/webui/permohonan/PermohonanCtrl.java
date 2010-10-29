@@ -14,7 +14,6 @@ import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
 import java.io.File;
@@ -189,6 +188,18 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 //        tabPanel_PersetujuanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanDukophar"));
         tab_Pelaksanaan.setVisible(workspace.isAllowed("tab_Pelaksanaan"));
         tabPanel_Pelaksanaan.setVisible(workspace.isAllowed("tab_Pelaksanaan"));
+
+        if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("muser")) {
+            tab_Pelaksanaan.setLabel("Persetujuan Manager");
+        } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("gmuser")) {
+            tab_Pelaksanaan.setLabel("Persetujuan GM");
+        } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("amduk")) {
+            tab_Pelaksanaan.setLabel("Persetujuan Asisten Manager Dukophar");
+        } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("mduk")) {
+            tab_Pelaksanaan.setLabel("Persetujuan Manager Dukophar");
+        } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("gmduk")) {
+            tab_Pelaksanaan.setLabel("Persetujuan GM Dukophar");
+        }
     }
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {

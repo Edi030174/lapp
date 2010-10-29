@@ -20,6 +20,7 @@ import org.zkoss.zul.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 /**
@@ -59,7 +60,11 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_gmdukophar;
     protected Listbox listbox_NamaPelaksana;
     protected Datebox datebox_Tanggal;
-
+    protected Label label_tgl1;
+    protected Label label_tgl2;
+    protected Label label_tgl3;
+    protected Label label_tgl4;
+    protected Label label_tgl5;
     protected Radiogroup radiogroup_Prioritas;
     protected Radio radio_high;
     protected Radio radio_normal;
@@ -168,7 +173,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         groupbox_Manager.setVisible(workspace.isAllowed("groupbox_ManagerDukophar"));
         groupbox_Gm.setVisible(workspace.isAllowed("groupbox_GmDukophar"));
 
-        boolean save_muser = (workspace.isAllowed("btn_SimpanPersetujuanManagerPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Permohonan Baru"));
+        boolean save_muser = (workspace.isAllowed("btn_SimpanPersetujuanManagerPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Persetujuan Manager"));
         btn_SimpanPersetujuanManagerPemohon.setVisible(save_muser);
         boolean save_gmuser = (workspace.isAllowed("btn_SimpanPersetujuanGmPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Pemohon"));
         btn_SimpanPersetujuanGmPemohon.setVisible(save_gmuser);
@@ -190,24 +195,36 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             radio_major.setDisabled(true);
             radio_minor.setDisabled(true);
             textbox_DetailPermohonan.setReadonly(true);
+            Timestamp ts = tPermohonan.getTgl_permohonan();
+            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+            label_tgl1.setValue(tgl);
         } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("gmuser")) {
             radio_high.setDisabled(true);
             radio_normal.setDisabled(true);
             radio_major.setDisabled(true);
             radio_minor.setDisabled(true);
             textbox_DetailPermohonan.setReadonly(true);
+            Timestamp ts = tPermohonan.getUpdated_manager();
+            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+            label_tgl2.setValue(tgl);
         } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("amduk")) {
             radio_high.setDisabled(false);
             radio_normal.setDisabled(false);
             radio_major.setDisabled(false);
             radio_minor.setDisabled(false);
             textbox_DetailPermohonan.setReadonly(true);
+            Timestamp ts = tPermohonan.getUpdated_gm();
+            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+            label_tgl3.setValue(tgl);
         } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("mduk")) {
             radio_high.setDisabled(false);
             radio_normal.setDisabled(false);
             radio_major.setDisabled(false);
             radio_minor.setDisabled(false);
             textbox_DetailPermohonan.setReadonly(true);
+            Timestamp ts = tPermohonan.getUpdated_asman();
+            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+            label_tgl3.setValue(tgl);
         } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("gmduk")) {
             radio_high.setDisabled(false);
             radio_normal.setDisabled(false);
@@ -232,7 +249,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
 //        textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
         textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
 //        datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
-        datebox_Tanggal.setValue(tVerifikasi.getTgl_permohonan());
+        datebox_Tanggal.setValue(tVerifikasi.getUpdated_date());
 
         textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
         if (tPermohonan.getUrgensi().equals("H")) {
