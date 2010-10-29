@@ -207,7 +207,6 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             radio_normal.setDisabled(false);
             radio_major.setDisabled(false);
             radio_minor.setDisabled(false);
-            vboxPrioritas.setVisible(true);
             textbox_DetailPermohonan.setReadonly(true);
         } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("gmduk")) {
             radio_high.setDisabled(false);

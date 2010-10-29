@@ -9,19 +9,15 @@ import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
-import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.media.Media;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
-import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zul.*;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -166,17 +162,17 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             window_DaftarPermohonan = null;
         }
         Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanPemohon");
-        orderTab.getChildren().clear();
+//        orderTab.getChildren().clear();
 
         Panel panel = new Panel();
         Panelchildren pChildren = new Panelchildren();
 
         panel.appendChild(pChildren);
-        orderTab.appendChild(panel);
+//        orderTab.appendChild(panel);
         doShowDialog(gettPermohonan());
 
-        Events.postEvent("onSelect$tab_Persetujuan", window_Permohonan, event);
-        window_Permohonan.invalidate();
+//        Events.postEvent("onSelect$tab_Persetujuan", window_Permohonan, event);
+//        window_Permohonan.invalidate();
     }
 
     private void doCheckRights() {
@@ -187,10 +183,10 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
 //        tab_Persetujuan.setVisible(workspace.isAllowed("tab_Persetujuan"));
 //        tabPanel_Persetujuan.setVisible(workspace.isAllowed("tabPanel_Persetujuan"));
-        tab_PersetujuanPemohon.setVisible(workspace.isAllowed("tab_PersetujuanPemohon"));
-        tabPanel_PersetujuanPemohon.setVisible(workspace.isAllowed("tab_PersetujuanPemohon"));
-        tab_PersetujuanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanDukophar"));
-        tabPanel_PersetujuanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanDukophar"));
+//        tab_PersetujuanPemohon.setVisible(workspace.isAllowed("tab_PersetujuanPemohon"));
+//        tabPanel_PersetujuanPemohon.setVisible(workspace.isAllowed("tab_PersetujuanPemohon"));
+//        tab_PersetujuanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanDukophar"));
+//        tabPanel_PersetujuanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanDukophar"));
         tab_Pelaksanaan.setVisible(workspace.isAllowed("tab_Pelaksanaan"));
         tabPanel_Pelaksanaan.setVisible(workspace.isAllowed("tab_Pelaksanaan"));
     }
