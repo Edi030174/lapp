@@ -69,23 +69,21 @@ public class LoginServiceImpl implements LoginService {
 
     public String getAuthorization(VHrEmployee vHrEmployee) {
         if (vHrEmployee.getP_organization_id().equals(new BigDecimal(1176))) {
-            if (vHrEmployee.getJob_position_code().contains("Assistant Manager")) {
+            if (vHrEmployee.getJob_position_code().equals("Assistant Manager") || vHrEmployee.getJob_position_code().equals("POH Assistant Manager")|| vHrEmployee.getJob_position_code().equals("Analyst")) {
                 return LoginConstants.AMDUK;
-            } else if (vHrEmployee.getJob_position_code().contains("Manager")) {
+            } else if (vHrEmployee.getJob_position_code().equals("Manager") || vHrEmployee.getJob_position_code().equals("POH Manager")) {
                 return LoginConstants.MDUK;
             } else {
                 return LoginConstants.IDOSS_HELPDESK_ADUAN;
             }
         } else if (vHrEmployee.getP_organization_id().equals(new BigDecimal(1155))) {
-            if (vHrEmployee.getJob_position_code().contains("General Manager")) {
+            if (vHrEmployee.getJob_position_code().equals("General Manager") || vHrEmployee.getJob_position_code().equals("POH General Manager")) {
                 return LoginConstants.GMDUK;
             }
-        } else if (!vHrEmployee.getP_organization_id().equals(new BigDecimal(1176))) {
-            if (vHrEmployee.getJob_position_code().contains("Manager")) {
+        } else {
+            if (vHrEmployee.getJob_position_code().equals("Manager") || vHrEmployee.getJob_position_code().equals("POH Manager")) {
                 return LoginConstants.MUSER;
-            }
-        } else if (!vHrEmployee.getP_organization_id().equals(new BigDecimal(1155))) {
-            if (vHrEmployee.getJob_position_code().contains("General Manager")) {
+            } else if (vHrEmployee.getJob_position_code().equals("General Manager") || vHrEmployee.getJob_position_code().equals("POH General Manager")) {
                 return LoginConstants.GMUSER;
             }
         }

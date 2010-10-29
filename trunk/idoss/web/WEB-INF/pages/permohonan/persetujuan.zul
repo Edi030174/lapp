@@ -63,7 +63,7 @@
             </vbox>
             <vbox>
                 <space height="1px"/>
-                <label value="Tanggal:"/>
+                <label value="Tanggal Persetujuan:"/>
                 <label width="10px" value="NIK :"/>
             </vbox>
             <vbox>
@@ -105,6 +105,9 @@
             <hbox>
                 <vbox>
                     <hbox>
+                        <label id="label_tgl1"/>
+                    </hbox>
+                    <hbox>
                         <label value="Status Permohonan : "/>
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanManagerPemohon">
@@ -132,6 +135,9 @@
             <hbox>
                 <vbox>
                     <hbox>
+                        <label id="label_tgl2"/>
+                    </hbox>
+                    <hbox>
                         <label value="Status Permohonan : "/>
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanGmPemohon">
@@ -158,6 +164,9 @@
             <caption label="catatan AsMan" style="font-weight:normal"/>
             <hbox>
                 <vbox>
+                    <hbox>
+                        <label id="label_tgl3"/>
+                    </hbox>
                     <hbox>
                         <label value="Status Permohonan : "/>
                     </hbox>
@@ -187,6 +196,9 @@
             <hbox>
                 <vbox>
                     <hbox>
+                        <label id="label_tgl4"/>
+                    </hbox>
+                    <hbox>
                         <label value="Status Permohonan : "/>
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanManager">
@@ -211,6 +223,9 @@
             <caption label="catatan GM" style="font-weight:normal"/>
             <hbox>
                 <vbox>
+                    <hbox>
+                        <label id="label_tgl5"/>
+                    </hbox>
                     <label value="Status Permohonan : "/>
                     <radiogroup id="radiogroup_StatusPermohonanGm">
                         <hbox>

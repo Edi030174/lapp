@@ -67,7 +67,7 @@
                         <listheader id="listheader_Tipe" label="Tipe" sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_StatusPersetujuan" label="Status Persetujuan" sort="auto"
                                     style="font-size:11px"/>
-                        <listheader id="listheader_AssMgr" label="AssManager" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_TglStatus" label="Tanggal Persetujuan" sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_Mgr" label="Manager" sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_GM" label="GM" sort="auto" style="font-size:11px"/>
                     </listhead>

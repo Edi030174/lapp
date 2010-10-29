@@ -4,20 +4,16 @@ import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPermohonan;
-import net.lintasarta.permohonan.model.comparator.TPermohonanComparator;
 import net.lintasarta.permohonan.service.PermohonanService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
-import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.resource.Labels;
-import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -132,7 +128,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         UserWorkspace workspace = getUserWorkspace();
         groupbox_ManagerPemohon.setVisible(workspace.isAllowed("groupbox_ManagerPemohon"));
         groupbox_GmPemohon.setVisible(workspace.isAllowed("groupbox_GmPemohon"));
-        boolean b = (workspace.isAllowed("btn_SimpanPersetujuanManagerPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Permohonan Baru"));
+        boolean b = (workspace.isAllowed("btn_SimpanPersetujuanManagerPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Persetujuan Manager"));
         btn_SimpanPersetujuanManagerPemohon.setVisible(b);
         boolean bb = (workspace.isAllowed("btn_SimpanPersetujuanGmPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Pemohon"));
         btn_SimpanPersetujuanGmPemohon.setVisible(bb);
@@ -142,7 +138,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
 //        UserWorkspace workspace = getUserWorkspace();
 //        settPermohonan(tPermohonan);
-//        if(tPermohonan.getStatus_track_permohonan().contains("Permohonan Baru")){
+//        if(tPermohonan.getStatus_track_permohonan().contains("Persetujuan Manager")){
 //            btn_SimpanPersetujuanManagerPemohon.setVisible(true);
 //            btn_SimpanPersetujuanGmPemohon.setVisible(false);
 //        }else if(tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Pemohon")){
