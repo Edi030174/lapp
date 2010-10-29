@@ -29,6 +29,7 @@ public class IndexCtrl extends GFCBaseCtrl implements Serializable {
     protected Menubar mainMenuBar;
 
     protected Column statusBarAppVersion;
+    protected Column statusBarColRole;
     protected Column statusBarColUser;
     protected Column statusBarColJob;
     protected Column colDate;
@@ -70,6 +71,7 @@ public class IndexCtrl extends GFCBaseCtrl implements Serializable {
         date.setTime(cal.getTimeInMillis());
         statusBarAppVersion.setLabel("IDOSS v1.0.0 / build: " + FDDateFormat.getDateFormater().format(date));
         statusBarColUser.setLabel(getUserWorkspace().getUserSession().getEmployeeName());
+        statusBarColRole.setLabel(getUserWorkspace().getUserSession().getJobPositionCode());
         statusBarColJob.setLabel(getUserWorkspace().getUserSession().getDepartment() + " " + getUserWorkspace().getUserSession().getJobLocation());
         colDate.setLabel(new Date().toString());
     }

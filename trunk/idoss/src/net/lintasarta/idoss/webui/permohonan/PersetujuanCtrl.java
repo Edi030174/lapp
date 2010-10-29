@@ -215,9 +215,6 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             radio_major.setDisabled(false);
             radio_minor.setDisabled(false);
             textbox_DetailPermohonan.setReadonly(true);
-        } else {
-            vboxPrioritas.setVisible(false);
-            textbox_DetailPermohonan.setReadonly(false);
         }
 //        boolean np = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && ((tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) || (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Dukophar")));
 //        listbox_NamaPelaksana.setVisible(np);

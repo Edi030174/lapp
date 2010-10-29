@@ -40,6 +40,8 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     protected Textbox textbox_deskripsi;
     protected Textbox textbox_solusi;
     protected Radiogroup radiogroup_Dampak;
+    protected Radio radio_minor;
+    protected Radio radio_major;
     protected Listbox listbox_RootCaused;
     protected Listbox listbox_NamaPelaksana;
     protected Combobox combobox_Status;

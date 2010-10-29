@@ -12,7 +12,7 @@ public class LoginConstants {
     public static final String AMDUK = "amduk";
     public static final String MDUK = "mduk";
     public static final String GMDUK = "gmduk";
-    public static final String INPUT_PERMOHONAN = "input_permohonan";
+    public static final String INPUT_PERMOHONAN = "1516";
 
     // Role Modul Pengaduan
     public static final String IDOSS_HELPDESK_ADUAN = "1517";       // helpd
