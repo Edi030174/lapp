@@ -4,9 +4,7 @@ import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.permohonan.model.DaftarPermohonanModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
-import net.lintasarta.pengaduan.model.predicate.*;
 import net.lintasarta.permohonan.model.TPermohonan;
-import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.model.predicate.*;
 import net.lintasarta.permohonan.service.PermohonanService;
 import net.lintasarta.security.util.LoginConstants;
@@ -124,16 +122,18 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         List<TPermohonan> tPermohonans = new ArrayList<TPermohonan>();
 
         TPermohonan tPermohonan = new TPermohonan();
-        tPermohonan.setNik_pemohon(getUserWorkspace().getUserSession().getEmployeeNo());
-
+        String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
         String role = getUserWorkspace().getUserSession().getEmployeeRole();
 
         if (role.equalsIgnoreCase(LoginConstants.INPUT_PERMOHONAN)) {
+            tPermohonan.setNik_pemohon(employeeNo);
             tPermohonans = getPermohonanService().getTPermohonanByNikPemohon(tPermohonan);
         } else if (role.equalsIgnoreCase(LoginConstants.MUSER)) {
+            tPermohonan.setNik_manager(employeeNo);
             tPermohonan.setStatus_track_permohonan("Permohonan Baru");
             tPermohonans = getPermohonanService().getTPermohonanByStatusAndNikManager(tPermohonan);
         } else if (role.equalsIgnoreCase(LoginConstants.GMUSER)) {
+            tPermohonan.setNik_gm(employeeNo);
             tPermohonan.setStatus_track_permohonan("Disetujui Manager Pemohon");
             tPermohonans = getPermohonanService().getTPermohonanByStatusAndNikGM(tPermohonan);
         } else if (role.equalsIgnoreCase(LoginConstants.AMDUK)) {
