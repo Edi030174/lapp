@@ -132,9 +132,7 @@
             <caption label="catatan GM" style="font-weight:normal"/>
             <hbox>
                 <vbox>
-                    <label value="tanggal persetujuan"/>
                     <label id="label_tgl2"/>
-                    <label value="Oleh:"/>
                     <label id="label_by2"/>
                     <hbox>
                         <label id="sp2" value="Status Permohonan : "/>
@@ -164,9 +162,7 @@
             <caption label="catatan AsMan Dukophar" style="font-weight:normal"/>
             <hbox>
                 <vbox>
-                    <label value="tanggal persetujuan"/>
                     <label id="label_tgl3"/>
-                    <label value="Oleh:"/>
                     <label id="label_by3"/>
                     <hbox>
                         <label id="sp3" value="Status Permohonan : "/>
@@ -197,9 +193,7 @@
             <caption label="catatan Manager Dukophar" style="font-weight:normal"/>
             <hbox>
                 <vbox>
-                    <label value="tanggal persetujuan"/>
                     <label id="label_tgl4"/>
-                    <label value="Oleh:"/>
                     <label id="label_by4"/>
                     <hbox>
                         <label id="sp4" value="Status Permohonan : "/>
@@ -227,12 +221,10 @@
             <caption label="catatan GM Dukophar" style="font-weight:normal"/>
             <hbox>
                 <vbox>
-                    <label value="tanggal persetujuan"/>
                     <label id="label_tgl5"/>
-                    <label value="Oleh:"/>
                     <label id="label_by5"/>
                     <label id="sp5" value="Status Permohonan : "/>
-                    <radiogroup id="radiogroup_StatusPermohonanGm">
+                    <radiogroup name="Status Permohonan :" id="radiogroup_StatusPermohonanGm">
                         <hbox>
                             <radio id="radio_DisetujuiGM" label="disetujui" value="Disetujui GM Dukophar"
                                    selected="true"/>

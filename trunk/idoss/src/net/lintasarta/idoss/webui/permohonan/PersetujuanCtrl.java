@@ -193,10 +193,42 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             if (tPermohonan.getUpdated_manager() != null) {
                 Timestamp ts = tPermohonan.getUpdated_manager();
                 String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-                label_tgl1.setValue("Tanggal persetujuan: "+tgl);
+                label_tgl1.setValue("Tanggal persetujuan: " + tgl);
             }
             if (tPermohonan.getNama_manager() != null) {
-                label_by1.setValue("Oleh: "+tPermohonan.getNama_manager());
+                label_by1.setValue("Oleh: " + tPermohonan.getNama_manager());
+            }
+            if (tPermohonan.getUpdated_gm() != null) {
+                Timestamp ts = tPermohonan.getUpdated_gm();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl2.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tPermohonan.getNama_gm() != null) {
+                label_by2.setValue("Oleh: " + tPermohonan.getNama_gm());
+            }
+            if (tVerifikasi.getUpdated_asman() != null) {
+                Timestamp ts = tVerifikasi.getUpdated_asman();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl3.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tVerifikasi.getNama_asman() != null) {
+                label_by3.setValue("Oleh: " + tVerifikasi.getNama_asman());
+            }
+            if (tVerifikasi.getUpdated_manager() != null) {
+                Timestamp ts = tVerifikasi.getUpdated_manager();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl4.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tVerifikasi.getNama_manager() != null) {
+                label_by4.setValue("Oleh: " + tVerifikasi.getNama_manager());
+            }
+            if (tVerifikasi.getUpdated_gm() != null) {
+                Timestamp ts = tVerifikasi.getUpdated_gm();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl5.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tVerifikasi.getNama_gm() != null) {
+                label_by5.setValue("Oleh: " + tVerifikasi.getNama_gm());
             }
             radiogroup_StatusPermohonanManagerPemohon.setVisible(true);
             radiogroup_StatusPermohonanGmPemohon.setVisible(false);
@@ -218,13 +250,45 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         boolean save_gmuser = (workspace.isAllowed("btn_SimpanPersetujuanGmPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Pemohon"));
         if (workspace.isAllowed("groupbox_GmPemohon") == true) {
             btn_SimpanPersetujuanGmPemohon.setVisible(save_gmuser);
+            if (tPermohonan.getUpdated_manager() != null) {
+                Timestamp ts = tPermohonan.getUpdated_manager();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl1.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tPermohonan.getNama_manager() != null) {
+                label_by1.setValue("Oleh: " + tPermohonan.getNama_manager());
+            }
             if (tPermohonan.getUpdated_gm() != null) {
                 Timestamp ts = tPermohonan.getUpdated_gm();
                 String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-                label_tgl2.setValue(tgl);
+                label_tgl2.setValue("Tanggal persetujuan: " + tgl);
             }
             if (tPermohonan.getNama_gm() != null) {
-                label_by2.setValue(tPermohonan.getNama_gm());
+                label_by2.setValue("Oleh: " + tPermohonan.getNama_gm());
+            }
+            if (tVerifikasi.getUpdated_asman() != null) {
+                Timestamp ts = tVerifikasi.getUpdated_asman();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl3.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tVerifikasi.getNama_asman() != null) {
+                label_by3.setValue("Oleh: " + tVerifikasi.getNama_asman());
+            }
+            if (tVerifikasi.getUpdated_manager() != null) {
+                Timestamp ts = tVerifikasi.getUpdated_manager();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl4.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tVerifikasi.getNama_manager() != null) {
+                label_by4.setValue("Oleh: " + tVerifikasi.getNama_manager());
+            }
+            if (tVerifikasi.getUpdated_gm() != null) {
+                Timestamp ts = tVerifikasi.getUpdated_gm();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl5.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tVerifikasi.getNama_gm() != null) {
+                label_by5.setValue("Oleh: " + tVerifikasi.getNama_gm());
             }
             radiogroup_StatusPermohonanManagerPemohon.setVisible(false);
             radiogroup_StatusPermohonanGmPemohon.setVisible(true);
@@ -247,19 +311,174 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         }
         boolean save_amdukophar = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon"));
         btn_SimpanPersetujuanAsman.setVisible(save_amdukophar);
+        if (workspace.isAllowed("groupbox_AMDukophar") == true) {
+            btn_SimpanPersetujuanAsman.setVisible(save_amdukophar);
+            if (tPermohonan.getUpdated_manager() != null) {
+                Timestamp ts = tPermohonan.getUpdated_manager();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl1.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tPermohonan.getNama_manager() != null) {
+                label_by1.setValue("Oleh: " + tPermohonan.getNama_manager());
+            }
+
+            if (tPermohonan.getUpdated_gm() != null) {
+                Timestamp ts = tPermohonan.getUpdated_gm();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl2.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tPermohonan.getNama_gm() != null) {
+                label_by2.setValue("Oleh: " + tPermohonan.getNama_gm());
+            }
+
+            if (tVerifikasi.getUpdated_asman() != null) {
+                Timestamp ts = tVerifikasi.getUpdated_asman();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl3.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tVerifikasi.getNama_asman() != null) {
+                label_by3.setValue("Oleh: " + tVerifikasi.getNama_asman());
+            }
+
+            if (tVerifikasi.getUpdated_manager() != null) {
+                Timestamp ts = tVerifikasi.getUpdated_manager();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl4.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tVerifikasi.getNama_manager() != null) {
+                label_by4.setValue("Oleh: " + tVerifikasi.getNama_manager());
+            }
+
+            if (tVerifikasi.getUpdated_gm() != null) {
+                Timestamp ts = tVerifikasi.getUpdated_gm();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl5.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tVerifikasi.getNama_gm() != null) {
+                label_by5.setValue("Oleh: " + tVerifikasi.getNama_gm());
+            }
+
+            radiogroup_StatusPermohonanManagerPemohon.setVisible(false);
+            radiogroup_StatusPermohonanGmPemohon.setVisible(false);
+            radiogroup_StatusPermohonanAsman.setVisible(true);
+            radiogroup_StatusPermohonanManager.setVisible(false);
+            radiogroup_StatusPermohonanGm.setVisible(false);
+            textbox_DetailPermohonan.setReadonly(true);
+            textbox_muser.setReadonly(true);
+            textbox_gmuser.setReadonly(true);
+            textbox_amdukophar.setReadonly(false);
+            textbox_mdukophar.setReadonly(true);
+            textbox_gmdukophar.setReadonly(true);
+            sp1.setVisible(false);
+            sp2.setVisible(false);
+            sp3.setVisible(true);
+            sp4.setVisible(false);
+            sp5.setVisible(false);
+        }
         boolean save_mdukophar = (workspace.isAllowed("btn_SimpanPersetujuanManager")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Asman Dukophar"));
         btn_SimpanPersetujuanManager.setVisible(save_mdukophar);
+        if (workspace.isAllowed("groupbox_ManagerDukophar") == true) {
+            btn_SimpanPersetujuanManager.setVisible(save_mdukophar);
+            if (tPermohonan.getUpdated_manager() != null) {
+                Timestamp ts = tPermohonan.getUpdated_manager();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl1.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tPermohonan.getNama_manager() != null) {
+                label_by1.setValue("Oleh: " + tPermohonan.getNama_manager());
+            }
+            if (tPermohonan.getUpdated_gm() != null) {
+                Timestamp ts = tPermohonan.getUpdated_gm();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl2.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tPermohonan.getNama_gm() != null) {
+                label_by2.setValue("Oleh: " + tPermohonan.getNama_gm());
+            }
+            if (tVerifikasi.getUpdated_asman() != null) {
+                Timestamp ts = tVerifikasi.getUpdated_asman();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl3.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tVerifikasi.getNama_asman() != null) {
+                label_by3.setValue("Oleh: " + tVerifikasi.getNama_asman());
+            }
+            if (tVerifikasi.getUpdated_manager() != null) {
+                Timestamp ts = tVerifikasi.getUpdated_manager();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl4.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tVerifikasi.getNama_manager() != null) {
+                label_by4.setValue("Oleh: " + tVerifikasi.getNama_manager());
+            }
+            if (tVerifikasi.getUpdated_gm() != null) {
+                Timestamp ts = tVerifikasi.getUpdated_gm();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl5.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tVerifikasi.getNama_gm() != null) {
+                label_by5.setValue("Oleh: " + tVerifikasi.getNama_gm());
+            }
+            radiogroup_StatusPermohonanManagerPemohon.setVisible(false);
+            radiogroup_StatusPermohonanGmPemohon.setVisible(false);
+            radiogroup_StatusPermohonanAsman.setVisible(false);
+            radiogroup_StatusPermohonanManager.setVisible(true);
+            radiogroup_StatusPermohonanGm.setVisible(false);
+            textbox_DetailPermohonan.setReadonly(true);
+            textbox_muser.setReadonly(true);
+            textbox_gmuser.setReadonly(true);
+            textbox_amdukophar.setReadonly(true);
+            textbox_mdukophar.setReadonly(false);
+            textbox_gmdukophar.setReadonly(true);
+            sp1.setVisible(false);
+            sp2.setVisible(false);
+            sp3.setVisible(false);
+            sp4.setVisible(true);
+            sp5.setVisible(false);
+        }
         boolean save_gmdukophar = (workspace.isAllowed("btn_SimpanPersetujuanGm")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) && (tVerifikasi.getDampak().equals("MAJOR"));
         btn_SimpanPersetujuanGm.setVisible(save_gmdukophar);
         if (workspace.isAllowed("groupbox_GmDukophar") == true) {
             btn_SimpanPersetujuanGm.setVisible(save_gmdukophar);
+            if (tPermohonan.getUpdated_manager() != null) {
+                Timestamp ts = tPermohonan.getUpdated_manager();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl1.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tPermohonan.getNama_manager() != null) {
+                label_by1.setValue("Oleh: " + tPermohonan.getNama_manager());
+            }
             if (tPermohonan.getUpdated_gm() != null) {
+                Timestamp ts = tPermohonan.getUpdated_gm();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl2.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tPermohonan.getNama_gm() != null) {
+                label_by2.setValue("Oleh: " + tPermohonan.getNama_gm());
+            }
+            if (tVerifikasi.getUpdated_asman() != null) {
+                Timestamp ts = tVerifikasi.getUpdated_asman();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl3.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tVerifikasi.getNama_asman() != null) {
+                label_by3.setValue("Oleh: " + tVerifikasi.getNama_asman());
+            }
+            if (tVerifikasi.getUpdated_manager() != null) {
+                Timestamp ts = tVerifikasi.getUpdated_manager();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl4.setValue("Tanggal persetujuan: " + tgl);
+            }
+            if (tVerifikasi.getNama_manager() != null) {
+                label_by4.setValue("Oleh: " + tVerifikasi.getNama_manager());
+            }
+            if (tVerifikasi.getUpdated_gm() != null) {
                 Timestamp ts = tVerifikasi.getUpdated_gm();
                 String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-                label_tgl5.setValue(tgl);
+                label_tgl5.setValue("Tanggal persetujuan: " + tgl);
             }
             if (tVerifikasi.getNama_gm() != null) {
-                label_by5.setValue(tVerifikasi.getNama_gm());
+                label_by5.setValue("Oleh: " + tVerifikasi.getNama_gm());
             }
             radiogroup_StatusPermohonanManagerPemohon.setVisible(false);
             radiogroup_StatusPermohonanGmPemohon.setVisible(false);
@@ -278,90 +497,6 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             sp4.setVisible(false);
             sp5.setVisible(true);
         }
-
-        /*String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
-        String role = getUserWorkspace().getUserSession().getEmployeeRole();
-
-        if (role.equalsIgnoreCase(LoginConstants.INPUT_PERMOHONAN)) {
-            tPermohonan.setNik_pemohon(employeeNo);
-        } else if (role.equalsIgnoreCase(LoginConstants.MUSER)) {
-            if (tPermohonan.getUpdated_manager() != null) {
-                Timestamp ts = tPermohonan.getUpdated_manager();
-                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-                label_tgl1.setValue(tgl);
-            }
-            if (tPermohonan.getNama_manager() != null) {
-                label_by1.setValue(tPermohonan.getNama_manager());
-            }
-            textbox_DetailPermohonan.setReadonly(true);
-            textbox_muser.setReadonly(false);
-            textbox_gmuser.setReadonly(true);
-            textbox_amdukophar.setReadonly(true);
-            textbox_mdukophar.setReadonly(true);
-            textbox_gmdukophar.setReadonly(true);
-        } else if (role.equalsIgnoreCase(LoginConstants.GMUSER)) {
-            if (tPermohonan.getUpdated_gm() != null) {
-                Timestamp ts = tPermohonan.getUpdated_gm();
-                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-                label_tgl2.setValue(tgl);
-            }
-            if (tPermohonan.getNama_gm() != null) {
-                label_by2.setValue(tPermohonan.getNama_gm());
-            }
-            textbox_DetailPermohonan.setReadonly(true);
-            textbox_muser.setReadonly(true);
-            textbox_gmuser.setReadonly(false);
-            textbox_amdukophar.setReadonly(true);
-            textbox_mdukophar.setReadonly(true);
-            textbox_gmdukophar.setReadonly(true);
-        } else if (role.equalsIgnoreCase(LoginConstants.AMDUK)) {
-            if (tVerifikasi.getUpdated_asman() != null) {
-                Timestamp ts = tVerifikasi.getUpdated_asman();
-                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-                label_tgl3.setValue(tgl);
-            }
-            if (tVerifikasi.getNama_asman() != null) {
-                label_by3.setValue(tVerifikasi.getNama_asman());
-            }
-            textbox_DetailPermohonan.setReadonly(true);
-            textbox_muser.setReadonly(true);
-            textbox_gmuser.setReadonly(true);
-            textbox_amdukophar.setReadonly(false);
-            textbox_mdukophar.setReadonly(true);
-            textbox_gmdukophar.setReadonly(true);
-        } else if (role.equalsIgnoreCase(LoginConstants.MDUK)) {
-            if (tVerifikasi.getUpdated_manager() != null) {
-                Timestamp ts = tVerifikasi.getUpdated_manager();
-                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-                label_tgl4.setValue(tgl);
-            }
-            if (tVerifikasi.getNama_manager() != null) {
-                label_by4.setValue(tVerifikasi.getNama_manager());
-            }
-            textbox_DetailPermohonan.setReadonly(true);
-            textbox_muser.setReadonly(true);
-            textbox_gmuser.setReadonly(true);
-            textbox_amdukophar.setReadonly(true);
-            textbox_mdukophar.setReadonly(false);
-            textbox_gmdukophar.setReadonly(true);
-        } else if (role.equalsIgnoreCase(LoginConstants.GMDUK)) {
-            if (tPermohonan.getUpdated_gm() != null) {
-                Timestamp ts = tPermohonan.getUpdated_gm();
-                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-                label_tgl5.setValue(tgl);
-            }
-            if (tVerifikasi.getNama_gm() != null) {
-                label_by5.setValue(tVerifikasi.getNama_gm());
-            }
-            textbox_DetailPermohonan.setReadonly(true);
-            textbox_muser.setReadonly(true);
-            textbox_gmuser.setReadonly(true);
-            textbox_amdukophar.setReadonly(true);
-            textbox_mdukophar.setReadonly(true);
-            textbox_gmdukophar.setReadonly(false);
-        }*/
-//        boolean np = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && ((tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) || (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Dukophar")));
-//        listbox_NamaPelaksana.setVisible(np);
     }
 
     private void doShowDialog(TVerifikasi tVerifikasi, TPermohonan tPermohonan) throws InterruptedException {
