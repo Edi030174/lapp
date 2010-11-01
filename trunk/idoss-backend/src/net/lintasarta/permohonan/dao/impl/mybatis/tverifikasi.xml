@@ -12,27 +12,7 @@
     </select>
 
     <select id="getTVerifikasiByTIdossVerifikasiId" parameterType="tverifikasi" resultType="tverifikasi">
-        select T_IDOSS_VERIFIKASI_ID ,
-               TGL_PERMOHONAN,
-               URGENSI,
-               DAMPAK,
-               TYPE_PERMOHONAN,
-               NIK_PELAKSANA,
-               RFS,
-               CATATAN_PERTYPE,
-               STATUS_PERMOHONANASMAN,
-               UPDATED_ASMAN,
-               CATATAN_ASMAN,
-               STATUS_PERMOHONANMANAGER,
-               UPDATED_MANAGER,
-               CATATAN_MANAGER,
-               CREATED_DATE,
-               CREATED_USER,
-               UPDATED_DATE,
-               UPDATED_USER,
-               UPDATED_GM,
-               CATATAN_GM,
-               STATUS_PERMOHONAN_GM
+        select *
         from SNI.T_IDOSS_VERIFIKASI
         where T_IDOSS_VERIFIKASI_ID =#{t_idoss_verifikasi_id}
     </select>
