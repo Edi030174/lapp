@@ -85,8 +85,8 @@
 							<column id="statusBarColRole" label="" width="8%" style="background-color: #D6DCDE;" />
 							<column label="Job:" width="3%" style="background-color: #D6DCDE;" />
 							<column id="statusBarColJob" label="" width="18%" style="background-color: #D6DCDE;" />
-							<column id="statusBarAppVersion" style="color: #FF0000; background-color: #D6DCDE;" width="15%" />
-							<column id="colDate" width="15%" style="background-color: #D6DCDE;" align="right" />
+							<column id="statusBarAppVersion" style="color: #FF0000; background-color: #D6DCDE;" width="10%" />
+							<column id="colDate" width="10%" style="background-color: #D6DCDE;" align="right" />
 						</columns>
 					</grid>
 				</div>
