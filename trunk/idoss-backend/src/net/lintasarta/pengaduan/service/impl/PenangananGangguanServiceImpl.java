@@ -115,6 +115,7 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         int i = tPenangananGangguanDAO.getSeqTiketId();
         tPenangananGangguan.setT_idoss_penanganan_gangguan_id(getTiketId());
         tPenangananGangguan.setGen_id_col(i);
+        tPenangananGangguan.setDampak("Minor");
         tPenangananGangguan.setDurasi(Constants.EMPTY_STRING);
 //        tPenangananGangguan.setNama_pelaksana(Constants.EMPTY_STRING);
         tPenangananGangguan.setMttr(Constants.EMPTY_STRING);
