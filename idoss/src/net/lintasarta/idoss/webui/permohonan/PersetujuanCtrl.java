@@ -189,7 +189,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
 
         boolean save_muser = (workspace.isAllowed("btn_SimpanPersetujuanManagerPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Persetujuan Manager"));
         btn_SimpanPersetujuanManagerPemohon.setVisible(save_muser);
-        if (role.equalsIgnoreCase(LoginConstants.MUSER)){
+        if (role.equalsIgnoreCase(LoginConstants.MUSER)) {
             if (tPermohonan.getUpdated_manager() != null) {
                 Timestamp ts = tPermohonan.getUpdated_manager();
                 String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
@@ -246,10 +246,6 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             sp3.setVisible(false);
             sp4.setVisible(false);
             sp5.setVisible(false);
-            radio_high.setDisabled(true);
-            radio_normal.setDisabled(true);
-            radio_major.setDisabled(true);
-            radio_minor.setDisabled(true);
         }
         boolean save_gmuser = (workspace.isAllowed("btn_SimpanPersetujuanGmPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Pemohon"));
         btn_SimpanPersetujuanGmPemohon.setVisible(save_gmuser);
@@ -312,13 +308,20 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             sp3.setVisible(false);
             sp4.setVisible(false);
             sp5.setVisible(false);
+        }
+        boolean save_amdukophar = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon"));
+        btn_SimpanPersetujuanAsman.setVisible(save_amdukophar);
+        if (save_amdukophar == true) {
+            radio_high.setDisabled(false);
+            radio_normal.setDisabled(false);
+            radio_major.setDisabled(false);
+            radio_minor.setDisabled(false);
+        }else{
             radio_high.setDisabled(true);
             radio_normal.setDisabled(true);
             radio_major.setDisabled(true);
             radio_minor.setDisabled(true);
         }
-        boolean save_amdukophar = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon"));
-        btn_SimpanPersetujuanAsman.setVisible(save_amdukophar);
         if (role.equalsIgnoreCase(LoginConstants.AMDUK)) {
             if (tPermohonan.getUpdated_manager() != null) {
                 Timestamp ts = tPermohonan.getUpdated_manager();
@@ -381,10 +384,6 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             sp3.setVisible(true);
             sp4.setVisible(false);
             sp5.setVisible(false);
-            radio_high.setDisabled(false);
-            radio_normal.setDisabled(false);
-            radio_major.setDisabled(false);
-            radio_minor.setDisabled(false);
         }
         boolean save_mdukophar = (workspace.isAllowed("btn_SimpanPersetujuanManager")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Asman Dukophar"));
         btn_SimpanPersetujuanManager.setVisible(save_mdukophar);
@@ -445,13 +444,10 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             sp3.setVisible(false);
             sp4.setVisible(true);
             sp5.setVisible(false);
-            radio_high.setDisabled(true);
-            radio_normal.setDisabled(true);
-            radio_major.setDisabled(true);
-            radio_minor.setDisabled(true);
         }
         boolean save_gmdukophar = (workspace.isAllowed("btn_SimpanPersetujuanGm")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) && (tVerifikasi.getDampak().equals("MAJOR"));
         btn_SimpanPersetujuanGm.setVisible(save_gmdukophar);
+
         if (role.equalsIgnoreCase(LoginConstants.GMDUK)) {
             if (tPermohonan.getUpdated_manager() != null) {
                 Timestamp ts = tPermohonan.getUpdated_manager();
@@ -509,10 +505,6 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             sp3.setVisible(false);
             sp4.setVisible(false);
             sp5.setVisible(true);
-            radio_high.setDisabled(true);
-            radio_normal.setDisabled(true);
-            radio_major.setDisabled(true);
-            radio_minor.setDisabled(true);
         }
     }
 
