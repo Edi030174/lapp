@@ -96,8 +96,6 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     protected Radiogroup radiogroup_StatusPermohonanGm;
     protected Radio radio_DisetujuiGM;
     protected Radio radio_DitolakGM;
-    protected Vbox vbox_prioritas;
-    protected Vbox vbox_dampak;
 
     private transient String oldVar_dateboxTanggal1;
     private transient String oldVar_comboboxNikPelaksana;
@@ -106,8 +104,6 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     private transient boolean oldVar_radioDitolak;
     private transient String oldVar_fckCatatanAsman;
     private transient Window window_DaftarPermohonan;
-
-
     private transient String oldVar_checkbox2;
     private transient boolean oldVar_radioDisetujui2;
     private transient boolean oldVar_radioDitolak2;
@@ -374,6 +370,10 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             sp3.setVisible(true);
             sp4.setVisible(false);
             sp5.setVisible(false);
+            radio_high.setDisabled(false);
+            radio_normal.setDisabled(false);
+            radio_major.setDisabled(false);
+            radio_minor.setDisabled(false);
         }
         boolean save_mdukophar = (workspace.isAllowed("btn_SimpanPersetujuanManager")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Asman Dukophar"));
         btn_SimpanPersetujuanManager.setVisible(save_mdukophar);
@@ -677,22 +677,15 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doWriteComponentsToBean3(TPermohonan tPermohonan, TVerifikasi tVerifikasi, TPelaksanaan tPelaksanaan) {
         Radio dampak = radiogroup_Dampak.getSelectedItem();
-        tVerifikasi.setDampak(dampak.getValue());
+        tPermohonan.setDampak(dampak.getValue());
+        Radio prioritas = radiogroup_Prioritas.getSelectedItem();
+        tPermohonan.setUrgensi(prioritas.getValue());
 
         Listitem itempelaksana = listbox_NamaPelaksana.getSelectedItem();
         ListModelList lml = (ListModelList) listbox_NamaPelaksana.getListModel();
         VHrEmployeePelaksana vHrEmployeePelaksana = (VHrEmployeePelaksana) lml.get(itempelaksana.getIndex());
         if (!vHrEmployeePelaksana.getEmployee_name().equalsIgnoreCase("Silakan pilih")) {
             tVerifikasi.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
-        }
-        if (!vHrEmployeePelaksana.getEmployee_no().equalsIgnoreCase("555")) {
-            tVerifikasi.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
-        }
-
-        ListModelList lml3 = (ListModelList) listbox_NamaPelaksana.getListModel();
-//        VHrEmployeePelaksana vHrEmployeePelaksana = (VHrEmployeePelaksana) lml3.get(itempelaksana.getIndex());
-        if (!vHrEmployeePelaksana.getEmployee_name().equalsIgnoreCase("Silakan pilih")) {
-//            tVerifikasi.setNama_pelaksana(vHrEmployeePelaksana.getEmployee_name());
         }
         if (!vHrEmployeePelaksana.getEmployee_no().equalsIgnoreCase("555")) {
             tVerifikasi.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());

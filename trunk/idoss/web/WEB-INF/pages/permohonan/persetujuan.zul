@@ -74,7 +74,7 @@
             </vbox>
         </hbox>
         <hbox>
-            <vbox id="vbox_prioritas">
+            <vbox>
                 <label value="Prioritas :"/>
                 <radiogroup id="radiogroup_Prioritas">
                     <hbox>
@@ -84,7 +84,7 @@
                 </radiogroup>
             </vbox>
             <space width="80px"/>
-            <vbox id="vbox_dampak">
+            <vbox>
                 <label value="Dampak :"/>
                 <radiogroup id="radiogroup_Dampak">
                     <hbox>
