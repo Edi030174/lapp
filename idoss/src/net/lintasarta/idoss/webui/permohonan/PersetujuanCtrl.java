@@ -11,7 +11,6 @@ import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PermohonanService;
 import net.lintasarta.permohonan.service.VerifikasiService;
-import net.lintasarta.security.util.LoginConstants;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
@@ -191,13 +190,19 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         boolean save_muser = (workspace.isAllowed("btn_SimpanPersetujuanManagerPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Persetujuan Manager"));
         if (workspace.isAllowed("groupbox_ManagerPemohon") == true) {
             btn_SimpanPersetujuanManagerPemohon.setVisible(save_muser);
-            Timestamp ts = tPermohonan.getUpdated_manager();
-            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-            label_tgl1.setValue(tgl);
-            label_by1.setValue(tPermohonan.getNama_manager());
+            if (tPermohonan.getUpdated_manager() != null) {
+                Timestamp ts = tPermohonan.getUpdated_manager();
+                String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+                label_tgl1.setValue("Tanggal persetujuan: "+tgl);
+            }
+            if (tPermohonan.getNama_manager() != null) {
+                label_by1.setValue("Oleh: "+tPermohonan.getNama_manager());
+            }
             radiogroup_StatusPermohonanManagerPemohon.setVisible(true);
-            radio_DisetujuiMPemohon.setDisabled(false);
-            radio_DitolakMPemohon.setDisabled(false);
+            radiogroup_StatusPermohonanGmPemohon.setVisible(false);
+            radiogroup_StatusPermohonanAsman.setVisible(false);
+            radiogroup_StatusPermohonanManager.setVisible(false);
+            radiogroup_StatusPermohonanGm.setVisible(false);
             textbox_DetailPermohonan.setReadonly(true);
             textbox_muser.setReadonly(false);
             textbox_gmuser.setReadonly(true);
@@ -213,15 +218,19 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         boolean save_gmuser = (workspace.isAllowed("btn_SimpanPersetujuanGmPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Pemohon"));
         if (workspace.isAllowed("groupbox_GmPemohon") == true) {
             btn_SimpanPersetujuanGmPemohon.setVisible(save_gmuser);
-            if (tPermohonan.getUpdated_manager() != null) {
-                Timestamp ts = tPermohonan.getUpdated_manager();
+            if (tPermohonan.getUpdated_gm() != null) {
+                Timestamp ts = tPermohonan.getUpdated_gm();
                 String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-                label_tgl1.setValue(tgl);
+                label_tgl2.setValue(tgl);
             }
-            if (tPermohonan.getNama_manager() != null) {
-                label_by1.setValue(tPermohonan.getNama_manager());
+            if (tPermohonan.getNama_gm() != null) {
+                label_by2.setValue(tPermohonan.getNama_gm());
             }
             radiogroup_StatusPermohonanManagerPemohon.setVisible(false);
+            radiogroup_StatusPermohonanGmPemohon.setVisible(true);
+            radiogroup_StatusPermohonanAsman.setVisible(false);
+            radiogroup_StatusPermohonanManager.setVisible(false);
+            radiogroup_StatusPermohonanGm.setVisible(false);
             radio_DisetujuiMPemohon.setDisabled(true);
             radio_DitolakMPemohon.setDisabled(true);
             textbox_DetailPermohonan.setReadonly(true);
@@ -245,7 +254,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         if (workspace.isAllowed("groupbox_GmDukophar") == true) {
             btn_SimpanPersetujuanGm.setVisible(save_gmdukophar);
             if (tPermohonan.getUpdated_gm() != null) {
-                Timestamp ts = tPermohonan.getUpdated_gm();
+                Timestamp ts = tVerifikasi.getUpdated_gm();
                 String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
                 label_tgl5.setValue(tgl);
             }
@@ -254,6 +263,9 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             }
             radiogroup_StatusPermohonanManagerPemohon.setVisible(false);
             radiogroup_StatusPermohonanGmPemohon.setVisible(false);
+            radiogroup_StatusPermohonanAsman.setVisible(false);
+            radiogroup_StatusPermohonanManager.setVisible(false);
+            radiogroup_StatusPermohonanGm.setVisible(true);
             textbox_DetailPermohonan.setReadonly(true);
             textbox_muser.setReadonly(true);
             textbox_gmuser.setReadonly(true);
@@ -267,7 +279,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             sp5.setVisible(true);
         }
 
-        String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
+        /*String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
         String role = getUserWorkspace().getUserSession().getEmployeeRole();
 
         if (role.equalsIgnoreCase(LoginConstants.INPUT_PERMOHONAN)) {
@@ -347,7 +359,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             textbox_amdukophar.setReadonly(true);
             textbox_mdukophar.setReadonly(true);
             textbox_gmdukophar.setReadonly(false);
-        }
+        }*/
 //        boolean np = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && ((tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) || (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Dukophar")));
 //        listbox_NamaPelaksana.setVisible(np);
     }

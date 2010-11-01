@@ -104,9 +104,7 @@
             <caption label="catatan Manager" style="font-weight:normal"/>
             <hbox>
                 <vbox>
-                    <label value="tanggal persetujuan"/>
                     <label id="label_tgl1"/>
-                    <label value="Oleh:"/>
                     <label id="label_by1"/>
                     <hbox>
                         <label id="sp1" value="Status Permohonan : "/>
