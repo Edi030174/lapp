@@ -297,10 +297,10 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        TVerifikasi tVerifikasi = null;
-        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
-            tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
-        }
+        TVerifikasi tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
+//        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
+//            tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
+//        }
         HashMap<String, Object> map = new HashMap<String, Object>();
         if (tVerifikasi != null) {
             map.put("tVerifikasi", tVerifikasi);

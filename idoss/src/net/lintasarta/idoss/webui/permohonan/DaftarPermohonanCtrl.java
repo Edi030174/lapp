@@ -35,7 +35,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
     protected Paging paging_DaftarPermohonan;
     protected Listbox listbox_DaftarPermohonan;
     protected Listheader listheader_Nomor;
-    protected Listheader listheader_Tanggal; 
+    protected Listheader listheader_Tanggal;
     protected Listheader listheader_Dampak;
     protected Listheader listheader_Tipe;
     protected Listheader listheader_StatusPersetujuan;
@@ -47,7 +47,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
     protected Checkbox checkbox_readonly;
     protected Checkbox checkbox_readwrite;
     protected Checkbox checkbox_aplikasi;
-  
+
     protected Textbox textbox_cariPermohonanId;
 
 //    protected Listheader listheader_Pimbag;
@@ -285,11 +285,11 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 
             } else if (listbox_Cari.getValue().equalsIgnoreCase("Status")) {
                 CollectionUtils.filter(searchResult, new StatusPermohonan(textbox_cariPermohonanId.getValue()));
-                
-             } else if (listbox_Cari.getValue().equalsIgnoreCase("Dampak")) {
+
+            } else if (listbox_Cari.getValue().equalsIgnoreCase("Dampak")) {
                 CollectionUtils.filter(searchResult, new DampakPermohonan(textbox_cariPermohonanId.getValue()));
-             }
-            
+            }
+
             pagedListHolder = new PagedListHolder<TPermohonan>(searchResult);
             pagedListHolder.setPageSize(getCountRows());
             getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonan, paging_DaftarPermohonan);
@@ -356,12 +356,8 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
             logger.debug("--> " + event.toString());
         }
         textbox_cariPermohonanId.setValue("");
-
-        List<TPermohonan> tPermohonans = getPermohonanService().getAllTPermohonan();
-        PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>(tPermohonans);
-        pagedListHolder.setPageSize(getCountRows());
-
-        getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonan, paging_DaftarPermohonan);
+        Events.postEvent("onCreate", window_DaftarPermohonan, event);
+        window_DaftarPermohonan.invalidate();
 
     }
 

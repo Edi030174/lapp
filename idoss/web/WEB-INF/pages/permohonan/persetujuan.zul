@@ -74,7 +74,7 @@
             </vbox>
         </hbox>
         <hbox>
-            <vbox>
+            <vbox id="vbox_prioritas">
                 <label value="Prioritas :"/>
                 <radiogroup id="radiogroup_Prioritas">
                     <hbox>
@@ -84,7 +84,7 @@
                 </radiogroup>
             </vbox>
             <space width="80px"/>
-            <vbox>
+            <vbox id="vbox_dampak">
                 <label value="Dampak :"/>
                 <radiogroup id="radiogroup_Dampak">
                     <hbox>
@@ -104,15 +104,17 @@
             <caption label="catatan Manager" style="font-weight:normal"/>
             <hbox>
                 <vbox>
-                    <hbox>
-                        <label id="label_tgl1"/>
-                    </hbox>
+                    <label value="tanggal persetujuan"/>
+                    <label id="label_tgl1"/>
+                    <label value="Oleh:"/>
+                    <label id="label_by1"/>
                     <hbox>
                         <label value="Status Permohonan : "/>
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanManagerPemohon">
                         <hbox>
-                            <radio id="radio_DisetujuiMPemohon" label="disetujui" value="Disetujui Manager Pemohon" selected="true"/>
+                            <radio id="radio_DisetujuiMPemohon" label="disetujui" value="Disetujui Manager Pemohon"
+                                   selected="true"/>
                             <radio id="radio_DitolakMPemohon" label="ditolak" value="Ditolak Manager Pemohon"/>
                         </hbox>
                     </radiogroup>
@@ -134,15 +136,17 @@
             <caption label="catatan GM" style="font-weight:normal"/>
             <hbox>
                 <vbox>
-                    <hbox>
-                        <label id="label_tgl2"/>
-                    </hbox>
+                    <label value="tanggal persetujuan"/>
+                    <label id="label_tgl2"/>
+                    <label value="Oleh:"/>
+                    <label id="label_by2"/>
                     <hbox>
                         <label value="Status Permohonan : "/>
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanGmPemohon">
                         <hbox>
-                            <radio id="radio_DisetujuiGmPemohon" label="disetujui" value="Disetujui GM Pemohon" selected="true"/>
+                            <radio id="radio_DisetujuiGmPemohon" label="disetujui" value="Disetujui GM Pemohon"
+                                   selected="true"/>
                             <radio id="radio_DitolakGmPemohon" label="ditolak" value="Ditolak GM Pemohon"/>
                         </hbox>
                     </radiogroup>
@@ -164,15 +168,17 @@
             <caption label="catatan AsMan" style="font-weight:normal"/>
             <hbox>
                 <vbox>
-                    <hbox>
-                        <label id="label_tgl3"/>
-                    </hbox>
+                    <label value="tanggal persetujuan"/>
+                    <label id="label_tgl3"/>
+                    <label value="Oleh:"/>
+                    <label id="label_by3"/>
                     <hbox>
                         <label value="Status Permohonan : "/>
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanAsman">
                         <hbox>
-                            <radio id="radio_DisetujuiAM" label="disetujui" value="Disetujui Asman Dukophar" selected="true"/>
+                            <radio id="radio_DisetujuiAM" label="disetujui" value="Disetujui Asman Dukophar"
+                                   selected="true"/>
                             <radio id="radio_DitolakAM" label="ditolak" value="Ditolak Asman Dukophar"/>
                         </hbox>
                     </radiogroup>
@@ -195,15 +201,17 @@
             <caption label="catatan Manager" style="font-weight:normal"/>
             <hbox>
                 <vbox>
-                    <hbox>
-                        <label id="label_tgl4"/>
-                    </hbox>
+                    <label value="tanggal persetujuan"/>
+                    <label id="label_tgl4"/>
+                    <label value="Oleh:"/>
+                    <label id="label_by4"/>
                     <hbox>
                         <label value="Status Permohonan : "/>
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanManager">
                         <hbox>
-                            <radio id="radio_DisetujuiM" label="disetujui" value="Disetujui Manager Dukophar" selected="true"/>
+                            <radio id="radio_DisetujuiM" label="disetujui" value="Disetujui Manager Dukophar"
+                                   selected="true"/>
                             <radio id="radio_DitolakM" label="ditolak" value="Ditolak Manager Dukophar"/>
                         </hbox>
                     </radiogroup>
@@ -223,9 +231,10 @@
             <caption label="catatan GM" style="font-weight:normal"/>
             <hbox>
                 <vbox>
-                    <hbox>
-                        <label id="label_tgl5"/>
-                    </hbox>
+                    <label value="tanggal persetujuan"/>
+                    <label id="label_tgl5"/>
+                    <label value="Oleh:"/>
+                    <label id="label_by5"/>
                     <label value="Status Permohonan : "/>
                     <radiogroup id="radiogroup_StatusPermohonanGm">
                         <hbox>
