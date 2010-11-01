@@ -109,7 +109,7 @@
                     <label value="Oleh:"/>
                     <label id="label_by1"/>
                     <hbox>
-                        <label value="Status Permohonan : "/>
+                        <label id="sp1" value="Status Permohonan : "/>
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanManagerPemohon">
                         <hbox>
@@ -118,8 +118,6 @@
                             <radio id="radio_DitolakMPemohon" label="ditolak" value="Ditolak Manager Pemohon"/>
                         </hbox>
                     </radiogroup>
-                    <label value="Prioritas : "/>
-                    <checkbox id="checkbox_Cepat" label="Perlu Penanganan Cepat"/>
                 </vbox>
                 <space width="40px"/>
                 <vbox>
@@ -141,7 +139,7 @@
                     <label value="Oleh:"/>
                     <label id="label_by2"/>
                     <hbox>
-                        <label value="Status Permohonan : "/>
+                        <label id="sp2" value="Status Permohonan : "/>
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanGmPemohon">
                         <hbox>
@@ -165,7 +163,7 @@
             </hbox>
         </groupbox>
         <groupbox mold="3d" id="groupbox_AM">
-            <caption label="catatan AsMan" style="font-weight:normal"/>
+            <caption label="catatan AsMan Dukophar" style="font-weight:normal"/>
             <hbox>
                 <vbox>
                     <label value="tanggal persetujuan"/>
@@ -173,7 +171,7 @@
                     <label value="Oleh:"/>
                     <label id="label_by3"/>
                     <hbox>
-                        <label value="Status Permohonan : "/>
+                        <label id="sp3" value="Status Permohonan : "/>
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanAsman">
                         <hbox>
@@ -198,7 +196,7 @@
             </hbox>
         </groupbox>
         <groupbox mold="3d" id="groupbox_Manager">
-            <caption label="catatan Manager" style="font-weight:normal"/>
+            <caption label="catatan Manager Dukophar" style="font-weight:normal"/>
             <hbox>
                 <vbox>
                     <label value="tanggal persetujuan"/>
@@ -206,7 +204,7 @@
                     <label value="Oleh:"/>
                     <label id="label_by4"/>
                     <hbox>
-                        <label value="Status Permohonan : "/>
+                        <label id="sp4" value="Status Permohonan : "/>
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanManager">
                         <hbox>
@@ -228,14 +226,14 @@
             </hbox>
         </groupbox>
         <groupbox mold="3d" id="groupbox_Gm">
-            <caption label="catatan GM" style="font-weight:normal"/>
+            <caption label="catatan GM Dukophar" style="font-weight:normal"/>
             <hbox>
                 <vbox>
                     <label value="tanggal persetujuan"/>
                     <label id="label_tgl5"/>
                     <label value="Oleh:"/>
                     <label id="label_by5"/>
-                    <label value="Status Permohonan : "/>
+                    <label id="sp5" value="Status Permohonan : "/>
                     <radiogroup id="radiogroup_StatusPermohonanGm">
                         <hbox>
                             <radio id="radio_DisetujuiGM" label="disetujui" value="Disetujui GM Dukophar"
