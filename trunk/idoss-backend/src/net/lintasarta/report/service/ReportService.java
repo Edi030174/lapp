@@ -1,12 +1,6 @@
 package net.lintasarta.report.service;
 
-import net.lintasarta.report.permohonan.model.ReportAduan;
-import net.lintasarta.report.permohonan.model.ReportBelumSelesai;
-import net.lintasarta.report.permohonan.model.ReportRekapAduan;
-import net.lintasarta.report.permohonan.model.ReportSudahSelesai;
 import net.sf.jasperreports.engine.JRDataSource;
-
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,6 +12,6 @@ public interface ReportService {
     JRDataSource getAduan(String bulan, String tahun);
     JRDataSource getBelumSelesai(String bulan, String tahun);
     JRDataSource getSudahSelesai(String bulan, String tahun);
-    JRDataSource getRekapAduan(String tahun);
+    JRDataSource getRekapAduan(String tahun, String NamaPemohon, String NikPemohon, String NamaManager, String NikManager, String NamaGm, String NikGm);
     JRDataSource getRekapPermohonan(String bulan, String tahun);
 }

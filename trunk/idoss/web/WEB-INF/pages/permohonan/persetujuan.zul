@@ -67,7 +67,7 @@
                 <label width="10px" value="NIK :"/>
             </vbox>
             <vbox>
-                <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" readonly="true"
+                <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" disabled="true"
                          width="150px" style="color: #000000 !important;"/>
                 <textbox id="textbox_NikPemohon"
                          width="60px" readonly="true" style="color: black !important;"/>

@@ -124,6 +124,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         TPermohonan tPermohonan = new TPermohonan();
         String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
         String role = getUserWorkspace().getUserSession().getEmployeeRole();
+        String pelaksana = getUserWorkspace().getUserSession().getEmployeeNo();
 
         if (role.equalsIgnoreCase(LoginConstants.INPUT_PERMOHONAN)) {
             tPermohonan.setNik_pemohon(employeeNo);
@@ -146,6 +147,8 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
             tPermohonan.setDampak("MAJOR");
             tPermohonan.setStatus_track_permohonan("Disetujui Manager Dukophar");
             tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonanAndDampak(tPermohonan);
+        }else if(role.equalsIgnoreCase(LoginConstants.PELAKSANA_PERMOHONAN)){
+            tPermohonans = getPermohonanService().getTPermohonanByNikPelaksana(pelaksana);
         }
 
         PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>(tPermohonans);

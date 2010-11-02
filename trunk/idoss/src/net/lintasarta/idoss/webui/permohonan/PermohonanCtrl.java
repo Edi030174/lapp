@@ -190,15 +190,15 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         tabPanel_Pelaksanaan.setVisible(workspace.isAllowed("tab_Pelaksanaan"));
 
         if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("muser")) {
-            tab_Pelaksanaan.setLabel("Persetujuan Manager");
+            tab_Persetujuan.setLabel("Persetujuan Manager");
         } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("gmuser")) {
-            tab_Pelaksanaan.setLabel("Persetujuan GM");
+            tab_Persetujuan.setLabel("Persetujuan GM");
         } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("amduk")) {
-            tab_Pelaksanaan.setLabel("Persetujuan Asisten Manager Dukophar");
+            tab_Persetujuan.setLabel("Persetujuan Asisten Manager Dukophar");
         } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("mduk")) {
-            tab_Pelaksanaan.setLabel("Persetujuan Manager Dukophar");
+            tab_Persetujuan.setLabel("Persetujuan Manager Dukophar");
         } else if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("gmduk")) {
-            tab_Pelaksanaan.setLabel("Persetujuan GM Dukophar");
+            tab_Persetujuan.setLabel("Persetujuan GM Dukophar");
         }
     }
 

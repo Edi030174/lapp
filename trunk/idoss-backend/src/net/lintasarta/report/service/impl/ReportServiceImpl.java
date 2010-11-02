@@ -66,7 +66,7 @@ public class ReportServiceImpl implements ReportService {
         ReportAduan reportAduan = new ReportAduan();
         reportAduan.setBulan(bulan);
         reportAduan.setTahun(tahun);
-        List<ReportAduan> reportAduans =  reportAduanDAO.getReportAduan(reportAduan);
+        List<ReportAduan> reportAduans = reportAduanDAO.getReportAduan(reportAduan);
         return new JRBeanCollectionDataSource(reportAduans);
     }
 
@@ -74,7 +74,7 @@ public class ReportServiceImpl implements ReportService {
         ReportBelumSelesai reportBelumSelesai = new ReportBelumSelesai();
         reportBelumSelesai.setBulan(bulan);
         reportBelumSelesai.setTahun(tahun);
-        List<ReportBelumSelesai> reportBelumSelesais =  reportBelumSelesaiDAO.getReportBelumSelesai(reportBelumSelesai);
+        List<ReportBelumSelesai> reportBelumSelesais = reportBelumSelesaiDAO.getReportBelumSelesai(reportBelumSelesai);
         return new JRBeanCollectionDataSource(reportBelumSelesais);
     }
 
@@ -86,7 +86,7 @@ public class ReportServiceImpl implements ReportService {
         return new JRBeanCollectionDataSource(reportSudahSelesais);
     }
 
-    public JRDataSource getRekapAduan(String tahun) {
+    public JRDataSource getRekapAduan(String tahun, String NamaPemohon, String NikPemohon, String NamaManager, String NikManager, String NamaGm, String NikGm) {
         List<ReportRekapAduan> reportRekapAduans = reportRekapAduanDAO.getReportRekapAduan(tahun);
         return new JRBeanCollectionDataSource(reportRekapAduans);
     }

@@ -316,7 +316,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             radio_normal.setDisabled(false);
             radio_major.setDisabled(false);
             radio_minor.setDisabled(false);
-        }else{
+        } else {
             radio_high.setDisabled(true);
             radio_normal.setDisabled(true);
             radio_major.setDisabled(true);
@@ -520,8 +520,8 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
 //        textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
         textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
-//        datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
-        datebox_Tanggal.setValue(tVerifikasi.getUpdated_date());
+        datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
+//        datebox_Tanggal.setValue(tVerifikasi.getUpdated_date());
 
         textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
         if (tPermohonan.getUrgensi().equals("H")) {
@@ -580,10 +580,20 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        doSave();
-        window_Permohonan.onClose();
-        Events.postEvent("onCreate", window_DaftarPermohonan, event);
-        window_DaftarPermohonan.invalidate();
+        if (ValidateMUser()) {
+            doSave();
+            window_Permohonan.onClose();
+            Events.postEvent("onCreate", window_DaftarPermohonan, event);
+            window_DaftarPermohonan.invalidate();
+        }
+    }
+
+    private boolean ValidateMUser() throws InterruptedException {
+        if (textbox_muser.getValue().length() < 1) {
+            Messagebox.show("Silakan isi Catatan Manager...");
+            return false;
+        }
+        return true;
     }
 
     private void doSave() throws Exception {
@@ -615,8 +625,18 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        doSimpan();
-        window_Permohonan.onClose();
+        if (ValidateGMUser()) {
+            doSimpan();
+            window_Permohonan.onClose();
+        }
+    }
+
+    private boolean ValidateGMUser() throws InterruptedException {
+        if (textbox_gmuser.getValue().length() < 1) {
+            Messagebox.show("Silakan isi Catatan GM...");
+            return false;
+        }
+        return true;
     }
 
     private void doSimpan() throws Exception {
@@ -653,6 +673,10 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private boolean isValidatedFlow() throws InterruptedException {
+        if (textbox_amdukophar.getValue().length() < 1) {
+            Messagebox.show("Silakan isi Catatan Assisten Manager...");
+            return false;
+        }
         if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
             Messagebox.show("Silakan pilih nama pelaksana");
             return false;
@@ -712,8 +736,18 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        doSimpanManagerDukophar();
-        window_Permohonan.onClose();
+        if (ValidateMDukophar()) {
+            doSimpanManagerDukophar();
+            window_Permohonan.onClose();
+        }
+    }
+
+    private boolean ValidateMDukophar() throws InterruptedException {
+        if (textbox_mdukophar.getValue().length() < 1) {
+            Messagebox.show("Silakan isi Catatan Manager...");
+            return false;
+        }
+        return true;
     }
 
     private void doSimpanManagerDukophar() throws Exception {
@@ -750,8 +784,18 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        doSimpanGMDukophar();
-        window_Permohonan.onClose();
+        if (ValidateGMDukophar()) {
+            doSimpanGMDukophar();
+            window_Permohonan.onClose();
+        }
+    }
+
+    private boolean ValidateGMDukophar() throws InterruptedException {
+        if (textbox_mdukophar.getValue().length() < 1) {
+            Messagebox.show("Silakan isi Catatan General Manager...");
+            return false;
+        }
+        return true;
     }
 
     private void doSimpanGMDukophar() throws Exception {
