@@ -11,15 +11,14 @@ import net.lintasarta.permohonan.service.PermohonanService;
 import net.lintasarta.permohonan.service.VerifikasiService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
-import org.zkforge.fckez.FCKeditor;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.*;
 import java.util.Calendar;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -41,15 +40,13 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     protected Radio pending;
     protected Datebox datebox_TglPermohonan;
     protected Datebox datebox_Pending;
-    protected FCKeditor fckCatatan_pelaksana;
-    protected Checkbox checkbox_Rfs;
+    protected Textbox textbox_pelaksana;
 
     private transient String oldVar_selesai;
     private transient String oldVar_tunda;
     private transient String oldVar_mulai;
     private transient String oldVar_dateboxTglPermohonan;
     private transient String oldVar_dateboxPending;
-    private transient boolean oldVar_checkboxRfs;
 
     protected Listbox listbox_DaftarPermohonan;
     protected Button btnSimpan_Pelaksanaan;
@@ -95,17 +92,17 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             settPelaksanaan(null);
         }
-        if (args.containsKey("pelaksanaanCtrl")) {
-            pelaksanaanCtrl = (PelaksanaanCtrl) args.get("pelaksanaanCtrl");
-        } else {
-            pelaksanaanCtrl = null;
-        }
-        if (args.containsKey("listbox_DaftarPermohonan")) {
-            listbox_DaftarPermohonan = (Listbox) args.get("listbox_DaftarPermohonan");
-        } else {
-            listbox_DaftarPermohonan = null;
-        }
-        doCheckRights(gettPermohonan(), gettVerifikasi());
+//        if (args.containsKey("pelaksanaanCtrl")) {
+//            pelaksanaanCtrl = (PelaksanaanCtrl) args.get("pelaksanaanCtrl");
+//        } else {
+//            pelaksanaanCtrl = null;
+//        }
+//        if (args.containsKey("listbox_DaftarPermohonan")) {
+//            listbox_DaftarPermohonan = (Listbox) args.get("listbox_DaftarPermohonan");
+//        } else {
+//            listbox_DaftarPermohonan = null;
+//        }
+//        doCheckRights(gettPermohonan(), gettVerifikasi());
         doShowDialog(gettPelaksanaan(), gettPermohonan(), gettVerifikasi());
     }
 
@@ -126,21 +123,18 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteBeanToComponents(TPelaksanaan tPelaksanaan) throws Exception {
-        if (tPelaksanaan.getStatus_perubahan().equals("OPEN")) {
-            radiogroup_StatusPerubahan.setSelectedItem(open);
-        } else if (tPelaksanaan.getStatus_perubahan().equals("INPROGRESS")) {
-            radiogroup_StatusPerubahan.setSelectedItem(inprogress);
-            checkbox_Rfs.setChecked(true);
-        } else if (tPelaksanaan.getStatus_perubahan().equals("CLOSED")) {
-            radiogroup_StatusPerubahan.setSelectedItem(closed);
-            checkbox_Rfs.setChecked(true);
-        } else if (tPelaksanaan.getStatus_perubahan().equals("PENDING")) {
-            radiogroup_StatusPerubahan.setSelectedItem(pending);
-            checkbox_Rfs.setChecked(true);
-        }
-        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
-        datebox_TglPermohonan.setValue(ts);
-        fckCatatan_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
+//        if (tPelaksanaan.getStatus_perubahan().equals("OPEN")) {
+//            radiogroup_StatusPerubahan.setSelectedItem(open);
+//        } else if (tPelaksanaan.getStatus_perubahan().equals("INPROGRESS")) {
+//            radiogroup_StatusPerubahan.setSelectedItem(inprogress);
+//        } else if (tPelaksanaan.getStatus_perubahan().equals("CLOSED")) {
+//            radiogroup_StatusPerubahan.setSelectedItem(closed);
+//        } else if (tPelaksanaan.getStatus_perubahan().equals("PENDING")) {
+//            radiogroup_StatusPerubahan.setSelectedItem(pending);
+//        }
+//        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
+//        datebox_TglPermohonan.setValue(ts);
+//        textbox_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
     }
 
     public void onClick$btnBatal(Event event) throws Exception {
@@ -172,32 +166,6 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
-        doStoreInitValues();
-
-    }
-
-    public void onCheck$inprogress(Event event){
-        if (logger.isDebugEnabled()) {
-			logger.debug("--> " + event.toString());
-		}
-        checkbox_Rfs.setChecked(true);
-    }
-    public void onCheck$closed(Event event){
-        if (logger.isDebugEnabled()) {
-			logger.debug("--> " + event.toString());
-		}
-        checkbox_Rfs.setChecked(true);
-    }
-    public void onCheck$pending(Event event){
-        if (logger.isDebugEnabled()) {
-			logger.debug("--> " + event.toString());
-		}
-        checkbox_Rfs.setChecked(true);
-    }
-
-    private void doStoreInitValues() {
-
-
     }
 
     private void doWriteComponentsToBean(TPelaksanaan tPelaksanaan, TPermohonan tPermohonan) {
@@ -208,15 +176,10 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
             tPelaksanaan.setTgl_pending(new Timestamp(datebox_Pending.getValue().getTime()));
         }
         tPelaksanaan.setTgl_permohonan(new Timestamp(datebox_TglPermohonan.getValue().getTime()));
-        tPelaksanaan.setCatatan_pelaksana(fckCatatan_pelaksana.getValue());
+        tPelaksanaan.setCatatan_pelaksana(textbox_pelaksana.getValue());
         tPelaksanaan.setNama_pelaksana(getUserWorkspace().getUserSession().getEmployeeName());
         tPelaksanaan.setId_pelaksana(getUserWorkspace().getUserSession().getEmployeeNo());
 
-//        if (checkbox_Rfs.isChecked()) {
-//            tPelaksanaan.setRfs("1");
-//        } else if (checkbox_Rfs.isDisabled()) {
-//            tPelaksanaan.setRfs("0");
-//        }
         tPelaksanaan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         tPelaksanaan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
         Timestamp now = new Timestamp(Calendar.getInstance().getTimeInMillis());

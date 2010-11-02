@@ -14,6 +14,7 @@ public interface TPermohonanDAO {
     int getGeneratedID();
     List<TPermohonan> getAllTPermohonan();
     TPermohonan getTPermohonanByTIdossPermohonanId(String t_idoss_permohonan_id);
+    List<TPermohonan> getTPermohonanByNikPelaksana(String nik_pelaksana);
     List<TPermohonan> getTPermohonanByNikPemohon(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByNikAsman(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByNikManager(TPermohonan tPermohonan);

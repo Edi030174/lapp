@@ -50,6 +50,44 @@
         from T_IDOSS_PERMOHONAN
         where T_IDOSS_PERMOHONAN_ID = #{t_idoss_permohonan_id}
     </select>
+    <select id="getTPermohonanByNikPelaksana" parameterType="tpermohonan" resultType="tpermohonan">
+        select  T_IDOSS_PERMOHONAN_ID,
+                TGL_PERMOHONAN,
+                DAMPAK,
+                URGENSI,
+                TARGET_MULAI_DIGUNAKAN,
+                DETAIL_PERMOHONAN,
+                LAMPIRAN,
+                STATUS_TRACK_PERMOHONAN,
+                NIK_PEMOHON,
+                NAMA_PEMOHON,
+                BAGIAN_PEMOHON,
+                NIK_ASMAN,
+                NAMA_ASMAN,
+                ASMAN,
+                NIK_MANAGER,
+                NAMA_MANAGER,
+                NIK_GM,
+                NAMA_GM,
+                TYPE_PERMOHONAN,
+                LAIN_LAIN_DESC,
+                UPDATED_PEMOHON,
+                UPDATED_DIVISI,
+                UPDATED_ASMAN,
+                UPDATED_MANAGER,
+                UPDATED_GM,
+                CREATED_DATE,
+                CREATED_USER,
+                UPDATED_DATE,
+                UPDATED_USER,
+                CATATAN_MANAGER,
+                CATATAN_GM,
+                GEN_ID_COL
+        from T_IDOSS_PERMOHONAN a, T_IDOSS_VERIFIKASI b
+        where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID
+            and NIK_PELAKSANA=#{nik_pelaksana, jdbcType=VARCHAR}
+
+    </select>
     <select id="getTPermohonanByNikPemohon" parameterType="tpermohonan" resultType="tpermohonan">
         select  T_IDOSS_PERMOHONAN_ID,
                 TGL_PERMOHONAN,
@@ -593,7 +631,7 @@
         select hr.get_pic(5,#{employeeNo}) from dual
     </select>
     <!--<select id="getManager" parameterType="string" resultType="tpermohonan">-->
-        <!--select * from table(cast(f_pipe_idoss_employee(#{employeeNo}) as pipe_idoss_employee))-->
+    <!--select * from table(cast(f_pipe_idoss_employee(#{employeeNo}) as pipe_idoss_employee))-->
     <!--</select>-->
 
     <select id="getTPermohonanByStatusAndNikManager" parameterType="tpermohonan" resultType="tpermohonan">

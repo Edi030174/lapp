@@ -112,8 +112,7 @@
                                         </vbox>
                                         <vbox>
                                             <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy"
-                                                     readonly="true" width="150px"
-                                                     style="color: #000000 !important;"/>
+                                                     disabled="true" width="150px" style="color: #000000 !important;"/>
                                             <textbox id="textbox_NikPemohon"
                                                      width="60px" readonly="true" style="color: black !important;"/>
                                             <space height="22px"></space>
@@ -170,7 +169,7 @@
                                                forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
                                                toolbarSet="Basic"/>
                                      -->
-                                     <label value="Deskripsi : "/>
+                                    <label value="Deskripsi : "/>
                                     <textbox id="fck_DetailPermohonan" rows="3" width="300px" readonly="true"/>
                                 </groupbox>
                             </tabpanel>

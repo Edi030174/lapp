@@ -60,8 +60,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     protected Checkbox checkbox_Cepat;
     protected Button button_Lampiran;
     protected Button button_Download;
-    //protected FCKeditor fck_DetailPermohonan;
-    protected Textbox fck_DetailPermohonan;
+    protected Textbox textbox_DetailPermohonan;
     protected Label label_viewAttachment;
 
     protected Tab tab_Verifikasi;
@@ -94,7 +93,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     private transient String oldVar_textboxLainlain;
     private transient String oldVar_cepat;
     private transient String oldVar_buttonLampiran;
-    private transient String oldVar_fckDetailPermohonan;
+    private transient String oldVar_textbox_DetailPermohonan;
 
     private transient TPermohonan tPermohonan;
     private transient TVerifikasi tVerifikasi;
@@ -247,8 +246,18 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        doSimpan();
-        window_Permohonan.onClose();
+        if (isValidatedFlow()) {
+            doSimpan();
+            window_Permohonan.onClose();
+        }
+    }
+
+    private boolean isValidatedFlow() throws InterruptedException {
+        if (textbox_DetailPermohonan.getValue().length() < 1) {
+            Messagebox.show("Silakan isi deskripsi");
+            return false;
+        }
+        return true;
     }
 
     public void onClick$btnBatal(Event event) throws Exception {
@@ -276,7 +285,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         int xlsx = file.indexOf("xlsx");
         int pdf = file.indexOf("pdf");
 
-        if (zip != -1 || rar != -1 || doc != -1 || docx != -1 || pdf != -1 ||  xls != -1 || xlsx != -1) {
+        if (zip != -1 || rar != -1 || doc != -1 || docx != -1 || pdf != -1 || xls != -1 || xlsx != -1) {
             setUploadMedia(media);
             label_viewAttachment.setValue(file);
         } else {
@@ -313,7 +322,6 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
             lml.set(lml.indexOf(tPermohonan), tPermohonan);
         }
         lml.sort(new TPermohonanComparator(), true);
-        doStoreInitValues();
     }
 
     private void doStoreInitValues() {
@@ -323,7 +331,6 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         oldVar_textboxBagianPemohon = textbox_BagianPemohon.getValue();
         oldVar_textboxNamaManager = textbox_NamaManager.getValue();
         oldVar_textboxNamaGm = textbox_NamaGm.getValue();
-        oldVar_tanggal = datebox_Tanggal.getValue();
         oldVar_textboxNikPemohon = textbox_NikPemohon.getValue();
         oldVar_textboxNikManager = textbox_NikManager.getValue();
         oldVar_textboxNikGm = textbox_NikGm.getValue();
@@ -334,7 +341,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         oldVar_lainlain = radio_lainlain.getValue();
         oldVar_textboxLainlain = textbox_Lainlain.getValue();
 //        oldVar_cepat = cepat.getValue();
-        oldVar_fckDetailPermohonan = fck_DetailPermohonan.getValue();
+        oldVar_textbox_DetailPermohonan = textbox_DetailPermohonan.getValue();
 
 
     }
@@ -344,17 +351,17 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
 //        tPermohonan.setT_idoss_permohonan_id(textbox_TIdossPermohonanId.getValue());
         tPermohonan.setNama_pemohon(textbox_NamaPemohon.getValue());
         tPermohonan.setBagian_pemohon(textbox_BagianPemohon.getValue());
-        tPermohonan.setTgl_permohonan(new Timestamp(datebox_Tanggal.getValue().getTime()));
+        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
+        tPermohonan.setTgl_permohonan(ts);
         tPermohonan.setNik_pemohon(textbox_NikPemohon.getValue());
         tPermohonan.setNama_manager(textbox_NamaManager.getValue());
         tPermohonan.setNik_manager(textbox_NikManager.getValue());
         tPermohonan.setNama_gm(textbox_NamaGm.getValue());
         tPermohonan.setNik_gm(textbox_NikGm.getValue());
-        tPermohonan.setDetail_permohonan(fck_DetailPermohonan.getValue());
+        tPermohonan.setDetail_permohonan(textbox_DetailPermohonan.getValue());
         if (getUploadMedia() != null) {
             tPermohonan.setUploadStream(getUploadMedia().getStreamData());
         }
-        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         tPermohonan.setTarget_mulai_digunakan(ts);
         String lain = textbox_Lainlain.getValue();
         tPermohonan.setLain_lain(lain);
@@ -368,7 +375,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         tPermohonan.setUpdated_pemohon(ts);
         if (checkbox_Cepat.isChecked()) {
             tPermohonan.setUrgensi("H");
-        } else{
+        } else {
             tPermohonan.setUrgensi("N");
         }
         Radio dampak = radiogroup_Dampak.getSelectedItem();

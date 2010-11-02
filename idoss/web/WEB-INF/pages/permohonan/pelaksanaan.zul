@@ -58,9 +58,10 @@
                     <space width="40px"/>
                     <vbox>
                         <label value="catatan : "/>
-                        <fckeditor id="fckCatatan_pelaksana" height="99%" width="484px"
+                        <textbox id="textbox_pelaksana" rows="3" width="300px"/>
+                        <!--<fckeditor id="fckCatatan_pelaksana" height="99%" width="484px"
                                    customConfigurationsPath="/js/fckeditor.js"
-                                   toolbarSet="Basic"/>
+                                   toolbarSet="Basic"/>-->
                     </vbox>
                 </hbox>
             </vbox>

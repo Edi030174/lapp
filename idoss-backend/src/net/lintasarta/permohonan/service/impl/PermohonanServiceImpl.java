@@ -210,22 +210,38 @@ public class PermohonanServiceImpl implements PermohonanService {
     }
 
     public List<TPermohonan> getTPermohonanByStatusAndNikManager(TPermohonan tPermohonan) {
-        return tPermohonanDAO.getTPermohonanByStatusAndNikManager(tPermohonan);
+        List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByStatusAndNikManager(tPermohonan);
+        java.util.Collections.sort(tPermohonans,new TPermohonanComparator());
+        return tPermohonans;
     }
     public List<TPermohonan> getTPermohonanByStatusAndNikGM(TPermohonan tPermohonan) {
-        return tPermohonanDAO.getTPermohonanByStatusAndNikGM(tPermohonan);
+        List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByStatusAndNikGM(tPermohonan);
+        java.util.Collections.sort(tPermohonans,new TPermohonanComparator());
+        return tPermohonans;
     }
     public List<TPermohonan> getTPermohonanByStatusTrackPermohonan(TPermohonan tPermohonan) {
-        return tPermohonanDAO.getTPermohonanByStatusTrackPermohonan(tPermohonan);
+        List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByStatusTrackPermohonan(tPermohonan);
+        java.util.Collections.sort(tPermohonans,new TPermohonanComparator());
+        return tPermohonans;
     }
     public List<TPermohonan> getTPermohonanByStatusTrackPermohonanAndDampak(TPermohonan tPermohonan) {
-        return tPermohonanDAO.getTPermohonanByStatusTrackPermohonanAndDampak(tPermohonan);
+        List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByStatusTrackPermohonanAndDampak(tPermohonan);
+        java.util.Collections.sort(tPermohonans,new TPermohonanComparator());
+        return tPermohonans;
     }
     public List<TPermohonan> getTPermohonanByNikPemohon(TPermohonan tPermohonan) {
-        return tPermohonanDAO.getTPermohonanByNikPemohon(tPermohonan);
+        List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByNikPemohon(tPermohonan);
+        java.util.Collections.sort(tPermohonans,new TPermohonanComparator());
+        return tPermohonans;
     }
 
     public List<VHrEmployee> getVHrEmployeeByEmployeeNo(String employeeNo) {
         return vHrEmployeeDAO.getVHrEmployeeByEmployeeNo(employeeNo);
+    }
+
+    public List<TPermohonan> getTPermohonanByNikPelaksana(String nik_pelaksana) {
+        List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByNikPelaksana(nik_pelaksana);
+        java.util.Collections.sort(tPermohonans,new TPermohonanComparator());
+        return tPermohonans;
     }
 }
