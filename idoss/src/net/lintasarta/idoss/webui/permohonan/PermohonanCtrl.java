@@ -61,7 +61,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     protected Textbox textbox_Lainlain;
     protected Checkbox checkbox_Cepat;
-    protected Button button_Download;
+    protected Toolbarbutton button_Download;
     protected Label filename;
     //protected FCKeditor fck_DetailPermohonan;
     protected Textbox fck_DetailPermohonan;
@@ -213,7 +213,8 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 //            int dot = fullPath.lastIndexOf(extensionSeparator);
             int sep = x.lastIndexOf("\\");
             String y = x.substring(sep + 1);
-            filename.setValue(y);
+            button_Download.setLabel(y);
+//            filename.setValue(y);
         } else {
             button_Download.setVisible(false);
         }

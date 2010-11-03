@@ -143,21 +143,22 @@
                                     <hbox>
                                         <hbox>
                                             <label value="Prioritas : " visible="false"/>
-                                            <checkbox id="checkbox_Cepat" label="Perlu Penanganan Cepat" visible="false"/>
+                                            <checkbox id="checkbox_Cepat" label="Perlu Penanganan Cepat"
+                                                      visible="false"/>
                                             <vbox>
                                                 <space height="2px"/>
                                                 <label
                                                         style="font-size:8pt;font-weight:italic"
                                                         value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
                                             </vbox>
-                                            <button label="Download" id="button_Download"/>
+
                                             <label id="filename"/>
                                         </hbox>
                                         <!--<button label="Upload" upload="true,maxsize=-1" onUpload="dosomething"/>-->
                                     </hbox>
                                     <hbox>
                                         <label value="Dampak : " visible="false"/>
-                                        <radiogroup id="radiogroup_Dampak" visible="false" >
+                                        <radiogroup id="radiogroup_Dampak" visible="false">
                                             <hbox>
                                                 <radio id="major" label="major" value="MAJOR"/>
                                                 <radio id="minor" label="minor" value="MINOR" selected="true"/>
@@ -169,8 +170,17 @@
                                                forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"
                                                toolbarSet="Basic"/>
                                      -->
-                                    <label value="Deskripsi : "/>
-                                    <textbox id="fck_DetailPermohonan" rows="3" width="300px" readonly="true"/>
+                                    <hbox>
+                                        <vbox>
+                                            <hbox>
+                                                <label value="Deskripsi : "/>
+                                                <textbox id="fck_DetailPermohonan" rows="3" width="300px"
+                                                         readonly="true"/>
+                                            </hbox>
+                                            <space height="10px"/>
+                                            <toolbarbutton label="Download" id="button_Download"/>
+                                        </vbox>
+                                    </hbox>
                                 </groupbox>
                             </tabpanel>
                             <tabpanel id="tabPanel_Persetujuan" height="100%" style="border: 0px; padding: 0px"/>
