@@ -257,6 +257,21 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
             Messagebox.show("Silakan isi deskripsi");
             return false;
         }
+        if (radio_readonly.isSelected()) {
+            if (getUploadMedia() == null) {
+                Messagebox.show("Type permohonan Read Only -> silakan lampirkan file");
+                return false;
+            }
+        } else if (radio_readwrite.isSelected()) {
+            if (getUploadMedia() == null) {
+                Messagebox.show("Type permohonan Read Write -> silakan lampirkan file");
+                return false;
+            }
+        } else if (radio_aplikasi.isSelected()) {
+            return true;
+        } else if (radio_lainlain.isSelected()) {
+            return true;
+        }
         return true;
     }
 
@@ -385,7 +400,6 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         tPermohonan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
     }
-
 
     public void onClick$button_Download(Event event) throws Exception {
         if (logger.isDebugEnabled()) {

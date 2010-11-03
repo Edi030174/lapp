@@ -49,8 +49,7 @@
                 <row style="border:0px">
                     <label value="Deskripsi terakhir"/>
                     <!--<fckeditor id="fckeditor_Deskripsi" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic" width="99%" height="50%"/>-->
-                    <textbox id="textbox_deskripsi" width="99%" multiline="true" rows="3" maxlength="3999"
-                             readonly="true"/>
+                    <textbox id="textbox_deskripsi" width="99%" multiline="true" rows="3" maxlength="3999" readonly="true"/>
                 </row>
                 <row style="border:0px">
                     <label value="Deskripsi"/>

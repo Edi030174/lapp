@@ -60,15 +60,29 @@ public class ReportAduanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
 
-    public void onClick$btnReport(Event event) throws IOException {
+    public void onClick$btnReport(Event event) throws IOException, InterruptedException {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        String repSrc = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan/reportAduan.jasper");
-        String bulan = (String) combobox_bulan.getSelectedItem().getValue();
-        String tahun = (String) combobox_tahun.getSelectedItem().getValue();
-        JRDataSource ds = reportService.getAduan(bulan, tahun);
-        Component parent = window_Report1.getRoot();
-        new JRreportWindow(parent, true, null, repSrc, ds, "pdf");
+        if (bulanTahun()) {
+            String repSrc = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan/reportAduan.jasper");
+            String bulan = (String) combobox_bulan.getSelectedItem().getValue();
+            String tahun = (String) combobox_tahun.getSelectedItem().getValue();
+            JRDataSource ds = reportService.getAduan(bulan, tahun);
+            Component parent = window_Report1.getRoot();
+            new JRreportWindow(parent, true, null, repSrc, ds, "pdf");
+        }
+    }
+
+    private boolean bulanTahun() throws InterruptedException {
+        if (combobox_bulan.getValue().length() < 1) {
+            Messagebox.show("Silakan pilih bulan...");
+            return false;
+        }
+        if (combobox_tahun.getValue().length() < 1) {
+            Messagebox.show("Silakan pilih tahun...");
+            return false;
+        }
+        return true;
     }
 }
