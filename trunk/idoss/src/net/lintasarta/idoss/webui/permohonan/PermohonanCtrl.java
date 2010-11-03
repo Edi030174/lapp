@@ -14,6 +14,7 @@ import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Path;
 import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
 import java.io.File;
@@ -61,6 +62,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_Lainlain;
     protected Checkbox checkbox_Cepat;
     protected Button button_Download;
+    protected Label filename;
     //protected FCKeditor fck_DetailPermohonan;
     protected Textbox fck_DetailPermohonan;
 
@@ -172,6 +174,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
 //        Events.postEvent("onSelect$tab_Persetujuan", window_Permohonan, event);
 //        window_Permohonan.invalidate();
+        Events.postEvent("onSelect", tab_Persetujuan, event);
     }
 
     private void doCheckRights() {
@@ -205,6 +208,12 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
         if (tPermohonan.getLampiran() != null) {
             button_Download.setVisible(true);
+            String x = tPermohonan.getLampiran();
+//            String y = x.substring(0, x.length() - 1);
+//            int dot = fullPath.lastIndexOf(extensionSeparator);
+            int sep = x.lastIndexOf("\\");
+            String y = x.substring(sep + 1);
+            filename.setValue(y);
         } else {
             button_Download.setVisible(false);
         }

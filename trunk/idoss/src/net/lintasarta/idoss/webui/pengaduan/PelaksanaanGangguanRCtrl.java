@@ -40,6 +40,7 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
     protected Textbox texbox_Judul;
     protected Textbox textbox_Type;
     protected Textbox textbox_deskripsi;
+    protected Textbox textbox_deskripsibaru;
     protected Textbox textbox_solusi;//pelaksana hanya status & solusi yg enable
     protected Radiogroup radiogroup_Dampak;
     protected Radio radio_major;
@@ -270,8 +271,8 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         TDeskripsi tDeskripsi = new TDeskripsi();
         tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
 
-        if (textbox_deskripsi.getValue() != null)
-            tDeskripsi.setDeskripsi(textbox_deskripsi.getValue());
+        if (textbox_deskripsibaru.getValue() != null)
+            tDeskripsi.setDeskripsi(textbox_deskripsibaru.getValue());
         if (textbox_solusi.getValue() != null)
             tDeskripsi.setSolusi(textbox_solusi.getValue());
 
@@ -325,8 +326,6 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         }
         textbox_deskripsi.setValue(tPenangananGangguan.getDeskripsi());
         textbox_solusi.setValue(tPenangananGangguan.getSolusi());
-
-
 //        ListModelList lml = (ListModelList) listbox_NamaPelaksana.getModel();
 //        VHrEmployeePelaksana vHrEmployeePelaksana = getPelaksanaanGangguanService().getVHrEmployeePelaksanaById(tPenangananGangguan.getNik_pelaksana());
 //        if (tPenangananGangguan.getNama_pelaksana() != null) {
@@ -372,7 +371,9 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
     }
 
     private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
-        tPenangananGangguan.setDeskripsi(textbox_deskripsi.getValue());
+        if (textbox_deskripsibaru.getValue().length() > 1) {
+            tPenangananGangguan.setDeskripsi(textbox_deskripsibaru.getValue());
+        }
         if (textbox_solusi.getValue() != null) {
             tPenangananGangguan.setSolusi(textbox_solusi.getValue());
         }

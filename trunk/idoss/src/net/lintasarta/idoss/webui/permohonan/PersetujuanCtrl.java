@@ -316,11 +316,13 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             radio_normal.setDisabled(false);
             radio_major.setDisabled(false);
             radio_minor.setDisabled(false);
+            listbox_NamaPelaksana.setDisabled(false);
         } else {
             radio_high.setDisabled(true);
             radio_normal.setDisabled(true);
             radio_major.setDisabled(true);
             radio_minor.setDisabled(true);
+            listbox_NamaPelaksana.setDisabled(true);
         }
         if (role.equalsIgnoreCase(LoginConstants.AMDUK)) {
             if (tPermohonan.getUpdated_manager() != null) {
@@ -447,7 +449,6 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         }
         boolean save_gmdukophar = (workspace.isAllowed("btn_SimpanPersetujuanGm")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) && (tVerifikasi.getDampak().equals("MAJOR"));
         btn_SimpanPersetujuanGm.setVisible(save_gmdukophar);
-
         if (role.equalsIgnoreCase(LoginConstants.GMDUK)) {
             if (tPermohonan.getUpdated_manager() != null) {
                 Timestamp ts = tPermohonan.getUpdated_manager();
@@ -628,6 +629,8 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         if (ValidateGMUser()) {
             doSimpan();
             window_Permohonan.onClose();
+            Events.postEvent("onCreate", window_DaftarPermohonan, event);
+            window_DaftarPermohonan.invalidate();
         }
     }
 
@@ -669,6 +672,8 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         if (isValidatedFlow()) {
             doSimpanAsmanDukophar();
             window_Permohonan.onClose();
+            Events.postEvent("onCreate", window_DaftarPermohonan, event);
+            window_DaftarPermohonan.invalidate();
         }
     }
 
@@ -739,6 +744,8 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         if (ValidateMDukophar()) {
             doSimpanManagerDukophar();
             window_Permohonan.onClose();
+            Events.postEvent("onCreate", window_DaftarPermohonan, event);
+            window_DaftarPermohonan.invalidate();
         }
     }
 
@@ -787,11 +794,13 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         if (ValidateGMDukophar()) {
             doSimpanGMDukophar();
             window_Permohonan.onClose();
+            Events.postEvent("onCreate", window_DaftarPermohonan, event);
+            window_DaftarPermohonan.invalidate();
         }
     }
 
     private boolean ValidateGMDukophar() throws InterruptedException {
-        if (textbox_mdukophar.getValue().length() < 1) {
+        if (textbox_gmdukophar.getValue().length() < 1) {
             Messagebox.show("Silakan isi Catatan General Manager...");
             return false;
         }

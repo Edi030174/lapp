@@ -47,9 +47,13 @@
                     <textbox id="texbox_Judul" width="99%" readonly="true"/>
                 </row>
                 <row style="border:0px">
-                    <label value="Deskripsi"/>
+                    <label value="Deskripsi terakhir"/>
                     <!--<fckeditor id="fckeditor_Deskripsi" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic" width="99%" height="50%"/>-->
-                    <textbox id="textbox_deskripsi" width="99%" multiline="true" rows="7" maxlength="3999" readonly="true"/>
+                    <textbox id="textbox_deskripsi" width="99%" multiline="true" rows="3" maxlength="3999" readonly="true"/>
+                </row>
+                <row style="border:0px">
+                    <label value="Deskripsi"/>
+                    <textbox id="textbox_deskripsibaru" width="99%" multiline="true" rows="7" maxlength="3999"/>
                 </row>
                 <row style="border:0px">
                     <label value="zzz" visible="false"/>

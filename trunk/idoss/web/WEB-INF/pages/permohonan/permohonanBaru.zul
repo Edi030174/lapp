@@ -149,8 +149,8 @@
                             <!--<button label="Upload" upload="true,maxsize=-1" onUpload="dosomething"/>-->
                         </hbox>
                         <hbox>
-                            <label value="Dampak : "/>
-                            <radiogroup id="radiogroup_Dampak">
+                            <label value="Dampak : " visible="false"/>
+                            <radiogroup id="radiogroup_Dampak" visible="false">
                                 <hbox>
                                     <radio id="major" label="major" value="MAJOR" disabled="true"/>
                                     <radio id="minor" label="minor" value="MINOR" selected="true" disabled="true"/>
