@@ -95,7 +95,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         int height = ((Intbox) Path.getComponent("/outerIndexWindow/currentDesktopHeight")).getValue();
         height = height + panelHeight;
         int maxListBoxHeight = (height - 170);
-        setCountRows(Math.round(maxListBoxHeight / 17));
+        setCountRows(Math.round(maxListBoxHeight / 34));
         borderlayout_daftarPermohonan.setHeight(String.valueOf(maxListBoxHeight) + "px");
 
         paging_DaftarPermohonan.setPageSize(getCountRows());
