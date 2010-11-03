@@ -146,7 +146,8 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
             tPermohonan.setDampak("MAJOR");
             tPermohonan.setStatus_track_permohonan("Disetujui Manager Dukophar");
             tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonanAndDampak(tPermohonan);
-        }else if(role.equalsIgnoreCase(LoginConstants.PELAKSANA_PERMOHONAN)){
+        } else {
+            /*}else if(role.equalsIgnoreCase(LoginConstants.PELAKSANA_PERMOHONAN)){*/
             tPermohonans = getPermohonanService().getTPermohonanByNikPelaksana(employeeNo);
         }
 
