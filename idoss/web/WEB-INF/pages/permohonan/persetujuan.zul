@@ -174,10 +174,17 @@
                             <radio id="radio_DitolakAM" label="ditolak" value="Ditolak Asman Dukophar"/>
                         </hbox>
                     </radiogroup>
-                    <hbox>
-                        <label value="Pelaksana"/>
-                        <listbox id="listbox_NamaPelaksana" width="200px" mold="select" rows="1"/>
-                    </hbox>
+                    <vbox>
+                        <hbox>
+                            <label value="Pelaksana"/>
+                            <listbox id="listbox_NamaPelaksana" width="200px" mold="select" rows="1"/>
+                        </hbox>
+                        <hbox>
+                            <label value="target selesai:"/>
+                            <textbox width="15px"/>
+                            <label value="hari/jam"/>
+                        </hbox>
+                    </vbox>
                 </vbox>
                 <space width="40px"/>
                 <vbox>
