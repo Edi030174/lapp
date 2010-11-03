@@ -42,6 +42,8 @@
                                onCheck="datebox_Pending.disabled=true;datebox_Pending.readonly=true "/>
                         <radio id="pending" label="Pending  s/d" value="PENDING"
                                onCheck="datebox_Pending.disabled=false;datebox_Pending.readonly=true "/>
+                        <textbox id="textbox_pending" maxlength="2"/>
+                        <label value="hari"/>
                         <datebox id="datebox_Pending" format="dd MMMM yyyy" width="150px"
                                  constraint="no past, no today"/>
                     </radiogroup>
