@@ -7,6 +7,7 @@ import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.idoss.webui.util.NoEmptyStringsConstraint;
 import net.lintasarta.pengaduan.model.*;
+import net.lintasarta.pengaduan.service.MttrService;
 import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.pengaduan.service.RootCausedService;
 import net.lintasarta.pengaduan.service.TypeService;
@@ -41,6 +42,7 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
     protected Textbox textbox_Type;
     protected Textbox textbox_deskripsi;
     protected Textbox textbox_deskripsibaru;
+    protected Datebox datebox_pending;
     protected Textbox textbox_solusi;//pelaksana hanya status & solusi yg enable
     protected Radiogroup radiogroup_Dampak;
     protected Radio radio_major;
@@ -68,6 +70,7 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
     private transient PelaksanaanGangguanService pelaksanaanGangguanService;
     private transient TypeService typeService;
     private transient RootCausedService rootCausedService;
+    private transient MttrService mttrService;
 
     public PelaksanaanGangguanRCtrl() {
         super();
@@ -261,12 +264,13 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
     private void doSimpan() throws Exception {
 
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
+        Mttr mttr = new Mttr();
 
         if (!isValidationOn()) {
             doSetValidation();
         }
 
-        doWriteComponentsToBean(tPenangananGangguan);
+        doWriteComponentsToBean(tPenangananGangguan, mttr);
 
         TDeskripsi tDeskripsi = new TDeskripsi();
         tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
@@ -277,8 +281,10 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
             tDeskripsi.setSolusi(textbox_solusi.getValue());
 
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
+        mttr.setNomor_tiket(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
         try {
             getPelaksanaanGangguanService().saveOrUpdate(tPenangananGangguan, tDeskripsi);
+            getMttrService().saveOrUpdateMttr(mttr);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -370,7 +376,7 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         }
     }
 
-    private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
+    private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan, Mttr mttr) throws Exception {
         if (textbox_deskripsibaru.getValue().length() > 1) {
             tPenangananGangguan.setDeskripsi(textbox_deskripsibaru.getValue());
         }
@@ -401,6 +407,15 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         tPenangananGangguan.setUpdated_date(ts);
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
+        if (combobox_Status.getSelectedIndex() == 2) {
+            long pending_start = ts.getTime();
+            mttr.setPending_start(pending_start);
+            Timestamp tspending_end = new Timestamp(datebox_pending.getValue().getTime());
+            long pending_end = tspending_end.getTime();
+            mttr.setPending_end(pending_end);
+            mttr.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
+            mttr.setUpdated_date(ts);
+        }
     }
 
     private void doClose() throws Exception {
@@ -540,5 +555,13 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
 
     public void setRootCausedService(RootCausedService rootCausedService) {
         this.rootCausedService = rootCausedService;
+    }
+
+    public MttrService getMttrService() {
+        return mttrService;
+    }
+
+    public void setMttrService(MttrService mttrService) {
+        this.mttrService = mttrService;
     }
 }

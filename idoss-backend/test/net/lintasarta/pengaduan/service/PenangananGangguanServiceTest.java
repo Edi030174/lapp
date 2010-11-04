@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -37,7 +35,7 @@ public class PenangananGangguanServiceTest {
     @Autowired
     private PenangananGangguanService penangananGangguanService;
 
-    @Test
+/*    @Test
     public void testGetAllPenangananGangguan() throws Exception {
         List<TPenangananGangguan> tPenangananGangguans = penangananGangguanService.getAllPenangananGangguan();
         String namaPelaporActual = null;
@@ -47,7 +45,7 @@ public class PenangananGangguanServiceTest {
         String namaPelaporExpected=null;
         assertEquals(namaPelaporExpected, namaPelaporActual);
 
-    }
+    }*/
 
     @Test
     public void testGetPenangananGangguanbyTiketId() throws Exception {

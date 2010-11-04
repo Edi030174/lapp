@@ -145,8 +145,13 @@ public class PermohonanServiceImpl implements PermohonanService {
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         tPermohonan.setCreated_date(ts);
         tPermohonan.setUpdated_date(ts);
-        tPermohonan.setStatus_track_permohonan("Persetujuan Manager");
-
+        if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_manager())) {
+            tPermohonan.setStatus_track_permohonan("Disetujui Manager Pemohon");
+        } else if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_gm())) {
+            tPermohonan.setStatus_track_permohonan("Disetujui GM Pemohon");
+        } else {
+            tPermohonan.setStatus_track_permohonan("Persetujuan Manager");
+        }
         gettPermohonanDAO().createTPermohonan(tPermohonan);
 
 

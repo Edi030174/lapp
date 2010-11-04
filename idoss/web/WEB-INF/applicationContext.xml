@@ -44,15 +44,15 @@
           parent="basisListCtrl" scope="prototype">
         <property name="tDeskripsiService" ref="tdeskripsiService"/>
     </bean>
-    <bean id="MonitoringCtrl" class="net.lintasarta.idoss.webui.pengaduan.MonitoringCtrl"
+    <bean id="monitoringCtrl" class="net.lintasarta.idoss.webui.pengaduan.DaftarMonitoringCtrl"
           parent="basisListCtrl" scope="prototype">
         <property name="penangananGangguanService" ref="penangananGangguanService"/>
     </bean>
-    <bean id="HelpdeskCtrl" class="net.lintasarta.idoss.webui.pengaduan.HelpdeskCtrl"
+    <bean id="helpdeskCtrl" class="net.lintasarta.idoss.webui.pengaduan.DaftarHelpdeskCtrl"
           parent="basisListCtrl" scope="prototype">
         <property name="penangananGangguanService" ref="penangananGangguanService"/>
     </bean>
-    <bean id="PelaksanaanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PelaksanaanCtrl"
+    <bean id="daftarPelaksanaanCtrl" class="net.lintasarta.idoss.webui.pengaduan.DaftarPelaksanaanCtrl"
           parent="basisListCtrl" scope="prototype">
         <property name="penangananGangguanService" ref="penangananGangguanService"/>
     </bean>
@@ -99,6 +99,7 @@
     <bean id="pengaduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PengaduanCtrl" parent="basisCtrl"
           scope="prototype">
         <property name="penangananGangguanService" ref="penangananGangguanService"/>
+        <property name="mttrService" ref="mttrService"/>
     </bean>
     <bean id="penangananGangguanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PenangananGangguanCtrl"
           parent="basisCtrl"
@@ -107,16 +108,19 @@
         <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
         <property name="rootCausedService" ref="rootCausedService"/>
         <property name="typeService" ref="typeService"/>
+        <property name="mttrService" ref="mttrService"/>
     </bean>
 
     <bean id="pelaksanaanGangguanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PelaksanaanGangguanCtrl"
           parent="basisCtrl" scope="prototype">
         <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+        <property name="mttrService" ref="mttrService"/>
     </bean>
 
     <bean id="pelaksanaanGangguanRCtrl" class="net.lintasarta.idoss.webui.pengaduan.PelaksanaanGangguanRCtrl"
           parent="basisCtrl" scope="prototype">
         <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+        <property name="mttrService" ref="mttrService"/>
     </bean>
 
     <bean id="tambahRootCausedCtrl" class="net.lintasarta.idoss.webui.pengaduan.TambahRootCausedCtrl" parent="basisCtrl"

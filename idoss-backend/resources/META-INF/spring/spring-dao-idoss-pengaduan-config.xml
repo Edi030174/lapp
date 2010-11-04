@@ -35,7 +35,7 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
         <property name="mapperInterface" value="net.lintasarta.pengaduan.dao.TDeskripsiDAO"/>
     </bean>
-    <bean id="MttrDAO" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">
+    <bean id="mttrDAO" class="com.xsis.springframework.orm.ibatis3.support.MapperFactoryBean">
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
         <property name="mapperInterface" value="net.lintasarta.pengaduan.dao.MttrDAO"/>
     </bean>

@@ -28,9 +28,9 @@ import java.util.*;
  * Date: Sept 15, 2010
  * Time: 1:55:56 PM
  */
-public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implements Serializable {
+public class DaftarPelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implements Serializable {
 
-    private transient static final Logger logger = Logger.getLogger(PelaksanaanCtrl.class);
+    private transient static final Logger logger = Logger.getLogger(DaftarPelaksanaanCtrl.class);
 
     protected Window window_Pelaksanaan;
     protected Textbox textbox_Cari;
@@ -56,7 +56,7 @@ public class PelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> implem
     private int countRows;
     private transient PenangananGangguanService penangananGangguanService;
 
-    public PelaksanaanCtrl() {
+    public DaftarPelaksanaanCtrl() {
         super();
 
         if (logger.isDebugEnabled()) {

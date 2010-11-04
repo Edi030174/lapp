@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
-    <window id="window_Helpdesk" apply="${HelpdeskCtrl}"
+    <window id="window_Helpdesk" apply="${helpdeskCtrl}"
             border="none" width="100%">
         <style>
             body { padding: 0 0; /* 0 padding on top and bottom and 0

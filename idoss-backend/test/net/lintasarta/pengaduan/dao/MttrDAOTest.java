@@ -1,7 +1,6 @@
 package net.lintasarta.pengaduan.dao;
 
 import net.lintasarta.pengaduan.model.Mttr;
-import net.lintasarta.pengaduan.model.PRootCaused;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
-import java.util.List;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
@@ -53,8 +51,9 @@ public class MttrDAOTest {
         mttr.setOpened(7);
         mttr.setClosed(9);
         mttr.setInprogress(8);
-        mttr.setPending(4);
-        mttr.setTarget(6);
+        mttr.setPending_start(4);
+        mttr.setPending_end(6);
+        mttr.setLama_pending(19);
         mttr.setUpdated_by("johnny");
         mttr.setUpdated_date(ts);
 
@@ -63,7 +62,7 @@ public class MttrDAOTest {
 
     @Test
     public void testSaveOrUpdateMttr() throws Exception{
-        int t_idoss_mttr_id = 2;
+        int t_idoss_mttr_id = 0;
 
         Mttr mttr = mttrDAO.getMttrByMttrId(t_idoss_mttr_id);
         mttr.setMttr(9);

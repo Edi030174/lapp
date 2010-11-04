@@ -14,6 +14,7 @@
         <property name="tPenangananGangguanDAO" ref="tPenangananGangguanDAO"/>
         <property name="vHrEmployeeDAO" ref="vHrEmployeeDAO"/>
         <property name="tDeskripsiService" ref="tDeskripsiService" />
+        <property name="mttrService" ref="mttrService"/>
     </bean>
     <bean id="tdeskripsiService" class="net.lintasarta.pengaduan.service.impl.TDeskripsiServiceImpl">
         <property name="tDeskripsiDAO" ref="tDeskripsiDAO"/>
@@ -28,13 +29,13 @@
     <bean id="reportPengaduanService" class="net.lintasarta.report.pengaduan.service.impl.ReportPengaduanServiceImpl">
         <property name="reportPengaduanDAO" ref="reportPengaduanDAO"/>
     </bean>
-    <bean id="PApplicationService" class="net.lintasarta.pengaduan.service.impl.PApplicationServiceImpl">
+    <bean id="pApplicationService" class="net.lintasarta.pengaduan.service.impl.PApplicationServiceImpl">
         <property name="pApplicationDAO" ref="pApplicationDAO"/>
     </bean>
     <bean id="tDeskripsiService" class="net.lintasarta.pengaduan.service.impl.TDeskripsiServiceImpl">
         <property name="tDeskripsiDAO" ref="tDeskripsiDAO" />
     </bean>
-    <bean id="pttrService" class="net.lintasarta.pengaduan.service.impl.MttrServiceImpl">
-        <property name="mttrDAO" ref="MttrDAO"/>
+    <bean id="mttrService" class="net.lintasarta.pengaduan.service.impl.MttrServiceImpl">
+        <property name="mttrDAO" ref="mttrDAO"/>
     </bean>
 </beans>

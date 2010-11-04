@@ -1,18 +1,12 @@
 package net.lintasarta.pengaduan.service.impl;
 
 import net.lintasarta.pengaduan.dao.MttrDAO;
-import net.lintasarta.pengaduan.dao.PRootCausedDAO;
-import net.lintasarta.pengaduan.dao.PTypeRootCausedDAO;
 import net.lintasarta.pengaduan.model.Mttr;
-import net.lintasarta.pengaduan.model.PRootCaused;
-import net.lintasarta.pengaduan.model.PTypeRootCaused;
 import net.lintasarta.pengaduan.service.MttrService;
-import net.lintasarta.pengaduan.service.RootCausedService;
 import net.lintasarta.util.TicketIdGenerator;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -58,11 +52,34 @@ public class MttrServiceImpl implements MttrService {
         int i = mttrDAO.getGenerateId();
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         mttr.setUpdated_date(ts);
+        int g = Integer.parseInt(getGenerateId());
+        mttr.setT_idoss_mttr_id(g);
+        mttr.setGen_id_col(i);
         getMttrDAO().createMttr(mttr);
     }
 
     @Override
     public void saveOrUpdateMttr(Mttr mttr) {
-        getMttrDAO().saveOrUpdateMttr(mttr);
+        Mttr mttrUpdate = mttrDAO.getMttrByNomorTiket(mttr.getNomor_tiket());
+        if (mttr.getOpened() > 0) {
+            mttrUpdate.setOpened(mttr.getOpened());
+        }
+        if (mttr.getClosed() > 0) {
+            mttrUpdate.setClosed(mttr.getClosed());
+        }
+        if (mttr.getInprogress() > 0) {
+            mttrUpdate.setInprogress(mttr.getInprogress());
+        }
+        if (mttr.getPending_start() > 0) {
+            mttrUpdate.setPending_start(mttr.getPending_start());
+        }
+        if (mttr.getPending_end() > 0) {
+            mttrUpdate.setPending_end(mttr.getPending_end());
+        }
+        getMttrDAO().saveOrUpdateMttr(mttrUpdate);
+    }
+
+    public Mttr getMttrByNomorTiket(String nomorTiket) {
+        return mttrDAO.getMttrByNomorTiket(nomorTiket);
     }
 }

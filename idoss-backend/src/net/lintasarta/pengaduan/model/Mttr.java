@@ -16,8 +16,9 @@ public class Mttr implements Serializable{
     private long opened;
     private long closed;
     private long inprogress;
-    private long pending;
-    private long target;
+    private long pending_start;
+    private long pending_end;
+    private long lama_pending;
     private String updated_by;
     private Timestamp updated_date;
     private long gen_id_col;
@@ -29,8 +30,8 @@ public class Mttr implements Serializable{
         return t_idoss_mttr_id;
     }
 
-    public long getGen_id_col() {
-        return gen_id_col;
+    public void setT_idoss_mttr_id(long t_idoss_mttr_id) {
+        this.t_idoss_mttr_id = t_idoss_mttr_id;
     }
 
     public String getNomor_tiket() {
@@ -73,20 +74,28 @@ public class Mttr implements Serializable{
         this.inprogress = inprogress;
     }
 
-    public long getPending() {
-        return pending;
+    public long getPending_start() {
+        return pending_start;
     }
 
-    public void setPending(long pending) {
-        this.pending = pending;
+    public void setPending_start(long pending_start) {
+        this.pending_start = pending_start;
     }
 
-    public long getTarget() {
-        return target;
+    public long getPending_end() {
+        return pending_end;
     }
 
-    public void setTarget(long target) {
-        this.target = target;
+    public void setPending_end(long pending_end) {
+        this.pending_end = pending_end;
+    }
+
+    public long getLama_pending() {
+        return lama_pending;
+    }
+
+    public void setLama_pending(long lama_pending) {
+        this.lama_pending = lama_pending;
     }
 
     public String getUpdated_by() {
@@ -103,5 +112,13 @@ public class Mttr implements Serializable{
 
     public void setUpdated_date(Timestamp updated_date) {
         this.updated_date = updated_date;
+    }
+
+    public long getGen_id_col() {
+        return gen_id_col;
+    }
+
+    public void setGen_id_col(long gen_id_col) {
+        this.gen_id_col = gen_id_col;
     }
 }
