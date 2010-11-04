@@ -103,7 +103,7 @@
                             <comboitem label="Open" disabled="true"/>
                             <comboitem label="In Progress"/>
                             <comboitem label="Pending" disabled="true"/>
-                            <comboitem label="Closed"/>
+                            <comboitem label="Selesai"/>
                         </combobox>
                         <datebox id="datebox_pending" cols="12" format="dd MMMM yyyy" readonly="true" width="150px" style="color: #000000 !important;"/>
                     </hbox>

@@ -215,6 +215,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         tPenangananGangguan.setJudul(textbox_Judul.getValue());
         tPenangananGangguan.setDeskripsi(textbox_deskripsi.getValue());
         tPenangananGangguan.setStatus("Open");
+        tPenangananGangguan.setDampak("Minor");
         tPenangananGangguan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
