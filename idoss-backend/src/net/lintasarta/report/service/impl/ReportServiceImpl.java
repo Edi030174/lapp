@@ -86,7 +86,7 @@ public class ReportServiceImpl implements ReportService {
         return new JRBeanCollectionDataSource(reportSudahSelesais);
     }
 
-    public JRDataSource getRekapAduan(String tahun, String NamaPemohon, String NikPemohon, String NamaManager, String NikManager, String NamaGm, String NikGm) {
+    public JRDataSource getRekapAduan(String tahun) {
         List<ReportRekapAduan> reportRekapAduans = reportRekapAduanDAO.getReportRekapAduan(tahun);
         return new JRBeanCollectionDataSource(reportRekapAduans);
     }
