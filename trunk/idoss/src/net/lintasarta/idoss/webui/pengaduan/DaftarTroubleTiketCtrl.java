@@ -92,7 +92,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         int height = ((Intbox) Path.getComponent("/outerIndexWindow/currentDesktopHeight")).getValue();
         height = height + panelHeight;
         int maxListBoxHeight = (height - 170);
-        setCountRows(Math.round(maxListBoxHeight / 17));
+        setCountRows(Math.round(maxListBoxHeight / 34));
         borderlayout_daftarTroubleTiket.setHeight(String.valueOf(maxListBoxHeight) + "px");
         paging_DaftarTiket.setPageSize(getCountRows());
         paging_DaftarTiket.setDetailed(true);

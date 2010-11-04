@@ -76,23 +76,9 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         for (TPenangananGangguan tPenangananGangguan : tPenangananGangguans) {
             Mttr mttr = mttrService.getMttrByNomorTiket(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
 
-            long ts = Calendar.getInstance().getTimeInMillis();
-            long duration = ts - mttr.getOpened();
-            if (mttr.getClosed() > 0) {
-                if (ts >= mttr.getClosed()) {
-                    duration = mttr.getClosed() - mttr.getOpened();
-                }
-            }
+            long duration = mttrService.getDurasi(mttr);
+            long lama_pending = mttrService.getLamaPending(mttr);
 
-            long lama_pending = mttr.getLama_pending();
-            if (mttr.getPending_start() > 0) {
-                lama_pending = lama_pending + ts - mttr.getPending_start();
-                if (mttr.getPending_end() > 0) {
-                    if (ts >= mttr.getPending_end()) {
-                        lama_pending = lama_pending + mttr.getPending_end() - mttr.getPending_start();
-                    }
-                }
-            }
             long mttrLong = duration - lama_pending;
 
             tPenangananGangguan.setDurasi(getDuration(duration));
@@ -101,7 +87,6 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         return tPenangananGangguans;
     }
     
-
     public List<TPenangananGangguan> getAllPenangananGangguan() {
         List<TPenangananGangguan> tPenangananGangguans = gettPenangananGangguanDAO().getAllTPenangananGangguan();
         hitungDurasiMttr(tPenangananGangguans);

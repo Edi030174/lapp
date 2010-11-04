@@ -287,19 +287,11 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             tDeskripsi.setSolusi(textbox_solusi.getValue());
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
 
-        mttr.setNomor_tiket(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
-        Timestamp created = tPenangananGangguan.getCreated_date();
-        long duration = created.getTime();
-        mttr.setOpened(duration);
-        mttr.setUpdated_by(tPenangananGangguan.getUpdated_user());
-        mttr.setUpdated_date(tPenangananGangguan.getUpdated_date());
-
         try {
             if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase(LoginConstants.IDOSS_HELPDESK_ADUAN)) {
                 tPenangananGangguan.setNik_pelapor(getEmployee().getEmployee_no());
             }
             getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi, mttr);
-            getMttrService().createMttr(mttr);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -400,15 +392,17 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
 
         tPenangananGangguan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
-
-        if (combobox_Status.getSelectedIndex() == 2) {
+        if (combobox_Status.getSelectedIndex() == 1) {
+            mttr.setInprogress(ts.getTime());
+        } else if (combobox_Status.getSelectedIndex() == 2) {
             long pending_start = ts.getTime();
             mttr.setPending_start(pending_start);
             Timestamp tspending_end = new Timestamp(datebox_pending.getValue().getTime());
             long pending_end = tspending_end.getTime();
             mttr.setPending_end(pending_end);
+        } else if (combobox_Status.getSelectedIndex() == 3) {
+            mttr.setClosed(ts.getTime());
         }
-
 
         settPenangananGangguan(tPenangananGangguan);
     }

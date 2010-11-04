@@ -407,14 +407,16 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         tPenangananGangguan.setUpdated_date(ts);
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
-        if (combobox_Status.getSelectedIndex() == 2) {
+        if (combobox_Status.getSelectedIndex() == 1) {
+            mttr.setInprogress(ts.getTime());
+        } else if (combobox_Status.getSelectedIndex() == 2) {
             long pending_start = ts.getTime();
             mttr.setPending_start(pending_start);
             Timestamp tspending_end = new Timestamp(datebox_pending.getValue().getTime());
             long pending_end = tspending_end.getTime();
             mttr.setPending_end(pending_end);
-            mttr.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
-            mttr.setUpdated_date(ts);
+        } else if (combobox_Status.getSelectedIndex() == 3) {
+            mttr.setClosed(ts.getTime());
         }
     }
 

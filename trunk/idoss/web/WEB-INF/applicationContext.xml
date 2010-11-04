@@ -115,6 +115,8 @@
           parent="basisCtrl" scope="prototype">
         <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
         <property name="mttrService" ref="mttrService"/>
+        <property name="rootCausedService" ref="rootCausedService"/>
+        <property name="typeService" ref="typeService"/>
     </bean>
 
     <bean id="pelaksanaanGangguanRCtrl" class="net.lintasarta.idoss.webui.pengaduan.PelaksanaanGangguanRCtrl"

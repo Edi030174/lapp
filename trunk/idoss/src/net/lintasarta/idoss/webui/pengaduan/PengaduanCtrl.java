@@ -169,17 +169,8 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
             tDeskripsi.setDeskripsi(textbox_deskripsi.getValue());
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
 
-//        mttr.setNomor_tiket(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
-//        Timestamp created =  tPenangananGangguan.getCreated_date();
-//        long duration = created.getTime();
-//        mttr.setOpened(duration);
-//        mttr.setUpdated_by(tPenangananGangguan.getUpdated_user());
-//        mttr.setUpdated_date(tPenangananGangguan.getUpdated_date());
-
-
         try {
             getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi, mttr);
-//            getMttrService().createMttr(mttr);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");

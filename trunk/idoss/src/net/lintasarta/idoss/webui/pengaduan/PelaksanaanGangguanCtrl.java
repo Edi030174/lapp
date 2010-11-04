@@ -65,6 +65,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     private transient String oldVar_combobox_RootCaused;
     private transient String oldVar_combobox_Status;
     private transient TPenangananGangguan tPenangananGangguan;
+    private transient Mttr mttr;
     private transient PRootCaused pRootCaused;
     private transient PType pType;
     private transient PelaksanaanGangguanService pelaksanaanGangguanService;
@@ -275,8 +276,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     private void doSimpan() throws Exception {
 
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
-        Mttr mttr = new Mttr();
-
+        Mttr mttr = getMttr();
         if (!isValidationOn()) {
             doSetValidation();
         }
@@ -284,8 +284,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         doWriteComponentsToBean(tPenangananGangguan, mttr);
 
         TDeskripsi tDeskripsi = new TDeskripsi();
-
-
         tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
         if (textbox_deskripsibaru.getValue() != null)
             tDeskripsi.setDeskripsi(textbox_deskripsibaru.getValue());
@@ -307,7 +305,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
-
 
         ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
         if (lml.indexOf(tPenangananGangguan) == -1) {
@@ -423,12 +420,16 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         tPenangananGangguan.setUpdated_date(ts);
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
-        if (combobox_Status.getSelectedIndex() == 2) {
+        if (combobox_Status.getSelectedIndex() == 1) {
+            mttr.setInprogress(ts.getTime());
+        } else if (combobox_Status.getSelectedIndex() == 2) {
             long pending_start = ts.getTime();
             mttr.setPending_start(pending_start);
             Timestamp tspending_end = new Timestamp(datebox_pending.getValue().getTime());
             long pending_end = tspending_end.getTime();
             mttr.setPending_end(pending_end);
+        } else if (combobox_Status.getSelectedIndex() == 3) {
+            mttr.setClosed(ts.getTime());
         }
     }
 
@@ -534,6 +535,14 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 
     public void settPenangananGangguan(TPenangananGangguan tPenangananGangguan) {
         this.tPenangananGangguan = tPenangananGangguan;
+    }
+
+    public Mttr getMttr() {
+        return mttr;
+    }
+
+    public void setMttr(Mttr mttr) {
+        this.mttr = mttr;
     }
 
     public PRootCaused getpRootCaused() {

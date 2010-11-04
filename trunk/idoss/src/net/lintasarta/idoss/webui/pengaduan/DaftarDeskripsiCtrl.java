@@ -62,7 +62,7 @@ public class DaftarDeskripsiCtrl extends GFCBaseListCtrl<TDeskripsi> implements 
         int height = ((Intbox) Path.getComponent("/outerIndexWindow/currentDesktopHeight")).getValue();
         height = height + panelHeight;
         int maxListBoxHeight = (height - 170);
-        setCountRows(Math.round(maxListBoxHeight / 17));
+        setCountRows(Math.round(maxListBoxHeight / 34));
         borderlayout_daftarDeskripsi.setHeight(String.valueOf(maxListBoxHeight) + "px");
         paging_DaftarDeskripsi.setPageSize(getCountRows());
         paging_DaftarDeskripsi.setDetailed(true);
