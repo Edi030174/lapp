@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportRekapAduan" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.1000000000000028"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.x" value="327"/>
+	<property name="ireport.y" value="58"/>
 	<parameter name="tahun" class="java.lang.String"/>
 	<parameter name="NamaPemohon" class="java.lang.String"/>
 	<parameter name="NikPemohon" class="java.lang.String"/>
@@ -328,7 +328,7 @@
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[PimSubBag MIS]]></text>
+				<text><![CDATA[PimSubBag]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="546" y="146" width="33" height="13"/>
@@ -338,25 +338,11 @@
 				<text><![CDATA[NIK :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="306" y="107" width="100" height="13"/>
-				<textElement textAlignment="Center">
-					<font isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[Rumadi Hartawan]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="545" y="107" width="116" height="14"/>
-				<textElement textAlignment="Center">
-					<font isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[Muhammad Khoiruddin ]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="545" y="75" width="103" height="14"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[ Pimbag DUKOPHAR]]></text>
+				<text><![CDATA[ Pimbag]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="306" y="146" width="27" height="13"/>
@@ -364,13 +350,6 @@
 					<font isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[NIK :]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="78" y="107" width="85" height="13"/>
-				<textElement textAlignment="Center">
-					<font isBold="true" isItalic="false" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[Kurniawan DP ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="560" y="61" width="73" height="14"/>

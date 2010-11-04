@@ -18,6 +18,7 @@ import org.zkoss.zul.Window;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -135,11 +136,17 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
         String NikManager = gettPermohonan().getNik_manager();
         String NamaGm = gettPermohonan().getNama_gm();
         String NikGm = gettPermohonan().getNik_gm();
-        //
+        HashMap params = new HashMap();
+        params.put("NamaPemohon", NamaPemohon);
+        params.put("NikPemohon", NikPemohon);
+        params.put("NamaManager", NamaManager);
+        params.put("NikManager", NikManager);
+        params.put("NamaGm", NamaGm);
+        params.put("NikGm", NikGm);
         String tahun = listbox_tahun.getSelectedItem().getLabel();
-        JRDataSource ds = reportService.getRekapAduan(tahun, NamaPemohon, NikPemohon, NamaManager, NikManager, NamaGm, NikGm);
+        JRDataSource ds = reportService.getRekapAduan(tahun);
         Component parent = window_Report4.getRoot();
-        new JRreportWindow(parent, true, null, repSrc, ds, "pdf");
+        new JRreportWindow(parent, true, params, repSrc, ds, "pdf");
     }
 
     public PermohonanService getPermohonanService() {
