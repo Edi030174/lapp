@@ -82,6 +82,10 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
 
                 tPenangananGangguan.setDurasi(getDuration(duration));
                 tPenangananGangguan.setMttr(getDuration(mttrLong));
+                if (mttrService.isInProgress(mttr)) {
+                    tPenangananGangguan.setStatus("In Progress");
+                }
+                
             }
         }
         return tPenangananGangguans;

@@ -4,12 +4,12 @@
 	<property name="ireport.x" value="327"/>
 	<property name="ireport.y" value="58"/>
 	<parameter name="tahun" class="java.lang.String"/>
-	<parameter name="NamaPemohon" class="java.lang.String"/>
-	<parameter name="NikPemohon" class="java.lang.String"/>
-	<parameter name="NamaManager" class="java.lang.String"/>
-	<parameter name="NikManager" class="java.lang.String"/>
-	<parameter name="NamaGm" class="java.lang.String"/>
-	<parameter name="NikGm" class="java.lang.String"/>
+	<parameter name="nama_pemohon" class="java.lang.String"/>
+	<parameter name="nik_pemohon" class="java.lang.String"/>
+	<parameter name="nama_manager" class="java.lang.String"/>
+	<parameter name="nik_manager" class="java.lang.String"/>
+	<parameter name="nama_gm" class="java.lang.String"/>
+	<parameter name="nik_gm" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -25,12 +25,12 @@
 	<field name="jumlah_jam" class="java.math.BigDecimal"/>
 	<field name="tingkat_gangguan" class="java.lang.String"/>
 	<field name="availabilitas" class="java.lang.String"/>
-	<field name="NamaPemohon" class="java.lang.String"/>
-	<field name="NikPemohon" class="java.lang.String"/>
-	<field name="NamaManager" class="java.lang.String"/>
-	<field name="NikManager" class="java.lang.String"/>
-	<field name="NamaGm" class="java.lang.String"/>
-	<field name="NikGm" class="java.lang.String"/>
+	<field name="nama_pemohon" class="java.lang.String"/>
+	<field name="nik_pemohon" class="java.lang.String"/>
+	<field name="nama_manager" class="java.lang.String"/>
+	<field name="nik_manager" class="java.lang.String"/>
+	<field name="nama_gm" class="java.lang.String"/>
+	<field name="nik_gm" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -372,35 +372,35 @@
 				</textElement>
 				<text><![CDATA[Dibuat Oleh,]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="false">
 				<reportElement x="111" y="146" width="77" height="13"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{NikPemohon}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nik_pemohon}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="78" y="121" width="110" height="13"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{NamaPemohon}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_pemohon}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="333" y="146" width="77" height="13"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{NikManager}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nik_manager}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="556" y="121" width="77" height="13"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{NamaGm}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_gm}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="321" y="121" width="89" height="13"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{NamaManager}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_manager}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="579" y="146" width="77" height="13"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{NikGm}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nik_gm}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
