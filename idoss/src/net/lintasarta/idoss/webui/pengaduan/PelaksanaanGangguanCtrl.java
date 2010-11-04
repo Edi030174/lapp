@@ -22,6 +22,7 @@ import org.zkoss.zul.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -114,12 +115,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         } else {
             listbox_DaftarTiket = null;
         }
-//        listbox_Type.setModel(new ListModelList(getPelaksanaanGangguanService().getType()));
-//        listbox_Type.setItemRenderer(new TypeListModelItemRenderer());
-//        listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCaused()));
-//        listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
-//        listbox_NamaPelaksana.setModel(new ListModelList(getPelaksanaanGangguanService().getEmployeeName()));
-//        listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
         ListModelList lmlNamaPelaksana = new ListModelList(getPelaksanaanGangguanService().getEmployeeName());
         VHrEmployeePelaksana pelaksana = new VHrEmployeePelaksana();
         pelaksana.setEmployee_name("Silakan pilih");
@@ -128,6 +123,10 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         listbox_NamaPelaksana.setModel(lmlNamaPelaksana);
         listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
         textbox_solusi.setReadonly(true);
+        List<Mttr> mttrs = mttrService.getMttrByNomorTiket(gettPenangananGangguan().getT_idoss_penanganan_gangguan_id());
+        for (Mttr mttr1 : mttrs) {
+            setMttr(mttr1);
+        }
         doShowDialog(gettPenangananGangguan());
     }
 
@@ -421,8 +420,20 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
         if (combobox_Status.getSelectedIndex() == 1) {
-            mttr.setInprogress(ts.getTime());
+            long tsLong = ts.getTime();
+            if (mttr.getInprogress() > 0) {
+                mttr.setPending_end(tsLong);
+            }
+            mttr.setInprogress(tsLong);
         } else if (combobox_Status.getSelectedIndex() == 2) {
+            if (mttr.getPending_end() > 0) {
+                long lama_pending = mttr.getLama_pending();
+                if (ts.getTime() < mttr.getPending_end()) {
+                    mttr.setLama_pending(lama_pending + ts.getTime() - mttr.getPending_start());
+                } else {
+                    mttr.setLama_pending(lama_pending + mttr.getPending_end() - mttr.getPending_start());
+                }
+            }
             long pending_start = ts.getTime();
             mttr.setPending_start(pending_start);
             Timestamp tspending_end = new Timestamp(datebox_pending.getValue().getTime());

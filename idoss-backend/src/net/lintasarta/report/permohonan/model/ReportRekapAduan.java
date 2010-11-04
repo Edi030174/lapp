@@ -20,6 +20,12 @@ public class ReportRekapAduan {
     private Integer jumlah_jam;
     private String tingkat_gangguan;
     private String availabilitas;
+    private String NamaPemohon;
+    private String NikPemohon;
+    private String NamaManager;
+    private String NikManager;
+    private String NamaGm;
+    private String NikGm;
 
     public ReportRekapAduan() {
     }
@@ -118,5 +124,53 @@ public class ReportRekapAduan {
 
     public void setAvailabilitas(String availabilitas) {
         this.availabilitas = availabilitas;
+    }
+
+    public String getNamaPemohon() {
+        return NamaPemohon;
+    }
+
+    public void setNamaPemohon(String namaPemohon) {
+        NamaPemohon = namaPemohon;
+    }
+
+    public String getNikPemohon() {
+        return NikPemohon;
+    }
+
+    public void setNikPemohon(String nikPemohon) {
+        NikPemohon = nikPemohon;
+    }
+
+    public String getNamaManager() {
+        return NamaManager;
+    }
+
+    public void setNamaManager(String namaManager) {
+        NamaManager = namaManager;
+    }
+
+    public String getNikManager() {
+        return NikManager;
+    }
+
+    public void setNikManager(String nikManager) {
+        NikManager = nikManager;
+    }
+
+    public String getNamaGm() {
+        return NamaGm;
+    }
+
+    public void setNamaGm(String namaGm) {
+        NamaGm = namaGm;
+    }
+
+    public String getNikGm() {
+        return NikGm;
+    }
+
+    public void setNikGm(String nikGm) {
+        NikGm = nikGm;
     }
 }

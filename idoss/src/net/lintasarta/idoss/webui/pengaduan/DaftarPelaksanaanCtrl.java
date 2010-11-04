@@ -111,7 +111,6 @@ public class DaftarPelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> 
     }
 
     private void setDaftarTiket() {
-        UserSession userSession = getUserWorkspace().getUserSession();
         String nikPelaksana = getUserWorkspace().getUserSession().getEmployeeNo();
         TPenangananGangguan tPenangananGangguan = new TPenangananGangguan();
         tPenangananGangguan.setNik_pelaksana(nikPelaksana);
@@ -135,14 +134,11 @@ public class DaftarPelaksanaanCtrl extends GFCBaseListCtrl<TPenangananGangguan> 
         pagedListHolder2 = new PagedListHolder<TPenangananGangguan>(searchResult);
         pagedListHolder2.setPageSize(getCountRows());
         getPagedListWrapper().init(pagedListHolder2, listbox_DaftarTiket, paging_DaftarTiket);
-        //
 
         listbox_DaftarTiket.setItemRenderer(new DaftarTiketModelItemRenderer());
 
-        //
         ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
         lml.sort(new TPenangananGangguanComparator(), true);
-        //
     }
 
     public void onDoubleClickedTiketItem(Event event) throws Exception {
