@@ -237,20 +237,20 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         listbox_RootCaused.getSelectedItem();
     }
 
-    public void onChange$combobox_Status(){
-        if(combobox_Status.getValue().equals("Open")){
+    public void onChange$combobox_Status() {
+        if (combobox_Status.getValue().equals("Open")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
             datebox_pending.setVisible(false);
-        }else if(combobox_Status.getValue().equals("In Progress")){
+        } else if (combobox_Status.getValue().equals("In Progress")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
             datebox_pending.setVisible(false);
-        }else if(combobox_Status.getValue().equals("Pending")){
+        } else if (combobox_Status.getValue().equals("Pending")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
             datebox_pending.setVisible(true);
-        }else if(combobox_Status.getValue().equals("Closed")){
+        } else if (combobox_Status.getValue().equals("Closed")) {
             textbox_solusi.setReadonly(false);
             datebox_pending.setVisible(false);
         }
@@ -328,14 +328,25 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         texbox_Bagian.setValue(tPenangananGangguan.getBagian_pelapor());
         texbox_Judul.setValue(tPenangananGangguan.getJudul());
         combobox_Status.setValue(tPenangananGangguan.getStatus());
-        if(tPenangananGangguan.getStatus().equals("Closed")){
+        if (tPenangananGangguan.getStatus().equalsIgnoreCase("Pending")) {
+            datebox_pending.setVisible(true);
+        } else {
+            datebox_pending.setVisible(false);
+        }
+        if (tPenangananGangguan.getStatus().equals("Selesai")) {
             textbox_solusi.setReadonly(false);
         }
-        if (tPenangananGangguan.getDampak().equals("Major")) {
+        if (tPenangananGangguan.getDampak().equals("Mayor")) {
             radiogroup_Dampak.setSelectedItem(radio_major);
         }
         textbox_deskripsi.setValue(tPenangananGangguan.getDeskripsi());
         textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+        if (mttr.getPending_end() == 0) {
+            datebox_pending.setValue(tPenangananGangguan.getCreated_date());
+        } else {
+            Timestamp ts = new Timestamp(mttr.getPending_end());
+            datebox_pending.setValue(ts);
+        }
 //        ListModelList lml = (ListModelList) listbox_NamaPelaksana.getModel();
 //        VHrEmployeePelaksana vHrEmployeePelaksana = getPelaksanaanGangguanService().getVHrEmployeePelaksanaById(tPenangananGangguan.getNik_pelaksana());
 //        if (tPenangananGangguan.getNama_pelaksana() != null) {
@@ -377,6 +388,7 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
                 if (rc.getP_idoss_root_caused_id() == tPenangananGangguan.getP_idoss_root_caused_id()) indexRoot = i;
             }
             listbox_RootCaused.setSelectedIndex(indexRoot);
+
         }
     }
 

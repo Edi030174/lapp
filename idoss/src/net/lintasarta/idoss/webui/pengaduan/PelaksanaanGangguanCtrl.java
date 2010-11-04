@@ -297,7 +297,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             TPenangananGangguan tp = getPelaksanaanGangguanService().getTPenangananGangguanByTiketId(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
             if (!tp.getStatus().equalsIgnoreCase("Closed")) {
                 getPelaksanaanGangguanService().saveOrUpdate(tPenangananGangguan, tDeskripsi);
-            }else{
+            } else {
                 alert("Status sudah Closed!");
             }
             mttr.setNomor_tiket(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
@@ -336,16 +336,27 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         texbox_Bagian.setValue(tPenangananGangguan.getBagian_pelapor());
         texbox_Judul.setValue(tPenangananGangguan.getJudul());
         combobox_Status.setValue(tPenangananGangguan.getStatus());
-        if (tPenangananGangguan.getStatus().equals("Closed")) {
+        if (tPenangananGangguan.getStatus().equalsIgnoreCase("Pending")) {
+            datebox_pending.setVisible(true);
+        } else {
+            datebox_pending.setVisible(false);
+        }
+        if (tPenangananGangguan.getStatus().equals("Selesai")) {
             textbox_solusi.setReadonly(false);
         }
-        if (tPenangananGangguan.getDampak().equals("Major")) {
+        if (tPenangananGangguan.getDampak().equals("Mayor")) {
             radiogroup_Dampak.setSelectedItem(radio_major);
-        }else{
+        } else {
             radiogroup_Dampak.setSelectedItem(radio_minor);
         }
         textbox_deskripsi.setValue(tPenangananGangguan.getDeskripsi());
         textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+        if (mttr.getPending_end() == 0) {
+            datebox_pending.setValue(tPenangananGangguan.getCreated_date());
+        } else {
+            Timestamp ts = new Timestamp(mttr.getPending_end());
+            datebox_pending.setValue(ts);
+        }
 //        ListModelList lml = (ListModelList) listbox_NamaPelaksana.getModel();
         VHrEmployeePelaksana vHrEmployeePelaksana = getPelaksanaanGangguanService().getVHrEmployeePelaksanaById(tPenangananGangguan.getNik_pelaksana());
 //        if (tPenangananGangguan.getNama_pelaksana() != null) {
@@ -378,8 +389,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             textbox_Type.setValue(zz + " - " + yy + " - " + xx);
 //            textbox_Type.setValue(tPenangananGangguan.getP_idoss_type_id());
 //            textbox_Type.setValue(pType.getType_desc());
-            Timestamp ts = new Timestamp(mttr.getPending_end());
-            datebox_pending.setValue(ts);
+
             listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(pType.getP_idoss_type_id())));
             listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
             int indexRoot = 0;

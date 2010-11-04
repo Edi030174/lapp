@@ -113,6 +113,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         listbox_NamaPelaksana.setModel(lmlNamaPelaksana);
         listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
         textbox_solusi.setReadonly(true);
+        datebox_pending.setVisible(false);
         doShowDialog(gettPenangananGangguan());
         doDisplayNama();
     }
