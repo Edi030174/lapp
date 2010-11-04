@@ -11,14 +11,10 @@ import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zul.Button;
-import org.zkoss.zul.Iframe;
-import org.zkoss.zul.Listbox;
-import org.zkoss.zul.Window;
+import org.zkoss.zul.*;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +30,7 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
     protected Window window_Report4;
     protected Iframe report;
     protected Button btnReport;
-    protected Listbox listbox_tahun;
+    protected Combobox combobox_tahun;
     protected ReportRekapAduanCtrl reportRekapAduanCtrl;
 
     private transient ReportService reportService;
@@ -75,13 +71,13 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
         tPermohonan = getPermohonanService().getNewPermohonan();
         settPermohonan(tPermohonan);
 
-        String NamaPemohon = getUserWorkspace().getUserSession().getEmployeeName();
-        String NikPemohon = getUserWorkspace().getUserSession().getEmployeeNo();
+//        String NamaPemohon = getUserWorkspace().getUserSession().getEmployeeName();
+//        String NikPemohon = getUserWorkspace().getUserSession().getEmployeeNo();
         tPermohonan = setBoss(tPermohonan, getUserWorkspace().getUserSession().getEmployeeNo());
-        String NamaManager = tPermohonan.getNama_manager();
-        String NikManager = tPermohonan.getNik_manager();
-        String NamaGm = tPermohonan.getNama_gm();
-        String NikGm = tPermohonan.getNik_gm();
+//        String NamaManager = tPermohonan.getNama_manager();
+//        String NikManager = tPermohonan.getNik_manager();
+//        String NamaGm = tPermohonan.getNama_gm();
+//        String NikGm = tPermohonan.getNik_gm();
         settPermohonan(tPermohonan);
     }
 
@@ -123,30 +119,40 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
     //
 
 
-    public void onClick$btnReport(Event event) throws IOException {
+    public void onClick$btnReport(Event event) throws IOException, InterruptedException {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
         String repSrc = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan/reportRekapAduan.jasper");
         //
         doShowDialog(gettPermohonan());
-        String NamaPemohon = getUserWorkspace().getUserSession().getEmployeeName();
-        String NikPemohon = getUserWorkspace().getUserSession().getEmployeeNo();
-        String NamaManager = gettPermohonan().getNama_manager();
-        String NikManager = gettPermohonan().getNik_manager();
-        String NamaGm = gettPermohonan().getNama_gm();
-        String NikGm = gettPermohonan().getNik_gm();
-        HashMap params = new HashMap();
-        params.put("NamaPemohon", NamaPemohon);
-        params.put("NikPemohon", NikPemohon);
-        params.put("NamaManager", NamaManager);
-        params.put("NikManager", NikManager);
-        params.put("NamaGm", NamaGm);
-        params.put("NikGm", NikGm);
-        String tahun = listbox_tahun.getSelectedItem().getLabel();
-        JRDataSource ds = reportService.getRekapAduan(tahun);
-        Component parent = window_Report4.getRoot();
-        new JRreportWindow(parent, true, params, repSrc, ds, "pdf");
+        if (validasiTahun()) {
+            String nama_pemohon = getUserWorkspace().getUserSession().getEmployeeName();
+            String nik_pemohon = getUserWorkspace().getUserSession().getEmployeeNo();
+            String nama_manager = gettPermohonan().getNama_manager();
+            String nik_manager = gettPermohonan().getNik_manager();
+            String nama_gm = gettPermohonan().getNama_gm();
+            String nik_gm = gettPermohonan().getNik_gm();
+//            HashMap params = new HashMap();
+//            params.put("nama_pemohon", nama_pemohon);
+//            params.put("nik_pemohon", nik_pemohon);
+//            params.put("nama_manager", nama_manager);
+//            params.put("nik_manager", nik_manager);
+//            params.put("nama_gm", nama_gm);
+//            params.put("nik_gm", nik_gm);
+            String tahun = (String) combobox_tahun.getSelectedItem().getValue();
+            JRDataSource ds = reportService.getRekapAduan(tahun, nama_pemohon, nik_pemohon, nama_manager, nik_manager, nama_gm, nik_gm);
+            Component parent = window_Report4.getRoot();
+            new JRreportWindow(parent, true, null, repSrc, ds, "pdf");
+        }
+    }
+
+    private boolean validasiTahun() throws InterruptedException {
+        if (combobox_tahun.getValue().length() < 1) {
+            Messagebox.show("Silakan pilih tahun...");
+            return false;
+        }
+        return true;
     }
 
     public PermohonanService getPermohonanService() {

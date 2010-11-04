@@ -20,12 +20,12 @@ public class ReportRekapAduan {
     private Integer jumlah_jam;
     private String tingkat_gangguan;
     private String availabilitas;
-    private String NamaPemohon;
-    private String NikPemohon;
-    private String NamaManager;
-    private String NikManager;
-    private String NamaGm;
-    private String NikGm;
+    private String nama_pemohon;
+    private String nik_pemohon;
+    private String nama_manager;
+    private String nik_manager;
+    private String nama_gm;
+    private String nik_gm;
 
     public ReportRekapAduan() {
     }
@@ -126,51 +126,51 @@ public class ReportRekapAduan {
         this.availabilitas = availabilitas;
     }
 
-    public String getNamaPemohon() {
-        return NamaPemohon;
+    public String getNama_pemohon() {
+        return nama_pemohon;
     }
 
-    public void setNamaPemohon(String namaPemohon) {
-        NamaPemohon = namaPemohon;
+    public void setNama_pemohon(String nama_pemohon) {
+        this.nama_pemohon = nama_pemohon;
     }
 
-    public String getNikPemohon() {
-        return NikPemohon;
+    public String getNik_pemohon() {
+        return nik_pemohon;
     }
 
-    public void setNikPemohon(String nikPemohon) {
-        NikPemohon = nikPemohon;
+    public void setNik_pemohon(String nik_pemohon) {
+        this.nik_pemohon = nik_pemohon;
     }
 
-    public String getNamaManager() {
-        return NamaManager;
+    public String getNama_manager() {
+        return nama_manager;
     }
 
-    public void setNamaManager(String namaManager) {
-        NamaManager = namaManager;
+    public void setNama_manager(String nama_manager) {
+        this.nama_manager = nama_manager;
     }
 
-    public String getNikManager() {
-        return NikManager;
+    public String getNik_manager() {
+        return nik_manager;
     }
 
-    public void setNikManager(String nikManager) {
-        NikManager = nikManager;
+    public void setNik_manager(String nik_manager) {
+        this.nik_manager = nik_manager;
     }
 
-    public String getNamaGm() {
-        return NamaGm;
+    public String getNama_gm() {
+        return nama_gm;
     }
 
-    public void setNamaGm(String namaGm) {
-        NamaGm = namaGm;
+    public void setNama_gm(String nama_gm) {
+        this.nama_gm = nama_gm;
     }
 
-    public String getNikGm() {
-        return NikGm;
+    public String getNik_gm() {
+        return nik_gm;
     }
 
-    public void setNikGm(String nikGm) {
-        NikGm = nikGm;
+    public void setNik_gm(String nik_gm) {
+        this.nik_gm = nik_gm;
     }
 }

@@ -25,4 +25,6 @@ public interface MttrService {
     long getDurasi(Mttr mttr);
 
     long getLamaPending(Mttr mttr);
+
+    boolean isInProgress(Mttr mttr);
 }

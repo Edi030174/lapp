@@ -21,6 +21,7 @@ import org.zkoss.zul.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -322,6 +323,16 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         }
     }
 
+    public void onChange$datebox_pending(Event event) throws Exception {
+
+        if (datebox_pending.getValue() != null) {
+            if (datebox_pending.getValue().before(new Date())) {
+                alert("End Date must be equal or bigger than this date");
+                datebox_pending.setValue(new Date());
+            }
+        }
+    }
+
     private void doWriteBeanToComponent(TPenangananGangguan tPenangananGangguan) throws Exception {
         textbox_NomorTiket.setValue(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
         texbox_Pelapor.setValue(tPenangananGangguan.getNama_pelapor());
@@ -512,6 +523,13 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
             }
             if (textbox_solusi.getValue().length() < 1) {
                 Messagebox.show("Silakan isikan solusi");
+                return false;
+            }
+        }
+        if (datebox_pending.getValue() != null) {
+            if (datebox_pending.getValue().before(new Date())) {
+                alert("End Date must be equal or bigger than this date");
+                datebox_pending.setValue(new Date());
                 return false;
             }
         }

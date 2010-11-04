@@ -68,6 +68,12 @@ public class MttrServiceImpl implements MttrService {
         return duration;
     }
 
+    public boolean isInProgress(Mttr mttr) {
+        long ts = Calendar.getInstance().getTimeInMillis();
+        return mttr.getPending_end() > 0 && ts >= mttr.getPending_end();
+    }
+    
+
     public long getLamaPending(Mttr mttr) {
         long ts = Calendar.getInstance().getTimeInMillis();
         long lama_pending = mttr.getLama_pending();
