@@ -226,14 +226,18 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         if (combobox_Status.getValue().equals("Open")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+            datebox_pending.setVisible(false);
         } else if (combobox_Status.getValue().equals("In Progress")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+            datebox_pending.setVisible(false);
         } else if (combobox_Status.getValue().equals("Pending")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+            datebox_pending.setVisible(true);
         } else if (combobox_Status.getValue().equals("Closed")) {
             textbox_solusi.setReadonly(false);
+            datebox_pending.setVisible(false);
         }
     }
 

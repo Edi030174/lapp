@@ -242,14 +242,18 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         if (combobox_Status.getValue().equals("Open")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+            datebox_pending.setVisible(false);
         } else if (combobox_Status.getValue().equals("In Progress")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+            datebox_pending.setVisible(false);
         } else if (combobox_Status.getValue().equals("Pending")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
+            datebox_pending.setVisible(true);
         } else if (combobox_Status.getValue().equals("Closed")) {
             textbox_solusi.setReadonly(false);
+            datebox_pending.setVisible(false);
         }
     }
 
@@ -374,7 +378,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             textbox_Type.setValue(zz + " - " + yy + " - " + xx);
 //            textbox_Type.setValue(tPenangananGangguan.getP_idoss_type_id());
 //            textbox_Type.setValue(pType.getType_desc());
-
+            Timestamp ts = new Timestamp(mttr.getPending_end());
+            datebox_pending.setValue(ts);
             listbox_RootCaused.setModel(new ListModelList(getPelaksanaanGangguanService().getRootCausedByPTypeId(pType.getP_idoss_type_id())));
             listbox_RootCaused.setItemRenderer(new RootCausedListModelItemRenderer());
             int indexRoot = 0;

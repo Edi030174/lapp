@@ -65,7 +65,7 @@
                         <hbox>
                             <radiogroup id="radiogroup_Dampak" orient="horizontal">
                                 <radio id="radio_minor" label="Minor" value="Minor" selected="true" disabled="true"/>
-                                <radio id="radio_major" label="Major" value="Major" disabled="true"/>
+                                <radio id="radio_major" label="Major" value="Mayor" disabled="true"/>
                             </radiogroup>
                             <space width="100px"/>
                             <vbox>
@@ -103,7 +103,7 @@
                             <comboitem label="Open" disabled="true"/>
                             <comboitem label="In Progress"/>
                             <comboitem label="Pending"/>
-                            <comboitem label="Closed"/>
+                            <comboitem label="Selesai"/>
                         </combobox>
                         <datebox id="datebox_pending" cols="12" format="dd MMMM yyyy" readonly="true" width="150px" style="color: #000000 !important;"/>
                     </hbox>
