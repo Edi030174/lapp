@@ -7,6 +7,7 @@ import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.idoss.webui.util.NoEmptyStringsConstraint;
 import net.lintasarta.pengaduan.model.*;
+import net.lintasarta.pengaduan.service.MttrService;
 import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.pengaduan.service.RootCausedService;
 import net.lintasarta.pengaduan.service.TypeService;
@@ -37,6 +38,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     protected Textbox textbox_NomorTiket;
     protected Textbox texbox_Pelapor;
     protected Textbox texbox_Bagian;
+    protected Datebox datebox_pending;
     protected Textbox texbox_Judul;
     protected Textbox textbox_Type;
     protected Textbox textbox_deskripsi;
@@ -68,6 +70,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     private transient PelaksanaanGangguanService pelaksanaanGangguanService;
     private transient TypeService typeService;
     private transient RootCausedService rootCausedService;
+    private transient MttrService mttrService;
 
     public PelaksanaanGangguanCtrl() {
         super();
@@ -272,21 +275,22 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     private void doSimpan() throws Exception {
 
         TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
+        Mttr mttr = new Mttr();
 
         if (!isValidationOn()) {
             doSetValidation();
         }
 
-        doWriteComponentsToBean(tPenangananGangguan);
+        doWriteComponentsToBean(tPenangananGangguan, mttr);
 
         TDeskripsi tDeskripsi = new TDeskripsi();
-        tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
 
+
+        tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
         if (textbox_deskripsibaru.getValue() != null)
             tDeskripsi.setDeskripsi(textbox_deskripsibaru.getValue());
         if (textbox_solusi.getValue() != null)
             tDeskripsi.setSolusi(textbox_solusi.getValue());
-
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
         try {
             TPenangananGangguan tp = getPelaksanaanGangguanService().getTPenangananGangguanByTiketId(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
@@ -295,6 +299,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             }else{
                 alert("Status sudah Closed!");
             }
+            mttr.setNomor_tiket(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
+            getMttrService().saveOrUpdateMttr(mttr);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -385,7 +391,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         }
     }
 
-    private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
+    private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan, Mttr mttr) throws Exception {
         if (textbox_deskripsibaru.getValue().length() > 1) {
             tPenangananGangguan.setDeskripsi(textbox_deskripsibaru.getValue());
         }
@@ -416,6 +422,14 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         tPenangananGangguan.setUpdated_date(ts);
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
+
+        if (combobox_Status.getSelectedIndex() == 2) {
+            long pending_start = ts.getTime();
+            mttr.setPending_start(pending_start);
+            Timestamp tspending_end = new Timestamp(datebox_pending.getValue().getTime());
+            long pending_end = tspending_end.getTime();
+            mttr.setPending_end(pending_end);
+        }
     }
 
     private void doClose() throws Exception {
@@ -560,5 +574,13 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 
     public void setRootCausedService(RootCausedService rootCausedService) {
         this.rootCausedService = rootCausedService;
+    }
+
+    public MttrService getMttrService() {
+        return mttrService;
+    }
+
+    public void setMttrService(MttrService mttrService) {
+        this.mttrService = mttrService;
     }
 }

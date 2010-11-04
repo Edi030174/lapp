@@ -35,13 +35,13 @@
                     <label value="Status Perubahan : "/>
                     <radiogroup id="radiogroup_StatusPerubahan">
                         <radio id="open" label="Open" value="OPEN" selected="true" disabled="true" 
-                               onCheck="datebox_Pending.disabled=true;datebox_Pending.readonly=true "/>
+                               onCheck="textbox_pending.disabled=true"/>
                         <radio id="inprogress" label="In Progress" value="INPROGRESS"
-                               onCheck="datebox_Pending.disabled=true;datebox_Pending.readonly=true "/>
+                               onCheck="textbox_pending.disabled=true"/>
                         <radio id="closed" label="Closed" value="CLOSED"
-                               onCheck="datebox_Pending.disabled=true;datebox_Pending.readonly=true "/>
+                               onCheck="textbox_pending.disabled=true"/>
                         <radio id="pending" label="Pending  s/d" value="PENDING"
-                               onCheck="datebox_Pending.disabled=false;datebox_Pending.readonly=true "/>
+                               onCheck="textbox_pending.disabled=false"/>
                         <textbox id="textbox_pending" maxlength="2"/>
                         <label value="hari"/>
                         <datebox id="datebox_Pending" format="dd MMMM yyyy" width="150px"

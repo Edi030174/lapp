@@ -3,9 +3,11 @@ package net.lintasarta.idoss.webui.pengaduan;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.idoss.webui.util.NoEmptyStringsConstraint;
+import net.lintasarta.pengaduan.model.Mttr;
 import net.lintasarta.pengaduan.model.TDeskripsi;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.pengaduan.model.comparator.TPenangananGangguanComparator;
+import net.lintasarta.pengaduan.service.MttrService;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
@@ -53,6 +55,7 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 
     private transient TPenangananGangguan tPenangananGangguan;
     private transient PenangananGangguanService penangananGangguanService;
+    private transient MttrService mttrService;
 
     public PengaduanCtrl() {
         super();
@@ -159,15 +162,24 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
         doWriteComponentsToBean(tPenangananGangguan);
 
         TDeskripsi tDeskripsi = new TDeskripsi();
-        tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
+        Mttr mttr = new Mttr();
 
+        tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
         if (textbox_deskripsi.getValue() != null)
             tDeskripsi.setDeskripsi(textbox_deskripsi.getValue());
-
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
 
+//        mttr.setNomor_tiket(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
+//        Timestamp created =  tPenangananGangguan.getCreated_date();
+//        long duration = created.getTime();
+//        mttr.setOpened(duration);
+//        mttr.setUpdated_by(tPenangananGangguan.getUpdated_user());
+//        mttr.setUpdated_date(tPenangananGangguan.getUpdated_date());
+
+
         try {
-            getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi);
+            getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi, mttr);
+//            getMttrService().createMttr(mttr);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -254,5 +266,13 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setPenangananGangguanService(PenangananGangguanService penangananGangguanService) {
         this.penangananGangguanService = penangananGangguanService;
+    }
+
+    public MttrService getMttrService() {
+        return mttrService;
+    }
+
+    public void setMttrService(MttrService mttrService) {
+        this.mttrService = mttrService;
     }
 }

@@ -1,5 +1,6 @@
 package net.lintasarta.pengaduan.service;
 
+import net.lintasarta.pengaduan.model.Mttr;
 import net.lintasarta.pengaduan.model.TDeskripsi;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.security.model.VHrEmployee;
@@ -28,9 +29,11 @@ public interface PenangananGangguanService {
 
     List<TPenangananGangguan> getAllTPenangananGangguanByNikPelaksana(TPenangananGangguan tPenangananGangguan);
 
-    List<TPenangananGangguan> getAllTPenangananGangguanByNikPelaksanaStatus(String nik_pelaksana, String status);
+//    List<TPenangananGangguan> getAllTPenangananGangguanByNikPelaksanaStatus(String nik_pelaksana, String status);
 
     List<TPenangananGangguan> getAllTPenangananGangguanByStatus(TPenangananGangguan tPenangananGangguan);
 
-    void createPenangananGangguan(TPenangananGangguan tPenangananGangguan, TDeskripsi tDeskripsi);
+    void createPenangananGangguan(TPenangananGangguan tPenangananGangguan, TDeskripsi tDeskripsi, Mttr mttr);
+
+    List<TPenangananGangguan> hitungDurasiMttr(List<TPenangananGangguan> tPenangananGangguans);
 }

@@ -108,6 +108,7 @@
                             <comboitem label="Pending" disabled="true"/>
                             <comboitem label="Closed"/>
                         </combobox>
+                        <datebox id="datebox_pending" cols="12" format="dd MMMM yyyy" readonly="true" width="150px" style="color: #000000 !important;"/>
                     </hbox>
                 </row>
                 <row style="border:0px">

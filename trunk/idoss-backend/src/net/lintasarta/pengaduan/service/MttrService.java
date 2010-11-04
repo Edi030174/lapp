@@ -1,10 +1,6 @@
 package net.lintasarta.pengaduan.service;
 
 import net.lintasarta.pengaduan.model.Mttr;
-import net.lintasarta.pengaduan.model.PRootCaused;
-import net.lintasarta.pengaduan.model.PTypeRootCaused;
-
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -25,4 +21,5 @@ public interface MttrService {
 
     void saveOrUpdateMttr(Mttr mttr);
 
+    Mttr getMttrByNomorTiket(String nomorTiket);
 }

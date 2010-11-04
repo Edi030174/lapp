@@ -7,10 +7,7 @@ import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.idoss.webui.util.NoEmptyStringsConstraint;
 import net.lintasarta.pengaduan.model.*;
-import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
-import net.lintasarta.pengaduan.service.PenangananGangguanService;
-import net.lintasarta.pengaduan.service.RootCausedService;
-import net.lintasarta.pengaduan.service.TypeService;
+import net.lintasarta.pengaduan.service.*;
 import net.lintasarta.security.model.VHrEmployee;
 import net.lintasarta.security.util.LoginConstants;
 import org.apache.log4j.Logger;
@@ -45,6 +42,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
     protected Listbox listbox_RootCaused;
     protected Listbox listbox_NamaPelaksana;
     protected Combobox combobox_Status;
+    protected Datebox datebox_pending;
     protected PenangananGangguanCtrl penangananGangguanCtrl;
 
     protected Button btn_historyDeskripsi;
@@ -62,6 +60,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
 
     private transient PelaksanaanGangguanService pelaksanaanGangguanService;
     private transient PenangananGangguanService penangananGangguanService;
+    private transient MttrService mttrService;
     private transient TypeService typeService;
     private transient RootCausedService rootCausedService;
     private transient VHrEmployee employee;
@@ -223,17 +222,17 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         }
     }
 
-    public void onChange$combobox_Status(){
-        if(combobox_Status.getValue().equals("Open")){
+    public void onChange$combobox_Status() {
+        if (combobox_Status.getValue().equals("Open")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
-        }else if(combobox_Status.getValue().equals("In Progress")){
+        } else if (combobox_Status.getValue().equals("In Progress")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
-        }else if(combobox_Status.getValue().equals("Pending")){
+        } else if (combobox_Status.getValue().equals("Pending")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
-        }else if(combobox_Status.getValue().equals("Closed")){
+        } else if (combobox_Status.getValue().equals("Closed")) {
             textbox_solusi.setReadonly(false);
         }
     }
@@ -276,22 +275,31 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             doSetValidation();
         }
 
-        doWriteComponentsToBean(tPenangananGangguan);
+        Mttr mttr = new Mttr();
+        doWriteComponentsToBean(tPenangananGangguan, mttr);
 
         TDeskripsi tDeskripsi = new TDeskripsi();
-        tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
 
+        tDeskripsi.setT_idoss_penanganan_gangguan_id(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
         if (textbox_deskripsi.getValue() != null)
             tDeskripsi.setDeskripsi(textbox_deskripsi.getValue());
         if (textbox_solusi.getValue() != null)
             tDeskripsi.setSolusi(textbox_solusi.getValue());
-
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
+
+        mttr.setNomor_tiket(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
+        Timestamp created = tPenangananGangguan.getCreated_date();
+        long duration = created.getTime();
+        mttr.setOpened(duration);
+        mttr.setUpdated_by(tPenangananGangguan.getUpdated_user());
+        mttr.setUpdated_date(tPenangananGangguan.getUpdated_date());
+
         try {
             if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase(LoginConstants.IDOSS_HELPDESK_ADUAN)) {
                 tPenangananGangguan.setNik_pelapor(getEmployee().getEmployee_no());
             }
-            getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi);
+            getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi, mttr);
+            getMttrService().createMttr(mttr);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -355,7 +363,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         }
     }
 
-    private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan) throws Exception {
+    private void doWriteComponentsToBean(TPenangananGangguan tPenangananGangguan, Mttr mttr) throws Exception {
 //        tPenangananGangguan.setT_idoss_penanganan_gangguan_id(textbox_NomorTiket.getValue());
         tPenangananGangguan.setNama_pelapor(combobox_NamaPelapor.getValue());
         tPenangananGangguan.setBagian_pelapor(texbox_Bagian.getValue());
@@ -392,6 +400,15 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
 
         tPenangananGangguan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         tPenangananGangguan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
+
+        if (combobox_Status.getSelectedIndex() == 2) {
+            long pending_start = ts.getTime();
+            mttr.setPending_start(pending_start);
+            Timestamp tspending_end = new Timestamp(datebox_pending.getValue().getTime());
+            long pending_end = tspending_end.getTime();
+            mttr.setPending_end(pending_end);
+        }
+
 
         settPenangananGangguan(tPenangananGangguan);
     }
@@ -447,7 +464,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
                 Judul
                 Pelaksana
             */
-            if(textbox_solusi.getValue().length() > 0){
+            if (textbox_solusi.getValue().length() > 0) {
                 Messagebox.show("Status: In Progress ->solusi tidak boleh diisi. solusi akan dihapus");
                 textbox_solusi.setValue("");
                 return false;
@@ -460,7 +477,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;
             }
-            if(textbox_solusi.getValue().length() > 0){
+            if (textbox_solusi.getValue().length() > 0) {
                 Messagebox.show("solusi tidak boleh diisi karena Status: In Progress");
                 textbox_solusi.setValue("");
                 return false;
@@ -552,6 +569,14 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
 
     public boolean isValidationOn() {
         return validationOn;
+    }
+
+    public MttrService getMttrService() {
+        return mttrService;
+    }
+
+    public void setMttrService(MttrService mttrService) {
+        this.mttrService = mttrService;
     }
 
     public void setValidationOn(boolean validationOn) {

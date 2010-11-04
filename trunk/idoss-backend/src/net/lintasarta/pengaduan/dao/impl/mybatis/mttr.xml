@@ -6,36 +6,67 @@
         select generate_id('SNI','T_IDOSS_MTTR','GEN_ID_COL') from dual
     </select>
 
-    <select id="getMttrByMttrId" resultType="mttr">
-        select * from T_IDOSS_MTTR
+    <select id="getMttrByMttrId" parameterType="mttr" resultType="mttr">
+        select T_IDOSS_MTTR_ID,
+               NOMOR_TIKET,
+               MTTR,
+               OPENED,
+               CLOSED,
+               INPROGRESS,
+               PENDING_START,
+               PENDING_END,
+               LAMA_PENDING,
+               UPDATED_BY,
+               UPDATED_DATE,
+               GEN_ID_COL
+        from T_IDOSS_MTTR
         where T_IDOSS_MTTR_ID = #{t_idoss_mttr_id}
+    </select>
+
+    <select id="getMttrByNomorTiket" parameterType="String" resultType="mttr">
+        select T_IDOSS_MTTR_ID,
+               NOMOR_TIKET,
+               MTTR,
+               OPENED,
+               CLOSED,
+               INPROGRESS,
+               PENDING_START,
+               PENDING_END,
+               LAMA_PENDING,
+               UPDATED_BY,
+               UPDATED_DATE,
+               GEN_ID_COL
+        from T_IDOSS_MTTR
+        where NOMOR_TIKET = #{nomor_tiket}
     </select>
 
     <insert id="createMttr" parameterType="mttr">
         INSERT INTO T_IDOSS_MTTR(
-        T_IDOSS_MTTR_ID,
-        NOMOR_TIKET,
-        MTTR, 
-        OPENED,
-        CLOSED,
-        INPROGRESS,
-        PENDING,
-        TARGET,
-        UPDATED_BY,
-        UPDATED_DATE,
-        GEN_ID_COL)
+               T_IDOSS_MTTR_ID,
+               NOMOR_TIKET,
+               MTTR,
+               OPENED,
+               CLOSED,
+               INPROGRESS,
+               PENDING_START,
+               PENDING_END,
+               LAMA_PENDING,
+               UPDATED_BY,
+               UPDATED_DATE,
+               GEN_ID_COL)
         VALUES(
-        #{t_idoss_mttr_id},
-        #{nomor_tiket},
-        #{mttr},
-        #{opened},
-        #{closed},
-        #{inprogress},
-        #{pending},
-        #{target},
-        #{updated_by},
-        #{updated_date},
-        #{gen_id_col})
+               #{t_idoss_mttr_id},
+               #{nomor_tiket},
+               #{mttr},
+               #{opened},
+               #{closed},
+               #{inprogress},
+               #{pending_start},
+               #{pending_end},
+               #{lama_pending},
+               #{updated_by},
+               #{updated_date},
+               #{gen_id_col})
     </insert>
 
     <update id="saveOrUpdateMttr" parameterType="mttr">
@@ -45,12 +76,13 @@
         OPENED=#{opened,jdbcType=INTEGER},
         CLOSED=#{closed,jdbcType=INTEGER},
         INPROGRESS=#{inprogress,jdbcType=INTEGER},
-        PENDING=#{pending,jdbcType=INTEGER},
-        TARGET=#{target,jdbcType=INTEGER},
+        PENDING_START=#{pending_start,jdbcType=INTEGER},
+        PENDING_END=#{pending_end,jdbcType=INTEGER},
+        LAMA_PENDING=#{lama_pending,jdbcType=INTEGER},
         UPDATED_BY=#{updated_by,jdbcType=VARCHAR},
         UPDATED_DATE=#{updated_date,jdbcType=TIMESTAMP},
         GEN_ID_COL=#{gen_id_col,jdbcType=INTEGER}
-        WHERE  T_IDOSS_MTTR_ID=#{t_idoss_mttr_id}
+        WHERE  NOMOR_TIKET=#{nomor_tiket}
     </update>
 
 </mapper>

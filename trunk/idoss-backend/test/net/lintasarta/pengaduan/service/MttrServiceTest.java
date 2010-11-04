@@ -46,14 +46,14 @@ public class MttrServiceTest {
     public void testCreateMttr() throws Exception{
         Mttr mttr = new Mttr();
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
-        mttr.setNomor_tiket("002");
+        mttr.setNomor_tiket("666");
         mttr.setMttr(4);
         mttr.setOpened(7);
         mttr.setClosed(9);
         mttr.setInprogress(8);
-        mttr.setPending(4);
-        mttr.setTarget(6);
-        mttr.setUpdated_by("johnny");
+        mttr.setPending_start(4);
+        mttr.setPending_end(6);
+        mttr.setUpdated_by("fachrul");
         mttr.setUpdated_date(ts);
 
         mttrService.createMttr(mttr);
@@ -61,18 +61,18 @@ public class MttrServiceTest {
 
     @Test
     public void testSaveOrUpdateMttr() throws Exception{
-        int t_idoss_mttr_id = 2;
+        int t_idoss_mttr_id = 3;
 
         Mttr mttr = mttrService.getMttrByMttrId(t_idoss_mttr_id);
-        mttr.setMttr(9);
+        mttr.setMttr(99);
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         mttr.setUpdated_date(ts);
-        mttr.setUpdated_by("re");
+        mttr.setUpdated_by("rozy");
 
         mttrService.saveOrUpdateMttr(mttr);
         Mttr mttrResult = mttrService.getMttrByMttrId(t_idoss_mttr_id);
         String updated_byActual = mttr.getUpdated_by();
-        String updated_byExpected = "re";
+        String updated_byExpected = "rozy";
 
         assertEquals(updated_byExpected, updated_byActual);
     }
