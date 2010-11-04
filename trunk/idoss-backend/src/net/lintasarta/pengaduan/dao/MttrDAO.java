@@ -2,6 +2,8 @@ package net.lintasarta.pengaduan.dao;
 
 import net.lintasarta.pengaduan.model.Mttr;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Administrator
@@ -11,7 +13,7 @@ import net.lintasarta.pengaduan.model.Mttr;
 public interface MttrDAO {
     int getGenerateId();
     Mttr getMttrByMttrId(int t_idoss_mttr_id);
-    Mttr getMttrByNomorTiket(String nomorTiket);
+    List<Mttr> getMttrByNomorTiket(String nomorTiket);
     void createMttr(Mttr mttr);
     void saveOrUpdateMttr(Mttr mttr);
 }

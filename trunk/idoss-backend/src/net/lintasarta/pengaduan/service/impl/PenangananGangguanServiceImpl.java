@@ -74,15 +74,15 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
 
     public List<TPenangananGangguan> hitungDurasiMttr(List<TPenangananGangguan> tPenangananGangguans) {
         for (TPenangananGangguan tPenangananGangguan : tPenangananGangguans) {
-            Mttr mttr = mttrService.getMttrByNomorTiket(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
+            List<Mttr> mttrs = mttrService.getMttrByNomorTiket(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
+            for (Mttr mttr : mttrs) {
+                long duration = mttrService.getDurasi(mttr);
+                long lama_pending = mttrService.getLamaPending(mttr);
+                long mttrLong = duration - lama_pending;
 
-            long duration = mttrService.getDurasi(mttr);
-            long lama_pending = mttrService.getLamaPending(mttr);
-
-            long mttrLong = duration - lama_pending;
-
-            tPenangananGangguan.setDurasi(getDuration(duration));
-            tPenangananGangguan.setMttr(getDuration(mttrLong));
+                tPenangananGangguan.setDurasi(getDuration(duration));
+                tPenangananGangguan.setMttr(getDuration(mttrLong));
+            }
         }
         return tPenangananGangguans;
     }
