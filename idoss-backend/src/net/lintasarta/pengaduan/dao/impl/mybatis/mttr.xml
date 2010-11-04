@@ -73,15 +73,13 @@
         UPDATE T_IDOSS_MTTR
         SET
         MTTR=#{mttr,jdbcType=INTEGER},
-        OPENED=#{opened,jdbcType=INTEGER},
         CLOSED=#{closed,jdbcType=INTEGER},
         INPROGRESS=#{inprogress,jdbcType=INTEGER},
         PENDING_START=#{pending_start,jdbcType=INTEGER},
         PENDING_END=#{pending_end,jdbcType=INTEGER},
         LAMA_PENDING=#{lama_pending,jdbcType=INTEGER},
         UPDATED_BY=#{updated_by,jdbcType=VARCHAR},
-        UPDATED_DATE=#{updated_date,jdbcType=TIMESTAMP},
-        GEN_ID_COL=#{gen_id_col,jdbcType=INTEGER}
+        UPDATED_DATE=#{updated_date,jdbcType=TIMESTAMP}
         WHERE  NOMOR_TIKET=#{nomor_tiket}
     </update>
 

@@ -22,4 +22,8 @@ public interface MttrService {
     void saveOrUpdateMttr(Mttr mttr);
 
     Mttr getMttrByNomorTiket(String nomorTiket);
+
+    long getDurasi(Mttr mttr);
+
+    long getLamaPending(Mttr mttr);
 }

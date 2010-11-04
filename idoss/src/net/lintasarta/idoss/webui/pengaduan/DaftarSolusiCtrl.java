@@ -62,7 +62,7 @@ public class DaftarSolusiCtrl extends GFCBaseListCtrl<TDeskripsi> implements Ser
         int height = ((Intbox) Path.getComponent("/outerIndexWindow/currentDesktopHeight")).getValue();
         height = height + panelHeight;
         int maxListBoxHeight = (height - 170);
-        setCountRows(Math.round(maxListBoxHeight / 17));
+        setCountRows(Math.round(maxListBoxHeight / 34));
         borderlayout_daftarSolusi.setHeight(String.valueOf(maxListBoxHeight) + "px");
         paging_DaftarSolusi.setPageSize(getCountRows());
         paging_DaftarSolusi.setDetailed(true);

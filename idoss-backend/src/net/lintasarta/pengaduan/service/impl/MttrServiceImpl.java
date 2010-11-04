@@ -5,7 +5,6 @@ import net.lintasarta.pengaduan.model.Mttr;
 import net.lintasarta.pengaduan.service.MttrService;
 import net.lintasarta.util.TicketIdGenerator;
 
-import java.sql.Timestamp;
 import java.util.Calendar;
 
 /**
@@ -50,8 +49,6 @@ public class MttrServiceImpl implements MttrService {
     @Override
     public void createMttr(Mttr mttr) {
         int i = mttrDAO.getGenerateId();
-        Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
-        mttr.setUpdated_date(ts);
         int g = Integer.parseInt(getGenerateId());
         mttr.setT_idoss_mttr_id(g);
         mttr.setGen_id_col(i);
@@ -60,12 +57,14 @@ public class MttrServiceImpl implements MttrService {
 
     @Override
     public void saveOrUpdateMttr(Mttr mttr) {
-        Mttr mttrUpdate = mttrDAO.getMttrByNomorTiket(mttr.getNomor_tiket());
+        Mttr mttrUpdate = getMttrByNomorTiket(mttr.getNomor_tiket());
         if (mttr.getOpened() > 0) {
             mttrUpdate.setOpened(mttr.getOpened());
         }
         if (mttr.getClosed() > 0) {
             mttrUpdate.setClosed(mttr.getClosed());
+            mttrUpdate.setLama_pending(getLamaPending(mttrUpdate));
+            mttrUpdate.setMttr(getDurasi(mttrUpdate) - mttrUpdate.getLama_pending());
         }
         if (mttr.getInprogress() > 0) {
             mttrUpdate.setInprogress(mttr.getInprogress());
@@ -77,6 +76,31 @@ public class MttrServiceImpl implements MttrService {
             mttrUpdate.setPending_end(mttr.getPending_end());
         }
         getMttrDAO().saveOrUpdateMttr(mttrUpdate);
+    }
+
+    public long getDurasi(Mttr mttr) {
+        long ts = Calendar.getInstance().getTimeInMillis();
+        long duration = ts - mttr.getOpened();
+        if (mttr.getClosed() > 0) {
+            if (ts >= mttr.getClosed()) {
+                duration = mttr.getClosed() - mttr.getOpened();
+            }
+        }
+        return duration;
+    }
+
+    public long getLamaPending(Mttr mttr) {
+        long ts = Calendar.getInstance().getTimeInMillis();
+        long lama_pending = mttr.getLama_pending();
+        if (mttr.getPending_start() > 0) {
+            lama_pending = lama_pending + ts - mttr.getPending_start();
+            if (mttr.getPending_end() > 0) {
+                if (ts >= mttr.getPending_end()) {
+                    lama_pending = lama_pending + mttr.getPending_end() - mttr.getPending_start();
+                }
+            }
+        }
+        return lama_pending;
     }
 
     public Mttr getMttrByNomorTiket(String nomorTiket) {
