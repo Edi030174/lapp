@@ -36,8 +36,10 @@
     </menu>
 
     <menu id="menu_Permohonan" rightName="menuCatPermohonan">
-        <menuItem id="menu_Item_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftarPermohonan.zul"
+        <menuItem id="menu_Item_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftarPermohonanInput.zul"
                   rightName="menu_Item_Permohonan"/>
+        <menuItem id="menu_Item_Persetujuan_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftarPermohonan.zul"
+                  rightName="menu_Item_Persetujuan_Permohonan"/>
         <menuItem id="menu_Item_Report_Belum_Selesai" zulNavigation="/WEB-INF/pages/pengaduan/reportBelumSelesai.zul"
                   rightName="menu_Item_Report2"/>
         <menuItem id="menu_Item_Report_Sudah_Selesai" zulNavigation="/WEB-INF/pages/pengaduan/reportSudahSelesai.zul"

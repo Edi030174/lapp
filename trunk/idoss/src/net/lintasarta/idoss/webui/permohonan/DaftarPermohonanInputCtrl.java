@@ -1,6 +1,5 @@
 package net.lintasarta.idoss.webui.permohonan;
 
-import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.permohonan.model.DaftarPermohonanModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
@@ -8,7 +7,6 @@ import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.predicate.*;
 import net.lintasarta.permohonan.service.PermohonanService;
-import net.lintasarta.security.util.LoginConstants;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.support.PagedListHolder;
@@ -28,10 +26,10 @@ import java.util.*;
  * Date: Jul 14, 2010
  * Time: 2:49:58 PM
  */
-public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implements Serializable {
-    private transient static final Logger logger = Logger.getLogger(DaftarPermohonanCtrl.class);
+public class DaftarPermohonanInputCtrl extends GFCBaseListCtrl<TPermohonan> implements Serializable {
+    private transient static final Logger logger = Logger.getLogger(DaftarPermohonanInputCtrl.class);
 
-    protected Window window_DaftarPermohonan;
+    protected Window window_DaftarPermohonanInput;
     protected Window window_PersetujuanGmPemohon;
     protected Paging paging_DaftarPermohonan;
     protected Listbox listbox_DaftarPermohonan;
@@ -69,7 +67,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
     private transient PermohonanService permohonanService;
     private transient PelaksanaanGangguanService pelaksanaanGangguanService;
 
-    public DaftarPermohonanCtrl() {
+    public DaftarPermohonanInputCtrl() {
         super();
 
         if (logger.isDebugEnabled()) {
@@ -77,12 +75,12 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         }
     }
 
-    public void onCreate$window_DaftarPermohonan(Event event) throws Exception {
+    public void onCreate$window_DaftarPermohonanInput(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        doCheckRights();
+
 
         int panelHeight = 25;
         /*TODO put the logic for working with panel in the ApplicationWorkspace*/
@@ -121,44 +119,12 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         listheader_GM.setSortDescending(new FieldComparator("nama_gm", true));
         listheader_GM.setSortAscending(new FieldComparator("nama_gm", true));
 
-        List<TPermohonan> tPermohonans = new ArrayList<TPermohonan>();
+        List<TPermohonan> tPermohonans;
 
         TPermohonan tPermohonan = new TPermohonan();
         String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
-        String role = getUserWorkspace().getUserSession().getEmployeeRole();
-        boolean isPelaksana = false;
-        if (pelaksanaanGangguanService.getVHrEmployeePelaksanaById(getUserWorkspace().getUserSession().getEmployeeNo()) != null) {
-            isPelaksana = true;
-        }
-
-        if (role.equalsIgnoreCase(LoginConstants.INPUT_PERMOHONAN)) {
-            tPermohonan.setNik_pemohon(employeeNo);
-            tPermohonans = getPermohonanService().getTPermohonanByNikPemohon(tPermohonan);
-        } else if (role.equalsIgnoreCase(LoginConstants.MUSER)) {
-            tPermohonan.setNik_manager(employeeNo);
-            tPermohonan.setStatus_track_permohonan("Persetujuan Manager");
-            tPermohonans = getPermohonanService().getTPermohonanByStatusAndNikManager(tPermohonan);
-        } else if (role.equalsIgnoreCase(LoginConstants.GMUSER)) {
-            tPermohonan.setNik_gm(employeeNo);
-            tPermohonan.setStatus_track_permohonan("Disetujui Manager Pemohon");
-            tPermohonans = getPermohonanService().getTPermohonanByStatusAndNikGM(tPermohonan);
-        } else if (role.equalsIgnoreCase(LoginConstants.AMDUK)) {
-            tPermohonan.setStatus_track_permohonan("Disetujui GM Pemohon");
-            tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan);
-        } else if (role.equalsIgnoreCase(LoginConstants.MDUK)) {
-            tPermohonan.setStatus_track_permohonan("Disetujui Asman Dukophar");
-            tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan);
-        } else if (role.equalsIgnoreCase(LoginConstants.GMDUK)) {
-            tPermohonan.setDampak("MAJOR");
-            tPermohonan.setStatus_track_permohonan("Disetujui Manager Dukophar");
-            tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonanAndDampak(tPermohonan);
-//        } else {
-//            /*}else if(role.equalsIgnoreCase(LoginConstants.PELAKSANA_PERMOHONAN)){*/
-//            tPermohonans = getPermohonanService().getTPermohonanByNikPelaksana(employeeNo);
-        }
-        tPermohonans.addAll(getPermohonanService().getTPermohonanByNikPelaksana(employeeNo));
-
-
+        tPermohonan.setNik_pemohon(employeeNo);
+        tPermohonans = getPermohonanService().getTPermohonanByNikPemohon(tPermohonan);
         PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>(tPermohonans);
         pagedListHolder.setPageSize(getCountRows());
 
@@ -167,13 +133,6 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 
         getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonan, paging_DaftarPermohonan);
         listbox_DaftarPermohonan.setItemRenderer(new DaftarPermohonanModelItemRenderer());
-    }
-
-    private void doCheckRights() {
-        UserWorkspace workspace = getUserWorkspace();
-        btnBuatBaru_DaftarPermohonan.setVisible(false);
-
-
     }
 
     public void onPermohonanItemDoubleClicked(Event event) throws Exception {
@@ -259,8 +218,8 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
             logger.debug("--> " + event.toString());
         }
 
-        Events.postEvent("onCreate", window_DaftarPermohonan, event);
-        window_DaftarPermohonan.invalidate();
+        Events.postEvent("onCreate", window_DaftarPermohonanInput, event);
+        window_DaftarPermohonanInput.invalidate();
     }
 
     public void onClick$btnCari(Event event) throws Exception {
@@ -357,8 +316,8 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
             logger.debug("--> " + event.toString());
         }
 
-        Events.postEvent("onCreate", window_DaftarPermohonan, event);
-        window_DaftarPermohonan.invalidate();
+        Events.postEvent("onCreate", window_DaftarPermohonanInput, event);
+        window_DaftarPermohonanInput.invalidate();
     }
 
     public void onCheck$checkbox_all(Event event) {
@@ -367,8 +326,8 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
             logger.debug("--> " + event.toString());
         }
         textbox_cariPermohonanId.setValue("");
-        Events.postEvent("onCreate", window_DaftarPermohonan, event);
-        window_DaftarPermohonan.invalidate();
+        Events.postEvent("onCreate", window_DaftarPermohonanInput, event);
+        window_DaftarPermohonanInput.invalidate();
 
     }
 
@@ -382,7 +341,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 
         map.put("listbox_DaftarPermohonan", listbox_DaftarPermohonan);
 
-        map.put("window_DaftarPermohonan", window_DaftarPermohonan);
+        map.put("window_DaftarPermohonanInput", window_DaftarPermohonanInput);
 
         map.put("window_PersetujuanGmPemohon", window_PersetujuanGmPemohon);
 
