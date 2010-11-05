@@ -236,7 +236,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
             datebox_pending.setVisible(true);
-        } else if (combobox_Status.getValue().equals("Closed")) {
+        } else if (combobox_Status.getValue().equals("Selesai")) {
             textbox_solusi.setReadonly(false);
             datebox_pending.setVisible(false);
         }
