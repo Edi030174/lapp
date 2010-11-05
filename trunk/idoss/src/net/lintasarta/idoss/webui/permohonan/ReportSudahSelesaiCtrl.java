@@ -4,25 +4,14 @@ import net.lintasarta.idoss.report.util.JRreportWindow;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.report.service.ReportService;
 import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JasperRunManager;
 import org.apache.log4j.Logger;
-import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zul.Button;
-import org.zkoss.zul.Iframe;
-import org.zkoss.zul.Listbox;
-import org.zkoss.zul.Window;
+import org.zkoss.zul.*;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -38,6 +27,8 @@ public class ReportSudahSelesaiCtrl extends GFCBaseCtrl implements Serializable 
     protected Iframe report;
     protected Button btnReport;
     protected Listbox listbox_bulan;
+    protected Combobox combobox_bulan;
+    protected Combobox combobox_tahun;
     protected Listbox listbox_tahun;
     protected ReportSudahSelesaiCtrl reportSudahSelesaiCtrl;
 
@@ -69,15 +60,29 @@ public class ReportSudahSelesaiCtrl extends GFCBaseCtrl implements Serializable 
     }
 
 
-    public void onClick$btnReport(Event event) throws IOException {
+    public void onClick$btnReport(Event event) throws IOException, InterruptedException {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        String repSrc = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan/reportSudahSelesai.jasper");
-        String bulan = (String) listbox_bulan.getSelectedItem().getValue();
-        String tahun = listbox_tahun.getSelectedItem().getLabel();
-        JRDataSource ds = reportService.getSudahSelesai(bulan,tahun);
-        Component parent = window_Report3.getRoot();
-        new JRreportWindow(parent, true, null, repSrc, ds, "pdf");
+        if (bulanTahun()) {
+            String repSrc = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan/reportSudahSelesai.jasper");
+            String bulan = (String) combobox_bulan.getSelectedItem().getValue();
+            String tahun = (String) combobox_tahun.getSelectedItem().getValue();
+            JRDataSource ds = reportService.getSudahSelesai(bulan, tahun);
+            Component parent = window_Report3.getRoot();
+            new JRreportWindow(parent, true, null, repSrc, ds, "pdf");
+        }
+    }
+
+    private boolean bulanTahun() throws InterruptedException {
+        if (combobox_bulan.getValue().length() < 1) {
+            Messagebox.show("Silakan pilih bulan...", "Warning", Messagebox.OK, Messagebox.EXCLAMATION);
+            return false;
+        }
+        if (combobox_tahun.getValue().length() < 1) {
+            Messagebox.show("Silakan pilih tahun...", "Warning", Messagebox.OK, Messagebox.EXCLAMATION);
+            return false;
+        }
+        return true;
     }
 }
