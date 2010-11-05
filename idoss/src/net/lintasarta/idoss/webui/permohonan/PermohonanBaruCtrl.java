@@ -405,7 +405,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        String lam = "C:\\tempatlampiran\\lampiran.xlsx";
+        String lam = permohonanService.getFilePath() + "lampiran.xlsx";
         try {
             Filedownload.save(new File(lam), null);
         } catch (Exception e) {

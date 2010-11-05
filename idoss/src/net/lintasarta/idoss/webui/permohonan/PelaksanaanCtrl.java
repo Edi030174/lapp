@@ -38,7 +38,6 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     protected Radio inprogress;
     protected Radio closed;
     protected Radio pending;
-    protected Datebox datebox_TglPermohonan;
     protected Datebox datebox_Pending;
     protected Textbox textbox_pelaksana;
 
@@ -175,7 +174,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         if (radiogroup_StatusPerubahan.getSelectedItem().equals(pending)) {
             tPelaksanaan.setTgl_pending(new Timestamp(datebox_Pending.getValue().getTime()));
         }
-        tPelaksanaan.setTgl_permohonan(new Timestamp(datebox_TglPermohonan.getValue().getTime()));
+//        tPelaksanaan.setTgl_permohonan(new Timestamp(datebox_TglPermohonan.getValue().getTime()));
         tPelaksanaan.setCatatan_pelaksana(textbox_pelaksana.getValue());
         tPelaksanaan.setNama_pelaksana(getUserWorkspace().getUserSession().getEmployeeName());
         tPelaksanaan.setId_pelaksana(getUserWorkspace().getUserSession().getEmployeeNo());
