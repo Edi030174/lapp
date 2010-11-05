@@ -106,7 +106,7 @@
                                 <combobox id="combobox_Status" width="140px" readonly="true">
                                     <comboitem label="Open" disabled="true"/>
                                     <comboitem label="In Progress"/>
-                                    <comboitem label="Pending" disabled="true"/>
+                                    <comboitem label="Pending"/>
                                     <comboitem label="Selesai"/>
                                 </combobox>
                                 <datebox id="datebox_pending" cols="12" format="dd-MM-yyyy HH:mm" readonly="true"
