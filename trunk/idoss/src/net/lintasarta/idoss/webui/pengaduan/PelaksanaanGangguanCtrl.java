@@ -517,14 +517,14 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
                 Messagebox.show("Status Pending tidak boleh langsung Selesai, harus melalui In Progress");
                 return false;
             }
-            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
-                Messagebox.show("Silakan pilih nama pelaksana");
-                return false;
-            }
-            if (listbox_NamaPelaksana.getSelectedItem() == null) {
-                Messagebox.show("Silakan pilih nama pelaksana");
-                return false;
-            }
+//            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
+//                Messagebox.show("Silakan pilih nama pelaksana");
+//                return false;
+//            }
+//            if (listbox_NamaPelaksana.getSelectedItem() == null) {
+//                Messagebox.show("Silakan pilih nama pelaksana");
+//                return false;
+//            }
             /* Tidak boleh kosong:
                 Nomor Tiket
                 Nama Pelapor
@@ -534,6 +534,8 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
                 Root Caused
                 Solusi
             */
+            gettPenangananGangguan().setNik_pelaksana(getUserWorkspace().getUserSession().getEmployeeNo());
+            gettPenangananGangguan().setNama_pelaksana(getUserWorkspace().getUserSession().getEmployeeName());
             if (textbox_Type.getValue().length() < 1) {
                 Messagebox.show("Silakan pilih tipe");
                 return false;

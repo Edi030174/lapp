@@ -520,14 +520,8 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
                 Root Caused
                 Solusi
             */
-            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
-                Messagebox.show("Silakan pilih nama pelaksana");
-                return false;
-            }
-            if (listbox_NamaPelaksana.getSelectedItem() == null) {
-                Messagebox.show("Silakan pilih nama pelaksana");
-                return false;
-            }
+            gettPenangananGangguan().setNik_pelaksana(getUserWorkspace().getUserSession().getEmployeeNo());
+            gettPenangananGangguan().setNama_pelaksana(getUserWorkspace().getUserSession().getEmployeeName());
             if (textbox_Type.getValue().length() < 1) {
                 Messagebox.show("Silakan pilih tipe");
                 return false;
