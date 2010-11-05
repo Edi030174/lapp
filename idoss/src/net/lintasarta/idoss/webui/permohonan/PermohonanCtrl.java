@@ -179,6 +179,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doCheckRights() {
         UserWorkspace workspace = getUserWorkspace();
+        TPermohonan tPermohonan = gettPermohonan();
 //        window_Permohonan.setVisible(workspace.isAllowed("window_Permohonan"));
 //        tab_Permohonan.setVisible(workspace.isAllowed("tab_Permohonan"));
 //        tabPanel_Permohonan.setVisible(workspace.isAllowed("tab_Permohonan"));
@@ -189,8 +190,6 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 //        tabPanel_PersetujuanPemohon.setVisible(workspace.isAllowed("tab_PersetujuanPemohon"));
 //        tab_PersetujuanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanDukophar"));
 //        tabPanel_PersetujuanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanDukophar"));
-        tab_Pelaksanaan.setVisible(workspace.isAllowed("tab_Pelaksanaan"));
-        tabPanel_Pelaksanaan.setVisible(workspace.isAllowed("tab_Pelaksanaan"));
 
         if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("muser")) {
             tab_Persetujuan.setLabel("Persetujuan Manager");
@@ -206,6 +205,13 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
+        if (tPermohonan.getStatus_track_permohonan().equalsIgnoreCase("Disetujui GM Dukophar")) {
+            tab_Pelaksanaan.setVisible(true);
+            tabPanel_Pelaksanaan.setVisible(true);
+        } else {
+            tab_Pelaksanaan.setVisible(false);
+            tabPanel_Pelaksanaan.setVisible(false);
+        }
         if (tPermohonan.getLampiran() != null) {
             button_Download.setVisible(true);
             String x = tPermohonan.getLampiran();
