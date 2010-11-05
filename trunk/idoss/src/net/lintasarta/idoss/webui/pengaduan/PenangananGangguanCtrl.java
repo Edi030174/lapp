@@ -482,7 +482,7 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
                 return false;
 
             }
-        } else if (combobox_Status.getValue().equalsIgnoreCase("Closed")) {
+        } else if (combobox_Status.getValue().equalsIgnoreCase("Selesai")) {
             /* Tidak boleh kosong:
                 Nomor Tiket
                 Nama Pelapor
