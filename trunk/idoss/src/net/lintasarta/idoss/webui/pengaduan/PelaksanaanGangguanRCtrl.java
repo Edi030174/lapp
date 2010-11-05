@@ -45,6 +45,7 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
     protected Textbox textbox_deskripsi;
     protected Textbox textbox_deskripsibaru;
     protected Datebox datebox_pending;
+    protected Label label_Target;
     protected Textbox textbox_solusi;//pelaksana hanya status & solusi yg enable
     protected Radiogroup radiogroup_Dampak;
     protected Radio radio_major;
@@ -243,17 +244,21 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
             datebox_pending.setVisible(false);
+            label_Target.setVisible(false);
         } else if (combobox_Status.getValue().equals("In Progress")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
             datebox_pending.setVisible(false);
+            label_Target.setVisible(false);
         } else if (combobox_Status.getValue().equals("Pending")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
             datebox_pending.setVisible(true);
-        } else if (combobox_Status.getValue().equals("Closed")) {
+            label_Target.setVisible(true);
+        } else if (combobox_Status.getValue().equals("Selesai")) {
             textbox_solusi.setReadonly(false);
             datebox_pending.setVisible(false);
+            label_Target.setVisible(false);
         }
     }
 
@@ -307,7 +312,7 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
     }
 
     private void doShowDialog(TPenangananGangguan tPenangananGangguan) throws InterruptedException {
-        if (tPenangananGangguan.getStatus().equals("Closed")) {
+        if (tPenangananGangguan.getStatus().equals("Selesai")) {
             btnSimpan_PelaksanaanGangguan.setVisible(false);
             combobox_Status.setDisabled(true);
         }
@@ -341,8 +346,10 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
         combobox_Status.setValue(tPenangananGangguan.getStatus());
         if (tPenangananGangguan.getStatus().equalsIgnoreCase("Pending")) {
             datebox_pending.setVisible(true);
+            label_Target.setVisible(true);
         } else {
             datebox_pending.setVisible(false);
+            label_Target.setVisible(false);
         }
         if (tPenangananGangguan.getStatus().equals("Selesai")) {
             textbox_solusi.setReadonly(false);
@@ -495,7 +502,7 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;
             }
-        } else if (combobox_Status.getValue().equalsIgnoreCase("Closed")) {
+        } else if (combobox_Status.getValue().equalsIgnoreCase("Selesai")) {
             /* Tidak boleh kosong:
                 Nomor Tiket
                 Nama Pelapor
