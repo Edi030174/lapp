@@ -45,6 +45,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     protected Textbox textbox_deskripsi;
     protected Textbox textbox_deskripsibaru;
     protected Textbox textbox_solusi;//pelaksana hanya status & solusi yg enable
+    protected Label label_Target;
     protected Radiogroup radiogroup_Dampak;
     protected Radio radio_minor;
     protected Radio radio_major;
@@ -243,17 +244,21 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
             datebox_pending.setVisible(false);
+            label_Target.setVisible(false);
         } else if (combobox_Status.getValue().equals("In Progress")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
             datebox_pending.setVisible(false);
+            label_Target.setVisible(false);
         } else if (combobox_Status.getValue().equals("Pending")) {
             textbox_solusi.setReadonly(true);
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
             datebox_pending.setVisible(true);
+            label_Target.setVisible(true);
         } else if (combobox_Status.getValue().equals("Closed")) {
             textbox_solusi.setReadonly(false);
             datebox_pending.setVisible(false);
+            label_Target.setVisible(false);
         }
     }
 
@@ -338,8 +343,10 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         combobox_Status.setValue(tPenangananGangguan.getStatus());
         if (tPenangananGangguan.getStatus().equalsIgnoreCase("Pending")) {
             datebox_pending.setVisible(true);
+            label_Target.setVisible(true);
         } else {
             datebox_pending.setVisible(false);
+            label_Target.setVisible(false);
         }
         if (tPenangananGangguan.getStatus().equals("Selesai")) {
             textbox_solusi.setReadonly(false);

@@ -76,11 +76,11 @@ public class ReportAduanCtrl extends GFCBaseCtrl implements Serializable {
 
     private boolean bulanTahun() throws InterruptedException {
         if (combobox_bulan.getValue().length() < 1) {
-            Messagebox.show("Silakan pilih bulan...");
+            Messagebox.show("Silakan pilih bulan...", "Warning", Messagebox.OK, Messagebox.EXCLAMATION);
             return false;
         }
         if (combobox_tahun.getValue().length() < 1) {
-            Messagebox.show("Silakan pilih tahun...");
+            Messagebox.show("Silakan pilih tahun...", "Warning", Messagebox.OK, Messagebox.EXCLAMATION);
             return false;
         }
         return true;

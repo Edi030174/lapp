@@ -49,7 +49,8 @@
                 <row style="border:0px">
                     <label value="Deskripsi terakhir"/>
                     <!--<fckeditor id="fckeditor_Deskripsi" customConfigurationsPath="/js/fckeditor.js" toolbarSet="Basic" width="99%" height="50%"/>-->
-                    <textbox id="textbox_deskripsi" width="99%" multiline="true" rows="3" maxlength="3999" readonly="true"/>
+                    <textbox id="textbox_deskripsi" width="99%" multiline="true" rows="3" maxlength="3999"
+                             readonly="true"/>
                 </row>
                 <row style="border:0px">
                     <label value="Deskripsi"/>
@@ -94,18 +95,24 @@
                         <listbox id="listbox_RootCaused" width="200px" mold="select" rows="1"/>
                         <button label=" + " id="btn_TambahRootCaused"/>
                         <space/>
-                        <vbox>
-                            <space height="0.5px"/>
-                            <label value="status"/>
-                        </vbox>
-                        <!--<space width="50px"/>-->
-                        <combobox id="combobox_Status" width="140px" readonly="true">
-                            <comboitem label="Open" disabled="true"/>
-                            <comboitem label="In Progress"/>
-                            <comboitem label="Pending" disabled="true"/>
-                            <comboitem label="Selesai"/>
-                        </combobox>
-                        <datebox id="datebox_pending" cols="12" format="dd-MM-yyyy HH:mm" readonly="true" width="150px" style="color: #000000 !important;"/>
+                        <hbox>
+                            <vbox>
+                                <space height="2px"/>
+                                <label value="Status     :"/>
+                                <space height="3px"/>
+                                <label id="label_Target" value="Target selesai:"/>
+                            </vbox>
+                            <vbox>
+                                <combobox id="combobox_Status" width="140px" readonly="true">
+                                    <comboitem label="Open" disabled="true"/>
+                                    <comboitem label="In Progress"/>
+                                    <comboitem label="Pending" disabled="true"/>
+                                    <comboitem label="Selesai"/>
+                                </combobox>
+                                <datebox id="datebox_pending" cols="12" format="dd-MM-yyyy HH:mm" readonly="true"
+                                         width="150px" style="color: #000000 !important;"/>
+                            </vbox>
+                        </hbox>
                     </hbox>
                 </row>
                 <row style="border:0px">
