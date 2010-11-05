@@ -502,6 +502,14 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;
             }
+        } else if (combobox_Status.getValue().equalsIgnoreCase("Pending")) {
+            if (datebox_pending.getValue() != null) {
+                if (datebox_pending.getValue().before(new Date())) {
+                    alert("End Date must be equal or bigger than this date");
+                    datebox_pending.setValue(new Date());
+                    return false;
+                }
+            }
         } else if (combobox_Status.getValue().equalsIgnoreCase("Selesai")) {
             /* Tidak boleh kosong:
                 Nomor Tiket
@@ -530,13 +538,6 @@ public class PelaksanaanGangguanRCtrl extends GFCBaseCtrl implements Serializabl
             }
             if (textbox_solusi.getValue().length() < 1) {
                 Messagebox.show("Silakan isikan solusi");
-                return false;
-            }
-        }
-        if (datebox_pending.getValue() != null) {
-            if (datebox_pending.getValue().before(new Date())) {
-                alert("End Date must be equal or bigger than this date");
-                datebox_pending.setValue(new Date());
                 return false;
             }
         }

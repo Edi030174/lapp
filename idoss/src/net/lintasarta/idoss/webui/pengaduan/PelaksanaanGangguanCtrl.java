@@ -21,6 +21,7 @@ import org.zkoss.zul.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -501,6 +502,14 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             if (listbox_NamaPelaksana.getSelectedItem() == null) {
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;
+            }
+        } else if (combobox_Status.getValue().equalsIgnoreCase("Pending")) {
+            if (datebox_pending.getValue() != null) {
+                if (datebox_pending.getValue().before(new Date())) {
+                    alert("End Date must be equal or bigger than this date");
+                    datebox_pending.setValue(new Date());
+                    return false;
+                }
             }
         } else if (combobox_Status.getValue().equalsIgnoreCase("Selesai")) {
             TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
