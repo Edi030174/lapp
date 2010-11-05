@@ -7,7 +7,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
     <window id="window_Report4" border="none" apply="${reportRekapAduanCtrl}"
-            sizable="true" closable="true" width="100%" height="440px">
+            sizable="false" closable="true" width="100%" height="150px">
         <style>
             body { padding: 0 0; /* 0 padding on top and bottom and 0
             padding on right and left */ }
@@ -27,23 +27,77 @@
         </style>
         <borderlayout height="100%">
             <north maxsize="24" size="24" border="0">
-                <hbox>
-                    <button id="btnReport" label="Report!"/>
-                    <label value="Tahun :"/>
-                    <combobox id="combobox_tahun" width="140px" readonly="true">
-                        <comboitem label="2010" value="2010"/>
-                        <comboitem label="2011" value="2011"/>
-                        <comboitem label="2012" value="2012"/>
-                        <comboitem label="2013" value="2013"/>
-                        <comboitem label="2014" value="2014"/>
-                        <comboitem label="2015" value="2015"/>
-                        <comboitem label="2016" value="2016"/>
-                        <comboitem label="2017" value="2017"/>
-                        <comboitem label="2018" value="2018"/>
-                        <comboitem label="2019" value="2019"/>
-                        <comboitem label="2020" value="2020"/>
-                    </combobox>
-                </hbox>
+                <vbox>
+                    <hbox>
+                        <button id="btnReport" label="Report!"/>
+                        <vbox>
+                            <space height="1px"/>
+                            <label value="Tahun :"/>
+                        </vbox>
+                        <combobox id="combobox_tahun" width="140px" readonly="true">
+                            <comboitem label="2010" value="2010"/>
+                            <comboitem label="2011" value="2011"/>
+                            <comboitem label="2012" value="2012"/>
+                            <comboitem label="2013" value="2013"/>
+                            <comboitem label="2014" value="2014"/>
+                            <comboitem label="2015" value="2015"/>
+                            <comboitem label="2016" value="2016"/>
+                            <comboitem label="2017" value="2017"/>
+                            <comboitem label="2018" value="2018"/>
+                            <comboitem label="2019" value="2019"/>
+                            <comboitem label="2020" value="2020"/>
+                        </combobox>
+                    </hbox>
+                    <space height="5px"/>
+                    <groupbox height="90px">
+                    <hbox>
+                        <space width="10px"/>
+                        <vbox>
+                            <space height="1px"/>
+                            <label value="Tahun:"/>
+                            <space height="1px"/>
+                            <label value="Bulan:"/>
+                            <space height="1px"/>
+                            <label value="Jumlah:"/>
+                        </vbox>
+                        <vbox>
+                            <combobox id="combobox_tahun2" width="140px" readonly="true">
+                                <comboitem label="2010" value="2010"/>
+                                <comboitem label="2011" value="2011"/>
+                                <comboitem label="2012" value="2012"/>
+                                <comboitem label="2013" value="2013"/>
+                                <comboitem label="2014" value="2014"/>
+                                <comboitem label="2015" value="2015"/>
+                                <comboitem label="2016" value="2016"/>
+                                <comboitem label="2017" value="2017"/>
+                                <comboitem label="2018" value="2018"/>
+                                <comboitem label="2019" value="2019"/>
+                                <comboitem label="2020" value="2020"/>
+                            </combobox>
+                            <combobox id="combobox_bulan" width="140px" readonly="true">
+                                <comboitem label="Januari" value="JAN"/>
+                                <comboitem label="Februari" value="FEB"/>
+                                <comboitem label="Maret" value="MAR"/>
+                                <comboitem label="April" value="APR"/>
+                                <comboitem label="Mei" value="MAY"/>
+                                <comboitem label="Juni" value="JUN"/>
+                                <comboitem label="Juli" value="JUL"/>
+                                <comboitem label="Agustus" value="AUG"/>
+                                <comboitem label="September" value="SEP"/>
+                                <comboitem label="Oktober" value="OCT"/>
+                                <comboitem label="November" value="NOV"/>
+                                <comboitem label="Desember" value="DEC"/>
+                            </combobox>
+                            <intbox id="intbox_Jumlah" maxlength="3"/>
+                        </vbox>
+                    </hbox>
+                        <space height="7px"/>
+                    <hbox>
+                        <space width="50px"/>
+                        <button id="button_Tambah" label="Add"/>
+                    </hbox>
+                    </groupbox>
+                </vbox>
             </north>
             <center border="none" flex="true">
                 <iframe id="report"/>

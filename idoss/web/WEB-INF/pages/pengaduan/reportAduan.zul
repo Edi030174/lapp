@@ -7,7 +7,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
     <window id="window_Report1" border="none" apply="${reportAduanCtrl}"
-            sizable="true" closable="true" width="100%" height="500px">
+            sizable="false" closable="true" width="100%" height="21px">
         <style>
             body { padding: 0 0; /* 0 padding on top and bottom and 0
             padding on right and left */ }
@@ -29,7 +29,10 @@
             <north maxsize="24" size="24" border="0">
                 <hbox>
                     <button id="btnReport" label="Report!"/>
-                    <label value="Bulan:"/>
+                    <vbox>
+                        <space height="1px"/>
+                        <label value="Bulan:"/>
+                    </vbox>
                     <combobox id="combobox_bulan" width="140px" readonly="true">
                         <comboitem label="Januari" value="JAN"/>
                         <comboitem label="Februari" value="FEB"/>
@@ -45,7 +48,10 @@
                         <comboitem label="Desember" value="DEC"/>
                         <!--JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC-->
                     </combobox>
-                    <label value="  Tahun:"/>
+                    <vbox>
+                        <space height="1px"/>
+                        <label value="  Tahun:"/>
+                    </vbox>
                     <combobox id="combobox_tahun" width="140px" readonly="true">
                         <comboitem label="2010" value="2010"/>
                         <comboitem label="2011" value="2011"/>

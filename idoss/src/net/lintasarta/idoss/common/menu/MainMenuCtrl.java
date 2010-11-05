@@ -15,7 +15,6 @@ import org.zkoss.zul.*;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * Created by IntelliJ IDEA.
