@@ -255,7 +255,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
             textbox_solusi.setValue(tPenangananGangguan.getSolusi());
             datebox_pending.setVisible(true);
             label_Target.setVisible(true);
-        } else if (combobox_Status.getValue().equals("Closed")) {
+        } else if (combobox_Status.getValue().equals("Selesai")) {
             textbox_solusi.setReadonly(false);
             datebox_pending.setVisible(false);
             label_Target.setVisible(false);
@@ -300,10 +300,10 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
         try {
             TPenangananGangguan tp = getPelaksanaanGangguanService().getTPenangananGangguanByTiketId(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
-            if (!tp.getStatus().equalsIgnoreCase("Closed")) {
+            if (!tp.getStatus().equalsIgnoreCase("Selesai")) {
                 getPelaksanaanGangguanService().saveOrUpdate(tPenangananGangguan, tDeskripsi);
             } else {
-                alert("Status sudah Closed!");
+                alert("Status sudah Selesai!");
             }
             mttr.setNomor_tiket(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
             getMttrService().saveOrUpdateMttr(mttr);
@@ -502,10 +502,10 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;
             }
-        } else if (combobox_Status.getValue().equalsIgnoreCase("Closed")) {
+        } else if (combobox_Status.getValue().equalsIgnoreCase("Selesai")) {
             TPenangananGangguan tPenangananGangguan = gettPenangananGangguan();
             if (tPenangananGangguan.getStatus().equalsIgnoreCase("Pending")) {
-                Messagebox.show("Status Pending tidak boleh langsung Closed, harus melalui In Progress");
+                Messagebox.show("Status Pending tidak boleh langsung Selesai, harus melalui In Progress");
                 return false;
             }
             if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
