@@ -60,6 +60,7 @@
     <bean id="daftarPermohonanCtrl" class="net.lintasarta.idoss.webui.permohonan.DaftarPermohonanCtrl"
           parent="basisListCtrl" scope="prototype">
         <property name="permohonanService" ref="permohonanService"/>
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
     </bean>
     <bean id="permohonanBaruCtrl" class="net.lintasarta.idoss.webui.permohonan.PermohonanBaruCtrl" parent="basisCtrl"
           scope="prototype">

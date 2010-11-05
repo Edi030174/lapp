@@ -42,20 +42,13 @@
                                onCheck="textbox_pending.disabled=true"/>
                         <radio id="pending" label="Pending  s/d" value="PENDING"
                                onCheck="textbox_pending.disabled=false"/>
-                        <textbox id="textbox_pending" maxlength="2"/>
+                        <textbox id="textbox_pending" maxlength="2" width="15px"/>
                         <label value="hari"/>
-                        <datebox id="datebox_Pending" format="dd MMMM yyyy" width="150px"
-                                 constraint="no past, no today"/>
                     </radiogroup>
                 </hbox>
                 <space height="10px"/>
                 <hbox>
                     <vbox>
-                        <hbox>
-                            <label value="Tanggal :"/>
-                            <datebox id="datebox_TglPermohonan" format="dd MMMM yyyy" readonly="true" width="150px" disabled="true"/>
-                        </hbox>
-                        <checkbox id="checkbox_Rfs" label="Disetujui oleh Pelaksana" disabled="true"/>
                     </vbox>
                     <space width="40px"/>
                     <vbox>

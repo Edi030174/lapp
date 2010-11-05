@@ -4,6 +4,7 @@ import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.permohonan.model.DaftarPermohonanModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
+import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.predicate.*;
 import net.lintasarta.permohonan.service.PermohonanService;
@@ -66,6 +67,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
     private int countRows;
 
     private transient PermohonanService permohonanService;
+    private transient PelaksanaanGangguanService pelaksanaanGangguanService;
 
     public DaftarPermohonanCtrl() {
         super();
@@ -124,6 +126,9 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         TPermohonan tPermohonan = new TPermohonan();
         String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
         String role = getUserWorkspace().getUserSession().getEmployeeRole();
+        if (pelaksanaanGangguanService.getVHrEmployeePelaksanaById(getUserWorkspace().getUserSession().getEmployeeNo()) != null) {
+            role = LoginConstants.PELAKSANA_PERMOHONAN;
+        }
 
         if (role.equalsIgnoreCase(LoginConstants.INPUT_PERMOHONAN)) {
             tPermohonan.setNik_pemohon(employeeNo);
@@ -410,4 +415,8 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
     public void setPermohonanService(PermohonanService permohonanService) {
         this.permohonanService = permohonanService;
     }
-}   
+
+    public void setPelaksanaanGangguanService(PelaksanaanGangguanService pelaksanaanGangguanService) {
+        this.pelaksanaanGangguanService = pelaksanaanGangguanService;
+    }
+}
