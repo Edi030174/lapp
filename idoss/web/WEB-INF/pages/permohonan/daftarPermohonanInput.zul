@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page id="daftarZul" title="Form Daftar Permohonan" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <window id="window_DaftarPermohonanInput" border="none"
+            width="100%" height="100%" sizable="true" apply="${daftarPermohonanInputCtrl}">
+        <style>
+
+            body { padding: 0 0; /* 0 padding on top and bottom and 0
+            padding on right and left */ }
+
+            .font{
+            font-size:10px
+            }
+        </style>
+        <timer id="timer" delay="60000" repeats="true"/>
+        <panel id="panel_daftarPermohonan" title="" border="none"/>
+        <hbox>
+            <button id="btnRefresh"
+                    image="/images/icons/refresh2_yellow_16x16.gif"/>
+            <button id="btnBuatBaru_DaftarPermohonan"
+                    image="/images/icons/btn_new2_16x16.gif"/>
+            <vbox>
+                <hbox>
+
+                    <combobox id="listbox_Cari" width="140px" readonly="true">
+                        <comboitem label="All" />
+                        <comboitem label="Nomor" />
+                        <comboitem label="Tipe" />
+                        <comboitem label="Status" />
+                        <comboitem label="Dampak" />
+                     </combobox>
+                    
+                    <textbox id="textbox_cariPermohonanId"/>
+                    <button id="btnCari" label="cari"
+                            image="/images/icons/btn_search2_16x16.gif"/>
+                    <separator/>
+                    <checkbox id="checkbox_all" label="tampilkan semua"/>
+                </hbox>
+                <hbox id="idHboxTanggal">
+                    <label value="Tanggal Awal :" style="align:right"/>
+                    <datebox id="datebox_TanggalAwal" cols="12" format="dd MMMM yyyy"
+                             readonly="true" width="150px"
+                             style="color: #000000 !important;"/>
+                    <label value="Tanggal Akhir :" style="align:right"/>
+                    <datebox id="datebox_TanggalAkhir" cols="12" format="dd MMMM yyyy"
+                             readonly="true" width="150px"
+                             style="color: #000000 !important;"/>
+                </hbox>
+            </vbox>
+        </hbox>
+        <borderlayout id="borderlayout_daftarPermohonan">
+            <north border="none" height="26px">
+                <paging id="paging_DaftarPermohonan"/>
+            </north>
+            <center border="none">
+                <listbox id="listbox_DaftarPermohonan" vflex="true" width="99.9%" height="100%" multiple="false">
+                    <listhead sizable="true">
+                        <listheader id="listheader_Nomor" label="Nomor" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Tanggal" label="Tanggal" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Dampak" label="Dampak" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Tipe" label="Tipe" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_StatusPersetujuan" label="Status Persetujuan" sort="auto"
+                                    style="font-size:11px"/>
+                        <listheader id="listheader_TglStatus" label="Tanggal Persetujuan" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Mgr" label="Manager" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_GM" label="GM" sort="auto" style="font-size:11px"/>
+                    </listhead>
+                </listbox>
+            </center>
+            <south border="none"/>
+        </borderlayout>
+        <space/>
+    </window>
+</zk>
