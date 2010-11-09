@@ -46,7 +46,7 @@ public class MttrDAOTest {
     public void testCreateMttr() throws Exception{
         Mttr mttr = new Mttr();
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
-        mttr.setNomor_tiket("002");
+        mttr.setNomor_tiket("999");
         mttr.setMttr(4);
         mttr.setOpened(7);
         mttr.setClosed(9);
@@ -54,7 +54,7 @@ public class MttrDAOTest {
         mttr.setPending_start(4);
         mttr.setPending_end(6);
         mttr.setLama_pending(19);
-        mttr.setUpdated_by("johnny");
+        mttr.setUpdated_by("Jon");
         mttr.setUpdated_date(ts);
 
         mttrDAO.createMttr(mttr);

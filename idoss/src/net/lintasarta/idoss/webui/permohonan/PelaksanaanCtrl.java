@@ -3,6 +3,8 @@ package net.lintasarta.idoss.webui.permohonan;
 import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
+import net.lintasarta.pengaduan.model.Mttr;
+import net.lintasarta.pengaduan.service.MttrService;
 import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
@@ -40,6 +42,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     protected Radio pending;
     protected Datebox datebox_Pending;
     protected Textbox textbox_pelaksana;
+    protected Intbox textbox_pending;
 
     private transient String oldVar_selesai;
     private transient String oldVar_tunda;
@@ -54,9 +57,11 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     private transient TPermohonan tPermohonan;
     private transient TPelaksanaan tPelaksanaan;
     private transient TVerifikasi tVerifikasi;
+    private transient Mttr mttr;
     private transient PermohonanService permohonanService;
     private transient PelaksanaanService pelaksanaanService;
     private transient VerifikasiService verifikasiService;
+    private transient MttrService mttrService;
 
     public PelaksanaanCtrl() {
         super();
@@ -109,7 +114,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         UserWorkspace workspace = getUserWorkspace();
         boolean pl = (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) && (tVerifikasi.getDampak().equals("MINOR"));
         boolean pk = (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Dukophar")) && (tVerifikasi.getDampak().equals("MAJOR"));
-        boolean pm = pl^pk;
+        boolean pm = pl ^ pk;
         btnSimpan_Pelaksanaan.setVisible(pm);
     }
 
@@ -154,11 +159,14 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     private void doSimpan() throws Exception {
         TPermohonan tPermohonan = gettPermohonan();
         TPelaksanaan tPelaksanaan = gettPelaksanaan();
-        doWriteComponentsToBean(tPelaksanaan, tPermohonan);
+        Mttr mttr = getMttr();
+        doWriteComponentsToBean(tPelaksanaan, tPermohonan, mttr);
+        mttr.setNomor_tiket(tPelaksanaan.getT_idoss_pelaksanaan_id());
 
         try {
             getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
             getPelaksanaanService().saveOrUpdateTPelaksanaan(tPelaksanaan);
+            getMttrService().saveOrUpdateMttr(mttr);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -167,21 +175,38 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    private void doWriteComponentsToBean(TPelaksanaan tPelaksanaan, TPermohonan tPermohonan) {
+    private void doWriteComponentsToBean(TPelaksanaan tPelaksanaan, TPermohonan tPermohonan, Mttr mttr) {
+        Timestamp now = new Timestamp(Calendar.getInstance().getTimeInMillis());
         Radio status = radiogroup_StatusPerubahan.getSelectedItem();
         tPelaksanaan.setStatus_perubahan(status.getValue());
         tPermohonan.setStatus_track_permohonan(status.getValue());
-        if (radiogroup_StatusPerubahan.getSelectedItem().equals(pending)) {
-            tPelaksanaan.setTgl_pending(new Timestamp(datebox_Pending.getValue().getTime()));
+        if (radiogroup_StatusPerubahan.getSelectedItem().equals(inprogress)) {
+            if (mttr.getInprogress() > 0) {
+                mttr.setPending_end(now.getTime());
+            }
+            mttr.setInprogress(now.getTime());
+        } else if (radiogroup_StatusPerubahan.getSelectedItem().equals(closed)) {
+            mttr.setClosed(now.getTime());
+        } else if (radiogroup_StatusPerubahan.getSelectedItem().equals(pending)) {
+//            tPelaksanaan.setTgl_pending(new Timestamp(datebox_Pending.getValue().getTime()));
+            if (mttr.getPending_end() > 0) {
+                long lama_pending = mttr.getLama_pending();
+                if (now.getTime() < mttr.getPending_end()) {
+                    mttr.setLama_pending(lama_pending + now.getTime() - mttr.getPending_start());
+                } else {
+                    mttr.setLama_pending(lama_pending + mttr.getPending_end() - mttr.getPending_start());
+                }
+            }
+            mttr.setPending_start(now.getTime());
+            mttr.setPending_end(textbox_pending.getValue());
         }
-//        tPelaksanaan.setTgl_permohonan(new Timestamp(datebox_TglPermohonan.getValue().getTime()));
         tPelaksanaan.setCatatan_pelaksana(textbox_pelaksana.getValue());
         tPelaksanaan.setNama_pelaksana(getUserWorkspace().getUserSession().getEmployeeName());
         tPelaksanaan.setId_pelaksana(getUserWorkspace().getUserSession().getEmployeeNo());
 
         tPelaksanaan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         tPelaksanaan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
-        Timestamp now = new Timestamp(Calendar.getInstance().getTimeInMillis());
+
         tPelaksanaan.setUpdated_date(now);
         tPelaksanaan.setCreated_date(now);
     }
@@ -232,5 +257,21 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setVerifikasiService(VerifikasiService verifikasiService) {
         this.verifikasiService = verifikasiService;
+    }
+
+    public Mttr getMttr() {
+        return mttr;
+    }
+
+    public void setMttr(Mttr mttr) {
+        this.mttr = mttr;
+    }
+
+    public MttrService getMttrService() {
+        return mttrService;
+    }
+
+    public void setMttrService(MttrService mttrService) {
+        this.mttrService = mttrService;
     }
 }

@@ -12,8 +12,12 @@ import java.util.List;
  */
 public interface MttrDAO {
     int getGenerateId();
+
     Mttr getMttrByMttrId(int t_idoss_mttr_id);
+
     List<Mttr> getMttrByNomorTiket(String nomorTiket);
+
     void createMttr(Mttr mttr);
+
     void saveOrUpdateMttr(Mttr mttr);
 }

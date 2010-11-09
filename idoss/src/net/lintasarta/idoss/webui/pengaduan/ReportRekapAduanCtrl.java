@@ -2,12 +2,17 @@ package net.lintasarta.idoss.webui.pengaduan;
 
 import net.lintasarta.idoss.report.util.JRreportWindow;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
+import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.service.PermohonanService;
+import net.lintasarta.report.permohonan.model.ReportServer;
+import net.lintasarta.report.permohonan.service.ReportServerService;
 import net.lintasarta.report.service.ReportService;
 import net.lintasarta.security.model.VHrEmployee;
 import net.sf.jasperreports.engine.JRDataSource;
 import org.apache.log4j.Logger;
+import org.springframework.dao.DataAccessException;
+import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -30,14 +35,16 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
     protected Window window_Report4;
     protected Iframe report;
     protected Button btnReport;
+    protected Button button_Tambah;
     protected Combobox combobox_tahun;
+    protected Combobox combobox_tahun2;
+    protected Combobox combobox_bulan;
+    protected Intbox intbox_Jumlah;
     protected ReportRekapAduanCtrl reportRekapAduanCtrl;
-
     private transient ReportService reportService;
-    //pimbag
     private transient PermohonanService permohonanService;
     private transient TPermohonan tPermohonan;
-    //
+    private transient ReportServerService reportServerService;
 
     public void setReportService(ReportService reportService) {
         this.reportService = reportService;
@@ -63,9 +70,6 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
             reportRekapAduanCtrl = null;
         }
     }
-
-
-    //pimbag
 
     private void doShowDialog(TPermohonan tPermohonan) {
         tPermohonan = getPermohonanService().getNewPermohonan();
@@ -116,8 +120,6 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
 
         return tPermohonan;
     }
-    //
-
 
     public void onClick$btnReport(Event event) throws IOException, InterruptedException {
         if (logger.isDebugEnabled()) {
@@ -147,6 +149,38 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
+    public void onClick$button_Tambah(Event event) throws InterruptedException {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        doSimpan();
+        Messagebox.show("Anda berhasil menyimpan", "Save succeed", Messagebox.OK, Messagebox.INFORMATION);
+    }
+
+    private void doSimpan() throws InterruptedException {
+        ReportServer reportServer = new ReportServer();
+        doWriteComponentsToBean(reportServer);
+        try {
+            getReportServerService().createReportServer(reportServer);
+        } catch (DataAccessException e) {
+            String message = e.getMessage();
+            String title = Labels.getLabel("message_Error");
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
+        }
+    }
+
+    private void doWriteComponentsToBean(ReportServer reportServer) {
+        String bulan = (String) combobox_bulan.getSelectedItem().getValue();
+        reportServer.setBulan(bulan);
+        int tahun = Integer.parseInt(combobox_tahun2.getSelectedItem().getValue().toString());
+//        int tahun = Integer.parseInt(combobox_tahun2.getName());
+        reportServer.setTahun(tahun);
+        reportServer.setJumlah(intbox_Jumlah.getValue());
+        reportServer.setUpdate_by(getUserWorkspace().getUserSession().getUserName());
+
+    }
+
     private boolean validasiTahun() throws InterruptedException {
         if (combobox_tahun.getValue().length() < 1) {
             Messagebox.show("Silakan pilih tahun...", "Warning", Messagebox.OK, Messagebox.EXCLAMATION);
@@ -161,6 +195,14 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setPermohonanService(PermohonanService permohonanService) {
         this.permohonanService = permohonanService;
+    }
+
+    public ReportServerService getReportServerService() {
+        return reportServerService;
+    }
+
+    public void setReportServerService(ReportServerService reportServerService) {
+        this.reportServerService = reportServerService;
     }
 
     public TPermohonan gettPermohonan() {

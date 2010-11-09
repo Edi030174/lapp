@@ -61,6 +61,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     protected Textbox textbox_gmdukophar;
     protected Listbox listbox_NamaPelaksana;
     protected Datebox datebox_Tanggal;
+    protected Intbox intbox_target;
     protected Label label_tgl1;
     protected Label label_tgl2;
     protected Label label_tgl3;
@@ -678,17 +679,23 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private boolean isValidatedFlow() throws InterruptedException {
-        if (textbox_amdukophar.getValue().length() < 1) {
-            Messagebox.show("Silakan isi Catatan Assisten Manager...");
-            return false;
-        }
-        if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
-            Messagebox.show("Silakan pilih nama pelaksana");
-            return false;
-        }
-        if (listbox_NamaPelaksana.getSelectedItem() == null) {
-            Messagebox.show("Silakan pilih nama pelaksana");
-            return false;
+        if (radiogroup_StatusPermohonanAsman.getSelectedItem().equals(radio_DisetujuiAM)) {
+            if (textbox_amdukophar.getValue().length() < 1) {
+                Messagebox.show("Silakan isi Catatan Assisten Manager...");
+                return false;
+            }
+            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
+                Messagebox.show("Silakan pilih nama pelaksana");
+                return false;
+            }
+            if (listbox_NamaPelaksana.getSelectedItem() == null) {
+                Messagebox.show("Silakan pilih nama pelaksana");
+                return false;
+            }
+            if(intbox_target.getValue()<1){
+                Messagebox.show("Silakan isikan target selesai");
+                return false;
+            }
         }
         return true;
     }
