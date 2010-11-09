@@ -24,7 +24,7 @@
 	<title>
 		<band height="23" splitType="Stretch">
 			<staticText>
-				<reportElement x="300" y="0" width="200" height="20"/>
+				<reportElement x="301" y="0" width="200" height="23"/>
 				<textElement textAlignment="Justified">
 					<font size="14" isBold="true"/>
 				</textElement>

@@ -38,4 +38,7 @@
     <bean id="mttrService" class="net.lintasarta.pengaduan.service.impl.MttrServiceImpl">
         <property name="mttrDAO" ref="mttrDAO"/>
     </bean>
+    <bean id="reportServerService" class="net.lintasarta.report.permohonan.service.impl.ReportServerServiceImpl">
+        <property name="reportServerDAO" ref="reportServerDAO"/>
+    </bean>
 </beans>

@@ -205,7 +205,16 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
-        if (tPermohonan.getStatus_track_permohonan().equalsIgnoreCase("Disetujui GM Dukophar")) {
+        /*if (tPermohonan.getStatus_track_permohonan().equalsIgnoreCase("Disetujui GM Dukophar")) {
+            tab_Pelaksanaan.setVisible(true);
+            tabPanel_Pelaksanaan.setVisible(true);
+        }*/
+        TVerifikasi tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(tPermohonan.getT_idoss_permohonan_id());
+        if (((tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) && (tVerifikasi.getDampak().equals("MINOR"))) ||
+                ((tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Dukophar")) && (tVerifikasi.getDampak().equals("MAJOR"))) ||
+                (tPermohonan.getStatus_track_permohonan().equals("OPEN")) ||
+                (tPermohonan.getStatus_track_permohonan().equals("INPROGRESS")) ||
+                (tPermohonan.getStatus_track_permohonan().equals("PENDING"))) {
             tab_Pelaksanaan.setVisible(true);
             tabPanel_Pelaksanaan.setVisible(true);
         } else {

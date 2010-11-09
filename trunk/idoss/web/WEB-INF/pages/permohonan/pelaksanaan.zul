@@ -34,15 +34,14 @@
                 <hbox>
                     <label value="Status Perubahan : "/>
                     <radiogroup id="radiogroup_StatusPerubahan">
-                        <radio id="open" label="Open" value="OPEN" selected="true" disabled="true" 
-                               onCheck="textbox_pending.disabled=true"/>
-                        <radio id="inprogress" label="In Progress" value="INPROGRESS"
-                               onCheck="textbox_pending.disabled=true"/>
-                        <radio id="closed" label="Closed" value="CLOSED"
-                               onCheck="textbox_pending.disabled=true"/>
+                        <radio id="open" label="Open" value="OPEN" disabled="true"
+                               onCheck="intbox_pending.disabled=true"/>
+                        <radio id="inprogress" label="In Progress" value="INPROGRESS" selected="true"
+                               onCheck="intbox_pending.disabled=true"/>
+                        <radio id="closed" label="Closed" value="CLOSED" onCheck="intbox_pending.disabled=true"/>
                         <radio id="pending" label="Pending  s/d" value="PENDING"
-                               onCheck="textbox_pending.disabled=false"/>
-                        <textbox id="textbox_pending" maxlength="2" width="15px"/>
+                               onCheck="intbox_pending.disabled=false"/>
+                        <intbox id="intbox_pending" maxlength="2" width="25px"/>
                         <label value="hari"/>
                     </radiogroup>
                 </hbox>

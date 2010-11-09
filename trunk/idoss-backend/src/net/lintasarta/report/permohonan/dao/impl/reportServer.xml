@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.report.permohonan.dao.ReportServerDAO">
+    <select id="getGenerateId" resultType="int">
+        select generate_id('SNI','T_IDOSS_PEGANG_REPORT','GEN_ID_COL') from dual
+    </select>
+
+    <select id="getReportServerByReportId" parameterType="reportserver" resultType="reportserver">
+        select GANGGUAN_REPORT_ID,
+        TAHUN,
+        BULAN,
+        JUMLAH,
+        GEN_ID_COL,
+        UPDATE_DATE,
+        UPDATE_BY
+        from T_IDOSS_PEGANG_REPORT
+        where GANGGUAN_REPORT_ID=#{gangguan_report_id}
+    </select>
+
+    <insert id="createReportServer" parameterType="reportserver">
+        INSERT INTO T_IDOSS_PEGANG_REPORT(
+        GANGGUAN_REPORT_ID,
+        TAHUN,
+        BULAN,
+        JUMLAH,
+        GEN_ID_COL,
+        UPDATE_DATE,
+        UPDATE_BY
+        )
+        VALUES(
+        #{gangguan_report_id},
+        #{tahun},
+        #{bulan},
+        #{jumlah},
+        #{gen_id_col},
+        #{update_date},
+        #{update_by})
+    </insert>
+
+    <update id="saveOrUpdateReportServer" parameterType="reportserver">
+        UPDATE T_IDOSS_PEGANG_REPORT
+        SET
+        TAHUN=#{tahun,jdbcType=INTEGER},
+        BULAN=#{bulan,jdbcType=VARCHAR},
+        JUMLAH=#{jumlah,jdbcType=INTEGER},
+        UPDATE_DATE=#{update_date,jdbcType=TIMESTAMP},
+        UPDATE_BY=#{update_by,jdbcType=VARCHAR}
+        WHERE  GANGGUAN_REPORT_ID=#{gangguan_report_id}
+    </update>
+
+</mapper>

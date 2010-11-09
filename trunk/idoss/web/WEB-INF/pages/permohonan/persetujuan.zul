@@ -181,7 +181,7 @@
                         </hbox>
                         <hbox>
                             <label value="target selesai:"/>
-                            <textbox width="15px"/>
+                            <intbox id="intbox_target"/>
                             <label value="hari/jam"/>
                         </hbox>
                     </vbox>
