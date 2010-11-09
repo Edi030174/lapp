@@ -22,6 +22,7 @@ import org.zkoss.zul.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -692,7 +693,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;
             }
-            if(intbox_target.getValue()<1){
+            if (intbox_target.getValue() < 1) {
                 Messagebox.show("Silakan isikan target selesai");
                 return false;
             }
@@ -742,6 +743,17 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         tVerifikasi.setUpdated_asman(ts);
         tVerifikasi.setCatatan_asman(textbox_amdukophar.getValue());
+
+        int target = intbox_target.getValue();
+        long too = setTarget(target);
+        Timestamp tanggalnya = new Timestamp(too);
+    }
+
+    private long setTarget(int berapaHari) {
+        long lengthOfInterval = berapaHari * 86400000;
+        long currentDate = new Date().getTime();
+        long newDate = currentDate + lengthOfInterval;
+        return new Date(newDate).getTime();
     }
 
     public void onClick$btn_SimpanPersetujuanManager(Event event) throws Exception {
