@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.lintasarta.permohonan.dao.THolidayDAO">
+
+    <select id="getCountAllTHoliday" resultType="int">
+        select count(*) from  P_TROUBLE_HOLIDAY_TIME
+    </select>
+
+    <select id="getAllTHoliday" resultType="tholiday">
+        select * from  P_TROUBLE_HOLIDAY_TIME
+    </select>
+
+    <select id="getAllTHolidayBetween" parameter="tholiday" resultType="tholiday">
+        Select * From P_TROUBLE_HOLIDAY_TIME
+        Where HOLIDAY_DATE
+        Between #{start_date,jdbcType=VARCHAR}
+        And #{end_date,jdbcType=VARCHAR}
+    </select>
+
+</mapper>
