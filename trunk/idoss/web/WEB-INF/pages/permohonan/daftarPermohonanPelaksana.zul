@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
-<?page id="daftarZul" title="Form Daftar Permohonan" contentType="text/html;charset=UTF-8"?>
+<?page id="daftarZul" title="Form Daftar Pelaksana" contentType="text/html;charset=UTF-8"?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
     xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -19,7 +19,7 @@
             }
         </style>
         <timer id="timer" delay="60000" repeats="true"/>
-        <panel id="panel_daftarPermohonan" title="" border="none"/>
+        <panel id="panel_daftarPermohonanPelaksana" title="" border="none"/>
         <hbox>
             <button id="btnRefresh"
                     image="/images/icons/refresh2_yellow_16x16.gif"/>
@@ -56,10 +56,10 @@
         </hbox>
         <borderlayout id="borderlayout_daftarPermohonan">
             <north border="none" height="26px">
-                <paging id="paging_DaftarPermohonan"/>
+                <paging id="paging_DaftarPermohonanPelaksana"/>
             </north>
             <center border="none">
-                <listbox id="listbox_DaftarPermohonan" vflex="true" width="99.9%" height="100%" multiple="false">
+                <listbox id="listbox_DaftarPermohonanPelaksana" vflex="true" width="99.9%" height="100%" multiple="false">
                     <listhead sizable="true">
                         <listheader id="listheader_Nomor" label="Nomor" sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_Tanggal" label="Tanggal" sort="auto" style="font-size:11px"/>
