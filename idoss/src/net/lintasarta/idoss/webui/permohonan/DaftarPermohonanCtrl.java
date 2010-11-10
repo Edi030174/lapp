@@ -145,27 +145,23 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         } else if (role.equalsIgnoreCase(LoginConstants.AMDUK)) {
             tPermohonan.setStatus_track_permohonan("Disetujui GM Pemohon");
             tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan);
+
+            tPermohonan.setStatus_track_permohonan("Persetujuan Asman Dukophar");
+            tPermohonans.addAll(getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan));
+
+            tPermohonan.setStatus_track_permohonan("Permohonan Baru Manager Dukophar");
+            tPermohonans.addAll(getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan));
+
+            tPermohonan.setStatus_track_permohonan("Permohonan Baru GM Dukophar");
+            tPermohonans.addAll(getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan));
         } else if (role.equalsIgnoreCase(LoginConstants.MDUK)) {
             tPermohonan.setStatus_track_permohonan("Disetujui Asman Dukophar");
             tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan);
-            //
-            tPermohonan.setNik_manager(employeeNo);
-            tPermohonan.setStatus_track_permohonan("Persetujuan Manager");
-            tPermohonans.addAll(getPermohonanService().getTPermohonanByStatusAndNikManager(tPermohonan));
-            //
         } else if (role.equalsIgnoreCase(LoginConstants.GMDUK)) {
             tPermohonan.setDampak("MAJOR");
             tPermohonan.setStatus_track_permohonan("Disetujui Manager Dukophar");
-            //
-            tPermohonan.setNik_gm(employeeNo);
-            tPermohonans.addAll(getPermohonanService().getTPermohonanByStatusAndNikGM(tPermohonan));
-            //
             tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonanAndDampak(tPermohonan);
-//        } else {
-//            /*}else if(role.equalsIgnoreCase(LoginConstants.PELAKSANA_PERMOHONAN)){*/
-//            tPermohonans = getPermohonanService().getTPermohonanByNikPelaksana(employeeNo);
         }
-//        tPermohonans.addAll(getPermohonanService().getTPermohonanByNikPelaksana(employeeNo));
 
 
         PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>(tPermohonans);

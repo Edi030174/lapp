@@ -1,14 +1,19 @@
 package net.lintasarta.idoss.webui.permohonan;
 
 import net.lintasarta.UserWorkspace;
+import net.lintasarta.idoss.webui.pengaduan.model.PelaksanaListModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
+import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
+import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.model.comparator.TPermohonanComparator;
 import net.lintasarta.permohonan.service.PermohonanService;
+import net.lintasarta.permohonan.service.VerifikasiService;
 import net.lintasarta.security.model.VHrEmployee;
+import net.lintasarta.security.util.LoginConstants;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.media.Media;
@@ -55,13 +60,21 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     protected Radio radio_aplikasi;
     protected Radio radio_lainlain;
     protected Radiogroup radiogroup_Dampak;
+    protected Radiogroup radiogroup_Prioritas;
+    protected Listbox listbox_NamaPelaksana;
 
     protected Textbox textbox_Lainlain;
-    protected Checkbox checkbox_Cepat;
     protected Button button_Lampiran;
     protected Button button_Download;
     protected Textbox textbox_DetailPermohonan;
     protected Label label_viewAttachment;
+    protected Label label_prioritas;
+    protected Label label_dampak;
+    protected Label label_pelaksana;
+    protected Label label_target;
+    protected Label label_hari;
+    protected Intbox intbox_target;
+
 
     protected Tab tab_Verifikasi;
     protected Tabpanel tabPanel_Verifikasi;
@@ -99,7 +112,8 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     private transient TVerifikasi tVerifikasi;
     private transient TPelaksanaan tPelaksanaan;
     private transient PermohonanService permohonanService;
-
+    private transient VerifikasiService verifikasiService;
+    private transient PelaksanaanGangguanService pelaksanaanGangguanService;
 
     public PermohonanBaruCtrl() {
         super();
@@ -115,7 +129,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
             logger.debug("--> " + event.toString());
         }
 
-//        doCheckRights();
+        doCheckRights();
 
         Map<String, Object> args = getCreationArgsMap(event);
 
@@ -137,23 +151,53 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             listbox_DaftarPermohonan = null;
         }
-
-        doShowDialog(gettPermohonan());
+        if (getPelaksanaanGangguanService().getEmployeeName() != null) {
+            ListModelList lmlNamaPelaksana = new ListModelList(getPelaksanaanGangguanService().getEmployeeName());
+            VHrEmployeePelaksana pelaksana = new VHrEmployeePelaksana();
+            pelaksana.setEmployee_name("Silakan pilih");
+            pelaksana.setEmployee_no("555");
+            lmlNamaPelaksana.add(0, pelaksana);
+            listbox_NamaPelaksana.setModel(lmlNamaPelaksana);
+            listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
+        }
+        doShowDialog(gettPermohonan(), gettVerifikasi());
 
     }
 
     private void doCheckRights() {
         UserWorkspace workspace = getUserWorkspace();
+        String role = getUserWorkspace().getUserSession().getEmployeeRole();
+        if (role.equalsIgnoreCase(LoginConstants.AMDUK)) {
+            label_prioritas.setVisible(true);
+            radiogroup_Prioritas.setVisible(true);
+            label_dampak.setVisible(true);
+            radiogroup_Dampak.setVisible(true);
+            label_pelaksana.setVisible(true);
+            listbox_NamaPelaksana.setVisible(true);
+            label_target.setVisible(true);
+            intbox_target.setVisible(true);
+            label_hari.setVisible(true);
+        } else {
+            label_prioritas.setVisible(false);
+            radiogroup_Prioritas.setVisible(false);
+            label_dampak.setVisible(false);
+            radiogroup_Dampak.setVisible(false);
+            label_pelaksana.setVisible(false);
+            listbox_NamaPelaksana.setVisible(false);
+            label_target.setVisible(false);
+            intbox_target.setVisible(false);
+            label_hari.setVisible(false);
+        }
     }
 
-    private void doShowDialog(TPermohonan tPermohonan) throws InterruptedException {
+    private void doShowDialog(TPermohonan tPermohonan, TVerifikasi tVerifikasi) throws InterruptedException {
         if (tPermohonan == null) {
             tPermohonan = getPermohonanService().getNewPermohonan();
             settPermohonan(tPermohonan);
 
         }
         try {
-            doWriteBeanToComponents(tPermohonan);
+            doWriteBeanToComponents(tPermohonan, tVerifikasi);
             window_Permohonan.doModal();
 
         } catch (Exception e) {
@@ -218,7 +262,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
 //        return tPermohonan;
     }
 
-    private void doWriteBeanToComponents(TPermohonan tPermohonan) {
+    private void doWriteBeanToComponents(TPermohonan tPermohonan, TVerifikasi tVerifikasi) {
         textbox_TIdossPermohonanId.setValue(getPermohonanService().getPermohonanID());
         textbox_NamaPemohon.setValue(getUserWorkspace().getUserSession().getEmployeeName());
         textbox_BagianPemohon.setValue(getUserWorkspace().getUserSession().getDepartment());
@@ -230,6 +274,14 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         textbox_NikGm.setValue(tPermohonan.getNik_gm());
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         datebox_Tanggal.setValue(ts);
+
+//        int indexPlks = 0;
+//        ListModel listPlks = listbox_NamaPelaksana.getModel();
+//        for (int i = 0; i < listPlks.getSize(); i++) {
+//            VHrEmployeePelaksana np = (VHrEmployeePelaksana) listPlks.getElementAt(i);
+//            if (np.getEmployee_no().equals(tVerifikasi.getNik_pelaksana())) indexPlks = i;
+//        }
+//        listbox_NamaPelaksana.setSelectedIndex(indexPlks);
     }
 
     public void onClose$window_Permohonan(Event event) throws Exception {
@@ -256,6 +308,17 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         if (textbox_DetailPermohonan.getValue().length() < 1) {
             Messagebox.show("Silakan isi deskripsi");
             return false;
+        }
+        String role = getUserWorkspace().getUserSession().getEmployeeRole();
+        if (role.equalsIgnoreCase(LoginConstants.AMDUK)) {
+            if (listbox_NamaPelaksana.getSelectedItem() == null) {
+                Messagebox.show("Silakan pilih nama pelaksana");
+                return false;
+            }
+            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
+                Messagebox.show("Silakan pilih nama pelaksana");
+                return false;
+            }
         }
         if (radio_readonly.isSelected()) {
             if (getUploadMedia() == null) {
@@ -319,6 +382,9 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
                 uploadeFileName = getUploadMedia().getName();
             }
             getPermohonanService().simpanAllTPermohonan(uploadeFileName, tPermohonan);
+            TVerifikasi tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
+            doWriteComponentsToBeanVer(tVerifikasi);
+            getVerifikasiService().saveOrUpdateTVerifikasi(tVerifikasi);
 
         } catch (DataAccessException e) {
             String message = e.getMessage();
@@ -388,17 +454,27 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         tPermohonan.setUpdated_gm(ts);
         tPermohonan.setUpdated_manager(ts);
         tPermohonan.setUpdated_pemohon(ts);
-        if (checkbox_Cepat.isChecked()) {
-            tPermohonan.setUrgensi("H");
-        } else {
-            tPermohonan.setUrgensi("N");
-        }
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tPermohonan.setDampak(dampak.getValue());
-
+        Radio prioritas = radiogroup_Prioritas.getSelectedItem();
+        tPermohonan.setUrgensi(prioritas.getValue());
         tPermohonan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         tPermohonan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
+    }
+
+    private void doWriteComponentsToBeanVer(TVerifikasi tVerifikasi) {
+        if (listbox_NamaPelaksana.getSelectedItem() != null) {
+            Listitem itempelaksana = listbox_NamaPelaksana.getSelectedItem();
+            ListModelList lml = (ListModelList) listbox_NamaPelaksana.getListModel();
+            VHrEmployeePelaksana vHrEmployeePelaksana = (VHrEmployeePelaksana) lml.get(itempelaksana.getIndex());
+            if (!vHrEmployeePelaksana.getEmployee_name().equalsIgnoreCase("Silakan pilih")) {
+                tVerifikasi.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
+            }
+            if (!vHrEmployeePelaksana.getEmployee_no().equalsIgnoreCase("555")) {
+                tVerifikasi.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
+            }
+        }
     }
 
     public void onClick$button_Download(Event event) throws Exception {
@@ -443,6 +519,22 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setPermohonanService(PermohonanService permohonanService) {
         this.permohonanService = permohonanService;
+    }
+
+    public VerifikasiService getVerifikasiService() {
+        return verifikasiService;
+    }
+
+    public void setVerifikasiService(VerifikasiService verifikasiService) {
+        this.verifikasiService = verifikasiService;
+    }
+
+    public PelaksanaanGangguanService getPelaksanaanGangguanService() {
+        return pelaksanaanGangguanService;
+    }
+
+    public void setPelaksanaanGangguanService(PelaksanaanGangguanService pelaksanaanGangguanService) {
+        this.pelaksanaanGangguanService = pelaksanaanGangguanService;
     }
 
     public Media getUploadMedia() {

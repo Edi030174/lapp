@@ -113,7 +113,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     private void doCheckRights(TPermohonan tPermohonan, TVerifikasi tVerifikasi) {
         UserWorkspace workspace = getUserWorkspace();
         boolean pl = (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) && (tVerifikasi.getDampak().equals("MINOR"));
-        boolean pk = (tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Dukophar")) && (tVerifikasi.getDampak().equals("MAJOR"));
+        boolean pk = (tPermohonan.getStatus_track_permohonan().contains("INPROGRESS")) && (tVerifikasi.getDampak().equals("MAJOR"));
         boolean pm = pl ^ pk;
         btnSimpan_Pelaksanaan.setVisible(pm);
     }
@@ -185,7 +185,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
                 mttr.setPending_end(now.getTime());
             }
             mttr.setInprogress(now.getTime());
-        } else if (radiogroup_StatusPerubahan.getSelectedItem().equals(closed)) {
+        } else if (radiogroup_StatusPerubahan.getSelectedItem().equals(closed)) {               
             mttr.setClosed(now.getTime());
         } else if (radiogroup_StatusPerubahan.getSelectedItem().equals(pending)) {
 //            tPelaksanaan.setTgl_pending(new Timestamp(datebox_Pending.getValue().getTime()));

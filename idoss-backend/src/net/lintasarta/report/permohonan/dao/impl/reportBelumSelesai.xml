@@ -10,7 +10,7 @@
         then a.NAMA_GM else
         Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Asman Dukophar' or a.STATUS_TRACK_PERMOHONAN='Ditolak AsmanDukophar' then b.NAMA_ASMAN else
         Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Dukophar' or a.STATUS_TRACK_PERMOHONAN='Ditolak ManagerDukophar' then b.NAMA_MANAGER else
-        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Dukopharr' or a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar'
+        Case when a.STATUS_TRACK_PERMOHONAN='INPROGRESS' or a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar'
         then b.NAMA_GM else '' end
         end
         end
@@ -21,7 +21,7 @@
         then 'General Manager' else
         Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Asman Dukophar' or a.STATUS_TRACK_PERMOHONAN='Ditolak AsmanDukophar' then 'Asman Dukophar' else
         Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Dukophar' or a.STATUS_TRACK_PERMOHONAN='Ditolak ManagerDukophar' then 'Manager Dukophar' else
-        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Dukopharr' or a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar'
+        Case when a.STATUS_TRACK_PERMOHONAN='INPROGRESS' or a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar'
         then 'GM Dukophar' else '' end
         end
         end
@@ -32,7 +32,7 @@
         then to_char(a.UPDATED_GM ,'dd-MON-yyyy mm:hh') else
         Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Asman Dukophar' or a.STATUS_TRACK_PERMOHONAN='Ditolak AsmanDukophar' then to_char(b.UPDATED_ASMAN ,'dd-MON-yyyy mm:hh') else
         Case when a.STATUS_TRACK_PERMOHONAN='Disetujui Manager Dukophar' or a.STATUS_TRACK_PERMOHONAN='Ditolak ManagerDukophar' then to_char(b.UPDATED_MANAGER ,'dd-MON-yyyy mm:hh') else
-        Case when a.STATUS_TRACK_PERMOHONAN='Disetujui GM Dukopharr' or a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar'
+        Case when a.STATUS_TRACK_PERMOHONAN='INPROGRESS' or a.STATUS_TRACK_PERMOHONAN='Ditolak GM Dukophar'
         then to_char(b.UPDATED_GM ,'dd-MON-yyyy mm:hh') else '' end
         end
         end
