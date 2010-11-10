@@ -31,7 +31,7 @@ public class HolidayServiceImpl implements HolidayService{
     }
 
     @Override
-    public List getAllTHolidayBetween(String start_date, String end_date) {
+    public int getAllTHolidayBetween(String start_date, String end_date) {
         return tHolidayDAO.getAllTHolidayBetween(start_date,end_date);
     }
 
