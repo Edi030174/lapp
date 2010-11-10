@@ -1,48 +1,129 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
     <class name="net.lintasarta.permohonan.model.TPermohonan" table="T_IDOSS_PERMOHONAN">
-        
+
         <id name="t_idoss_permohonan_id" type="string">
-            <column name="T_IDOSS_PERMOHONAN_ID" precision="17" scale="0" />
-            <generator class="sequence">
-				<param name="sequence">ADDRESS_ID_S</param>
-			</generator>
+            <column name="T_IDOSS_PERMOHONAN_ID" precision="17" scale="0" not-null="true"/>
         </id>
-       
-        <property name="creationDate" type="date">
-            <column name="CREATION_DATE" length="7" />
+
+        <property name="tgl_permohonan" type="date">
+            <column name="TGL_PERMOHONAN" length="7" not-null="false"/>
         </property>
-       
-        <property name="createdBy" type="long">
-            <column name="CREATED_BY" precision="22" scale="0" />
+
+        <property name="dampak" type="string">
+            <column name="DAMPAK" length="5" not-null="false" />
         </property>
-       
-        <property name="lastUpdatedDate" type="date">
-            <column name="LAST_UPDATED_DATE" length="7" />
+
+        <property name="urgensi" type="string">
+            <column name="URGENSI" length="1" not-null="false" />
         </property>
-        
-        <property name="lastUpdatedBy" type="long">
-            <column name="LAST_UPDATED_BY" precision="22" scale="0" />
+
+        <property name="target_mulai_digunakan" type="date">
+            <column name="TARGET_MULAI_DIGUNAKAN" length="7" not-null="false"/>
         </property>
-        
-        <property name="street" type="string">
-            <column name="STREET" length="200" not-null="true" />
+
+        <property name="detail_permohonan" type="string">
+            <column name="DETAIL_PERMOHONAN" length="4000" not-null="false" />
         </property>
-        
-        <property name="subdistrict" type="string">
-            <column name="SUBDISTRICT" length="150" not-null="true" />
+
+        <property name="lampiran" type="string">
+            <column name="LAMPIRAN" length="255" not-null="false"/>
         </property>
-       
-        <property name="district" type="string">
-            <column name="DISTRICT" length="150" not-null="true" />
+
+        <property name="status_track_permohonan" type="string">
+            <column name="STATUS_TRACK_PERMOHONAN" length="50" not-null="false" />
         </property>
-        
-        <property name="province" type="string">
-            <column name="PROVINCE" length="150" not-null="true" />
+
+        <property name="nik_pemohon" type="string">
+            <column name="NIK_PEMOHON" length="15" not-null="false"/>
         </property>
-        
+
+        <property name="nama_pemohon" type="string">
+            <column name="NAMA_PEMOHON" length="50" not-null="false"/>
+        </property>
+
+        <property name="bagian_pemohon" type="string">
+            <column name="BAGIAN_PEMOHON" length="50" not-null="false" />
+        </property>
+
+        <property name="nik_asman" type="string">
+            <column name="NIK_ASMAN" length="50" not-null="false"/>
+        </property>
+
+        <property name="nama_asman" type="string">
+            <column name="NAMA_ASMAN" length="50" not-null="false"/>
+        </property>
+
+        <property name="nik_manager" type="string">
+            <column name="NIK_MANAGER" length="50" not-null="false"/>
+        </property>
+
+        <property name="nama_manager" type="string">
+            <column name="NAMA_MANAGER" length="15" not-null="false"/>
+        </property>
+
+        <property name="nik_gm" type="string">
+            <column name="NIK_GM" length="50" not-null="false"/>
+        </property>
+
+        <property name="nama_gm" type="string">
+            <column name="NAMA_GM" length="10" not-null="false"/>
+        </property>
+
+        <property name="type_permohonan" type="string">
+            <column name="TYPE_PERMOHONAN" length="50" not-null="false" />
+        </property>
+
+        <property name="updated_pemohon" type="date">
+            <column name="UPDATED_PEMOHON" length="7" not-null="false"/>
+        </property>
+
+        <property name="updated_divisi" type="date">
+            <column name="UPDATED_DIVISI" length="7" not-null="false"/>
+        </property>
+
+        <property name="updated_asman" type="date">
+            <column name="UPDATED_ASMAN" length="7" not-null="false"/>
+        </property>
+
+        <property name="updated_manager" type="date">
+            <column name="UPDATED_MANAGER" length="7" not-null="false"/>
+        </property>
+
+        <property name="updated_gm" type="date">
+            <column name="UPDATED_GM" length="7" not-null="false"/>
+        </property>
+
+        <property name="created_date" type="date">
+            <column name="CREATED_DATE" length="7" not-null="false"/>
+        </property>
+
+        <property name="created_user" type="string">
+            <column name="CREATED_USER" length="50" not-null="false" />
+        </property>
+
+        <property name="updated_date" type="date">
+            <column name="UPDATED_DATE" length="7" not-null="false"/>
+        </property>
+
+        <property name="updated_user" type="string">
+            <column name="UPDATED_USER" length="50" not-null="false"/>
+        </property>
+
+        <property name="gen_id_col" type="int">
+            <column name="GEN_ID_COL" precision="9" scale="0" not-null="false" />
+        </property>
+
+        <property name="catatan_manager" type="string">
+            <column name="CATATAN_MANAGER" length="4000" not-null="false" />
+        </property>
+
+        <property name="catatan_gm" type="string">
+            <column name="CATATAN_GM" length="4000" not-null="false"/>
+        </property>
+
     </class>
 </hibernate-mapping>
