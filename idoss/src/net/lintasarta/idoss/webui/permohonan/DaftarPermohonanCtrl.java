@@ -148,9 +148,18 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
         } else if (role.equalsIgnoreCase(LoginConstants.MDUK)) {
             tPermohonan.setStatus_track_permohonan("Disetujui Asman Dukophar");
             tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan);
+            //
+            tPermohonan.setNik_manager(employeeNo);
+            tPermohonan.setStatus_track_permohonan("Persetujuan Manager");
+            tPermohonans.addAll(getPermohonanService().getTPermohonanByStatusAndNikManager(tPermohonan));
+            //
         } else if (role.equalsIgnoreCase(LoginConstants.GMDUK)) {
             tPermohonan.setDampak("MAJOR");
             tPermohonan.setStatus_track_permohonan("Disetujui Manager Dukophar");
+            //
+            tPermohonan.setNik_gm(employeeNo);
+            tPermohonans.addAll(getPermohonanService().getTPermohonanByStatusAndNikGM(tPermohonan));
+            //
             tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonanAndDampak(tPermohonan);
 //        } else {
 //            /*}else if(role.equalsIgnoreCase(LoginConstants.PELAKSANA_PERMOHONAN)){*/

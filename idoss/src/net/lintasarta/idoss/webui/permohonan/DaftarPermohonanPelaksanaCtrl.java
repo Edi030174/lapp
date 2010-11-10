@@ -32,8 +32,8 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
 
     protected Window window_DaftarPermohonanPelaksana;
     protected Window window_PersetujuanGmPemohon;
-    protected Paging paging_DaftarPermohonan;
-    protected Listbox listbox_DaftarPermohonan;
+    protected Paging paging_DaftarPermohonanPelaksana;
+    protected Listbox listbox_DaftarPermohonanPelaksana;
     protected Listheader listheader_Nomor;
     protected Listheader listheader_Tanggal;
     protected Listheader listheader_Dampak;
@@ -61,7 +61,7 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
 
     protected Button btnCari;
     protected Borderlayout borderlayout_daftarPermohonan;
-    protected Panel panel_daftarPermohonan;
+    protected Panel panel_daftarPermohonanPelaksana;
 
     private int countRows;
 
@@ -87,9 +87,9 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
         /*TODO put the logic for working with panel in the ApplicationWorkspace*/
         boolean withPanel = false;
         if (withPanel == false) {
-            panel_daftarPermohonan.setVisible(false);
+            panel_daftarPermohonanPelaksana.setVisible(false);
         } else {
-            panel_daftarPermohonan.setVisible(true);
+            panel_daftarPermohonanPelaksana.setVisible(true);
             panelHeight = 0;
         }
 
@@ -99,8 +99,8 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
         setCountRows(Math.round(maxListBoxHeight / 34));
         borderlayout_daftarPermohonan.setHeight(String.valueOf(maxListBoxHeight) + "px");
 
-        paging_DaftarPermohonan.setPageSize(getCountRows());
-        paging_DaftarPermohonan.setDetailed(true);
+        paging_DaftarPermohonanPelaksana.setPageSize(getCountRows());
+        paging_DaftarPermohonanPelaksana.setDetailed(true);
 
         checkbox_all.setChecked(true);
         listheader_Nomor.setSortDescending(new FieldComparator("t_idoss_permohonan_id", true));
@@ -128,11 +128,11 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
         PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>(tPermohonans);
         pagedListHolder.setPageSize(getCountRows());
 
-        paging_DaftarPermohonan.setPageSize(getCountRows());
-        paging_DaftarPermohonan.setDetailed(true);
+        paging_DaftarPermohonanPelaksana.setPageSize(getCountRows());
+        paging_DaftarPermohonanPelaksana.setDetailed(true);
 
-        getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonan, paging_DaftarPermohonan);
-        listbox_DaftarPermohonan.setItemRenderer(new DaftarPermohonanModelItemRenderer());
+        getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonanPelaksana, paging_DaftarPermohonanPelaksana);
+        listbox_DaftarPermohonanPelaksana.setItemRenderer(new DaftarPermohonanModelItemRenderer());
     }
 
     private void doCheckRights() {
@@ -144,7 +144,7 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
 
     public void onPermohonanItemDoubleClicked(Event event) throws Exception {
 
-        Listitem item = listbox_DaftarPermohonan.getSelectedItem();
+        Listitem item = listbox_DaftarPermohonanPelaksana.getSelectedItem();
 
         if (item != null) {
             TPermohonan tPermohonan = (TPermohonan) item.getAttribute("data");
@@ -163,7 +163,7 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
 
 //        map.put("DaftarPermohonanCtrl", this);
 
-        map.put("listbox_DaftarPermohonan", listbox_DaftarPermohonan);
+        map.put("listbox_DaftarPermohonanPelaksana", listbox_DaftarPermohonanPelaksana);
 
         try {
             Executions.createComponents("/WEB-INF/pages/permohonan/permohonanBaru.zul", null, map);
@@ -230,7 +230,7 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
 
             pagedListHolder = new PagedListHolder<TPermohonan>(searchResult);
             pagedListHolder.setPageSize(getCountRows());
-            getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonan, paging_DaftarPermohonan);
+            getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonanPelaksana, paging_DaftarPermohonanPelaksana);
             checkbox_all.setChecked(false);
             datebox_TanggalAwal.setValue(null);
             datebox_TanggalAkhir.setValue(null);
@@ -274,7 +274,7 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
                 }
             }
             pagedListHolder.setPageSize(getCountRows());
-            getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonan, paging_DaftarPermohonan);
+            getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonanPelaksana, paging_DaftarPermohonanPelaksana);
             checkbox_all.setChecked(false);
         }
     }
@@ -307,7 +307,7 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
 
         map.put("DaftarPermohonanCtrl", this);
 
-        map.put("listbox_DaftarPermohonan", listbox_DaftarPermohonan);
+        map.put("listbox_DaftarPermohonanPelaksana", listbox_DaftarPermohonanPelaksana);
 
         map.put("window_DaftarPermohonanPelaksana", window_DaftarPermohonanPelaksana);
 
