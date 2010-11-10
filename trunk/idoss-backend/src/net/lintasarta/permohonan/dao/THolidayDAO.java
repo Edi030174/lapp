@@ -13,7 +13,7 @@ import java.util.List;
 public interface THolidayDAO {
 
     int getCountAllTHoliday();
-    List getAllTHolidayBetween(String start_date, String end_date);
+    int getAllTHolidayBetween(String start_date, String end_date);
     List<THoliday> getAllTHoliday();
 
 }

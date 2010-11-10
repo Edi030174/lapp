@@ -11,11 +11,11 @@
         select * from  P_TROUBLE_HOLIDAY_TIME
     </select>
 
-    <select id="getAllTHolidayBetween" parameter="tholiday" resultType="tholiday">
-        Select * From P_TROUBLE_HOLIDAY_TIME
-        Where HOLIDAY_DATE
-        Between #{start_date,jdbcType=VARCHAR}
-        And #{end_date,jdbcType=VARCHAR}
+    <select id="getAllTHolidayBetween" parameter="tholiday" resultType="int">
+        select count(*) from P_TROUBLE_HOLIDAY_TIME
+        where HOLIDAY_DATE
+        between #{start_date,jdbcType=VARCHAR}
+        and #{end_date,jdbcType=VARCHAR}
     </select>
 
 </mapper>

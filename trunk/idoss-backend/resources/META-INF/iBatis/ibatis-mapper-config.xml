@@ -23,6 +23,7 @@
         <typeAlias type="net.lintasarta.permohonan.model.TPelaksanaan" alias="tpelaksanaan"/>
         <typeAlias type="net.lintasarta.permohonan.model.TPermohonan" alias="tpermohonan"/>
         <typeAlias type="net.lintasarta.permohonan.model.TVerifikasi" alias="tverifikasi"/>
+        <typeAlias type="net.lintasarta.permohonan.model.THoliday" alias="tholiday"/>
         <!--pengaduan -->
         <typeAlias type="net.lintasarta.pengaduan.model.TPenangananGangguan" alias="tpenanganangangguan"/>
         <typeAlias type="net.lintasarta.pengaduan.model.PRootCaused" alias="prootcaused"/>
@@ -55,6 +56,7 @@
         <mapper resource="net/lintasarta/permohonan/dao/impl/mybatis/tpelaksanaan.xml"/>
         <mapper resource="net/lintasarta/permohonan/dao/impl/mybatis/tpermohonan.xml"/>
         <mapper resource="net/lintasarta/permohonan/dao/impl/mybatis/tverifikasi.xml"/>
+        <mapper resource="net/lintasarta/permohonan/dao/impl/mybatis/tholiday.xml"/>
         <!--Pengaduan-->
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/prootcaused.xml"/>
         <mapper resource="net/lintasarta/pengaduan/dao/impl/mybatis/ptype.xml"/>
