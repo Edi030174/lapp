@@ -181,8 +181,8 @@
                         </hbox>
                         <hbox>
                             <label value="target selesai:"/>
-                            <intbox id="intbox_target"/>
-                            <label value="hari/jam"/>
+                            <intbox id="intbox_target" maxlength="2"/>
+                            <label value="hari"/>
                         </hbox>
                     </vbox>
                 </vbox>
@@ -234,7 +234,7 @@
                     <label id="sp5" value="Status Permohonan : "/>
                     <radiogroup name="Status Permohonan :" id="radiogroup_StatusPermohonanGm">
                         <hbox>
-                            <radio id="radio_DisetujuiGM" label="disetujui" value="Disetujui GM Dukophar"
+                            <radio id="radio_DisetujuiGM" label="disetujui" value="INPROGRESS"
                                    selected="true"/>
                             <radio id="radio_DitolakGM" label="ditolak" value="Ditolak GM Dukophar"/>
                         </hbox>

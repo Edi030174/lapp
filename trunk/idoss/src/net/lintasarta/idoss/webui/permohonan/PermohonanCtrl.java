@@ -211,7 +211,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         }*/
         TVerifikasi tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(tPermohonan.getT_idoss_permohonan_id());
         if (((tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Dukophar")) && (tVerifikasi.getDampak().equals("MINOR"))) ||
-                ((tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Dukophar")) && (tVerifikasi.getDampak().equals("MAJOR"))) ||
+                ((tPermohonan.getStatus_track_permohonan().contains("INPROGRESS")) && (tVerifikasi.getDampak().equals("MAJOR"))) ||
                 (tPermohonan.getStatus_track_permohonan().equals("OPEN")) ||
                 (tPermohonan.getStatus_track_permohonan().equals("INPROGRESS")) ||
                 (tPermohonan.getStatus_track_permohonan().equals("PENDING"))) {

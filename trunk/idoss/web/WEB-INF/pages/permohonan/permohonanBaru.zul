@@ -77,13 +77,13 @@
                                         <label width="10px" value="/FPSOPHAR/2010"/>
                                     </vbox>
                                 </hbox>
-                                <textbox id="textbox_NamaPemohon" width="200px"  readonly="true"
+                                <textbox id="textbox_NamaPemohon" width="200px" readonly="true"
                                          style="color: black !important;"/>
-                                <textbox id="textbox_BagianPemohon" width="300px"  readonly="true"
+                                <textbox id="textbox_BagianPemohon" width="300px" readonly="true"
                                          style="color: black !important;"/>
-                                <textbox id="textbox_NamaManager" width="200px"  readonly="true"
+                                <textbox id="textbox_NamaManager" width="200px" readonly="true"
                                          style="color: black !important;"/>
-                                <textbox id="textbox_NamaGm" width="200px"  readonly="true"
+                                <textbox id="textbox_NamaGm" width="200px" readonly="true"
                                          style="color: black !important;"/>
                             </vbox>
                             <vbox>
@@ -97,11 +97,11 @@
                             </vbox>
                             <vbox>
                                 <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" width="150px"
-                                          disabled="true" style="color: black !important;"/>
-                                <textbox id="textbox_NikPemohon" width="60px"  readonly="true"
+                                         disabled="true" style="color: black !important;"/>
+                                <textbox id="textbox_NikPemohon" width="60px" readonly="true"
                                          style="color: black !important;"/>
                                 <space height="22px"/>
-                                <textbox id="textbox_NikManager" width="60px"  readonly="true"
+                                <textbox id="textbox_NikManager" width="60px" readonly="true"
                                          style="color: black !important;"/>
                                 <textbox id="textbox_NikGm" width="60px" readonly="true"
                                          style="color: black !important;"/>
@@ -110,52 +110,63 @@
                     </groupbox>
                     <groupbox mold="3d">
                         <caption label="Detail Permohonan" style="font-weight:normal"/>
-                        <vbox>
-
-                            <hbox>
-                                <vbox/>
-                                Type :
-                                <radiogroup id="radiogroupType_permohonan">
-                                    <radio id="radio_readonly" label="User Read Only" value="User RO" selected="true"
-                                           onCheck="textbox_Lainlain.disabled=true"/>
-                                    <radio id="radio_readwrite" label="User Read Write" value="User RW"
-                                           onCheck="textbox_Lainlain.disabled=true"/>
-                                    <radio id="radio_aplikasi" label="Aplikasi" value="Aplikasi"
-                                           onCheck="textbox_Lainlain.disabled=true"/>
-                                    <radio id="radio_lainlain"
-                                           onCheck="textbox_Lainlain.disabled=false;textbox_Lainlain.focus=true"
-                                           label="Lain-lain" value="Lain-lain"/>
-                                    <textbox id="textbox_Lainlain" width="100px" disabled="true"/>
-                                </radiogroup>
-                            </hbox>
-                        </vbox>
+                        <hbox>
+                            Type :
+                            <radiogroup id="radiogroupType_permohonan">
+                                <radio id="radio_readonly" label="User Read Only" value="User RO" selected="true"
+                                       onCheck="textbox_Lainlain.disabled=true"/>
+                                <radio id="radio_readwrite" label="User Read Write" value="User RW"
+                                       onCheck="textbox_Lainlain.disabled=true"/>
+                                <radio id="radio_aplikasi" label="Aplikasi" value="Aplikasi"
+                                       onCheck="textbox_Lainlain.disabled=true"/>
+                                <radio id="radio_lainlain"
+                                       onCheck="textbox_Lainlain.disabled=false;textbox_Lainlain.focus=true"
+                                       label="Lain-lain" value="Lain-lain"/>
+                                <textbox id="textbox_Lainlain" width="100px" disabled="true"/>
+                            </radiogroup>
+                        </hbox>
                         <hbox>
                             <hbox>
-                                <label value="Prioritas : " visible="false"/>
-                                <checkbox id="checkbox_Cepat"
-                                          label="Perlu Penanganan Cepat  " visible="false"/>
+
                                 <vbox>
                                     <space height="2px"/>
-                                    <label
-                                            style="font-size:8pt;font-weight:italic"
-                                            value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
+                                    <label style="font-size:8pt;font-weight:italic"
+                                           value="(untuk keterangan lebih detail dapat dicantumkan dalam lampiran)"/>
                                 </vbox>
                                 <hbox>
-                                <button label="Download" id="button_Download"/>
-                                <button label="Attachment :" upload="true,maxsize=-1" id="button_Lampiran"/>                                  
-                                <label id="label_viewAttachment"/>
+                                    <button label="Download" id="button_Download"/>
+                                    <button label="Attachment :" upload="true,maxsize=-1" id="button_Lampiran"/>
+                                    <label id="label_viewAttachment"/>
                                 </hbox>
                             </hbox>
                             <!--<button label="Upload" upload="true,maxsize=-1" onUpload="dosomething"/>-->
                         </hbox>
                         <hbox>
-                            <label value="Dampak : " visible="false"/>
-                            <radiogroup id="radiogroup_Dampak" visible="false">
+                            <label id="label_prioritas" value="Prioritas : "/>
+                            <radiogroup id="radiogroup_Prioritas">
                                 <hbox>
-                                    <radio id="major" label="major" value="MAJOR" disabled="true"/>
-                                    <radio id="minor" label="minor" value="MINOR" selected="true" disabled="true"/>
+                                    <radio id="radio_high" label="high" value="H"/>
+                                    <radio id="radio_normal" label="normal" value="N" selected="true"/>
                                 </hbox>
                             </radiogroup>
+                        </hbox>
+                        <hbox>
+                            <label id="label_dampak" value="Dampak : "/>
+                            <radiogroup id="radiogroup_Dampak">
+                                <hbox>
+                                    <radio id="major" label="major" value="MAJOR"/>
+                                    <radio id="minor" label="minor" value="MINOR" selected="true"/>
+                                </hbox>
+                            </radiogroup>
+                        </hbox>
+                        <hbox>
+                            <label id="label_pelaksana" value="Pelaksana"/>
+                            <listbox id="listbox_NamaPelaksana" width="200px" mold="select" rows="1"/>
+                        </hbox>
+                        <hbox>
+                            <label id="label_target" value="target selesai:"/>
+                            <intbox id="intbox_target" maxlength="2"/>
+                            <label id="label_hari" value="hari"/>
                         </hbox>
                         <!--<fckeditor id="fck_DetailPermohonan" height="90%" width="484px"
                                    forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"

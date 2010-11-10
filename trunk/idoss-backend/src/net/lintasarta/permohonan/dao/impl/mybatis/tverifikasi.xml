@@ -151,7 +151,8 @@
         INSERT INTO SNI.T_IDOSS_VERIFIKASI(
         T_IDOSS_VERIFIKASI_ID,
         TGL_PERMOHONAN,
-        URGENSI,DAMPAK,
+        URGENSI,
+        DAMPAK,
         TYPE_PERMOHONAN,
         NIK_PELAKSANA,
         RFS,
@@ -174,7 +175,7 @@
         #{t_idoss_verifikasi_id},
         #{tgl_permohonan,jdbcType=TIMESTAMP},
         #{urgensi,jdbcType=VARCHAR},
-        'MINOR',
+        #{dampak,jdbcType=VARCHAR},
         #{type_permohonan,jdbcType=VARCHAR},
         #{nik_pelaksana,jdbcType=VARCHAR},
         #{rfs,jdbcType=VARCHAR},

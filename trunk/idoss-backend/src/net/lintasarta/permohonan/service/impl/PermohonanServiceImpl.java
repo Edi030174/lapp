@@ -167,7 +167,6 @@ public class PermohonanServiceImpl implements PermohonanService {
 
     public void simpanAllTPermohonan(String uploadedFileName, TPermohonan tPermohonan) {
         createTPermohonan(uploadedFileName, tPermohonan);
-
         TVerifikasi tVerifikasi = new TVerifikasi();
         tVerifikasi.setT_idoss_verifikasi_id(tPermohonan.getT_idoss_permohonan_id());
         tVerifikasi.setTgl_permohonan(tPermohonan.getTgl_permohonan());
