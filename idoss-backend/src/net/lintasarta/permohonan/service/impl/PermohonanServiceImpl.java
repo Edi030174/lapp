@@ -158,11 +158,7 @@ public class PermohonanServiceImpl implements PermohonanService {
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         tPermohonan.setCreated_date(ts);
         tPermohonan.setUpdated_date(ts);
-        if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_manager())) {
-            tPermohonan.setStatus_track_permohonan("Disetujui Manager Pemohon");
-        } else if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_gm())) {
-            tPermohonan.setStatus_track_permohonan("Disetujui GM Pemohon");
-        } else if (tPermohonan.getBagian_pemohon().contains("DUKUNGAN OPERASI DAN PEMELIHARAAN")) {
+        if (tPermohonan.getBagian_pemohon().contains("DUKUNGAN OPERASI DAN PEMELIHARAAN")) {
             if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_manager())) {
                 tPermohonan.setStatus_track_permohonan("Permohonan Baru Manager Dukophar");
             } else if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_gm())) {
@@ -172,6 +168,10 @@ public class PermohonanServiceImpl implements PermohonanService {
             } else {
                 tPermohonan.setStatus_track_permohonan("Persetujuan Asman Dukophar");
             }
+        } else if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_manager())) {
+            tPermohonan.setStatus_track_permohonan("Disetujui Manager Pemohon");
+        } else if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_gm())) {
+            tPermohonan.setStatus_track_permohonan("Disetujui GM Pemohon");
         } else {
             tPermohonan.setStatus_track_permohonan("Persetujuan Manager");
         }
