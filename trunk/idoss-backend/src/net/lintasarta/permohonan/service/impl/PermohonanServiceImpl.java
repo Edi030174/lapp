@@ -8,6 +8,7 @@ import net.lintasarta.permohonan.dao.TVerifikasiDAO;
 import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
+import net.lintasarta.permohonan.model.VerifikasiPermohonan;
 import net.lintasarta.permohonan.model.comparator.TPermohonanComparator;
 import net.lintasarta.permohonan.service.PermohonanService;
 import net.lintasarta.security.dao.VHrEmployeeDAO;
@@ -289,8 +290,8 @@ public class PermohonanServiceImpl implements PermohonanService {
         return vHrEmployeeDAO.getVHrEmployeeByEmployeeNo(employeeNo);
     }
 
-    public List<TPermohonan> getTPermohonanByNikPelaksana(String nik_pelaksana) {
-        List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByNikPelaksana(nik_pelaksana);
+    public List<TPermohonan> getTPermohonanByNikPelaksana(VerifikasiPermohonan verifikasiPermohonan) {
+        List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByNikPelaksana(verifikasiPermohonan);
         hitungDurasiMttr(tPermohonans);
         java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         return tPermohonans;
@@ -307,9 +308,8 @@ public class PermohonanServiceImpl implements PermohonanService {
                 tPermohonan.setDurasi(getDuration(duration));
                 tPermohonan.setMttr(getDuration(mttrLong));
                 if (mttrService.isInProgress(mttr)) {
-                    tPermohonan.setStatus_track_permohonan("In Progress");
+                    tPermohonan.setStatus_track_permohonan("INPROGRESS");
                 }
-
             }
         }
         return tPermohonans;

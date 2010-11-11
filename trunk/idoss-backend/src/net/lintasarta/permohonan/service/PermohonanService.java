@@ -4,6 +4,7 @@ import net.lintasarta.pengaduan.model.Mttr;
 import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
+import net.lintasarta.permohonan.model.VerifikasiPermohonan;
 import net.lintasarta.security.model.VHrEmployee;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public interface PermohonanService {
     List<TPermohonan> getTPermohonanByStatusTrackPermohonanAndDampak(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByNikPemohon(TPermohonan tPermohonan);
     List<VHrEmployee> getVHrEmployeeByEmployeeNo(String employeeNo);
-    List<TPermohonan> getTPermohonanByNikPelaksana(String nik_pelaksana);
+    List<TPermohonan> getTPermohonanByNikPelaksana(VerifikasiPermohonan verifikasiPermohonan);
     List<TPermohonan> hitungDurasiMttr(List<TPermohonan> tPermohonans);
     String getFilePath();
 }

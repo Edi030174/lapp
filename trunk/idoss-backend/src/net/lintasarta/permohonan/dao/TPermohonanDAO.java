@@ -1,6 +1,7 @@
 package net.lintasarta.permohonan.dao;
 
 import net.lintasarta.permohonan.model.TPermohonan;
+import net.lintasarta.permohonan.model.VerifikasiPermohonan;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface TPermohonanDAO {
     int getGeneratedID();
     List<TPermohonan> getAllTPermohonan();
     TPermohonan getTPermohonanByTIdossPermohonanId(String t_idoss_permohonan_id);
-    List<TPermohonan> getTPermohonanByNikPelaksana(String nik_pelaksana);
+    List<TPermohonan> getTPermohonanByNikPelaksana(VerifikasiPermohonan verifikasiPermohonan);
     List<TPermohonan> getTPermohonanByNikPemohon(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByNikAsman(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByNikManager(TPermohonan tPermohonan);

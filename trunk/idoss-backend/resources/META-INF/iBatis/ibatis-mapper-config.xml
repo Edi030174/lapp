@@ -15,6 +15,7 @@
 
     <typeAliases>
 
+        <typeAlias type="net.lintasarta.permohonan.model.VerifikasiPermohonan" alias="verifikasiPermohonan"/>
         <typeAlias type="net.lintasarta.security.model.VHrEmployee" alias="vHrEmployee"/>
         <typeAlias type="net.lintasarta.pengaduan.model.PApplication" alias="papplication"/>
         <typeAlias type="net.lintasarta.pengaduan.model.Mttr" alias="mttr"/>
