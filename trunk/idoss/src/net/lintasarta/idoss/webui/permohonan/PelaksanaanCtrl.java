@@ -121,9 +121,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteBeanToComponents(TPelaksanaan tPelaksanaan) throws Exception {
-        if (tPelaksanaan.getStatus_perubahan().equals("OPEN")) {
-            combobox_Status.setValue("Open");
-        } else if (tPelaksanaan.getStatus_perubahan().equals("INPROGRESS")) {
+        if (tPelaksanaan.getStatus_perubahan().equals("INPROGRESS")) {
             combobox_Status.setValue("In Progress");
         } else if (tPelaksanaan.getStatus_perubahan().equals("PENDING")) {
             combobox_Status.setValue("Pending");

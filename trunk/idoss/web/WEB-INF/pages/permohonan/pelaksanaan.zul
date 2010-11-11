@@ -34,7 +34,6 @@
                 <hbox>
                     <label value="Status Perubahan : "/>
                     <combobox id="combobox_Status" width="140px" readonly="true">
-                        <comboitem label="Open" disabled="true" value="OPEN"/>
                         <comboitem label="In Progress" value="INPROGRESS"/>
                         <comboitem label="Pending" value="PENDING"/>
                         <comboitem label="Selesai" value="CLOSED"/>
