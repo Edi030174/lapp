@@ -125,14 +125,11 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
 
         TPermohonan tPermohonan = new TPermohonan();
         TVerifikasi tVerifikasi = new TVerifikasi();
+
         String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
 
-        String pend = "PENDING";
-        tPermohonans = getPermohonanService().getTPermohonanByNikPelaksanaStatus(employeeNo, pend);
+        tPermohonans = getPermohonanService().getTPermohonanByNikPelaksana(employeeNo);
 
-        String inprog = "INPROGRESS";
-        tPermohonans.addAll(getPermohonanService().getTPermohonanByNikPelaksanaStatus(employeeNo, inprog));
-        
         PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>(tPermohonans);
         pagedListHolder.setPageSize(getCountRows());
 
