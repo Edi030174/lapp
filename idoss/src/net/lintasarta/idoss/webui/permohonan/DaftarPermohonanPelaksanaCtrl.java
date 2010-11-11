@@ -7,6 +7,7 @@ import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
+import net.lintasarta.permohonan.model.VerifikasiPermohonan;
 import net.lintasarta.permohonan.model.predicate.*;
 import net.lintasarta.permohonan.service.PermohonanService;
 import org.apache.commons.collections.CollectionUtils;
@@ -132,9 +133,17 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
         TPermohonan tPermohonan = new TPermohonan();
         TVerifikasi tVerifikasi = new TVerifikasi();
 
-        String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
+        VerifikasiPermohonan verifikasiPermohonan = new VerifikasiPermohonan();
 
-        tPermohonans = getPermohonanService().getTPermohonanByNikPelaksana(employeeNo);
+        String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
+        verifikasiPermohonan.setNik_pelaksana(employeeNo);
+        verifikasiPermohonan.setStatus_track_permohonan("INPROGRESS");
+
+        tPermohonans = getPermohonanService().getTPermohonanByNikPelaksana(verifikasiPermohonan);
+        
+        verifikasiPermohonan.setNik_pelaksana(employeeNo);
+        verifikasiPermohonan.setStatus_track_permohonan("PENDING");
+        tPermohonans.addAll(getPermohonanService().getTPermohonanByNikPelaksana(verifikasiPermohonan));
 
         PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>(tPermohonans);
         pagedListHolder.setPageSize(getCountRows());

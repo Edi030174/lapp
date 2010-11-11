@@ -52,7 +52,7 @@
         from T_IDOSS_PERMOHONAN
         where T_IDOSS_PERMOHONAN_ID = #{t_idoss_permohonan_id}
     </select>
-    <select id="getTPermohonanByNikPelaksana" parameterType="String" resultType="tpermohonan">
+    <select id="getTPermohonanByNikPelaksana" parameterType="verifikasiPermohonan" resultType="tpermohonan">
         select  T_IDOSS_PERMOHONAN_ID,
                 a.TGL_PERMOHONAN,
                 a.DAMPAK,
@@ -89,7 +89,8 @@
                 GEN_ID_COL
         from T_IDOSS_PERMOHONAN a, T_IDOSS_VERIFIKASI b
         where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID
-            and NIK_PELAKSANA=#{nik_pelaksana, jdbcType=VARCHAR}
+            and NIK_PELAKSANA=#{nik_pelaksana,jdbcType=VARCHAR}
+            and STATUS_TRACK_PERMOHONAN=#{status_track_permohonan,jdbcType=VARCHAR} 
 
     </select>
     <select id="getTPermohonanByNikPemohon" parameterType="tpermohonan" resultType="tpermohonan">
