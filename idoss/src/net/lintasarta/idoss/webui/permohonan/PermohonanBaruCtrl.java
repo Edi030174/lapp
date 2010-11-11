@@ -4,6 +4,7 @@ import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.pengaduan.model.PelaksanaListModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
+import net.lintasarta.pengaduan.model.Mttr;
 import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
 import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.permohonan.model.TPelaksanaan;
@@ -374,6 +375,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     private void doSimpan() throws InterruptedException {
 
         TPermohonan tPermohonan = gettPermohonan();
+        Mttr mttr = new Mttr();
         doWriteComponentsToBean(tPermohonan);
 
         try {
@@ -381,7 +383,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
             if (getUploadMedia() != null) {
                 uploadeFileName = getUploadMedia().getName();
             }
-            getPermohonanService().simpanAllTPermohonan(uploadeFileName, tPermohonan);
+            getPermohonanService().simpanAllTPermohonan(uploadeFileName, tPermohonan, mttr);
             TVerifikasi tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
             doWriteComponentsToBeanVer(tVerifikasi);
             getVerifikasiService().saveOrUpdateTVerifikasi(tVerifikasi);

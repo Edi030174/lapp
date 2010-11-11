@@ -1,3 +1,4 @@
+/*
 package net.lintasarta.idoss.webui.permohonan;
 
 import net.lintasarta.UserWorkspace;
@@ -19,30 +20,30 @@ import org.zkoss.zul.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 
+*/
 /**
  * Created by IntelliJ IDEA.
  * User: Xsis
  * Date: Aug 3, 2010
  * Time: 11:49:01 AM
  * To change this template use File | Settings | File Templates.
- */
+ *//*
+
 public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     private transient final static Logger logger = Logger.getLogger(PelaksanaanCtrl.class);
 
     protected Window window_Permohonan;
     protected Window window_Pelaksanaan;
 
-    protected Radiogroup radiogroup_StatusPerubahan;
-    protected Radio open;
-    protected Radio inprogress;
-    protected Radio closed;
-    protected Radio pending;
-    protected Datebox datebox_Pending;
+    protected Combobox combobox_Status;
+    protected Datebox datebox_pending;
     protected Textbox textbox_pelaksana;
-    protected Intbox textbox_pending;
+    protected Intbox intbox_pending;
 
     private transient String oldVar_selesai;
     private transient String oldVar_tunda;
@@ -107,6 +108,10 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 //            listbox_DaftarPermohonan = null;
 //        }
 //        doCheckRights(gettPermohonan(), gettVerifikasi());
+        List<Mttr> mttrs = getMttrService().getMttrByNomorTiket(gettPermohonan().getT_idoss_permohonan_id());
+        for (Mttr mttr1 : mttrs) {
+            setMttr(mttr1);
+        }
         doShowDialog(gettPelaksanaan(), gettPermohonan(), gettVerifikasi());
     }
 
@@ -139,6 +144,32 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 //        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
 //        datebox_TglPermohonan.setValue(ts);
 //        textbox_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
+        if (mttr.getPending_end() == 0) {
+            long pending = tPelaksanaan.getCreated_date().getTime();
+            int ipending = getPending(pending);
+            intbox_pending.setValue(ipending);
+        } else {
+            Timestamp ts = new Timestamp(mttr.getPending_end());
+            int zpending = getPending(ts.getTime());
+            intbox_pending.setValue(zpending);
+        }
+    }
+
+    private int getPending(long duration) {
+        final int millisPerSecond = 1000;
+        final int millisPerMinute = 1000 * 60;
+        final int millisPerHour = 1000 * 60 * 60;
+//        final int millisPerDay = 1000 * 60 * 60 * 24;
+//        int days = (int) (duration / millisPerDay);
+//        int hours = (int) (duration % millisPerDay / millisPerHour);
+        int hours = (int) (duration / millisPerHour);
+        int minutes = (int) (duration % millisPerHour / millisPerMinute);
+        int seconds = (int) (duration % millisPerMinute / millisPerSecond);
+//        return String.format("%d %02d:%02d:%02d", days, hours, minutes, seconds);
+
+        DecimalFormat df = new DecimalFormat("00");
+//        return (days == 0 ? "" : days + " ")+ df.format(hours) + ":" + df.format(minutes) + ":" + df.format(seconds);
+        return hours;
     }
 
     public void onClick$btnBatal(Event event) throws Exception {
@@ -154,6 +185,29 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         }
         doSimpan();
         window_Permohonan.onClose();
+    }
+
+    public void onChange$combobox_Status() {
+        if (combobox_Status.getValue().equals("Open")) {
+            textbox_pelaksana.setReadonly(true);
+            textbox_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
+            datebox_pending.setVisible(false);
+            label_Target.setVisible(false);
+        } else if (combobox_Status.getValue().equals("In Progress")) {
+            textbox_pelaksana.setReadonly(true);
+            textbox_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
+            datebox_pending.setVisible(false);
+            label_Target.setVisible(false);
+        } else if (combobox_Status.getValue().equals("Pending")) {
+            textbox_pelaksana.setReadonly(true);
+            textbox_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
+            datebox_pending.setVisible(true);
+            label_Target.setVisible(true);
+        } else if (combobox_Status.getValue().equals("Selesai")) {
+            textbox_pelaksana.setReadonly(false);
+            datebox_pending.setVisible(false);
+            label_Target.setVisible(false);
+        }
     }
 
     private void doSimpan() throws Exception {
@@ -188,7 +242,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         } else if (radiogroup_StatusPerubahan.getSelectedItem().equals(closed)) {               
             mttr.setClosed(now.getTime());
         } else if (radiogroup_StatusPerubahan.getSelectedItem().equals(pending)) {
-//            tPelaksanaan.setTgl_pending(new Timestamp(datebox_Pending.getValue().getTime()));
+//            tPelaksanaan.setTgl_pending(new Timestamp(datebox_pending.getValue().getTime()));
             if (mttr.getPending_end() > 0) {
                 long lama_pending = mttr.getLama_pending();
                 if (now.getTime() < mttr.getPending_end()) {
@@ -198,7 +252,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
                 }
             }
             mttr.setPending_start(now.getTime());
-            mttr.setPending_end(textbox_pending.getValue());
+            mttr.setPending_end(intbox_pending.getValue());
         }
         tPelaksanaan.setCatatan_pelaksana(textbox_pelaksana.getValue());
         tPelaksanaan.setNama_pelaksana(getUserWorkspace().getUserSession().getEmployeeName());
@@ -274,4 +328,4 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     public void setMttrService(MttrService mttrService) {
         this.mttrService = mttrService;
     }
-}
+}*/

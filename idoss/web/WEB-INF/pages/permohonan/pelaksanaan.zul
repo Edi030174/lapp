@@ -33,17 +33,14 @@
             <vbox>
                 <hbox>
                     <label value="Status Perubahan : "/>
-                    <radiogroup id="radiogroup_StatusPerubahan">
-                        <radio id="open" label="Open" value="OPEN" disabled="true"
-                               onCheck="intbox_pending.disabled=true"/>
-                        <radio id="inprogress" label="In Progress" value="INPROGRESS" selected="true"
-                               onCheck="intbox_pending.disabled=true"/>
-                        <radio id="closed" label="Closed" value="CLOSED" onCheck="intbox_pending.disabled=true"/>
-                        <radio id="pending" label="Pending  s/d" value="PENDING"
-                               onCheck="intbox_pending.disabled=false"/>
-                        <intbox id="intbox_pending" maxlength="2" width="25px"/>
-                        <label value="hari"/>
-                    </radiogroup>
+                    <combobox id="combobox_Status" width="140px" readonly="true">
+                        <comboitem label="Open" disabled="true"/>
+                        <comboitem label="In Progress"/>
+                        <comboitem label="Pending" disabled="true"/>
+                        <comboitem label="Selesai"/>
+                    </combobox>
+                    <datebox id="datebox_pending" cols="12" format="dd-MM-yyyy HH:mm" readonly="true"
+                             width="150px" style="color: #000000 !important;"/>
                 </hbox>
                 <space height="10px"/>
                 <hbox>

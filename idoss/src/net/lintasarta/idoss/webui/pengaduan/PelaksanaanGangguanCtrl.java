@@ -40,7 +40,6 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     protected Textbox textbox_NomorTiket;
     protected Textbox texbox_Pelapor;
     protected Textbox texbox_Bagian;
-    protected Datebox datebox_pending;
     protected Textbox texbox_Judul;
     protected Textbox textbox_Type;
     protected Textbox textbox_deskripsi;
@@ -53,6 +52,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     protected Listbox listbox_RootCaused;
     protected Listbox listbox_NamaPelaksana;
     protected Combobox combobox_Status;//pelaksana hanya status & solusi yg enable
+    protected Datebox datebox_pending;
     protected Button btn_TambahRootCaused;
     protected Button btnSimpan_PelaksanaanGangguan;//monitoring disable all
     protected Button btn_historyDeskripsi;

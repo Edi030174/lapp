@@ -492,6 +492,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
     private void doSimpan() throws InterruptedException {
 
         TPermohonan tPermohonan = gettPermohonan();
+
         doWriteComponentsToBean(tPermohonan);
 
         try {
@@ -499,7 +500,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             if (getUploadMedia() != null) {
                 uploadeFileName = getUploadMedia().getName();
             }
-            getPermohonanService().simpanAllTPermohonan(uploadeFileName, tPermohonan);
+//            getPermohonanService().simpanAllTPermohonan(uploadeFileName, tPermohonan, mttr);
 
         } catch (DataAccessException e) {
             String message = e.getMessage();
