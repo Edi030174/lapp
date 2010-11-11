@@ -20,6 +20,7 @@ import org.zkoss.zul.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -255,6 +256,19 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
         tPelaksanaan.setUpdated_date(ts);
         tPelaksanaan.setCreated_date(ts);
+    }
+
+    private boolean isValidatedFlow() throws InterruptedException {
+        if (combobox_Status.getValue().equalsIgnoreCase("Pending")) {
+            if (datebox_pending.getValue() != null) {
+                if (datebox_pending.getValue().before(new Date())) {
+                    alert("End Date must be equal or bigger than this date");
+                    datebox_pending.setValue(new Date());
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public TPelaksanaan gettPelaksanaan() {
