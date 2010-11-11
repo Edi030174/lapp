@@ -759,7 +759,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;
             }
-            if (intbox_target.getValue() < 1) {
+            if (intbox_target.getValue() == null) {
                 Messagebox.show("Silakan isikan target selesai");
                 return false;
             }
@@ -868,7 +868,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         if (tVerifikasi.getDampak().contains("MINOR")) {
             tVerifikasi.setStatus_permohonanmanager("INPROGRESS");
             tPermohonan.setStatus_track_permohonan("INPROGRESS");
-        }else{
+        } else {
             tVerifikasi.setStatus_permohonanmanager(statusM.getValue());
             tPermohonan.setStatus_track_permohonan(statusM.getValue());
         }
