@@ -223,17 +223,15 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
             } else {
                 combobox_NamaPelapor.setFocus(true);
             }
-        }else{
-            Messagebox.show("Nama pelapor yang anda input tidak ditemukan");
-            if (Messagebox.OK == Messagebox.show( "Question2 is pressed. Are you sure?", "Question",Messagebox.OK | Messagebox.CANCEL, Messagebox.INFORMATION)) {
-                System.out.println("secondMsgBox : Messagebox.CANCEL selected!");
+        } else {
+//            Messagebox.show("Nama pelapor yang anda input tidak ditemukan");
+            if (Messagebox.OK == Messagebox.show("Nama pelapor yang anda input tidak ditemukan", "Information", Messagebox.OK, Messagebox.INFORMATION)) {
+                combobox_NamaPelapor.setValue("");
+                combobox_NamaPelapor.setFocus(true);
             } else {
                 System.out.println("secondMsgBox : Messagebox.OK selected!");
             }
 
-            combobox_NamaPelapor.setFocus(true);
-            combobox_NamaPelapor.setValue("");
-            combobox_NamaPelapor.setFocus(true);
         }
     }
 
