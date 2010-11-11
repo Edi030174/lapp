@@ -34,10 +34,10 @@
                 <hbox>
                     <label value="Status Perubahan : "/>
                     <combobox id="combobox_Status" width="140px" readonly="true">
-                        <comboitem label="Open" disabled="true"/>
-                        <comboitem label="In Progress"/>
-                        <comboitem label="Pending" disabled="true"/>
-                        <comboitem label="Selesai"/>
+                        <comboitem label="Open" disabled="true" value="OPEN"/>
+                        <comboitem label="In Progress" value="INPROGRESS"/>
+                        <comboitem label="Pending" disabled="true" value="PENDING"/>
+                        <comboitem label="Selesai" value="CLOSED"/>
                     </combobox>
                     <datebox id="datebox_pending" cols="12" format="dd-MM-yyyy HH:mm" readonly="true"
                              width="150px" style="color: #000000 !important;"/>

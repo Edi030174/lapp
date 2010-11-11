@@ -1,4 +1,3 @@
-/*
 package net.lintasarta.idoss.webui.permohonan;
 
 import net.lintasarta.UserWorkspace;
@@ -21,38 +20,27 @@ import org.zkoss.zul.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-*/
 /**
  * Created by IntelliJ IDEA.
- * User: Xsis
+ * User: Joshua
  * Date: Aug 3, 2010
  * Time: 11:49:01 AM
- * To change this template use File | Settings | File Templates.
- *//*
-
+ */
 public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     private transient final static Logger logger = Logger.getLogger(PelaksanaanCtrl.class);
 
     protected Window window_Permohonan;
     protected Window window_Pelaksanaan;
-
+    protected Groupbox groupboxPelaksanaan;
     protected Combobox combobox_Status;
     protected Datebox datebox_pending;
     protected Textbox textbox_pelaksana;
-    protected Intbox intbox_pending;
-
-    private transient String oldVar_selesai;
-    private transient String oldVar_tunda;
-    private transient String oldVar_mulai;
-    private transient String oldVar_dateboxTglPermohonan;
-    private transient String oldVar_dateboxPending;
-
     protected Listbox listbox_DaftarPermohonan;
     protected Button btnSimpan_Pelaksanaan;
+    protected Button btnBatal;
     protected PelaksanaanCtrl pelaksanaanCtrl;
 
     private transient TPermohonan tPermohonan;
@@ -108,6 +96,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 //            listbox_DaftarPermohonan = null;
 //        }
 //        doCheckRights(gettPermohonan(), gettVerifikasi());
+        textbox_pelaksana.setReadonly(true);
         List<Mttr> mttrs = getMttrService().getMttrByNomorTiket(gettPermohonan().getT_idoss_permohonan_id());
         for (Mttr mttr1 : mttrs) {
             setMttr(mttr1);
@@ -132,26 +121,29 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteBeanToComponents(TPelaksanaan tPelaksanaan) throws Exception {
-//        if (tPelaksanaan.getStatus_perubahan().equals("OPEN")) {
-//            radiogroup_StatusPerubahan.setSelectedItem(open);
-//        } else if (tPelaksanaan.getStatus_perubahan().equals("INPROGRESS")) {
-//            radiogroup_StatusPerubahan.setSelectedItem(inprogress);
-//        } else if (tPelaksanaan.getStatus_perubahan().equals("CLOSED")) {
-//            radiogroup_StatusPerubahan.setSelectedItem(closed);
-//        } else if (tPelaksanaan.getStatus_perubahan().equals("PENDING")) {
-//            radiogroup_StatusPerubahan.setSelectedItem(pending);
-//        }
-//        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
-//        datebox_TglPermohonan.setValue(ts);
-//        textbox_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
+        if (tPelaksanaan.getStatus_perubahan().equals("OPEN")) {
+            combobox_Status.setValue("Open");
+        } else if (tPelaksanaan.getStatus_perubahan().equals("INPROGRESS")) {
+            combobox_Status.setValue("In Progress");
+        } else if (tPelaksanaan.getStatus_perubahan().equals("PENDING")) {
+            combobox_Status.setValue("Pending");
+        } else if (tPelaksanaan.getStatus_perubahan().equals("CLOSED")) {
+            combobox_Status.setValue("Selesai");
+        }
+        if (tPelaksanaan.getStatus_perubahan().equalsIgnoreCase("PENDING")) {
+            datebox_pending.setVisible(true);
+        } else {
+            datebox_pending.setVisible(false);
+        }
+        if (tPelaksanaan.getStatus_perubahan().equals("CLOSED")) {
+            textbox_pelaksana.setReadonly(false);
+        }
+        textbox_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
         if (mttr.getPending_end() == 0) {
-            long pending = tPelaksanaan.getCreated_date().getTime();
-            int ipending = getPending(pending);
-            intbox_pending.setValue(ipending);
+            datebox_pending.setValue(tPelaksanaan.getCreated_date());
         } else {
             Timestamp ts = new Timestamp(mttr.getPending_end());
-            int zpending = getPending(ts.getTime());
-            intbox_pending.setValue(zpending);
+            datebox_pending.setValue(ts);
         }
     }
 
@@ -192,21 +184,17 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
             textbox_pelaksana.setReadonly(true);
             textbox_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
             datebox_pending.setVisible(false);
-            label_Target.setVisible(false);
         } else if (combobox_Status.getValue().equals("In Progress")) {
             textbox_pelaksana.setReadonly(true);
             textbox_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
             datebox_pending.setVisible(false);
-            label_Target.setVisible(false);
         } else if (combobox_Status.getValue().equals("Pending")) {
             textbox_pelaksana.setReadonly(true);
             textbox_pelaksana.setValue(tPelaksanaan.getCatatan_pelaksana());
             datebox_pending.setVisible(true);
-            label_Target.setVisible(true);
         } else if (combobox_Status.getValue().equals("Selesai")) {
             textbox_pelaksana.setReadonly(false);
             datebox_pending.setVisible(false);
-            label_Target.setVisible(false);
         }
     }
 
@@ -230,29 +218,35 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteComponentsToBean(TPelaksanaan tPelaksanaan, TPermohonan tPermohonan, Mttr mttr) {
-        Timestamp now = new Timestamp(Calendar.getInstance().getTimeInMillis());
-        Radio status = radiogroup_StatusPerubahan.getSelectedItem();
-        tPelaksanaan.setStatus_perubahan(status.getValue());
-        tPermohonan.setStatus_track_permohonan(status.getValue());
-        if (radiogroup_StatusPerubahan.getSelectedItem().equals(inprogress)) {
+        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
+        if (combobox_Status.getSelectedIndex() == 1) {
+            tPelaksanaan.setStatus_perubahan("INPROGRESS");
+            tPermohonan.setStatus_track_permohonan("INPROGRESS");
+            long tsLong = ts.getTime();
             if (mttr.getInprogress() > 0) {
-                mttr.setPending_end(now.getTime());
+                mttr.setPending_end(tsLong);
             }
-            mttr.setInprogress(now.getTime());
-        } else if (radiogroup_StatusPerubahan.getSelectedItem().equals(closed)) {               
-            mttr.setClosed(now.getTime());
-        } else if (radiogroup_StatusPerubahan.getSelectedItem().equals(pending)) {
-//            tPelaksanaan.setTgl_pending(new Timestamp(datebox_pending.getValue().getTime()));
+            mttr.setInprogress(tsLong);
+        } else if (combobox_Status.getSelectedIndex() == 2) {
+            tPelaksanaan.setStatus_perubahan("PENDING");
+            tPermohonan.setStatus_track_permohonan("PENDING");
             if (mttr.getPending_end() > 0) {
                 long lama_pending = mttr.getLama_pending();
-                if (now.getTime() < mttr.getPending_end()) {
-                    mttr.setLama_pending(lama_pending + now.getTime() - mttr.getPending_start());
+                if (ts.getTime() < mttr.getPending_end()) {
+                    mttr.setLama_pending(lama_pending + ts.getTime() - mttr.getPending_start());
                 } else {
                     mttr.setLama_pending(lama_pending + mttr.getPending_end() - mttr.getPending_start());
                 }
             }
-            mttr.setPending_start(now.getTime());
-            mttr.setPending_end(intbox_pending.getValue());
+            long pending_start = ts.getTime();
+            mttr.setPending_start(pending_start);
+            Timestamp tspending_end = new Timestamp(datebox_pending.getValue().getTime());
+            long pending_end = tspending_end.getTime();
+            mttr.setPending_end(pending_end);
+        } else if (combobox_Status.getSelectedIndex() == 3) {
+            tPelaksanaan.setStatus_perubahan("CLOSED");
+            tPermohonan.setStatus_track_permohonan("CLOSED");
+            mttr.setClosed(ts.getTime());
         }
         tPelaksanaan.setCatatan_pelaksana(textbox_pelaksana.getValue());
         tPelaksanaan.setNama_pelaksana(getUserWorkspace().getUserSession().getEmployeeName());
@@ -261,8 +255,8 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         tPelaksanaan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         tPelaksanaan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
 
-        tPelaksanaan.setUpdated_date(now);
-        tPelaksanaan.setCreated_date(now);
+        tPelaksanaan.setUpdated_date(ts);
+        tPelaksanaan.setCreated_date(ts);
     }
 
     public TPelaksanaan gettPelaksanaan() {
@@ -328,4 +322,4 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     public void setMttrService(MttrService mttrService) {
         this.mttrService = mttrService;
     }
-}*/
+}

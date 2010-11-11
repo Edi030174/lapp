@@ -26,6 +26,7 @@ public interface TPermohonanDAO {
     List<TPermohonan> getTPermohonanByNikAsmanStatus(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByNikManagerStatus(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByNikGmStatus(TPermohonan tPermohonan);
+    List<TPermohonan> getTPermohonanByNikPelaksanaStatus(String nik_pelaksana,String status_track_permohonan);
 
     void createTPermohonan (TPermohonan tPermohonan);
     void saveOrUpdateTPermohonan (TPermohonan tPermohonan);
