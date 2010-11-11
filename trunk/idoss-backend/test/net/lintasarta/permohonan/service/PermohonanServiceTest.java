@@ -1,5 +1,6 @@
 package net.lintasarta.permohonan.service;
 
+import net.lintasarta.pengaduan.model.Mttr;
 import net.lintasarta.permohonan.model.TPermohonan;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -97,6 +98,7 @@ public class PermohonanServiceTest {
     @Test
     public void testSimpanAllTPermohonan() throws Exception{
         TPermohonan tPermohonan = new TPermohonan();
+        Mttr mttr = new Mttr();
 
         tPermohonan.setT_idoss_permohonan_id("RR155");
 
@@ -135,7 +137,7 @@ public class PermohonanServiceTest {
 
         int i = permohonanService.getAllTPermohonan().size();
 
-        permohonanService.simpanAllTPermohonan(null,tPermohonan);
+        permohonanService.simpanAllTPermohonan(null,tPermohonan,mttr);
         assertEquals(i+1, permohonanService.getAllTPermohonan().size());
 
     }

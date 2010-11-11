@@ -1,5 +1,6 @@
 package net.lintasarta.permohonan.service;
 
+import net.lintasarta.pengaduan.model.Mttr;
 import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
@@ -18,7 +19,7 @@ public interface PermohonanService {
     TPermohonan getTPermohonanByTIdossPermohonanId(String t_idoss_permohonan_id);
     List<TPermohonan> getAllTPermohonan();
     void createTPermohonan (String uploadedFileName, TPermohonan tPermohonan);
-    void simpanAllTPermohonan(String uploadedFileName, TPermohonan tPermohonan);
+    void simpanAllTPermohonan(String uploadedFileName, TPermohonan tPermohonan, Mttr mttr);
     void saveOrUpdateTPermohonan (TPermohonan tPermohonan);
     TVerifikasi getTVerifikasiByTIdossVerifikasiId(String t_idoss_verifikasi_id);
     TVerifikasi getNewVerifikasi();

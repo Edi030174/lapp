@@ -1,5 +1,7 @@
 package net.lintasarta.permohonan.service.impl;
 
+import net.lintasarta.pengaduan.model.Mttr;
+import net.lintasarta.pengaduan.service.MttrService;
 import net.lintasarta.permohonan.dao.TPelaksanaanDAO;
 import net.lintasarta.permohonan.dao.TPermohonanDAO;
 import net.lintasarta.permohonan.dao.TVerifikasiDAO;
@@ -29,6 +31,7 @@ public class PermohonanServiceImpl implements PermohonanService {
     private TVerifikasiDAO tVerifikasiDAO;
     private TPelaksanaanDAO tPelaksanaanDAO;
     private VHrEmployeeDAO vHrEmployeeDAO;
+    private MttrService mttrService;
 
     public String getFilePath() {
         return filePath;
@@ -66,6 +69,14 @@ public class PermohonanServiceImpl implements PermohonanService {
         this.vHrEmployeeDAO = vHrEmployeeDAO;
     }
 
+    public MttrService getMttrService() {
+        return mttrService;
+    }
+
+    public void setMttrService(MttrService mttrService) {
+        this.mttrService = mttrService;
+    }
+
     public TPermohonan getNewPermohonan() {
         return new TPermohonan();
     }
@@ -85,7 +96,7 @@ public class PermohonanServiceImpl implements PermohonanService {
 
     public List<TPermohonan> getAllTPermohonan() {
         List<TPermohonan> tPermohonans = gettPermohonanDAO().getAllTPermohonan();
-        java.util.Collections.sort(tPermohonans,new TPermohonanComparator());
+        java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
 
         return tPermohonans;
 
@@ -165,8 +176,9 @@ public class PermohonanServiceImpl implements PermohonanService {
 
     }
 
-    public void simpanAllTPermohonan(String uploadedFileName, TPermohonan tPermohonan) {
+    public void simpanAllTPermohonan(String uploadedFileName, TPermohonan tPermohonan, Mttr mttr) {
         createTPermohonan(uploadedFileName, tPermohonan);
+
         TVerifikasi tVerifikasi = new TVerifikasi();
         tVerifikasi.setT_idoss_verifikasi_id(tPermohonan.getT_idoss_permohonan_id());
         tVerifikasi.setTgl_permohonan(tPermohonan.getTgl_permohonan());
@@ -191,6 +203,14 @@ public class PermohonanServiceImpl implements PermohonanService {
         tPelaksanaan.setUpdated_date(tPermohonan.getUpdated_date());
         tPelaksanaan.setUpdated_user(tPermohonan.getUpdated_user());
         gettPelaksanaanDAO().createTPelaksanaan(tPelaksanaan);
+
+        mttr.setNomor_tiket(tPermohonan.getT_idoss_permohonan_id());
+        Timestamp created = tPermohonan.getCreated_date();
+        long duration = created.getTime();
+        mttr.setOpened(duration);
+        mttr.setUpdated_by(tPermohonan.getUpdated_user());
+        mttr.setUpdated_date(tPermohonan.getUpdated_date());
+        getMttrService().createMttr(mttr);
     }
 
     public void saveOrUpdateTPermohonan(TPermohonan tPermohonan) {
@@ -223,27 +243,31 @@ public class PermohonanServiceImpl implements PermohonanService {
 
     public List<TPermohonan> getTPermohonanByStatusAndNikManager(TPermohonan tPermohonan) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByStatusAndNikManager(tPermohonan);
-        java.util.Collections.sort(tPermohonans,new TPermohonanComparator());
+        java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         return tPermohonans;
     }
+
     public List<TPermohonan> getTPermohonanByStatusAndNikGM(TPermohonan tPermohonan) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByStatusAndNikGM(tPermohonan);
-        java.util.Collections.sort(tPermohonans,new TPermohonanComparator());
+        java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         return tPermohonans;
     }
+
     public List<TPermohonan> getTPermohonanByStatusTrackPermohonan(TPermohonan tPermohonan) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByStatusTrackPermohonan(tPermohonan);
-        java.util.Collections.sort(tPermohonans,new TPermohonanComparator());
+        java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         return tPermohonans;
     }
+
     public List<TPermohonan> getTPermohonanByStatusTrackPermohonanAndDampak(TPermohonan tPermohonan) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByStatusTrackPermohonanAndDampak(tPermohonan);
-        java.util.Collections.sort(tPermohonans,new TPermohonanComparator());
+        java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         return tPermohonans;
     }
+
     public List<TPermohonan> getTPermohonanByNikPemohon(TPermohonan tPermohonan) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByNikPemohon(tPermohonan);
-        java.util.Collections.sort(tPermohonans,new TPermohonanComparator());
+        java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         return tPermohonans;
     }
 
@@ -253,7 +277,7 @@ public class PermohonanServiceImpl implements PermohonanService {
 
     public List<TPermohonan> getTPermohonanByNikPelaksana(String nik_pelaksana) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByNikPelaksana(nik_pelaksana);
-        java.util.Collections.sort(tPermohonans,new TPermohonanComparator());
+        java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         return tPermohonans;
     }
 }
