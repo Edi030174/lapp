@@ -865,8 +865,13 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tVerifikasi.setDampak(dampak.getValue());
         Radio statusM = radiogroup_StatusPermohonanManager.getSelectedItem();
-        tVerifikasi.setStatus_permohonanmanager(statusM.getValue());
-        tPermohonan.setStatus_track_permohonan(statusM.getValue());
+        if (tVerifikasi.getDampak().contains("MINOR")) {
+            tVerifikasi.setStatus_permohonanmanager("INPROGRESS");
+            tPermohonan.setStatus_track_permohonan("INPROGRESS");
+        }else{
+            tVerifikasi.setStatus_permohonanmanager(statusM.getValue());
+            tPermohonan.setStatus_track_permohonan(statusM.getValue());
+        }
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         tVerifikasi.setUpdated_manager(ts);
         tVerifikasi.setCatatan_manager(textbox_mdukophar.getValue());
@@ -913,14 +918,6 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doWriteComponentsToBean5(TPermohonan tPermohonan, TVerifikasi tVerifikasi) {
         Radio statusGM = radiogroup_StatusPermohonanGm.getSelectedItem();
-        //nge-set status nya
-        TPelaksanaan tPelaksanaan = pelaksanaanService.getTPelaksanaanByTIdossPelaksanaanId(tPermohonan.getT_idoss_permohonan_id());
-        if (tPelaksanaan.getId_pelaksana() != null) {
-            tVerifikasi.setStatus_permohonan_gm(statusGM.getValue());
-        } else {
-            tVerifikasi.setStatus_permohonan_gm("Disetujui GM Pemohon");
-        }
-        //
         tVerifikasi.setStatus_permohonan_gm(statusGM.getValue());
         tPermohonan.setStatus_track_permohonan(statusGM.getValue());
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
