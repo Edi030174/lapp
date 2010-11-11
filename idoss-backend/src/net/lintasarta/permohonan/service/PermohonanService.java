@@ -28,6 +28,7 @@ public interface PermohonanService {
     String getManager(String nikPemohon);
     List<TPermohonan> getTPermohonanByStatusAndNikManager(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByStatusAndNikGM(TPermohonan tPermohonan);
+    List<TPermohonan> getTPermohonanByNikPelaksanaStatus(String nik_pelaksana,String status_track_permohonan);
     List<TPermohonan> getTPermohonanByStatusTrackPermohonan(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByStatusTrackPermohonanAndDampak(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByNikPemohon(TPermohonan tPermohonan);

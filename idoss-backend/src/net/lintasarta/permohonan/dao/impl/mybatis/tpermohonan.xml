@@ -640,4 +640,42 @@
     <select id="getTPermohonanByStatusAndNikGM" parameterType="tpermohonan" resultType="tpermohonan">
         select * from T_IDOSS_PERMOHONAN where nik_gm = #{nik_gm} and status_track_permohonan = #{status_track_permohonan}
     </select>
+    <select id="getTPermohonanByNikPelaksanaStatus" parameterType="String" resultType="tpermohonan">
+        select  T_IDOSS_PERMOHONAN_ID,
+                a.TGL_PERMOHONAN,
+                a.DAMPAK,
+                a.URGENSI,
+                TARGET_MULAI_DIGUNAKAN,
+                DETAIL_PERMOHONAN,
+                LAMPIRAN,
+                STATUS_TRACK_PERMOHONAN,
+                NIK_PEMOHON,
+                NAMA_PEMOHON,
+                BAGIAN_PEMOHON,
+                a.NIK_ASMAN,
+                a.NAMA_ASMAN,
+                ASMAN,
+                a.NIK_MANAGER,
+                a.NAMA_MANAGER,
+                a.NIK_GM,
+                a.NAMA_GM,
+                a.TYPE_PERMOHONAN,
+                LAIN_LAIN_DESC,
+                UPDATED_PEMOHON,
+                UPDATED_DIVISI,
+                a.UPDATED_ASMAN,
+                a.UPDATED_MANAGER,
+                a.UPDATED_GM,
+                a.CREATED_DATE,
+                a.CREATED_USER,
+                a.UPDATED_DATE,
+                a.UPDATED_USER,
+                a.CATATAN_MANAGER,
+                a.CATATAN_GM,
+                GEN_ID_COL
+        from T_IDOSS_PERMOHONAN a, T_IDOSS_VERIFIKASI b
+        where a.T_IDOSS_PERMOHONAN_ID=b.T_IDOSS_VERIFIKASI_ID
+            and NIK_PELAKSANA=#{nik_pelaksana, jdbcType=VARCHAR}
+            and STATUS_TRACK_PERMOHONAN=#{status_track_permohonan, jdbcType=VARCHAR}
+    </select>
 </mapper>

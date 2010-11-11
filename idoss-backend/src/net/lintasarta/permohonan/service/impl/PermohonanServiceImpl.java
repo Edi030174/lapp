@@ -253,6 +253,12 @@ public class PermohonanServiceImpl implements PermohonanService {
         return tPermohonans;
     }
 
+    public List<TPermohonan> getTPermohonanByNikPelaksanaStatus(String nik_pelaksana,String status_track_permohonan) {
+        List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByNikPelaksanaStatus(nik_pelaksana, status_track_permohonan);
+        java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
+        return tPermohonans;
+    }
+
     public List<TPermohonan> getTPermohonanByStatusTrackPermohonan(TPermohonan tPermohonan) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByStatusTrackPermohonan(tPermohonan);
         java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
