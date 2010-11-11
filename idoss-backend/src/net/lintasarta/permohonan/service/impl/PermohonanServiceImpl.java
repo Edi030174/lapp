@@ -166,6 +166,8 @@ public class PermohonanServiceImpl implements PermohonanService {
                 tPermohonan.setStatus_track_permohonan("Permohonan Baru Manager Dukophar");
             } else if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_gm())) {
                 tPermohonan.setStatus_track_permohonan("Permohonan Baru GM Dukophar");
+            } else if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_asman())) {
+                tPermohonan.setStatus_track_permohonan("Disetujui Asman Dukophar");
             } else {
                 tPermohonan.setStatus_track_permohonan("Persetujuan Asman Dukophar");
             }
@@ -256,7 +258,7 @@ public class PermohonanServiceImpl implements PermohonanService {
         return tPermohonans;
     }
 
-    public List<TPermohonan> getTPermohonanByNikPelaksanaStatus(String nik_pelaksana,String status_track_permohonan) {
+    public List<TPermohonan> getTPermohonanByNikPelaksanaStatus(String nik_pelaksana, String status_track_permohonan) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByNikPelaksanaStatus(nik_pelaksana, status_track_permohonan);
         java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         return tPermohonans;
