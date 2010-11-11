@@ -213,12 +213,26 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         }
     }
 
-    public void onChange$combobox_NamaPelapor() {
+    public void onChange$combobox_NamaPelapor() throws InterruptedException {
         Comboitem item = combobox_NamaPelapor.getSelectedItem();
-        setEmployee((VHrEmployee) item.getValue());
-        if (getEmployee().getOrganization_code() != null) {
-            texbox_Bagian.setValue(getEmployee().getOrganization_code());
-        } else {
+        if (item != null) {
+            setEmployee((VHrEmployee) item.getValue());
+            if (getEmployee().getOrganization_code() != null) {
+                texbox_Bagian.setValue(getEmployee().getOrganization_code());
+                texbox_Judul.setFocus(true);
+            } else {
+                combobox_NamaPelapor.setFocus(true);
+            }
+        }else{
+            Messagebox.show("Nama pelapor yang anda input tidak ditemukan");
+            if (Messagebox.OK == Messagebox.show( "Question2 is pressed. Are you sure?", "Question",Messagebox.OK | Messagebox.CANCEL, Messagebox.INFORMATION)) {
+                System.out.println("secondMsgBox : Messagebox.CANCEL selected!");
+            } else {
+                System.out.println("secondMsgBox : Messagebox.OK selected!");
+            }
+
+            combobox_NamaPelapor.setFocus(true);
+            combobox_NamaPelapor.setValue("");
             combobox_NamaPelapor.setFocus(true);
         }
     }
