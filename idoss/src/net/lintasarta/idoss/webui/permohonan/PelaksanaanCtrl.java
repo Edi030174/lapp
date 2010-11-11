@@ -174,8 +174,10 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        doSimpan();
-        window_Permohonan.onClose();
+        if (isValidatedFlow()) {
+            doSimpan();
+            window_Permohonan.onClose();
+        }
     }
 
     public void onChange$combobox_Status() {
@@ -218,7 +220,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doWriteComponentsToBean(TPelaksanaan tPelaksanaan, TPermohonan tPermohonan, Mttr mttr) {
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
-        if (combobox_Status.getSelectedIndex() == 1) {
+        if (combobox_Status.getSelectedIndex() == 0) {
             tPelaksanaan.setStatus_perubahan("INPROGRESS");
             tPermohonan.setStatus_track_permohonan("INPROGRESS");
             long tsLong = ts.getTime();
@@ -226,7 +228,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
                 mttr.setPending_end(tsLong);
             }
             mttr.setInprogress(tsLong);
-        } else if (combobox_Status.getSelectedIndex() == 2) {
+        } else if (combobox_Status.getSelectedIndex() == 1) {
             tPelaksanaan.setStatus_perubahan("PENDING");
             tPermohonan.setStatus_track_permohonan("PENDING");
             if (mttr.getPending_end() > 0) {
@@ -242,7 +244,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
             Timestamp tspending_end = new Timestamp(datebox_pending.getValue().getTime());
             long pending_end = tspending_end.getTime();
             mttr.setPending_end(pending_end);
-        } else if (combobox_Status.getSelectedIndex() == 3) {
+        } else if (combobox_Status.getSelectedIndex() == 2) {
             tPelaksanaan.setStatus_perubahan("CLOSED");
             tPermohonan.setStatus_track_permohonan("CLOSED");
             mttr.setClosed(ts.getTime());
@@ -256,6 +258,15 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
         tPelaksanaan.setUpdated_date(ts);
         tPelaksanaan.setCreated_date(ts);
+    }
+
+    public void onChange$datebox_pending(Event event) throws Exception {
+        if (datebox_pending.getValue() != null) {
+            if (datebox_pending.getValue().before(new Date())) {
+                alert("End Date must be equal or bigger than this date");
+                datebox_pending.setValue(new Date());
+            }
+        }
     }
 
     private boolean isValidatedFlow() throws InterruptedException {
