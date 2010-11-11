@@ -373,7 +373,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             sp4.setVisible(false);
             sp5.setVisible(false);
         }
-        boolean save_amdukophar = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && ((tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon"))||(tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon")));
+        boolean save_amdukophar = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) && ((tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon"))||(tPermohonan.getStatus_track_permohonan().contains("Persetujuan Asman Dukophar")));
         btn_SimpanPersetujuanAsman.setVisible(save_amdukophar);
         if (save_amdukophar == true) {
             radio_high.setDisabled(false);
