@@ -39,6 +39,8 @@ public class TPermohonan implements Serializable{
     private String updated_user;
     private InputStream uploadStream;
     private int gen_id_col;
+    private String mttr;
+    private String durasi;
     private String catatan_manager;
     private String catatan_gm;
 
@@ -299,5 +301,21 @@ public class TPermohonan implements Serializable{
 
     public void setCatatan_gm(String catatan_gm) {
         this.catatan_gm = catatan_gm;
+    }
+
+    public String getMttr() {
+        return mttr;
+    }
+
+    public void setMttr(String mttr) {
+        this.mttr = mttr;
+    }
+
+    public String getDurasi() {
+        return durasi;
+    }
+
+    public void setDurasi(String durasi) {
+        this.durasi = durasi;
     }
 }

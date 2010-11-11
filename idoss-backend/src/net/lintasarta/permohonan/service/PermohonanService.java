@@ -34,5 +34,6 @@ public interface PermohonanService {
     List<TPermohonan> getTPermohonanByNikPemohon(TPermohonan tPermohonan);
     List<VHrEmployee> getVHrEmployeeByEmployeeNo(String employeeNo);
     List<TPermohonan> getTPermohonanByNikPelaksana(String nik_pelaksana);
+    List<TPermohonan> hitungDurasiMttr(List<TPermohonan> tPermohonans);
     String getFilePath();
 }
