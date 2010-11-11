@@ -62,6 +62,11 @@
         <property name="permohonanService" ref="permohonanService"/>
         <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
     </bean>
+    <bean id="daftarPermohonanMonitoringCtrl" class="net.lintasarta.idoss.webui.permohonan.DaftarPermohonanMonitoringCtrl"
+          parent="basisListCtrl" scope="prototype">
+        <property name="permohonanService" ref="permohonanService"/>
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+    </bean>
     <bean id="daftarPermohonanPelaksanaCtrl" class="net.lintasarta.idoss.webui.permohonan.DaftarPermohonanPelaksanaCtrl"
           parent="basisListCtrl" scope="prototype">
         <property name="permohonanService" ref="permohonanService"/>
