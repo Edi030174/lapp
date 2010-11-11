@@ -320,6 +320,10 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;
             }
+            if (intbox_target.getValue() < 1) {
+                Messagebox.show("Silakan isikan target selesai");
+                return false;
+            }
         }
         if (radio_readonly.isSelected()) {
             if (getUploadMedia() == null) {
