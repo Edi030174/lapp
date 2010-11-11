@@ -466,11 +466,11 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         tPermohonan.setUrgensi(prioritas.getValue());
         tPermohonan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         tPermohonan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
-
+        if(intbox_target.getValue()!=null){
         int target = intbox_target.getValue();
         long too = setTarget(target);
         Timestamp tanggalnya = new Timestamp(too);
-        
+        }
     }
 
     private long setTarget(int berapaHari) {
