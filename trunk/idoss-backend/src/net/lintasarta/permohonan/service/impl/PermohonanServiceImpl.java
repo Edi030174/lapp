@@ -16,6 +16,7 @@ import net.lintasarta.util.PermohonanIdGenerator;
 
 import java.io.*;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -243,12 +244,14 @@ public class PermohonanServiceImpl implements PermohonanService {
 
     public List<TPermohonan> getTPermohonanByStatusAndNikManager(TPermohonan tPermohonan) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByStatusAndNikManager(tPermohonan);
+        hitungDurasiMttr(tPermohonans);
         java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         return tPermohonans;
     }
 
     public List<TPermohonan> getTPermohonanByStatusAndNikGM(TPermohonan tPermohonan) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByStatusAndNikGM(tPermohonan);
+        hitungDurasiMttr(tPermohonans);
         java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         return tPermohonans;
     }
@@ -261,18 +264,21 @@ public class PermohonanServiceImpl implements PermohonanService {
 
     public List<TPermohonan> getTPermohonanByStatusTrackPermohonan(TPermohonan tPermohonan) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByStatusTrackPermohonan(tPermohonan);
+        hitungDurasiMttr(tPermohonans);
         java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         return tPermohonans;
     }
 
     public List<TPermohonan> getTPermohonanByStatusTrackPermohonanAndDampak(TPermohonan tPermohonan) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByStatusTrackPermohonanAndDampak(tPermohonan);
+        hitungDurasiMttr(tPermohonans);
         java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         return tPermohonans;
     }
 
     public List<TPermohonan> getTPermohonanByNikPemohon(TPermohonan tPermohonan) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByNikPemohon(tPermohonan);
+        hitungDurasiMttr(tPermohonans);
         java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         return tPermohonans;
     }
@@ -283,7 +289,39 @@ public class PermohonanServiceImpl implements PermohonanService {
 
     public List<TPermohonan> getTPermohonanByNikPelaksana(String nik_pelaksana) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByNikPelaksana(nik_pelaksana);
+        hitungDurasiMttr(tPermohonans);
         java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         return tPermohonans;
+    }
+
+    public List<TPermohonan> hitungDurasiMttr(List<TPermohonan> tPermohonans) {
+        for (TPermohonan tPermohonan : tPermohonans) {
+            List<Mttr> mttrs = mttrService.getMttrByNomorTiket(tPermohonan.getT_idoss_permohonan_id());
+            for (Mttr mttr : mttrs) {
+                long duration = mttrService.getDurasi(mttr);
+                long lama_pending = mttrService.getLamaPending(mttr);
+                long mttrLong = duration - lama_pending;
+
+                tPermohonan.setDurasi(getDuration(duration));
+                tPermohonan.setMttr(getDuration(mttrLong));
+                if (mttrService.isInProgress(mttr)) {
+                    tPermohonan.setStatus_track_permohonan("In Progress");
+                }
+
+            }
+        }
+        return tPermohonans;
+    }
+
+    private String getDuration(long duration) {
+        final int millisPerSecond = 1000;
+        final int millisPerMinute = 1000 * 60;
+        final int millisPerHour = 1000 * 60 * 60;
+        int hours = (int) (duration / millisPerHour);
+        int minutes = (int) (duration % millisPerHour / millisPerMinute);
+//        int seconds = (int) (duration % millisPerMinute / millisPerSecond);
+
+        DecimalFormat df = new DecimalFormat("00");
+        return df.format(hours) + ":" + df.format(minutes);
     }
 }

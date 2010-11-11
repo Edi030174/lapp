@@ -51,6 +51,8 @@ public class DaftarPermohonanInputCtrl extends GFCBaseListCtrl<TPermohonan> impl
 
 //    protected Listheader listheader_Pimbag;
 //    protected Listheader listheader_Pimdiv;
+    protected Listheader listheader_Durasi;
+    protected Listheader listheader_MTTR;
     protected Listheader listheader_TglStatus;
     protected Listheader listheader_Mgr;
     protected Listheader listheader_GM;
@@ -114,6 +116,10 @@ public class DaftarPermohonanInputCtrl extends GFCBaseListCtrl<TPermohonan> impl
         listheader_StatusPersetujuan.setSortAscending(new FieldComparator("status_track_permohonan", true));
         listheader_TglStatus.setSortDescending(new FieldComparator("updated_date", true));
         listheader_TglStatus.setSortAscending(new FieldComparator("updated_date", true));
+        listheader_Durasi.setSortAscending(new FieldComparator("durasi", true));
+        listheader_Durasi.setSortDescending(new FieldComparator("durasi", false));
+        listheader_MTTR.setSortAscending(new FieldComparator("mttr", true));
+        listheader_MTTR.setSortDescending(new FieldComparator("mttr", false));
         listheader_Mgr.setSortDescending(new FieldComparator("nama_manager", true));
         listheader_Mgr.setSortAscending(new FieldComparator("nama_manager", true));
         listheader_GM.setSortDescending(new FieldComparator("nama_gm", true));
