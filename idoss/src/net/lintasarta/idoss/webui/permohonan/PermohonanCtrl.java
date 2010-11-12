@@ -88,6 +88,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 
     private transient String oldVar_textboxTIdossPermohonanId;
     private transient Window window_DaftarPermohonan;
+    private transient Window window_DaftarPermohonanPelaksana;
     private transient String oldVar_textboxNamaPemohon;
     private transient String oldVar_textboxBagianPemohon;
     private transient String oldVar_textboxNamaManager;
@@ -161,6 +162,12 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             window_DaftarPermohonan = (Window) args.get("window_DaftarPermohonan");
         } else {
             window_DaftarPermohonan = null;
+        }
+
+        if (args.containsKey("window_DaftarPermohonanPelaksana")) {
+            window_DaftarPermohonanPelaksana = (Window) args.get("window_DaftarPermohonanPelaksana");
+        } else {
+            window_DaftarPermohonanPelaksana = null;
         }
         Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanPemohon");
 //        orderTab.getChildren().clear();
@@ -437,6 +444,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
             map.put("tVerifikasi", tVerifikasi);
         }
         map.put("permohonanCtrl", this);
+        map.put("window_DaftarPermohonanPelaksana", window_DaftarPermohonanPelaksana);
 
         Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_Pelaksanaan");
         orderTab.getChildren().clear();

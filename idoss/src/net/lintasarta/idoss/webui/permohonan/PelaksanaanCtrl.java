@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
@@ -52,6 +53,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     private transient PelaksanaanService pelaksanaanService;
     private transient VerifikasiService verifikasiService;
     private transient MttrService mttrService;
+    private transient Window window_DaftarPermohonanPelaksana;
 
     public PelaksanaanCtrl() {
         super();
@@ -86,6 +88,12 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         } else {
             settPelaksanaan(null);
         }
+        if (args.containsKey("window_DaftarPermohonanPelaksana")) {
+            window_DaftarPermohonanPelaksana = (Window) args.get("window_DaftarPermohonanPelaksana");
+        } else {
+            window_DaftarPermohonanPelaksana = null;
+        }
+
 //        if (args.containsKey("pelaksanaanCtrl")) {
 //            pelaksanaanCtrl = (PelaksanaanCtrl) args.get("pelaksanaanCtrl");
 //        } else {
@@ -177,6 +185,8 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         if (isValidatedFlow()) {
             doSimpan();
             window_Permohonan.onClose();
+            Events.postEvent("onCreate", window_DaftarPermohonanPelaksana, event);
+            window_DaftarPermohonanPelaksana.invalidate();
         }
     }
 
@@ -277,6 +287,11 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
                     datebox_pending.setValue(new Date());
                     return false;
                 }
+            }
+        }else if (combobox_Status.getValue().equalsIgnoreCase("Selesai")) {
+            if (textbox_pelaksana.getValue().length() < 1) {
+                Messagebox.show("Silakan isikan catatan pelaksana..");
+                return false;
             }
         }
         return true;
