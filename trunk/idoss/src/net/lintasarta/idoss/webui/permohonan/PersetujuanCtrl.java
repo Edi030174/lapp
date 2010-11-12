@@ -182,11 +182,11 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     private void doCheckRights(TVerifikasi tVerifikasi, TPermohonan tPermohonan) {
         UserWorkspace workspace = getUserWorkspace();
 
-        groupbox_ManagerPemohon.setVisible(workspace.isAllowed("groupbox_ManagerPemohon"));
-        groupbox_GmPemohon.setVisible(workspace.isAllowed("groupbox_GmPemohon"));
-        groupbox_AM.setVisible(workspace.isAllowed("groupbox_AMDukophar"));
-        groupbox_Manager.setVisible(workspace.isAllowed("groupbox_ManagerDukophar"));
-        groupbox_Gm.setVisible(workspace.isAllowed("groupbox_GmDukophar"));
+//        groupbox_ManagerPemohon.setVisible(workspace.isAllowed("groupbox_ManagerPemohon"));
+//        groupbox_GmPemohon.setVisible(workspace.isAllowed("groupbox_GmPemohon"));
+//        groupbox_AM.setVisible(workspace.isAllowed("groupbox_AMDukophar"));
+//        groupbox_Manager.setVisible(workspace.isAllowed("groupbox_ManagerDukophar"));
+//        groupbox_Gm.setVisible(workspace.isAllowed("groupbox_GmDukophar"));
 
 //        String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
         String role = getUserWorkspace().getUserSession().getEmployeeRole();
@@ -234,10 +234,20 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             if (tVerifikasi.getNama_gm() != null) {
                 label_by5.setValue("Oleh: " + tVerifikasi.getNama_gm());
             }
-            radiogroup_StatusPermohonanManagerPemohon.setVisible(true);
+            if (tPermohonan.getStatus_track_permohonan().equals("Persetujuan Manager")) {
+                sp1.setVisible(true);
+                radiogroup_StatusPermohonanManagerPemohon.setVisible(true);
+            } else {
+                sp1.setVisible(false);
+                radiogroup_StatusPermohonanManagerPemohon.setVisible(false);
+            }
+            sp2.setVisible(false);
             radiogroup_StatusPermohonanGmPemohon.setVisible(false);
+            sp3.setVisible(false);
             radiogroup_StatusPermohonanAsman.setVisible(false);
+            sp4.setVisible(false);
             radiogroup_StatusPermohonanManager.setVisible(false);
+            sp5.setVisible(false);
             radiogroup_StatusPermohonanGm.setVisible(false);
             textbox_DetailPermohonan.setReadonly(true);
             textbox_muser.setReadonly(false);
@@ -245,13 +255,8 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             textbox_amdukophar.setReadonly(true);
             textbox_mdukophar.setReadonly(true);
             textbox_gmdukophar.setReadonly(true);
-            sp1.setVisible(true);
-            sp2.setVisible(false);
-            sp3.setVisible(false);
-            sp4.setVisible(false);
-            sp5.setVisible(false);
         }
-        //
+        /*
         if (role.equalsIgnoreCase(LoginConstants.MDUK) && (tPermohonan.getStatus_track_permohonan().equals("Persetujuan Manager"))) {
             if (tPermohonan.getUpdated_manager() != null) {
                 Timestamp ts = tPermohonan.getUpdated_manager();
@@ -293,6 +298,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             if (tVerifikasi.getNama_gm() != null) {
                 label_by5.setValue("Oleh: " + tVerifikasi.getNama_gm());
             }
+
             radiogroup_StatusPermohonanManagerPemohon.setVisible(true);
             radiogroup_StatusPermohonanGmPemohon.setVisible(false);
             radiogroup_StatusPermohonanAsman.setVisible(false);
@@ -310,7 +316,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             sp4.setVisible(false);
             sp5.setVisible(false);
         }
-        //
+        */
         boolean save_gmuser = (workspace.isAllowed("btn_SimpanPersetujuanGmPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Pemohon"));
         btn_SimpanPersetujuanGmPemohon.setVisible(save_gmuser);
         if (role.equalsIgnoreCase(LoginConstants.GMUSER)) {
@@ -354,24 +360,29 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             if (tVerifikasi.getNama_gm() != null) {
                 label_by5.setValue("Oleh: " + tVerifikasi.getNama_gm());
             }
+            if (tPermohonan.getStatus_track_permohonan().equals("Disetujui Manager Pemohon")) {
+                sp2.setVisible(true);
+                radiogroup_StatusPermohonanGmPemohon.setVisible(true);
+            }else{
+                sp2.setVisible(false);
+                radiogroup_StatusPermohonanGmPemohon.setVisible(false);
+            }
+            sp1.setVisible(false);
             radiogroup_StatusPermohonanManagerPemohon.setVisible(false);
-            radiogroup_StatusPermohonanGmPemohon.setVisible(true);
+            sp3.setVisible(false);
             radiogroup_StatusPermohonanAsman.setVisible(false);
+            sp4.setVisible(false);
             radiogroup_StatusPermohonanManager.setVisible(false);
+            sp5.setVisible(false);
             radiogroup_StatusPermohonanGm.setVisible(false);
-            radio_DisetujuiMPemohon.setDisabled(true);
-            radio_DitolakMPemohon.setDisabled(true);
             textbox_DetailPermohonan.setReadonly(true);
             textbox_muser.setReadonly(true);
             textbox_gmuser.setReadonly(false);
             textbox_amdukophar.setReadonly(true);
             textbox_mdukophar.setReadonly(true);
             textbox_gmdukophar.setReadonly(true);
-            sp1.setVisible(false);
-            sp2.setVisible(true);
-            sp3.setVisible(false);
-            sp4.setVisible(false);
-            sp5.setVisible(false);
+
+
         }
         boolean save_amdukophar = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) &&
                 ((tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon"))
