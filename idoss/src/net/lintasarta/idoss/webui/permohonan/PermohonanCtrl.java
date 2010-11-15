@@ -261,7 +261,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         textbox_BagianPemohon.setReadonly(true);
         textbox_NikPemohon.setReadonly(true);
         datebox_Tanggal.setReadonly(true);
-        textbox_Lainlain.setDisabled(true);
+        textbox_Lainlain.setReadonly(true);
         textbox_NamaManager.setReadonly(true);
         textbox_NamaGm.setReadonly(true);
         textbox_NikManager.setReadonly(true);

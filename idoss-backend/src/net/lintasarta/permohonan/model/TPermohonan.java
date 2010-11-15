@@ -27,7 +27,7 @@ public class TPermohonan implements Serializable{
     private String nik_gm;
     private String nama_gm;
     private String type_permohonan;
-    private String lain_lain;
+    private String lain_lain_desc;
     private Timestamp updated_pemohon;
     private Timestamp updated_divisi;
     private Timestamp updated_asman;
@@ -192,11 +192,11 @@ public class TPermohonan implements Serializable{
     }
 
     public String getLain_lain() {
-        return lain_lain;
+        return lain_lain_desc;
     }
 
     public void setLain_lain(String lain_lain) {
-        this.lain_lain = lain_lain;
+        this.lain_lain_desc = lain_lain;
     }
 
     public Timestamp getUpdated_pemohon() {

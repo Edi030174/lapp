@@ -245,6 +245,11 @@ public class PermohonanServiceImpl implements PermohonanService {
         return gettPermohonanDAO().getManager(nikPemohon);
     }
 
+    @Override
+    public String getManagerReport(String nikPemohon) {
+        return gettPermohonanDAO().getManagerReport(nikPemohon);
+    }
+
     public List<TPermohonan> getTPermohonanByStatusAndNikManager(TPermohonan tPermohonan) {
         List<TPermohonan> tPermohonans = tPermohonanDAO.getTPermohonanByStatusAndNikManager(tPermohonan);
         hitungDurasiMttr(tPermohonans);

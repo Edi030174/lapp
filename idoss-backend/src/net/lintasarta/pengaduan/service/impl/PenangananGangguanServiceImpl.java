@@ -85,12 +85,12 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
                 if (mttrService.isInProgress(mttr)) {
                     tPenangananGangguan.setStatus("In Progress");
                 }
-                
+
             }
         }
         return tPenangananGangguans;
     }
-    
+
     public List<TPenangananGangguan> getAllPenangananGangguan() {
         List<TPenangananGangguan> tPenangananGangguans = gettPenangananGangguanDAO().getAllTPenangananGangguan();
         hitungDurasiMttr(tPenangananGangguans);
@@ -102,12 +102,15 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
         final int millisPerSecond = 1000;
         final int millisPerMinute = 1000 * 60;
         final int millisPerHour = 1000 * 60 * 60;
-        int hours = (int) (duration / millisPerHour);
+        final int millisPerDay = 1000 * 60 * 60 * 24;
+//        int hours = (int) (duration / millisPerHour);
+        int days = (int) (duration / millisPerDay);
+        int hours = (int) (duration % millisPerDay / millisPerHour);
         int minutes = (int) (duration % millisPerHour / millisPerMinute);
 //        int seconds = (int) (duration % millisPerMinute / millisPerSecond);
 
-        DecimalFormat df = new DecimalFormat("00");
-        return df.format(hours) + ":" + df.format(minutes);
+        DecimalFormat df = new DecimalFormat("##");
+        return df.format(days) + " d " + df.format(hours) + " h " + df.format(minutes) + " m";
     }
 
     public List<VHrEmployee> getEmployeeName() {
@@ -172,7 +175,7 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
             tPenangananGangguan.setInserted_root_caused(ts);
         }
         mttr.setNomor_tiket(tPenangananGangguan.getT_idoss_penanganan_gangguan_id());
-        Timestamp created =  tPenangananGangguan.getCreated_date();
+        Timestamp created = tPenangananGangguan.getCreated_date();
         long duration = created.getTime();
         mttr.setOpened(duration);
         mttr.setUpdated_by(tPenangananGangguan.getUpdated_user());
