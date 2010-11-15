@@ -324,11 +324,24 @@ public class PermohonanServiceImpl implements PermohonanService {
         final int millisPerSecond = 1000;
         final int millisPerMinute = 1000 * 60;
         final int millisPerHour = 1000 * 60 * 60;
-        int hours = (int) (duration / millisPerHour);
+        final int millisPerDay = 1000 * 60 * 60 * 24;
+
+        int days = (int) (duration / millisPerDay);
+        int hours = (int) (duration % millisPerDay / millisPerHour);
         int minutes = (int) (duration % millisPerHour / millisPerMinute);
 //        int seconds = (int) (duration % millisPerMinute / millisPerSecond);
 
-        DecimalFormat df = new DecimalFormat("00");
-        return df.format(hours) + ":" + df.format(minutes);
+        DecimalFormat df = new DecimalFormat("##");
+        if (days > 0) {
+            return df.format(days) + " d, " + df.format(hours) + " h, " + df.format(minutes) + " m";
+        } else if ((days < 1) && (hours > 0)) {
+            return df.format(hours) + " h, " + df.format(minutes) + " m";
+        } else if ((days < 1) && (hours < 1) && (minutes > 0)) {
+            return df.format(minutes) + " m";
+        } else if ((days < 1) && (hours < 1) && (minutes < 1)) {
+            return "< 1 m";
+        } else {
+            return "0";
+        }
     }
 }
