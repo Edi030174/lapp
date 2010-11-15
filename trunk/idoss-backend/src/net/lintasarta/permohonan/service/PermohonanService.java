@@ -27,6 +27,7 @@ public interface PermohonanService {
     TPelaksanaan getTPelaksanaanByTIdossPelaksanaanId(String t_idoss_pelaksanaan_id);
     TPelaksanaan getNewPelaksanaan();
     String getManager(String nikPemohon);
+    String getManagerReport(String nikPemohon);
     List<TPermohonan> getTPermohonanByStatusAndNikManager(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByStatusAndNikGM(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByNikPelaksanaStatus(String nik_pelaksana,String status_track_permohonan);

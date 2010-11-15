@@ -129,7 +129,7 @@
                 DURASI,
                 GEN_ID_COL
         from T_IDOSS_PERMOHONAN
-        where NIK_PEMOHON = #{nik_pemohon}
+        where NIK_PEMOHON=#{nik_pemohon}
     </select>
     <select id="getTPermohonanByNikDivisi" parameterType="tpermohonan" resultType="tpermohonan">
         select T_IDOSS_PERMOHONAN_ID,
@@ -664,6 +664,10 @@
 
     <select id="getManager" parameterType="string" resultType="string">
         select hr.get_pic(5,#{employeeNo}) from dual
+    </select>
+
+    <select id="getManagerReport" parameterType="string" resultType="string">
+        select hr.get_pic_web(5,#{employeeNo}) from dual
     </select>
     <!--<select id="getManager" parameterType="string" resultType="tpermohonan">-->
     <!--select * from table(cast(f_pipe_idoss_employee(#{employeeNo}) as pipe_idoss_employee))-->

@@ -33,6 +33,7 @@ public interface TPermohonanDAO {
     void saveOrUpdateTPermohonan (TPermohonan tPermohonan);
 
     String getManager (String employeeNo);
+    String getManagerReport (String employeeNo);
 
     List<TPermohonan> getTPermohonanByStatusAndNikManager(TPermohonan tPermohonan);
     List<TPermohonan> getTPermohonanByStatusAndNikGM(TPermohonan tPermohonan);

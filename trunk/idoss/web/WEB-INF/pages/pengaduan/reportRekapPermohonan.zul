@@ -50,15 +50,6 @@
                         <listhead visible="false"/>
                         <listitem id="listitem_2010" label="2010" selected="true"/>
                         <listitem id="listitem_2011" label="2011"/>
-                        <listitem id="listitem_2012" label="2012"/>
-                        <listitem id="listitem_2013" label="2013"/>
-                        <listitem id="listitem_2014" label="2014"/>
-                        <listitem id="listitem_2015" label="2015"/>
-                        <listitem id="listitem_2016" label="2016"/>
-                        <listitem id="listitem_2017" label="2017"/>
-                        <listitem id="listitem_2018" label="2018"/>
-                        <listitem id="listitem_2019" label="2019"/>
-                        <listitem id="listitem_2020" label="2020"/>
                     </listbox>
                 </hbox>
             </north>

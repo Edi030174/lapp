@@ -37,15 +37,6 @@
                         <combobox id="combobox_tahun" width="140px" readonly="true">
                             <comboitem label="2010" value="2010"/>
                             <comboitem label="2011" value="2011"/>
-                            <comboitem label="2012" value="2012"/>
-                            <comboitem label="2013" value="2013"/>
-                            <comboitem label="2014" value="2014"/>
-                            <comboitem label="2015" value="2015"/>
-                            <comboitem label="2016" value="2016"/>
-                            <comboitem label="2017" value="2017"/>
-                            <comboitem label="2018" value="2018"/>
-                            <comboitem label="2019" value="2019"/>
-                            <comboitem label="2020" value="2020"/>
                         </combobox>
                     </hbox>
                     <space height="5px"/>
@@ -64,15 +55,6 @@
                             <combobox id="combobox_tahun2" width="140px" readonly="true">
                                 <comboitem label="2010" value="2010"/>
                                 <comboitem label="2011" value="2011"/>
-                                <comboitem label="2012" value="2012"/>
-                                <comboitem label="2013" value="2013"/>
-                                <comboitem label="2014" value="2014"/>
-                                <comboitem label="2015" value="2015"/>
-                                <comboitem label="2016" value="2016"/>
-                                <comboitem label="2017" value="2017"/>
-                                <comboitem label="2018" value="2018"/>
-                                <comboitem label="2019" value="2019"/>
-                                <comboitem label="2020" value="2020"/>
                             </combobox>
                             <combobox id="combobox_bulan" width="140px" readonly="true">
                                 <comboitem label="Januari" value="JAN"/>

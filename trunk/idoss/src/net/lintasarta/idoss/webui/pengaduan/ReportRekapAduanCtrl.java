@@ -112,10 +112,10 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
 
         tPermohonan = setNikNama(tPermohonan, employeeNo);
 
-        String parentEmployeeNo = getPermohonanService().getManager(employeeNo);
+        String parentEmployeeNo = getPermohonanService().getManagerReport(employeeNo);
         tPermohonan = setNikNama(tPermohonan, parentEmployeeNo);
 
-        String grandParentEmployeeNo = getPermohonanService().getManager(parentEmployeeNo);
+        String grandParentEmployeeNo = getPermohonanService().getManagerReport(parentEmployeeNo);
         tPermohonan = setNikNama(tPermohonan, grandParentEmployeeNo);
 
         return tPermohonan;
