@@ -123,8 +123,8 @@ public class DaftarMonitoringCtrl extends GFCBaseListCtrl<TPenangananGangguan> i
 
     public void setDaftarTiket() {
         UserSession userSession = getUserWorkspace().getUserSession();
-                    TPenangananGangguan tPenangananGangguan = new TPenangananGangguan();
-            Mttr mttr = new Mttr();
+        TPenangananGangguan tPenangananGangguan = new TPenangananGangguan();
+        Mttr mttr = new Mttr();
         List<TPenangananGangguan> tPenangananGangguans = getPenangananGangguanService().getAllPenangananGangguan();
 
         PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);

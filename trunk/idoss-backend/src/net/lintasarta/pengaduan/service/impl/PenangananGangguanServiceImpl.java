@@ -110,7 +110,17 @@ public class PenangananGangguanServiceImpl implements PenangananGangguanService 
 //        int seconds = (int) (duration % millisPerMinute / millisPerSecond);
 
         DecimalFormat df = new DecimalFormat("##");
-        return df.format(days) + " d " + df.format(hours) + " h " + df.format(minutes) + " m";
+        if (days > 0) {
+            return df.format(days) + " d, " + df.format(hours) + " h, " + df.format(minutes) + " m";
+        } else if ((days < 1) && (hours > 0)) {
+            return df.format(hours) + " h, " + df.format(minutes) + " m";
+        } else if ((days < 1) && (hours < 1) && (minutes > 0)) {
+            return df.format(minutes) + " m";
+        }else if((days < 1) && (hours < 1) && (minutes < 1)) {
+            return "< 1 m";
+        }else {
+            return "0";
+        }
     }
 
     public List<VHrEmployee> getEmployeeName() {
