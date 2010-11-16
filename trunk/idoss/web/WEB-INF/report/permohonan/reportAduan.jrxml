@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportAduan" language="groovy" pageWidth="1190" pageHeight="842" orientation="Landscape" columnWidth="1150" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.210000000000001"/>
+	<property name="ireport.zoom" value="0.7513148009015794"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="bulan" class="java.lang.String"/>
@@ -365,24 +365,24 @@
 		<band height="17" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="143" splitType="Stretch">
+		<band height="135" splitType="Stretch">
 			<textField>
-				<reportElement x="982" y="118" width="97" height="13"/>
+				<reportElement x="971" y="118" width="97" height="13"/>
 				<textElement textAlignment="Left">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nik_gm}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="518" y="118" width="99" height="13"/>
+				<reportElement x="551" y="118" width="99" height="13"/>
 				<textElement textAlignment="Left">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nik_manager}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="539" y="33" width="70" height="14"/>
-				<textElement textAlignment="Center">
+				<reportElement x="524" y="47" width="70" height="14"/>
+				<textElement textAlignment="Left">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Mengetahui, ]]></text>
@@ -395,60 +395,60 @@
 				<text><![CDATA[Jakarta,  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="47" y="118" width="27" height="13"/>
+				<reportElement x="42" y="118" width="27" height="13"/>
 				<textElement textAlignment="Left">
 					<font isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[NIK :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="491" y="118" width="27" height="13"/>
+				<reportElement x="524" y="118" width="27" height="13"/>
 				<textElement textAlignment="Left">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[NIK :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1002" y="33" width="73" height="14"/>
-				<textElement textAlignment="Center">
+				<reportElement x="944" y="47" width="73" height="14"/>
+				<textElement textAlignment="Left">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Mengetahui,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="955" y="118" width="27" height="13"/>
+				<reportElement x="944" y="118" width="27" height="13"/>
 				<textElement textAlignment="Left">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[NIK :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="524" y="47" width="100" height="14"/>
-				<textElement textAlignment="Center">
+				<reportElement x="524" y="61" width="100" height="14"/>
+				<textElement textAlignment="Left">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[PimSubBag]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="47" y="93" width="166" height="25"/>
+				<reportElement x="42" y="93" width="166" height="25"/>
 				<textElement textAlignment="Left" verticalAlignment="Top"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_pemohon}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="987" y="47" width="103" height="14"/>
-				<textElement textAlignment="Center">
+				<reportElement x="944" y="61" width="103" height="14"/>
+				<textElement textAlignment="Left">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[ Pimbag]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="955" y="93" width="166" height="25"/>
+				<reportElement x="944" y="93" width="166" height="25"/>
 				<textElement textAlignment="Left" verticalAlignment="Top"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_gm}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="83" y="47" width="61" height="14"/>
-				<textElement textAlignment="Center">
+				<reportElement x="42" y="47" width="61" height="14"/>
+				<textElement textAlignment="Left">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Dibuat Oleh,]]></text>
@@ -461,12 +461,12 @@
 				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="491" y="93" width="166" height="25"/>
+				<reportElement x="524" y="93" width="166" height="25"/>
 				<textElement textAlignment="Left" verticalAlignment="Top"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_manager}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
-				<reportElement x="74" y="118" width="110" height="13"/>
+				<reportElement x="69" y="118" width="110" height="13"/>
 				<textElement textAlignment="Left">
 					<font isBold="true"/>
 				</textElement>
