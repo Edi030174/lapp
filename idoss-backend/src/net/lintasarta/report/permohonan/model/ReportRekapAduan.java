@@ -26,6 +26,7 @@ public class ReportRekapAduan {
     private String nik_manager;
     private String nama_gm;
     private String nik_gm;
+    private String jumlah_server;
 
     public ReportRekapAduan() {
     }
@@ -172,5 +173,13 @@ public class ReportRekapAduan {
 
     public void setNik_gm(String nik_gm) {
         this.nik_gm = nik_gm;
+    }
+
+    public String getJumlah_server() {
+        return jumlah_server;
+    }
+
+    public void setJumlah_server(String jumlah_server) {
+        this.jumlah_server = jumlah_server;
     }
 }
