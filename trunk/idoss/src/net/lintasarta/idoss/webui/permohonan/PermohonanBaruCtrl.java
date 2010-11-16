@@ -473,7 +473,6 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
             long too = setTarget(target);
             Timestamp tanggalnya = new Timestamp(too);
             mttr.setTarget(too);
-            mttr.setInserted_pelaksana(ts.getTime());
         }
     }
 

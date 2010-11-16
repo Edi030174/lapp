@@ -308,14 +308,14 @@ public class PermohonanServiceImpl implements PermohonanService {
             for (Mttr mttr : mttrs) {
                 long durasi = mttrService.getDurasi(mttr);
                 long lama_pending = mttrService.getLamaPending(mttr);
-                long mttrLong = durasi - lama_pending;
                 long durasiPelaksanaan = mttrService.getDurasiPelaksanaan(mttr);
+                long mttrLong = durasiPelaksanaan - lama_pending;
                 long durasiTarget = mttrService.getDurasiTarget(mttr);
                 long ts = Calendar.getInstance().getTimeInMillis();
                 tPermohonan.setDurasi(getDuration(durasi));
 
-                if (durasiPelaksanaan > 0) {
-                    tPermohonan.setMttr(getDuration(durasiPelaksanaan));
+                if (mttrLong > 0) {
+                    tPermohonan.setMttr(getDuration(mttrLong));
                 } else {
                     tPermohonan.setMttr("");
                 }

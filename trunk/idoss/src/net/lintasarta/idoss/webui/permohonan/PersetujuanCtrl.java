@@ -836,7 +836,6 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         long too = setTarget(target);
         Timestamp tanggalnya = new Timestamp(too);
         mttr.setTarget(too);
-        mttr.setInserted_pelaksana(ts.getTime());
     }
 
     private long setTarget(int berapaHari) {
@@ -869,7 +868,8 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     private void doSimpanManagerDukophar() throws Exception {
         TPermohonan tPermohonan = gettPermohonan();
         TVerifikasi tVerifikasi = gettVerifikasi();
-        doWriteComponentsToBean4(tPermohonan, tVerifikasi);
+        Mttr mttr = getMttr();
+        doWriteComponentsToBean4(tPermohonan, tVerifikasi, mttr);
 
         try {
             tVerifikasi.setNik_manager(getUserWorkspace().getUserSession().getEmployeeNo());
@@ -885,13 +885,15 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
 //        doStoreInitValues();
     }
 
-    private void doWriteComponentsToBean4(TPermohonan tPermohonan, TVerifikasi tVerifikasi) {
+    private void doWriteComponentsToBean4(TPermohonan tPermohonan, TVerifikasi tVerifikasi, Mttr mttr) {
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tVerifikasi.setDampak(dampak.getValue());
         Radio statusM = radiogroup_StatusPermohonanManager.getSelectedItem();
-        if (tVerifikasi.getDampak().contains("MINOR")) {
+        if ((tVerifikasi.getDampak().contains("MINOR")) && (statusM.getValue().contains("Disetujui Manager Dukophar"))) {
             tVerifikasi.setStatus_permohonanmanager("INPROGRESS");
             tPermohonan.setStatus_track_permohonan("INPROGRESS");
+            Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
+            mttr.setInserted_pelaksana(ts.getTime());
         } else {
             tVerifikasi.setStatus_permohonanmanager(statusM.getValue());
             tPermohonan.setStatus_track_permohonan(statusM.getValue());
@@ -924,7 +926,8 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     private void doSimpanGMDukophar() throws Exception {
         TPermohonan tPermohonan = gettPermohonan();
         TVerifikasi tVerifikasi = gettVerifikasi();
-        doWriteComponentsToBean5(tPermohonan, tVerifikasi);
+        Mttr mttr = getMttr();
+        doWriteComponentsToBean5(tPermohonan, tVerifikasi, mttr);
 
         try {
             tVerifikasi.setNik_gm(getUserWorkspace().getUserSession().getEmployeeNo());
@@ -940,10 +943,14 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
 //        doStoreInitValues();
     }
 
-    private void doWriteComponentsToBean5(TPermohonan tPermohonan, TVerifikasi tVerifikasi) {
+    private void doWriteComponentsToBean5(TPermohonan tPermohonan, TVerifikasi tVerifikasi, Mttr mttr) {
         Radio statusGM = radiogroup_StatusPermohonanGm.getSelectedItem();
         tVerifikasi.setStatus_permohonan_gm(statusGM.getValue());
         tPermohonan.setStatus_track_permohonan(statusGM.getValue());
+        if (statusGM.getValue().contains("INPROGRESS")) {
+            Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
+            mttr.setInserted_pelaksana(ts.getTime());
+        }
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         tVerifikasi.setUpdated_gm(ts);
         tVerifikasi.setCatatan_gm(textbox_gmdukophar.getValue());
