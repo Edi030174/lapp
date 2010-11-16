@@ -95,7 +95,7 @@
         UPDATED_DATE=#{updated_date,jdbcType=TIMESTAMP},
         TARGET=#{target,jdbcType=INTEGER},
         INSERTED_PELAKSANA=#{inserted_pelaksana,jdbcType=INTEGER},
-        TARGET2,=#{target2,jdbcType=VARCHAR}
+        TARGET2=#{target2,jdbcType=VARCHAR}
         WHERE  NOMOR_TIKET=#{nomor_tiket}
     </update>
 </mapper>
