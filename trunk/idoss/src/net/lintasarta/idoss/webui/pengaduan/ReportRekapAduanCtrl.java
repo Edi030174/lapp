@@ -131,10 +131,10 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
         if (validasiTahun()) {
             String nama_pemohon = getUserWorkspace().getUserSession().getEmployeeName();
             String nik_pemohon = getUserWorkspace().getUserSession().getEmployeeNo();
-            String nama_manager = gettPermohonan().getNama_manager();
-            String nik_manager = gettPermohonan().getNik_manager();
-            String nama_gm = gettPermohonan().getNama_gm();
-            String nik_gm = gettPermohonan().getNik_gm();
+            String nama_manager = gettPermohonan().getNama_asman();
+            String nik_manager = gettPermohonan().getNik_asman();
+            String nama_gm = gettPermohonan().getNama_manager();
+            String nik_gm = gettPermohonan().getNik_manager();
 //            HashMap params = new HashMap();
 //            params.put("nama_pemohon", nama_pemohon);
 //            params.put("nik_pemohon", nik_pemohon);

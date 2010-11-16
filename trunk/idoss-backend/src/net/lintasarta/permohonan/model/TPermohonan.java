@@ -41,6 +41,7 @@ public class TPermohonan implements Serializable{
     private int gen_id_col;
     private String mttr;
     private String durasi;
+    private String target;
     private String catatan_manager;
     private String catatan_gm;
 
@@ -191,12 +192,12 @@ public class TPermohonan implements Serializable{
         this.type_permohonan = type_permohonan;
     }
 
-    public String getLain_lain() {
+    public String getLain_lain_desc() {
         return lain_lain_desc;
     }
 
-    public void setLain_lain(String lain_lain) {
-        this.lain_lain_desc = lain_lain;
+    public void setLain_lain_desc(String lain_lain_desc) {
+        this.lain_lain_desc = lain_lain_desc;
     }
 
     public Timestamp getUpdated_pemohon() {
@@ -287,22 +288,6 @@ public class TPermohonan implements Serializable{
         this.gen_id_col = gen_id_col;
     }
 
-    public String getCatatan_manager() {
-        return catatan_manager;
-    }
-
-    public void setCatatan_manager(String catatan_manager) {
-        this.catatan_manager = catatan_manager;
-    }
-
-    public String getCatatan_gm() {
-        return catatan_gm;
-    }
-
-    public void setCatatan_gm(String catatan_gm) {
-        this.catatan_gm = catatan_gm;
-    }
-
     public String getMttr() {
         return mttr;
     }
@@ -317,5 +302,29 @@ public class TPermohonan implements Serializable{
 
     public void setDurasi(String durasi) {
         this.durasi = durasi;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
+    public String getCatatan_manager() {
+        return catatan_manager;
+    }
+
+    public void setCatatan_manager(String catatan_manager) {
+        this.catatan_manager = catatan_manager;
+    }
+
+    public String getCatatan_gm() {
+        return catatan_gm;
+    }
+
+    public void setCatatan_gm(String catatan_gm) {
+        this.catatan_gm = catatan_gm;
     }
 }

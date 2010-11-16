@@ -54,6 +54,8 @@
                LAMA_PENDING,
                UPDATED_BY,
                UPDATED_DATE,
+               TARGET,
+               INSERTED_PELAKSANA,
                GEN_ID_COL)
         VALUES(
                #{t_idoss_mttr_id},
@@ -67,6 +69,8 @@
                #{lama_pending},
                #{updated_by},
                #{updated_date},
+               #{target},
+               #{inserted_pelaksana},
                #{gen_id_col})
     </insert>
 

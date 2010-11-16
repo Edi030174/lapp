@@ -24,6 +24,12 @@ public class ReportAduan {
     private String bulan;
     private String tahun;
     private String jumlah_server;
+    private String nama_pemohon;
+    private String nik_pemohon;
+    private String nama_manager;
+    private String nik_manager;
+    private String nama_gm;
+    private String nik_gm;
 
     public ReportAduan() {
     }
@@ -146,5 +152,61 @@ public class ReportAduan {
 
     public void setTahun(String tahun) {
         this.tahun = tahun;
+    }
+
+    public String getJumlah_server() {
+        return jumlah_server;
+    }
+
+    public void setJumlah_server(String jumlah_server) {
+        this.jumlah_server = jumlah_server;
+    }
+
+    public String getNama_pemohon() {
+        return nama_pemohon;
+    }
+
+    public void setNama_pemohon(String nama_pemohon) {
+        this.nama_pemohon = nama_pemohon;
+    }
+
+    public String getNik_pemohon() {
+        return nik_pemohon;
+    }
+
+    public void setNik_pemohon(String nik_pemohon) {
+        this.nik_pemohon = nik_pemohon;
+    }
+
+    public String getNama_manager() {
+        return nama_manager;
+    }
+
+    public void setNama_manager(String nama_manager) {
+        this.nama_manager = nama_manager;
+    }
+
+    public String getNik_manager() {
+        return nik_manager;
+    }
+
+    public void setNik_manager(String nik_manager) {
+        this.nik_manager = nik_manager;
+    }
+
+    public String getNama_gm() {
+        return nama_gm;
+    }
+
+    public void setNama_gm(String nama_gm) {
+        this.nama_gm = nama_gm;
+    }
+
+    public String getNik_gm() {
+        return nik_gm;
+    }
+
+    public void setNik_gm(String nik_gm) {
+        this.nik_gm = nik_gm;
     }
 }

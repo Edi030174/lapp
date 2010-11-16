@@ -310,8 +310,14 @@ public class PermohonanServiceImpl implements PermohonanService {
                 long lama_pending = mttrService.getLamaPending(mttr);
                 long mttrLong = duration - lama_pending;
 
+                long durasiPelaksanaan = mttrService.getDurasiPelaksanaan(mttr);
+
                 tPermohonan.setDurasi(getDuration(duration));
-                tPermohonan.setMttr(getDuration(mttrLong));
+                if (durasiPelaksanaan > 0) {
+                    tPermohonan.setMttr(getDuration(durasiPelaksanaan));
+                }else{
+                    tPermohonan.setMttr("0");
+                }
                 if (mttrService.isInProgress(mttr)) {
                     tPermohonan.setStatus_track_permohonan("INPROGRESS");
                 }

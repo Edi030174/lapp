@@ -21,6 +21,8 @@ public class Mttr implements Serializable{
     private long lama_pending;
     private String updated_by;
     private Timestamp updated_date;
+    private long target;
+    private long inserted_pelaksana;
     private long gen_id_col;
 
     public Mttr() {
@@ -112,6 +114,22 @@ public class Mttr implements Serializable{
 
     public void setUpdated_date(Timestamp updated_date) {
         this.updated_date = updated_date;
+    }
+
+    public long getTarget() {
+        return target;
+    }
+
+    public void setTarget(long target) {
+        this.target = target;
+    }
+
+    public long getInserted_pelaksana() {
+        return inserted_pelaksana;
+    }
+
+    public void setInserted_pelaksana(long inserted_pelaksana) {
+        this.inserted_pelaksana = inserted_pelaksana;
     }
 
     public long getGen_id_col() {

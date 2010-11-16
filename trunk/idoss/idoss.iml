@@ -16,7 +16,28 @@
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="web: application context" name="MVC application context" removed="false">
+          <file>file://$MODULE_DIR$/web/WEB-INF/no-sso.xml</file>
+          <file>file://$MODULE_DIR$/../idoss-backend/resources/META-INF/iBatis/ibatis-spring-config.xml</file>
+          <file>jar://$MODULE_DIR$/../lib/security_idoss.jar!/META-INF/spring/datasource.xml</file>
+          <file>file://$MODULE_DIR$/../idoss-backend/resources/META-INF/spring/spring-idoss-security-config.xml</file>
+          <file>file://$MODULE_DIR$/../idoss-backend/resources/META-INF/spring/spring-dao-idoss-auditlog-config.xml</file>
+          <file>file://$MODULE_DIR$/../idoss-backend/resources/META-INF/spring/spring-dao-idoss-pengaduan-config.xml</file>
+          <file>file://$MODULE_DIR$/../idoss-backend/resources/META-INF/spring/spring-dao-idoss-permohonan-config.xml</file>
+          <file>file://$MODULE_DIR$/../idoss-backend/resources/META-INF/spring/spring-dao-idoss-report-config.xml</file>
+          <file>file://$MODULE_DIR$/../idoss-backend/resources/META-INF/spring/spring-service-idoss-permohonan-config.xml</file>
+          <file>file://$MODULE_DIR$/../idoss-backend/resources/META-INF/spring/spring-service-idoss-config.xml</file>
+          <file>file://$MODULE_DIR$/../idoss-backend/resources/META-INF/spring/spring-service-idoss-pengaduan-config.xml</file>
+          <file>file://$MODULE_DIR$/web/WEB-INF/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/web/WEB-INF/spring-security-context.xml</file>
+          <file>jar://$MODULE_DIR$/../lib/security_idoss.jar!/META-INF/spring/spring-based-dao-config.xml</file>
+          <file>jar://$MODULE_DIR$/../lib/security_idoss.jar!/META-INF/spring/spring-paging-config.xml</file>
+          <file>jar://$MODULE_DIR$/../lib/security_idoss.jar!/META-INF/spring/spring-security-dao-config.xml</file>
+          <file>jar://$MODULE_DIR$/../lib/security_idoss.jar!/META-INF/spring/spring-security-service-config.xml</file>
+          <file>file://$MODULE_DIR$/resources/datasource-impl.xml</file>
+        </fileset>
+      </configuration>
     </facet>
   </component>
 </module>
