@@ -24,6 +24,7 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(
         locations = {
                 "classpath:META-INF/ibatis/ibatis-spring-config.xml",
+                "classpath:datasource-impl.xml",
                 "classpath:META-INF/spring/datasource.xml",
                 "classpath:META-INF/spring/spring-based-dao-config.xml",
                 "classpath:META-INF/spring/spring-dao-idoss-pengaduan-config.xml"
