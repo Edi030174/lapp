@@ -29,11 +29,12 @@
                 <hbox>
 
                     <combobox id="listbox_Cari" width="140px" readonly="true">
-                        <comboitem label="All" />
-                        <comboitem label="Nomor" />
-                        <comboitem label="Tipe" />
-                        <comboitem label="Status" />
-                        <comboitem label="Dampak" />
+                        <comboitem label="All"/>
+                        <comboitem label="Nomor"/>
+                        <comboitem label="Tipe"/>
+                        <comboitem label="Status"/>
+                        <comboitem label="Dampak"/>
+                        <comboitem label="Pemohon"/>
                      </combobox>
                     
                     <textbox id="textbox_cariPermohonanId"/>
