@@ -304,6 +304,7 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
                 CollectionUtils.select(searchResult, new TipePermohonan(textbox_cariPermohonanId.getValue()), searchAllResult);
                 CollectionUtils.select(searchResult, new StatusPermohonan(textbox_cariPermohonanId.getValue()), searchAllResult);
                 CollectionUtils.select(searchResult, new DampakPermohonan(textbox_cariPermohonanId.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new PemohonPermohonan(textbox_cariPermohonanId.getValue()), searchAllResult);
                 searchResult = new ArrayList<TPermohonan>(searchAllResult);
 
             } else if (listbox_Cari.getValue().equalsIgnoreCase("Nomor")) {
@@ -317,6 +318,9 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 
             } else if (listbox_Cari.getValue().equalsIgnoreCase("Dampak")) {
                 CollectionUtils.filter(searchResult, new DampakPermohonan(textbox_cariPermohonanId.getValue()));
+
+            } else if (listbox_Cari.getValue().equalsIgnoreCase("Pemohon")) {
+                CollectionUtils.filter(searchResult, new PemohonPermohonan(textbox_cariPermohonanId.getValue()));
             }
 
             pagedListHolder = new PagedListHolder<TPermohonan>(searchResult);
@@ -333,40 +337,48 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
             logger.debug("--> " + event.toString());
         }
         List searchResult = getPagedListWrapper().getPagedListHolder().getSource();
-        PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>();
+        PagedListHolder<TPermohonan> pagedListHolder;
+
+        if (datebox_TanggalAkhir.getValue() != null) {
+            if (datebox_TanggalAwal.getValue() != null) {
+                CollectionUtils.filter(searchResult, new TanggalPermohonan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()));
+            }
+        }
 
         if (!textbox_cariPermohonanId.getValue().isEmpty()) {
             if (listbox_Cari.getValue().equalsIgnoreCase("All")) {
-                Set<TPermohonan> searchAllResult = new HashSet<TPermohonan>();
+
+                Set searchAllResult = new HashSet();
                 CollectionUtils.select(searchResult, new IdTPermohonan(textbox_cariPermohonanId.getValue()), searchAllResult);
                 CollectionUtils.select(searchResult, new TipePermohonan(textbox_cariPermohonanId.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new TipePermohonan(textbox_cariPermohonanId.getValue()), searchAllResult);
                 CollectionUtils.select(searchResult, new StatusPermohonan(textbox_cariPermohonanId.getValue()), searchAllResult);
-                if (datebox_TanggalAkhir.getValue() != null) {
-                    if (datebox_TanggalAwal.getValue() != null) {
-                        CollectionUtils.select(searchResult, new TanggalPermohonan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()), searchAllResult);
-                    }
-                }
-                pagedListHolder = new PagedListHolder<TPermohonan>(new ArrayList<TPermohonan>(searchAllResult));
+                CollectionUtils.select(searchResult, new DampakPermohonan(textbox_cariPermohonanId.getValue()), searchAllResult);
+                CollectionUtils.select(searchResult, new PemohonPermohonan(textbox_cariPermohonanId.getValue()), searchAllResult);
+                searchResult = new ArrayList<TPermohonan>(searchAllResult);
+
             } else if (listbox_Cari.getValue().equalsIgnoreCase("Nomor")) {
                 CollectionUtils.filter(searchResult, new IdTPermohonan(textbox_cariPermohonanId.getValue()));
-                pagedListHolder = new PagedListHolder<TPermohonan>(searchResult);
+
             } else if (listbox_Cari.getValue().equalsIgnoreCase("Tipe")) {
                 CollectionUtils.filter(searchResult, new TipePermohonan(textbox_cariPermohonanId.getValue()));
-                pagedListHolder = new PagedListHolder<TPermohonan>(searchResult);
+
             } else if (listbox_Cari.getValue().equalsIgnoreCase("Status")) {
                 CollectionUtils.filter(searchResult, new StatusPermohonan(textbox_cariPermohonanId.getValue()));
-                pagedListHolder = new PagedListHolder<TPermohonan>(searchResult);
-            } else {
-                if (datebox_TanggalAkhir.getValue() != null) {
-                    if (datebox_TanggalAwal.getValue() != null) {
-                        CollectionUtils.filter(searchResult, new TanggalPermohonan(datebox_TanggalAwal.getValue(), datebox_TanggalAkhir.getValue()));
-                        pagedListHolder = new PagedListHolder<TPermohonan>(searchResult);
-                    }
-                }
+
+            } else if (listbox_Cari.getValue().equalsIgnoreCase("Dampak")) {
+                CollectionUtils.filter(searchResult, new DampakPermohonan(textbox_cariPermohonanId.getValue()));
+
+            } else if (listbox_Cari.getValue().equalsIgnoreCase("Pemohon")) {
+                CollectionUtils.filter(searchResult, new PemohonPermohonan(textbox_cariPermohonanId.getValue()));
             }
+
+            pagedListHolder = new PagedListHolder<TPermohonan>(searchResult);
             pagedListHolder.setPageSize(getCountRows());
             getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonan, paging_DaftarPermohonan);
             checkbox_all.setChecked(false);
+            datebox_TanggalAwal.setValue(null);
+            datebox_TanggalAkhir.setValue(null);
         }
     }
 
