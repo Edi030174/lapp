@@ -185,7 +185,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         for (Mttr mttr1 : mttrs) {
             setMttr(mttr1);
         }
-        doShowDialog(gettVerifikasi(), gettPermohonan());
+        doShowDialog(gettVerifikasi(), gettPermohonan(),getMttr());
     }
 
     private void doCheckRights(TVerifikasi tVerifikasi, TPermohonan tPermohonan) {
@@ -598,15 +598,15 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    private void doShowDialog(TVerifikasi tVerifikasi, TPermohonan tPermohonan) throws InterruptedException {
+    private void doShowDialog(TVerifikasi tVerifikasi, TPermohonan tPermohonan, Mttr mttr) throws InterruptedException {
         try {
-            doWriteBeanToComponents(tVerifikasi, tPermohonan);
+            doWriteBeanToComponents(tVerifikasi, tPermohonan, mttr);
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
     }
 
-    private void doWriteBeanToComponents(TVerifikasi tVerifikasi, TPermohonan tPermohonan) {
+    private void doWriteBeanToComponents(TVerifikasi tVerifikasi, TPermohonan tPermohonan, Mttr mttr) {
         textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
 //        textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
         textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
@@ -657,6 +657,9 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             radiogroup_StatusPermohonanGm.setSelectedItem(radio_DitolakGM);
         }
         textbox_gmdukophar.setValue(tVerifikasi.getCatatan_gm());
+        if (mttr.getTarget2() != null) {
+            intbox_target.setValue(Integer.parseInt(mttr.getTarget2()));
+        }
     }
 
     public void onClick$btn_Batal(Event event) throws Exception {
