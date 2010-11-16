@@ -18,9 +18,11 @@
                LAMA_PENDING,
                UPDATED_BY,
                UPDATED_DATE,
+               TARGET,
+               INSERTED_PELAKSANA,
                GEN_ID_COL
         from T_IDOSS_MTTR
-        where T_IDOSS_MTTR_ID = #{t_idoss_mttr_id}
+        where T_IDOSS_MTTR_ID=#{t_idoss_mttr_id}
     </select>
 
     <select id="getMttrByNomorTiket" parameterType="String" resultType="mttr">
@@ -35,9 +37,11 @@
                LAMA_PENDING,
                UPDATED_BY,
                UPDATED_DATE,
+               TARGET,
+               INSERTED_PELAKSANA,
                GEN_ID_COL
         from T_IDOSS_MTTR
-        where NOMOR_TIKET = #{nomor_tiket}
+        where NOMOR_TIKET=#{nomor_tiket}
         order by NOMOR_TIKET
     </select>
 
@@ -84,8 +88,9 @@
         PENDING_END=#{pending_end,jdbcType=INTEGER},
         LAMA_PENDING=#{lama_pending,jdbcType=INTEGER},
         UPDATED_BY=#{updated_by,jdbcType=VARCHAR},
-        UPDATED_DATE=#{updated_date,jdbcType=TIMESTAMP}
+        UPDATED_DATE=#{updated_date,jdbcType=TIMESTAMP},
+        TARGET=#{target,jdbcType=INTEGER},
+        INSERTED_PELAKSANA=#{inserted_pelaksana,jdbcType=INTEGER}
         WHERE  NOMOR_TIKET=#{nomor_tiket}
     </update>
-
 </mapper>

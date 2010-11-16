@@ -46,11 +46,7 @@ public class DaftarPermohonanInputCtrl extends GFCBaseListCtrl<TPermohonan> impl
     protected Checkbox checkbox_readonly;
     protected Checkbox checkbox_readwrite;
     protected Checkbox checkbox_aplikasi;
-
     protected Textbox textbox_cariPermohonanId;
-
-//    protected Listheader listheader_Pimbag;
-//    protected Listheader listheader_Pimdiv;
     protected Listheader listheader_Pemohon;
     protected Listheader listheader_Target;
     protected Listheader listheader_Durasi;
@@ -58,16 +54,11 @@ public class DaftarPermohonanInputCtrl extends GFCBaseListCtrl<TPermohonan> impl
     protected Listheader listheader_TglStatus;
     protected Listheader listheader_Mgr;
     protected Listheader listheader_GM;
-
     protected Combobox listbox_Cari;
-
-
     protected Button btnCari;
     protected Borderlayout borderlayout_daftarPermohonan;
     protected Panel panel_daftarPermohonan;
-
     private int countRows;
-
     private transient PermohonanService permohonanService;
     private transient PelaksanaanGangguanService pelaksanaanGangguanService;
 
@@ -383,7 +374,6 @@ public class DaftarPermohonanInputCtrl extends GFCBaseListCtrl<TPermohonan> impl
 
         }
     }
-
 
     public int getCountRows() {
         return countRows;

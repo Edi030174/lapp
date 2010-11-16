@@ -306,17 +306,15 @@ public class PermohonanServiceImpl implements PermohonanService {
         for (TPermohonan tPermohonan : tPermohonans) {
             List<Mttr> mttrs = mttrService.getMttrByNomorTiket(tPermohonan.getT_idoss_permohonan_id());
             for (Mttr mttr : mttrs) {
-                long duration = mttrService.getDurasi(mttr);
+                long durasi = mttrService.getDurasi(mttr);
                 long lama_pending = mttrService.getLamaPending(mttr);
-                long mttrLong = duration - lama_pending;
-
+                long mttrLong = durasi - lama_pending;
                 long durasiPelaksanaan = mttrService.getDurasiPelaksanaan(mttr);
-
-                tPermohonan.setDurasi(getDuration(duration));
+                tPermohonan.setDurasi(getDuration(durasi));
                 if (durasiPelaksanaan > 0) {
                     tPermohonan.setMttr(getDuration(durasiPelaksanaan));
-                }else{
-                    tPermohonan.setMttr("0");
+                } else {
+                    tPermohonan.setMttr("");
                 }
                 if (mttrService.isInProgress(mttr)) {
                     tPermohonan.setStatus_track_permohonan("INPROGRESS");
