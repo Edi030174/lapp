@@ -83,6 +83,24 @@ public class MttrServiceImpl implements MttrService {
         }
     }
 
+    public long getDurasiTarget(Mttr mttr) {
+        long ts = Calendar.getInstance().getTimeInMillis();
+        if (mttr.getTarget() > 0) {
+            if (mttr.getTarget() > ts) {
+                long durasiTarget = mttr.getTarget() - ts;
+                if (mttr.getClosed() > 0) {
+                    if (ts >= mttr.getClosed()) {
+                        durasiTarget = mttr.getClosed() - mttr.getTarget();
+                    }
+                }
+                return durasiTarget;
+            }
+            return mttr.getTarget();
+        } else {
+            return 0;
+        }
+    }
+
     public boolean isInProgress(Mttr mttr) {
         long ts = Calendar.getInstance().getTimeInMillis();
         return mttr.getPending_end() > 0 && ts >= mttr.getPending_end();

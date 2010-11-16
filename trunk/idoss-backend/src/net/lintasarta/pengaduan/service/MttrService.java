@@ -11,22 +11,14 @@ import java.util.List;
  * Time: 11:24:06 AM
  */
 public interface MttrService {
-
     String getGenerateId();
-
     Mttr getMttrByMttrId(int t_idoss_mttr_id);
-
     void createMttr(Mttr mttr);
-
     void saveOrUpdateMttr(Mttr mttr);
-
     List<Mttr> getMttrByNomorTiket(String nomorTiket);
-
     long getDurasi(Mttr mttr);
-
     long getDurasiPelaksanaan(Mttr mttr);
-
+    long getDurasiTarget(Mttr mttr);
     long getLamaPending(Mttr mttr);
-
     boolean isInProgress(Mttr mttr);
 }
