@@ -18,7 +18,7 @@ public interface MttrService {
     List<Mttr> getMttrByNomorTiket(String nomorTiket);
     long getDurasi(Mttr mttr);
     long getDurasiPelaksanaan(Mttr mttr);
-    long getDurasiTarget(Mttr mttr);
+    String getDurasiTarget(Mttr mttr);
     long getLamaPending(Mttr mttr);
     boolean isInProgress(Mttr mttr);
 }

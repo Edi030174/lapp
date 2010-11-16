@@ -836,6 +836,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         long too = setTarget(target);
         Timestamp tanggalnya = new Timestamp(too);
         mttr.setTarget(too);
+        mttr.setTarget2(Integer.toString(target));
     }
 
     private long setTarget(int berapaHari) {

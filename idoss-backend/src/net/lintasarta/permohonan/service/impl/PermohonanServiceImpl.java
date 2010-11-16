@@ -310,7 +310,8 @@ public class PermohonanServiceImpl implements PermohonanService {
                 long lama_pending = mttrService.getLamaPending(mttr);
                 long durasiPelaksanaan = mttrService.getDurasiPelaksanaan(mttr);
                 long mttrLong = durasiPelaksanaan - lama_pending;
-                long durasiTarget = mttrService.getDurasiTarget(mttr);
+//                long durasiTarget = mttrService.getDurasiTarget(mttr);
+                String durasiTarget = mttrService.getDurasiTarget(mttr);
                 long ts = Calendar.getInstance().getTimeInMillis();
                 tPermohonan.setDurasi(getDuration(durasi));
 
@@ -320,8 +321,8 @@ public class PermohonanServiceImpl implements PermohonanService {
                     tPermohonan.setMttr("");
                 }
 
-                if (durasiTarget > 0) {
-                    tPermohonan.setTarget(getDuration(durasiTarget));
+                if (durasiTarget !=null) {
+                    tPermohonan.setTarget(durasiTarget);
                 } else {
                     tPermohonan.setTarget("");
                 }
