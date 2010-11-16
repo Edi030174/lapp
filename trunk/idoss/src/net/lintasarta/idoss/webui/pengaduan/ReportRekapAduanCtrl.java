@@ -135,6 +135,7 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
             String nik_manager = gettPermohonan().getNik_asman();
             String nama_gm = gettPermohonan().getNama_manager();
             String nik_gm = gettPermohonan().getNik_manager();
+            String jumlah_server = Integer.toString(intbox_Jumlah.getValue());
 //            HashMap params = new HashMap();
 //            params.put("nama_pemohon", nama_pemohon);
 //            params.put("nik_pemohon", nik_pemohon);
@@ -143,7 +144,7 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
 //            params.put("nama_gm", nama_gm);
 //            params.put("nik_gm", nik_gm);
             String tahun = (String) combobox_tahun.getSelectedItem().getValue();
-            JRDataSource ds = reportService.getRekapAduan(tahun, nama_pemohon, nik_pemohon, nama_manager, nik_manager, nama_gm, nik_gm);
+            JRDataSource ds = reportService.getRekapAduan(tahun, nama_pemohon, nik_pemohon, nama_manager, nik_manager, nama_gm, nik_gm, jumlah_server);
             Component parent = window_Report4.getRoot();
             new JRreportWindow(parent, true, null, repSrc, ds, "pdf");
         }

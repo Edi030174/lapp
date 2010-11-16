@@ -12,6 +12,6 @@ public interface ReportService {
     JRDataSource getAduan(String bulan, String tahun, String nama_pemohon, String nik_pemohon, String nama_manager, String nik_manager, String nama_gm, String nik_gm);
     JRDataSource getBelumSelesai(String bulan, String tahun);
     JRDataSource getSudahSelesai(String bulan, String tahun);
-    JRDataSource getRekapAduan(String tahun, String nama_pemohon, String nik_pemohon, String nama_manager, String nik_manager, String nama_gm, String nik_gm);
+    JRDataSource getRekapAduan(String tahun, String nama_pemohon, String nik_pemohon, String nama_manager, String nik_manager, String nama_gm, String nik_gm, String jumlah_server);
     JRDataSource getRekapPermohonan(String bulan, String tahun);
 }

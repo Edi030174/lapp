@@ -880,6 +880,8 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             tVerifikasi.setNama_manager(getUserWorkspace().getUserSession().getEmployeeName());
             getVerifikasiService().saveOrUpdateTVerifikasi(tVerifikasi);
             getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
+            mttr.setNomor_tiket(tPermohonan.getT_idoss_permohonan_id());
+            getMttrService().saveOrUpdateMttr(mttr);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
@@ -938,6 +940,8 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             tVerifikasi.setNama_gm(getUserWorkspace().getUserSession().getEmployeeName());
             getVerifikasiService().saveOrUpdateTVerifikasi(tVerifikasi);
             getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
+            mttr.setNomor_tiket(tPermohonan.getT_idoss_permohonan_id());
+            getMttrService().saveOrUpdateMttr(mttr);
         } catch (DataAccessException e) {
             String message = e.getMessage();
             String title = Labels.getLabel("message_Error");
