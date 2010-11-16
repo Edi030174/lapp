@@ -63,12 +63,14 @@
                     <listhead sizable="true">
                         <listheader id="listheader_Nomor" label="Nomor" sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_Tanggal" label="Tanggal" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Pemohon" label="Pemohon" sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_Dampak" label="Dampak" sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_Tipe" label="Tipe" sort="auto" style="font-size:11px"/>
-                        <listheader id="listheader_StatusPersetujuan" label="Status Persetujuan" sort="auto" style="font-size:11px"/>
-                        <listheader id="listheader_TglStatus" label="Tanggal Persetujuan" sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_Durasi" label="Durasi Permohonan" align="left" sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_MTTR" label="Durasi Pelaksanaan" align="left" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_Target" label="Durasi Target" align="left" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_StatusPersetujuan" label="Status Persetujuan" sort="auto" style="font-size:11px"/>
+                        <listheader id="listheader_TglStatus" label="Tanggal Persetujuan" sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_Mgr" label="Manager" sort="auto" style="font-size:11px"/>
                         <listheader id="listheader_GM" label="GM" sort="auto" style="font-size:11px"/>
                     </listhead>

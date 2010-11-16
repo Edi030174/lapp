@@ -82,6 +82,7 @@
         <property name="permohonanService" ref="permohonanService"/>
         <property name="verifikasiService" ref="verifikasiService"/>
         <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+        <property name="mttrService" ref="mttrService"/>
     </bean>
     <bean id="permohonanCtrl" class="net.lintasarta.idoss.webui.permohonan.PermohonanCtrl" parent="basisCtrl"
           scope="prototype">
@@ -158,6 +159,7 @@
     <bean id="reportAduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.ReportAduanCtrl" parent="basisCtrl"
           scope="prototype">
         <property name="reportService" ref="reportService"/>
+        <property name="permohonanService" ref="permohonanService"/>
     </bean>
     <bean id="reportBelumSelesaiCtrl" class="net.lintasarta.idoss.webui.permohonan.ReportBelumSelesaiCtrl"
           parent="basisCtrl" scope="prototype">

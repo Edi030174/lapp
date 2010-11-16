@@ -62,11 +62,19 @@ public class ReportServiceImpl implements ReportService {
         this.reportRekapPermohonanDAO = reportRekapPermohonanDAO;
     }
 
-    public JRDataSource getAduan(String bulan, String tahun) {
-        ReportAduan reportAduan = new ReportAduan();
-        reportAduan.setBulan(bulan);
-        reportAduan.setTahun(tahun);
-        List<ReportAduan> reportAduans = reportAduanDAO.getReportAduan(reportAduan);
+    public JRDataSource getAduan(String bulan, String tahun, String nama_pemohon, String nik_pemohon, String nama_manager, String nik_manager, String nama_gm, String nik_gm) {
+        ReportAduan reportAduann = new ReportAduan();
+        reportAduann.setBulan(bulan);
+        reportAduann.setTahun(tahun);
+        List<ReportAduan> reportAduans = reportAduanDAO.getReportAduan(reportAduann);
+        for (ReportAduan reportAduan : reportAduans) {
+            reportAduan.setNik_pemohon(nik_pemohon);
+            reportAduan.setNama_pemohon(nama_pemohon);
+            reportAduan.setNik_manager(nik_manager);
+            reportAduan.setNama_manager(nama_manager);
+            reportAduan.setNik_gm(nik_gm);
+            reportAduan.setNama_gm(nama_gm);
+        }
         return new JRBeanCollectionDataSource(reportAduans);
     }
 

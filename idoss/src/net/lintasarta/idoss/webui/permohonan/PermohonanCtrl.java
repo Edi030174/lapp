@@ -322,7 +322,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         }
 
         fck_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
-        textbox_Lainlain.setValue(tPermohonan.getLain_lain());
+        textbox_Lainlain.setValue(tPermohonan.getLain_lain_desc());
     }
 
     public void onSelect$tab_Persetujuan(Event event) {
@@ -574,7 +574,7 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         permohonan.setTarget_mulai_digunakan(ts);
         Radio type = radiogroupType_permohonan.getSelectedItem();
         permohonan.setType_permohonan(type.getValue());
-        permohonan.setLain_lain(textbox_Lainlain.getValue());
+        permohonan.setLain_lain_desc(textbox_Lainlain.getValue());
         permohonan.setUpdated_asman(ts);
         permohonan.setUpdated_divisi(ts);
         permohonan.setUpdated_gm(ts);

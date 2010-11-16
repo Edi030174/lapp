@@ -182,17 +182,18 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     private void doCheckRights(TVerifikasi tVerifikasi, TPermohonan tPermohonan) {
         UserWorkspace workspace = getUserWorkspace();
 
-//        groupbox_ManagerPemohon.setVisible(workspace.isAllowed("groupbox_ManagerPemohon"));
-//        groupbox_GmPemohon.setVisible(workspace.isAllowed("groupbox_GmPemohon"));
-//        groupbox_AM.setVisible(workspace.isAllowed("groupbox_AMDukophar"));
-//        groupbox_Manager.setVisible(workspace.isAllowed("groupbox_ManagerDukophar"));
-//        groupbox_Gm.setVisible(workspace.isAllowed("groupbox_GmDukophar"));
+        groupbox_ManagerPemohon.setVisible(workspace.isAllowed("groupbox_ManagerPemohon"));
+        groupbox_GmPemohon.setVisible(workspace.isAllowed("groupbox_GmPemohon"));
+        groupbox_AM.setVisible(workspace.isAllowed("groupbox_AMDukophar"));
+        groupbox_Manager.setVisible(workspace.isAllowed("groupbox_ManagerDukophar"));
+        groupbox_Gm.setVisible(workspace.isAllowed("groupbox_GmDukophar"));
 
 //        String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
         String role = getUserWorkspace().getUserSession().getEmployeeRole();
 
         boolean save_muser = (workspace.isAllowed("btn_SimpanPersetujuanManagerPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Persetujuan Manager"));
         btn_SimpanPersetujuanManagerPemohon.setVisible(save_muser);
+
         if (role.equalsIgnoreCase(LoginConstants.MUSER)) {
             if (tPermohonan.getUpdated_manager() != null) {
                 Timestamp ts = tPermohonan.getUpdated_manager();

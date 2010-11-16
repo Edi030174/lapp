@@ -59,6 +59,8 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
     protected Listheader listheader_TglStatus;
     protected Listheader listheader_Mgr;
     protected Listheader listheader_GM;
+    protected Listheader listheader_Pemohon;
+    protected Listheader listheader_Target;
 
     protected Combobox listbox_Cari;
 
@@ -111,18 +113,22 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
         listheader_Nomor.setSortAscending(new FieldComparator("t_idoss_permohonan_id", true));
         listheader_Tanggal.setSortDescending(new FieldComparator("tgl_permohonan", true));
         listheader_Tanggal.setSortAscending(new FieldComparator("tgl_permohonan", true));
+        listheader_Pemohon.setSortDescending(new FieldComparator("nama_pemohon", true));
+        listheader_Pemohon.setSortAscending(new FieldComparator("nama_pemohon", true));
         listheader_Dampak.setSortDescending(new FieldComparator("dampak", true));
         listheader_Dampak.setSortAscending(new FieldComparator("dampak", true));
         listheader_Tipe.setSortDescending(new FieldComparator("type_permohonan", true));
         listheader_Tipe.setSortAscending(new FieldComparator("type_permohonan", true));
-        listheader_StatusPersetujuan.setSortDescending(new FieldComparator("status_track_permohonan", true));
-        listheader_StatusPersetujuan.setSortAscending(new FieldComparator("status_track_permohonan", true));
-        listheader_TglStatus.setSortDescending(new FieldComparator("updated_date", true));
-        listheader_TglStatus.setSortAscending(new FieldComparator("updated_date", true));
         listheader_Durasi.setSortAscending(new FieldComparator("durasi", true));
         listheader_Durasi.setSortDescending(new FieldComparator("durasi", false));
         listheader_MTTR.setSortAscending(new FieldComparator("mttr", true));
         listheader_MTTR.setSortDescending(new FieldComparator("mttr", false));
+        listheader_Target.setSortAscending(new FieldComparator("target", true));
+        listheader_Target.setSortDescending(new FieldComparator("target", false));
+        listheader_StatusPersetujuan.setSortDescending(new FieldComparator("status_track_permohonan", true));
+        listheader_StatusPersetujuan.setSortAscending(new FieldComparator("status_track_permohonan", true));
+        listheader_TglStatus.setSortDescending(new FieldComparator("updated_date", true));
+        listheader_TglStatus.setSortAscending(new FieldComparator("updated_date", true));
         listheader_Mgr.setSortDescending(new FieldComparator("nama_manager", true));
         listheader_Mgr.setSortAscending(new FieldComparator("nama_manager", true));
         listheader_GM.setSortDescending(new FieldComparator("nama_gm", true));
@@ -140,7 +146,7 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
         verifikasiPermohonan.setStatus_track_permohonan("INPROGRESS");
 
         tPermohonans = getPermohonanService().getTPermohonanByNikPelaksana(verifikasiPermohonan);
-        
+
         verifikasiPermohonan.setNik_pelaksana(employeeNo);
         verifikasiPermohonan.setStatus_track_permohonan("PENDING");
         tPermohonans.addAll(getPermohonanService().getTPermohonanByNikPelaksana(verifikasiPermohonan));

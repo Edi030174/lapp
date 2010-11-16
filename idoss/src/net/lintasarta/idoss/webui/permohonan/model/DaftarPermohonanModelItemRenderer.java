@@ -39,11 +39,23 @@ public class DaftarPermohonanModelItemRenderer implements ListitemRenderer, Seri
         lc = new Listcell(tgl);
 		lc.setParent(item);
 
+        lc = new Listcell(tPermohonan.getNama_pemohon());
+		lc.setParent(item);
+
         lc = new Listcell(tPermohonan.getDampak());
 		lc.setParent(item);
 
 		lc = new Listcell(tPermohonan.getType_permohonan());
 		lc.setParent(item);
+
+        lc = new Listcell(tPermohonan.getDurasi());
+        lc.setParent(item);
+
+        lc = new Listcell(tPermohonan.getMttr());
+        lc.setParent(item);
+
+        lc = new Listcell(tPermohonan.getTarget());
+        lc.setParent(item);
 
         lc = new Listcell(tPermohonan.getStatus_track_permohonan());
 		lc.setParent(item);
@@ -52,12 +64,6 @@ public class DaftarPermohonanModelItemRenderer implements ListitemRenderer, Seri
         String tgl2 = new SimpleDateFormat("dd-MM-yyyy").format(ts);
         lc = new Listcell(tgl2);
 		lc.setParent(item);
-
-        lc = new Listcell(tPermohonan.getDurasi());
-        lc.setParent(item);
-
-        lc = new Listcell(tPermohonan.getMttr());
-        lc.setParent(item);
 
         lc = new Listcell(tPermohonan.getNama_manager());
 		lc.setParent(item);

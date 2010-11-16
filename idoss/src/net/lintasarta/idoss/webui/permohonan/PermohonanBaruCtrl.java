@@ -6,6 +6,7 @@ import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.Mttr;
 import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
+import net.lintasarta.pengaduan.service.MttrService;
 import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
@@ -115,6 +116,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     private transient PermohonanService permohonanService;
     private transient VerifikasiService verifikasiService;
     private transient PelaksanaanGangguanService pelaksanaanGangguanService;
+    private transient MttrService mttrService;
 
     public PermohonanBaruCtrl() {
         super();
@@ -320,7 +322,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;
             }
-            if (intbox_target.getValue() < 1) {
+            if (intbox_target.getValue() == null) {
                 Messagebox.show("Silakan isikan target selesai");
                 return false;
             }
@@ -380,7 +382,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
 
         TPermohonan tPermohonan = gettPermohonan();
         Mttr mttr = new Mttr();
-        doWriteComponentsToBean(tPermohonan);
+        doWriteComponentsToBean(tPermohonan, mttr);
 
         try {
             String uploadeFileName = null;
@@ -433,7 +435,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
 
     }
 
-    private void doWriteComponentsToBean(TPermohonan tPermohonan) {
+    private void doWriteComponentsToBean(TPermohonan tPermohonan, Mttr mttr) {
 
 //        tPermohonan.setT_idoss_permohonan_id(textbox_TIdossPermohonanId.getValue());
         tPermohonan.setNama_pemohon(textbox_NamaPemohon.getValue());
@@ -451,11 +453,11 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         }
         tPermohonan.setTarget_mulai_digunakan(ts);
         String lain = textbox_Lainlain.getValue();
-        tPermohonan.setLain_lain(lain);
+        tPermohonan.setLain_lain_desc(lain);
 //        radio_lainlain.setValue(lain);
         Radio type = radiogroupType_permohonan.getSelectedItem();
         tPermohonan.setType_permohonan(type.getValue());
-        tPermohonan.setLain_lain(textbox_Lainlain.getValue());
+        tPermohonan.setLain_lain_desc(textbox_Lainlain.getValue());
         tPermohonan.setUpdated_divisi(ts);
         tPermohonan.setUpdated_gm(ts);
         tPermohonan.setUpdated_manager(ts);
@@ -466,10 +468,12 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
         tPermohonan.setUrgensi(prioritas.getValue());
         tPermohonan.setCreated_user(getUserWorkspace().getUserSession().getUserName());
         tPermohonan.setUpdated_user(getUserWorkspace().getUserSession().getUserName());
-        if(intbox_target.getValue()!=null){
-        int target = intbox_target.getValue();
-        long too = setTarget(target);
-        Timestamp tanggalnya = new Timestamp(too);
+        if (intbox_target.getValue() != null) {
+            int target = intbox_target.getValue();
+            long too = setTarget(target);
+            Timestamp tanggalnya = new Timestamp(too);
+            mttr.setTarget(too);
+            mttr.setInserted_pelaksana(ts.getTime());
         }
     }
 
@@ -552,6 +556,14 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
 
     public void setPelaksanaanGangguanService(PelaksanaanGangguanService pelaksanaanGangguanService) {
         this.pelaksanaanGangguanService = pelaksanaanGangguanService;
+    }
+
+    public MttrService getMttrService() {
+        return mttrService;
+    }
+
+    public void setMttrService(MttrService mttrService) {
+        this.mttrService = mttrService;
     }
 
     public Media getUploadMedia() {
