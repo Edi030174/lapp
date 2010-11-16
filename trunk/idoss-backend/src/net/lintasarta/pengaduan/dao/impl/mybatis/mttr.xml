@@ -20,6 +20,7 @@
                UPDATED_DATE,
                TARGET,
                INSERTED_PELAKSANA,
+               TARGET2,
                GEN_ID_COL
         from T_IDOSS_MTTR
         where T_IDOSS_MTTR_ID=#{t_idoss_mttr_id}
@@ -39,6 +40,7 @@
                UPDATED_DATE,
                TARGET,
                INSERTED_PELAKSANA,
+               TARGET2,
                GEN_ID_COL
         from T_IDOSS_MTTR
         where NOMOR_TIKET=#{nomor_tiket}
@@ -60,6 +62,7 @@
                UPDATED_DATE,
                TARGET,
                INSERTED_PELAKSANA,
+               TARGET2,
                GEN_ID_COL)
         VALUES(
                #{t_idoss_mttr_id},
@@ -75,6 +78,7 @@
                #{updated_date},
                #{target},
                #{inserted_pelaksana},
+               #{target2},
                #{gen_id_col})
     </insert>
 
@@ -91,6 +95,7 @@
         UPDATED_DATE=#{updated_date,jdbcType=TIMESTAMP},
         TARGET=#{target,jdbcType=INTEGER},
         INSERTED_PELAKSANA=#{inserted_pelaksana,jdbcType=INTEGER}
+        TARGET2,=#{target2,jdbcType=VARCHAR},
         WHERE  NOMOR_TIKET=#{nomor_tiket}
     </update>
 </mapper>

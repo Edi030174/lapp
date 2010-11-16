@@ -23,6 +23,7 @@ public class Mttr implements Serializable{
     private Timestamp updated_date;
     private long target;
     private long inserted_pelaksana;
+    private String target2;
     private long gen_id_col;
 
     public Mttr() {
@@ -130,6 +131,14 @@ public class Mttr implements Serializable{
 
     public void setInserted_pelaksana(long inserted_pelaksana) {
         this.inserted_pelaksana = inserted_pelaksana;
+    }
+
+    public String getTarget2() {
+        return target2;
+    }
+
+    public void setTarget2(String target2) {
+        this.target2 = target2;
     }
 
     public long getGen_id_col() {

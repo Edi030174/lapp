@@ -83,7 +83,7 @@ public class MttrServiceImpl implements MttrService {
         }
     }
 
-    public long getDurasiTarget(Mttr mttr) {
+    /*public long getDurasiTarget(Mttr mttr) {
         long ts = Calendar.getInstance().getTimeInMillis();
         if (mttr.getTarget() > 0) {
             if (mttr.getTarget() > ts) {
@@ -99,6 +99,10 @@ public class MttrServiceImpl implements MttrService {
         } else {
             return 0;
         }
+    }*/
+
+    public String getDurasiTarget(Mttr mttr) {
+        return mttr.getTarget2();
     }
 
     public boolean isInProgress(Mttr mttr) {
