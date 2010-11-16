@@ -71,13 +71,13 @@ public class MttrServiceImpl implements MttrService {
     public long getDurasiPelaksanaan(Mttr mttr) {
         long ts = Calendar.getInstance().getTimeInMillis();
         if (mttr.getInserted_pelaksana() > 0) {
-            long duration = ts - mttr.getInserted_pelaksana();
+            long durasiPelaksanaan = ts - mttr.getInserted_pelaksana();
             if (mttr.getClosed() > 0) {
                 if (ts >= mttr.getClosed()) {
-                    duration = mttr.getClosed() - mttr.getInserted_pelaksana();
+                    durasiPelaksanaan = mttr.getClosed() - mttr.getInserted_pelaksana();
                 }
             }
-            return duration;
+            return durasiPelaksanaan;
         } else {
             return 0;
         }

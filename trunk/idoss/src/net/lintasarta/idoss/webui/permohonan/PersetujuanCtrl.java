@@ -4,7 +4,9 @@ import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.pengaduan.model.PelaksanaListModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
+import net.lintasarta.pengaduan.model.Mttr;
 import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
+import net.lintasarta.pengaduan.service.MttrService;
 import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
@@ -24,6 +26,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -121,10 +124,12 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     private transient TPermohonan tPermohonan;
     private transient TVerifikasi tVerifikasi;
     private transient TPelaksanaan tPelaksanaan;
+    private transient Mttr mttr;
     private transient PermohonanService permohonanService;
     private transient VerifikasiService verifikasiService;
     private transient PelaksanaanGangguanService pelaksanaanGangguanService;
     private transient PelaksanaanService pelaksanaanService;
+    private transient MttrService mttrService;
 
     public PersetujuanCtrl() {
         super();
@@ -175,6 +180,10 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             lmlNamaPelaksana.add(0, pelaksana);
             listbox_NamaPelaksana.setModel(lmlNamaPelaksana);
             listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
+        }
+        List<Mttr> mttrs = getMttrService().getMttrByNomorTiket(gettPermohonan().getT_idoss_permohonan_id());
+        for (Mttr mttr1 : mttrs) {
+            setMttr(mttr1);
         }
         doShowDialog(gettVerifikasi(), gettPermohonan());
     }
@@ -364,7 +373,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             if (tPermohonan.getStatus_track_permohonan().equals("Disetujui Manager Pemohon")) {
                 sp2.setVisible(true);
                 radiogroup_StatusPermohonanGmPemohon.setVisible(true);
-            }else{
+            } else {
                 sp2.setVisible(false);
                 radiogroup_StatusPermohonanGmPemohon.setVisible(false);
             }
@@ -783,7 +792,8 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         TPermohonan tPermohonan = gettPermohonan();
         TVerifikasi tVerifikasi = gettVerifikasi();
         TPelaksanaan tPelaksanaan = gettPelaksanaan();
-        doWriteComponentsToBean3(tPermohonan, tVerifikasi, tPelaksanaan);
+        Mttr mttr = getMttr();
+        doWriteComponentsToBean3(tPermohonan, tVerifikasi, tPelaksanaan, mttr);
 
         try {
             getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
@@ -799,7 +809,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
 //        doStoreInitValues();
     }
 
-    private void doWriteComponentsToBean3(TPermohonan tPermohonan, TVerifikasi tVerifikasi, TPelaksanaan tPelaksanaan) {
+    private void doWriteComponentsToBean3(TPermohonan tPermohonan, TVerifikasi tVerifikasi, TPelaksanaan tPelaksanaan, Mttr mttr) {
         Radio dampak = radiogroup_Dampak.getSelectedItem();
         tPermohonan.setDampak(dampak.getValue());
         Radio prioritas = radiogroup_Prioritas.getSelectedItem();
@@ -825,6 +835,8 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         int target = intbox_target.getValue();
         long too = setTarget(target);
         Timestamp tanggalnya = new Timestamp(too);
+        mttr.setTarget(too);
+        mttr.setInserted_pelaksana(ts.getTime());
     }
 
     private long setTarget(int berapaHari) {
@@ -985,11 +997,27 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         this.pelaksanaanService = pelaksanaanService;
     }
 
+    public MttrService getMttrService() {
+        return mttrService;
+    }
+
+    public void setMttrService(MttrService mttrService) {
+        this.mttrService = mttrService;
+    }
+
     public TPermohonan gettPermohonan() {
         return tPermohonan;
     }
 
     public void settPermohonan(TPermohonan tPermohonan) {
         this.tPermohonan = tPermohonan;
+    }
+
+    public Mttr getMttr() {
+        return mttr;
+    }
+
+    public void setMttr(Mttr mttr) {
+        this.mttr = mttr;
     }
 }

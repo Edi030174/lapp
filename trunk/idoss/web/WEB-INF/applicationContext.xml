@@ -115,6 +115,7 @@
         <property name="verifikasiService" ref="verifikasiService"/>
         <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
         <property name="pelaksanaanService" ref="pelaksanaanService"/>
+        <property name="mttrService" ref="mttrService"/>
     </bean>
 
     <bean id="pengaduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PengaduanCtrl" parent="basisCtrl"
