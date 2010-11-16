@@ -321,8 +321,8 @@ public class PermohonanServiceImpl implements PermohonanService {
                     tPermohonan.setMttr("");
                 }
 
-                if (durasiTarget !=null) {
-                    tPermohonan.setTarget(durasiTarget);
+                if (durasiTarget != null) {
+                    tPermohonan.setTarget(durasiTarget + " hari");
                 } else {
                     tPermohonan.setTarget("");
                 }
