@@ -38,4 +38,5 @@ public interface PermohonanService {
     List<TPermohonan> getTPermohonanByNikPelaksana(VerifikasiPermohonan verifikasiPermohonan);
     List<TPermohonan> hitungDurasiMttr(List<TPermohonan> tPermohonans);
     String getFilePath();
+    String getDuration(long duration);
 }

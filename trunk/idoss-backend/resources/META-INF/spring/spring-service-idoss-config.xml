@@ -8,5 +8,7 @@
         <property name="reportSudahSelesaiDAO" ref="reportSudahSelesaiDAO"/>
         <property name="reportRekapAduanDAO" ref="reportRekapAduanDAO"/>
         <property name="reportRekapPermohonanDAO" ref="reportRekapPermohonanDAO"/>
+        <property name="permohonanService" ref="permohonanService"/>
+        <property name="mttrService" ref="mttrService"/>
     </bean>
 </beans>

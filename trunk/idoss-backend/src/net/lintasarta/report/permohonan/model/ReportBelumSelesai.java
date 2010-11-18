@@ -12,6 +12,8 @@ public class ReportBelumSelesai {
     private String tanggal;
     private String type_permohonan;
     private String deskripsi;
+    private String durasi_pelaksanaan;
+    private String durasi_target;
     private String nama_pemohon;
     private String bagian_pemohon;
     private String nama_ver;
@@ -118,5 +120,21 @@ public class ReportBelumSelesai {
 
     public void setTahun(String tahun) {
         this.tahun = tahun;
+    }
+
+    public String getDurasi_pelaksanaan() {
+        return durasi_pelaksanaan;
+    }
+
+    public void setDurasi_pelaksanaan(String durasi_pelaksanaan) {
+        this.durasi_pelaksanaan = durasi_pelaksanaan;
+    }
+
+    public String getDurasi_target() {
+        return durasi_target;
+    }
+
+    public void setDurasi_target(String durasi_target) {
+        this.durasi_target = durasi_target;
     }
 }
