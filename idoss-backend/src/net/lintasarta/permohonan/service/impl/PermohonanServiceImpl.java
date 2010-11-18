@@ -335,7 +335,7 @@ public class PermohonanServiceImpl implements PermohonanService {
         return tPermohonans;
     }
 
-    private String getDuration(long duration) {
+    public String getDuration(long duration) {
         final int millisPerSecond = 1000;
         final int millisPerMinute = 1000 * 60;
         final int millisPerHour = 1000 * 60 * 60;

@@ -1,11 +1,16 @@
 package net.lintasarta.report.service.impl;
 
+import net.lintasarta.pengaduan.model.Mttr;
+import net.lintasarta.pengaduan.service.MttrService;
+import net.lintasarta.permohonan.model.TPermohonan;
+import net.lintasarta.permohonan.service.PermohonanService;
 import net.lintasarta.report.permohonan.dao.*;
 import net.lintasarta.report.permohonan.model.*;
 import net.lintasarta.report.service.ReportService;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -21,6 +26,8 @@ public class ReportServiceImpl implements ReportService {
     private ReportRekapAduanDAO reportRekapAduanDAO;
     private ReportSudahSelesaiDAO reportSudahSelesaiDAO;
     private ReportRekapPermohonanDAO reportRekapPermohonanDAO;
+    private PermohonanService permohonanService;
+    private MttrService mttrService;
 
     public ReportAduanDAO getReportAduanDAO() {
         return reportAduanDAO;
@@ -62,6 +69,14 @@ public class ReportServiceImpl implements ReportService {
         this.reportRekapPermohonanDAO = reportRekapPermohonanDAO;
     }
 
+    public void setPermohonanService(PermohonanService permohonanService) {
+        this.permohonanService = permohonanService;
+    }
+
+    public void setMttrService(MttrService mttrService) {
+        this.mttrService = mttrService;
+    }
+
     public JRDataSource getAduan(String bulan, String tahun, String nama_pemohon, String nik_pemohon, String nama_manager, String nik_manager, String nama_gm, String nik_gm) {
         ReportAduan reportAduann = new ReportAduan();
         reportAduann.setBulan(bulan);
@@ -83,6 +98,39 @@ public class ReportServiceImpl implements ReportService {
         reportBelumSelesai.setBulan(bulan);
         reportBelumSelesai.setTahun(tahun);
         List<ReportBelumSelesai> reportBelumSelesais = reportBelumSelesaiDAO.getReportBelumSelesai(reportBelumSelesai);
+
+        for (ReportBelumSelesai belumSelesai : reportBelumSelesais) {
+            TPermohonan tPermohonan = permohonanService.getTPermohonanByTIdossPermohonanId(belumSelesai.getNomor());
+            List<Mttr> mttrs = mttrService.getMttrByNomorTiket(tPermohonan.getT_idoss_permohonan_id());
+            for (Mttr mttr : mttrs) {
+                long durasi = mttrService.getDurasi(mttr);
+                long lama_pending = mttrService.getLamaPending(mttr);
+                long durasiPelaksanaan = mttrService.getDurasiPelaksanaan(mttr);
+                long mttrLong = durasiPelaksanaan - lama_pending;
+//                long durasiTarget = mttrService.getDurasiTarget(mttr);
+                String durasiTarget = mttrService.getDurasiTarget(mttr);
+                long ts = Calendar.getInstance().getTimeInMillis();
+                tPermohonan.setDurasi(permohonanService.getDuration(durasi));
+
+                if (mttrLong > 0) {
+                    tPermohonan.setMttr(permohonanService.getDuration(mttrLong));
+                } else {
+                    tPermohonan.setMttr("");
+                }
+
+                if (durasiTarget != null) {
+                    tPermohonan.setTarget(durasiTarget + " hari");
+                } else {
+                    tPermohonan.setTarget("");
+                }
+
+                if (mttrService.isInProgress(mttr)) {
+                    tPermohonan.setStatus_track_permohonan("INPROGRESS");
+                }
+            }
+            belumSelesai.setDurasi_pelaksanaan(tPermohonan.getMttr());
+            belumSelesai.setDurasi_target(tPermohonan.getTarget());
+        }
         return new JRBeanCollectionDataSource(reportBelumSelesais);
     }
 
@@ -91,6 +139,38 @@ public class ReportServiceImpl implements ReportService {
         reportSudahSelesai.setBulan(bulan);
         reportSudahSelesai.setTahun(tahun);
         List<ReportSudahSelesai> reportSudahSelesais = reportSudahSelesaiDAO.getReportSudahSelesai(reportSudahSelesai);
+        for (ReportSudahSelesai sudahSelesai : reportSudahSelesais) {
+            TPermohonan tPermohonan = permohonanService.getTPermohonanByTIdossPermohonanId(sudahSelesai.getNomor());
+            List<Mttr> mttrs = mttrService.getMttrByNomorTiket(tPermohonan.getT_idoss_permohonan_id());
+            for (Mttr mttr : mttrs) {
+                long durasi = mttrService.getDurasi(mttr);
+                long lama_pending = mttrService.getLamaPending(mttr);
+                long durasiPelaksanaan = mttrService.getDurasiPelaksanaan(mttr);
+                long mttrLong = durasiPelaksanaan - lama_pending;
+//                long durasiTarget = mttrService.getDurasiTarget(mttr);
+                String durasiTarget = mttrService.getDurasiTarget(mttr);
+                long ts = Calendar.getInstance().getTimeInMillis();
+                tPermohonan.setDurasi(permohonanService.getDuration(durasi));
+
+                if (mttrLong > 0) {
+                    tPermohonan.setMttr(permohonanService.getDuration(mttrLong));
+                } else {
+                    tPermohonan.setMttr("");
+                }
+
+                if (durasiTarget != null) {
+                    tPermohonan.setTarget(durasiTarget + " hari");
+                } else {
+                    tPermohonan.setTarget("");
+                }
+
+                if (mttrService.isInProgress(mttr)) {
+                    tPermohonan.setStatus_track_permohonan("INPROGRESS");
+                }
+            }
+            sudahSelesai.setDurasi_pelaksanaan(tPermohonan.getMttr());
+            sudahSelesai.setDurasi_target(tPermohonan.getTarget());
+        }
         return new JRBeanCollectionDataSource(reportSudahSelesais);
     }
 
