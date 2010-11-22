@@ -10,17 +10,18 @@
                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
                            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
-                           http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.0.xsd">
+                           http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.0.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
     <!--<bean id="adapter" class="org.apache.commons.dbcp.cpdsadapter.DriverAdapterCPDS">-->
     <!--<property name="driver" value="${jdbc.driver}"/>-->
     <!--<property name="url" value="${jdbc.url}"/>-->
     <!--<property name="user" value="${jdbc.username}"/>-->
     <!--<property name="password" value="${jdbc.password}"/>-->
     <!--</bean>-->
-    <bean id="adapter" class="oracle.jdbc.pool.OracleConnectionPoolDataSource" p:URL="${jdbc.url}"
-          p:user="${jdbc.username}" p:password="${jdbc.password}"/>
+    <!--<bean id="adapter" class="oracle.jdbc.pool.OracleConnectionPoolDataSource" p:URL="${jdbc.url}"-->
+          <!--p:user="${jdbc.username}" p:password="${jdbc.password}"/>-->
+    <!--<bean id="dataSourceImpl" class="org.apache.commons.dbcp.datasources.SharedPoolDataSource" destroy-method="close"-->
+          <!--p:connectionPoolDataSource-ref="adapter" p:maxActive="2" p:maxWait="10000" p:maxIdle="2"-->
+          <!--p:defaultAutoCommit="true"/>-->
+    <jee:jndi-lookup id="dataSourceImpl" jndi-name="${jndi.name}"/>
 
-    <bean id="dataSourceImpl" class="org.apache.commons.dbcp.datasources.SharedPoolDataSource" destroy-method="close"
-          p:connectionPoolDataSource-ref="adapter" p:maxActive="2" p:maxWait="10000" p:maxIdle="2"
-          p:defaultAutoCommit="true"/>
 </beans>
