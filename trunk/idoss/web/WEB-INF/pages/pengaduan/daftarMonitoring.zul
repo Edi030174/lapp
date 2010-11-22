@@ -13,7 +13,7 @@
 
         </style>
 
-        <timer id="timer" delay="300000" repeats="true"/>
+        <timer id="timer" delay="60000" repeats="true"/>
         <panel id="panel_daftarTroubleTiket" title="" border="none"/>
         <hbox style="padding: 3px">
             <button id="btnRefresh_DaftarTiket"
