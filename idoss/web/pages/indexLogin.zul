@@ -52,7 +52,7 @@
 			</north>
 
 
-			<west border="none" margins="0,0,0,0" size="230px" style="background-color: #D6DCDE; padding: 5px" flex="true" minsize="100" collapsible="true" splittable="true" autoscroll="false">
+			<west border="none" margins="0,0,0,0" size="230px" style="background-color: #D6DCDE; padding: 5px" flex="true" minsize="100" collapsible="true" splittable="true" autoscroll="false" open="false">
 				<div id="divWest">WEST</div>
 			</west>
 

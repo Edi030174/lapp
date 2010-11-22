@@ -11,7 +11,7 @@
             padding on right and left */ }
             }
         </style>
-        <timer id="timer" delay="300000" repeats="true"/>
+        <timer id="timer" delay="60000" repeats="true"/>
         <panel id="panel_daftarDeskripsi" title="" border="none" />
         <borderlayout id="borderlayout_daftarDeskripsi">
             <north border="none" height="26px">

@@ -22,6 +22,13 @@
         <!-- Title in bold letters -->
         .z-groupbox-hl .z-groupbox-header { color: #000000;
         font-weight: bold; }
+
+        .aa.z-datebox-text-disd {
+        background:transparent;
+        }
+        .aa.z-datebox-disd .z-datebox-inp {
+        color:black !important;
+        }
     </style>
     <window id="window_Permohonan" title="permohonan" border="normal" apply="${permohonanCtrl}"
             sizable="true" contentStyle="overflow:auto" width="800px" height="600px" closable="true">
@@ -112,7 +119,8 @@
                                         </vbox>
                                         <vbox>
                                             <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy"
-                                                     disabled="true" width="150px" style="color: #000000 !important;"/>
+                                                     buttonVisible="false" sclass="aa"
+                                                     readonly="true" width="150px" style="color: #000000 !important;"/>
                                             <textbox id="textbox_NikPemohon"
                                                      width="60px" readonly="true" style="color: black !important;"/>
                                             <space height="22px"></space>

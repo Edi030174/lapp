@@ -78,7 +78,7 @@
                #{updated_date},
                #{target},
                #{inserted_pelaksana},
-               #{target2},
+               #{target2,jdbcType=VARCHAR},
                #{gen_id_col})
     </insert>
 
