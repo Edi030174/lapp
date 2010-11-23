@@ -3,7 +3,6 @@ package net.lintasarta.pengaduan.service;
 import net.lintasarta.pengaduan.model.PType;
 import net.lintasarta.pengaduan.model.predicate.ParentIdPType;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.Predicate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -146,11 +145,11 @@ public class TypeServiceTest {
         return resultList;
     }
 
-    public List constructTreeModel(List<PType> originalList, Iterator iterator, List treeList) {
+    public List<Object> constructTreeModel(List<PType> originalList, Iterator<PType> iterator, List<Object> treeList) {
         while (iterator.hasNext()) {
-            PType pType = (PType) iterator.next();
-            List childList = filterByParentId(originalList, pType.getP_idoss_type_id());
-            List resultChildList = new ArrayList(childList);
+            PType pType = iterator.next();
+            List<PType> childList = filterByParentId(originalList, pType.getP_idoss_type_id());
+            List<Object> resultChildList = new ArrayList<Object>(childList);
             int size = childList.size();
             if (size > 0) {
                 treeList.add(constructTreeModel(originalList, iterator, treeList));
