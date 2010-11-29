@@ -9,7 +9,6 @@ import java.util.List;
  * User: Xsis
  * Date: Aug 13, 2010
  * Time: 4:46:58 PM
- * To change this template use File | Settings | File Templates.
  */
 public interface VHrEmployeePelaksanaDAO {
     List<VHrEmployeePelaksana> getAllVHrEmployeePelaksana();

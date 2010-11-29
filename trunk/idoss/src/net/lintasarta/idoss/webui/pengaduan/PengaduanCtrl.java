@@ -177,6 +177,14 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
             MultiLineMessageBox.doSetTemplate();
             MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
         }
+        try {
+            getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi, mttr);
+        } catch (DataAccessException e) {
+            String message = e.getMessage();
+            String title = Labels.getLabel("message_Error");
+            MultiLineMessageBox.doSetTemplate();
+            MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
+        }
 
         // now synchronize the listBox
         ListModelList lml = (ListModelList) listbox_DaftarTiket.getListModel();
