@@ -4,7 +4,6 @@ import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.pengaduan.model.DaftarTiketModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
-import net.lintasarta.idoss.webui.util.pagging.PagedListWrapper;
 import net.lintasarta.pengaduan.model.TPenangananGangguan;
 import net.lintasarta.pengaduan.model.predicate.*;
 import net.lintasarta.pengaduan.service.PenangananGangguanService;
