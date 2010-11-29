@@ -129,6 +129,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
             PagedListHolder<TPenangananGangguan> pagedListHolder = new PagedListHolder<TPenangananGangguan>(tPenangananGangguans);
             pagedListHolder.setPageSize(getCountRows());
 
+            paging_DaftarTiket = new Paging();
             paging_DaftarTiket.setPageSize(getCountRows());
             paging_DaftarTiket.setDetailed(true);
 

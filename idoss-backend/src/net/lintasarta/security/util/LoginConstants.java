@@ -15,6 +15,10 @@ public class LoginConstants {
     public static final String INPUT_PERMOHONAN = "1516";
     public static final String PELAKSANA_PERMOHONAN = "pelaksana_permohonan";
 
+    //26112010 add by asri
+    public static final String ANALYST = "analyst";
+
+
     // Role Modul Pengaduan
     public static final String IDOSS_HELPDESK_ADUAN = "1517";       // helpd
     public static final String IDOSS_INPUT_ADUAN = "1516";             // user
