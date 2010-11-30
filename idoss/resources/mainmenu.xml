@@ -7,6 +7,16 @@
         <menuItem id="menu_Item1_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarTroubleTiket.zul"
                   rightName="menu_Item_Pengaduan"/>
     </menu>
+    
+    <menu id="menu_Helpdesk_Aduan" rightName="menuCatHelp">
+        <menuItem id="menu_Item3_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarHelpdesk.zul"
+                  rightName="menu_Item_Pengaduan"/>
+    </menu>
+
+    <menu id="menu_Pelaksana_Aduan" rightName="menuCatPel">
+        <menuItem id="menu_Item4_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarPelaksanaan.zul"
+                  rightName="menu_Item_Pengaduan"/>
+    </menu>
 
     <menu id="menu_Monitoring_Aduan" rightName="menuCatMon">
         <menuItem id="menu_Item2_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarMonitoring.zul"
@@ -14,24 +24,6 @@
         <menuItem id="menu_Item2_Report_Aduan" zulNavigation="/WEB-INF/pages/pengaduan/reportAduan.zul"
                   rightName="menu_Item_Report1"/>
         <menuItem id="menu_Item2_Report_Rekap_Aduan" zulNavigation="/WEB-INF/pages/pengaduan/reportRekapAduan.zul"
-                  rightName="menu_Item_Report4"/>
-    </menu>
-
-    <menu id="menu_Helpdesk_Aduan" rightName="menuCatHelp">
-        <menuItem id="menu_Item3_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarHelpdesk.zul"
-                  rightName="menu_Item_Pengaduan"/>
-        <menuItem id="menu_Item3_Report_Aduan" zulNavigation="/WEB-INF/pages/pengaduan/reportAduan.zul"
-                  rightName="menu_Item_Report1"/>
-        <menuItem id="menu_Item3_Report_Rekap_Aduan" zulNavigation="/WEB-INF/pages/pengaduan/reportRekapAduan.zul"
-                  rightName="menu_Item_Report4"/>
-    </menu>
-
-    <menu id="menu_Pelaksana_Aduan" rightName="menuCatPel">
-        <menuItem id="menu_Item4_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarPelaksanaan.zul"
-                  rightName="menu_Item_Pengaduan"/>
-        <menuItem id="menu_Item4_Report_Aduan" zulNavigation="/WEB-INF/pages/pengaduan/reportAduan.zul"
-                  rightName="menu_Item_Report1"/>
-        <menuItem id="menu_Item4_Report_Rekap_Aduan" zulNavigation="/WEB-INF/pages/pengaduan/reportRekapAduan.zul"
                   rightName="menu_Item_Report4"/>
     </menu>
 

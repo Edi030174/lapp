@@ -24,4 +24,6 @@ public class LoginConstants {
     public static final String IDOSS_INPUT_ADUAN = "1516";             // user
     public static final String IDOSS_MONITORING_ADUAN = "1519";   // monitoring
     public static final String IDOSS_PELAKSANA_ADUAN = "1518";     // pelak
+    //
+    public static final String IDOSS_MONITORING_HELPDESK_PELAKSANA = "MON_HELP_PELAK";
 }
