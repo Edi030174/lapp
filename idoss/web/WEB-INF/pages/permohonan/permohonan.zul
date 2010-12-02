@@ -39,7 +39,12 @@
                     <tabbox id="tabBox_Permohonan" width="100%" orient="horizontal">
                         <tabs>
                             <tab id="tab_Permohonan" label="Permohonan"/>
-                            <tab id="tab_Persetujuan" label="Persetujuan" selected="true"/>
+                            <tab id="tab_Persetujuan" label="Persetujuan"/>
+                            <tab id="tab_PersetujuanManagerPemohon" label="Persetujuan Manager Pemohon"/>
+                            <tab id="tab_PersetujuanGMPemohon" label="Persetujuan GM Pemohon"/>
+                            <tab id="tab_PersetujuanAsmanDukophar" label="Persetujuan Asisten Manager Dukophar" selected="true"/>
+                            <tab id="tab_PersetujuanManagerDukophar" label="Persetujuan Manager Dukophar"/>
+                            <tab id="tab_PersetujuanGMDukophar" label="Persetujuan GM Dukophar"/>
                             <tab id="tab_Pelaksanaan" label="Pelaksanaan"/>
                         </tabs>
                         <tabpanels>
@@ -55,7 +60,7 @@
                                     <vbox>
                                         <hbox>
 
-                                            <space width="650px"></space>
+                                            <space width="650px"/>
                                             <label
                                                     style="font-size:12pt;font-weight:bold" value="PENTING"/>
                                         </hbox>
@@ -64,29 +69,29 @@
                                         <vbox>
                                             <label width="100px"
                                                    value="Nomor Permohonan"/>
-                                            <space height="1px"></space>
+                                            <space height="1px"/>
                                             <label width="100px" value="Nama Pemohon"/>
-                                            <space height="1px"></space>
+                                            <space height="1px"/>
                                             <label width="130px" value="Bagian Pemohon"/>
-                                            <space height="1px"></space>
+                                            <space height="1px"/>
                                             <label width="100px"
                                                    value="Nama Manager"/>
-                                            <space height="1px"></space>
+                                            <space height="1px"/>
                                             <label width="100px"
                                                    value="Nama General Manager"/>
-                                            <space height="1px"></space>
-                                            <space height="1px"></space>
-                                            <space height="1px"></space>
+                                            <space height="1px"/>
+                                            <space height="1px"/>
+                                            <space height="1px"/>
                                         </vbox>
                                         <vbox>
                                             <label width="10px" value=":"/>
-                                            <space height="1px"></space>
+                                            <space height="1px"/>
                                             <label width="10px" value=":"/>
-                                            <space height="1px"></space>
+                                            <space height="1px"/>
                                             <label width="10px" value=":"/>
-                                            <space height="1px"></space>
+                                            <space height="1px"/>
                                             <label width="10px" value=":"/>
-                                            <space height="1px"></space>
+                                            <space height="1px"/>
                                             <label width="10px" value=":"/>
                                         </vbox>
                                         <vbox>
@@ -95,7 +100,7 @@
                                                         id="textbox_TIdossPermohonanId" width="120px" readonly="true"
                                                         style="color: #000000 !important;"/>
                                                 <vbox>
-                                                    <space height="1px"></space>
+                                                    <space height="1px"/>
                                                     <label width="10px" value="/FPSOPHAR/2010"/>
                                                 </vbox>
                                             </hbox>
@@ -109,12 +114,12 @@
                                                      style="color: black !important;"/>
                                         </vbox>
                                         <vbox>
-                                            <space height="1px"></space>
+                                            <space height="1px"/>
                                             <label value="Tanggal:"/>
                                             <label width="10px" value="NIK :"/>
-                                            <space height="26px"></space>
+                                            <space height="26px"/>
                                             <label width="10px" value="NIK :"/>
-                                            <space height="5px"></space>
+                                            <space height="5px"/>
                                             <label width="10px" value="NIK :"/>
                                         </vbox>
                                         <vbox>
@@ -123,7 +128,7 @@
                                                      readonly="true" width="150px" style="color: #000000 !important;"/>
                                             <textbox id="textbox_NikPemohon"
                                                      width="60px" readonly="true" style="color: black !important;"/>
-                                            <space height="22px"></space>
+                                            <space height="22px"/>
                                             <textbox id="textbox_NikManager"
                                                      width="60px" readonly="true" style="color: black !important;"/>
                                             <textbox id="textbox_NikGm"
@@ -136,7 +141,7 @@
                                              style="font-weight:normal"/>
                                     <vbox>
                                         <hbox>
-                                            <vbox></vbox>
+                                            <vbox/>
                                             Type :
                                             <radiogroup id="radiogroupType_permohonan">
                                                 <radio id="radio_readonly" label="User Read Only" value="User RO"
@@ -192,6 +197,11 @@
                                 </groupbox>
                             </tabpanel>
                             <tabpanel id="tabPanel_Persetujuan" height="100%" style="border: 0px; padding: 0px"/>
+                            <tabpanel id="tabPanel_PersetujuanManagerPemohon" height="100%" style="border: 0px; padding: 0px"/>
+                            <tabpanel id="tabPanel_PersetujuanGMPemohon" height="100%" style="border: 0px; padding: 0px"/>
+                            <tabpanel id="tabPanel_PersetujuanAsmanDukophar" height="100%" style="border: 0px; padding: 0px"/>
+                            <tabpanel id="tabPanel_PersetujuanManagerDukophar" height="100%" style="border: 0px; padding: 0px"/>
+                            <tabpanel id="tabPanel_PersetujuanGMDukophar" height="100%" style="border: 0px; padding: 0px"/>
                             <tabpanel id="tabPanel_Pelaksanaan" height="100%" style="border: 0px; padding: 0px"/>
                         </tabpanels>
                     </tabbox>

@@ -78,7 +78,7 @@ public class LoginServiceImpl implements LoginService {
                 return LoginConstants.ANALYST;
             // end
             }else if(vHrEmployee.getEmployee_no().equals("84070998")){
-                return LoginConstants.IDOSS_MONITORING_HELPDESK_PELAKSANA;
+                return LoginConstants.GMUSER;
             } else {
                 return LoginConstants.IDOSS_HELPDESK_ADUAN;
             }

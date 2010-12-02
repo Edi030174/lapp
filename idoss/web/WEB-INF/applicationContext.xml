@@ -56,6 +56,40 @@
           parent="basisListCtrl" scope="prototype">
         <property name="penangananGangguanService" ref="penangananGangguanService"/>
     </bean>
+    <bean id="pengaduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PengaduanCtrl" parent="basisCtrl"
+          scope="prototype">
+        <property name="penangananGangguanService" ref="penangananGangguanService"/>
+        <property name="mttrService" ref="mttrService"/>
+    </bean>
+    <bean id="penangananGangguanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PenangananGangguanCtrl"
+          parent="basisCtrl"
+          scope="prototype">
+        <property name="penangananGangguanService" ref="penangananGangguanService"/>
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+        <property name="rootCausedService" ref="rootCausedService"/>
+        <property name="typeService" ref="typeService"/>
+        <property name="mttrService" ref="mttrService"/>
+    </bean>
+    <bean id="pelaksanaanGangguanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PelaksanaanGangguanCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+        <property name="mttrService" ref="mttrService"/>
+        <property name="rootCausedService" ref="rootCausedService"/>
+        <property name="typeService" ref="typeService"/>
+    </bean>
+    <bean id="pelaksanaanGangguanRCtrl" class="net.lintasarta.idoss.webui.pengaduan.PelaksanaanGangguanRCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+        <property name="mttrService" ref="mttrService"/>
+    </bean>
+    <bean id="tambahRootCausedCtrl" class="net.lintasarta.idoss.webui.pengaduan.TambahRootCausedCtrl" parent="basisCtrl"
+          scope="prototype">
+        <property name="rootCausedService" ref="rootCausedService"/>
+    </bean>
+    <bean id="typeCtrl" class="net.lintasarta.idoss.webui.pengaduan.TypeCtrl" parent="basisCtrl" scope="prototype">
+        <property name="typeService" ref="typeService"/>
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+    </bean>
 
     <bean id="daftarPermohonanCtrl" class="net.lintasarta.idoss.webui.permohonan.DaftarPermohonanCtrl"
           parent="basisListCtrl" scope="prototype">
@@ -88,27 +122,6 @@
           scope="prototype">
         <property name="permohonanService" ref="permohonanService"/>
     </bean>
-    <bean id="pelaksanaanCtrl" class="net.lintasarta.idoss.webui.permohonan.PelaksanaanCtrl" parent="basisCtrl"
-          scope="prototype">
-        <property name="pelaksanaanService" ref="pelaksanaanService"/>
-        <property name="mttrService" ref="mttrService"/>
-    </bean>
-    <bean id="verifikasiCtrl" class="net.lintasarta.idoss.webui.permohonan.VerifikasiCtrl" parent="basisCtrl"
-          scope="prototype">
-        <property name="verifikasiService" ref="verifikasiService"/>
-    </bean>
-    <bean id="persetujuanManagerPemohonCtrl" class="net.lintasarta.idoss.webui.permohonan.PersetujuanManagerPemohonCtrl"
-          parent="basisCtrl" scope="prototype">
-        <property name="verifikasiService" ref="verifikasiService"/>
-    </bean>
-    <bean id="persetujuanGmPemohonCtrl" class="net.lintasarta.idoss.webui.permohonan.PersetujuanGmPemohonCtrl"
-          parent="basisCtrl" scope="prototype">
-        <property name="permohonanService" ref="permohonanService"/>
-    </bean>
-    <bean id="persetujuanGmCtrl" class="net.lintasarta.idoss.webui.permohonan.PersetujuanGmCtrl"
-          parent="basisCtrl" scope="prototype">
-        <property name="verifikasiService" ref="verifikasiService"/>
-    </bean>
     <bean id="persetujuanCtrl" class="net.lintasarta.idoss.webui.permohonan.PersetujuanCtrl"
           parent="basisCtrl" scope="prototype">
         <property name="permohonanService" ref="permohonanService"/>
@@ -117,44 +130,52 @@
         <property name="pelaksanaanService" ref="pelaksanaanService"/>
         <property name="mttrService" ref="mttrService"/>
     </bean>
-
-    <bean id="pengaduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PengaduanCtrl" parent="basisCtrl"
-          scope="prototype">
-        <property name="penangananGangguanService" ref="penangananGangguanService"/>
-        <property name="mttrService" ref="mttrService"/>
-    </bean>
-    <bean id="penangananGangguanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PenangananGangguanCtrl"
-          parent="basisCtrl"
-          scope="prototype">
-        <property name="penangananGangguanService" ref="penangananGangguanService"/>
-        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
-        <property name="rootCausedService" ref="rootCausedService"/>
-        <property name="typeService" ref="typeService"/>
-        <property name="mttrService" ref="mttrService"/>
-    </bean>
-
-    <bean id="pelaksanaanGangguanCtrl" class="net.lintasarta.idoss.webui.pengaduan.PelaksanaanGangguanCtrl"
+    <bean id="persetujuanManagerPemohonCtrl" class="net.lintasarta.idoss.webui.permohonan.PersetujuanManagerPemohonCtrl"
           parent="basisCtrl" scope="prototype">
+        <property name="permohonanService" ref="permohonanService"/>
+        <property name="verifikasiService" ref="verifikasiService"/>
         <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+        <property name="pelaksanaanService" ref="pelaksanaanService"/>
         <property name="mttrService" ref="mttrService"/>
-        <property name="rootCausedService" ref="rootCausedService"/>
-        <property name="typeService" ref="typeService"/>
     </bean>
-
-    <bean id="pelaksanaanGangguanRCtrl" class="net.lintasarta.idoss.webui.pengaduan.PelaksanaanGangguanRCtrl"
+    <bean id="persetujuanGmPemohonCtrl" class="net.lintasarta.idoss.webui.permohonan.PersetujuanGmPemohonCtrl"
           parent="basisCtrl" scope="prototype">
+        <property name="permohonanService" ref="permohonanService"/>
+        <property name="verifikasiService" ref="verifikasiService"/>
         <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+        <property name="pelaksanaanService" ref="pelaksanaanService"/>
+        <property name="mttrService" ref="mttrService"/>
+    </bean>
+    <bean id="persetujuanAsmanCtrl" class="net.lintasarta.idoss.webui.permohonan.PersetujuanAsmanCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="permohonanService" ref="permohonanService"/>
+        <property name="verifikasiService" ref="verifikasiService"/>
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+        <property name="pelaksanaanService" ref="pelaksanaanService"/>
+        <property name="mttrService" ref="mttrService"/>
+    </bean>
+    <bean id="persetujuanManagerCtrl" class="net.lintasarta.idoss.webui.permohonan.PersetujuanManagerCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="permohonanService" ref="permohonanService"/>
+        <property name="verifikasiService" ref="verifikasiService"/>
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+        <property name="pelaksanaanService" ref="pelaksanaanService"/>
         <property name="mttrService" ref="mttrService"/>
     </bean>
 
-    <bean id="tambahRootCausedCtrl" class="net.lintasarta.idoss.webui.pengaduan.TambahRootCausedCtrl" parent="basisCtrl"
-          scope="prototype">
-        <property name="rootCausedService" ref="rootCausedService"/>
-    </bean>
 
-    <bean id="typeCtrl" class="net.lintasarta.idoss.webui.pengaduan.TypeCtrl" parent="basisCtrl" scope="prototype">
-        <property name="typeService" ref="typeService"/>
-        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+    <bean id="persetujuanGmCtrl" class="net.lintasarta.idoss.webui.permohonan.PersetujuanGmCtrl"
+          parent="basisCtrl" scope="prototype">
+        <property name="verifikasiService" ref="verifikasiService"/>
+    </bean>
+    <bean id="pelaksanaanCtrl" class="net.lintasarta.idoss.webui.permohonan.PelaksanaanCtrl" parent="basisCtrl"
+          scope="prototype">
+        <property name="pelaksanaanService" ref="pelaksanaanService"/>
+        <property name="mttrService" ref="mttrService"/>
+    </bean>
+    <bean id="verifikasiCtrl" class="net.lintasarta.idoss.webui.permohonan.VerifikasiCtrl" parent="basisCtrl"
+          scope="prototype">
+        <property name="verifikasiService" ref="verifikasiService"/>
     </bean>
 
     <bean id="reportAduanCtrl" class="net.lintasarta.idoss.webui.pengaduan.ReportAduanCtrl" parent="basisCtrl"
