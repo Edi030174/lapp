@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
-<?page title="persetujuanmanagerpemohon" contentType="text/html;charset=UTF-8"?>
+<?page title="persetujuan manager pemohon" contentType="text/html;charset=UTF-8"?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
     xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -23,8 +23,8 @@
         .z-groupbox-hl .z-groupbox-header { color: #000000;
         font-weight: bold; }
     </style>
-    <window id="window_PersetujuanManagerPemohon" border="normal" title="persetujuan manager pemohon"
-            apply="${persetujuanmanagerpemohonCtrl}">
+    <window id="window_Persetujuan" width="782px" height="535px" contentStyle="overflow:auto" border="normal"
+            apply="${persetujuanManagerPemohonCtrl}">
         <toolbar>
             <button id="btn_SimpanPersetujuanManagerPemohon" label="Simpan"/>
             <button id="btn_Batal" label="Batal"/>
@@ -46,39 +46,36 @@
             </vbox>
             <vbox>
                 <hbox>
-                    <textbox
-                            id="textbox_TIdossPermohonanId" width="120px" disabled="true"
-                            style="color: #000000 !important;"/>
+                    <textbox id="textbox_TIdossPermohonanId" width="120px" readonly="true"
+                             style="color: #000000 !important;"/>
                     <vbox>
                         <space height="1px"/>
-                        <label width="10px" value="//FSHOPAR2010"/>
+                        <label width="10px"
+                               value="/FPSOPHAR/2010"/>
                     </vbox>
                 </hbox>
-                <textbox id="textbox_NamaPemohon" width="200px" disabled="true" style="color: black !important;"/>
+                <textbox id="textbox_NamaPemohon"
+                         width="200px" readonly="true" style="color: black !important;"/>
             </vbox>
             <vbox>
                 <space height="1px"/>
-                <label value="Tanggal:"/>
+                <label value="Tanggal Persetujuan:"/>
                 <label width="10px" value="NIK :"/>
             </vbox>
             <vbox>
-                <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" disabled="true" readonly="true" width="150px" style="color: #000000 !important;"/>
-                <textbox id="textbox_NikPemohon" width="60px" disabled="true" style="color: black !important;"/>
+                <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" disabled="true"
+                         width="150px" style="color: #000000 !important;"/>
+                <textbox id="textbox_NikPemohon"
+                         width="60px" readonly="true" style="color: black !important;"/>
             </vbox>
         </hbox>
-        <vbox>
-            <label width="100px" value="detail :"/>
-            <textbox id="textbox_DetailPermohonan" width="400px" disabled="true" multiline="true" style="color: black !important;"/>
-        </vbox>
-        <!--<space width="1px"></space>-->
-        <separator bar="true" orient="horizontal"/>
         <hbox>
             <vbox>
                 <label value="Prioritas :"/>
                 <radiogroup id="radiogroup_Prioritas">
                     <hbox>
-                        <radio id="high" label="high" value="H"/>
-                        <radio id="normal" label="normal" value="N" selected="true"/>
+                        <radio id="radio_high" label="high" value="H" disabled="true"/>
+                        <radio id="radio_normal" label="normal" value="N" selected="true" disabled="true"/>
                     </hbox>
                 </radiogroup>
             </vbox>
@@ -87,44 +84,39 @@
                 <label value="Dampak :"/>
                 <radiogroup id="radiogroup_Dampak">
                     <hbox>
-                        <radio id="major" label="major" value="MAJOR"/>
-                        <radio id="minor" label="minor" value="MINOR" selected="true"/>
+                        <radio id="radio_major" label="major" value="MAJOR" disabled="true"/>
+                        <radio id="radio_minor" label="minor" value="MINOR" selected="true" disabled="true"/>
                     </hbox>
                 </radiogroup>
             </vbox>
         </hbox>
-        <space width="20px"></space>
+        <space width="10px"/>
         <groupbox mold="3d">
-            <caption label="" style="font-weight:bold"/>
+            <caption label="detail permohonan" style="font-weight:normal"/>
+            <label value="Deskripsi : "/>
+            <textbox id="textbox_DetailPermohonan" rows="3" width="300px"/>
+        </groupbox>
+        <groupbox mold="3d" id="groupbox_ManagerPemohon">
+            <caption label="catatan Manager" style="font-weight:normal"/>
             <hbox>
                 <vbox>
+                    <label id="label_tgl1"/>
+                    <label id="label_by1"/>
                     <hbox>
-                        <label value="Status Permohonan : "/>
+                        <label id="sp1" value="Status Permohonan : "/>
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanManagerPemohon">
                         <hbox>
-                            <radio id="radio_DisetujuiManagerPemohon" label="disetujui" value="DISETUJUI"
-                                   selected="true"></radio>
-                            <radio id="radio_DitolakManagerPemohon" label="ditolak" value="DITOLAK"></radio>
+                            <radio id="radio_DisetujuiMPemohon" label="disetujui" value="Disetujui Manager Pemohon"
+                                   selected="true"/>
+                            <radio id="radio_DitolakMPemohon" label="ditolak" value="Ditolak Manager Pemohon"/>
                         </hbox>
                     </radiogroup>
-                    <space height="2px"></space>
-                    <hbox>
-                        <label value="Tanggal : "/>
-                        <datebox id="datebox_Tanggal2" format="dd MMMM yyyy" readonly="true" width="150px"/>
-                    </hbox>
-                    <hbox>
-                        <label value="Pelaksana : "/>
-                        <textbox id="textbox_NikPelaksana"/>
-                    </hbox>
-                    <space height="2px"></space>
                 </vbox>
                 <space width="40px"/>
                 <vbox>
-                    <label value="catatan : "/>
-                    <fckeditor id="fck_CatatanManagerPemohon" height="99%" width="484px"
-                               customConfigurationsPath="/js/fckeditor.js"
-                               toolbarSet="Basic"/>
+                    <label value="catatan Manager : "/>
+                    <textbox id="textbox_muser" rows="3" width="300px"/>
                 </vbox>
             </hbox>
         </groupbox>
