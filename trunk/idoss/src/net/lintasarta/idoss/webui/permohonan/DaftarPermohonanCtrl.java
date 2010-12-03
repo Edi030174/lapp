@@ -8,6 +8,7 @@ import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.predicate.*;
 import net.lintasarta.permohonan.service.PermohonanService;
+import net.lintasarta.security.model.VHrEmployee;
 import net.lintasarta.security.util.LoginConstants;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
@@ -20,6 +21,7 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -138,24 +140,30 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 
         TPermohonan tPermohonan = new TPermohonan();
         String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
-        String role = getUserWorkspace().getUserSession().getEmployeeRole();
+        List<Integer> role = getUserWorkspace().getUserSession().getEmployeeRole();
 //        boolean isPelaksana = false;
 //        if (pelaksanaanGangguanService.getVHrEmployeePelaksanaById(getUserWorkspace().getUserSession().getEmployeeNo()) != null) {
 //            isPelaksana = true;
 //        }
 
-        if (role.equalsIgnoreCase(LoginConstants.INPUT_PERMOHONAN)) {
+        if (getUserWorkspace().getUserSession().getJobPositionCode().equals("INput")) {
             tPermohonan.setNik_pemohon(employeeNo);
             tPermohonans = getPermohonanService().getTPermohonanByNikPemohon(tPermohonan);
-        } else if (role.equalsIgnoreCase(LoginConstants.MUSER)) {
+        } else if ((getUserWorkspace().getUserSession().getOrganizationid() != 1176)
+                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("Manager"))
+                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH Manager")))) {
             tPermohonan.setNik_manager(employeeNo);
             tPermohonan.setStatus_track_permohonan("Persetujuan Manager");
             tPermohonans = getPermohonanService().getTPermohonanByStatusAndNikManager(tPermohonan);
-        } else if (role.equalsIgnoreCase(LoginConstants.GMUSER)) {
+        } else if ((getUserWorkspace().getUserSession().getOrganizationid() != 1176)
+                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("General Manager"))
+                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH General Manager")))) {
             tPermohonan.setNik_gm(employeeNo);
             tPermohonan.setStatus_track_permohonan("Disetujui Manager Pemohon");
             tPermohonans = getPermohonanService().getTPermohonanByStatusAndNikGM(tPermohonan);
-        } else if (role.equalsIgnoreCase(LoginConstants.AMDUK)) {
+        } else if ((getUserWorkspace().getUserSession().getOrganizationid() == 1176)
+                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("Assistant Manager"))
+                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH Assistant Manager")))) {
             tPermohonan.setStatus_track_permohonan("Disetujui GM Pemohon");
             tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan);
 
@@ -167,10 +175,14 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 
             tPermohonan.setStatus_track_permohonan("Permohonan Baru GM Dukophar");
             tPermohonans.addAll(getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan));
-        } else if (role.equalsIgnoreCase(LoginConstants.MDUK)) {
+        } else if ((getUserWorkspace().getUserSession().getOrganizationid() == 1176)
+                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("Manager"))
+                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH Manager")))) {
             tPermohonan.setStatus_track_permohonan("Disetujui Asman Dukophar");
             tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan);
-        } else if (role.equalsIgnoreCase(LoginConstants.GMDUK)) {
+        } else if ((getUserWorkspace().getUserSession().getOrganizationid() == 1155)
+                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("General Manager"))
+                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH General Manager")))) {
             tPermohonan.setDampak("MAJOR");
             tPermohonan.setStatus_track_permohonan("Disetujui Manager Dukophar");
             tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonanAndDampak(tPermohonan);
@@ -185,6 +197,35 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 
         getPagedListWrapper().init(pagedListHolder, listbox_DaftarPermohonan, paging_DaftarPermohonan);
         listbox_DaftarPermohonan.setItemRenderer(new DaftarPermohonanModelItemRenderer());
+    }
+
+    public String getAuthorization(VHrEmployee vHrEmployee) {
+        if (vHrEmployee.getP_organization_id().equals(new BigDecimal(1176))) {
+            if (vHrEmployee.getJob_position_code().equals("Assistant Manager") || vHrEmployee.getJob_position_code().equals("POH Assistant Manager")) {
+                return LoginConstants.AMDUK;
+            } else if (vHrEmployee.getJob_position_code().equals("Manager") || vHrEmployee.getJob_position_code().equals("POH Manager")) {
+                return LoginConstants.MDUK;
+                // 26112010 add by asri start
+            } else if (vHrEmployee.getJob_position_code().equals("Analyst")) {
+                return LoginConstants.ANALYST;
+                // end
+            } else if (vHrEmployee.getEmployee_no().equals("84070998")) {
+                return LoginConstants.GMUSER;
+            } else {
+                return LoginConstants.IDOSS_HELPDESK_ADUAN;
+            }
+        } else if (vHrEmployee.getP_organization_id().equals(new BigDecimal(1155))) {
+            if (vHrEmployee.getJob_position_code().equals("General Manager") || vHrEmployee.getJob_position_code().equals("POH General Manager")) {
+                return LoginConstants.GMDUK;
+            }
+        } else {
+            if (vHrEmployee.getJob_position_code().equals("Manager") || vHrEmployee.getJob_position_code().equals("POH Manager")) {
+                return LoginConstants.MUSER;
+            } else if (vHrEmployee.getJob_position_code().equals("General Manager") || vHrEmployee.getJob_position_code().equals("POH General Manager")) {
+                return LoginConstants.GMUSER;
+            }
+        }
+        return LoginConstants.IDOSS_INPUT_ADUAN;
     }
 
     private void doCheckRights() {

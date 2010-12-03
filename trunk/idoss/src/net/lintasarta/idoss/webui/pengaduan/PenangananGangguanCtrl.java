@@ -9,7 +9,6 @@ import net.lintasarta.idoss.webui.util.NoEmptyStringsConstraint;
 import net.lintasarta.pengaduan.model.*;
 import net.lintasarta.pengaduan.service.*;
 import net.lintasarta.security.model.VHrEmployee;
-import net.lintasarta.security.util.LoginConstants;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
@@ -305,7 +304,10 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
 
         try {
-            if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase(LoginConstants.IDOSS_HELPDESK_ADUAN)) {
+//            if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase(LoginConstants.IDOSS_HELPDESK_ADUAN)) {
+            if ((getUserWorkspace().getUserSession().getOrganizationid() == 1176)
+                    ^ ((getUserWorkspace().getUserSession().getJobPositionCode().equals("Assistant Manager"))
+                    || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH Assistant Manager")))) {
                 tPenangananGangguan.setNik_pelapor(getEmployee().getEmployee_no());
             }
             getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi, mttr);

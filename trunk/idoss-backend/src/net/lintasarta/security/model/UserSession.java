@@ -1,6 +1,7 @@
 package net.lintasarta.security.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -10,11 +11,12 @@ import java.io.Serializable;
  */
 public class UserSession implements Serializable {
 
-    private String employeeRole;
+    private List<Integer> employeeRole;
     private String employeeNo;
     private String userName;
     private String employeeName;
     private String department;
+    private String passwordMask;
     private String jobLocation;
     private int organizationid;
     private String winHeight;
@@ -23,22 +25,23 @@ public class UserSession implements Serializable {
     public UserSession() {
     }
 
-    public UserSession(String employeeRole, String employeeNo, String userName, String employeeName, String department, String jobLocation, int organizationid, String winHeight) {
+    public UserSession(List<Integer> employeeRole, String employeeNo, String userName, String employeeName, String department, String passwordMask, String jobLocation, int organizationid, String winHeight) {
         this.employeeRole = employeeRole;
         this.employeeNo = employeeNo;
         this.userName = userName;
         this.employeeName = employeeName;
         this.department = department;
+        this.passwordMask =passwordMask; 
         this.jobLocation = jobLocation;
         this.organizationid = organizationid;
         this.winHeight = winHeight;
     }
 
-    public String getEmployeeRole() {
+    public List<Integer> getEmployeeRole() {
         return employeeRole;
     }
 
-    public void setEmployeeRole(String employeeRole) {
+    public void setEmployeeRole(List<Integer> employeeRole) {
         this.employeeRole = employeeRole;
     }
 
@@ -72,6 +75,14 @@ public class UserSession implements Serializable {
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public String getPasswordMask() {
+        return passwordMask;
+    }
+
+    public void setPasswordMask(String passwordMask) {
+        this.passwordMask = passwordMask;
     }
 
     public String getJobLocation() {

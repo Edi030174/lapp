@@ -2,28 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="net.lintasarta.pengaduan.dao.PApplicationDAO">
-    <resultMap id="papplication" type="net.lintasarta.pengaduan.model.PApplication">
-        <id property="user_name"/>
-    </resultMap>
-    <select id="getRole" resultType="papplication">
-        SELECT A.P_APPLICATION_ROLE_ID,
-               A.P_APPLICATION_USER_ID,
-               A.USER_NAME,
-               A.EMPLOYEE_NO,
-               A.EMPLOYEE_NAME,
-               A.NAMA,
-               A.CODE
-        FROM  V_IDOSS_ROLE_ADUAN A
+
+    <select id="getRoleByUsername" parameterType="string" resultType="int">
+        SELECT DISTINCT P_APPLICATION_ROLE_ID
+        FROM P_USERS_ROLE
+        WHERE P_APPLICATION_USER_ID=(SELECT P_APPLICATION_USER_ID FROM P_APPLICATION_USER WHERE USER_NAME=#{user_name,jdbcType=VARCHAR})
+        AND (p_application_role_id = '1516' OR p_application_role_id = '1517' OR p_application_role_id = '1518' OR p_application_role_id = '1519')
     </select>
-    <select id="getRoleByUsername" parameterType="string" resultMap="papplication">
-        SELECT A.P_APPLICATION_ROLE_ID,
-               A.P_APPLICATION_USER_ID,
-               A.USER_NAME,
-               A.EMPLOYEE_NO,
-               A.EMPLOYEE_NAME,
-               A.NAMA,
-               A.CODE
-        FROM  V_IDOSS_ROLE_ADUAN A
-        WHERE A.USER_NAME=#{user_name,jdbcType=VARCHAR}
+
+    <select id="getPasswordByUserName" parameterType="string" resultType="string">
+        SELECT PASSWORD FROM P_APPLICATION_USER WHERE USER_NAME=#{user_name,jdbcType=VARCHAR}
     </select>
+
 </mapper>

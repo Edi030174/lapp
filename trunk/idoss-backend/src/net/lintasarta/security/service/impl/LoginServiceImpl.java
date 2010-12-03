@@ -112,9 +112,10 @@ public class LoginServiceImpl implements LoginService {
                 String jobLocation = vHrEmployee.getJob_location();
                 int orgId = vHrEmployee.getP_organization_id().intValue();
                 UserSession userSession = new UserSession();
-                userSession.setEmployeeRole(getAuthorization(vHrEmployee));
+                userSession.setEmployeeRole(getpApplicationDAO().getRoleByUsername(userName));
                 userSession.setJobPositionCode(vHrEmployee.getJob_position_code());
                 userSession.setDepartment(department);
+                userSession.setPasswordMask(getpApplicationDAO().getPasswordByUserName(userName));
                 userSession.setEmployeeName(employeeName);
                 userSession.setEmployeeNo(employeeNo);
                 userSession.setJobLocation(jobLocation);
@@ -138,9 +139,8 @@ public class LoginServiceImpl implements LoginService {
             String jobLocation = vHrEmployee.getJob_location();
             int orgId = vHrEmployee.getP_organization_id().intValue();
             UserSession userSession = new UserSession();
-            userSession.setEmployeeRole(
-                    getAuthorization(vHrEmployee)
-            );
+//            userSession.setEmployeeRole(getAuthorization(vHrEmployee));
+            userSession.setEmployeeRole(getpApplicationDAO().getRoleByUsername(userName));
             userSession.setJobPositionCode(vHrEmployee.getJob_position_code());
             userSession.setDepartment(department);
             userSession.setEmployeeName(employeeName);

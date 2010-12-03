@@ -15,7 +15,6 @@ import net.lintasarta.permohonan.model.comparator.TPermohonanComparator;
 import net.lintasarta.permohonan.service.PermohonanService;
 import net.lintasarta.permohonan.service.VerifikasiService;
 import net.lintasarta.security.model.VHrEmployee;
-import net.lintasarta.security.util.LoginConstants;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.media.Media;
@@ -169,8 +168,10 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doCheckRights() {
         UserWorkspace workspace = getUserWorkspace();
-        String role = getUserWorkspace().getUserSession().getEmployeeRole();
-        if (role.equalsIgnoreCase(LoginConstants.AMDUK)) {
+//        String role = getUserWorkspace().getUserSession().getEmployeeRole();
+        if ((getUserWorkspace().getUserSession().getOrganizationid() == 1176)
+                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("Assistant Manager"))
+                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH Assistant Manager")))) {
             label_prioritas.setVisible(true);
             radiogroup_Prioritas.setVisible(true);
             label_dampak.setVisible(true);
@@ -312,8 +313,10 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
             Messagebox.show("Silakan isi deskripsi");
             return false;
         }
-        String role = getUserWorkspace().getUserSession().getEmployeeRole();
-        if (role.equalsIgnoreCase(LoginConstants.AMDUK)) {
+//        String role = getUserWorkspace().getUserSession().getEmployeeRole();
+        if ((getUserWorkspace().getUserSession().getOrganizationid() == 1176)
+                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("Assistant Manager"))
+                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH Assistant Manager")))) {
             if (listbox_NamaPelaksana.getSelectedItem() == null) {
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;

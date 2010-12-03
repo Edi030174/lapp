@@ -162,11 +162,13 @@
         <property name="pelaksanaanService" ref="pelaksanaanService"/>
         <property name="mttrService" ref="mttrService"/>
     </bean>
-
-
     <bean id="persetujuanGmCtrl" class="net.lintasarta.idoss.webui.permohonan.PersetujuanGmCtrl"
           parent="basisCtrl" scope="prototype">
+        <property name="permohonanService" ref="permohonanService"/>
         <property name="verifikasiService" ref="verifikasiService"/>
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
+        <property name="pelaksanaanService" ref="pelaksanaanService"/>
+        <property name="mttrService" ref="mttrService"/>
     </bean>
     <bean id="pelaksanaanCtrl" class="net.lintasarta.idoss.webui.permohonan.PelaksanaanCtrl" parent="basisCtrl"
           scope="prototype">

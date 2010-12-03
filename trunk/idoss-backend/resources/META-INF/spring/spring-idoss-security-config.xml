@@ -16,5 +16,6 @@
     </bean>
     <bean id="loginService" class="net.lintasarta.security.service.impl.LoginServiceImpl">
         <property name="vHrEmployeeDAO" ref="vHrEmployeeDAO"/>
+        <property name="pApplicationDAO" ref="PApplicationDAO"/>
     </bean>
 </beans>
