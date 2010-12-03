@@ -1,7 +1,6 @@
 package net.lintasarta.security.dao;
 
 import net.lintasarta.pengaduan.dao.PApplicationDAO;
-import net.lintasarta.pengaduan.model.PApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +8,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,25 +20,21 @@ import static org.junit.Assert.assertNotNull;
 @ContextConfiguration(
         locations = {
                 "classpath:META-INF/ibatis/ibatis-spring-config.xml",
+                "classpath:datasource-impl.xml",
                 "classpath:META-INF/spring/datasource.xml",
                 "classpath:META-INF/spring/spring-based-dao-config.xml",
-                "classpath:META-INF/spring/spring-idoss-security-config.xml",
                 "classpath:META-INF/spring/spring-dao-idoss-pengaduan-config.xml"
         }
 )
 public class PApplicationDAOTest {
     @Autowired
-    private PApplicationDAO pApplicationDAO;
+    PApplicationDAO pApplicationDAO;
 
     @Test
-    public void testGetRole() throws Exception {
-        List<PApplication> pApplications = pApplicationDAO.getRole();
+    public void testGetRoleByUsername()throws Exception{
+        List<Integer> integerList= pApplicationDAO.getRoleByUsername("KDP");
+        integerList.contains(new Integer(1516));
+        System.out.println(integerList.size());
     }
 
-    @Test
-    public void testGetRoleByUsername() throws Exception{
-        String user_name = "OKR";
-        List<PApplication> pApplications = pApplicationDAO.getRoleByUsername(user_name);
-        System.out.println("======================="+pApplications.get(0).getEmployee_no());
-    }
 }

@@ -1,7 +1,5 @@
 package net.lintasarta.pengaduan.service;
 
-import net.lintasarta.pengaduan.model.PApplication;
-
 import java.util.List;
 
 /**
@@ -12,6 +10,5 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface PApplicationService {
-    List<PApplication> getRole();
-    List<PApplication> getRoleByUsername(String user_name);
+    List<Integer> getRoleByUsername(String user_name);
 }

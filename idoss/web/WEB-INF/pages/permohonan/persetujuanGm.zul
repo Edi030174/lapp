@@ -24,12 +24,8 @@
         font-weight: bold; }
     </style>
     <window id="window_Persetujuan" width="782px" height="535px" contentStyle="overflow:auto" border="normal"
-            apply="${persetujuanCtrl}">
+            apply="${persetujuanGmCtrl}">
         <toolbar>
-            <button id="btn_SimpanPersetujuanManagerPemohon" label="Simpan"/>
-            <button id="btn_SimpanPersetujuanGmPemohon" label="Simpan"/>
-            <button id="btn_SimpanPersetujuanAsman" label="Simpan"/>
-            <button id="btn_SimpanPersetujuanManager" label="Simpan"/>
             <button id="btn_SimpanPersetujuanGm" label="Simpan"/>
             <button id="btn_Batal" label="Batal"/>
         </toolbar>

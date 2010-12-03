@@ -1,7 +1,6 @@
 package net.lintasarta.pengaduan.service.impl;
 
 import net.lintasarta.pengaduan.dao.PApplicationDAO;
-import net.lintasarta.pengaduan.model.PApplication;
 import net.lintasarta.pengaduan.service.PApplicationService;
 
 import java.util.List;
@@ -25,13 +24,7 @@ public class PApplicationServiceImpl implements PApplicationService {
     }
 
     @Override
-    public List<PApplication> getRole() {
-        return getpApplicationDAO().getRole();
-    }
-
-    @Override
-    public List<PApplication> getRoleByUsername(String user_name) {
-        List<PApplication> pApplications = getpApplicationDAO().getRoleByUsername(user_name);
-        return pApplications;
+    public List<Integer> getRoleByUsername(String user_name) {
+        return getpApplicationDAO().getRoleByUsername(user_name);
     }
 }

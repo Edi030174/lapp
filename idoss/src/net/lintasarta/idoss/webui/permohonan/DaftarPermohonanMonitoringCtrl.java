@@ -136,7 +136,7 @@ public class DaftarPermohonanMonitoringCtrl extends GFCBaseListCtrl<TPermohonan>
 
         TPermohonan tPermohonan = new TPermohonan();
         String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
-        String role = getUserWorkspace().getUserSession().getEmployeeRole();
+//        String role = getUserWorkspace().getUserSession().getEmployeeRole();
 //        boolean isPelaksana = false;
 //        if (pelaksanaanGangguanService.getVHrEmployeePelaksanaById(getUserWorkspace().getUserSession().getEmployeeNo()) != null) {
 //            isPelaksana = true;

@@ -61,7 +61,7 @@
 					<!--          http://www.zkoss.org/smalltalks/zkspringsec1/        -->
 					<h:form id="f" name="f"
 						action="j_spring_security_check" method="POST" >
-                        <h:input type="hidden" value="idoss" name="j_password"/>
+                        <!--<h:input type="hidden" value="idoss" name="j_password"/>-->
 						<grid fixedLayout="true"
 							sclass="GridLayoutNoBorder" style="border:0px">
 							<columns>
@@ -75,6 +75,12 @@
 									<textbox id="txtbox_Username"
 										name="j_username" width="98%" />
 								</row>
+                                <row>
+                                    <label id="label_ZKLoginDialog_pwd"
+                                        value="${c:l('label_ZKLoginDialog_pwd.value')}" />
+                                    <textbox id="txtbox_Password"
+                                        type="password" name="j_password" width="98%"/>
+                                </row>
 								<row spans="2">
 									<hbox>
 										<h:input type="submit"

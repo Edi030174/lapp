@@ -35,11 +35,9 @@
 
 		<form-login login-page="/zkloginDialog.zul"
 			authentication-failure-url="/index.zul"/>
-<!--
-		<form-login login-page="/zkLoginDialogNoSSO.zul"
-			authentication-failure-url="/zkLoginDialogNoSSO.zul?login_error=1"/>
-        <access-denied-handler error-page="/index.zul" />
--->
+		<!--<form-login login-page="/zkLoginDialogNoSSO.zul"-->
+			<!--authentication-failure-url="/zkLoginDialogNoSSO.zul?login_error=1"/>-->
+        <!--<access-denied-handler error-page="/index.zul" />-->
 
 		<!-- ====================================================== -->
 		<!--        Tell Spring where it goes after logout.         -->
@@ -84,9 +82,9 @@
 		<authentication-provider user-service-ref="idossUserDetailsService">
 			<!--  The password encoder is additonally for     -->
 			<!--   simulating  a one-time-password mechanism  -->
-			<password-encoder ref="passwordEncoder">
-				<salt-source user-property="token" />
-			</password-encoder>
+			<!--<password-encoder ref="passwordEncoder">-->
+				<!--<salt-source user-property="token" />-->
+			<!--</password-encoder>-->
 		</authentication-provider>
 	</authentication-manager>
 

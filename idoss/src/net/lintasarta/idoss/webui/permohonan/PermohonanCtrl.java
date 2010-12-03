@@ -194,13 +194,23 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
 //        window_Permohonan.setVisible(workspace.isAllowed("window_Permohonan"));
 //        tab_Permohonan.setVisible(workspace.isAllowed("tab_Permohonan"));
 //        tabPanel_Permohonan.setVisible(workspace.isAllowed("tab_Permohonan"));
+        tab_Persetujuan.setVisible(workspace.isAllowed("tab_Persetujuan"));
+        tabPanel_Persetujuan.setVisible(workspace.isAllowed("tabPanel_Persetujuan"));
 
-//        tab_Persetujuan.setVisible(workspace.isAllowed("tab_Persetujuan"));
-//        tabPanel_Persetujuan.setVisible(workspace.isAllowed("tabPanel_Persetujuan"));
-//        tab_PersetujuanManagerPemohon.setVisible(workspace.isAllowed("tab_PersetujuanPemohon"));
-//        tabPanel_PersetujuanPemohon.setVisible(workspace.isAllowed("tab_PersetujuanPemohon"));
-//        tab_PersetujuanAsmanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanDukophar"));
-//        tabPanel_PersetujuanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanDukophar"));
+        tab_PersetujuanManagerPemohon.setVisible(workspace.isAllowed("tab_PersetujuanManagerPemohon"));
+        tabPanel_PersetujuanManagerPemohon.setVisible(workspace.isAllowed("tabPanel_PersetujuanManagerPemohon"));
+
+        tab_PersetujuanGMPemohon.setVisible(workspace.isAllowed("tab_PersetujuanGMPemohon"));
+        tabPanel_PersetujuanGMPemohon.setVisible(workspace.isAllowed("tabPanel_PersetujuanGMPemohon"));
+
+        tab_PersetujuanAsmanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanAsmanDukophar"));
+        tabPanel_PersetujuanAsmanDukophar.setVisible(workspace.isAllowed("tabPanel_PersetujuanAsmanDukophar"));
+
+        tab_PersetujuanManagerDukophar.setVisible(workspace.isAllowed("tab_PersetujuanManagerDukophar"));
+        tabPanel_PersetujuanManagerDukophar.setVisible(workspace.isAllowed("tabPanel_PersetujuanManagerDukophar"));
+
+        tab_PersetujuanGMDukophar.setVisible(workspace.isAllowed("tab_PersetujuanGMDukophar"));
+        tabPanel_PersetujuanGMDukophar.setVisible(workspace.isAllowed("tabPanel_PersetujuanGMDukophar"));
 
 /*        if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("muser")) {
             tab_Persetujuan.setLabel("Persetujuan Manager");
@@ -479,6 +489,37 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         orderTab.appendChild(panel);
 
         Executions.createComponents("/WEB-INF/pages/permohonan/persetujuanManager.zul", pChildren, map);
+    }
+
+    public void onSelect$tab_PersetujuanGMDukophar(Event event) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("--> " + event.toString());
+        }
+        TVerifikasi tVerifikasi = null;
+        if (gettPermohonan().getT_idoss_permohonan_id() != null) {
+            tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
+        }
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        if (tVerifikasi != null) {
+            map.put("tVerifikasi", tVerifikasi);
+        } else {
+            map.put("tVerifikasi", getPermohonanService().getNewVerifikasi());
+        }
+        map.put("tPermohonan", tPermohonan);
+
+        map.put("permohonanCtrl", this);
+
+
+        Tabpanel orderTab = (Tabpanel) Path.getComponent("/window_Permohonan/tabPanel_PersetujuanGMDukophar");
+        orderTab.getChildren().clear();
+
+        Panel panel = new Panel();
+        Panelchildren pChildren = new Panelchildren();
+
+        panel.appendChild(pChildren);
+        orderTab.appendChild(panel);
+
+        Executions.createComponents("/WEB-INF/pages/permohonan/persetujuanGm.zul", pChildren, map);
     }
 
     public void onSelect$tab_Pelaksanaan(Event event) {

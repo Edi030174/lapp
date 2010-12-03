@@ -41,7 +41,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
     protected Datebox datebox_TanggalAwal;
     protected Datebox datebox_TanggalAkhir;
     protected Button btnBuatBaru_DaftarTiket;
-    protected Button btnBuatBaru_DaftarTiketHelpdesk;
+
     protected Paging paging_DaftarTiket;
     protected Listbox listbox_DaftarTiket;
     protected Listheader listheader_NomorTiket;
@@ -155,7 +155,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
     private void doCheckRights() {
         UserWorkspace workspace = getUserWorkspace();
         btnBuatBaru_DaftarTiket.setVisible(workspace.isAllowed("btnBuatBaru_DaftarTiket"));
-        btnBuatBaru_DaftarTiketHelpdesk.setVisible(workspace.isAllowed("btnBuatBaru_DaftarTiketHelpdesk"));
+
     }
 
     public void onDoubleClickedTiketItem(Event event) throws Exception {
@@ -302,17 +302,6 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         showDetailViewPengaduan(tPenangananGangguan);
     }
 
-    public void onClick$btnBuatBaru_DaftarTiketHelpdesk(Event event) throws Exception {
-
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-
-        TPenangananGangguan tPenangananGangguan = getPenangananGangguanService().getNewPenangananGangguan();
-
-        showDetailViewPengaduanHelpdesk(tPenangananGangguan);
-    }
-
     private void showDetailViewPengaduan(TPenangananGangguan tPenangananGangguan) throws Exception {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
@@ -335,27 +324,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         }
     }
 
-    private void showDetailViewPengaduanHelpdesk(TPenangananGangguan tPenangananGangguan) throws Exception {
 
-        HashMap<String, Object> map = new HashMap<String, Object>();
-
-        map.put("tPenangananGangguan", tPenangananGangguan);
-
-        map.put("listbox_DaftarTiket", listbox_DaftarTiket);
-
-        try {
-            Executions.createComponents("/WEB-INF/pages/pengaduan/penangananGangguan.zul", null, map);
-        } catch (Exception e) {
-            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
-
-            // Show a error box
-            String msg = e.getMessage();
-            String title = Labels.getLabel("message_Error");
-
-            MultiLineMessageBox.doSetTemplate();
-            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
-        }
-    }
 
     public void onCheck$checkbox_All(Event event) throws Exception {
 

@@ -189,7 +189,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doCheckRights(TVerifikasi tVerifikasi, TPermohonan tPermohonan) {
-        UserWorkspace workspace = getUserWorkspace();
+        /*UserWorkspace workspace = getUserWorkspace();
 
         groupbox_ManagerPemohon.setVisible(workspace.isAllowed("groupbox_ManagerPemohon"));
         groupbox_GmPemohon.setVisible(workspace.isAllowed("groupbox_GmPemohon"));
@@ -198,7 +198,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         groupbox_Gm.setVisible(workspace.isAllowed("groupbox_GmDukophar"));
 
 //        String employeeNo = getUserWorkspace().getUserSession().getEmployeeNo();
-        String role = getUserWorkspace().getUserSession().getEmployeeRole();
+//        String role = getUserWorkspace().getUserSession().getEmployeeRole();
 
         boolean save_muser = (workspace.isAllowed("btn_SimpanPersetujuanManagerPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Persetujuan Manager"));
         btn_SimpanPersetujuanManagerPemohon.setVisible(save_muser);
@@ -266,7 +266,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             textbox_mdukophar.setReadonly(true);
             textbox_gmdukophar.setReadonly(true);
         }
-        /*
+        *//*
         if (role.equalsIgnoreCase(LoginConstants.MDUK) && (tPermohonan.getStatus_track_permohonan().equals("Persetujuan Manager"))) {
             if (tPermohonan.getUpdated_manager() != null) {
                 Timestamp ts = tPermohonan.getUpdated_manager();
@@ -326,7 +326,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             sp4.setVisible(false);
             sp5.setVisible(false);
         }
-        */
+        *//*
         boolean save_gmuser = (workspace.isAllowed("btn_SimpanPersetujuanGmPemohon")) && (tPermohonan.getStatus_track_permohonan().contains("Disetujui Manager Pemohon"));
         btn_SimpanPersetujuanGmPemohon.setVisible(save_gmuser);
         if (role.equalsIgnoreCase(LoginConstants.GMUSER)) {
@@ -595,7 +595,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
             sp3.setVisible(false);
             sp4.setVisible(false);
             sp5.setVisible(true);
-        }
+        }*/
     }
 
     private void doShowDialog(TVerifikasi tVerifikasi, TPermohonan tPermohonan, Mttr mttr) throws InterruptedException {
