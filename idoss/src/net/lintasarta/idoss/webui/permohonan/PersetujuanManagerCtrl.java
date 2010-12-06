@@ -23,7 +23,6 @@ import org.zkoss.zul.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -58,7 +57,7 @@ public class PersetujuanManagerCtrl extends GFCBaseCtrl implements Serializable 
     protected Textbox textbox_gmuser;
     protected Textbox textbox_amdukophar;
     protected Textbox textbox_mdukophar;
-    protected Textbox textbox_gmdukophar;
+
     protected Listbox listbox_NamaPelaksana;
     protected Datebox datebox_Tanggal;
     protected Intbox intbox_target;
@@ -66,17 +65,15 @@ public class PersetujuanManagerCtrl extends GFCBaseCtrl implements Serializable 
     protected Label label_tgl2;
     protected Label label_tgl3;
     protected Label label_tgl4;
-    protected Label label_tgl5;
     protected Label label_by1;
     protected Label label_by2;
     protected Label label_by3;
     protected Label label_by4;
-    protected Label label_by5;
     protected Label sp1;
     protected Label sp2;
     protected Label sp3;
     protected Label sp4;
-    protected Label sp5;
+
     protected Radiogroup radiogroup_Prioritas;
     protected Radio radio_high;
     protected Radio radio_normal;
@@ -184,7 +181,8 @@ public class PersetujuanManagerCtrl extends GFCBaseCtrl implements Serializable 
     }
 
     private void doCheckRights(TVerifikasi tVerifikasi, TPermohonan tPermohonan) {
-
+        boolean save_mdukophar = tPermohonan.getStatus_track_permohonan().contains("Disetujui Asman Dukophar");
+        btn_SimpanPersetujuanManager.setVisible(save_mdukophar);
         if (tPermohonan.getUpdated_manager() != null) {
             Timestamp ts = tPermohonan.getUpdated_manager();
             String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
@@ -217,14 +215,7 @@ public class PersetujuanManagerCtrl extends GFCBaseCtrl implements Serializable 
         if (tVerifikasi.getNama_manager() != null) {
             label_by4.setValue("Oleh: " + tVerifikasi.getNama_manager());
         }
-        if (tVerifikasi.getUpdated_gm() != null) {
-            Timestamp ts = tVerifikasi.getUpdated_gm();
-            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-            label_tgl5.setValue("Tanggal persetujuan: " + tgl);
-        }
-        if (tVerifikasi.getNama_gm() != null) {
-            label_by5.setValue("Oleh: " + tVerifikasi.getNama_gm());
-        }
+
         radiogroup_StatusPermohonanManagerPemohon.setVisible(false);
         radiogroup_StatusPermohonanGmPemohon.setVisible(false);
         radiogroup_StatusPermohonanAsman.setVisible(false);
@@ -235,12 +226,10 @@ public class PersetujuanManagerCtrl extends GFCBaseCtrl implements Serializable 
         textbox_gmuser.setReadonly(true);
         textbox_amdukophar.setReadonly(true);
         textbox_mdukophar.setReadonly(false);
-        textbox_gmdukophar.setReadonly(true);
         sp1.setVisible(false);
         sp2.setVisible(false);
         sp3.setVisible(false);
         sp4.setVisible(true);
-        sp5.setVisible(false);
     }
 
     private void doShowDialog(TVerifikasi tVerifikasi, TPermohonan tPermohonan, Mttr mttr) throws InterruptedException {
@@ -314,186 +303,6 @@ public class PersetujuanManagerCtrl extends GFCBaseCtrl implements Serializable 
         window_Permohonan.onClose();
     }
 
-    public void onClick$btn_SimpanPersetujuanManagerPemohon(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        if (ValidateMUser()) {
-            doSave();
-            window_Permohonan.onClose();
-            Events.postEvent("onCreate", window_DaftarPermohonan, event);
-            window_DaftarPermohonan.invalidate();
-        }
-    }
-
-    private boolean ValidateMUser() throws InterruptedException {
-        if (textbox_muser.getValue().length() < 1) {
-            Messagebox.show("Silakan isi Catatan Manager...");
-            return false;
-        }
-        return true;
-    }
-
-    private void doSave() throws Exception {
-        TPermohonan tPermohonan = gettPermohonan();
-        doWriteComponentsToBean1(tPermohonan);
-
-        try {
-            getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
-        } catch (DataAccessException e) {
-            String message = e.getMessage();
-            String title = Labels.getLabel("message_Error");
-            MultiLineMessageBox.doSetTemplate();
-            MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
-        }
-
-
-    }
-
-    private void doWriteComponentsToBean1(TPermohonan tPermohonan) {
-        String statusM = radiogroup_StatusPermohonanManagerPemohon.getSelectedItem().getValue();
-        tPermohonan.setStatus_track_permohonan(statusM);
-
-        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
-        tPermohonan.setUpdated_manager(ts);
-        tPermohonan.setCatatan_manager(textbox_muser.getValue());
-    }
-
-    public void onClick$btn_SimpanPersetujuanGmPemohon(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        if (ValidateGMUser()) {
-            doSimpan();
-            window_Permohonan.onClose();
-            Events.postEvent("onCreate", window_DaftarPermohonan, event);
-            window_DaftarPermohonan.invalidate();
-        }
-    }
-
-    private boolean ValidateGMUser() throws InterruptedException {
-        if (textbox_gmuser.getValue().length() < 1) {
-            Messagebox.show("Silakan isi Catatan GM...");
-            return false;
-        }
-        return true;
-    }
-
-    private void doSimpan() throws Exception {
-        TPermohonan tPermohonan = gettPermohonan();
-        doWriteComponentsToBean2(tPermohonan);
-
-        try {
-            getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
-        } catch (DataAccessException e) {
-            String message = e.getMessage();
-            String title = Labels.getLabel("message_Error");
-            MultiLineMessageBox.doSetTemplate();
-            MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
-        }
-//        doStoreInitValues();
-    }
-
-    private void doWriteComponentsToBean2(TPermohonan tPermohonan) {
-        Radio statusGM = radiogroup_StatusPermohonanGmPemohon.getSelectedItem();
-        tPermohonan.setStatus_track_permohonan(statusGM.getValue());
-        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
-        tPermohonan.setUpdated_gm(ts);
-        tPermohonan.setCatatan_gm(textbox_gmuser.getValue());
-    }
-
-    public void onClick$btn_SimpanPersetujuanAsman(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        if (isValidatedFlow()) {
-            doSimpanAsmanDukophar();
-            window_Permohonan.onClose();
-            Events.postEvent("onCreate", window_DaftarPermohonan, event);
-            window_DaftarPermohonan.invalidate();
-        }
-    }
-
-    private boolean isValidatedFlow() throws InterruptedException {
-        if (radiogroup_StatusPermohonanAsman.getSelectedItem().equals(radio_DisetujuiAM)) {
-            if (textbox_amdukophar.getValue().length() < 1) {
-                Messagebox.show("Silakan isi Catatan Assisten Manager...");
-                return false;
-            }
-            if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
-                Messagebox.show("Silakan pilih nama pelaksana");
-                return false;
-            }
-            if (listbox_NamaPelaksana.getSelectedItem() == null) {
-                Messagebox.show("Silakan pilih nama pelaksana");
-                return false;
-            }
-            if (intbox_target.getValue() == null) {
-                Messagebox.show("Silakan isikan target selesai");
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private void doSimpanAsmanDukophar() throws Exception {
-        TPermohonan tPermohonan = gettPermohonan();
-        TVerifikasi tVerifikasi = gettVerifikasi();
-        TPelaksanaan tPelaksanaan = gettPelaksanaan();
-        Mttr mttr = getMttr();
-        doWriteComponentsToBean3(tPermohonan, tVerifikasi, tPelaksanaan, mttr);
-
-        try {
-            getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
-            tVerifikasi.setNik_asman(getUserWorkspace().getUserSession().getEmployeeNo());
-            tVerifikasi.setNama_asman(getUserWorkspace().getUserSession().getEmployeeName());
-            getVerifikasiService().saveOrUpdateTVerifikasi(tVerifikasi);
-        } catch (DataAccessException e) {
-            String message = e.getMessage();
-            String title = Labels.getLabel("message_Error");
-            MultiLineMessageBox.doSetTemplate();
-            MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
-        }
-//        doStoreInitValues();
-    }
-
-    private void doWriteComponentsToBean3(TPermohonan tPermohonan, TVerifikasi tVerifikasi, TPelaksanaan tPelaksanaan, Mttr mttr) {
-        Radio dampak = radiogroup_Dampak.getSelectedItem();
-        tPermohonan.setDampak(dampak.getValue());
-        Radio prioritas = radiogroup_Prioritas.getSelectedItem();
-        tPermohonan.setUrgensi(prioritas.getValue());
-
-        Listitem itempelaksana = listbox_NamaPelaksana.getSelectedItem();
-        ListModelList lml = (ListModelList) listbox_NamaPelaksana.getListModel();
-        VHrEmployeePelaksana vHrEmployeePelaksana = (VHrEmployeePelaksana) lml.get(itempelaksana.getIndex());
-        if (!vHrEmployeePelaksana.getEmployee_name().equalsIgnoreCase("Silakan pilih")) {
-            tVerifikasi.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
-        }
-        if (!vHrEmployeePelaksana.getEmployee_no().equalsIgnoreCase("555")) {
-            tVerifikasi.setNik_pelaksana(vHrEmployeePelaksana.getEmployee_no());
-        }
-
-        Radio statusAM = radiogroup_StatusPermohonanAsman.getSelectedItem();
-        tVerifikasi.setStatus_permohonanasman(statusAM.getValue());
-        tPermohonan.setStatus_track_permohonan(statusAM.getValue());
-        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
-        tVerifikasi.setUpdated_asman(ts);
-        tVerifikasi.setCatatan_asman(textbox_amdukophar.getValue());
-
-        int target = intbox_target.getValue();
-        long too = setTarget(target);
-        Timestamp tanggalnya = new Timestamp(too);
-        mttr.setTarget(too);
-        mttr.setTarget2(Integer.toString(target));
-    }
-
-    private long setTarget(int berapaHari) {
-        long lengthOfInterval = berapaHari * 86400000;
-        long currentDate = new Date().getTime();
-        long newDate = currentDate + lengthOfInterval;
-        return new Date(newDate).getTime();
-    }
-
     public void onClick$btn_SimpanPersetujuanManager(Event event) throws Exception {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
@@ -552,61 +361,6 @@ public class PersetujuanManagerCtrl extends GFCBaseCtrl implements Serializable 
         Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
         tVerifikasi.setUpdated_manager(ts);
         tVerifikasi.setCatatan_manager(textbox_mdukophar.getValue());
-    }
-
-    public void onClick$btn_SimpanPersetujuanGm(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        if (ValidateGMDukophar()) {
-            doSimpanGMDukophar();
-            window_Permohonan.onClose();
-            Events.postEvent("onCreate", window_DaftarPermohonan, event);
-            window_DaftarPermohonan.invalidate();
-        }
-    }
-
-    private boolean ValidateGMDukophar() throws InterruptedException {
-        if (textbox_gmdukophar.getValue().length() < 1) {
-            Messagebox.show("Silakan isi Catatan General Manager...");
-            return false;
-        }
-        return true;
-    }
-
-    private void doSimpanGMDukophar() throws Exception {
-        TPermohonan tPermohonan = gettPermohonan();
-        TVerifikasi tVerifikasi = gettVerifikasi();
-        Mttr mttr = getMttr();
-        doWriteComponentsToBean5(tPermohonan, tVerifikasi, mttr);
-
-        try {
-            tVerifikasi.setNik_gm(getUserWorkspace().getUserSession().getEmployeeNo());
-            tVerifikasi.setNama_gm(getUserWorkspace().getUserSession().getEmployeeName());
-            getVerifikasiService().saveOrUpdateTVerifikasi(tVerifikasi);
-            getPermohonanService().saveOrUpdateTPermohonan(tPermohonan);
-            mttr.setNomor_tiket(tPermohonan.getT_idoss_permohonan_id());
-            getMttrService().saveOrUpdateMttr(mttr);
-        } catch (DataAccessException e) {
-            String message = e.getMessage();
-            String title = Labels.getLabel("message_Error");
-            MultiLineMessageBox.doSetTemplate();
-            MultiLineMessageBox.show(message, title, MultiLineMessageBox.OK, "ERROR", true);
-        }
-//        doStoreInitValues();
-    }
-
-    private void doWriteComponentsToBean5(TPermohonan tPermohonan, TVerifikasi tVerifikasi, Mttr mttr) {
-        Radio statusGM = radiogroup_StatusPermohonanGm.getSelectedItem();
-        tVerifikasi.setStatus_permohonan_gm(statusGM.getValue());
-        tPermohonan.setStatus_track_permohonan(statusGM.getValue());
-        if (statusGM.getValue().contains("INPROGRESS")) {
-            Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
-            mttr.setInserted_pelaksana(ts.getTime());
-        }
-        Timestamp ts = new Timestamp(java.util.Calendar.getInstance().getTimeInMillis());
-        tVerifikasi.setUpdated_gm(ts);
-        tVerifikasi.setCatatan_gm(textbox_gmdukophar.getValue());
     }
 
     public TPelaksanaan gettPelaksanaan() {

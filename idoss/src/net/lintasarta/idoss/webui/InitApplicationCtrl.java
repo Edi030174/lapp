@@ -4,6 +4,7 @@ import net.lintasarta.idoss.statistic.Statistic;
 import net.lintasarta.idoss.webui.util.WindowBaseCtrl;
 import org.apache.log4j.Logger;
 import org.zkoss.zhtml.Hr;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zkmax.zul.Tablechildren;
 import org.zkoss.zkmax.zul.Tablelayout;
@@ -46,13 +47,14 @@ public class InitApplicationCtrl extends WindowBaseCtrl implements Serializable 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
-        doOnCreateCommon(startWindow);
-
-        createMainGrid();
-
-        showStatistic();
-
-        showUsersOnlineChart();
+//        doOnCreateCommon(startWindow);
+//
+//        createMainGrid();
+//
+//        showStatistic();
+//
+//        showUsersOnlineChart();
+        Executions.sendRedirect("/pages/indexLogin.zul");
 
     }
 

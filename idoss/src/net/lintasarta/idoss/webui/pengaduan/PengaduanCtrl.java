@@ -43,14 +43,6 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
 //    protected Button btnSimpan_pengaduan;
 //    protected Button btnBatal_pengaduan;
 //
-    private transient String oldVar_textboxNomorTiket;
-    private transient String oldVar_textboxNamaPelapor;
-    private transient String oldVar_textboxNikPelapor;
-    private transient String oldVar_textboxNomorHP;
-    private transient String oldVar_textboxExt;
-    private transient String oldVar_textboxJudul;
-    private transient String oldVar_fckeditorDes;
-
     private transient boolean validationOn;
 
     private transient TPenangananGangguan tPenangananGangguan;
@@ -188,18 +180,6 @@ public class PengaduanCtrl extends GFCBaseCtrl implements Serializable {
             lml.set(lml.indexOf(tPenangananGangguan), tPenangananGangguan);
         }
         lml.sort(new TPenangananGangguanComparator(), true);
-
-    }
-
-    private void doStoreInitValues() {
-
-        oldVar_textboxNomorTiket = textbox_NomorTiket.getValue();
-        oldVar_textboxNamaPelapor = textbox_NamaPelapor.getValue();
-        oldVar_textboxNikPelapor = textbox_NikPelapor.getValue();
-        oldVar_textboxNomorHP = textbox_NomorHP.getValue();
-        oldVar_textboxExt = textbox_Ext.getValue();
-        oldVar_textboxJudul = textbox_Judul.getValue();
-        oldVar_fckeditorDes = textbox_deskripsi.getValue();
 
     }
 
