@@ -10,6 +10,7 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Window;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
@@ -46,7 +47,12 @@ public class UserWorkspace implements Serializable, DisposableBean {
 
     public void doLogout() {
         destroy();
-        Executions.sendRedirect("/j_spring_logout");
+//        Executions.sendRedirect("/j_spring_logout");
+        HttpServletRequest request = (HttpServletRequest) Executions.getCurrent().getNativeRequest();
+        String senderUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/zkloginDialog.zul";
+
+        Executions.sendRedirect("https://portal/sso2/SignOut.aspx?SenderUrl=" + senderUrl);
+
     }
 
     private Set<String> getGrantedAuthoritySet() {
