@@ -12,6 +12,7 @@ import org.zkoss.zk.ui.event.ClientInfoEvent;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
+import javax.servlet.http.Cookie;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -98,7 +99,8 @@ public class IndexCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("/*-->*/");
         }
-
+        Cookie cookie = new Cookie("JSESSIONID","");
+        cookie.setMaxAge(0);
         getUserWorkspace().doLogout();
     }
 
