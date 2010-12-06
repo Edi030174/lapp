@@ -23,16 +23,14 @@
         .z-groupbox-hl .z-groupbox-header { color: #000000;
         font-weight: bold; }
     </style>
-    <window id="window_Persetujuan" width="782px" height="535px" contentStyle="overflow:auto" border="normal"
-            apply="${persetujuanManagerPemohonCtrl}">
+    <window id="window_Persetujuan" width="782px" height="535px" contentStyle="overflow:auto" border="normal" apply="${persetujuanManagerPemohonCtrl}">
         <toolbar>
             <button id="btn_SimpanPersetujuanManagerPemohon" label="Simpan"/>
             <button id="btn_Batal" label="Batal"/>
         </toolbar>
         <hbox>
             <vbox>
-                <label width="100px"
-                       value="Nomor Permohonan"/>
+                <label width="100px" value="Nomor Permohonan"/>
                 <space height="1px"/>
                 <label width="100px" value="Nama Pemohon"/>
                 <space height="1px"/>
@@ -46,16 +44,13 @@
             </vbox>
             <vbox>
                 <hbox>
-                    <textbox id="textbox_TIdossPermohonanId" width="120px" readonly="true"
-                             style="color: #000000 !important;"/>
+                    <textbox id="textbox_TIdossPermohonanId" width="120px" readonly="true" style="color: #000000 !important;"/>
                     <vbox>
                         <space height="1px"/>
-                        <label width="10px"
-                               value="/FPSOPHAR/2010"/>
+                        <label width="10px" value="/FPSOPHAR/2010"/>
                     </vbox>
                 </hbox>
-                <textbox id="textbox_NamaPemohon"
-                         width="200px" readonly="true" style="color: black !important;"/>
+                <textbox id="textbox_NamaPemohon" width="200px" readonly="true" style="color: black !important;"/>
             </vbox>
             <vbox>
                 <space height="1px"/>
@@ -63,10 +58,8 @@
                 <label width="10px" value="NIK :"/>
             </vbox>
             <vbox>
-                <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" disabled="true"
-                         width="150px" style="color: #000000 !important;"/>
-                <textbox id="textbox_NikPemohon"
-                         width="60px" readonly="true" style="color: black !important;"/>
+                <datebox id="datebox_Tanggal" cols="12" format="dd MMMM yyyy" disabled="true" width="150px" style="color: #000000 !important;"/>
+                <textbox id="textbox_NikPemohon" width="60px" readonly="true" style="color: black !important;"/>
             </vbox>
         </hbox>
         <hbox>
@@ -107,8 +100,7 @@
                     </hbox>
                     <radiogroup id="radiogroup_StatusPermohonanManagerPemohon">
                         <hbox>
-                            <radio id="radio_DisetujuiMPemohon" label="disetujui" value="Disetujui Manager Pemohon"
-                                   selected="true"/>
+                            <radio id="radio_DisetujuiMPemohon" label="disetujui" value="Disetujui Manager Pemohon" selected="true"/>
                             <radio id="radio_DitolakMPemohon" label="ditolak" value="Ditolak Manager Pemohon"/>
                         </hbox>
                     </radiogroup>

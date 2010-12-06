@@ -61,13 +61,9 @@ public class PersetujuanAsmanCtrl extends GFCBaseCtrl implements Serializable {
     protected Label label_tgl1;
     protected Label label_tgl2;
     protected Label label_tgl3;
-    protected Label label_tgl4;
-    protected Label label_tgl5;
     protected Label label_by1;
     protected Label label_by2;
     protected Label label_by3;
-    protected Label label_by4;
-    protected Label label_by5;
     protected Label sp1;
     protected Label sp2;
     protected Label sp3;
@@ -204,25 +200,6 @@ public class PersetujuanAsmanCtrl extends GFCBaseCtrl implements Serializable {
         if (tVerifikasi.getNama_asman() != null) {
             label_by3.setValue("Oleh: " + tVerifikasi.getNama_asman());
         }
-
-        if (tVerifikasi.getUpdated_manager() != null) {
-            Timestamp ts = tVerifikasi.getUpdated_manager();
-            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-            label_tgl4.setValue("Tanggal persetujuan: " + tgl);
-        }
-        if (tVerifikasi.getNama_manager() != null) {
-            label_by4.setValue("Oleh: " + tVerifikasi.getNama_manager());
-        }
-
-        if (tVerifikasi.getUpdated_gm() != null) {
-            Timestamp ts = tVerifikasi.getUpdated_gm();
-            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-            label_tgl5.setValue("Tanggal persetujuan: " + tgl);
-        }
-        if (tVerifikasi.getNama_gm() != null) {
-            label_by5.setValue("Oleh: " + tVerifikasi.getNama_gm());
-        }
-
         radiogroup_StatusPermohonanManagerPemohon.setVisible(false);
         radiogroup_StatusPermohonanGmPemohon.setVisible(false);
         radiogroup_StatusPermohonanAsman.setVisible(true);

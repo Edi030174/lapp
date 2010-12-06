@@ -198,19 +198,19 @@ public class PermohonanCtrl extends GFCBaseCtrl implements Serializable {
         tabPanel_Persetujuan.setVisible(workspace.isAllowed("tabPanel_Persetujuan"));
 
         tab_PersetujuanManagerPemohon.setVisible(workspace.isAllowed("tab_PersetujuanManagerPemohon"));
-        tabPanel_PersetujuanManagerPemohon.setVisible(workspace.isAllowed("tabPanel_PersetujuanManagerPemohon"));
+        tabPanel_PersetujuanManagerPemohon.setVisible(workspace.isAllowed("tab_PersetujuanManagerPemohon"));
 
         tab_PersetujuanGMPemohon.setVisible(workspace.isAllowed("tab_PersetujuanGMPemohon"));
-        tabPanel_PersetujuanGMPemohon.setVisible(workspace.isAllowed("tabPanel_PersetujuanGMPemohon"));
+        tabPanel_PersetujuanGMPemohon.setVisible(workspace.isAllowed("tab_PersetujuanGMPemohon"));
 
         tab_PersetujuanAsmanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanAsmanDukophar"));
-        tabPanel_PersetujuanAsmanDukophar.setVisible(workspace.isAllowed("tabPanel_PersetujuanAsmanDukophar"));
+        tabPanel_PersetujuanAsmanDukophar.setVisible(workspace.isAllowed("tab_PersetujuanAsmanDukophar"));
 
         tab_PersetujuanManagerDukophar.setVisible(workspace.isAllowed("tab_PersetujuanManagerDukophar"));
-        tabPanel_PersetujuanManagerDukophar.setVisible(workspace.isAllowed("tabPanel_PersetujuanManagerDukophar"));
+        tabPanel_PersetujuanManagerDukophar.setVisible(workspace.isAllowed("tab_PersetujuanManagerDukophar"));
 
         tab_PersetujuanGMDukophar.setVisible(workspace.isAllowed("tab_PersetujuanGMDukophar"));
-        tabPanel_PersetujuanGMDukophar.setVisible(workspace.isAllowed("tabPanel_PersetujuanGMDukophar"));
+        tabPanel_PersetujuanGMDukophar.setVisible(workspace.isAllowed("tab_PersetujuanGMDukophar"));
 
 /*        if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase("muser")) {
             tab_Persetujuan.setLabel("Persetujuan Manager");

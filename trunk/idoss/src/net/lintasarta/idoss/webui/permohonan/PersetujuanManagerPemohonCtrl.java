@@ -45,28 +45,12 @@ public class PersetujuanManagerPemohonCtrl extends GFCBaseCtrl implements Serial
     protected Textbox textbox_NikPemohon;
     protected Textbox textbox_DetailPermohonan;
     protected Textbox textbox_muser;
-    protected Textbox textbox_gmuser;
-    protected Textbox textbox_amdukophar;
-    protected Textbox textbox_mdukophar;
-    protected Textbox textbox_gmdukophar;
     protected Listbox listbox_NamaPelaksana;
     protected Datebox datebox_Tanggal;
     protected Intbox intbox_target;
     protected Label label_tgl1;
-    protected Label label_tgl2;
-    protected Label label_tgl3;
-    protected Label label_tgl4;
-    protected Label label_tgl5;
     protected Label label_by1;
-    protected Label label_by2;
-    protected Label label_by3;
-    protected Label label_by4;
-    protected Label label_by5;
     protected Label sp1;
-    protected Label sp2;
-    protected Label sp3;
-    protected Label sp4;
-    protected Label sp5;
     protected Radiogroup radiogroup_Prioritas;
     protected Radio radio_high;
     protected Radio radio_normal;
@@ -76,19 +60,6 @@ public class PersetujuanManagerPemohonCtrl extends GFCBaseCtrl implements Serial
     protected Radiogroup radiogroup_StatusPermohonanManagerPemohon;
     protected Radio radio_DisetujuiMPemohon;
     protected Radio radio_DitolakMPemohon;
-    protected Radiogroup radiogroup_StatusPermohonanGmPemohon;
-    protected Radio radio_DisetujuiGmPemohon;
-    protected Radio radio_DitolakGmPemohon;
-    protected Radiogroup radiogroup_StatusPermohonanAsman;
-    protected Radio radio_DisetujuiAM;
-    protected Radio radio_DitolakAM;
-    protected Radiogroup radiogroup_StatusPermohonanManager;
-    protected Radio radio_DisetujuiM;
-    protected Radio radio_DitolakM;
-    protected Radiogroup radiogroup_StatusPermohonanGm;
-    protected Radio radio_DisetujuiGM;
-    protected Radio radio_DitolakGM;
-
     private transient String oldVar_dateboxTanggal1;
     private transient String oldVar_comboboxNikPelaksana;
     private transient boolean oldVar_checkbox1;
@@ -168,7 +139,6 @@ public class PersetujuanManagerPemohonCtrl extends GFCBaseCtrl implements Serial
     private void doCheckRights(TVerifikasi tVerifikasi, TPermohonan tPermohonan) {
         boolean save_muser = tPermohonan.getStatus_track_permohonan().contains("Persetujuan Manager");
         btn_SimpanPersetujuanManagerPemohon.setVisible(save_muser);
-
         if (tPermohonan.getUpdated_manager() != null) {
             Timestamp ts = tPermohonan.getUpdated_manager();
             String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
@@ -177,38 +147,6 @@ public class PersetujuanManagerPemohonCtrl extends GFCBaseCtrl implements Serial
         if (tPermohonan.getNama_manager() != null) {
             label_by1.setValue("Oleh: " + tPermohonan.getNama_manager());
         }
-        if (tPermohonan.getUpdated_gm() != null) {
-            Timestamp ts = tPermohonan.getUpdated_gm();
-            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-            label_tgl2.setValue("Tanggal persetujuan: " + tgl);
-        }
-        if (tPermohonan.getNama_gm() != null) {
-            label_by2.setValue("Oleh: " + tPermohonan.getNama_gm());
-        }
-        if (tVerifikasi.getUpdated_asman() != null) {
-            Timestamp ts = tVerifikasi.getUpdated_asman();
-            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-            label_tgl3.setValue("Tanggal persetujuan: " + tgl);
-        }
-        if (tVerifikasi.getNama_asman() != null) {
-            label_by3.setValue("Oleh: " + tVerifikasi.getNama_asman());
-        }
-        if (tVerifikasi.getUpdated_manager() != null) {
-            Timestamp ts = tVerifikasi.getUpdated_manager();
-            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-            label_tgl4.setValue("Tanggal persetujuan: " + tgl);
-        }
-        if (tVerifikasi.getNama_manager() != null) {
-            label_by4.setValue("Oleh: " + tVerifikasi.getNama_manager());
-        }
-        if (tVerifikasi.getUpdated_gm() != null) {
-            Timestamp ts = tVerifikasi.getUpdated_gm();
-            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
-            label_tgl5.setValue("Tanggal persetujuan: " + tgl);
-        }
-        if (tVerifikasi.getNama_gm() != null) {
-            label_by5.setValue("Oleh: " + tVerifikasi.getNama_gm());
-        }
         if (tPermohonan.getStatus_track_permohonan().equals("Persetujuan Manager")) {
             sp1.setVisible(true);
             radiogroup_StatusPermohonanManagerPemohon.setVisible(true);
@@ -216,21 +154,8 @@ public class PersetujuanManagerPemohonCtrl extends GFCBaseCtrl implements Serial
             sp1.setVisible(false);
             radiogroup_StatusPermohonanManagerPemohon.setVisible(false);
         }
-        sp2.setVisible(false);
-        radiogroup_StatusPermohonanGmPemohon.setVisible(false);
-        sp3.setVisible(false);
-        radiogroup_StatusPermohonanAsman.setVisible(false);
-        sp4.setVisible(false);
-        radiogroup_StatusPermohonanManager.setVisible(false);
-        sp5.setVisible(false);
-        radiogroup_StatusPermohonanGm.setVisible(false);
         textbox_DetailPermohonan.setReadonly(true);
         textbox_muser.setReadonly(false);
-        textbox_gmuser.setReadonly(true);
-        textbox_amdukophar.setReadonly(true);
-        textbox_mdukophar.setReadonly(true);
-        textbox_gmdukophar.setReadonly(true);
-
     }
 
     private void doShowDialog(TVerifikasi tVerifikasi, TPermohonan tPermohonan, Mttr mttr) throws InterruptedException {
