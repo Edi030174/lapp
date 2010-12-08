@@ -57,6 +57,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
     protected Button btnSimpan_PelaksanaanGangguan;//monitoring disable all
     protected Button btn_historyDeskripsi;
     protected PelaksanaanGangguanCtrl pelaksanaanGangguanCtrl;
+    protected boolean daftarinput;
     private transient boolean validationOn;
     private transient Window window_Helpdesk;
     private transient Listbox listbox_DaftarTiket;
@@ -108,8 +109,10 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
 
         if (args.containsKey("window_Helpdesk")) {
             window_Helpdesk = (Window) args.get("window_Helpdesk");
+            daftarinput = true;
         } else {
             window_Helpdesk = null;
+            daftarinput = false;
         }
 
         if (args.containsKey("listbox_DaftarTiket")) {
@@ -129,6 +132,7 @@ public class PelaksanaanGangguanCtrl extends GFCBaseCtrl implements Serializable
         for (Mttr mttr1 : mttrs) {
             setMttr(mttr1);
         }
+        btnSimpan_PelaksanaanGangguan.setVisible(daftarinput);
         doShowDialog(gettPenangananGangguan());
     }
 

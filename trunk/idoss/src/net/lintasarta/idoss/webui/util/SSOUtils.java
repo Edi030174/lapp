@@ -29,8 +29,8 @@ public class SSOUtils {
             return userSession;
         } else {
             //uncomment this to use real SSO
-//            userUrl = "http://portal/sso2/SignIn.aspx?SenderUrl=" + userUrl;
-            userUrl = "http://portal/sso2/SignInDev.aspx?SenderUrl=" + userUrl;
+            userUrl = "http://portal/sso2/SignIn.aspx?SenderUrl=" + userUrl;
+//            userUrl = "http://portal/sso2/SignInDev.aspx?SenderUrl=" + userUrl;
             Executions.sendRedirect(userUrl);
         }
         return null;
