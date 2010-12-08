@@ -60,6 +60,7 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
     //pelaksana btn buat baru tdk ada
     //daftar hanya yg milik pelaksana
     private int countRows;
+    protected boolean daftarinput;
 
     private transient PenangananGangguanService penangananGangguanService;
 
@@ -391,6 +392,8 @@ public class DaftarTroubleTiketCtrl extends GFCBaseListCtrl<TPenangananGangguan>
         map.put("tPenangananGangguan", tPenangananGangguan);
 
         map.put("listbox_DaftarTiket", listbox_DaftarTiket);
+        daftarinput = true;
+        map.put("daftarinput", daftarinput);
 
         try {
             Executions.createComponents("/WEB-INF/pages/pengaduan/pelaksanaanGangguan.zul", null, map);
