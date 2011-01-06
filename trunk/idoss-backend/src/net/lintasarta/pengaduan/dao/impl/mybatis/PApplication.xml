@@ -7,7 +7,17 @@
         SELECT DISTINCT P_APPLICATION_ROLE_ID
         FROM P_USERS_ROLE
         WHERE P_APPLICATION_USER_ID=(SELECT P_APPLICATION_USER_ID FROM P_APPLICATION_USER WHERE USER_NAME=#{user_name,jdbcType=VARCHAR})
-        AND (p_application_role_id = '1516' OR p_application_role_id = '1517' OR p_application_role_id = '1518' OR p_application_role_id = '1519')
+        AND (p_application_role_id = '1516'
+        OR p_application_role_id = '1517'
+        OR p_application_role_id = '1518'
+        OR p_application_role_id = '1519'
+        OR p_application_role_id = '1532'
+        OR p_application_role_id = '1533'
+        OR p_application_role_id = '1534'
+        OR p_application_role_id = '1535'
+        OR p_application_role_id = '1536'
+        OR p_application_role_id = '1537'
+        OR p_application_role_id = '1538')
     </select>
 
     <select id="getPasswordByUserName" parameterType="string" resultType="string">

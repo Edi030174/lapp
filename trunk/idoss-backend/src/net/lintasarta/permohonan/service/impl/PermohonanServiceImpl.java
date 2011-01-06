@@ -146,7 +146,7 @@ public class PermohonanServiceImpl implements PermohonanService {
 
     }
 
-    public void createTPermohonan(String uploadedFileName, TPermohonan tPermohonan) {
+    public void createTPermohonan(String uploadedFileName, TPermohonan tPermohonan, List<Integer> employeeRole) {
         int i = tPermohonanDAO.getGeneratedID();
         tPermohonan.setT_idoss_permohonan_id(getPermohonanID());
         tPermohonan.setGen_id_col(i);
@@ -158,15 +158,17 @@ public class PermohonanServiceImpl implements PermohonanService {
         Timestamp ts = new Timestamp(Calendar.getInstance().getTimeInMillis());
         tPermohonan.setCreated_date(ts);
         tPermohonan.setUpdated_date(ts);
-        if (tPermohonan.getBagian_pemohon().contains("DUKUNGAN OPERASI DAN PEMELIHARAAN")) {
+        if (employeeRole.contains(1532)) {
+            tPermohonan.setStatus_track_permohonan("Disetujui Asman Dukophar");
+        } else if (tPermohonan.getBagian_pemohon().contains("DUKUNGAN OPERASI DAN PEMELIHARAAN")) {
             if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_manager())) {
                 tPermohonan.setStatus_track_permohonan("Permohonan Baru Manager Dukophar");
             } else if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_gm())) {
                 tPermohonan.setStatus_track_permohonan("Permohonan Baru GM Dukophar");
-            } else if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_asman())) {
-                tPermohonan.setStatus_track_permohonan("Disetujui Asman Dukophar");
+//            } else if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_asman())) {
+//                tPermohonan.setStatus_track_permohonan("Disetujui Asman Dukophar");
             } else {
-                tPermohonan.setStatus_track_permohonan("Persetujuan Asman Dukophar");
+                tPermohonan.setStatus_track_permohonan("Persetujuan Analyst");
             }
         } else if (tPermohonan.getNik_pemohon().equals(tPermohonan.getNik_manager())) {
             tPermohonan.setStatus_track_permohonan("Disetujui Manager Pemohon");
@@ -180,8 +182,9 @@ public class PermohonanServiceImpl implements PermohonanService {
 
     }
 
-    public void simpanAllTPermohonan(String uploadedFileName, TPermohonan tPermohonan, Mttr mttr) {
-        createTPermohonan(uploadedFileName, tPermohonan);
+    public void simpanAllTPermohonan(String uploadedFileName, TPermohonan tPermohonan, Mttr mttr, List<Integer> employeeRole) {
+
+        createTPermohonan(uploadedFileName, tPermohonan, employeeRole);
 
         TVerifikasi tVerifikasi = new TVerifikasi();
         tVerifikasi.setT_idoss_verifikasi_id(tPermohonan.getT_idoss_permohonan_id());

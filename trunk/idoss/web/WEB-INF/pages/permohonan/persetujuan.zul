@@ -159,7 +159,7 @@
             </hbox>
         </groupbox>
         <groupbox mold="3d" id="groupbox_AM">
-            <caption label="catatan AsMan Dukophar" style="font-weight:normal"/>
+            <caption label="catatan Analyst" style="font-weight:normal"/>
             <hbox>
                 <vbox>
                     <label id="label_tgl3"/>
@@ -188,7 +188,7 @@
                 </vbox>
                 <space width="40px"/>
                 <vbox>
-                    <label value="catatan AssManager : "/>
+                    <label value="catatan Analyst : "/>
                     <!--
                     <fckeditor id="fck_CatatanAsman" height="90%" width="484px"
                                forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"

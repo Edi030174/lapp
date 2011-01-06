@@ -6,6 +6,7 @@ import net.lintasarta.idoss.webui.util.GFCBaseListCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.permohonan.model.TPermohonan;
+import net.lintasarta.permohonan.model.comparator.TPermohonanComparator;
 import net.lintasarta.permohonan.model.predicate.*;
 import net.lintasarta.permohonan.service.PermohonanService;
 import net.lintasarta.security.model.VHrEmployee;
@@ -146,28 +147,28 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 //            isPelaksana = true;
 //        }
 
-        if (getUserWorkspace().getUserSession().getJobPositionCode().equals("INput")) {
+//        if (getUserWorkspace().getUserSession().getJobPositionCode().equals("Input")) {
+        if (getUserWorkspace().getUserSession().getEmployeeRole().contains(1535)) {
             tPermohonan.setNik_pemohon(employeeNo);
             tPermohonans = getPermohonanService().getTPermohonanByNikPemohon(tPermohonan);
-        } else if ((getUserWorkspace().getUserSession().getOrganizationid() != 1176)
-                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("Manager"))
-                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH Manager")))) {
+            java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
+        }
+        if (getUserWorkspace().getUserSession().getEmployeeRole().contains(1537)) {
             tPermohonan.setNik_manager(employeeNo);
             tPermohonan.setStatus_track_permohonan("Persetujuan Manager");
             tPermohonans = getPermohonanService().getTPermohonanByStatusAndNikManager(tPermohonan);
-        } else if ((getUserWorkspace().getUserSession().getOrganizationid() != 1176)
-                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("General Manager"))
-                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH General Manager")))) {
+            java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
+        }
+        if (getUserWorkspace().getUserSession().getEmployeeRole().contains(1534)) {
             tPermohonan.setNik_gm(employeeNo);
             tPermohonan.setStatus_track_permohonan("Disetujui Manager Pemohon");
             tPermohonans = getPermohonanService().getTPermohonanByStatusAndNikGM(tPermohonan);
-        } else if ((getUserWorkspace().getUserSession().getOrganizationid() == 1176)
-                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("Assistant Manager"))
-                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH Assistant Manager")))) {
+        }
+        if (getUserWorkspace().getUserSession().getEmployeeRole().contains(1532)) {
             tPermohonan.setStatus_track_permohonan("Disetujui GM Pemohon");
             tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan);
 
-            tPermohonan.setStatus_track_permohonan("Persetujuan Asman Dukophar");
+            tPermohonan.setStatus_track_permohonan("Persetujuan Analyst");
             tPermohonans.addAll(getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan));
 
             tPermohonan.setStatus_track_permohonan("Permohonan Baru Manager Dukophar");
@@ -175,17 +176,19 @@ public class DaftarPermohonanCtrl extends GFCBaseListCtrl<TPermohonan> implement
 
             tPermohonan.setStatus_track_permohonan("Permohonan Baru GM Dukophar");
             tPermohonans.addAll(getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan));
-        } else if ((getUserWorkspace().getUserSession().getOrganizationid() == 1176)
-                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("Manager"))
-                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH Manager")))) {
+            java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
+
+        }
+        if (getUserWorkspace().getUserSession().getEmployeeRole().contains(1536)) {
             tPermohonan.setStatus_track_permohonan("Disetujui Asman Dukophar");
             tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonan(tPermohonan);
-        } else if ((getUserWorkspace().getUserSession().getOrganizationid() == 1155)
-                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("General Manager"))
-                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH General Manager")))) {
+            java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
+        }
+        if (getUserWorkspace().getUserSession().getEmployeeRole().contains(1533)) {
             tPermohonan.setDampak("MAJOR");
             tPermohonan.setStatus_track_permohonan("Disetujui Manager Dukophar");
             tPermohonans = getPermohonanService().getTPermohonanByStatusTrackPermohonanAndDampak(tPermohonan);
+            java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         }
 
 

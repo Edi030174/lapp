@@ -3,44 +3,22 @@
     <menuItem id="menu_Item_Home" zulNavigation="/WEB-INF/pages/welcome.zul"
               iconName="/images/icons/console_view.gif"/>
 
-    <menu id="menu_Input_Aduan" rightName="menuCatInput">
-        <menuItem id="menu_Item1_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarTroubleTiket.zul"
-                  rightName="menu_Item_Pengaduan"/>
-    </menu>
-    
-    <menu id="menu_Helpdesk_Aduan" rightName="menuCatHelp">
-        <menuItem id="menu_Item3_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarHelpdesk.zul"
-                  rightName="menu_Item_Pengaduan"/>
-    </menu>
-
-    <menu id="menu_Pelaksana_Aduan" rightName="menuCatPel">
-        <menuItem id="menu_Item4_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarPelaksanaan.zul"
-                  rightName="menu_Item_Pengaduan"/>
-    </menu>
-
-    <menu id="menu_Monitoring_Aduan" rightName="menuCatMon">
-        <menuItem id="menu_Item2_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarMonitoring.zul"
-                  rightName="menu_Item_Pengaduan"/>
-        <menuItem id="menu_Item2_Report_Aduan" zulNavigation="/WEB-INF/pages/pengaduan/reportAduan.zul"
-                  rightName="menu_Item_Report1"/>
-        <menuItem id="menu_Item2_Report_Rekap_Aduan" zulNavigation="/WEB-INF/pages/pengaduan/reportRekapAduan.zul"
-                  rightName="menu_Item_Report4"/>
+    <menu id="menu_Pengaduan" rightName="menuCatPengaduan">
+        <menuItem id="menu_Item_Pengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarTroubleTiket.zul" rightName="menu_Item_Pengaduan"/>
+        <menuItem id="menu_Item_HelpdeskPengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarHelpdesk.zul" rightName="menu_Item_HelpdeskPengaduan"/>
+        <menuItem id="menu_Item_PelaksanaPengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarPelaksanaan.zul" rightName="menu_Item_PelaksanaPengaduan"/>
+        <menuItem id="menu_ItemMonitoringPengaduan" zulNavigation="/WEB-INF/pages/pengaduan/daftarMonitoring.zul" rightName="menu_ItemMonitoringPengaduan"/>
+        <menuItem id="menu_ItemReport_Aduan" zulNavigation="/WEB-INF/pages/pengaduan/reportAduan.zul" rightName="menu_Item_Report1"/>
+        <menuItem id="menu_ItemReport_Rekap_Aduan" zulNavigation="/WEB-INF/pages/pengaduan/reportRekapAduan.zul" rightName="menu_Item_Report4"/>
     </menu>
 
     <menu id="menu_Permohonan" rightName="menuCatPermohonan">
-        <menuItem id="menu_Item_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftarPermohonanInput.zul"
-                  rightName="menu_Item_Permohonan"/>
-        <menuItem id="menu_Item_Persetujuan_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftarPermohonan.zul"
-                  rightName="menu_Item_Persetujuan_Permohonan"/>
-        <menuItem id="menu_Item_Pelaksana_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftarPermohonanPelaksana.zul"
-                rightName="menu_Item_Pelaksana_Permohonan"/>
-        <menuItem id="menu_Item_Monitoring_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftarPermohonanMonitoring.zul"
-                rightName="menu_Item_Monitoring_Permohonan"/>
-        <menuItem id="menu_Item_Report_Belum_Selesai" zulNavigation="/WEB-INF/pages/pengaduan/reportBelumSelesai.zul"
-                  rightName="menu_Item_Report2"/>
-        <menuItem id="menu_Item_Report_Sudah_Selesai" zulNavigation="/WEB-INF/pages/pengaduan/reportSudahSelesai.zul"
-                  rightName="menu_Item_Report3"/>
-        <menuItem id="menu_Item_Report_Rekap_Permohonan"
-                  zulNavigation="/WEB-INF/pages/pengaduan/reportRekapPermohonan.zul" rightName="menu_Item_Report5"/>
+        <menuItem id="menu_Item_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftarPermohonanInput.zul" rightName="menu_Item_Permohonan"/>
+        <menuItem id="menu_Item_Persetujuan_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftarPermohonan.zul" rightName="menu_Item_Persetujuan_Permohonan"/>
+        <menuItem id="menu_Item_Pelaksana_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftarPermohonanPelaksana.zul" rightName="menu_Item_Pelaksana_Permohonan"/>
+        <menuItem id="menu_Item_Monitoring_Permohonan" zulNavigation="/WEB-INF/pages/permohonan/daftarPermohonanMonitoring.zul" rightName="menu_Item_Monitoring_Permohonan"/>
+        <menuItem id="menu_Item_Report_Belum_Selesai" zulNavigation="/WEB-INF/pages/pengaduan/reportBelumSelesai.zul" rightName="menu_Item_Report2"/>
+        <menuItem id="menu_Item_Report_Sudah_Selesai" zulNavigation="/WEB-INF/pages/pengaduan/reportSudahSelesai.zul" rightName="menu_Item_Report3"/>
+        <menuItem id="menu_Item_Report_Rekap_Permohonan" zulNavigation="/WEB-INF/pages/pengaduan/reportRekapPermohonan.zul" rightName="menu_Item_Report5"/>
     </menu>
 </ns2:XMLRootMenu>

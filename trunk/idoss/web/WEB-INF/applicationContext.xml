@@ -172,7 +172,10 @@
     </bean>
     <bean id="pelaksanaanCtrl" class="net.lintasarta.idoss.webui.permohonan.PelaksanaanCtrl" parent="basisCtrl"
           scope="prototype">
+        <property name="permohonanService" ref="permohonanService"/>
+        <property name="verifikasiService" ref="verifikasiService"/>
         <property name="pelaksanaanService" ref="pelaksanaanService"/>
+        <property name="pelaksanaanGangguanService" ref="pelaksaanaanGangguanService"/>
         <property name="mttrService" ref="mttrService"/>
     </bean>
     <bean id="verifikasiCtrl" class="net.lintasarta.idoss.webui.permohonan.VerifikasiCtrl" parent="basisCtrl"

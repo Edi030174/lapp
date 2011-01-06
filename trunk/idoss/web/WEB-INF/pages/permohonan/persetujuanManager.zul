@@ -23,7 +23,7 @@
         .z-groupbox-hl .z-groupbox-header { color: #000000;
         font-weight: bold; }
     </style>
-    <window id="window_Persetujuan" width="782px" height="535px" contentStyle="overflow:auto" border="normal"
+    <window id="window_PersetujuanManagerDukophar" width="782px" height="535px" contentStyle="overflow:auto" border="normal"
             apply="${persetujuanManagerCtrl}">
         <toolbar>
             <button id="btn_SimpanPersetujuanManager" label="Simpan"/>
@@ -180,7 +180,7 @@
                 </vbox>
                 <space width="40px"/>
                 <vbox>
-                    <label value="catatan AssManager : "/>
+                    <label value="catatan Analyst : "/>
                     <!--
                     <fckeditor id="fck_CatatanAsman" height="90%" width="484px"
                                forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"

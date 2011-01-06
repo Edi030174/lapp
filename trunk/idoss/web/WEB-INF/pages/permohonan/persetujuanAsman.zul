@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
-<?page title="persetujuan asman dukophar" contentType="text/html;charset=UTF-8"?>
+<?page title="persetujuan analyst" contentType="text/html;charset=UTF-8"?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
     xmlns:h="http://www.w3.org/1999/xhtml"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -23,7 +23,7 @@
         .z-groupbox-hl .z-groupbox-header { color: #000000;
         font-weight: bold; }
     </style>
-    <window id="window_Persetujuan" width="782px" height="535px" contentStyle="overflow:auto" border="normal"
+    <window id="window_PersetujuanAsman" width="782px" height="535px" contentStyle="overflow:auto" border="normal"
             apply="${persetujuanAsmanCtrl}">
         <toolbar>
             <button id="btn_SimpanPersetujuanAsman" label="Simpan"/>
@@ -155,7 +155,7 @@
             </hbox>
         </groupbox>
         <groupbox mold="3d" id="groupbox_AM">
-            <caption label="catatan AsMan Dukophar" style="font-weight:normal"/>
+            <caption label="catatan Analyst" style="font-weight:normal"/>
             <hbox>
                 <vbox>
                     <label id="label_tgl3"/>
@@ -184,7 +184,7 @@
                 </vbox>
                 <space width="40px"/>
                 <vbox>
-                    <label value="catatan AssManager : "/>
+                    <label value="catatan Analyst : "/>
                     <!--
                     <fckeditor id="fck_CatatanAsman" height="90%" width="484px"
                                forEachBegin="ss" customConfigurationsPath="/js/fckeditor.js"

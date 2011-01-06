@@ -1,6 +1,5 @@
 package net.lintasarta.idoss.webui.permohonan;
 
-import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.Mttr;
@@ -35,7 +34,7 @@ import java.util.Map;
 public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializable {
     private transient final static Logger logger = Logger.getLogger(PersetujuanGmPemohonCtrl.class);
     protected Window window_Permohonan;
-    protected Window window_Persetujuan;
+    protected Window window_PersetujuanGmPemohon;
 
     protected Button btn_SimpanPersetujuanGmPemohon;
     protected Button btn_Batal;
@@ -47,7 +46,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     protected Textbox textbox_muser;
     protected Textbox textbox_gmuser;
 
-    protected Listbox listbox_NamaPelaksana;
+//    protected Listbox listbox_NamaPelaksana;
     protected Datebox datebox_Tanggal;
     protected Intbox intbox_target;
     protected Label label_tgl1;
@@ -60,14 +59,17 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     protected Label sp2;
 
     protected Radiogroup radiogroup_Prioritas;
-
+    protected Radio radio_high;
+    protected Radio radio_normal;
     protected Radiogroup radiogroup_Dampak;
     protected Radio radio_major;
     protected Radio radio_minor;
     protected Radiogroup radiogroup_StatusPermohonanManagerPemohon;
-
+    protected Radio radio_DisetujuiMPemohon;
+    protected Radio radio_DitolakMPemohon;
     protected Radiogroup radiogroup_StatusPermohonanGmPemohon;
-
+    protected Radio radio_DisetujuiGmPemohon;
+    protected Radio radio_DitolakGmPemohon;
 
     private transient Window window_DaftarPermohonan;
 
@@ -95,7 +97,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         }
     }
 
-    public void onCreate$window_Persetujuan(Event event) throws Exception {
+    public void onCreate$window_PersetujuanGmPemohon(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
@@ -179,7 +181,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
     }
 
     private void doWriteBeanToComponents(TVerifikasi tVerifikasi, TPermohonan tPermohonan, Mttr mttr) {
-        /*textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
+        textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
 //        textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
         textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
         datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
@@ -195,13 +197,13 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
             radiogroup_Dampak.setSelectedItem(radio_major);
         }
 
-        int indexPlks = 0;
+        /*int indexPlks = 0;
         ListModel listPlks = listbox_NamaPelaksana.getModel();
         for (int i = 0; i < listPlks.getSize(); i++) {
             VHrEmployeePelaksana np = (VHrEmployeePelaksana) listPlks.getElementAt(i);
             if (np.getEmployee_no().equals(tVerifikasi.getNik_pelaksana())) indexPlks = i;
         }
-        listbox_NamaPelaksana.setSelectedIndex(indexPlks);
+        listbox_NamaPelaksana.setSelectedIndex(indexPlks);*/
 
         textbox_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
 
@@ -215,7 +217,7 @@ public class PersetujuanGmPemohonCtrl extends GFCBaseCtrl implements Serializabl
         }
         textbox_gmuser.setValue(tPermohonan.getCatatan_gm());
 
-        if (tVerifikasi.getStatus_permohonanasman().equals("Ditolak Asman Dukophar")) {
+        /*if (tVerifikasi.getStatus_permohonanasman().equals("Ditolak Asman Dukophar")) {
             radiogroup_StatusPermohonanAsman.setSelectedItem(radio_DitolakAM);
         }
         textbox_amdukophar.setValue(tVerifikasi.getCatatan_asman());

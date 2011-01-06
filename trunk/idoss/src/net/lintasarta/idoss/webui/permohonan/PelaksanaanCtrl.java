@@ -1,10 +1,13 @@
 package net.lintasarta.idoss.webui.permohonan;
 
 import net.lintasarta.UserWorkspace;
+import net.lintasarta.idoss.webui.pengaduan.model.PelaksanaListModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.Mttr;
+import net.lintasarta.pengaduan.model.VHrEmployeePelaksana;
 import net.lintasarta.pengaduan.service.MttrService;
+import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.permohonan.model.TPelaksanaan;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
@@ -21,6 +24,7 @@ import org.zkoss.zul.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +49,46 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     protected Button btnBatal;
     protected PelaksanaanCtrl pelaksanaanCtrl;
 
+    protected Textbox textbox_TIdossPermohonanId;
+    protected Textbox textbox_NamaPemohon;
+    protected Datebox datebox_Tanggal;
+    protected Textbox textbox_NikPemohon;
+    protected Radiogroup radiogroup_Prioritas;
+    protected Radio radio_high;
+    protected Radio radio_normal;
+    protected Radiogroup radiogroup_Dampak;
+    protected Radio radio_major;
+    protected Radio radio_minor;
+    protected Textbox textbox_DetailPermohonan;
+
+    protected Groupbox groupbox_ManagerPemohon;
+    protected Label label_tgl1;
+    protected Label label_by1;
+    protected Textbox textbox_muser;
+
+    protected Groupbox groupbox_GmPemohon;
+    protected Label label_tgl2;
+    protected Label label_by2;
+    protected Textbox textbox_gmuser;
+
+    protected Groupbox groupbox_AM;
+    protected Label label_tgl3;
+    protected Label label_by3;
+    protected Listbox listbox_NamaPelaksana;
+    protected Intbox intbox_target;
+    protected Textbox textbox_amdukophar;
+
+    protected Groupbox groupbox_Manager;
+    protected Label label_tgl4;
+    protected Label label_by4;
+    protected Textbox textbox_mdukophar;
+
+    protected Groupbox groupbox_Gm;
+    protected Label label_tgl5;
+    protected Label label_by5;
+    protected Textbox textbox_gmdukophar;
+
+
     private transient TPermohonan tPermohonan;
     private transient TPelaksanaan tPelaksanaan;
     private transient TVerifikasi tVerifikasi;
@@ -53,6 +97,7 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
     private transient PelaksanaanService pelaksanaanService;
     private transient VerifikasiService verifikasiService;
     private transient MttrService mttrService;
+    private transient PelaksanaanGangguanService pelaksanaanGangguanService;
     private transient Window window_DaftarPermohonanPelaksana;
 
     public PelaksanaanCtrl() {
@@ -105,6 +150,15 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 //            listbox_DaftarPermohonan = null;
 //        }
 //        doCheckRights(gettPermohonan(), gettVerifikasi());
+        if (getPelaksanaanGangguanService().getEmployeeName() != null) {
+            ListModelList lmlNamaPelaksana = new ListModelList(getPelaksanaanGangguanService().getEmployeeName());
+            VHrEmployeePelaksana pelaksana = new VHrEmployeePelaksana();
+            pelaksana.setEmployee_name("Silakan pilih");
+            pelaksana.setEmployee_no("555");
+            lmlNamaPelaksana.add(0, pelaksana);
+            listbox_NamaPelaksana.setModel(lmlNamaPelaksana);
+            listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
+        }
         textbox_pelaksana.setReadonly(true);
         List<Mttr> mttrs = getMttrService().getMttrByNomorTiket(gettPermohonan().getT_idoss_permohonan_id());
         for (Mttr mttr1 : mttrs) {
@@ -123,13 +177,83 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doShowDialog(TPelaksanaan tPelaksanaan, TPermohonan tPermohonan, TVerifikasi tVerifikasi) throws InterruptedException {
         try {
-            doWriteBeanToComponents(tPelaksanaan);
+            doWriteBeanToComponents(tPermohonan, tPelaksanaan, tVerifikasi);
         } catch (Exception e) {
             Messagebox.show(e.toString());
         }
     }
 
-    private void doWriteBeanToComponents(TPelaksanaan tPelaksanaan) throws Exception {
+    private void doWriteBeanToComponents(TPermohonan tPermohonan, TPelaksanaan tPelaksanaan, TVerifikasi tVerifikasi) throws Exception {
+        if (tPermohonan.getUpdated_manager() != null) {
+            Timestamp ts = tPermohonan.getUpdated_manager();
+            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+            label_tgl1.setValue("Tanggal persetujuan: " + tgl);
+        }
+        if (tPermohonan.getNama_manager() != null) {
+            label_by1.setValue("Oleh: " + tPermohonan.getNama_manager());
+        }
+        if (tPermohonan.getUpdated_gm() != null) {
+            Timestamp ts = tPermohonan.getUpdated_gm();
+            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+            label_tgl2.setValue("Tanggal persetujuan: " + tgl);
+        }
+        if (tPermohonan.getNama_gm() != null) {
+            label_by2.setValue("Oleh: " + tPermohonan.getNama_gm());
+        }
+        if (tVerifikasi.getUpdated_asman() != null) {
+            Timestamp ts = tVerifikasi.getUpdated_asman();
+            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+            label_tgl3.setValue("Tanggal persetujuan: " + tgl);
+        }
+        if (tVerifikasi.getNama_asman() != null) {
+            label_by3.setValue("Oleh: " + tVerifikasi.getNama_asman());
+        }
+        if (tVerifikasi.getUpdated_manager() != null) {
+            Timestamp ts = tVerifikasi.getUpdated_manager();
+            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+            label_tgl4.setValue("Tanggal persetujuan: " + tgl);
+        }
+        if (tVerifikasi.getNama_manager() != null) {
+            label_by4.setValue("Oleh: " + tVerifikasi.getNama_manager());
+        }
+        if (tVerifikasi.getUpdated_gm() != null) {
+            Timestamp ts = tVerifikasi.getUpdated_gm();
+            String tgl = new SimpleDateFormat("dd-MM-yyyy").format(ts);
+            label_tgl5.setValue("Tanggal persetujuan: " + tgl);
+        }
+        if (tVerifikasi.getNama_gm() != null) {
+            label_by5.setValue("Oleh: " + tVerifikasi.getNama_gm());
+        }
+        textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
+//        textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
+        textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
+        datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
+//        datebox_Tanggal.setValue(tVerifikasi.getUpdated_date());
+        textbox_NikPemohon.setValue(tPermohonan.getNik_pemohon());
+        if (tPermohonan.getUrgensi().equals("H")) {
+            radiogroup_Prioritas.setSelectedItem(radio_high);
+        } else {
+            radiogroup_Prioritas.setSelectedItem(radio_normal);
+        }
+        if (tPermohonan.getDampak().equals("MAJOR")) {
+            radiogroup_Dampak.setSelectedItem(radio_major);
+        }
+        int indexPlks = 0;
+        ListModel listPlks = listbox_NamaPelaksana.getModel();
+        for (int i = 0; i < listPlks.getSize(); i++) {
+            VHrEmployeePelaksana np = (VHrEmployeePelaksana) listPlks.getElementAt(i);
+            if (np.getEmployee_no().equals(tVerifikasi.getNik_pelaksana())) indexPlks = i;
+        }
+        listbox_NamaPelaksana.setSelectedIndex(indexPlks);
+        textbox_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
+        textbox_muser.setValue(tPermohonan.getCatatan_manager());
+        textbox_gmuser.setValue(tPermohonan.getCatatan_gm());
+        textbox_amdukophar.setValue(tVerifikasi.getCatatan_asman());
+        textbox_mdukophar.setValue(tVerifikasi.getCatatan_manager());
+        textbox_gmdukophar.setValue(tVerifikasi.getCatatan_gm());
+        if (mttr.getTarget2() != null) {
+            intbox_target.setValue(Integer.parseInt(mttr.getTarget2()));
+        }
         if (tPelaksanaan.getStatus_perubahan().equals("INPROGRESS")) {
             combobox_Status.setValue("In Progress");
         } else if (tPelaksanaan.getStatus_perubahan().equals("PENDING")) {
@@ -288,37 +412,13 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
                     return false;
                 }
             }
-        }else if (combobox_Status.getValue().equalsIgnoreCase("Selesai")) {
+        } else if (combobox_Status.getValue().equalsIgnoreCase("Selesai")) {
             if (textbox_pelaksana.getValue().length() < 1) {
                 Messagebox.show("Silakan isikan catatan pelaksana..");
                 return false;
             }
         }
         return true;
-    }
-
-    public TPelaksanaan gettPelaksanaan() {
-        return tPelaksanaan;
-    }
-
-    public void settPelaksanaan(TPelaksanaan tPelaksanaan) {
-        this.tPelaksanaan = tPelaksanaan;
-    }
-
-    public PelaksanaanService getPelaksanaanService() {
-        return pelaksanaanService;
-    }
-
-    public void setPelaksanaanService(PelaksanaanService pelaksanaanService) {
-        this.pelaksanaanService = pelaksanaanService;
-    }
-
-    public PermohonanService getPermohonanService() {
-        return permohonanService;
-    }
-
-    public void setPermohonanService(PermohonanService permohonanService) {
-        this.permohonanService = permohonanService;
     }
 
     public TPermohonan gettPermohonan() {
@@ -329,20 +429,20 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         this.tPermohonan = tPermohonan;
     }
 
+    public TPelaksanaan gettPelaksanaan() {
+        return tPelaksanaan;
+    }
+
+    public void settPelaksanaan(TPelaksanaan tPelaksanaan) {
+        this.tPelaksanaan = tPelaksanaan;
+    }
+
     public TVerifikasi gettVerifikasi() {
         return tVerifikasi;
     }
 
     public void settVerifikasi(TVerifikasi tVerifikasi) {
         this.tVerifikasi = tVerifikasi;
-    }
-
-    public VerifikasiService getVerifikasiService() {
-        return verifikasiService;
-    }
-
-    public void setVerifikasiService(VerifikasiService verifikasiService) {
-        this.verifikasiService = verifikasiService;
     }
 
     public Mttr getMttr() {
@@ -353,11 +453,43 @@ public class PelaksanaanCtrl extends GFCBaseCtrl implements Serializable {
         this.mttr = mttr;
     }
 
+    public PermohonanService getPermohonanService() {
+        return permohonanService;
+    }
+
+    public void setPermohonanService(PermohonanService permohonanService) {
+        this.permohonanService = permohonanService;
+    }
+
+    public PelaksanaanService getPelaksanaanService() {
+        return pelaksanaanService;
+    }
+
+    public void setPelaksanaanService(PelaksanaanService pelaksanaanService) {
+        this.pelaksanaanService = pelaksanaanService;
+    }
+
+    public VerifikasiService getVerifikasiService() {
+        return verifikasiService;
+    }
+
+    public void setVerifikasiService(VerifikasiService verifikasiService) {
+        this.verifikasiService = verifikasiService;
+    }
+
     public MttrService getMttrService() {
         return mttrService;
     }
 
     public void setMttrService(MttrService mttrService) {
         this.mttrService = mttrService;
+    }
+
+    public PelaksanaanGangguanService getPelaksanaanGangguanService() {
+        return pelaksanaanGangguanService;
+    }
+
+    public void setPelaksanaanGangguanService(PelaksanaanGangguanService pelaksanaanGangguanService) {
+        this.pelaksanaanGangguanService = pelaksanaanGangguanService;
     }
 }

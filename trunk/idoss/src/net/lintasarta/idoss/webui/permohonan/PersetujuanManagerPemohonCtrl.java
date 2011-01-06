@@ -1,6 +1,5 @@
 package net.lintasarta.idoss.webui.permohonan;
 
-import net.lintasarta.idoss.webui.pengaduan.model.PelaksanaListModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.pengaduan.model.Mttr;
@@ -37,7 +36,7 @@ public class PersetujuanManagerPemohonCtrl extends GFCBaseCtrl implements Serial
 
     private transient static final Logger logger = Logger.getLogger(PersetujuanManagerPemohonCtrl.class);
     protected Window window_Permohonan;
-    protected Window window_Persetujuan;
+    protected Window window_PersetujuanManagerPemohon;
 
     protected Button btn_SimpanPersetujuanManagerPemohon;
     protected Textbox textbox_TIdossPermohonanId;
@@ -45,9 +44,9 @@ public class PersetujuanManagerPemohonCtrl extends GFCBaseCtrl implements Serial
     protected Textbox textbox_NikPemohon;
     protected Textbox textbox_DetailPermohonan;
     protected Textbox textbox_muser;
-    protected Listbox listbox_NamaPelaksana;
+//    protected Listbox listbox_NamaPelaksana;
     protected Datebox datebox_Tanggal;
-    protected Intbox intbox_target;
+//    protected Intbox intbox_target;
     protected Label label_tgl1;
     protected Label label_by1;
     protected Label sp1;
@@ -93,7 +92,7 @@ public class PersetujuanManagerPemohonCtrl extends GFCBaseCtrl implements Serial
         }
     }
 
-    public void onCreate$window_Persetujuan(Event event) throws Exception {
+    public void onCreate$window_PersetujuanManagerPemohon(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
@@ -126,8 +125,8 @@ public class PersetujuanManagerPemohonCtrl extends GFCBaseCtrl implements Serial
             pelaksana.setEmployee_name("Silakan pilih");
             pelaksana.setEmployee_no("555");
             lmlNamaPelaksana.add(0, pelaksana);
-            listbox_NamaPelaksana.setModel(lmlNamaPelaksana);
-            listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());
+            /*listbox_NamaPelaksana.setModel(lmlNamaPelaksana);
+            listbox_NamaPelaksana.setItemRenderer(new PelaksanaListModelItemRenderer());*/
         }
         List<Mttr> mttrs = getMttrService().getMttrByNomorTiket(gettPermohonan().getT_idoss_permohonan_id());
         for (Mttr mttr1 : mttrs) {
@@ -167,7 +166,7 @@ public class PersetujuanManagerPemohonCtrl extends GFCBaseCtrl implements Serial
     }
 
     private void doWriteBeanToComponents(TVerifikasi tVerifikasi, TPermohonan tPermohonan, Mttr mttr) {
-/*        textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
+        textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
 //        textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
         textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
         datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
@@ -183,13 +182,13 @@ public class PersetujuanManagerPemohonCtrl extends GFCBaseCtrl implements Serial
             radiogroup_Dampak.setSelectedItem(radio_major);
         }
 
-        int indexPlks = 0;
+        /*int indexPlks = 0;
         ListModel listPlks = listbox_NamaPelaksana.getModel();
         for (int i = 0; i < listPlks.getSize(); i++) {
             VHrEmployeePelaksana np = (VHrEmployeePelaksana) listPlks.getElementAt(i);
             if (np.getEmployee_no().equals(tVerifikasi.getNik_pelaksana())) indexPlks = i;
         }
-        listbox_NamaPelaksana.setSelectedIndex(indexPlks);
+        listbox_NamaPelaksana.setSelectedIndex(indexPlks);*/
 
         textbox_DetailPermohonan.setValue(tPermohonan.getDetail_permohonan());
 
@@ -197,29 +196,6 @@ public class PersetujuanManagerPemohonCtrl extends GFCBaseCtrl implements Serial
             radiogroup_StatusPermohonanManagerPemohon.setSelectedItem(radio_DitolakMPemohon);
         }
         textbox_muser.setValue(tPermohonan.getCatatan_manager());
-
-        if (tPermohonan.getStatus_track_permohonan().equals("Ditolak GM Pemohon")) {
-            radiogroup_StatusPermohonanGmPemohon.setSelectedItem(radio_DitolakGmPemohon);
-        }
-        textbox_gmuser.setValue(tPermohonan.getCatatan_gm());
-
-        if (tVerifikasi.getStatus_permohonanasman().equals("Ditolak Asman Dukophar")) {
-            radiogroup_StatusPermohonanAsman.setSelectedItem(radio_DitolakAM);
-        }
-        textbox_amdukophar.setValue(tVerifikasi.getCatatan_asman());
-
-        if (tVerifikasi.getStatus_permohonanmanager().equals("Ditolak Manager Dukophar")) {
-            radiogroup_StatusPermohonanManager.setSelectedItem(radio_DitolakM);
-        }
-        textbox_mdukophar.setValue(tVerifikasi.getCatatan_manager());
-
-        if (tVerifikasi.getStatus_permohonan_gm().equals("Ditolak GM Dukophar")) {
-            radiogroup_StatusPermohonanGm.setSelectedItem(radio_DitolakGM);
-        }
-        textbox_gmdukophar.setValue(tVerifikasi.getCatatan_gm());
-        if (mttr.getTarget2() != null) {
-            intbox_target.setValue(Integer.parseInt(mttr.getTarget2()));
-        }*/
     }
 
     public void onClick$btn_Batal(Event event) throws Exception {

@@ -148,6 +148,7 @@ public class LoginServiceImpl implements LoginService {
             userSession.setJobLocation(jobLocation);
             userSession.setOrganizationid(orgId);
             userSession.setUserName(userName);
+            userSession.setEmailAddr(vHrEmployee.getE_mail_addr());
             userSession.setWinHeight("800px");
 
             return userSession;

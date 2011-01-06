@@ -8,6 +8,7 @@ import net.lintasarta.pengaduan.service.PelaksanaanGangguanService;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.model.VerifikasiPermohonan;
+import net.lintasarta.permohonan.model.comparator.TPermohonanComparator;
 import net.lintasarta.permohonan.model.predicate.*;
 import net.lintasarta.permohonan.service.PermohonanService;
 import org.apache.commons.collections.CollectionUtils;
@@ -150,7 +151,7 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
         verifikasiPermohonan.setNik_pelaksana(employeeNo);
         verifikasiPermohonan.setStatus_track_permohonan("PENDING");
         tPermohonans.addAll(getPermohonanService().getTPermohonanByNikPelaksana(verifikasiPermohonan));
-
+        java.util.Collections.sort(tPermohonans, new TPermohonanComparator());
         PagedListHolder<TPermohonan> pagedListHolder = new PagedListHolder<TPermohonan>(tPermohonans);
         pagedListHolder.setPageSize(getCountRows());
 
@@ -179,30 +180,6 @@ public class DaftarPermohonanPelaksanaCtrl extends GFCBaseListCtrl<TPermohonan> 
                 logger.debug("--> " + tPermohonan.getT_idoss_permohonan_id());
             }
             showDetailView(tPermohonan);
-        }
-    }
-
-    private void showDetailViewPermohonanBaru(TPermohonan tPermohonan) throws InterruptedException {
-        HashMap<String, Object> map = new HashMap<String, Object>();
-
-        map.put("tPermohonan", tPermohonan);
-
-//        map.put("DaftarPermohonanCtrl", this);
-
-        map.put("listbox_DaftarPermohonanPelaksana", listbox_DaftarPermohonanPelaksana);
-
-        try {
-            Executions.createComponents("/WEB-INF/pages/permohonan/permohonanBaru.zul", null, map);
-        } catch (Exception e) {
-            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
-
-            // Show a error box
-            String msg = e.getMessage();
-            String title = Labels.getLabel("message_Error");
-
-            MultiLineMessageBox.doSetTemplate();
-            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
-
         }
     }
 

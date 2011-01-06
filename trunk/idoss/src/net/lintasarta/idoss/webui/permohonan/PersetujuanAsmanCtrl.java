@@ -38,7 +38,7 @@ public class PersetujuanAsmanCtrl extends GFCBaseCtrl implements Serializable {
 
     private transient final static Logger logger = Logger.getLogger(PersetujuanAsmanCtrl.class);
     protected Window window_Permohonan;
-    protected Window window_Persetujuan;
+    protected Window window_PersetujuanAsman;
 
     protected Groupbox groupbox_ManagerPemohon;
     protected Groupbox groupbox_GmPemohon;
@@ -105,7 +105,7 @@ public class PersetujuanAsmanCtrl extends GFCBaseCtrl implements Serializable {
         }
     }
 
-    public void onCreate$window_Persetujuan(Event event) throws Exception {
+    public void onCreate$window_PersetujuanAsman(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
@@ -156,7 +156,7 @@ public class PersetujuanAsmanCtrl extends GFCBaseCtrl implements Serializable {
 
     private void doCheckRights(TVerifikasi tVerifikasi, TPermohonan tPermohonan) {
         boolean save_amdukophar = ((tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon"))
-                || (tPermohonan.getStatus_track_permohonan().contains("Persetujuan Asman Dukophar"))
+                || (tPermohonan.getStatus_track_permohonan().contains("Persetujuan Analyst"))
                 || (tPermohonan.getStatus_track_permohonan().contains("Permohonan Baru Manager Dukophar"))
                 || (tPermohonan.getStatus_track_permohonan().contains("Permohonan Baru GM Dukophar")));
         btn_SimpanPersetujuanAsman.setVisible(save_amdukophar);
@@ -223,7 +223,7 @@ public class PersetujuanAsmanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private void doWriteBeanToComponents(TVerifikasi tVerifikasi, TPermohonan tPermohonan, Mttr mttr) {
-/*        textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
+        textbox_TIdossPermohonanId.setValue(tVerifikasi.getT_idoss_verifikasi_id());
 //        textbox_TIdossPermohonanId.setValue(tPermohonan.getT_idoss_permohonan_id());
         textbox_NamaPemohon.setValue(tPermohonan.getNama_pemohon());
         datebox_Tanggal.setValue(tPermohonan.getTgl_permohonan());
@@ -266,7 +266,7 @@ public class PersetujuanAsmanCtrl extends GFCBaseCtrl implements Serializable {
 
         if (mttr.getTarget2() != null) {
             intbox_target.setValue(Integer.parseInt(mttr.getTarget2()));
-        }*/
+        }
     }
 
     public void onClick$btn_Batal(Event event) throws Exception {
@@ -291,7 +291,7 @@ public class PersetujuanAsmanCtrl extends GFCBaseCtrl implements Serializable {
     private boolean isValidatedFlow() throws InterruptedException {
         if (radiogroup_StatusPermohonanAsman.getSelectedItem().equals(radio_DisetujuiAM)) {
             if (textbox_amdukophar.getValue().length() < 1) {
-                Messagebox.show("Silakan isi Catatan Assisten Manager...");
+                Messagebox.show("Silakan isi Catatan Analyst...");
                 return false;
             }
             if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {

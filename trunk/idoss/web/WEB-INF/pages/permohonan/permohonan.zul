@@ -42,9 +42,9 @@
                             <tab id="tab_Persetujuan" label="Persetujuan"/>
                             <tab id="tab_PersetujuanManagerPemohon" label="Persetujuan Manager Pemohon"/>
                             <tab id="tab_PersetujuanGMPemohon" label="Persetujuan GM Pemohon"/>
-                            <tab id="tab_PersetujuanAsmanDukophar" label="Persetujuan Asisten Manager Dukophar"/>
+                            <tab id="tab_PersetujuanAsmanDukophar" label="Persetujuan Analyst"/>
                             <tab id="tab_PersetujuanManagerDukophar" label="Persetujuan Manager Dukophar"/>
-                            <tab id="tab_PersetujuanGMDukophar" label="Persetujuan GM Dukophar" selected="true"/>
+                            <tab id="tab_PersetujuanGMDukophar" label="Persetujuan GM Dukophar"/>
                             <tab id="tab_Pelaksanaan" label="Pelaksanaan"/>
                         </tabs>
                         <tabpanels>

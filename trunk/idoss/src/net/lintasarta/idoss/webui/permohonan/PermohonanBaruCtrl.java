@@ -169,9 +169,12 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     private void doCheckRights() {
         UserWorkspace workspace = getUserWorkspace();
 //        String role = getUserWorkspace().getUserSession().getEmployeeRole();
-        if ((getUserWorkspace().getUserSession().getOrganizationid() == 1176)
-                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("Assistant Manager"))
-                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH Assistant Manager")))) {
+//        if (((getUserWorkspace().getUserSession().getOrganizationid() == 1176)
+//                || (getUserWorkspace().getUserSession().getOrganizationid() == 1413))
+//                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("Assistant Manager"))
+//                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("Analyst"))
+//                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH Assistant Manager")))) {
+        if (getUserWorkspace().getUserSession().getEmployeeRole().contains(1532)) {
             label_prioritas.setVisible(true);
             radiogroup_Prioritas.setVisible(true);
             label_dampak.setVisible(true);
@@ -220,12 +223,15 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
     private TPermohonan setNikNama(TPermohonan tPermohonan, String employeeNo) {
         VHrEmployee parentEmployee = getNamaVHrEmployee(employeeNo);
         if (parentEmployee.getJob_position_code().equals("Assistant Manager") || parentEmployee.getJob_position_code().equals("Analyst")) {
+//        if (getUserWorkspace().getUserSession().getEmployeeRole().contains(1532)) {
             tPermohonan.setNik_asman(employeeNo);
             tPermohonan.setNama_asman(parentEmployee.getEmployee_name());
         } else if (parentEmployee.getJob_position_code().equals("Manager") || parentEmployee.getJob_position_code().equals("POH Manager")) {
+//        } else if ((getUserWorkspace().getUserSession().getEmployeeRole().contains(1537))||(getUserWorkspace().getUserSession().getEmployeeRole().contains(1536))) {
             tPermohonan.setNik_manager(employeeNo);
             tPermohonan.setNama_manager(parentEmployee.getEmployee_name());
         } else if (parentEmployee.getJob_position_code().equals("General Manager") || parentEmployee.getJob_position_code().equals("POH General Manager")) {
+//        } else if ((getUserWorkspace().getUserSession().getEmployeeRole().contains(1534))||(getUserWorkspace().getUserSession().getEmployeeRole().contains(1533))) {
             tPermohonan.setNik_gm(employeeNo);
             tPermohonan.setNama_gm(parentEmployee.getEmployee_name());
         }
@@ -314,9 +320,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
             return false;
         }
 //        String role = getUserWorkspace().getUserSession().getEmployeeRole();
-        if ((getUserWorkspace().getUserSession().getOrganizationid() == 1176)
-                && ((getUserWorkspace().getUserSession().getJobPositionCode().equals("Assistant Manager"))
-                || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH Assistant Manager")))) {
+        if (getUserWorkspace().getUserSession().getEmployeeRole().contains(1532)) {
             if (listbox_NamaPelaksana.getSelectedItem() == null) {
                 Messagebox.show("Silakan pilih nama pelaksana");
                 return false;
@@ -392,7 +396,7 @@ public class PermohonanBaruCtrl extends GFCBaseCtrl implements Serializable {
             if (getUploadMedia() != null) {
                 uploadeFileName = getUploadMedia().getName();
             }
-            getPermohonanService().simpanAllTPermohonan(uploadeFileName, tPermohonan, mttr);
+            getPermohonanService().simpanAllTPermohonan(uploadeFileName, tPermohonan, mttr, getUserWorkspace().getUserSession().getEmployeeRole());
             TVerifikasi tVerifikasi = getPermohonanService().getTVerifikasiByTIdossVerifikasiId(gettPermohonan().getT_idoss_permohonan_id());
             doWriteComponentsToBeanVer(tVerifikasi);
             getVerifikasiService().saveOrUpdateTVerifikasi(tVerifikasi);
