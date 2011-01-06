@@ -23,7 +23,7 @@
         .z-groupbox-hl .z-groupbox-header { color: #000000;
         font-weight: bold; }
     </style>
-    <window id="window_Persetujuan" width="782px" height="535px" contentStyle="overflow:auto" border="normal" apply="${persetujuanManagerPemohonCtrl}">
+    <window id="window_PersetujuanManagerPemohon" width="782px" height="535px" contentStyle="overflow:auto" border="normal" apply="${persetujuanManagerPemohonCtrl}">
         <toolbar>
             <button id="btn_SimpanPersetujuanManagerPemohon" label="Simpan"/>
             <button id="btn_Batal" label="Batal"/>

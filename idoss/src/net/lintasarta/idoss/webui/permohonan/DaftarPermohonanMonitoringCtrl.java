@@ -210,36 +210,6 @@ public class DaftarPermohonanMonitoringCtrl extends GFCBaseListCtrl<TPermohonan>
         }
     }
 
-    public void onClick$btnReport(Event event) throws Exception {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> " + event.toString());
-        }
-        try {
-            doPrintReport();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void doPrintReport() throws InterruptedException {
-        if (logger.isDebugEnabled()) {
-            logger.debug("--> begin with printing");
-        }
-
-        try {
-            Executions.createComponents("/WEB-INF/pages/permohonan/permohonanBaru.zul", null, null);
-        } catch (Exception e) {
-            logger.error("onOpenWindow:: error opening window / " + e.getMessage());
-
-            // Show a error box
-            String msg = e.getMessage();
-            String title = Labels.getLabel("message_Error");
-
-            MultiLineMessageBox.doSetTemplate();
-            MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "ERROR", true);
-        }
-    }
-
     public void onClick$btnRefresh(Event event) throws InterruptedException {
 
         if (logger.isDebugEnabled()) {

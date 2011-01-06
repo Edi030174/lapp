@@ -25,7 +25,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
 		locations = {
-				"classpath:META-INF/spring/spring-config.xml",
+				"classpath:META-INF/spring/spring-service-idoss-config.xml",
 				"classpath:META-INF/spring/datasource.xml",
 				"classpath:META-INF/spring/spring-idoss-security-config.xml",
 				"classpath:META-INF/spring/spring-dao-idoss-pengaduan-config.xml",

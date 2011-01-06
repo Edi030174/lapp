@@ -21,20 +21,24 @@ public class UserSession implements Serializable {
     private int organizationid;
     private String winHeight;
     private String jobPositionCode;
+    private String emailAddr;
 
     public UserSession() {
     }
 
-    public UserSession(List<Integer> employeeRole, String employeeNo, String userName, String employeeName, String department, String passwordMask, String jobLocation, int organizationid, String winHeight) {
+    public UserSession(List<Integer> employeeRole, String employeeNo, String userName, String employeeName, String department, String passwordMask, String jobLocation, int organizationid, String winHeight, String jobPositionCode, String emailAddr) {
         this.employeeRole = employeeRole;
         this.employeeNo = employeeNo;
         this.userName = userName;
         this.employeeName = employeeName;
         this.department = department;
-        this.passwordMask =passwordMask; 
+        this.passwordMask = passwordMask;
         this.jobLocation = jobLocation;
         this.organizationid = organizationid;
         this.winHeight = winHeight;
+        this.jobPositionCode = jobPositionCode;
+        this.emailAddr = emailAddr;
+
     }
 
     public List<Integer> getEmployeeRole() {
@@ -115,5 +119,13 @@ public class UserSession implements Serializable {
 
     public void setJobPositionCode(String jobPositionCode) {
         this.jobPositionCode = jobPositionCode;
+    }
+
+    public String getEmailAddr() {
+        return emailAddr;
+    }
+
+    public void setEmailAddr(String emailAddr) {
+        this.emailAddr = emailAddr;
     }
 }

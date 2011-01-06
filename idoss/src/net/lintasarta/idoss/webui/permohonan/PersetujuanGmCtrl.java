@@ -36,7 +36,7 @@ import java.util.Map;
 public class PersetujuanGmCtrl extends GFCBaseCtrl implements Serializable {
     private transient static final Logger logger = Logger.getLogger(PersetujuanGmCtrl.class);
 protected Window window_Permohonan;
-    protected Window window_Persetujuan;
+    protected Window window_PersetujuanGmDukophar;
 
     protected Groupbox groupbox_ManagerPemohon;
     protected Groupbox groupbox_GmPemohon;
@@ -135,7 +135,7 @@ protected Window window_Permohonan;
         }
     }
 
-    public void onCreate$window_Persetujuan(Event event) throws Exception {
+    public void onCreate$window_PersetujuanGmDukophar(Event event) throws Exception {
 
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
@@ -392,7 +392,7 @@ protected Window window_Permohonan;
         }
         boolean save_amdukophar = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) &&
                 ((tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon"))
-                        || (tPermohonan.getStatus_track_permohonan().contains("Persetujuan Asman Dukophar"))
+                        || (tPermohonan.getStatus_track_permohonan().contains("Persetujuan Analyst"))
                         || (tPermohonan.getStatus_track_permohonan().contains("Permohonan Baru Manager Dukophar"))
                         || (tPermohonan.getStatus_track_permohonan().contains("Permohonan Baru GM Dukophar")));
         btn_SimpanPersetujuanAsman.setVisible(save_amdukophar);
@@ -768,7 +768,7 @@ protected Window window_Permohonan;
     private boolean isValidatedFlow() throws InterruptedException {
         if (radiogroup_StatusPermohonanAsman.getSelectedItem().equals(radio_DisetujuiAM)) {
             if (textbox_amdukophar.getValue().length() < 1) {
-                Messagebox.show("Silakan isi Catatan Assisten Manager...");
+                Messagebox.show("Silakan isi Catatan Analyst...");
                 return false;
             }
             if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {

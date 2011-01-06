@@ -304,10 +304,10 @@ public class PenangananGangguanCtrl extends GFCBaseCtrl implements Serializable 
         tDeskripsi.setUpdated_by(getUserWorkspace().getUserSession().getUserName());
 
         try {
-//            if (getUserWorkspace().getUserSession().getEmployeeRole().equalsIgnoreCase(LoginConstants.IDOSS_HELPDESK_ADUAN)) {
-            if ((getUserWorkspace().getUserSession().getOrganizationid() == 1176)
-                    ^ ((getUserWorkspace().getUserSession().getJobPositionCode().equals("Assistant Manager"))
-                    || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH Assistant Manager")))) {
+//            if ((getUserWorkspace().getUserSession().getOrganizationid() == 1176)
+//                    ^ ((getUserWorkspace().getUserSession().getJobPositionCode().equals("Assistant Manager"))
+//                    || (getUserWorkspace().getUserSession().getJobPositionCode().equals("POH Assistant Manager")))) {
+            if (getUserWorkspace().getUserSession().getEmployeeRole().contains(1532)){
                 tPenangananGangguan.setNik_pelapor(getEmployee().getEmployee_no());
             }
             getPenangananGangguanService().createPenangananGangguan(tPenangananGangguan, tDeskripsi, mttr);

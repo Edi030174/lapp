@@ -1,6 +1,5 @@
 package net.lintasarta.idoss.webui.permohonan;
 
-import net.lintasarta.UserWorkspace;
 import net.lintasarta.idoss.webui.pengaduan.model.PelaksanaListModelItemRenderer;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
 import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
@@ -14,7 +13,6 @@ import net.lintasarta.permohonan.model.TVerifikasi;
 import net.lintasarta.permohonan.service.PelaksanaanService;
 import net.lintasarta.permohonan.service.PermohonanService;
 import net.lintasarta.permohonan.service.VerifikasiService;
-import net.lintasarta.security.util.LoginConstants;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
@@ -24,7 +22,6 @@ import org.zkoss.zul.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -396,7 +393,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
         }
         boolean save_amdukophar = (workspace.isAllowed("btn_SimpanPersetujuanAsman")) &&
                 ((tPermohonan.getStatus_track_permohonan().contains("Disetujui GM Pemohon"))
-                        || (tPermohonan.getStatus_track_permohonan().contains("Persetujuan Asman Dukophar"))
+                        || (tPermohonan.getStatus_track_permohonan().contains("Persetujuan Analyst"))
                         || (tPermohonan.getStatus_track_permohonan().contains("Permohonan Baru Manager Dukophar"))
                         || (tPermohonan.getStatus_track_permohonan().contains("Permohonan Baru GM Dukophar")));
         btn_SimpanPersetujuanAsman.setVisible(save_amdukophar);
@@ -772,7 +769,7 @@ public class PersetujuanCtrl extends GFCBaseCtrl implements Serializable {
     private boolean isValidatedFlow() throws InterruptedException {
         if (radiogroup_StatusPermohonanAsman.getSelectedItem().equals(radio_DisetujuiAM)) {
             if (textbox_amdukophar.getValue().length() < 1) {
-                Messagebox.show("Silakan isi Catatan Assisten Manager...");
+                Messagebox.show("Silakan isi Catatan Analyst...");
                 return false;
             }
             if (listbox_NamaPelaksana.getSelectedItem().getLabel().equalsIgnoreCase("Silakan pilih")) {
