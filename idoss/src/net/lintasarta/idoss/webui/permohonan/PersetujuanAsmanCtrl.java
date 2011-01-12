@@ -208,6 +208,7 @@ public class PersetujuanAsmanCtrl extends GFCBaseCtrl implements Serializable {
         textbox_gmuser.setReadonly(true);
         textbox_amdukophar.setReadonly(false);
 
+
         sp1.setVisible(false);
         sp2.setVisible(false);
         sp3.setVisible(true);

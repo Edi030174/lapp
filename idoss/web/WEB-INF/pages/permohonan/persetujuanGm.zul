@@ -91,12 +91,12 @@
             </vbox>
         </hbox>
         <space width="10px"/>
-        <groupbox mold="3d">
+        <groupbox mold="3d" open="false">
             <caption label="detail permohonan" style="font-weight:normal"/>
             <label value="Deskripsi : "/>
             <textbox id="textbox_DetailPermohonan" rows="3" width="300px"/>
         </groupbox>
-        <groupbox mold="3d" id="groupbox_ManagerPemohon">
+        <groupbox mold="3d" id="groupbox_ManagerPemohon" open="false">
             <caption label="catatan Manager" style="font-weight:normal"/>
             <hbox>
                 <vbox>
@@ -124,7 +124,7 @@
                 </vbox>
             </hbox>
         </groupbox>
-        <groupbox mold="3d" id="groupbox_GmPemohon">
+        <groupbox mold="3d" id="groupbox_GmPemohon" open="false">
             <caption label="catatan GM" style="font-weight:normal"/>
             <hbox>
                 <vbox>
@@ -154,7 +154,7 @@
                 </vbox>
             </hbox>
         </groupbox>
-        <groupbox mold="3d" id="groupbox_AM">
+        <groupbox mold="3d" id="groupbox_AM" open="false">
             <caption label="catatan Analyst" style="font-weight:normal"/>
             <hbox>
                 <vbox>
@@ -193,7 +193,7 @@
                 </vbox>
             </hbox>
         </groupbox>
-        <groupbox mold="3d" id="groupbox_Manager">
+        <groupbox mold="3d" id="groupbox_Manager" open="false">
             <caption label="catatan Manager Dukophar" style="font-weight:normal"/>
             <hbox>
                 <vbox>
@@ -221,7 +221,7 @@
                 </vbox>
             </hbox>
         </groupbox>
-        <groupbox mold="3d" id="groupbox_Gm">
+        <groupbox mold="3d" id="groupbox_Gm" open="true">
             <caption label="catatan GM Dukophar" style="font-weight:normal"/>
             <hbox>
                 <vbox>

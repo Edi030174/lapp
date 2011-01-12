@@ -135,6 +135,7 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
             String nik_manager = gettPermohonan().getNik_asman();
             String nama_gm = gettPermohonan().getNama_manager();
             String nik_gm = gettPermohonan().getNik_manager();
+            
             String jumlah_server = Integer.toString(intbox_Jumlah.getValue());
 //            HashMap params = new HashMap();
 //            params.put("nama_pemohon", nama_pemohon);
