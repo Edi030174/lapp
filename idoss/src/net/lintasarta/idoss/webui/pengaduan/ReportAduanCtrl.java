@@ -2,12 +2,15 @@ package net.lintasarta.idoss.webui.pengaduan;
 
 import net.lintasarta.idoss.report.util.JRreportWindow;
 import net.lintasarta.idoss.webui.util.GFCBaseCtrl;
+import net.lintasarta.idoss.webui.util.MultiLineMessageBox;
 import net.lintasarta.permohonan.model.TPermohonan;
 import net.lintasarta.permohonan.service.PermohonanService;
 import net.lintasarta.report.service.ReportService;
 import net.lintasarta.security.model.VHrEmployee;
 import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRException;
 import org.apache.log4j.Logger;
+import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
@@ -113,7 +116,7 @@ public class ReportAduanCtrl extends GFCBaseCtrl implements Serializable {
         return tPermohonan;
     }
 
-    public void onClick$btnReport(Event event) throws IOException, InterruptedException {
+    public void onClick$btnReport(Event event) throws IOException, InterruptedException, JRException {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
@@ -129,8 +132,16 @@ public class ReportAduanCtrl extends GFCBaseCtrl implements Serializable {
             String bulan = (String) combobox_bulan.getSelectedItem().getValue();
             String tahun = (String) combobox_tahun.getSelectedItem().getValue();
             JRDataSource ds = reportService.getAduan(bulan, tahun, nama_pemohon, nik_pemohon, nama_manager, nik_manager, nama_gm, nik_gm);
-            Component parent = window_Report1.getRoot();
-            new JRreportWindow(parent, true, null, repSrc, ds, "pdf");
+            if (ds.next()) {
+                Component parent = window_Report1.getRoot();
+                new JRreportWindow(parent, true, null, repSrc, ds, "pdf");
+            } else {
+                String msg = "Data tidak ditemukan di bulan " + bulan + " tahun " + tahun;
+                String title = Labels.getLabel("message_Information");
+
+                MultiLineMessageBox.doSetTemplate();
+                MultiLineMessageBox.show(msg, title, MultiLineMessageBox.OK, "INFORMATION", true);
+            }
         }
     }
 

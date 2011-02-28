@@ -68,7 +68,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     public String getAuthorization(VHrEmployee vHrEmployee) {
-        if (vHrEmployee.getP_organization_id().equals(new BigDecimal(1176))) {
+        if (vHrEmployee.getP_organization_id().equals(new BigDecimal(1755))) {
             if (vHrEmployee.getJob_position_code().equals("Assistant Manager") || vHrEmployee.getJob_position_code().equals("POH Assistant Manager")) {
                 return LoginConstants.AMDUK;
             } else if (vHrEmployee.getJob_position_code().equals("Manager") || vHrEmployee.getJob_position_code().equals("POH Manager")) {

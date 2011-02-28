@@ -15,6 +15,7 @@ import org.springframework.dao.DataAccessException;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zul.*;
 
@@ -40,6 +41,7 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
     protected Combobox combobox_tahun2;
     protected Combobox combobox_bulan;
     protected Intbox intbox_Jumlah;
+    //protected Textbox intbox_Jumlah;
     protected ReportRekapAduanCtrl reportRekapAduanCtrl;
     private transient ReportService reportService;
     private transient PermohonanService permohonanService;
@@ -86,24 +88,28 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
     }
 
     private VHrEmployee getNamaVHrEmployee(String vHrEmployeeNo) {
-        List<VHrEmployee> vHrEmployees = getPermohonanService().getVHrEmployeeByEmployeeNo(vHrEmployeeNo);
-        for (VHrEmployee vHrEmployee : vHrEmployees) {
-            return vHrEmployee;
+        if (vHrEmployeeNo != null) {
+            List<VHrEmployee> vHrEmployees = getPermohonanService().getVHrEmployeeByEmployeeNo(vHrEmployeeNo);
+            for (VHrEmployee vHrEmployee : vHrEmployees) {
+                return vHrEmployee;
+            }
         }
         return null;
     }
 
     private TPermohonan setNikNama(TPermohonan tPermohonan, String employeeNo) {
         VHrEmployee parentEmployee = getNamaVHrEmployee(employeeNo);
-        if (parentEmployee.getJob_position_code().equals("Assistant Manager") || parentEmployee.getJob_position_code().equals("Analyst")) {
-            tPermohonan.setNik_asman(employeeNo);
-            tPermohonan.setNama_asman(parentEmployee.getEmployee_name());
-        } else if (parentEmployee.getJob_position_code().equals("Manager") || parentEmployee.getJob_position_code().equals("POH Manager")) {
-            tPermohonan.setNik_manager(employeeNo);
-            tPermohonan.setNama_manager(parentEmployee.getEmployee_name());
-        } else if (parentEmployee.getJob_position_code().equals("General Manager") || parentEmployee.getJob_position_code().equals("POH General Manager")) {
-            tPermohonan.setNik_gm(employeeNo);
-            tPermohonan.setNama_gm(parentEmployee.getEmployee_name());
+        if (parentEmployee != null) {
+            if (parentEmployee.getJob_position_code().equals("Assistant Manager") || parentEmployee.getJob_position_code().equals("Analyst")) {
+                tPermohonan.setNik_asman(employeeNo);
+                tPermohonan.setNama_asman(parentEmployee.getEmployee_name());
+            } else if (parentEmployee.getJob_position_code().equals("Manager") || parentEmployee.getJob_position_code().equals("POH Manager")) {
+                tPermohonan.setNik_manager(employeeNo);
+                tPermohonan.setNama_manager(parentEmployee.getEmployee_name());
+            } else if (parentEmployee.getJob_position_code().equals("General Manager") || parentEmployee.getJob_position_code().equals("POH General Manager")) {
+                tPermohonan.setNik_gm(employeeNo);
+                tPermohonan.setNama_gm(parentEmployee.getEmployee_name());
+            }
         }
         return tPermohonan;
     }
@@ -125,6 +131,11 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
+
+        if(intbox_Jumlah.getValue()==null){
+            throw new WrongValueException(intbox_Jumlah, "Tidak boleh kosong!");
+        }
+        
         String repSrc = Sessions.getCurrent().getWebApp().getRealPath("/WEB-INF/report/permohonan/reportRekapAduan.jasper");
         //
         doShowDialog(gettPermohonan());
@@ -137,6 +148,8 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
             String nik_gm = gettPermohonan().getNik_manager();
             
             String jumlah_server = Integer.toString(intbox_Jumlah.getValue());
+             //String jumlah_server = String.valueOf(intbox_Jumlah.getValue());
+
 //            HashMap params = new HashMap();
 //            params.put("nama_pemohon", nama_pemohon);
 //            params.put("nik_pemohon", nik_pemohon);
@@ -155,6 +168,11 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
         if (logger.isDebugEnabled()) {
             logger.debug("--> " + event.toString());
         }
+
+         if(intbox_Jumlah.getValue()==null){
+            throw new WrongValueException(intbox_Jumlah, "Tidak boleh kosong!");
+        }
+
         doSimpan();
         Messagebox.show("Anda berhasil menyimpan", "Save succeed", Messagebox.OK, Messagebox.INFORMATION);
     }
@@ -179,6 +197,7 @@ public class ReportRekapAduanCtrl extends GFCBaseCtrl implements Serializable {
 //        int tahun = Integer.parseInt(combobox_tahun2.getName());
         reportServer.setTahun(tahun);
         reportServer.setJumlah(intbox_Jumlah.getValue());
+        //reportServer.setJumlah(Integer.valueOf(intbox_Jumlah.getValue()));
         reportServer.setUpdate_by(getUserWorkspace().getUserSession().getUserName());
 
     }

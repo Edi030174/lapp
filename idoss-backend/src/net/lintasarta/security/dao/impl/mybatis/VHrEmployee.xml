@@ -9,7 +9,7 @@
         select  employee_no, employee_name, p_organization_id, inactive_date, organization_code, nama,
                 p_job_position_id, job_position_code, p_job_location_id, job_location, e_mail_addr, status
         from sni.v_hr_employee
-        where employee_no = #{employeeNo}
+        where employee_no = #{employeeno, jdbcType=VARCHAR}
     </select>
 
     <select id="getVHrEmployeeByEmployeeName" resultType="vHrEmployee">
