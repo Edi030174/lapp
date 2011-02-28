@@ -6,6 +6,7 @@
     <select id="getAllVHrEmployeePelaksana" resultType="vhremployeepelaksana">
         select * from sni.v_hr_employee_pelaksana
     </select>
+    
     <select id="getVHrEmployeePelaksanaById" parameterType="String" resultType="vhremployeepelaksana">
          select * from sni.v_hr_employee_pelaksana
          where EMPLOYEE_NO = #{employee_no, jdbcType=VARCHAR}

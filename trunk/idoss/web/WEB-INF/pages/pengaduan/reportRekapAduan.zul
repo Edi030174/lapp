@@ -71,6 +71,7 @@
                                 <comboitem label="Desember" value="DEC"/>
                             </combobox>
                             <intbox id="intbox_Jumlah" maxlength="3"/>
+                            <!--<textbox id="intbox_Jumlah" maxlength="3"/>-->
                         </vbox>
                     </hbox>
                         <space height="7px"/>
